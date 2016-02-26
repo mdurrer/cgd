@@ -128,3 +128,10 @@ class Quaternion(self):
 			self.y = args[1]
 			self.z = args[2]
 			self.w = args[3]
+        if len(args) <=1:
+                self.x = float()
+                self.y = float()
+                self.z = float()
+                self.w = float()
+    def __repr__(self):
+            return "X=%f,Y=%f,Z=%f,W=%f" %(self.x,self.y,self.z,self.w)
