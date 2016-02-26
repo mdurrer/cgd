@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Image Arithmetic</title>
+<meta content="text/html; charset=us-ascii" http-equiv=
+"content-type" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Image Arithmetic<br /></h1>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#Introduction_">Introduction</a></li>
+<li><a href="#The_Code_">The Code</a><br /></li>
+<li><a href="#Add">Add</a></li>
+<li><a href="#Subtract">Subtract</a></li>
+<li><a href="#Difference">Difference</a></li>
+<li><a href="#Multiply">Multiply</a></li>
+<li><a href="#Average">Average</a></li>
+<li><a href="#Cross_Fading">Cross Fading</a></li>
+<li><a href="#Min_and_Max">Min and Max</a></li>
+<li><a href="#Amplitude">Amplitude</a></li>
+<li><a href="#AND_OR_and_XOR">AND, OR and XOR</a><br /></li>
+</ul>
+<a href="index.html">Back to index</a><br />
+<h2><a name="Introduction_" id=
+"Introduction_"></a>Introduction<br /></h2>
+Image Arithmetic is where you take two images, do calculations on
+their color channels, and get a new resulting image that is a
+combination of the two. These operations can be done with the
+Arithmetic tool in Paint Shop Pro, or "Calculations" in
+Photoshop.<br />
+<br />
+This should be a pretty easy article with simple code and more
+looking at images.<br />
+<h2><a name="The_Code_" id="The_Code_"></a>The Code<br /></h2>
+Here follows the code that loads in .bmp images and allows you to
+do the arithmetic and display them.<br />
+<br />
+The .bmp images are in the /pics folder and called photo1.bmp,
+photo2.bmp and photo3.bmp. You can download them <a href=
+"files/photos.zip">here</a>.<br />
+<br />
+These are the source images in lower quality. They're taken while
+hiking in the Belgian Ardennes.<br />
+<br />
+<img alt="" src="images/photo1.jpg" style=
+"width: 320px; height: 240px;" /> <img alt="" src=
+"images/photo2.jpg" style=
+"width: 320px; height: 240px;" /><img alt="" src=
+"images/photo3.jpg" style="width: 320px; height: 240px;" /><br />
+<br />
+Here's the code, it should be very straightforward. In the double
+loop that performs the image arithmetic, currently the formulas for
+"average" are filled in, replace this part of the code by the code
+given in the next sections.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><span class="comment">//declare image buffers</span>
+ColorRGB image1[320][240];
+ColorRGB image2[320][240];
+ColorRGB image3[320][240];
+ColorRGB result[320][240];
+
+int main(int argc, char *argv[])
+{
+    <span class="comment">//set up the screen</span>
+    screen(320,240,0, <span class="string">"Image Arithmetic"</span>);
+    
+    <span class="comment">//load the images into the buffers</span>
+    loadBMP("pics/photo1.bmp", image1[0], w, h);
+    loadBMP("pics/photo2.bmp", image2[0], w, h);
+    loadBMP("pics/photo3.bmp", image3[0], w, h);
+    
+    <span class="comment">//do the image arithmetic (here: "average")</span>
+    for(int x = 0; x &lt; w; x++)
+    for(int y = 0; y &lt; h; y++)
+    {
+        result[x][y].r = (image1[x][y].r + image2[x][y].r) / 2;
+        result[x][y].g = (image1[x][y].g + image2[x][y].g) / 2;
+        result[x][y].b = (image1[x][y].b + image2[x][y].b) / 2;
+    }    
+    
+    <span class="comment">//draw the result buffer to the screen</span>
+    for(int x = 0; x &lt; w; x++)
+    for(int y = 0; y &lt; h; y++)
+    {
+        pset(x, y, result[x][y]);
+    }
+    
+    <span class="comment">//redraw &amp; sleep</span>
+    redraw();
+    sleep();            
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Note that you could also use "<span style=
+"font-family: monospace;">result[x][y] = (image1[x][y] +
+image2[x][y]) / 2</span>" instead of doing it for every color
+component separately, but this notation doesn't work for all
+examples.<br />
+<h2><a name="Add" id="Add"></a>Add</h2>
+Addition is when you add the corresponding color channels of the
+images to each other. Each color component is a number between 0
+and 255, so if the sum of the two colors becomes higher than 255,
+it has to be truncated to 255 again, by taking the minimum of the
+result and 255. Copypaste this into the arithmetic loop and run it
+to see the result of the sum of the two photos.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = min(image2[x][y].r + image3[x][y].r, 255);
+        result[x][y].g = min(image2[x][y].g + image3[x][y].g, 255);
+        result[x][y].b = min(image2[x][y].b + image3[x][y].b, 255);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithadd.jpg" style=
+"width: 319px; height: 239px;" /><br />
+<br />
+The sky of the second photo is so bright, that adding the color
+components of the other image makes it so bright that the colors
+are truncated to 255 and thus extremely white. You can still
+recognize the cows in the bottom part of the image though.<br />
+<br />
+Instead of doing this for all three the channels, you can also do
+it on only one color channel, but that would generate an excessive
+amount of screenshots here ;)<br />
+<h2><a name="Subtract" id="Subtract"></a>Subtract</h2>
+Subtraction works in a similar way, but now you have to truncate
+negative results to 0.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = max(image2[x][y].r - image1[x][y].r, 0);
+        result[x][y].g = max(image2[x][y].g - image1[x][y].g, 0);
+        result[x][y].b = max(image2[x][y].b - image1[x][y].b, 0);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithsub.jpg" style=
+"width: 320px; height: 240px;" /><br />
+<br />
+The cow picture is the one subtracted from the horses, so the cow
+picture's colors become negative. That explains the purplish
+colors. The bright sky subtracted from the flower makes the whole
+upper part pitch black.<br />
+<br />
+The order of subtraction is important, you get this if you subtract
+the second from the third instead:<br />
+<br />
+<img alt="" src="images/arithsub2.jpg" style=
+"width: 318px; height: 239px;" /><br />
+<h2><a name="Difference" id="Difference"></a>Difference</h2>
+Difference is almost the same as subtract, only now instead of
+truncating negative values, you take their absolute value. So you
+get the difference between the colors of both images.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = abs(image1[x][y].r - image2[x][y].r);
+        result[x][y].g = abs(image1[x][y].g - image2[x][y].g);
+        result[x][y].b = abs(image1[x][y].b - image2[x][y].b);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithdiff.jpg" style=
+"width: 320px; height: 240px;" /><br />
+<br />
+Now the places that were black in one image are filled with the
+color of the other image.<br />
+<h2><a name="Multiply" id="Multiply"></a>Multiply</h2>
+To multiply, don't multiply the color component values from 0-255
+with each other, then the maximum value would be 255 * 255 = 65025,
+and with such a big color value, you can't do much. Instead,
+convert the values to floating point numbers between 0 and 1, and
+multiply those. The result will then also always be between 0 and
+1. After multiplication, multiply it with 255 again.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = int(255 * (image2[x][y].r / 255.0 * image1[x][y].r / 255.0));
+        result[x][y].g = int(255 * (image2[x][y].g / 255.0 * image1[x][y].g / 255.0));
+        result[x][y].b = int(255 * (image2[x][y].b / 255.0 * image1[x][y].b / 255.0));</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here's the cow image multiplied with the horse image:<br />
+<br />
+<img alt="" src="images/arithmul.jpg" style=
+"width: 318px; height: 238px;" /><br />
+<br />
+The bright sky of the cow image can be seen as value 1, and
+multiplying 1 with the horses keeps the horses, so the top part
+looks almost the same as the original horse image. The bottom part
+is the product of two darker parts, which becomes even
+darker.<br />
+<br />
+<h2><a name="Average" id="Average"></a>Average</h2>
+The average is gotten by adding the two images, and dividing the
+result through two.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = (image1[x][y].r + image2[x][y].r) / 2;
+        result[x][y].g = (image1[x][y].g + image2[x][y].g) / 2;
+        result[x][y].b = (image1[x][y].b + image2[x][y].b) / 2;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithav.jpg" style=
+"width: 319px; height: 239px;" /><br />
+<br />
+<h2><a name="Cross_Fading" id="Cross_Fading"></a>Cross Fading</h2>
+Cross Fading can be achieved by using the Weighed Average, first
+the first image has a high weight and the second a low weight. But
+as time goes on, the weight of the second image is increased and
+the one of the first image decreased, resulting in a nice fade.
+Here's an example where the weight factor of the first image is
+0.75, and the one of the second 0.25:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = int(image1[x][y].r * 0.75 + image2[x][y].r * 0.25);
+        result[x][y].g = int(image1[x][y].g * 0.75 + image2[x][y].g * 0.25);
+        result[x][y].b = int(image1[x][y].b * 0.75 + image2[x][y].b * 0.25);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithweighedav.jpg" style=
+"width: 318px; height: 239px;" /><br />
+<br />
+The horse image is now more visible than the cow image.<br />
+<br />
+To do an actual cross fade, a modified main function has to be
+used, because the result has to be redrawn every frame and the time
+is taken into account. For that a new while loop is added, and the
+weight is the value weight that goes from 0 to 1 for the first
+image, and from 1 to 0 for the second by using "1 - weight".<br />
+<br />
+Weight itself normally goes linearly from 0 to 1, but here
+something special is done: it's calculated as the cosine of the
+time, this means that the image will constantly fade from the first
+to the second, back to the first, back the second, and so on...
+Since the cosine gives a value between -1 and +1, while we want a
+value between 0 and 1, add 1 to it and divide the result through
+2.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><span class="comment">//declare image buffers</span>
+ColorRGB image1[320][240];
+ColorRGB image2[320][240];
+ColorRGB image3[320][240];
+ColorRGB result[320][240];
+
+int main(int argc, char *argv[])
+{
+    <span class="comment">//set up the screen</span>
+    screen(320,240,0, <span class="string">"Image Arithmetic"</span>);
+    
+    <span class="comment">//load the images into the buffers</span>
+    loadBMP(<span class="string">"pics/photo1.bmp"</span>, image1[0], w, h);
+    loadBMP(<span class="string">"pics/photo2.bmp"</span>, image2[0], w, h);
+    loadBMP(<span class="string">"pics/photo3.bmp"</span>, image3[0], w, h);
+    
+    float weight;
+    
+    while(!done())
+    {
+        weight = (1.0 + cos(getTime() / 1000.0)) / 2.0;
+        
+        <span class="comment">//do the image arithmetic</span>
+        for(int x = 0; x &lt; w; x++)
+        for(int y = 0; y &lt; h; y++)
+        {
+            result[x][y].r = int(image1[x][y].r * weight + image2[x][y].r * (1 - weight));
+            result[x][y].g = int(image1[x][y].g * weight + image2[x][y].g * (1 - weight));
+            result[x][y].b = int(image1[x][y].b * weight + image2[x][y].b * (1 - weight));
+        }    
+        
+        <span class="comment">//draw the result buffer to the screen</span>
+        for(int x = 0; x &lt; w; x++)
+        for(int y = 0; y &lt; h; y++)
+        {
+            pset(x, y, result[x][y]);
+        }
+        
+        <span class="comment">//redraw</span>
+        redraw();
+    }             
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here are a few frames:<br />
+<br />
+<img alt="" src="images/crossfade.jpg" style=
+"width: 640px; height: 119px;" /><br />
+<br />
+<h2><a name="Min_and_Max" id="Min_and_Max"></a>Min and Max</h2>
+This involves taking only value of the pixel with the lowest or
+highest value, for example taking the minimum of both:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = min(image1[x][y].r, image2[x][y].r);
+        result[x][y].g = min(image1[x][y].g, image2[x][y].g);
+        result[x][y].b = min(image1[x][y].b, image2[x][y].b);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The result here is very obvious:<br />
+<br />
+<img alt="" src="images/arithmin.jpg" style=
+"width: 319px; height: 238px;" /><br />
+<br />
+Because the cow image has such a bright sky, the darker horse image
+wins there. But in the bottom part, the horse image is brighter
+than the cows, so there the cows win. So this operation has
+filtered out exactly the sky of the cows and replaces that with the
+horses.<br />
+<br />
+Taking the max instead does of course the opposite:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = max(image1[x][y].r, image2[x][y].r);
+        result[x][y].g = max(image1[x][y].g, image2[x][y].g);
+        result[x][y].b = max(image1[x][y].b, image2[x][y].b);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithmax.jpg" style=
+"width: 320px; height: 241px;" /><br />
+<br />
+<h2><a name="Amplitude" id="Amplitude"></a>Amplitude</h2>
+<br />
+The amplitude is calculated by using the formula of the amplitude
+on the two corresponding color channels. This formula is
+sqrt(x&sup2; + y&sup2;). Because the result of this can be 1.41
+times larger than 255, it's divided through 1.41 = sqrt(2.0) at the
+end. All sorts of conversions to double and back to int have to be
+typed as well because the standard sqrt function of the current gcc
+compiler gives an ambiguity error on integers instead of converting
+it.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = int(sqrt(double(image1[x][y].r * image1[x][y].r + image2[x][y].r * image2[x][y].r)) / sqrt(2.0));
+        result[x][y].g = int(sqrt(double(image1[x][y].g * image1[x][y].g + image2[x][y].g * image2[x][y].g)) / sqrt(2.0));
+        result[x][y].b = int(sqrt(double(image1[x][y].b * image1[x][y].b + image2[x][y].b * image2[x][y].b)) / sqrt(2.0));</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithampl.jpg" style=
+"width: 318px; height: 238px;" /><br />
+<br />
+<h2><a name="AND_OR_and_XOR" id="AND_OR_and_XOR"></a>AND, OR and
+XOR</h2>
+What we're now going to do is apply the "&amp;", "|" and "^"
+operators on the binary values of the color values. The results on
+normal photos are like, very ugly.<br />
+<br />
+Here's the AND operator:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = image1[x][y].r &amp; image2[x][y].r;
+        result[x][y].g = image1[x][y].g &amp; image2[x][y].g;
+        result[x][y].b = image1[x][y].b &amp; image2[x][y].b;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithand.jpg" style=
+"width: 318px; height: 237px;" /><br />
+<br />
+Or would you prefer OR?<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = image1[x][y].r | image2[x][y].r;
+        result[x][y].g = image1[x][y].g | image2[x][y].g;
+        result[x][y].b = image1[x][y].b | image2[x][y].b;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithor.jpg" style=
+"width: 319px; height: 240px;" /><br />
+<br />
+The result of the XOR operator also isn't immediately
+beautiful:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        result[x][y].r = image1[x][y].r ^ image2[x][y].r;
+        result[x][y].g = image1[x][y].g ^ image2[x][y].g;
+        result[x][y].b = image1[x][y].b ^ image2[x][y].b;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/arithxor.jpg" style=
+"width: 318px; height: 239px;" /><br />
+<br />
+You never know when it comes in handy, maybe for encryption of
+images ;)<br />
+<br />
+<hr />
+Last edited: 2004
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+</body>
+</html>

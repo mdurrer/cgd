@@ -1,0 +1,123 @@
+block _22 ( atbegin(1)  and not been(_22) )
+title Mrzí mě, že tě odtud nemůžu zachránit.
+  {extra pokecat muzeme jenom jednou, takze to hned tady znemoznime:}
+  let kronika_extra_pokec (0)
+
+  justtalk
+  D: "Tak se tady opatruj, kroniko."
+  D: "Mrzí mě, že tě odtud nemůžu zachránit."
+  juststay
+
+  start kronika "mluvi"
+  K: "Jen jdi, já tady zůstanu."
+  start kronika "mlci"
+
+  justtalk
+  D: "Vážně?
+      Skřeti se vzbudí a pak..."
+  juststay
+
+  start kronika "mluvi"
+  K: "Na to se těším,
+      chci jim teď pěkně od plic vynadat!"
+  start kronika "mlci"
+
+  justtalk
+  D: "Dobrý nápad, myslím,
+      že se už teď ve spánku třesou hrůzou!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Opravdu?"
+  start kronika "mlci"
+
+  justtalk
+  D: "Vážně."
+  juststay
+
+  start kronika "mluvi"
+  K: "Řekni mi, ale upřímně,
+      mrazí tě ze mne v zádech?"
+  start kronika "mlci"
+
+  justtalk
+  D: "Dokonce jsem si počůral plínky!"
+  juststay
+
+{  Vypravec:"[Obstarožní kronika balí pubertálního draka:]"
+  start kronika "mluvi"
+  K: "Och!"
+  K: "To byla jenom taková lichotka,
+      od pěkného mladíka, že?"
+  start kronika "mlci"
+
+  justtalk
+  D: "Se ví, do plínek nečůrám už aspoň půl roku..."
+  juststay
+
+  start kronika "mluvi"
+  K: "Ách, ty jsi už tak velký?
+      A jakpak tedy čůráš, mladíku?"
+  start kronika "mlci"
+
+  justtalk
+  D: "Hele, pomalu, jenom pomalu.
+      Zchlaď svoje city, jo?"
+  juststay
+
+  justtalk
+  D: "Pokud jsem ti opravdu zalichotil,
+      tak jedině omylem!"
+  juststay
+
+  start kronika "mluvi"
+  K: "No dobrá, myslela jsem,
+      že si trochu zaflirtujeme!"
+  start kronika "mlci"
+
+  Vypravec: "[Drsný chlap:]"
+  justtalk
+  D: "Teď není na takový věci čas!"
+  juststay
+
+  justtalk
+  D: "Chápej, že o tebe můžu mít strach
+      z čistě vědeckého, historického hlediska!"
+  juststay
+
+  justtalk
+  D: "Když si vzpomenu na to, co s tebou prováděli..."
+  juststay
+
+  start kronika "mluvi"
+  K: "Neboj se, jsem z nehořlavého materiálu!"
+  start kronika "mlci"
+
+  justtalk
+  D: "No dobrá, ale co když tě třeba..."
+  D: "Proti čemu všemu je vlastně odolný ten materiál,
+      ze kterého jsi vyrobená?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Je odolný proti mrazu, teplu,
+      vlhku, zubu času a sežrání."
+  start kronika "mlci"
+
+  justtalk
+  D: "Copak někdo požírá starý kroniky?
+      Fuj!"
+  juststay
+
+  start kronika "mluvi"
+  K: "V pohádkách jeden nikdy neví..."
+  start kronika "mlci"
+
+  justtalk
+  D: "To mě ale vážně spadl kámen ze srdce,
+      že tě tady můžu nechat napospas těm idiotům."
+  D: "Měj se."
+  D: "MOŽNÁ se ještě uvidíme..."
+  juststay
+
+gplend

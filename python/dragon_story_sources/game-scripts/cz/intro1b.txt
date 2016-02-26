@@ -1,0 +1,9 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "Jednoho dne ale zmizel Herbert bůhvíkam;"
+Vypravec: "...prý hledat starý dračí poklad."
+Vypravec: "Berta s Bertem zůstali sami dva."
+
+gplend

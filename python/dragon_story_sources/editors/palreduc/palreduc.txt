@@ -1,0 +1,43 @@
+              Krátká dokumentace k PALREDUC
+            (c) 1994 Pavel Pospíšil, NoSense
+------------------------------------------------------------
+
+PALREDUC  slouží k  úpravám palety  u obrázků  BMP. Nemá moc
+komfortní ovládání, ale pro daný účel je to víc než dost.
+
+PALREDUC "stlačí" barvy v paletě tak, aby v ní zůstaly jenom
+opravdu ty barvy, které jsou  v obrázku použité. Navíc k nim
+může zkopírovat část palety z jiného obrázku.
+
+PALREDUC   musí   mít   ve   startovním   adresáři   soubory
+PALREDUC.DAT a STAND2.FON.
+
+Načti a označ zrcadlo
+~~~~~~~~~~~~~~~~~~~~~
+Vyberete si  obrázek, po kterém  chcete, aby se  z něho část
+palety kopírovala do ostatních.
+Potom se  objeví paleta, myší  v ní můžete  označovat barvy,
+které  chcete,  aby  se  kopírovaly  do  ostatních  obrázků.
+Označování ukončíte prostředním myšítkem nebo klávesou Esc.
+
+Redukuj a kombinuj....
+~~~~~~~~~~~~~~~~~~~~~~
+Vyberete si  obrázek, který  chcete upravit.
+Potom se objeví paleta, jsou v ní označené barvy, které jsou
+v obrázku použité  (je vedle nich svislá  čárka). Tyto barvy
+budou v paletě zachovány.
+Toto  označení  můžete  ještě  mírně  upravit  pomocí myši a
+některé  barvy  vynechat  anebo  naopak  jiné  přidat. Pokud
+omylem  zrušíte  označení  některých  barev,  ketré  obrázek
+obsahuje, můžete všechny tyto  barvy znovu označit stištěním
+klávesy 't'.  Označování ukončíte prostředním  myšítkem nebo
+klávesou Esc.
+Nyní  se  paleta  upraví  tak,  jak  jste  chtěli, objeví se
+změněná  paleta a  čeká se  na stisk  myšítka nebo  klávesy.
+Potom  se  program  zeptá,  jestli  to  bylo  O.K. Když ano,
+upravený obrázek přepíše na disku starý.
+
+Výběr pracovní cesty
+~~~~~~~~~~~~~~~~~~~~
+Protože  si program  nepamatuje konfiguraci,  můžete si před
+započetím práce nastavit pracovní cestu pro obrázky.

@@ -1,0 +1,53 @@
+{s červem:}
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+  D: "Hej! Zastav se!
+      Chvíli mě poslouchej!"
+  juststay
+
+  C: "To těžko. Pracuju!"
+  justtalk
+  D: "Fuj, že se nestydíš,
+      pojídat kulturní památku!"
+  juststay
+
+  justtalk
+  D: "Najdi si jinou práci!"
+  juststay
+
+  C: "Ten dělá to a ten zas tohle."
+  justtalk
+  D: "Nedáš si ani na chvíli oddech?"
+  juststay
+
+  C: "Ne! Práce nade vše."
+  justtalk
+  D: "Jak tomu vůbec můžeš říkat práce!?
+      Jenom se pořád cpeš!"
+  juststay
+
+  C: "Cpu se, protože při své práci
+      vydám spoustu energie."
+  C: "Nějak ji musím doplňovat."
+  justtalk
+  D: "Tomu říkám dokonalej koloběh..."
+  juststay
+
+gplend
+
+block _01 ( beg(1) and been(_00) )
+title
+  justtalk
+  D: "Nazdar. Tak jak to jde?"
+  juststay
+
+  C: "Dík za optání, ujde to."
+  C: "Ale teď mě nezdržuj,
+      utíká mi práce!"
+  justtalk
+  D: "Nebudou prémie, co?"
+  juststay
+
+gplend
+

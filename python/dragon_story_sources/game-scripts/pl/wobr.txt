@@ -1,0 +1,386 @@
+{drak s obrem:}
+
+block _00a ( beg(1) and not been(_00a)) )
+title
+  justtalk
+   D: "Hej!"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Kim jesteś? Krasnalem?
+       Nie? Szkoda.
+       Lubię krasnoludki."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Nazywam się Bert, jestem smokiem!"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Hmm..."
+   O: "Rzeczywiście, wyglądasz tak jak inne smoki,
+       które widywałem...
+       Ale nie masz skrzydeł!"
+  start obr_hlava "mlci"
+  justtalk
+   D: "Kiedyś mi wyrosną..."
+  juststay
+  start obr_hlava "mluvi"
+   O: "Nie byłbym tego pewien... Przemyśl to sobie!"
+  start obr_hlava "mlci"
+  justtalk
+   D: "Będę musiał się nad tym zastanowić..."
+  juststay
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _00b ( atbegin(1) and been(_00a) )
+title
+ labels jsemchytry
+  justtalk
+   D: "Mam parę pytań dla ciebie..."
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Hmm..."
+  start obr_hlava "mlci"
+  if(otec_me_poucil=1) jsemchytry
+  exit
+ label jsemchytry
+  let otec_me_poucil (2)
+  start obr_hlava "mluvi"
+   O: "Czy pamiętasz o co pytałem się ciebie
+       poprzednio?"
+  start obr_hlava "mlci"
+  justtalk
+   D: "Chyba tak."
+  juststay
+  start obr_hlava "mluvi"
+   O: "A więc, dlaczego nie masz skrzydeł -
+       Jesteś smokiem, czy nie?"
+  start obr_hlava "mlci"
+  justtalk
+   D: "Mmmh, to po prostu sprawa ewolucji..."
+   D: "Ale teraz moja kolej na zadawanie pytań."
+  juststay
+  start obr_hlava "mluvi"
+   O: "Jak sobie życzysz."
+  start obr_hlava "mlci"
+
+gplend
+
+block _01 ( atbegin(0)) and not been(_01) and isobjon(obr_pajzl1) )
+   TITLE Co mielesz w tym młynie?
+  justtalk
+   D: "Co mielesz w tym młynie?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Eeech, nie pytaj."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Mielesz krasnoludki!"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Prosze! Zgadłeś!"
+  start obr_hlava "mlci"
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _02 ( atbegin(0) and not been(_02) and been(_01) and isobjon(obr_pajzl1) )
+   TITLE Czy wrzucasz je bez wstępnej obróbki?
+  justtalk
+   D: "Czy wrzucasz je bez wstępnej obróbki?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Czemu nie. Krasnoludki są całkiem
+       higieniczne."
+   O: "Zdejmuję im tylko czapeczki,
+       gdyż blokują mi młyn."
+  start obr_hlava "mlci"
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _03 ( atbegin(0) and not been(_03) and been(_01) and isobjon(obr_pajzl1) )
+   TITLE Naprawdę jesz krasnoludki?
+  justtalk
+   D: "Naprawdę jesz krasnoludki?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "A do czego te szkodniki się nadają?
+       Tylko do jedzenia."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "A czy je lubisz?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Przepadam!"
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_03) and isobjon(obr_pajzl1) )
+   TITLE Czy możesz podać mi jakiś dobry przepis?
+  justtalk
+   D: "Czy możesz podać mi jakiś dobry przepis?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Znam wiele przepisów!"
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Czy możesz podać mi jakiś naprawdę dobry?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Trudno wybrać..."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _04 ( beg(0) and not been(_04) and been(_01) and isobjon(obr_pajzl1) )
+   TITLE Mielenie krasnoludków jest nieludzkie!
+  justtalk
+   D: "Mielenie krasnoludków jest nieludzkie!"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Być może. Lecz taki właśnie jest okrutny
+       świat bajek."
+   O: "W niedzielę zjem sztukę mięsa."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _06 ( atbegin(0) and not been(_06) and been(_03) and isobjon(obr_pajzl1) )
+   TITLE Lecz te krasnoludki niedługo wyginą!
+  justtalk
+   D: "Lecz te krasnoludki niedługo wyginą!"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Nie martw się,
+       nie umrę przez to z głodu.
+       Dużo już udusiłem i zawekowałem!"
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Z cebulką?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Przede wszystkim należy dodać dużo pieprzu
+       i odstawić przynajmniej na rok, aby dojrzały."
+   O: "Są wtedy naprawdę smaczne."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _07 ( beg(0) and not been(_07) and isobjaway(obr_pajzl1) )
+   TITLE Gdzie zniknęły te powiązane krasnoludki?
+  justtalk
+   D: "Gdzie zniknęły te powiązane krasnoludki?
+       Chyba było ci przykro
+       gdy wypuszczałeś je na wolność."
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Nie wiem, o czym mówisz. Zjadłem je."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Zjadłeś?!
+       Tak je polubiłem..."
+   D: "...mieliśmy wspólne zainteresowania,
+       problemy,
+       piliśmy z jednego kubka..."
+   D: "...dyskutowaliśmy o tym, co nas napełnia goryczą,
+       pożyczaliśmy sobie ołówki!"
+   D: "To były tak sympatyczne krasnale,
+       miały piękne brody!"
+   D: "Czy nie można by jakoś tego wszystkiego cofnąć?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Cofnąć, powiadasz?
+       To im wiele nie pomoże."
+   O: "Zmieliłem je dokładnie."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Dlaczego to zrobiłeś, ty morderco?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Połykanie dużych kawałków jest niezdrowe."
+   O: "Dostaję od tego gazów.
+       Chyba nie chcesz,
+       bym sobie zaszkodził?"
+  start obr_hlava "mlci"
+gplend
+
+block _13 ( beg(0) and not been(_13) and isobjaway(obr_pajzl1) )
+   TITLE Co będziesz jadł teraz, gdy jedzenie...
+  justtalk
+   D: "Co będziesz jadł teraz,
+       gdy jedzenie krasnali zostało zakazane?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Krasnale.
+       Ale zawekowane."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "O ile wiem,
+       zamierzałem uwolnić WSZYSTKIE krasnale!"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Wiem, mój smoczy przyjacielu,
+       jak bardzo dbasz o te krasnoludki,
+       lecz zdarzył się pewien wypadek."
+   O: "Nie wiem co się stało,
+       ale wszystkie krasnale zginęły w gulaszu."
+   O: "Pomoc okazała się bezskuteczna."
+   O: "Muszę ze smutkiem stwierdzić,
+       że twoi przyjaciele nie umieli pływać."
+  start obr_hlava "mlci"
+gplend
+
+
+block _10 ( beg(0) and (mam_zjistit_recept=1) and not been(_10) )
+   TITLE Poszukuję pewnego przepisu...
+  justtalk
+   D: "Poszukuję pewnego przepisu..."
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Pewnie nie będę go znał."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "...na gotowanie czarodziejskich różdżek!"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Masz szczęście. Przypadkiem znam ten przepis!"
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Więc mi go podaj!"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Bierzesz kwartę wody i gotujesz
+       jednego spleśniałego grzyba,
+       pokrojonego w plasterki.
+       Dodajesz szczypiorek,
+       jedną skarpetkę goblina
+       i dobrze mieszasz."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Czy to wszystko?
+       To taka sama zupa,
+       jaką gotuje Berta."
+   D: "Oczywiście bez tej skarpetki goblina!
+       (doradzę jej to następnym razem.)"
+  juststay
+gplend
+
+block _11 ( beg(0) and been(_10) and not been(_11) )
+   TITLE Czy ten grzyb musi być spleśniały?
+  justtalk
+   D: "Czy ten grzyb musi być spleśniały?
+       Czyż nie wystarczy skarpetka goblina?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Nie ma mowy. Grzyb jest naprawdę niezbędny,
+       Lecz sądzę, że wystarczy go
+       dodać tylko troszkę."
+   O: "Mogę ci dać zapleśniały rosół."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Nie wiem, czy mogę to przyjąć..."
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Weż sobie, jest zupełnie nieszkodliwy,
+       bez żadnych chemikaliów!"
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Nieszkodliwy?
+       Tego właśnie się obawiam.
+       Ale jeśli koniecznie chcesz, dziękuję..."
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Nie wiem w czym jeszcze mógłbym ci pomóc."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Nie będzie potrzeby.
+       A co do skarpetki goblina,
+       przypadkiem znam jednego goblina."
+  juststay
+{obr dá drakovi plíseň do polévky}
+
+  icostat on i_plisen
+  exitdialogue
+gplend
+
+block _12 ( beg(0) and not been(_12) and been(_10) )
+   TITLE Jak smakuje goblin?
+  justtalk
+   D: "Jak smakuje goblin?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Nie jadam goblinów.
+       Ze względu na skarpetki."
+  start obr_hlava "mlci"
+
+  justtalk
+   D: "Zbyt ostre?"
+  juststay
+
+  start obr_hlava "mluvi"
+   O: "Tak jakby."
+  start obr_hlava "mlci"
+gplend
+
+block _99 ( beg(0) and not (last(_00a) or last(_00b)) )
+   TITLE Do widzenia.
+  justtalk
+   D: "Do widzenia."
+  juststay
+  start obr_hlava "mluvi"
+   O: "Do zobaczenia..."
+  start obr_hlava "mlci"
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and (last(_00a) or last(_00b)) and maxline(1) )
+title
+  justtalk
+   D: "Zapomniałem właśnie, jak brzmiały pytania."
+  juststay
+  start obr_hlava "mluvi"
+   O: "Nie szkodzi. Przypomnisz sobie następnym razem."
+  start obr_hlava "mlci"
+  exitdialogue
+gplend

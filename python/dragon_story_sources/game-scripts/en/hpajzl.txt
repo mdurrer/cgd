@@ -1,0 +1,216 @@
+{s pajzlem v hospodě:}
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+D: "Mr. Dwarf..."
+D: "Will you buy me a beer?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Get lost."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "I don't scare easily!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "That beer is warm!"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "How many have you had, for god's sake?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Get lost, boy!"
+  start hpajzl_hlava "pije"
+  justtalk
+D: "You aren't very talkative...
+    You look exhausted."
+D: "Have you experienced a
+    terrible trauma?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "None of your business!"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "You have to get that out of yourself..."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Fine,
+    where is the bathroom?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "...all these dreadful experiences,
+    that are piling up inside you!"
+  juststay
+gplend
+
+block _00b ( last(_00) )
+title
+ labels skip
+  start hpajzl_hlava "mluvi"
+P: "Beer!"
+  start hpajzl_hlava "pije"
+  justtalk
+D: "Do not try to drown all your problems in
+    alcohol!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "What? Why not?"
+  goto skip
+start hpajzl_hlava "mlci"
+justtalk
+D: "It's much better to drown ones problems
+    with legal pharmaceuticals."
+juststay
+start hpajzl_hlava "mluvi"
+P: "Really?
+    I should try that."
+ label skip
+P: "Now I begin to see.
+    You've opened my eyes."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "And will you confide in me now?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Yes,
+    it will perhaps be best
+    if I confide in you."
+P: "I have escaped from certain death!"
+P: "I was almost eaten."
+P: "That's it."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Here you go!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "It's terrible, how can somebody
+    afford to eat dwarves these days?"
+P: "Well, there are countries where
+    it's been forbidden to eat dwarves
+    for many years already."
+  start hpajzl_hlava "mlci"
+gplend
+
+block _00c ( last(_00b) )
+title
+ labels skip
+  start hpajzl_hlava "mluvi"
+P: "Aren't we
+    civilized enough, son?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Ehm, it's an international scandal."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "At least you agree with me."
+P: "Not only me,
+    but my poor brothers,
+    what awaits them."
+  goto skip
+P: "Yes, what about me."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Do they await some traumatic experience?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Yes, what about me.
+    But what about them."
+  label skip
+P: "First, he will put pepper on them."
+P: "Then he will beat them."
+P: "Then stew them."
+P: "Maybe he'll even fry them."
+P: "... Ugh! ..."
+P: "I couldn't do that.
+    I can't handle the extra cholesterol!"
+P: "Or the bred-crumbs in one's eyes."
+P: "Then he will pour some lemon juice on them ..."
+  start hpajzl_hlava "pije"
+  justtalk
+D: "[I started to be hungry.
+    Where could I get such an exotic meal?]"
+D: "Will you invite me to a party?"
+  juststay
+  {pajzl odpovídá velice smutně a zklamaně:}
+  start hpajzl_hlava "mluvi"
+P: "I won't invite you. I am depressed."
+  start hpajzl_hlava "pije"
+gplend
+
+block _00d ( last(_00c) )
+title
+  justtalk
+D: "I am sorry, I didn't mean to be indifferent?
+    Where are your brothers?"
+D: "I will set them free!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "You would really do that?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Of course."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "My brothers
+    are waiting to be eaten ..."
+P: "... in the dreadful den of a really terrible giant."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Where exactly?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "To the north-north-east."
+P: "If you want to be exact, it's
+    at 515 degrees and 75
+    hours ... sorry, minutes."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "I can hardly find that!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Add sixty seconds to it."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "That helps!
+    I now know exactly where it is."
+D: "I am off!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Good luck.
+    Tell my brothers
+    I'll be waiting for them here."
+P: "If they aren't able to find me
+    tell them to check under the table."
+  start hpajzl_hlava "mlci"
+{hodime semka newroom do mapy- objeveni se lokace s obrem}
+{a z mapy opet gejt semka...}
+  let new_obr (1)
+gplend
+
+block _01 ( beg(1) and been(_00) )
+title
+ labels skip
+  justtalk
+D: "Mr. Dwarf ..."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "What about my brothers?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "They are fine."
+  goto skip
+D: "They are enjoying themselves."
+ label skip
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Why didn't you bring them here?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "They are a little tied up right now.
+    If I spoiled their summer holiday
+    I'd be ashamed for the rest of my life."
+D: "You can't ask me to do that."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Get lost."
+  start hpajzl_hlava "mlci"
+gplend

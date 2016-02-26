@@ -1,0 +1,116 @@
+{drak čte skřetům pohádku:}
+
+block _ (1)
+title
+  {knihu pak uz nebudeme potrebovat:}
+  icostat off i_pohadka
+  load bert "kniha_cte"
+  load bert "kniha_otevir"
+  load bert "kniha_vytahu"
+  load bert "kniha_mlci2s"
+  load bert "kniha_mlupre"
+  load bert "kniha_mlupo"
+  load bert "kniha_divase"
+  load bert "kniha_listuj"
+
+  load blby "usina"
+  load blby_hl "usina"
+  load blbejsi "usina"
+
+  startplay bert "kniha_otevir"
+
+  start bert "kniha_cte"
+
+D: "It's a fairy tale unlike any other."
+D: "A dragon came and was going to eat the princess.
+    Fortunately, a brave prince appeared."
+D: "He killed the dragon, married the princess
+    and was given half of the kingdom.
+    They all lived happily until they died."
+
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+D: "The old idiotic king had already lost
+    all of his teeth
+    and could only eat shakes."
+D: "His skin dried out completely
+    and he was as light as parchment."
+D: "No wonder that, when his servant had forgotten
+    to close the window, the king flew away.
+    There's a draft in old castles, you know."
+D: "The king blew in the wind for a while,
+    but it didn't last too long.
+    He was finally soaked by a rain shower."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+  start blby "usina"
+  start blby_hl "usina"
+
+D: "The dragon was eaten by worms.
+    The prince was promoted to be king
+    of the second half of the kingdom."
+D: "The Princess became the Queen..
+    Alas, they had no children."
+D: "We'll call them Prince and Princess
+    not to get them confused."
+D: "The Princess lost her young appearance soon
+    and her face became full of wrinkles."
+D: "One day when she had a look in the mirror,
+    she hated what she saw and threw it in a rage.
+    The mirror was broken into many shards."
+  start blby "spi"
+  start blby_hl "spi"
+  objstat_on bota skreti
+  start bota "zakladni"
+D: "One Prince's eye was near-sighted,
+    because the other one was made of glass.
+    He didn't see well and stepped on the shards
+    with his bare feet."
+  start blbejsi "usina"
+  objstat away blbejsi_hl
+D: "He got blood-poisoning
+    and died in a horrible fever."
+D: "He had also suffered from rheumatism,
+    because of walking barelegged."
+D: "Old castles are usually chilly."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+D: "A new dragon came and was going to have
+    something to eat."
+D: "The Princess was now old and ugly,
+    and no young suitors appeared to defend her."
+D: "The dragon was greedy
+    and stuffed the whole princess into his mouth.
+    He proceeded to choke to death
+    because she was too tough."
+  start blbejsi "spi"
+D: "No wonder, since old meat is to be
+    simmered and roasted first."
+D: "Any other dragon would rather
+    die of hunger than to
+    gulp such a mouthful."
+D: "As soon as the dragons heard of it,
+    none of them came there anymore."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+D: "So this is the whole story."
+
+
+  startplay bert "kniha_mlci2s"
+  start bert "kniha_cte"
+{chvíli pauza}
+D: "Silence!"
+
+  startplay bert "kniha_divase"
+  start bert "kniha_mlupre"
+{najdeme scenar v knize...
+D: "Oh, there's a paper in the back of the book."
+  startplay bert "kniha_vytahu"
+  start bert "kniha_mlupo"
+D: "Well, I won't throw it away."
+  juststay
+  icostat on i_scenar
+gplend

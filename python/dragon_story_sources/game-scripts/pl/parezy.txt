@@ -1,0 +1,386 @@
+{dva staré letité pařezy- Strombuk a Stromdub:
+
+block _08 ( maxline(1) and beg(1) and not been(_08) and been(_07) and isobjoff(tajnyvchod) )
+title
+  justtalk
+   D: "Czy Dąbek wciąż cierpi na ból głowy?"
+  juststay
+  start par6 "mluvi"
+   dub: "Wcale się nie poprawia! Czy znasz jakąś
+         skuteczną kurację?"
+  start par6 "mlci"
+  justtalk
+   D: "Poczekaj, przyniosę piłę..."
+  juststay
+  start par6 "mluvi"
+   dub: "Nie chcę takiej kuracji."
+  start par6 "mlci"
+  exitdialogue
+gplend
+
+block _09 ( maxline(1) and beg(1) and isobjon(tajnyvchod) )
+title
+  justtalk
+   D: "Jak tam twoje splątane korzenie?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Sądzę
+         warto by było
+         prostować je od czasu do czasu!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  exitdialogue
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) )
+title
+  justtalk
+   D: "Dzień dobry, panie Pieńku..."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Jeśli chcesz wiedzieć, na imię mi Buczek."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "A ja nazywam się Dąbek. Trudno mnie
+         nie zauważyć."
+  start par6 "mlci"
+  justtalk
+   D: "A więc jest was dwóch..."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "O kim mowa?"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "O nas?"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Ależ nic podobnego!"
+   buk: "Jeśli usłyszałeś jeszcze jakieś głosy, to mogło to
+         tylko być echo."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "Głupi. Popsułeś echo. Teraz ja miałem mówić."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Nie, nie, bracie nie masz racji!
+         Te historie opowiadamy już od dziesięciu lat..."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+   D: "Przestań!
+       Ten twój dowcip nie jest wcale śmieszny!"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Przepraszamy,
+         ale egzystencja pieńka
+         wcale nie jest zabawna!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+   D: "Nie mówię, że jest. Na imię mi Bert."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Miło mi cię poznać."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "Jemu wcale nie jest miło. To ja jestem
+         zaszczycony!"
+  start par6 "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and been(_00) and isobjoff(tajnyvchod) )
+title
+  justtalk
+   D: "Drogie pieńki..."
+  juststay
+gplend
+
+block _02 ( beg(0) and not been(_02) and isobjoff(tajnyvchod) )
+   TITLE Czy możecie mi opowiedzieć coś o sobie?
+  justtalk
+   D: "Czy możecie mi opowiedzieć coś o sobie?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Zgoda..."
+   buk: "Przez pierwszy rok mego życia byłem
+         małym nasionkiem
+         unoszącym się w powietrzu."
+   buk: "Nie wiem jak długo fruwałem,
+         lecz pamiętam chwilę gdy po raz pierwszy
+         osiadłem w tym miejscu."
+   buk: "Od razu wiedziałem, że zapuszczę tu korzenie.
+         Przez chwilę krążyłem w powietrzu
+         i bezpiecznie wylądowałem."
+   buk: "Upadłem wśród mchu, niedaleko Dąbka,
+         który wylądował tuż przede mną."
+   buk: "To był dość wietrzny dzień,
+         zanosiło się na deszcz,
+         on też chciał się tutaj schronić."
+   buk: "W końcu obaj postanowiliśmy
+         tu pozostać."
+   buk: "W drugim roku byłem małą sadzonką
+         i Dąbek też,
+         ale trochę mniejszą."
+   buk: "Mimo iż on wylądował tu na chwilę przede mną
+         to mnie udało mi się wcześniej
+         wypuścić korzenie."
+   buk: "Od tamtej pory tłumaczę Dąbkowi,
+         że jestem starszy, a więc mądrzejszy."
+   buk: "On próbuje mnie przekonać,
+         że był tu pierwszy.
+         Możliwe. Ale nie jest przez to mądrzejszy ode mnie."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "On kłamie."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "To on kłamie.
+         W trzecim roku nie działo się nic ciekawego."
+   buk: "W czwartym ni stąd ni z owąd znacznie urosłem
+         i zacieniłem Dąbka."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "To zdarza się, gdy drzewo jest nastolatkiem."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Nie wierz mu,
+         od dzieciństwa jest opóźniony w rozwoju."
+   buk: "W piątym roku..."
+
+  {stále otvírá hubou; objeví se titulek "Později..."}
+  {obrazovka může setmět a zase se rozsvítit
+
+  blackpalette
+  fadepaletteplay 0 255 50
+  loadpalette "..\PAREZY\PL8.PCX"
+  disablespeedtext
+  fadepalette 0 255 50
+   Vypravec: "Po kilku dniach..."
+   Vypravec: "Po kilku dniach..."
+   Vypravec: "Po kilku dniach..."
+  enablespeedtext
+
+   buk: "... a w pięśet trzydziestym ósmym roku
+         trochę głębiej się zakorzeniłem."
+   buk: "Usłyszałeś całą historię mojego życia.
+         Mam nadzieję, że cię to nie znudziło."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  {drak měl mezitím zavřené oči, najednou se probudí
+  justtalk
+   D: "Wcale nie!
+       Gdybym miał jeszcze tydzień czasu
+       wysłuchałbym
+       także historii Dąbka."
+  juststay
+  start par6 "mluvi"
+   dub: "Przez pierwszy rok byłem..."
+  start par6 "mlci"
+  justtalk
+   D: "Wybacz, ale..."
+  juststay
+  start par6 "mluvi"
+   dub: "...małym nasionkiem i fruwałem..."
+  start par6 "mlci"
+  justtalk
+   D: "Nie mam już czasu!"
+  juststay
+  {chvíli oba mlčí}
+  start par6 "mluvi"
+   dub: "Nie interesuje cię prawdziwa wersja wydarzeń?"
+  start par6 "mlci"
+  justtalk
+   D: "Przyjdę za pięśet trzydzieści pięć lat
+       by spytać się o nowiny."
+  juststay
+  start par6 "mluvi"
+   dub: "Na pewno przyjdziesz?"
+  start par6 "mlci"
+  justtalk
+   D: "Obiecuję."
+  juststay
+gplend
+
+block _03 ( beg(0) and not been(_03) and isobjoff(tajnyvchod) )
+   TITLE Jaki gatunek drzewa sobą przedstawiasz?
+  justtalk
+   D: "Jaki gatunek drzewa sobą przedstawiasz?"
+  juststay
+  start par6 "mluvi"
+   dub: "Jestem topolą."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "On oszukuje. Jest zwykłym dębem.
+         Od dzieciństwa cierpiał na kompleks
+         niższości
+         i pragnął być strzelistą topolą..."
+   buk: "...w końcu sam zaczął w to wierzyć."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+   D: "A jakim ty jesteś drzewem?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Jestem strzelistą topolą..."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+gplend
+
+
+block _06 ( beg(0) and not been(_06) )
+   TITLE Ukrywacie coś przede mną!
+  justtalk
+   D: "Ukrywacie coś przede mną!"
+  juststay
+  start par6 "mluvi"
+   dub: "Ja? Wyznałem wszystko co wiem."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "A ja to nie? Ho hoo!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+   D: "Ukrywacie przede mną tajne wejście!"
+  juststay
+  start par6 "mluvi"
+   dub: "To dlatego, że jest tajne, panie Spryciarzu."
+  start par6 "mlci"
+gplend
+
+block _07 ( beg(0) and not been(_07) and been(_06) )
+   TITLE Czy nie można by nieco uchylić rąbka tajemnicy?
+  justtalk
+   D: "Czy nie można by nieco uchylić rąbka tajemnicy?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "To byłoby trudne.
+         Przykryliśmy je korzeniami,
+         a po tylu latach korzenie są twarde i sztywne."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "Nie jestem samobojcą
+         wszystkie moje korzenie mogłyby
+         popękać i połamać się."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "To niemożliwe!
+         Nie ma mowy! Nie zawracaj nam głowy tajnym wejściem!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "Czuję, że moje korzenie
+         powoli lecz nieodwołalnie pękają."
+   dub: "Auch!"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "I co gorsza, nękają mnie porosty
+         Och, to straszne!"
+   buk: "A ja nie narzekam na korzenie."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "Patrzaj, zapomniałem o porostach.
+         A pewnego dnia ktoś postanowił naciąć ze
+         mnie gałązek.
+         Od tamtej pory cierpię na bóle głowy."
+  start par6 "mlci"
+  justtalk
+   D: "Nigdy w życiu nie widziałem takiego
+       hipochondryka!"
+  juststay
+
+  let budu_drbat (1)
+gplend
+
+block _04 ( beg(0) and maxline(1) and last(_01) and isobjoff(tajnyvchod) )
+title
+  justtalk
+   D: "Nie mam ci już nic do powiedzenia."
+   D: "Czyby?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "No, nie."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+   dub: "W pierwszym roku mojego życia byłem..."
+  start par6 "mlci"
+  justtalk
+   D: "Nie to chcialem usłyszec!"
+  juststay
+  exitdialogue
+gplend
+
+block _05 ( beg(0) and not last(_01) )
+   TITLE Żegnaj.
+  justtalk
+   D: "Żegnaj."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+   buk: "Żegnaj."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  exitdialogue
+gplend
+

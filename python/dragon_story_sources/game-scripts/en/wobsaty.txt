@@ -1,0 +1,18 @@
+{kdyz jsem nasel saty:}
+
+block _00 ( beg(1) )
+title
+  let prozkoumal_akvarko (2)
+  icostat on i_zaplata
+
+  justtalk
+D: "Something was tossed here."
+D: "It looks like tattered dwarves' clothes.
+    I hope they will fit me..."
+  juststay
+  start obr_hlava "mluvi"
+O: "No, these are my clothes.
+    They shrink this way every time I wash 'em."
+  start obr_hlava "mlci"
+
+gplend

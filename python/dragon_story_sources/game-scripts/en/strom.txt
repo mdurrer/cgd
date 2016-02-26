@@ -1,0 +1,97 @@
+{s větrem v horách:}
+
+block _00 ( beg(1) and isactico(0) and not been(_00) )
+title
+ labels skip
+  justtalk
+D: "Mr. Tree."
+  juststay
+  justtalk
+D: "Mr. Tree!"
+  juststay
+  justtalk
+D: "What made me think a dull tree can talk?"
+  juststay
+  goto skip
+  justtalk
+D: "Mr. Tree!!!"
+  juststay
+V: "That duuuull..."
+V: "...stuuupid..."
+V: "...degenerateeeeed..."
+V: "...geeeeeeeky tree..."
+ label skip
+V: "...reeeeally can't talk.
+    But maybe you wooooould like to
+    have a chat with meeeeeee."
+  justtalk
+D: "Who are you?"
+  juststay
+V: "Wiiiiind..."
+  justtalk
+D: "And I thought you were a tree."
+  juststay
+V: "No, I am wiiiind!"
+  justtalk
+D: "So! You have something against this wood?"
+  juststay
+V: "You are aaaaasking?
+    Can't you seeeeee I am stuck in heeeeere?"
+  justtalk
+D: "I can only see a swinging branch."
+  juststay
+V: "Thaaaat's it.
+    I tryyyyy to get out of it,
+    But I caaaan't manage it without help!"
+  justtalk
+D: "Sure, let's seeeee what I can dooooo about it."
+  juststay
+V: "Do not be so cooooy,
+    I am looooosing my strength with every moment."
+V: "I will rewaaaaard you."
+  justtalk
+D: "That's better.
+    You would hardly get that for free!"
+  juststay
+  justtalk
+D: "I assure you I'm not doing it for less
+    than $150 an hour!"
+  juststay
+V: "I hoooope you will change your mind.
+    I have faaaaith in you!"
+  justtalk
+D: "There is a lot of faith in me considering
+    someone is playing me in a game like this."
+  juststay
+gplend
+
+block _01 ( beg(1) and isactico(i_prsten) )
+title
+  icostat off i_prsten
+    objstat away stromek_kym
+    objstat_on stromek hory
+    start stromek "zakladni"
+    load hory_jisk "FLI-animace"
+    startplay hory_jisk "FLI-animace"
+    objstat away hory_jisk
+V: "Thaaaanks!"
+  justtalk
+D: "And he's gone."
+  juststay
+  justtalk
+D: "No way!"
+  juststay
+gplend
+
+block _02 ( maxline(1) and beg(1) and isactico(0) )
+title
+  justtalk
+D: "Mr. wind!"
+  juststay
+V: "I goooot stuck in here.
+    You knoooow that.
+    What will you doooo about it?"
+  justtalk
+D: "I'd like to know that too."
+  juststay
+gplend

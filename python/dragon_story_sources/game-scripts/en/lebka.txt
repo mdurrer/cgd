@@ -1,0 +1,29 @@
+{rozhovor s lebkou:}
+
+block _ (1)
+title
+  justtalk
+D: "Hey!"
+  juststay
+Leb: "???"
+D: "!!!"
+Leb: "!!"
+D: "!,!,?!"
+Leb: "..."
+D: "!!!"
+Leb: ",;."
+D: "?, !"
+Leb: "!"
+D: "-"
+Leb: "---"
+D: "?"
+Leb: "."
+D: "?!"
+Leb: "-,-"
+D: "..."
+D: "?!?"
+D: "!"
+  justtalk
+D: "It's out of words."
+  juststay
+gplend

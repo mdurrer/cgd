@@ -1,0 +1,126 @@
+{s pajzlem u obra:}
+
+block _00a ( atbegin(1) and not hasbeen(_00a) )
+title
+     justtalk
+D: "Ähm, Herr Zwerg..."
+D: "Ich muss dir ein paar Fragen stellen.
+    Es dauert nicht lange,
+    ich sehe, du bist beschäftigt."
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Hmptf, na los!"
+     start obr_pajzl2 "mlci"
+gplend
+
+block _00b ( atbegin(1) and hasbeen(_00a) )
+title
+     justtalk
+D: "Ich hab all meine Notizen verloren.
+    Können wir nochmal von vorn anfangen?"
+     juststay
+
+     start obr_pajzl2 "mluvi"
+Pajzl: "Urrg!"
+     start obr_pajzl2 "mlci"
+
+     justtalk
+D: "Nicht!?"
+D: "Nur zwischen uns beiden,
+    die Notizen waren eh Mist."
+D: "Versuch dich nochmal zu konzentrieren..."
+     juststay
+D: "..."
+     justtalk
+D: "Fertig?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Alles klar."
+     start obr_pajzl2 "mlci"
+gplend
+
+block _01 ( atbegin(0) )
+TITLE Wie fühlst du dich?
+     justtalk
+D: "Wie fühlst du dich?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Ich fühle mich wundarbar."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Wie oft hast du trainiert?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Hmptf!"
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Glaubst du an dich?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Absolut!"
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Glauben du, daß du fit bist?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Ich bin gut in Schuss..."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Hast du dich verausgabt?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Quatsch."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Schwitzt du?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Normal."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Bist du nervös?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Ich fühl mich wohl."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Schmerzt das Seil sehr?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Danke, aber das ist schon in Ordnung."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Tut es wirklich nicht weh?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Alles in Ordnung, wirklich."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Wie findest du es,
+    auf der Speisekarte zu stehen?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Ich hoffe, er überwürzt mich nicht zu sehr.
+        Ich hab Heuschnupfen, weißt du."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Oh, also gibt es doch ein kleines Problemchen..."
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Das sagst du. Ich bin vollkommen zufrieden."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Also, wie fühlst du dich
+    so kurz vor deinem Ableben?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Es ist eine ganz neue Erfahrung für mich."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Danke für das Interview!"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Gern geschehen."
+Pajzl: "Publicity ist sehr wichtig."
+     start obr_pajzl2 "mlci"
+gplend

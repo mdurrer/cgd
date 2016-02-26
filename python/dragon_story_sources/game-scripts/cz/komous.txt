@@ -1,0 +1,288 @@
+{loutkář}
+
+block _03 ( beg(1) and not been(_03) and isactico(0) )
+title
+  {dokud nepředal dřevěné loutky:}
+  justtalk
+  D: "Pane komediante!"
+  juststay
+  start kom "mluvi"
+  U: "No to je drzost! Co tady pohledáváš?"
+  start kom "mlci"
+  justtalk
+  D: "Přišel jsem si k vám vyzkoušet pár dalších triků."
+  D: "Nechcete náhodou ještě něco zkamenět?"
+  juststay
+  start kom "mluvi"
+  U: "Zmiz!"
+  start kom "mlci"
+  justtalk
+  D: "(Tenhle trik ještě neovládám,
+      mám co dohánět.)"
+  juststay
+  exitdialogue
+gplend
+
+block _05 ( isactico(0) and maxline(1) and beg(1) and not been(_05) and been(_03) )
+title
+  justtalk
+  D: "Pane komediante!"
+  D: "Přišel jsem proměnit vaše loutky
+      zpátky ve dřevěné."
+  juststay
+  start kom "mluvi"
+  U: "Cože?! Jak byl ten konec?"
+  start kom "mlci"
+  justtalk
+  D: "Vaše loutky zpátky ve dřevěné!"
+  juststay
+  start kom "mluvi"
+  U: "Pokud chceš moje kamenný loutky,
+      tak si je klidně vem!"
+  U: "Třeba na těžítko, to je jedno.
+      A zmiz odtud!"
+  start kom "mlci"
+  justtalk
+  D: "Na těžítko - to je nevkus!
+      Matce se hodí do skalky."
+  juststay
+  start kom "mluvi"
+  U: "Nevotravuj a buď zticha!"
+  start kom "mlci"
+  {dostane loutky}
+  icostat on i_loutka_kamenna
+gplend
+
+block _00 ( maxline(1) and beg(1) and (vim_o_kronice=1) and not been(_00) and been(_04) and isactico(0) )
+title
+  {až mi říkal jazykolamy a zkoušel jsem mluvit s kronikou
+  justtalk
+  D: "Jak to děláte, že máte tak excelentní výslovnost?"
+  juststay
+  start kom "mluvi"
+  U: "To nic není.
+      Chce to jenom spoustu cviku."
+  start kom "mlci"
+  justtalk
+  D: "Ale samo o sobě to přece nestačí."
+  juststay
+  start kom "mluvi"
+  U: "Máš pravdu. Teď už se na tebe nezlobím,
+      tak ti to můžu prozradit.
+      Využívám léčivého účinku bylin!"
+  start kom "mlci"
+  justtalk
+  D: "Vaříte si z bylinek čaje?"
+  juststay
+  start kom "mluvi"
+  U: "Žvýkám jejich květy."
+  load kom "zvyka"
+  startplay kom "zvyka"
+  start kom "mlci"
+
+  justtalk
+  D: "Kde se dá k takové bylině přijít?"
+  juststay
+  start kom "mluvi"
+  U: "Vysoko, vysoko v horách."
+  start kom "mlci"
+
+  {udela se nova lokace na mape:}
+  let new_hory (1)
+gplend
+
+block _01 ( maxline(1) and beg(1) and not been(_01) and isicoon(i_scenar) )
+title
+ labels skip
+  {až dočte pohádku- hele, v knížce byly vložené nějaké listy,
+  {prozkoumám listy- 'siesta u řeky, hra o třech....
+  {můžu zaást hovor o divadle:
+  justtalk
+  D: "Mám otázku týkající se dramatického umění."
+  juststay
+  start kom "mluvi"
+  U: "Ptej se, na to jsem odborník."
+  start kom "mlci"
+  justtalk
+  D: "Znáte 'Siestu u řeky?'"
+  juststay
+  start kom "mluvi"
+  U: "'Siesta u řeky.'
+      Hra o třech dějstvích a jednom obraze."
+  start kom "mlci"
+  justtalk
+  D: "Takže ji znáte!"
+  juststay
+  start kom "mluvi"
+  U: "Znám jenom část, nikdy se mi nepodařilo
+      sehnat celý scénář."
+  U: "Těch pár řádků, co znám,
+      jsem si ale navždy zamiloval."
+  start kom "mlci"
+  justtalk
+  D: "Zacitujte!"
+  juststay
+  start kom "mluvi"
+  U: "Zlotřilče, zlomil-li jsi bez ostychu
+      to nesmělé dívčí srdce."
+  goto skip
+  U: "U splavu plaše pěla,
+      duši zalitu láskou měla..."
+  U: "...a ty zle jsi ji zneužil
+      a posléze nezaplatil!"
+  U: "Dva zlaté za to stála,
+      však zmýlil ses,
+      ta skála mě vpravdě dokonale uschovala -"
+  U: "- to když se dívka smála,
+      tím znamení mi dala!"
+ label skip
+  start kom "mlci"
+  justtalk
+  D: "Pokračovat!"
+  juststay
+  start kom "mluvi"
+  U: "To je konec. Dál znám jenom svůj part.
+      Bez spoluhráče to nikdy nevyzní dobře..."
+  start kom "mlci"
+
+gplend
+
+block _02 ( isactico(i_scenar) and not been(_02) and ( ((maxline(1) and beg(1))or last(_01)) )
+title
+ labels skip
+  {kliknu na něj scénářem:}
+  load bert "scenar_mluvi"
+  load bert "scenar_mlci"
+  load bert "scenar_diva"
+  load bert "scenar_vytah"
+  load bert "scenar_schov"
+  startplay bert "scenar_vytah"
+  startplay bert "scenar_diva"
+  start bert "scenar_mluvi"
+  D: "Mě nehoda se stala a zbyla mě jen šála,
+      co do tepla mě obmotala,
+      když ta dívka na mě zavolala!"
+  start bert "scenar_mlci"
+  start kom "mluvi"
+  U: "Vždyť ona se jen zakoktala."
+  start kom "mlci"
+  startplay bert "scenar_diva"
+  goto skip
+  start bert "scenar_mluvi"
+  D: "Kdepak, to těžko se mi odolává,
+      když ona tak smutně ržála!"
+  start bert "scenar_mlci"
+  start kom "mluvi"
+  U: "To jenom ústa vykloktala!"
+  start kom "mlci"
+  startplay bert "scenar_diva"
+  start bert "scenar_mluvi"
+  D: "Copak lásku pouze hrála?
+      Oči na mě udělala!"
+  start bert "scenar_mlci"
+  start kom "mluvi"
+  U: "Spála! Spála!"
+  start kom "mlci"
+ label skip
+  start bert "scenar_mluvi"
+  D: "Potlesk."
+  start bert "scenar_mlci"
+  start kom "mluvi"
+  U: "No jasněže potlesk. Jsi dobrej.
+      Máš talent, hochu.
+      Co takhle umění artistické?"
+  start kom "mlci"
+  startplay bert "scenar_schov"
+  start bert "kour-vlevo"
+  justtalk
+  D: "Cirkus nebo divadlo..."
+  juststay
+  start kom "mluvi"
+  U: "Anebo by ses chtěl stát krotitelem hadů?"
+  start kom "mlci"
+  justtalk
+  D: "To je ono!"
+  juststay
+  start kom "mluvi"
+  U: "Myslím, že ti to půjde."
+  U: "Tady máš klíč od mé truhly,
+      uvnitř snad vyhrabeš fakírskou píšťalu,
+      ta je dost důležitá."
+  start kom "mlci"
+
+  icostat on i_klic_truhla
+  icostat off i_scenar
+gplend
+
+block _04 ( maxline(1) and beg(1) and not been(_04) and isactico(i_loutka_drevena) )
+title
+  {když vrací loutky:)
+  start kom "mluvi"
+  U: "Hm, myslel sem si o tobě horší věci,
+      než že doopravdy proměníš zpátky ty loutky.
+      Na první pohled se nezdáš, hochu!"
+  start kom "mlci"
+  justtalk
+  D: "Tehdy to bylo nedopatření!"
+  juststay
+  start kom "mluvi"
+  U: "Král plaval kraul.
+      Kudla bodla vedle sedla."
+  start kom "mlci"
+  justtalk
+  D: "Co to děláte?"
+  juststay
+  start kom "mluvi"
+  U: "Rozcvičuju se.
+      Lama malá málo lála."
+  start kom "mlci"
+  justtalk
+  D: "Něco tradičního..."
+  juststay
+  start kom "mluvi"
+  U: "Strčprstskrzkrk!"
+  start kom "mlci"
+  justtalk
+  D: "No ne!"
+  juststay
+  start kom "mluvi"
+  U: "Světlo mátlo smělou látkou."
+  start kom "mlci"
+  justtalk
+  D: "Pometlo metlo."
+  juststay
+  start kom "mluvi"
+  U: "Kudlametlobodlametlo."
+  start kom "mlci"
+  justtalk
+  D: "Tak to nebylo!"
+  juststay
+  start kom "mluvi"
+  U: "Dlametkudlobotlomela."
+  start kom "mlci"
+  justtalk
+  D: "Tak taky ne..."
+  juststay
+  start kom "mluvi"
+  U: "Pometlo metlo."
+  start kom "mlci"
+  justtalk
+  D: "Jo!"
+  juststay
+
+  icostat off i_loutka_drevena
+gplend
+
+block _08 ( maxline(1) and beg(1) )
+title
+  justtalk
+  D: "Pane komediante..."
+  juststay
+  start kom "mluvi"
+  U: "Hm?"
+  start kom "mlci"
+  justtalk
+  D: "Eh, vlastně nic..."
+  juststay
+  exitdialogue
+gplend

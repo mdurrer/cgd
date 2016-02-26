@@ -1,0 +1,32 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "Aber es gab dort eine zivilisierte Drachenfamilie"
+Vypravec: "Vater Herbert, Mutter Berta und deren Sohn Bert."
+Vypravec: "Sie entsprachen nicht der Art von Drachen..."
+Vypravec: "...die wir aus schauderhaften Märchen kennen."
+Vypravec: "Diese Drachen befolgten traditionelle Familienwerte."
+Vypravec: "Sie pflegten Sauberkeit, hatten Manieren, und..."
+Vypravec: "...sie vergaßen sogar die alten Drachenschätze."
+{jako fotograf, vyleti ptacek:}
+Vypravec: "Bitte lächeln..."
+load foto_cel "syr"
+startplay foto_cel "syr"
+start foto_cel "z2"
+loadpalette "..\in1\ft_BACK3.pcx"
+setpalette
+loadpalette "..\in1\IN1BACK.pcx"
+setpalette
+loadpalette "..\in1\ft_BACK.pcx"
+fadepalette 0 255 100
+load intr_nap1 "draci2"
+load intr_nap2 "historie2"
+start intr_nap1 "draci2"
+start intr_nap2 "historie2"
+loadpalette "..\in1\ft_BACK.pcx"
+fadepaletteplay 0 255 120
+loadpalette "..\in1\ft_BACK2.pcx"
+fadepaletteplay 0 255 120
+
+gplend

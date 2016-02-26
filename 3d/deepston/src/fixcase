@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# when I ftp files over from the dos machine, everything becomes uppercase...
+# just run this in the source dir to fix them all
+
+for i in *.C *.H; do
+	fixedname="`echo $i | tr '[:upper:]' '[:lower:]'`"
+	echo "$i -> $fixedname" 
+	mv "$i" "$fixedname"
+done

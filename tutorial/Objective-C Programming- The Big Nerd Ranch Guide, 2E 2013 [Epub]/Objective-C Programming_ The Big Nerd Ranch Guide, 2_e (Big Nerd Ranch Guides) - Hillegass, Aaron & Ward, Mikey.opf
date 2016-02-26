@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">1016</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">2da934c8-7b2d-4aab-b3fa-607d278a3fd8</dc:identifier>
+        <dc:title>Objective-C Programming: The Big Nerd Ranch Guide, 2/e (Big Nerd Ranch Guides)</dc:title>
+        <dc:creator opf:file-as="Hillegass, Aaron" opf:role="aut">Hillegass, Aaron</dc:creator>
+        <dc:creator opf:file-as="Hillegass, Aaron" opf:role="aut">Ward, Mikey</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (0.9.42) [http://calibre-ebook.com]</dc:contributor>
+        <dc:date>2013-11-15T00:00:00+00:00</dc:date>
+        <dc:description>Learn the basics of programming and Objective-C from Aaron Hillegass, one of the most respected names in Cocoa and iOS development. If you're starting with little or no programming background, this book will get you ready to learn application development for the Mac, iPhone, or iPad.</dc:description>
+        <dc:publisher>Big Nerd Ranch Guides</dc:publisher>
+        <dc:identifier opf:scheme="ISBN">9780321942067</dc:identifier>
+        <dc:identifier opf:scheme="MOBI-ASIN">B00GSRITM0</dc:identifier>
+        <dc:language>eng</dc:language>
+        <dc:subject>Big Nerd Ranch Guides</dc:subject>
+        <dc:subject>Objective-C Programming</dc:subject>
+        <dc:subject>COM051370</dc:subject>
+        <meta content="{&quot;Hillegass, Aaron&quot;: &quot;&quot;, &quot;Ward, Mikey&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="2013-11-27T05:12:29+00:00" name="calibre:timestamp"/>
+        <meta content="Objective-C Programming: The Big Nerd Ranch Guide, 2/e (Big Nerd Ranch Guides)" name="calibre:title_sort"/>
+    </metadata>
+    <guide>
+        <reference href="Objective-C Programming_ The Big Nerd Ranch Guide, 2_e (Big Nerd Ranch Guides) - Hillegass, Aaron &amp; Ward, Mikey.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>

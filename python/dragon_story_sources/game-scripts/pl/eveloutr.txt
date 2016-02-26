@@ -1,0 +1,224 @@
+{kecani s Evelynou pred koncem hry:}
+
+block _0 ( beg(1) )
+title
+  disablequickhero
+{  disablespeedtext
+  walkonplay 224 144 vlevo
+  justtalk
+   D: "Ewelino!"
+  juststay
+  start EvelOut "skace"
+   Ev: "Cześć smoczku!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Musimy poważnie porozmawiać!"
+  juststay
+  walkon 196 160 vlevo
+  start EvelOut "skace"
+   Ev: "Proszę bardzo,
+        co się stało?!
+        Czy byłeś niegrzeczny?"
+  start EvelOut "neskace"
+  walkonplay 196 160 vlevo
+   justtalk
+   D: "Tak."
+  juststay
+  start EvelOut "skace"
+   Ev: "Wspaniale. Dobry z ciebie chłopiec!"
+  start EvelOut "neskace"
+   justtalk
+   D: "A co u ciebie?"
+  juststay
+  start EvelOut "skace"
+   Ev: "Ach, nie bawiłam się najlepiej."
+  start EvelOut "neskace"
+   justtalk
+   D: "Ech... Przykro mi.
+       (Nieprzyjemne sprawy należy omawiać już na wstępie.)"
+  juststay
+   justtalk
+   D: "Co ty na to, by zrobić życiowy bilans?"
+  juststay
+  start EvelOut "skace"
+   Ev: "Z całego życia? Czy to nie za wcześnie?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Przynajmniej z pewnych osiągnięć."
+  juststay
+  start EvelOut "skace"
+   Ev: "Bzdury"
+  start EvelOut "neskace"
+   justtalk
+   D: "Nasze pierwsze spotkanie..."
+  juststay
+  start EvelOut "skace"
+   Ev: "Już o tym zapomniałam!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Nigdy nie wiesz, co może ci się zdarzyć."
+  juststay
+  start EvelOut "skace"
+   Ev: "Czy masz jakieś przeczucie?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Po prostu martwię się o ciebie, to wszystko.
+       Poza tym chciałbym sobie powspominać twoje
+       bohaterskie czyny."
+  juststay
+gplend
+
+block _1 ( last(_0) )
+title
+  disablequickhero
+{  disablespeedtext
+  walkon 92 160 vpravo
+  start EvelOut "skace"
+   Ev: "Och, jak ja lubię o tym słuchać.
+        Mów dalej, lecz zwięźle, proszę."
+   Ev: "Streszczaj się! Nie chciałabym zasnąć."
+  start EvelOut "neskace"
+  walkonplay 92 160 vpravo
+   justtalk
+   D: "Zaczynamy."
+  juststay
+  start EvelOut "skace"
+   Ev: "Słucham."
+  start EvelOut "neskace"
+   justtalk
+   D: "O mały włos nie sprowadziłaś pewnego
+       smoka na złą drogę."
+  juststay
+  start EvelOut "skace"
+   Ev: "Taak..."
+  start EvelOut "neskace"
+   justtalk
+   D: "Spowodowałaś poważne zaburzenia
+       umysłowe u pewnej kroniki!"
+  juststay
+  start EvelOut "skace"
+   Ev: "He He."
+  start EvelOut "neskace"
+   justtalk
+   D: "Przez ciebie pewien zebrak cierpiał głód
+       gdy wywołałaś u niego dziwne halucynacje!"
+  juststay
+  start EvelOut "skace"
+   Ev: "I co jeszcze? To miło z twojej strony, że
+        mi to przypominasz."
+  start EvelOut "neskace"
+   justtalk
+   D: "Jeszcze? To dobre pytanie!"
+  juststay
+  start EvelOut "skace"
+   Ev: "Wiem co jeszcze powiesz"
+  start EvelOut "neskace"
+   justtalk
+   D: "Ale moi rodzice zabronili mi się z tobą bawić!"
+  juststay
+  start EvelOut "skace"
+   Ev: "Można na to znaleźć sposób."
+  start EvelOut "neskace"
+   justtalk
+   D: "Ale to nie takie proste."
+  juststay
+  start EvelOut "skace"
+   Ev: "Co to znaczy? Stwarzasz problemy!"
+  walkon 192 176 vlevo
+   Ev: "Chyba nie chcesz żebym dostała zmarszczek."
+  start EvelOut "neskace"
+  walkonplay 196 172 vlevo
+   justtalk
+   D: "Zmarszczek?"
+  juststay
+   justtalk
+   D: "Właśnie dlatego przygotowałem ci
+       leczniczą kąpiel."
+  juststay
+  start EvelOut "skace"
+   Ev: "Naprawdę?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Tak, naprawdę.
+       w dowód mojej przyjaźni."
+  juststay
+  start EvelOut "skace"
+   Ev: "Dobra...
+        spróbuję
+        podoba mi się ten zapach."
+gplend
+
+block _2 ( last(_1) )
+title
+  disablequickhero
+{  disablespeedtext
+  roommap
+  walkon 140 160 vlevo
+  startplay EvelOut "sipka"
+  start EvelOut "topi se"
+
+  {hůlka skočí šipku do polívky:}
+   Yve: "Och, to trochę boli!"
+  walkonplay 140 160 vlevo
+   justtalk
+   D: "Wytrzymasz."
+  juststay
+   Yve: "Czy to naprawdę jest kąpiel lecznicza?"
+   justtalk
+   D: "Naturalnie."
+  juststay
+   Yve: "No, dobrze."
+
+   Yve: "Czy już jestem ładniejsza?"
+   justtalk
+   D: "Nie mogę tego tak od razu powiedzieć."
+  juststay
+   Yve: "A teraz?"
+   justtalk
+   D: "Tak,
+       wydajesz mi się
+       jakby trochę mniej brzydka."
+  juststay
+   Yve: "Spróbuję się zanurzyć."
+   justtalk
+   D: "Ty perfidna kreaturo, ćierp!"
+  juststay
+   Yve: "Co mówiłeś?"
+   justtalk
+   D: "Właśnie powiedziałem..."
+  juststay
+   Yve: "... glo... glo..."
+   justtalk
+   D: "Chyba będę musiał jej trochę pomóc..."
+  juststay
+  walkonplay  116 140 vlevo
+   justtalk
+   D: "Nie umyć ci pleców?"
+  juststay
+   Yve: "Ale tylko trochę."
+  {drak strčí ruku do polívky:}
+
+  load bert "drbe_mluvi"
+  load bert "drbe"
+  load bert "drbe_nahoru"
+  load bert "drbe_dolu"
+  startplay bert "drbe_nahoru"
+  start bert "drbe_mluvi"
+   D: "W ten sposób?"
+  start bert "drbe"
+   Yve: "...glo..."
+   Yve: "O, właśnie!"
+  objstat away EvelOut
+   Yve: "...glo...glo..."
+  startplay bert "drbe_dolu"
+  start bert "kour-vlevo"
+  walkonplay  144 156 vpravo
+   justtalk
+   D: "Jest wykończona."
+   D: "Już się nie wynurzy."
+  juststay
+
+
+{a jdeme na titulky....}
+gplend
+

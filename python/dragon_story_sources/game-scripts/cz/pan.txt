@@ -1,0 +1,25 @@
+{situacka  s pojidanim gulase:}
+
+block _00 ( beg(1) )
+title
+labels skip1 skip2
+
+Vypravec: "Mezitím..."
+
+Pan: "Mmmmh....
+      Lahodné...."
+Pan: "Mňam..."
+goto skip1
+Pan: "Báječné chuti - joj!"
+Pan: "Uf..."
+label skip1
+Pan: "Předkrm by stačil, pustíme se do guláše."
+Pan: "Co to cítím?"
+Pan: "Snad spálený, nebo co..."
+goto skip2
+Pan: "Fuj, to je smrad!"
+Pan: "To už v životě nevezmu do huby!"
+label skip2
+Pan: "TO SE NEDÁ JÍST!"
+
+gplend

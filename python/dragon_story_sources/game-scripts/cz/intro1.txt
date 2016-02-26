@@ -1,0 +1,32 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "Byla také jedna civilizovaná dračí rodina -"
+Vypravec: "- otec Herbert, matka Berta a jejich syn Bert."
+Vypravec: "Nebyli to takoví draci..."
+Vypravec: "...jaké známe z hrůzostrašných vyprávění..."
+Vypravec: "...tito draci vyznávali tradiční rodinné hodnoty."
+Vypravec: "Dbali na hygienu, ba co víc..."
+Vypravec: "...i na staré dračí poklady dávno zapomněli."
+{jako fotograf, vyleti ptacek:}
+Vypravec: "Úsměv prosím..."
+load foto_cel "syr"
+startplay foto_cel "syr"
+start foto_cel "z2"
+loadpalette "..\in1\ft_BACK3.pcx"
+setpalette
+loadpalette "..\in1\IN1BACK.pcx"
+setpalette
+loadpalette "..\in1\ft_BACK.pcx"
+fadepalette 0 255 100
+load intr_nap1 "draci2"
+load intr_nap2 "historie2"
+start intr_nap1 "draci2"
+start intr_nap2 "historie2"
+loadpalette "..\in1\ft_BACK.pcx"
+fadepaletteplay 0 255 120
+loadpalette "..\in1\ft_BACK2.pcx"
+fadepaletteplay 0 255 120
+
+gplend

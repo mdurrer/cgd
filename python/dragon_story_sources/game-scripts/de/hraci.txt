@@ -1,0 +1,210 @@
+{s hráči karet v hospodě:}
+block _08 ( maxline(1) and beg(1) and (ciste_zrcadlo=1) )
+title
+  {prave sem vylestil zrcadlo, dostanu karty}
+  justtalk
+D: "Wie geht's?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "Frag lieber nicht."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Mein Glück hat sich ein wenig verschoben."
+  justtalk
+D: "Das muss an meinem guten Ratschlag liegen!"
+  juststay
+H1: "Du bringst mir echt Glück, kleiner Drache.
+     Vielleicht sollte ich dich dafür belohnen..."
+H1: "Was sagst du zu einem Kartensatz mit 32 Assen?"
+  justtalk
+D: "Asse?! Und 32 davon?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "Das ist nicht ungewöhnlich.
+     Ich habe einige Dutzend davon."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+
+  icostat on i_karty
+  let ciste_zrcadlo (2)
+gplend
+
+block _00 ( beg(1) and not been(_00) and maxline(1) )
+title
+  justtalk
+D: "Was spielt ihr?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "In Deckung, Dummkopf."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Schwarzer Kater."
+  justtalk
+D: "Ich kann Bridge spielen. Kann ich einsteigen?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "Wieviel Geld hast du?"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  justtalk
+D: "Gar keins!"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "Dann tut es uns leid, Junge."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _01 ( beg(1) and not been(_01) and maxline(1) )
+title
+  justtalk
+D: "Ich würde die Kreuz-Königin spielen..."
+  juststay
+H1: "Schau mir nicht in meine Karten, Junge!"
+  justtalk
+D: "Und nun den Joker als Trumpfkarte!"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Das wird nicht nötig sein, Ich bekomme alles."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Schon wieder?"
+H1: "Ich habe mir den Black Jack
+     für den Royal Flush entgehen lassen."
+H1: "Bald bin ich pleite."
+  justtalk
+D: "Willst du was unterschieben?"
+  juststay
+H1: "Keine Witze."
+gplend
+
+block _02 ( beg(1) and not been(_02) and maxline(1) )
+title
+  justtalk
+D: "Spiel den Herz-Buben."
+  juststay
+H1: "Schön, lass es uns kurz machen."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "und eine Sieben zum Schluss."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Na sowas, ich hab zwei Canasta."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Dann schau mal, ein Paar Trümpfe."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Noch ein Spiel und ich werd zum Bettler."
+gplend
+
+block _03 ( beg(1) and not been(_03) and maxline(1) )
+title
+  justtalk
+D: "Ich würde erhöhen."
+  juststay
+H1: "Klappe zu!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Schau mal, vier Quartette!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Ich hab eine Frau und zwei Kinder!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Ha ha ha."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _04 ( beg(1) and not been(_04) and maxline(1) )
+title
+  justtalk
+D: "Tja, sieht schlecht aus."
+  juststay
+H1: "Zu dumm."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Was für ein Spaß!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Du bescheißt!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Ich bescheiß nicht..."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Und ob!"
+H1: "Das zusätzliche Ass unterm Tisch war meins!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Vielleicht, aber mir war es nützlich."
+H2: "Diese Runde gehört mir.
+     Ich habe gewonnen!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _05 ( beg(1) and not been(_05) and maxline(1) )
+title
+  justtalk
+D: "Schau mal, ich würde..."
+  juststay
+H1: "Nicht schon wieder."
+  justtalk
+D: "Ich würde nur..."
+  juststay
+H1: "Schnauze!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "In Deckung, Dummkopf."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Was?"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Du hast es verpaßt."
+H2: "Ist nicht meine Schuld,
+     du bist schon wieder der Verlierer."
+H2: "Du brauchst schnellere Reflexe."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Aber ich hab meine ganzen Anzüge verspielt."
+gplend
+
+block _06 ( beg(1) and not been(_06) and maxline(1) )
+title
+H1: "Du bescheißt!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Und wie soll ich das gemacht haben,
+     Herr Oberschlau?"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Die Kreuz-Elf hat eine geknickte Spitze!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Schwachsinn. Die Spitze ist in Ordnung."
+H2: "Alles ist meins!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _07 ( maxline(1) and beg(1) and (ciste_zrcadlo=0) )
+title
+  {standardni pokec, az se vykecam a nedostanu karty}
+  justtalk
+D: "Meine Herren..."
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "Mensch Kiebitz, das hier geht dich nichts an."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend

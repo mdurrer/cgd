@@ -1,0 +1,12 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+Vypravec: "Once upon a time there was a fairy-tale land."
+    load intr_ptak "FLI-animace"
+    startplay intr_ptak "FLI-animace"
+Vypravec: "At least we consider it a fairy tale land..."
+Vypravec: "...but it's inhabitants were few..."
+
+Vypravec: "..or none at all."
+
+gplend

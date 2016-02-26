@@ -1,0 +1,163 @@
+block _00 ( beg(1) )
+title
+ labels preskocime
+{  disablespeedtext
+  disablequickhero
+  walkon 176 156 vlevo
+  Vypravec: "Tady náš příběh ale nekončí, sotva začíná."
+  walkonplay 176 156 vlevo
+  load intromutti "mluvi"
+
+  start intromutti "mluvi"
+  B: "Takhle to dál nejde, Berte!"
+  B: "Že je tvůj otec bůhvíkde,
+      neznamená, že budeš lotrovatět
+      den ode dne víc!"
+  start intromutti "mlci"
+  justtalk
+  D: "Có?"
+  juststay
+  start intromutti "mluvi"
+  B: "Kdo přičaroval babičce na zadek obrovské ucho?"
+  start intromutti "mlci"
+  justtalk
+  D: "Psst, co když nás slyší?"
+  juststay
+  start intromutti "mluvi"
+  B: "Chudák babi, teď se stydí vylézt ven."
+  start intromutti "mlci"
+  justtalk
+  D: "Ona si zvykne, každej sme nějakej..."
+  juststay
+  Vypravec: "Ale o babičku v tomhle právě začínajícím
+             dobrodružství přece vůbec nejde!"
+  goto preskocime
+  Vypravec: "[xx]"
+  Vypravec: "[xx]"
+ label preskocime
+  {bert i matka se chápavě podívají někam nahoru, nebo na
+  {sebe, pak jako herci začnou zase zostra:}
+  mark
+  load intromutti "mluvinormal"
+  start intromutti "mluvinormal"
+  B: "Sjedem to znova."
+  release
+  start intromutti "mlci"
+  justtalk
+  D: "Tak jo."
+  juststay
+
+  start intromutti "mluvi"
+  B: "Kdo zkameněl komediantovi jeho loutky?"
+  start intromutti "mlci"
+
+  justtalk
+  D: "A to jako pořád já?"
+  juststay
+
+  justtalk
+  D: "To všechno Evelýna!"
+  juststay
+
+  start intromutti "mluvi"
+  B: "Evelýna?"
+  start intromutti "mlci"
+
+  justtalk
+  D: "Moje nejlepší kamarádka!"
+  juststay
+  start intromutti "mluvi"
+  B: "Tak s tou hned přestaneš kamarádit!"
+  B: "Svedla tě na scestí, Berte.
+      Stojíš jednou nohou na šikmé ploše!"
+  start intromutti "mlci"
+
+  justtalk
+  D: "Tím chceš říct co?"
+  juststay
+  walkonplay 224 166 vpravo
+  justtalk
+  D: "Polepšit se?"
+  D: "Nikdy!"
+  D: "Měl jsem dobré úmysly..."
+  juststay
+gplend
+
+block _01 ( last(_00) )
+title
+  disablequickhero
+  load intromutti "mluvi"
+
+  start intromutti "mluvi"
+  B: "Berte, vařečku!"
+{# in this fairy-tale land the children are not beaten
+{# with canes but with wooden spoons
+  start intromutti "mlci"
+  justtalk
+  D: "Přece mi nechceš dávat výprask.
+      V této hře nemá být žádné násilí!"
+  juststay
+  walkon 184 156 vlevo
+  start intromutti "mluvi"
+  B: "Původně nemělo být!"
+  start intromutti "mlci"
+  walkonplay 184 156 vlevo
+  justtalk
+  D: "Hlavně žádné vyhřezlé vnitřnosti!"
+  juststay
+  start intromutti "mluvi"
+  B: "To nemůžu zaručit, třeba mi ujede ruka..."
+  start intromutti "mlci"
+  justtalk
+  D: "No vidíš, nemáš vůbec žádnou praxi!"
+  juststay
+  start intromutti "mluvi"
+  B: "Neboj se, rychle se zaučím!"
+  start intromutti "mlci"
+
+  justtalk
+  D: "Mám obavy...
+      Raději bych s výpraskem počkal na otce."
+  juststay
+  start intromutti "mluvi"
+  B: "Raději bych vůbec nečekala."
+  start intromutti "mlci"
+
+  walkonplay 200 156 vpravo
+  justtalk
+  D: "Chvilku bychom mohli počkat."
+  juststay
+  start intromutti "mluvi"
+  B: "Tak dobrá, ale jenom chvilku."
+  start intromutti "mlci"
+  load intromutti "mlci5sec"
+{čekají asi 5 sekund}
+  startplay intromutti "mlci5sec"
+  start intromutti "mlci"
+  justtalk
+  D: "Nedočkali jsme se, škoda."
+  juststay
+  walkon 176 156 vlevo
+  start intromutti "mluvi"
+  B: "Kdepak ten Herbert vězí?
+      Mám strach, už je pryč skoro celý měsíc!"
+  start intromutti "mlci"
+
+  walkonplay 176 156 vlevo
+  justtalk
+  D: "Klid, mami.
+      Uvidíš, že přivedu otce domů!"
+  D: "S výpraskem můžeme klidně počkat na něho."
+  D: "(Do té doby se mi snad
+      podaří nějak ukradnout vařečku...)"
+  juststay
+  walkon 240 144 vlevo
+  start intromutti "mluvi"
+  B: "Ať tě nevidím s tou Evelýnou!"
+  start intromutti "mlci"
+  walkonplay 240 144 vlevo
+  justtalk
+  D: "S tou si to vyříkám SÁM."
+  juststay
+  walkonplay 268 144 vpravo
+gplend

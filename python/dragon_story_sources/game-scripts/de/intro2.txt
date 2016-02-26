@@ -1,0 +1,47 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "Aber es existierte auch
+           ein magischer Zauberstab."
+Vypravec: "Sie wurde Evelyn genannt und war bösartig."
+Vypravec: "Weil es langweilig war ein Zauberstab zu sein..."
+Vypravec: "...dachte sie, sie könnte sich unterhalten."
+
+load hulka "priskace"
+startplay hulka "priskace"
+load hulka "na kameni"
+load hulka "kamen_mluvi"
+start hulka "kamen_mluvi"
+EvIn: "Ich - sterbe - noch - vor - Langeweile!"
+EvIn: "Ich - sterbe - WIRKLICH - noch - vor -
+       Langweile!"
+EvIn: "Was soll ich nur machen?"
+start hulka "na kameni"
+EvIn: "... ... ..."
+EvIn: "Ich hab's!"
+start hulka "kamen_mluvi"
+EvIn: "Ich werde ein GUTER Zauberstab."
+start hulka "na kameni"
+EvIn: "..."
+EvIn: "Nein, das ist keine - gute - Idee!"
+start hulka "na kameni"
+EvIn: "..."
+EvIn: "Ich kau mir einfach an den Zweigen!"
+start hulka "kamen_mluvi"
+EvIn: "..."
+EvIn: "Nein, das ist auch keine - gute - Idee."
+start hulka "na kameni"
+EvIn: "..."
+EvIn: "Ich werde die Welt regieren!"
+start hulka "kamen_mluvi"
+EvIn: "Ja, ich werde die Welt regieren, das ist es!"
+start hulka "na kameni"
+
+Vypravec: "Seltsam, dass sie da nicht schon früher
+           drauf gekommen ist..."
+Vypravec: "...in den tausend Jahren ihrer Existenz."
+Vypravec: "Da haben wir ja richtig Glück,
+           daß sie gerade jetzt diesen Geistesblitz bekommt."
+
+gplend

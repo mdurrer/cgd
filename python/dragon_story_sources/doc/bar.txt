@@ -1,0 +1,65 @@
+Bob's ARchiver V0.01
+====================
+
+format:
+  <header>
+  <file1>, <file2>, ...
+  <footer>
+<header> is: 4B signature "BAR!"
+             2B number of folders (= files)
+             4B total length of all folders (i.e. position of the footer)
+<fileX> is: 2B compressed length
+            2B original length
+            1B compression type
+            1B CRC
+<footer> is: an array of 4B indices of the individual folders
+<compression type> is: 0 none, 1 lzw, 2 huf, 3 lzw+huf
+<CRC> is: the XOR of all bytes of the original file
+
+Opening an archive:
+(a) for writing: if it exists, the footer is truncated, otherwise an empty
+header is created
+(b) for reading: the index of the footer is read
+After an archive is opened, it is registered in the internal list of opened
+archives, and its index is returned to the caller.
+
+Closing an archive:
+(a) for writing: add a new footer and update the header to point at it
+(b) for reading: nothing
+Then the archive is removed from the internal list.
+
+The caller can read any folder from an archive opened for reading and BAR
+automatically chooses the right decompression type.  If an archive is opened
+for writing, you can add a new folder at the end.  If you want to update an
+existing archive, open it for reading and another one for writing, and copy
+the folders one by one.
+
+bardfw.pas
+----------
+
+A library emulating the old DFW interface, however using BAR as the back-end.
+
+The main difference between the two *interfaces* of these two libraries is
+that BAR first opens an archive and then all functions expect the index of an
+opened archive, whereas DFW just expects a string path to the archive at each
+call.  To avoid re-opening the files all the time, I cache a list of opened
+BAR archives, and then close them later.  The game player still uses the old
+interface (that's why this library exists), but it actually only uses the new
+BAR archiver.  When reimplementing the game, it's best to avoid this emulation
+layer and call BAR directly.
+
+This library is also capable of calling the original DFW library (passing the
+calls through), but this possibility is never used.  It's best to completely
+remove linking these two codes together.
+
+*.EMS files
+-----------
+
+The *.EMS files are in a completely insane format that I don't understand why
+it was ever created.  It's a DFW- or BAR-archive where the first file in the
+archive contains a LongInt array of indices into a byte stream with
+concatenation of the actual stored BLOB's, and then the subsequent files in
+the archive together contain the byte stream split into blocks of some
+constant blocksize (usually 30000), independent of the sizes of the stored
+BLOB's.  I don't understand why we didn't simply store the actual byte stream
+directly.

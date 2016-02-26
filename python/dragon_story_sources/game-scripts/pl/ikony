@@ -1,0 +1,471 @@
+{ikonky}
+
+ICON i_nit
+   title pajęczyna
+  STATUS off
+  PICTURE ..\ikony\def\01.gcf
+look
+   D: "Wydaje się, że jest krucha
+       a w rzeczywistości da się porównać do stalowej liny."
+gplend
+
+ICON i_lzicka
+   title łyżka
+  STATUS off
+  PICTURE ..\ikony\def\02.gcf
+look
+   D: "Patrząc na nią myślę
+       o dziecinnym wierszyku z przedszkola."
+gplend
+
+ICON i_nocnik
+   title nocnik
+  STATUS off
+  PICTURE ..\ikony\def\03.gcf
+look
+   D: "Nie jest pusty."
+   D: "A gdyby tak wyleciała zeń jakaś mucha...?!"
+gplend
+
+ICON i_ponozka
+   title skarpeta
+  STATUS off
+  PICTURE ..\ikony\def\04.gcf
+look
+   D: "Skarpeta Goblina"
+gplend
+
+ICON i_plisen
+   title rosół z kury
+  STATUS off
+  PICTURE ..\ikony\def\05.gcf
+look
+   D: "Nie będę go próbował
+       lepiej go od razu zagotować."
+gplend
+
+ICON i_klika
+   title klamka
+  STATUS off
+  PICTURE ..\ikony\def\06.gcf
+look
+   D: "Miałem szczęście, że ją znalazłem!"
+gplend
+
+ICON i_provaz
+   title sznurek
+  STATUS off
+  PICTURE ..\ikony\def\07.gcf
+  look
+   D: "Jest mocny i cienki."
+  gplend
+  canuse (isactico(i_varecka_zlomena))
+  use
+   D: "Sznurkiem możemy naprawić
+       drewnianą łyżkę kuchenną..."
+    icostat off i_varecka_zlomena
+    icostat off i_provaz
+    icostat on i_varecka
+  gplend
+
+ICON i_varecka_zlomena
+   title połamana łyżka
+  STATUS off
+  PICTURE ..\ikony\def\08.gcf
+  look
+   D: "Te dwa kawałki drewna
+       na nic mi się na zdadzą."
+  gplend
+  canuse (isactico(i_provaz))
+  use
+   D: "Drewnianą łyżkę kuchenną
+       można naprawić sznurkiem..."
+    icostat off i_varecka_zlomena
+    icostat off i_provaz
+    icostat on i_varecka
+  gplend
+
+ICON i_varecka
+   title drewniana łyżka
+  STATUS off
+  PICTURE ..\ikony\def\09.gcf
+look
+   D: "Z dumą stwierdzam,
+       że naprawiłem ją własnoręcznie...!"
+gplend
+
+ICON i_prak
+  status off
+   title proca
+  PICTURE ..\ikony\def\10.gcf
+look
+   D: "Mam nadzieję, że guma nie jest
+       zbyt rozciągnięta."
+gplend
+
+ICON i_doutnik
+  status off
+   title cygaro
+  PICTURE ..\ikony\def\11.gcf
+look
+   D: "Oryginalne cygaro ze Smoczych Opowieści."
+gplend
+
+ICON i_cihla
+   title cegła
+  STATUS off
+  PICTURE ..\ikony\def\12.gcf
+look
+   D: "Zawsze pragnąłem mieć chatkę wśród lasów.
+       Moje marzenie właśnie zaczyna się spełniać."
+   D: "Ta cegła to dobry początek!"
+gplend
+
+ICON i_plakat
+   title plakat
+  STATUS off
+  PICTURE ..\ikony\def\13.gcf
+look
+   D: "Mam nadzieję, że rodzice mnie nie zamordują."
+gplend
+
+ICON i_pohadka
+   title książka z bajkami
+  STATUS off
+  PICTURE ..\ikony\def\14.gcf
+look
+   D: "Któż mógł ją napisać?"
+gplend
+
+ICON i_rakev
+   title pączek
+  STATUS off
+  PICTURE ..\ikony\def\15.gcf
+look
+   D: "Sądzę zresztą, że krem jest niezrównany."
+gplend
+
+ICON i_rad
+   title przewodnia reguła
+  STATUS off
+  PICTURE ..\ikony\def\16.gcf
+look
+   D: "Harmonogram na piśmie -
+       - to chyba oczywiste?"
+gplend
+
+ICON i_jehla
+   title kolec jeża
+  STATUS off
+  PICTURE ..\ikony\def\17.gcf
+look
+   D: "Może by go tak użyć jako igły?"
+   D: "Ma nawet uszko!"
+gplend
+
+ICON i_zaplata
+   title ubrania
+  STATUS off
+  PICTURE ..\ikony\def\18.gcf
+look
+   D: "Nie wiedziałem, że Olbrzym otworzył
+       sklep z używaną odzieżą.
+       Szkoda, że nie na mój rozmiar."
+gplend
+
+ICON i_bylina
+  STATUS off
+   title lecznicza roślina
+  PICTURE ..\ikony\def\19.gcf
+look
+   D: "Czerwony pachnący kwiat
+       z gęstą koroną płatków."
+gplend
+
+ICON i_list
+  STATUS off
+   title liść
+  PICTURE ..\ikony\def\20.gcf
+look
+   D: "Wciąż odczuwam skrupuły
+       z powodu tego liścia."
+gplend
+
+ICON i_karty
+   title talia kart
+  STATUS off
+  PICTURE ..\ikony\def\21.gcf
+look
+   D: "Trzydzieści dwa fałszywe asy."
+   D: "W dodatku wszystkie znaczone!"
+gplend
+
+ICON i_hadra
+   title szmata
+  STATUS off
+  PICTURE ..\ikony\def\22.gcf
+look
+   D: "Brzydka i brudna,
+       w zupełnie nieokreślonym kolorze."
+gplend
+
+ICON i_pivo
+   title kufel piwa
+  STATUS off
+  PICTURE ..\ikony\def\23.gcf
+look
+   D: "Już zniknęły zeń wszystkie bąbelki piany."
+gplend
+
+ICON i_prsten
+  status off
+   title pierścień
+  PICTURE ..\ikony\def\24.gcf
+  look
+   D: "A może jest czarodziejski?"
+  gplend
+
+ICON i_saze
+  status off
+   title brudne brody
+  PICTURE ..\ikony\def\25.gcf
+look
+   D: "Mam nadzieję, że nie pobrudzą sadzą
+       wszystkiego dookoła."
+gplend
+
+ICON i_zvonek
+  status off
+   title dzwonek
+  PICTURE ..\ikony\def\26.gcf
+look
+   D: "Mmmmmmhhh."
+gplend
+
+ICON i_trubka
+  status off
+   title trąbka
+  PICTURE ..\ikony\def\27.gcf
+look
+   D: "Jaka trąbka?"
+   D: "Jaki bilet???"
+gplend
+
+ICON i_tricko
+   title koszulka
+  STATUS off
+  PICTURE ..\ikony\def\28.gcf
+look
+   D: "Cała lepka od żywicy."
+gplend
+
+ICON i_nyt
+   title elektro cacko
+  STATUS off
+  PICTURE ..\ikony\def\29.gcf
+look
+   D: "Ładnie się świeciło."
+gplend
+
+ICON i_kameny_1
+  status off
+   title kamień
+  PICTURE ..\ikony\def\30.gcf
+look
+   D: "Kamyk do kamyczka i będę miał
+       dużo amunicji do procy."
+gplend
+
+ICON i_kameny_2
+  status off
+   title dwa kamienie
+  PICTURE ..\ikony\def\31.gcf
+look
+   D: "Teraz jest lepiej,
+       niż jak miałem tylko jeden!"
+gplend
+
+ICON i_kameny_3
+  status off
+   title trzy kamienie
+  PICTURE ..\ikony\def\32.gcf
+look
+ D: "Trzy kamienie wystarczą,
+     nawet jakbym niedowidział."
+gplend
+
+
+ICON i_pistala
+  status off
+   title fajka fakira
+  PICTURE ..\ikony\def\33.gcf
+look
+   D: "A jakby tak popuszczać dymki?"
+gplend
+
+
+ICON i_klic_truhla
+  status off
+   title klucz do skrzyni
+  PICTURE ..\ikony\def\34.gcf
+look
+   D: "Lepiej go użyć jak najszybciej
+       i długo nie nosić ze sobą."
+   D: "Mógłbym go gdzieś zgubić!"
+gplend
+
+
+ICON i_loutka_kamenna
+  status off
+   title kamienna marionetka
+  PICTURE ..\ikony\def\35.gcf
+look
+   D: "Naprawdę nie jest drewniana."
+gplend
+
+ICON i_loutka_drevena
+  status off
+   title drewniana laleczka
+  PICTURE ..\ikony\def\36.gcf
+look
+   D: "Lepiej zwrócę ją właścicielowi."
+gplend
+
+ICON i_scenar
+  status off
+   title jakiś papierek
+  PICTURE ..\ikony\def\37.gcf
+  look
+   D: "Fragment utworu 'Piknik nad rzeką'..."
+   D: "Dostojewski?"
+   D: "Szekspir?"
+   D: "Roman Bratny?"
+  gplend
+
+ICON i_jablko
+  status off
+   title jabłko
+  PICTURE ..\ikony\def\38.gcf
+look
+   D: "Ugryzę tylko kęsek..."
+gplend
+
+
+ICON i_drozdi
+  STATUS off
+   title drożdże
+  PICTURE ..\ikony\def\39.gcf
+look
+   D: "Wiem tylko, że można je dodać do ciasta.
+       A może masz inną propozycję?"
+gplend
+
+ICON i_trychtyr
+  STATUS off
+   title lejek
+  PICTURE ..\ikony\def\40.gcf
+look
+   D: "W szkole używają go, aby
+       wlewać nam wiedzę do głowy."
+   D: "Dziwiłeś się
+       skąd jestem tak inteligentny, prawda?"
+gplend
+
+ICON i_cukr
+  STATUS off
+   title łyżka cukru
+  PICTURE ..\ikony\def\41.gcf
+look
+   D: "Wybacz, ale nie lubię słodyczy."
+gplend
+
+ICON i_pohrabac
+  STATUS off
+   title pogrzebacz
+  PICTURE ..\ikony\def\42.gcf
+look
+   D: "Być może pogrzebacze mają
+       jakieś inne,
+       pokojowe zastosowania..."
+   D: "...lecz dla mnie są przede wszystkim
+       wspaniałym narzędziem tortur!"
+gplend
+
+ICON i_souska
+  STATUS off
+   title uschnięta gałąź
+  PICTURE ..\ikony\def\43.gcf
+look
+   D: "Lepiej rzec gałązka."
+gplend
+
+ICON i_kolo
+   title koło zębate
+  STATUS off
+  PICTURE ..\ikony\def\44.gcf
+look
+   D: "Mówię wam,
+       to nie jest zwyczajne koło zębate,
+       jest to część pewnego urządzenia!"
+gplend
+
+ICON i_lenost
+   title lenistwo
+  STATUS off
+  PICTURE ..\ikony\def\45.gcf
+look
+   D: "Płynny koncentrat, jest naprawdę mocny."
+gplend
+
+ICON i_jezek
+   title jeż
+  status off
+  PICTURE ..\ikony\def\46.gcf
+look
+   D: "Schwytałem go tylko na chwilę,
+       na pewno zaraz wypuszczę."
+gplend
+
+ICON i_sipky
+   title przyssawki
+  status off
+  PICTURE ..\ikony\def\47.gcf
+look
+   D: "Dojrzały i nabrały naprawdę ładnych,
+       okrągłych kształtów."
+gplend
+
+
+ICON i_klic_sipdum
+   title klucz gracza w przyssawki
+  status off
+  PICTURE ..\ikony\def\48.gcf
+look
+   D: "To klucz do jego domu."
+gplend
+
+ICON i_mravenec
+   title mrówka
+  STATUS off
+  PICTURE ..\ikony\def\49.gcf
+look
+   D: "Nie uszczypnie mnie i nie może uciec."
+   D: "Nie martw się."
+   D: "Czuj się bezpiecznie."
+gplend
+
+ICON i_fousy
+  STATUS off
+   title broda goblina
+  PICTURE ..\ikony\def\50.gcf
+look
+   D: "To prawdziwe trofeum!"
+gplend
+
+ICON i_nuz
+  STATUS off
+   title nóż
+  PICTURE ..\ikony\def\51.gcf
+look
+   D: "Dostałem go od Berty."
+gplend

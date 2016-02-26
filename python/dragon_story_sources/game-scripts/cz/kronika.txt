@@ -1,0 +1,478 @@
+{Bert s kronikou:}
+
+block _01 ( atbegin(1) and not been(_01) )
+title Paní kroniko!
+{abysme si s ni pokecali o tom, ze ji tady musime nechat,
+{az budeme poprve odchazet
+  let kronika_extra_pokec (1)
+
+  justtalk
+  D: "Paní kroniko!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Befelemepeseveze."
+  start kronika "mlci"
+
+  justtalk
+  D: "Vy mluvíte!
+      A nešišláte!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Hchkrdtn!"
+  start kronika "mlci"
+
+  justtalk
+  D: "Jak vidím, celkem vám to jde."
+  juststay
+
+  start kronika "mluvi"
+  K: "Řeřicha!"
+  K: "Řepa!"
+  K: "Řiť!"
+{#this is based on a typical Czech speech sound, which is very
+{#difficult to pronounce; the third word is a little rude in Czech, too
+  start kronika "mlci"
+
+  justtalk
+  D: "No sláva, mohla jste teď taky pro změnu ráčkovat!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Děkuji mnohokrát, neznámý odborníku
+      přes vady řeči!
+      Myslím, že mi můžeš klidně tykat!"
+  start kronika "mlci"
+
+gplend
+
+block _01b ( atbegin(1) and  been(_01) )
+title Paní kroniko!
+  justtalk
+  D: "Paní kroniko!"
+  juststay
+gplend
+
+
+block _25 ( atbegin(0) and last(_01b) and been(_hulkakill) and been(_hulka) and been(_poklad) and been(_draci) )
+title Rád bych si ještě jednou něco ujasnil...
+  justtalk
+  D: "Rád bych si ještě jednou něco ujasnil..."
+  juststay
+
+  start kronika "mluvi"
+  K: "No prosím."
+  start kronika "mlci"
+
+  resetblock _hulkakill
+  resetblock _hulka
+  resetblock _draci
+  resetblock _poklad
+gplend
+
+block _05 ( atbegin(0)  and not been(_05) and not last(_25) )
+title Pověz mi pohádku!
+  justtalk
+  D: "Pověz mi pohádku!
+      (Co sem to řek?!
+      Teď vlastně pohádky nesnáším teprv!)"
+  juststay
+
+  start kronika "mluvi"
+  K: "Neznám pohádky,
+      pamatuju si pouze skutečné události."
+  start kronika "mlci"
+
+  justtalk
+  D: "Uf, to mi spadl kámen ze srdce."
+  juststay
+
+gplend
+
+{block _20 ( atbegin(0)  and not been(_20) and not last(_25) )
+{title Zazpívej!
+{  justtalk
+{  D:"Zazpívej!"
+{  juststay
+{
+{  start kronika "mluvi"
+{  K:"Promiň, ale nemám hudební sluch."
+{  start kronika "mlci"
+{
+{  justtalk
+{  D:"To je fajn, můžeme dát duet."
+{  juststay
+{
+{gplend
+
+block _02 ( atbegin(0) and not been(_02) and not last(_25) )
+title Co s tebou skřetové prováděli?
+  justtalk
+  D: "Co s tebou skřetové prováděli?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Ále, jenom mě trošku mučili."
+  start kronika "mlci"
+
+gplend
+
+block _03 ( atbegin(0) and not been(_03) and been(_02) and not last(_25) )
+title Jsi ohromně statečná!
+  justtalk
+  D: "Jsi ohromně statečná!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Když jsem nepromluvila padesát let,
+      přece bych se před těmi primitivními,
+      chmf, bytostmi, neshazovala šišláním teď!"
+  start kronika "mlci"
+
+gplend
+
+block _04 ( atbegin(0)  and not been(_04) and not last(_25) )
+title Proč ses nebránila, když se tě snažili ukrást?
+  justtalk
+  D: "Proč ses nebránila, když se tě snažili ukrást?
+      Mohla jsi do sebe klidně sklapnout
+      oba dva skřety najednou!"
+  juststay
+
+  start kronika "mluvi"
+  K: "No dovol, nepotřebuju žádnou záložku!"
+  start kronika "mlci"
+
+gplend
+
+block _06 ( atbegin(0)  and not been(_06) and not last(_25) )
+title Pamatuješ si, jak tehdá...
+  justtalk
+  D: "Pamatuješ si, jak tehdá..."
+  juststay
+
+  start kronika "mluvi"
+  K: "Tak to zrovna ne."
+  start kronika "mlci"
+
+  justtalk
+  D: "Vzpomínáš si na..."
+  juststay
+
+  start kronika "mluvi"
+  K: "To taky ne!"
+  start kronika "mlci"
+
+gplend
+
+block _19 ( atbegin(0)  and not been(_19) and last(_hulkakill) )
+title A co recept?
+  justtalk
+  D: "A co recept?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Než jsme sehnali recept,
+      po Ofelíně nebylo na dlouhá léta ani slechu."
+  K: "Slyším o ní zase teprve až teď."
+  K: "Recept je dodnes neznámý,
+      alespoň já ho tedy určitě neznám."
+  start kronika "mlci"
+
+gplend
+
+block _hulkakill ( atbegin(0)  and ((not been(_hulkakill) and been(_hulka))or last(_25)) )
+title Víš něco o trestání zlých kouzelných hůlek?
+
+  let mam_zjistit_recept (1)
+
+  justtalk
+  D: "Víš něco o likvidaci,
+      ...eh, vlastně...
+      trestání zlých kouzelných hůlek?"
+  juststay
+
+  start kronika "mluvi"
+  K: "To bych musela chvíli zalistovat..."
+  K: "No, vlastně, celá léta jsme přemýšleli,
+      jak bychom se s Ofelínou vypořádali..."
+  K: "...až se jednou kdosi doslechl,
+      že prý se zlé kouzelné hůlky mají
+      povařit v polévce."
+  K: "Má to být snadné,
+      jakmile hůlka ucítí vůni polévky,
+      přiskáče úplně sama!"
+  start kronika "mlci"
+
+  justtalk
+  D: "Je to sice mírnej trest,
+      ale pro začátek by snad mohl stačit..."
+  juststay
+
+  resetblock _19
+
+gplend
+
+block _09 ( atbegin(0)  and not been(_09) and last(_draci) )
+title No dovol, copak já nejsem drak?!
+  justtalk
+  D: "No dovol, copak já nejsem drak?!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Myslím POŘÁDNÉHO draka.
+      Takového, co plení vesnice, krade, vraždí
+      a vůbec kolem sebe zasévá pořádnou hrůzu!"
+  start kronika "mlci"
+
+{
+{"Jde ze mě ta správná hrůza? Bléééé!"
+{  "Ha, hahaha, hah..."
+{
+gplend
+
+block _draci ( atbegin(0)  and (not been(_draci) or last(_25)) )
+title Vzpomeneš si na něco o dracích?
+  justtalk
+  D: "Vzpomeneš si na něco o dracích?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Eh, na něco si matně vzpomínám."
+  K: "Vím, že do tohoto kraje nezavítal
+      žádný pořádný drak už aspoň pětset let."
+  start kronika "mlci"
+
+gplend
+
+block _poklad ( atbegin(0)  and (not been(_poklad) or last(_25) ) )
+title Co staré dračí poklady?
+ labels namape
+  justtalk
+  D: "A co staré dračí poklady?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Eh, no vlastně,
+      kus odtud na sever se nachází jedna
+      opuštěná dračí jeskyně."
+  K: "Naposledy tam sídlil nějaký drak před
+      pětistypadesátisedmi lety. Pokud tam byl
+      poklad, bude už určitě dávno pryč..."
+  start kronika "mlci"
+
+  justtalk
+  D: "Ne, jsem si jistej, že ne!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Jak myslíš..."
+  start kronika "mlci"
+
+  if(new_jeskyn>1) namape
+  let new_jeskyn (1)
+ label namape
+
+gplend
+
+block _hulka ( atbegin(0)  and (not been(_hulka) or last(_25) ) )
+title O zlých kouzelných hůlkách nic nevíš?
+  justtalk
+  D: "O zlých kouzelných hůlkách nic nevíš?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Znám jedinou zlou kouzelnou hůlku,
+      ale ta navštívila náš kraj už několikrát.
+      Eh, jak se jenom jmenuje, ..."
+  K: "...její jméno je Ofelína."
+  start kronika "mlci"
+
+  justtalk
+  D: "To zní povědomě!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Jméno nehraje roli,
+      navštěvuje různá místa dokonce inkognito!"
+  start kronika "mlci"
+
+  justtalk
+  D: "V přestrojení za dobrou kouzelnou hůlku?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Přesně tak!"
+  start kronika "mlci"
+
+  justtalk
+  D: "Potom Ofelínu znám!
+      Máme spolu nějaké nevyřízené účty..."
+  D: "Nevíš, kde bych ji mohl potkat?"
+  juststay
+
+  start kronika "mluvi"
+  K: "To opravdu netuším,
+      neviděla jsem ji celá staletí."
+  start kronika "mlci"
+
+gplend
+
+block _12 ( atbegin(0)  and not been(_12) and been(_hulka) )
+title Co všechno vlastně Ofelína provedla?
+  justtalk
+  D: "Co všechno vlastně Ofelína provedla?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Před devítistydvacetiosmi lety neodšpuntovatelně
+      zašpuntovala Pryštivé prameny,
+      které napájejí celý tento kraj."
+  K: "Naštěstí nám pomohla Magická vývrtka.
+      Tu jsme ale museli vyměnit s vedlejším královstvím
+      za celé dva tisíce soudků rumu!"
+  start kronika "mlci"
+
+  justtalk
+  D: "To vás muselo úplně zruinovat!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Na první pohled."
+  K: "Zapomněla jsem dodat,
+      že to království se od té doby nazývá
+      'Země věčných temnot'."
+{#because of drinking badly distilled alcohol
+  start kronika "mlci"
+
+gplend
+
+block _13 ( atbegin(0)  and not been(_13) and been(_12) )
+title Ofelína toho má na svědomí určitě víc!
+  justtalk
+  D: "Ofelína toho má na svědomí určitě víc!"
+  juststay
+
+  start kronika "mluvi"
+  K: "To se rozumí."
+  K: "Před šestistydevadesátidevíti lety při závodu
+      v kutálení sudů proměnila sudy ve včelí úly."
+  K: "Ve vřavě kolem nemohl nikdo slyšet,
+      jak sudy bzučí."
+  K: "Vítěz byl potom tak opuchlý od
+      včelích štípanců, že mu nešel nasadit
+      kolem krku věnec!"
+  K: "Navíc se rozprchli všichni diváci,
+      celá slavnostní ceremonie byla prostě v..."
+  start kronika "mlci"
+
+  justtalk
+  D: "Mám rád ceremonie, toto je nehoráznost!"
+  juststay
+
+gplend
+
+block _14 ( atbegin(0)  and not been(_14) and been(_13) )
+title Ještě nějakou Evelýninu špatnost!
+  justtalk
+  D: "Ještě nějakou Evelýninu špatnost!"
+  juststay
+
+  start kronika "mluvi"
+  K: "S Ofelínou mám dokonce i já co do činění!"
+  K: "Namluvila mi, že každá vzdělaná kronika
+      ovládá aspoň dva jazyky."
+  start kronika "mlci"
+
+  justtalk
+  D: "Jenom proto, aby ti mohla dávat kondice?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Ve skutečnosti byla agent se slovníky."
+  K: "Začala jsem poctivě s hamilštinou.
+      Dovedeš si to představit?"
+{#Hamilish is a word for the language the chronicle studied
+{#but the name "Hamilish" is fictitious in Czech too
+  K: "Padesát časů, dvacet rodů,
+      deset tisíc nepravidelných sloves!"
+  start kronika "mlci"
+
+gplend
+
+block _15 ( atbegin(0)  and not been(_15) and (last(_14) or last(_16) or last(_17)) )
+title Řekni něco hamilsky!
+  justtalk
+  D: "Řekni něco hamilsky!"
+  juststay
+
+  start kronika "mluvi"
+  K: "Žblmptf!"
+  start kronika "mlci"
+
+  justtalk
+  D: "Co to bylo?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Ále, vpodstatě jedno citoslovce..."
+  start kronika "mlci"
+
+gplend
+
+block _16 ( atbegin(0)  and not been(_16) and (last(_14) or last(_15) or last(_17)) )
+title Kde se vlastně mluví hamilsky?
+  justtalk
+  D: "Kde se vlastně mluví hamilsky?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Nikde!
+      A dva roky jsem kvůli tomu drtila slovíčka!"
+  start kronika "mlci"
+
+gplend
+
+block _17 ( atbegin(0)  and not been(_17) and (last(_14) or last(_16) or last(_15)) )
+title Kdy se u tebe projevila vada řeči? Po hamilštině?
+  justtalk
+  D: "Kdy se u tebe projevila vada řeči?
+      Po hamilštině?"
+  juststay
+
+  start kronika "mluvi"
+  K: "Ano! Troufám si tvrdit,
+      že to šišlání bylo od toho.
+      Celé to bylo spiknutí a záměr!"
+  start kronika "mlci"
+
+  justtalk
+  D: "To je hnus! Jak to tak vidím,
+      Ofelína, vlastně Evelýna,
+      zasluhuje to nejpřísnější potrestání!"
+  juststay
+
+gplend
+
+{block _21 ( atbegin(0)  and not been(_21) )
+{title Tak mi pověz aspoň vtip!
+{  justtalk
+{  D:"Tak mi pověz aspoň vtip!"
+{  juststay
+{
+{gplend
+
+block _22 ( atbegin(0) )
+title Fajn jsme si pokecali. Tak zase někdy...
+  justtalk
+  D: "Fajn jsme si pokecali.
+      Tak zase někdy..."
+  juststay
+
+  start kronika "mluvi"
+  K: "Dobrá. Tedy zatím..."
+  start kronika "mlci"
+
+  exitdialogue
+gplend

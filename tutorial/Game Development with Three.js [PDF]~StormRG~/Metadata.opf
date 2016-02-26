@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">1557</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">28d02702-0c55-47da-bc2c-c3d6e3778000</dc:identifier>
+        <dc:title>Game Development with Three.js</dc:title>
+        <dc:creator opf:file-as="Sukin, Isaac" opf:role="aut">Sukin, Isaac</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (0.9.42) [http://calibre-ebook.com]</dc:contributor>
+        <dc:date>0101-01-01T00:00:00+00:00</dc:date>
+        <dc:language>eng</dc:language>
+        <meta content="{&quot;Sukin, Isaac&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="2014-02-24T05:55:28+00:00" name="calibre:timestamp"/>
+        <meta content="Game Development with Three.js" name="calibre:title_sort"/>
+    </metadata>
+    <guide>
+        <reference href="Game Development with Three.js - Sukin, Isaac.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>

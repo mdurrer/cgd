@@ -1,0 +1,417 @@
+block _00 ( beg(1) and not been (_00) )
+title
+  justtalk
+D: "Hi, I am Bert."
+  juststay
+
+  start trol_huba "mluvi"
+T: "I am Hornaine Fourhorny.
+    And I am a troll,
+    as you may have certainly surmised."
+{#quite unbelievable name, isn't it?
+  start trol_huba "mlci"
+
+  justtalk
+D: "Strange troll."
+  juststay
+
+  justtalk
+D: "I thought that trolls were supposed
+    to guard bridges!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "That's nonsense!"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "As far as I know
+    trolls were born to
+    lie under trees."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "And I am supposed to know that,
+    because I AM a troll!"
+  start trol_huba "mlci"
+gplend
+
+block _00a ( beg(1) and been (_00) )
+title
+  justtalk
+D: "Ahem, hello..."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Hi you there."
+  start trol_huba "mlci"
+
+  resetblock _98
+gplend
+
+block _98 ( beg(0) and last(_00a) and been(_09) and been(_10) )
+title I'd like to clear up some basic facts.
+  justtalk
+D: "I'd like to clear up some
+    fairly fundamental facts."
+  juststay
+
+  start trol_huba "mluvi"
+T: "If you want to."
+  start trol_huba "mlci"
+  resetblock _09
+  resetblock _10
+  resetblock _12
+gplend
+
+block _09 ( been(_01) and beg(0) and ((not been(_09) and been(_08)) or been(_98)) )
+title Aren't you going back to the bridge?
+  justtalk
+D: "Aren't you going back to the bridge?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Boy, I haven't thought of that!
+    What were you saying?"
+T: "Hah, hah, hah, hah, hah..."
+  start trol_huba "mlci"
+
+  resetblock _98
+gplend
+
+block _10 ( beg(0) and not been(_10) )
+title How is it possible that you have only two horns?
+  justtalk
+D: "How is it possible that you have only
+    two horns if you are called Fourhorny?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Everybody wonders.
+    Do you know why I have only two horns?"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "I always take two horns
+    off during winter!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "No! It isn't possible!"
+  juststay
+  start trol_huba "mluvi"
+T: "It is. Every winter my head was freezing
+    because of these two extra horns..."
+T: "...and so I started to take them off!"
+  start trol_huba "mlci"
+gplend
+
+block _11 ( last(_10) )
+title But it isn't winter yet!
+  justtalk
+D: "But it isn't winter yet!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Slight frosts, you know..."
+  start trol_huba "mlci"
+gplend
+
+block _12 ( beg(0) and not been(_12) and been(_10) )
+title I didn't think that trolls could take their horns off!
+  justtalk
+D: "I didn't think that trolls could take
+    their horns off!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Of course not. None of my ancestors did."
+T: "I feel sorry for my father,
+    grandfather and great-grandfather."
+T: "They didn't take off their horns
+    and every winter,
+    half of their head froze."
+T: "It melted in spring."
+T: "And froze again the next winter."
+  start trol_huba "mlci"
+
+  justtalk
+D: "Stop it, this is horrible!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "I am sorry
+    but I must also say
+    that sometimes..."
+T: "...it didn't melt at all!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "What did they do?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "It depends."
+T: "A Fireplace or stove
+    was no solution."
+T: "When half of their head was covered
+    with ice and icicles,
+    it often didn't fit into it!"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "They had to wait
+    until a fire dragon visited their country,
+    and beg him for help."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "But now there are no willing dragons
+    at all..."
+  start trol_huba "mlci"
+
+  justtalk
+D: "Hey, I am a dragon!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Thanks, but fortunately, now there's no need."
+T: "The solution I came up with is
+    totally revolutionary."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "By the way, I am not surprised
+    that my father didn't invent it."
+T: "He was an absolute conservative!"
+  start trol_huba "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) and (dreveny_trol_prozkouman=1) )
+title I saw a troll guarding the bridge not far away ...
+  justtalk
+D: "I saw a troll guarding the bridge
+    not far away from here!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "I don't believe it!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "He looked like you..."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Hah, hah, hah,
+    you don't say.
+    Well it wasn't me!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Not you,
+    the one who was guarding was entirely deaf."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Poor little thing."
+  start trol_huba "mlci"
+
+  justtalk
+D: "And he was wooden!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "That's a professional mishap."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "It sometimes happens to
+    these foolish trolls
+    who still guard bridges,"
+T: "...they sometimes turn to wood."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "This also answers your question as to why
+    I don't guard a bridge."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "I like my non-wooden
+    constitution so far."
+  start trol_huba "mlci"
+gplend
+
+block _02 ( last(_01) )
+title But you could easily turn to wood while laying here.
+  justtalk
+D: "But you could easily turn to wood
+    while laying here."
+  juststay
+
+  start trol_huba "mluvi"
+T: "OK, OK, you're right.
+    But how did you discover
+    that he was made of wood?"
+T: "I thought
+    nobody would discover it!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "As you can see, somebody did!"
+D: "Between the wooden troll and you
+    there are some slight differences..."
+  juststay
+
+  start trol_huba "mluvi"
+T: "For example?"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Your color isn't separating from you!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Well, you got me..."
+  start trol_huba "mlci"
+gplend
+
+block _03 ( been(_01) and beg(0) and not been(_03) )
+title It is horrible to guard bridges, isn't it?
+  justtalk
+D: "It is horrible to guard bridges, isn't it?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Yes, it is."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "I didn't like the never ending
+    waiting on a bridge..."
+T: "...and say a hoarse
+    'Pay the troll' every time
+    anyone comes through."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "And beg for cash.
+    That was the worst thing!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Like a Beggar?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "That's right.
+    A lot of people were confused
+    and they were bringing me lunch leftovers!"
+  start trol_huba "mlci"
+gplend
+
+block _04 ( beg(0) and not been(_04) and been(_03) )
+title You should fight that ideologically!
+  justtalk
+D: "You should fight that ideologically!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "I was sick of it after a while."
+T: "I wrote a petition
+    'For the rights of troll Hornaine Fourhorny'
+    but it was useless."
+T: "I didn't have many signatures."
+  start trol_huba "mlci"
+gplend
+
+block _05 ( beg(0) and not been (_05) and been(_04) )
+title Why don't you fight for all trolls' rights?
+  justtalk
+D: "Why don't you fight for all trolls' rights?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Oh no,
+    they have to fight
+    for their rights themselves."
+T: "I don't know, why should I do anything for them?"
+  start trol_huba "mlci"
+gplend
+
+block _06 ( beg(0) and not been (_06) and been(_04) )
+title What did you want out of this petition?
+  justtalk
+D: "What did you want out of this petition?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "A Watch house, an annuity,
+    lunch and dinner free of charge..."
+T: "...and substitutes who
+    will guard the bridge instead of me!"
+  start trol_huba "mlci"
+gplend
+
+block _07 ( last(_06) )
+title I am not surprised that foolish Masterfive didn't agree!
+  justtalk
+D: "I am not surprised that foolish
+    Masterfive didn't agree!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Stop it!
+    He would have agreed, maybe,
+    but there was another problem..."
+  start trol_huba "mlci"
+
+  justtalk
+D: "What was that?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "They don't have a mailbox
+    in the castle!"
+  start trol_huba "mlci"
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_03) )
+title You should receive checks at least.
+  justtalk
+D: "You should receive checks at least."
+  juststay
+
+  start trol_huba "mluvi"
+T: "I tried that."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "But half of them bounced!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "And what about credit cards?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "You are ahead of your time."
+T: "So I chose to make a copy
+    of myself for that bridge."
+  start trol_huba "mlci"
+gplend
+
+block _99 ( beg(0) )
+title Do you know that feeling when you have nothing to say?
+  justtalk
+D: "Do you know that feeling
+    when you just don't know what to say?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Hmm."
+  start trol_huba "mlci"
+
+  exitdialogue
+gplend

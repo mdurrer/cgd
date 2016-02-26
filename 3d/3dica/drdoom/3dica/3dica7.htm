@@ -1,0 +1,726 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.0.32 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER><B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</CENTER>
+
+<CENTER>
+<DT>
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris 1996,1997,1998</DT></CENTER>
+
+<CENTER>
+<DT>
+- Over 150k of pure sh...er, 3d coding power!</DT></CENTER>
+
+
+<P>
+<HR WIDTH="100%">
+
+<P><A NAME="chap7"></A>
+<H2>
+7. Some Other Nice Things</H2>
+
+<UL><A NAME="chap71"></A>
+<H3>
+7.1 Frame skipping</H3>
+</UL>
+
+<UL>I'm describing only one technique here. If you don't like it, try reading
+the Midas documents. The idea of frameskip is to make a program run at
+the same speed on all machines. The main idea is very straightforward:
+when the objects have been updated once, we've drawn one frame. A 386 spends
+a lot of more time drawing a frame than a pentium. This means that a 386
+should skip some frames and draw thus less frames per a time unit. An example:
+we suppose that the rotation angle of an object should increase by 9 degrees
+per second. We should now do as follows:
+<PRE>Frame&nbsp;&nbsp; Angle on a 386&nbsp;&nbsp; Angle on a pentium</PRE>
+
+<PRE>&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</PRE>
+
+<PRE>&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1</PRE>
+
+<PRE>&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2</PRE>
+
+<PRE>&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3</PRE>
+
+<PRE>&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4</PRE>
+
+<PRE>&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5</PRE>
+
+<PRE>&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6</PRE>
+
+<PRE>&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7</PRE>
+
+<PRE>&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8</PRE>
+
+<PRE>&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9</PRE>
+Why? A pentium is fast enough to draw 10 fps when a 386 can make only four.
+Now your object rotates at the same speed with all computers, just more
+smoothly on a pentium than a 386.
+<UL>
+<DT>
+<TT>fstart=read_time</TT></DT>
+
+<DT>
+<TT>loop</TT></DT>
+
+<UL>
+<DT>
+<TT>&lt; calculate ></TT></DT>
+
+<DT>
+<TT>&lt; draw ></TT></DT>
+
+<DT>
+<TT>&lt; flip ></TT></DT>
+
+<DT>
+<TT>&lt; do whatever you want ></TT></DT>
+
+<DT>
+<TT>fend=read_time</TT></DT>
+
+<DT>
+<TT>angle=angle+speed*(fend-fstart)</TT></DT>
+
+<DT>
+<TT>fstart=fend</TT></DT>
+</UL>
+
+<DT>
+<TT>until 1=2</TT></DT>
+</UL>
+All variables are of course real or fixed numbers. And read_time should
+be <I>accurate</I>, the basic 18.2Hz clock won't work.
+
+<P>Another technique: create an interrupt which updates all variables 70
+times per second and the routines draw as fast as they can without going
+over that 70fps. Not bad, this one, either.
+
+<P><A NAME="chap72"></A>
+<H3>
+7.2 Optimizing in Assembly</H3>
+(
+<UL>
+<DT>
+<B>Author</B> : Henri 'RoDeX' Tuhkanen</DT>
+
+<DT>
+<B>Email</B> : henri.tuhkanen@mbnet.fi</DT>
+
+<DT>
+<B>Groups</B> : CyberVision, Embrace, the Damned, Hard Spoiled, tAAt, Regeneration,
+Magic Visions and a couple of others I can't remember ;)</DT>
+
+<DT>
+<B>Achievements </B>: 7th prize at asm'96 4k intro compo</DT>
+
+<DT>
+<B>A brief portrait</B> : I'm a 19-year-old 3D/gfx coder and code about
+always. I can give away a lot of coding-related material but mainly algos;
+I don't like rippers. I'm not afraid of being wrong and I want to learn
+everything about coding and computers :)</DT>
+
+
+<P>(text debugged by Chem and translated by Ica)</UL>
+)
+
+<P>Optimizing assembly code became quite complicated when the pentium came
+out. This piece of text was written to clarify pentium tricks and to tell
+how we can produce code that can even be twice as fast as one could think
+to be possible.
+
+<P>With pentium came the concepts <I>pairing</I> and <I>fast</I> math coprocessor
+known in the PC world. Now I'll tell how pairing works, and how you can
+take the advantage of it in your own programs.
+
+<P>There are actually two parallel processors inside a pentium processor.
+Only one of these is complete. This is called the U pipe, the other (less
+complete) one is the V pipe. The V pipe can only perform jumps and some
+basic commands like mov, add, and lea. Pairing is these processors working
+simultaneously at the same clock frequency. Pairing works only in special
+circumstances.
+
+<P>Example. We suppose that the situation is neutral at the beginning of
+each series of commands. That means that the first command is performed
+in the U pipe (this can be achieved by placing an <TT>sti</TT> before the
+series).
+<UL>
+<DT>
+<TT>mov eax,ebx ; U</TT></DT>
+
+<DT>
+<TT>add ecx,edx ; V</TT></DT>
+
+<DT>
+<TT>mov eax,ebx ; U</TT></DT>
+
+<DT>
+<TT>add eax,2 ; U (doesn't pair -- needs the new result of eax)</TT></DT>
+</UL>
+So the first thing which should be correct is the use of registers. Generally:
+if a register is first written and then read, the commands do not pair.
+But if a register is read, the following command pairs even if it used
+the same register (for read or write). The supposition of course is that
+the commands should pair with each other. Example:
+<UL>
+<DT>
+<TT>mov eax,ebx ; 1 clock; U</TT></DT>
+
+<DT>
+<TT>add eax,ecx ; 1 clock; U</TT></DT>
+
+<UL>
+<UL>
+<DT>
+<TT>; total 2 clocks</TT></DT>
+</UL>
+</UL>
+
+<DT>
+<TT>add ebx,eax ; 1 clock; U</TT></DT>
+
+<DT>
+<TT>mov edx,eax ; 0 clocks; V</TT></DT>
+
+<UL>
+<UL>
+<DT>
+<TT>; total 1 clock</TT></DT>
+</UL>
+</UL>
+</UL>
+In the commands above we've supposed that both of the commands pair in
+both pipes. Even though this is the general situation, things are not always
+like that. Example:
+<UL>
+<DT>
+<TT>mov ebx,edx ; 1</TT></DT>
+
+<DT>
+<TT>shl eax,1 ; 1 (doesn't pair in V)</TT></DT>
+
+<UL>
+<UL>
+<DT>
+<TT>; total 2</TT></DT>
+</UL>
+</UL>
+</UL>
+But:
+<UL>
+<DT>
+<TT>shl eax,1 ; 1</TT></DT>
+
+<DT>
+<TT>mov ebx,edx ; 0</TT></DT>
+
+<UL>
+<UL>
+<DT>
+<TT>; total 1</TT></DT>
+</UL>
+</UL>
+</UL>
+(shl pairs only in U pipe)
+<UL>
+<DT>
+<TT>cmp eax,ebx ; 1 U</TT></DT>
+
+<DT>
+<TT>jne (somewhere) ; 0 (pairs only in V)</TT></DT>
+</UL>
+The flags are updated so fast that they're available for use at the same
+clock, so the above example works. There are many instructions which pair
+only in the U or V pipe or not at all. SHL and ROL pair only in the U pipe.
+Jumps pair only in the V pipe, when CLI and MUL don't pair at all (they
+reserve both pipes). When you start finding out what instructions pair
+with each other, you notice that you begin forming instruction pairs and
+moving instructions to places where they pair. Many instructions work depending
+on the situation, though. The pairing rules can be found at least in the
+pentium update of HelpPC.
+
+<P>Now the theory should be quite clear so it's time to try optimizing
+a real piece of code. In the following example we'll optimize a slow line
+drawing inner loop.
+<UL>
+<LI>
+UV: pairs in both pipes</LI>
+
+<LI>
+NU: pairs only in U</LI>
+
+<LI>
+NV: pairs only in V</LI>
+
+<LI>
+NP: doesn't pair at all</LI>
+
+<LI>
+? : The speed of memory references depends on many things. We suppose that
+the situation is ideal.</LI>
+</UL>
+Linedraw, innerloop in the mode 320*200*256. When we come into the loop,
+the registers are the following:
+<UL>
+<LI>
+eax = start_x*256</LI>
+
+<LI>
+edx = start_y</LI>
+
+<LI>
+[xp]=x_coefficient*256 (dd, 32 bit)</LI>
+
+<LI>
+[yp]=y_coefficient (dd, 32 bit)</LI>
+
+<LI>
+ebx = 0</LI>
+</UL>
+Code:
+<UL>
+<PRE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; Clocks Pipe Pairing Comment</PRE>
+
+<PRE>@@inner:</PRE>
+
+<PRE>lea edi,[edx+edx*4] ;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp; UV&nbsp;&nbsp;&nbsp; edi=edx*5</PRE>
+
+<PRE>mov bl,ah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; V&nbsp;&nbsp;&nbsp;&nbsp; UV&nbsp;&nbsp;&nbsp; ebx=ax/256</PRE>
+
+<PRE>shl edi,6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp; NU&nbsp;&nbsp;&nbsp; edi*=64</PRE>
+
+<PRE>add edi,ebx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp; UV&nbsp;&nbsp;&nbsp; edi+=ebx</PRE>
+
+<PRE>add edi,0a0000h&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp; UV&nbsp;&nbsp;&nbsp; edi+=screenstart</PRE>
+
+<PRE>mov [edi],b 10d&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 1?&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp; UV&nbsp;&nbsp;&nbsp; [edi]=10</PRE>
+
+<PRE>add edx,[yp]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 0?&nbsp;&nbsp; V&nbsp;&nbsp;&nbsp;&nbsp; UV&nbsp;&nbsp;&nbsp; edx+=[yp]</PRE>
+
+<PRE>add eax,[xp]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 1?&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp; UV&nbsp;&nbsp;&nbsp; eax+=[xp]</PRE>
+
+<PRE>dec ecx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp; UV&nbsp;&nbsp;&nbsp; ecx-=1</PRE>
+
+<PRE>jnz short @@inner&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; V&nbsp;&nbsp;&nbsp;&nbsp; NV&nbsp;&nbsp;&nbsp; jump if not zero</PRE>
+
+<PRE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;&nbsp;&nbsp;&nbsp; 6?</PRE>
+</UL>
+Normally we use pmode in flat mode which means that we must add the starting
+point of the screen memory into edi. The loop is best used as short because
+the distance to @@inner is less than 128; we save two bytes from the compiled
+version of the command. Now we can get rid of 'add edi,ebx':n by changing
+the calculation to 'mov [edi+ebx+0a0000h],b 10d'. We arrange also the instructions
+in a way that they pair whenever possible.
+<UL>
+<PRE>@@inner:</PRE>
+
+<PRE>lea edi,[edx+edx*4]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 1&nbsp;&nbsp; U&nbsp; UV&nbsp; edi=edx*5</PRE>
+
+<PRE>mov bl,ah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 0&nbsp;&nbsp; V&nbsp; UV&nbsp; ebx=ax/256</PRE>
+
+<PRE>shl edi,6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 1&nbsp;&nbsp; U&nbsp; NU&nbsp; edi*=64</PRE>
+
+<PRE>add edx,[yp]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 0?&nbsp; V&nbsp; UV&nbsp; edx+=[yp]</PRE>
+
+<PRE>mov [edi+ebx+0a0000h],b 10d ; 1?&nbsp; U&nbsp; UV&nbsp; []=10</PRE>
+
+<PRE>add eax,[xp]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 0?&nbsp; V&nbsp; UV&nbsp; eax+=[xp]</PRE>
+
+<PRE>dec ecx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 1&nbsp;&nbsp; U&nbsp; UV&nbsp; ecx-=1</PRE>
+
+<PRE>jnz short @@inner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 0&nbsp;&nbsp; V&nbsp; NV&nbsp; jump</PRE>
+
+<PRE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 4?</PRE>
+</UL>
+The difference in speed is remarkable. The negative side is that the code
+gets more messy but it's a cheap price for speed. Well, the clocks of lines
+where registers are added by [variables] are very questionable and probably
+something very else than zeros. In any case, the loop is now pairing efficiently.
+I just find it useless to multiply y every time by 320. So:
+<UL>
+<LI>
+eax=start_x*256</LI>
+
+<LI>
+edi=start_y*320</LI>
+
+<LI>
+[xp]=x_coeff*256</LI>
+
+<LI>
+[yp]=y_coeff*320</LI>
+
+<LI>
+edi=0a0000h</LI>
+
+<LI>
+ebx=0</LI>
+</UL>
+
+<PRE>@@inner:</PRE>
+
+<PRE>mov bl,ah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 1&nbsp;&nbsp; U&nbsp; UV&nbsp; ebx=ax/256</PRE>
+
+<PRE>add eax,[xp]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 0?&nbsp; V&nbsp; UV&nbsp; eax+=[xp]</PRE>
+
+<PRE>mov [edi+ebx],b 10d ; 1?&nbsp; U&nbsp; UV&nbsp; []=10</PRE>
+
+<PRE>add edi,[yp]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 0?&nbsp; V&nbsp; UV&nbsp; edi+=[yp]</PRE>
+
+<PRE>dec cx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 1&nbsp;&nbsp; U&nbsp; UV&nbsp; cx-=1</PRE>
+
+<PRE>jnz @@inner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 0&nbsp;&nbsp; V&nbsp; NV&nbsp; jump if not zero</PRE>
+
+<PRE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 3?</PRE>
+Fast? This is just an illusion because there are many other things which
+have their effects on speed, a few examples of which are cache misses and
+interrupts which stop pairing and often cause also a cache miss. A cache
+miss is a situation in which the needed data is not found in the processor
+internal memory (level 1 cache) but it must be brought from the external
+cache (level 2 cache). This usually means couple of clock cycles more and
+the stoppage of pairing. If the data is not found even in the level 2 cache,
+it must be brought from the actual memory resulting in a loss of over 10
+clocks. These fetch times are linearly dependent on the memory which the
+computer is using. In certain cases, the differences can be big. For example,
+it could take 5 clocks of 60ns multiaccess edo and 15 clocks of normal
+memory. With the level 2 cache, the difference between pipeline burst and
+some other can be two clocks. So at this stage we notice that everything
+is really not dependent on the code :(
+
+<P>Luckily we have a trick left: we can't affect the caches straight but
+we can speed up memory handling by arranging the data. For example, variables
+that are used in the same loop should be arranged so that they would be
+consecutively in the memory and in blocks of 32 bytes. This is because
+pentium moves data between cache and normal memory in 32-byte blocks, and
+a block like this is never split. So it's worth trying to align the code
+and the data to 32 bytes. Specially loops and variables that are used in
+them should be in as few blocks as possible. It's always worth using your
+imagination when coding critical loops to get the best possible use of
+level 1 cache.
+
+<P><A NAME="chap73"></A>
+<H3>
+7.3 Palette Quantisizing</H3>
+
+<UL><A NAME="chap731"></A>
+<H4>
+7.3.1 What is it actually?</H4>
+<I>Palette quantisizing</I> is a way of trying to get a 256 (or why not
+16 ;) color mode look as good as possible by optimizing the palette. There
+are many quantisizing techniques of which here are described Local K Mean
+and Median Cut.
+
+<P><A NAME="chap732"></A>
+<H4>
+7.3.2 Local K Mean</H4>
+[The text was originally written by Sampsa Lehtonen (TexMex /Gigamess,
+sampsa.lehtonen@mbnet.fi), this is an edited version. Thanks.]
+
+<P><B><I>7.3.2.1 An abstract approach</I></B>
+
+<P>Abstractly, LK works as follows: the values of the picture or colors
+to be quantisized are imagined as spheres in a cubic-shaped color space
+(XYZ = RGB). The bigger amount of a color there is, the bigger is the sphere.
+Into the color space, we add palette spheres which can move freely contrary
+to the color spheres which don't move at all. The number of palette spheres
+is the same as the size of the desired palette (256 colors -> 256 spheres).
+
+<P>We perform the following process: every color sphere pulls the closest
+palette sphere. The bigger a color sphere is, the bigger is its pulling
+force. Now about all of the palette spheres are pulled by one or more color
+spheres. (The new coordinates of a palette sphere are calculated from the
+average of the color values of the color spheres, in other words the sum
+of colors divided by the number of color spheres). The palette spheres
+which are not pulled by any color sphere telewarp near some color sphere.
+Now the palette spheres move in the space like this until their movement
+is slowed under a defined level (trust me, it really slows down). Now the
+new palette can be read from the coordinates of the palette spheres.
+
+<P><B><I>7.3.2.2 A more technical approach</I></B>
+
+<P>Let's use the following example: we have a truecolor picture which should
+be changed to 256 colors. First we create a histogram out of the picture.
+The histogram uses 15bit (or any other 3*x bit) numbers.
+
+<P>Now we create another table in which is the list of the colors the picture
+originally has. So we go through the histogram, and in every point where
+there is some color (the value being greater than zero), we put the color
+amount and value into this new table. The table can for example be like
+this:
+<UL>
+<DT>
+<TT>typedef struct</TT></DT>
+
+<DT>
+<TT>{</TT></DT>
+
+<UL>
+<DT>
+<TT>unsigned char R,G,B; // color values</TT></DT>
+
+<DT>
+<TT>unsigned long count; // number of colors in the pic</TT></DT>
+</UL>
+
+<DT>
+<TT>} colorListStruct;</TT></DT>
+
+<DT>
+<TT>colorListStruct colorList[32768];</TT></DT>
+</UL>
+Additionally, the amount of different colors is saved into a variable (colorListCount).
+Then we create a basic palette:
+<UL>
+<PRE>unsigned long palette[256][3]; // 3: R,G &amp; B</PRE>
+</UL>
+We need also three other variables:
+<UL>
+<PRE>unsigned long colorSum[256][3]; // 256 colors, 3 = R,G &amp; B,</PRE>
+</UL>
+(the following one could be attached to <TT>colorSum</TT>, too)
+<UL>
+<PRE>unsigned long colorCount[256],</PRE>
+</UL>
+and then a variable in which we save change in the palette:
+<UL>
+<PRE>unsigned long variance;</PRE>
+</UL>
+Now we go through the following steps:
+<DT>
+1) Reset <TT>colorSum</TT> and <TT>colorCount</TT> (all zeros), and fill
+<TT>palette</TT> with the colors at the beginning of <TT>colorList</TT></DT>
+
+<DT>
+2) Go through all colors in <TT>colorList</TT> (<TT>c</TT> = 0..<TT>colorListCount</TT>)</DT>
+
+<UL>
+<DT>
+a) take color <TT>c</TT> from <TT>colorList</TT></DT>
+
+<DT>
+b) find the closest color in <TT>palette</TT> for it (we get a number x=0..255)</DT>
+
+<DT>
+c) add this color into <TT>colorSum, </TT>for example</DT>
+
+<UL>
+<DT>
+<TT>colorSum[x][0] += colorList[c].R;</TT></DT>
+
+<DT>
+<TT>colorSum[x][1] += colorList[c].G;</TT></DT>
+
+<DT>
+<TT>colorSum[x][2] += colorList[c].B;</TT></DT>
+</UL>
+
+<DT>
+d) increment <TT>colorCount</TT> at the point x (colorCount[x]++;)</DT>
+</UL>
+
+<DT>
+3) <TT>variance</TT>=0</DT>
+
+<DT>
+4) Go through all colors in the basic palette (c = 0..255)</DT>
+
+<UL>
+<DT>
+a) if <TT>colorCount</TT> > 0 calculate the R, G, and B values with the
+help of <TT>colorSum</TT> and <TT>colorCount</TT> (average color):</DT>
+
+<UL>
+<DT>
+<TT>R = colorSum[c][0] / colorCount[c];</TT></DT>
+</UL>
+
+<DT>
+etc. else take a random number from <TT>colorList</TT></DT>
+
+<UL>
+<DT>
+<TT>R,G &amp; B &lt;- colorList[RANDOM]</TT></DT>
+</UL>
+
+<DT>
+b) calculate the variance:</DT>
+
+<UL>
+<DT>
+<TT>temp = abs(R-palette[c][0]); //variance in red</TT></DT>
+
+<DT>
+<TT>variance+=temp; //save it</TT></DT>
+</UL>
+
+<DT>
+etc.</DT>
+
+<DT>
+c) save the new color:</DT>
+
+<UL>
+<DT>
+<TT>palette[c][0] = R</TT></DT>
+</UL>
+
+<DT>
+etc.</DT>
+</UL>
+
+<DT>
+5) reset <TT>colorSum</TT> and <TT>colorCount</TT></DT>
+
+<DT>
+6) if <TT>variance</TT> > <TT>MAX_VARIANCE</TT> goto 2 (<TT>MAX_VARIANCE</TT>
+is the border when the palette is ready. The smaller number, the slower
+process.)</DT>
+
+
+<P><A NAME="chap733"></A>
+<H4>
+7.3.3 Median Cut</H4>
+Written by Jari Komppa aka Sol/Trauma (<A HREF="mailto:solar@compart.fi">solar@compart.fi</A>).
+Thanks.
+
+<P>Disclaimer: The information here is based on material I've read (can't
+remember any document names) and some sources I've poked at. As such I
+can't give any pointers to more information nor do I have the math background
+for this algorithm.
+
+<P><B><I>7.3.3.1 The definition</I></B></UL>
+</UL>
+
+<CENTER><script pagespeed_no_defer="" type="text/javascript">//<![CDATA[
+(function(){var g=this,h=function(b,d){var a=b.split("."),c=g;a[0]in c||!c.execScript||c.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===d?c[e]?c=c[e]:c=c[e]={}:c[e]=d};var l=function(b){var d=b.length;if(0<d){for(var a=Array(d),c=0;c<d;c++)a[c]=b[c];return a}return[]};var m=function(b){var d=window;if(d.addEventListener)d.addEventListener("load",b,!1);else if(d.attachEvent)d.attachEvent("onload",b);else{var a=d.onload;d.onload=function(){b.call(this);a&&a.call(this)}}};var n,p=function(b,d,a,c,e){this.f=b;this.h=d;this.i=a;this.c=e;this.e={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.g=c;this.b={};this.a=[];this.d={}},q=function(b,d){var a,c,e=d.getAttribute("pagespeed_url_hash");if(a=e&&!(e in b.d))if(0>=d.offsetWidth&&0>=d.offsetHeight)a=!1;else{c=d.getBoundingClientRect();var f=document.body;a=c.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);c=c.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+c;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.e.height&&c<=b.e.width)}a&&(b.a.push(e),b.d[e]=!0)};p.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&q(this,b)};h("pagespeed.CriticalImages.checkImageForCriticality",function(b){n.checkImageForCriticality(b)});h("pagespeed.CriticalImages.checkCriticalImages",function(){r(n)});var r=function(b){b.b={};for(var d=["IMG","INPUT"],a=[],c=0;c<d.length;++c)a=a.concat(l(document.getElementsByTagName(d[c])));if(0!=a.length&&a[0].getBoundingClientRect){for(c=0;d=a[c];++c)q(b,d);a="oh="+b.i;b.c&&(a+="&n="+b.c);if(d=0!=b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),c=1;c<b.a.length;++c){var e=","+encodeURIComponent(b.a[c]);131072>=a.length+e.length&&(a+=e)}b.g&&(e="&rd="+encodeURIComponent(JSON.stringify(s())),131072>=a.length+e.length&&(a+=e),d=!0);t=a;if(d){c=b.f;b=b.h;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(k){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(u){}}f&&(f.open("POST",c+(-1==c.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}},s=function(){var b={},d=document.getElementsByTagName("IMG");if(0==d.length)return{};var a=d[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var c=0;a=d[c];++c){var e=a.getAttribute("pagespeed_url_hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].k&&a.height>=b[e].j)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b},t="";h("pagespeed.CriticalImages.getBeaconData",function(){return t});h("pagespeed.CriticalImages.Run",function(b,d,a,c,e,f){var k=new p(b,d,a,e,f);n=k;c&&m(function(){window.setTimeout(function(){r(k)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','https://www.modeemi.fi/drdoom/3dica/3dica7.htm','l8PuqRhht8',true,false,'HJqftclV5UA');
+//]]></script><IMG SRC="clrsp.gif" ALT="RGB colorspace cube" HEIGHT=132 WIDTH=133 pagespeed_url_hash="2151017553" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<I>RGB colorspace cube</I></CENTER>
+
+<UL>
+<UL>The RGB colorspace can be thought of as a 3-dimensional cube. Every
+color is a 3D position within this cube. If you take every point of the
+RGB cube and calculate the average, you'll get a mid-gray color.
+
+<P>Since the palette we're going to use is not going to include every color
+in the colorspace, we only use a "subspace".</UL>
+</UL>
+
+<CENTER><IMG SRC="subsp1.gif" ALT="The RGB colorspace with subspace." HEIGHT=132 WIDTH=134 pagespeed_url_hash="1900465385" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<I>Colorspace with a subspace in gray</I></CENTER>
+
+<UL>
+<UL>This subspace is defined by finding out the min/max R, G, and B values.
+In this example, blue and red use the whole range and green uses only a
+part. If we calculate the average of these colors, we can make simple b/w
+image out of the rendered image by checking if a pixel is "brighter than"
+this averaged color, and dotting black and white pixels accordingly. But
+what if we want to use more than one color?
+
+<P>Let's say we cut the subspace in two.</UL>
+</UL>
+
+<CENTER><IMG SRC="subsp2.gif" ALT="The RGB cube with two subspaces" HEIGHT=132 WIDTH=133 pagespeed_url_hash="2194965306" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<I>Colorspace with two subspaces</I></CENTER>
+
+<UL>
+<UL>Now, by averaging each subspace, we have two colors that we know are
+near the right colors. At this point the target image will look pretty
+bad, but after, say, 16 splits, you can already know what the image will
+really look like, and at 256 levels you can hardly see the difference (well
+ok, depends heavily on the image).
+
+<P>The example image may give you slightly wrong idea of the algorithm.
+There will be a gap between the new subspaces, and they will most probably
+shrink in other dimensions as well.
+
+<P><B><I>7.3.3.2 The algorithm</I></B>
+
+<P>Basically we do the following:
+<UL>1. Analyze subspaces
+<BR>2. Select the largest subspace
+<BR>3. Sort it by the largest component (R, G or B)
+<BR>4. Cut it into two subspaces
+<BR>5. Repeat 1-4 until we have as many subspaces as we want.
+<BR>6. Average all colors in each subspace into palette</UL>
+Let's check each (actually rather simple) step one by one.
+
+<P>1. Analyze subspaces
+<UL>Find out information about the subspace that we need. This practically
+means checking what color component (R, G or B) has largest range (max-min)
+and what is the size of the subspace. This size may mean the number of
+colors in the subspace, sum of the values of the biggest component, or
+just the largest component range. You'll need the sum of the values of
+the biggest component later in any case.</UL>
+2. Select largest subspace
+<UL>This is simple; just check the values from each subspace and find out
+which is the largest.</UL>
+3. Sort it by the largest component
+<UL>This is by far the most power-eating part of this algorithm. You'll
+need to sort the colors by the component you found out in the analyze phase.</UL>
+4. Cut it in two subspaces
+<UL>How you do this depends on your way of implementing the whole thing.
+You might cut a linked list into two, or just define that the old subspace
+ends in index N and the new one starts at N+1. The tricky thing is to know
+where to cut.
+
+<P>You could cut the subspace in half (by leaving as many colors on one
+side as the other, or by leaving as many color intensities on one side
+as the other), but we'll cut it on the median of the color values. You
+calculated the sum of all color values of the component you sorted the
+subspace by. Now you'll need to find the median, or, the position where
+the sum of values reaches the middle point of the whole sum.
+
+<P><B><I>Example:</I></B> We have the following values: 1, 5, 7, 9, 10,
+11, 17, 21. The sum of these is 81. Half of the sum is 40.5. Now to find
+the median, we'll start calculating a new sum, until it reaches 40.5: 1+5+7+9+10+11=43,
+so the first half will have 5 values and the second, 3.</UL>
+5. Repeat 1-4 until we have as many subspaces as we want.
+<UL>As we now have one new subspace, we need to analyze it, and reanalyze
+the one it was clipped from. When we have enough subspaces for our needs,
+we go on.</UL>
+6. Average all colors in each subspace into palette
+<UL>Just plain &amp; simple averaging.</UL>
+<B><I>7.3.3.3 Implementation hints</I></B>
+
+<P>There are some problems, workarounds, and speed issues.
+
+<P>Since many pictures tend to have black in them, and if we are using
+VGA, we usually like to have the color 0 to be black, so the borders won't
+annoy us too much. I solved this by separating all black colors from the
+input values into separate list, and forced the color 0 to be black. Otherwise
+there will not be a completely black color!
+
+<P>If you wish to remap graphics (sprites, textures, whatever), performing
+a nearest-color search for every color you put into reduction is a bit
+waste. You could, instead, drag the original color index with the color
+itself (so that it will be sorted with the original color etc.) and then
+when averaging the subspaces you'd directly know the color indices that
+should be of that color.
+
+<P>Remember not to do any things repeatedly without a reason. (After analyzing,
+store the values and reanalyze only if there is need; also, sort only if
+it really is needed).
+
+<P>The biggest power-consuming part (about 60%+ in my implementation) in
+the algorithm is the sort. Killing off duplicates might help, but I didn't
+bother trying that.
+
+<P>My implementation used a singly-linked list for the colors since I wanted
+it to be dynamic. There were couple problems with this approach: allocating
+and freeing memory for 250000+ colors took more time than the color reduction
+itself, which was easily solved by allocating enough memory for one whole
+colormap at a time. Another problem was sorting, which I solved by making
+a list of pointers and re-linking the list after the sort. Making a static
+list of colors should be just as easy, and quite probably faster.
+<BR>I used radix sorting. On a p150 it reduced 640*400 colors into 255
+in about 4.5 seconds. Coding it took about one day (most of it wasted debugging).</UL>
+</UL>
+<A HREF="3dica.htm">Back to the index</A>
+</BODY>
+</HTML>

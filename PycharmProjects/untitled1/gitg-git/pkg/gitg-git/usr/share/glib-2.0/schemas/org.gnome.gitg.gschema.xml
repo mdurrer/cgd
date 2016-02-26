@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <enum id="org.gnome.gitg.Layout">
+    <value value="0" nick="horizontal"/>
+    <value value="1" nick="vertical"/>
+  </enum>
+
+  <enum id="org.gnome.gitg.history.DefaultSelection">
+    <value value="0" nick="current-branch"/>
+    <value value="1" nick="all-branches"/>
+    <value value="2" nick="all-commits"/>
+  </enum>
+
+  <enum id="org.gnome.gitg.history.RefSortOrder">
+    <value value="0" nick="last-activity"/>
+    <value value="1" nick="name"/>
+  </enum>
+
+  <schema path="/org/gnome/gitg/preferences/" id="org.gnome.gitg.preferences" gettext-domain="gitg">
+    <child schema="org.gnome.gitg.preferences.main" name="main"/>
+    <child schema="org.gnome.gitg.preferences.history" name="history"/>
+    <child schema="org.gnome.gitg.preferences.commit" name="commit"/>
+    <child schema="org.gnome.gitg.preferences.diff" name="diff"/>
+  </schema>
+  <schema path="/org/gnome/gitg/preferences/main/" id="org.gnome.gitg.preferences.main" gettext-domain="gitg">
+    <key type="s" name="clone-directory">
+      <default>""</default>
+      <summary>Default Clone Directory</summary>
+      <description>The default directory in which new repositories should be suggested to be cloned.</description>
+    </key>
+  </schema>
+  <schema path="/org/gnome/gitg/preferences/interface/" id="org.gnome.gitg.preferences.interface" gettext-domain="gitg">
+    <key name="orientation" enum="org.gnome.gitg.Layout">
+      <default>'vertical'</default>
+      <summary>Orientation of the main interface (vertical or horizontal)</summary>
+      <description>Setting that sets the orientation of the main interface.</description>
+    </key>
+    <key type="s" name="default-activity">
+      <default>"history"</default>
+      <summary>Default Activity</summary>
+      <description>The activity which gitg activates by default when first launched.</description>
+    </key>
+    <key type="b" name="use-gravatar">
+      <default>true</default>
+      <summary>Use Gravatar</summary>
+      <description>Enable the use of gravatar to display user avatars.</description>
+    </key>
+    <key type="b" name="enable-monitoring">
+      <default>true</default>
+      <summary>Enable Monitoring</summary>
+      <description>Automatically update when external changes to .git are detected</description>
+    </key>
+    <key type="b" name="enable-diff-highlighting">
+      <default>true</default>
+      <summary>Enable Diff Highlighting</summary>
+      <description>Setting that determines whether to enable syntax highlighting in diff views.</description>
+    </key>
+  </schema>
+  <schema path="/org/gnome/gitg/preferences/history/" id="org.gnome.gitg.preferences.history" gettext-domain="gitg">
+    <key type="i" name="collapse-inactive-lanes">
+      <default>2</default>
+      <summary>When to Collapse Inactive Lanes</summary>
+      <description>Setting that indicates when an inactive lane should be collapsed. Valid values are 0 - 4, where 0 indicates 'early' and 4 indicates 'late'.</description>
+    </key>
+    <key type="b" name="collapse-inactive-lanes-enabled">
+      <default>true</default>
+      <description>Setting that indicates whether to collapse history lanes which do not show activity. Enabling this can provide a cleaner history view when there is a lot of parallel development. See collapse-inactive-lanes to control when lanes should be collapsed.</description>
+    </key>
+    <key type="b" name="topological-order">
+      <default>false</default>
+      <summary>Show History in Topological Order</summary>
+      <description>Setting that indicates whether to show the history in topological order.</description>
+    </key>
+    <key type="b" name="show-stash">
+      <default>true</default>
+      <summary>Show Stashed Changes</summary>
+      <description>Setting that indicates whether to show items for the stash in the history.</description>
+    </key>
+    <key type="b" name="show-staged">
+      <default>true</default>
+      <summary>Show Staged Changes</summary>
+      <description>Setting that indicates whether to show a virtual item for the currently staged changes in the history.</description>
+    </key>
+    <key type="b" name="show-unstaged">
+      <default>true</default>
+      <summary>Show Unstaged Changes</summary>
+      <description>Setting that indicates whether to show a virtual item for the currently unstaged changes in the history.</description>
+    </key>
+    <key type="b" name="mainline-head">
+      <default>true</default>
+      <summary>Mainline Head</summary>
+      <description>Setting that indicates whether to always preserve a mainline in the history for the current HEAD.</description>
+    </key>
+    <key name="default-selection" enum="org.gnome.gitg.history.DefaultSelection">
+      <default>'current-branch'</default>
+      <summary>Default selection of the history activity</summary>
+      <description>Setting that determines the default selection on startup of the history activity.</description>
+    </key>
+    <key name="reference-sort-order" enum="org.gnome.gitg.history.RefSortOrder">
+      <default>'last-activity'</default>
+      <summary>Reference Sort Order</summary>
+      <description>The order by which references in the history sidebar should be sorted.</description>
+    </key>
+    <key type="b" name="show-upstream-with-branch">
+      <default>true</default>
+      <summary>Show Upstream With Branch</summary>
+      <description>Determines whether to also show the upstream (remote) tracking branch when selecting a local branch in the history view.</description>
+    </key>
+  </schema>
+  <schema path="/org/gnome/gitg/preferences/commit/" id="org.gnome.gitg.preferences.commit" gettext-domain="gitg">
+    <child schema="org.gnome.gitg.preferences.commit.message" name="message"/>
+    <child schema="org.gnome.gitg.preferences.commit.diff" name="diff"/>
+  </schema>
+  <schema path="/org/gnome/gitg/preferences/commit/message/" id="org.gnome.gitg.preferences.commit.message" gettext-domain="gitg">
+    <key type="b" name="show-markup">
+      <default>true</default>
+    </key>
+    <key type="b" name="show-right-margin">
+      <default>true</default>
+      <summary>Show Right Margin in Commit Message View</summary>
+      <description>Show a right margin indicator in the commit message view. This can be used to easily see where to break the commit message at a particular column.</description>
+    </key>
+    <key type="i" name="right-margin-position">
+      <default>72</default>
+      <summary>Column at Which Right Margin is Shown</summary>
+      <description>The column at which the right margin is shown if the show-right-margin preference is set to TRUE.</description>
+    </key>
+    <key type="b" name="show-subject-margin">
+      <default>true</default>
+      <summary>Show Subject Margin in Commit Message View</summary>
+      <description>Highlight the subject text of the commit message when it passes the margin specified by subject-margin-position.</description>
+    </key>
+    <key type="i" name="subject-margin-position">
+      <default>50</default>
+      <summary>Column at Which Subject Margin is Shown</summary>
+      <description>The column at which the subject margin is shown if the show-subject-margin preference is set to TRUE.</description>
+    </key>
+    <key type="b" name="enable-spell-checking">
+      <default>true</default>
+      <summary>Enable Spell Checking</summary>
+      <description>Setting which determines whether or not spell checking is enabled when writing a commit message.</description>
+    </key>
+    <key type="s" name="spell-checking-language">
+      <default>''</default>
+      <summary>Spell Checking Language</summary>
+      <description>The language to use when spell checking is enabled for writing a commit message.</description>
+    </key>
+  </schema>
+  <schema path="/org/gnome/gitg/preferences/diff/" id="org.gnome.gitg.preferences.diff" gettext-domain="gitg">
+    <key type="b" name="ignore-whitespace">
+      <default>false</default>
+      <summary>Ignore Whitespace Changes</summary>
+      <description>Setting that indicates whether to ignore whitespace changes when showing the diff of a commit.</description>
+    </key>
+    <key type="b" name="changes-inline">
+      <default>false</default>
+      <summary>Show Changes Inline</summary>
+      <description>Setting that indicates whether changes within lines should be shown inline.</description>
+    </key>
+    <key type="b" name="wrap">
+      <default>false</default>
+      <summary>Wrap</summary>
+      <description>Wrap lines.</description>
+    </key>
+    <key type="i" name="context-lines">
+      <default>3</default>
+      <summary>Number of Before/After Context Lines</summary>
+      <description>Setting that determines how many lines of context (before and after) should be shown when showing the diff of a commit.</description>
+    </key>
+    <key type="i" name="tab-width">
+      <default>4</default>
+      <summary>Rendered Width of a Tab Character</summary>
+      <description>Setting that determines how much space a tab character should occupy when showing the diff of a commit.</description>
+    </key>
+  </schema>
+  <schema path="/org/gnome/gitg/preferences/commit/diff/" id="org.gnome.gitg.preferences.commit.diff" gettext-domain="gitg">
+    <key type="i" name="context-lines">
+      <default>3</default>
+      <summary>Number of Before/After Context Lines</summary>
+      <description>Setting that determines how many lines of context (before and after) should be shown when showing the diff to be staged/unstaged in the commit area.</description>
+    </key>
+    <key type="i" name="tab-width">
+      <default>4</default>
+      <summary>Rendered Width of a Tab Character</summary>
+      <description>Setting that determines how much space a tab character should occupy when showing the diff of a commit.</description>
+    </key>
+  </schema>
+  <schema path="/org/gnome/gitg/state/" id="org.gnome.gitg.state">
+    <child schema="org.gnome.gitg.state.window" name="window"/>
+    <child schema="org.gnome.gitg.state.history" name="history"/>
+    <child schema="org.gnome.gitg.state.commit" name="commit"/>
+  </schema>
+  <schema path="/org/gnome/gitg/state/window/" id="org.gnome.gitg.state.window">
+    <key type="i" name="state">
+      <default>0</default>
+    </key>
+    <key type="(ii)" name="size">
+      <default>(650, 500)</default>
+    </key>
+    <key type="i" name="hpaned-commit1-position">
+      <default>200</default>
+    </key>
+    <key type="i" name="hpaned-commit2-position">
+      <default>200</default>
+    </key>
+    <key type="i" name="vpaned-commit-position">
+      <default>200</default>
+    </key>
+    <key type="i" name="revision-tree-view-position">
+      <default>200</default>
+    </key>
+  </schema>
+  <schema path="/org/gnome/gitg/state/history/" id="org.gnome.gitg.state.history" gettext-domain="gitg">
+    <key type="i" name="paned-sidebar-position">
+      <default>200</default>
+    </key>
+    <key type="i" name="paned-panels-position">
+      <default>450</default>
+    </key>
+  </schema>
+  <schema path="/org/gnome/gitg/state/commit/" id="org.gnome.gitg.state.commit" gettext-domain="gitg">
+    <key type="i" name="paned-sidebar-position">
+      <default>200</default>
+    </key>
+    <key type="b" name="sign-off">
+      <default>false</default>
+    </key>
+  </schema>
+</schemalist>

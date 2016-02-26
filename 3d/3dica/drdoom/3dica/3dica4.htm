@@ -1,0 +1,716 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.0.27 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER><B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</CENTER>
+
+<CENTER>
+<DT>
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris 1996,1997,1998</DT></CENTER>
+
+<CENTER>
+<DT>
+- Over 150k of pure sh...er, 3d coding power!</DT></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+
+
+<P><A NAME="chap4"></A>
+<H2>
+4. Sorting</H2>
+Without any kind of sorting we get a real mess when drawing more than one
+polygon at a time; the polygons are drawn all the time in the same order,
+so in some angles the engine draws the closest polygons first and the fartherst
+last, which results to weird 'transparency' effects. So some kind of sorting
+method would be nice.
+<UL><A NAME="chap41"></A>
+<H3>
+4.1 Z-Sorting</H3>
+The idea of z-sorting is that we sort polygons to an order determined by
+the average of their z coordinates. It's easy to use quicksort to achieve
+this, as in the following pseudo code:
+<UL>
+<DT>
+<TT>function quicksort(left, right)</TT></DT>
+
+<UL>
+<DT>
+<TT>if left&lt;right</TT></DT>
+
+<UL>
+<DT>
+<TT>q = partition(left,right)</TT></DT>
+
+<DT>
+<TT>quicksort(left,q)</TT></DT>
+
+<DT>
+<TT>quicksort(q+1,right)</TT></DT>
+</UL>
+
+<DT>
+<TT>endif</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+
+<DT>
+<TT>function partition(left, right)</TT></DT>
+
+<UL>
+<DT>
+<TT>- crd is the table of the rotated vertices</TT></DT>
+
+<DT>
+<TT>- face is the polygon table</TT></DT>
+
+<DT>
+<TT>x = crd[face[left,0],2] + crd[face[left,1],2] + crd[face[left,2],2]</TT></DT>
+
+<DT>
+<TT>a = left-1</TT></DT>
+
+<DT>
+<TT>b = right+1</TT></DT>
+
+<DT>
+<TT>loop forever:</TT></DT>
+
+<UL>
+<DT>
+<TT>decrement b by one as long as (crd[face[b,0],2] +</TT></DT>
+
+<UL>
+<DT>
+<TT>crd[face[b,1],2] + crd[face[b,2],2]) is less than x</TT></DT>
+</UL>
+
+<DT>
+<TT>increment a by one as long as (crd[face[a,0],2] +</TT></DT>
+
+<UL>
+<DT>
+<TT>crd[face[a,1],2] + crd[face[a,2],2]) is greater than x</TT></DT>
+</UL>
+
+<DT>
+<TT>if a&lt;b</TT></DT>
+
+<UL>
+<DT>
+<TT>xchg(face[a],face[b])</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>break looping and return b</TT></DT>
+</UL>
+
+<DT>
+<TT>endif</TT></DT>
+</UL>
+
+<DT>
+<TT>endloop</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+</UL>
+Now we just draw the polygons straight from the table.
+
+<P>Z-sort is really not a perfect sorting technique but it's enough for
+many purposes (for example many asm97-demos used z-sort). Anyway, I suggest
+learning also at least Z-buffer and maybe BSP-tree and S-buffer if you
+have time and interest.
+
+<P><A NAME="chap42"></A>
+<H3>
+4.2 Z-buffer</H3>
+Z-buffer is the easiest (but by no means the fastest) way of doing objects
+which can intersect each other. Contrary to BSP-tree, Z-buffer doesn't
+require splitting polygons when they intersect. BSP-tree is unbeatable
+for stable scenes, though. As the name indicates, we use a buffer (a table),
+into which we save the z and color values of the points. The size of this
+table should be the same as the size of the screen, for example in the
+MCGA mode 64000 at least 16bit elements. Z-buffer looks like this in C:
+<UL>
+<DT>
+<TT>float zbuffer[64000];</TT></DT>
+</UL>
+Before we start drawing anything to the z-buffer, we need to set the buffer
+to the maximum value it can reach. Then, when drawing polygons, we interpolate
+also z. In the inner loop we perform a compare, and if the current z is
+less than the z in the z-buffer, we set the current z as the z-buffer value
+and draw the pixel. If not, we continue with the next pixel.
+
+<P>This check slows the routine down dramatically, but luckily we can interpolate
+z just like x or anything else: only one add per per pixel (plus the check).
+Finally, when all the points of all the polygons have been checked, we
+draw the z-buffer into the screen.
+
+<P>A <I>short</I> piece of pseudo code from the hline:
+<UL>
+<DT>
+<TT>z = z1</TT></DT>
+
+<DT>
+<TT>for x=x1 -> x2</TT></DT>
+
+<UL>
+<DT>
+<TT>if (z &lt; zbuffer[y*320+x])</TT></DT>
+
+<UL>
+<DT>
+<TT>zbuffer[y*320+x] = z</TT></DT>
+
+<DT>
+<TT>plot(x,y,color)</TT></DT>
+</UL>
+
+<DT>
+<TT>endif</TT></DT>
+
+<DT>
+<TT>z = z + kz ; interpolate z</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+About optimizing: you don't need to reset the z-buffer so often (never
+I'd say) if you interpolate 1/z and perform all the operations above but
+change the compare from '&lt;' to '>' :)
+
+<P>How to implement it, you ask. Easy: 1/z is always at the range 0..1,
+so if we substract 1 from each value of the z-buffer, it's 'reset' (every
+possible value of 1/z is greater than this value which is at the range
+-1..0). The best way is to use this trick in the inner loop:
+<UL>
+<DT>
+<TT>1st frame:</TT></DT>
+
+<UL>
+<DT>
+<TT>if (new_1/z_value + 1) > zbuffer[].z</TT></DT>
+
+<UL>
+<DT>
+<TT>[]</TT></DT>
+</UL>
+</UL>
+
+<DT>
+<TT>2nd frame:</TT></DT>
+
+<UL>
+<DT>
+<TT>if (new_1/z_value + 2) > zbuffer[].z</TT></DT>
+
+<UL>
+<DT>
+<TT>[].</TT></DT>
+</UL>
+</UL>
+</UL>
+etc.
+
+<P>It's strongly recommended to interpolate 1/z instead of z even if you
+didn't use the trick above -- in the screen space, z isn't actually linear
+when 1/z is (see <A HREF="3dica3.htm#chap331">3.3.1 Perspective correction</A>), so
+it's is interpolated right only when using 1/z interpolation. So the pseudo
+code above changes a bit (opz = one per zed):
+<UL>
+<DT>
+<TT>opz = opz1</TT></DT>
+
+<DT>
+<TT>for x=x1 -> x2</TT></DT>
+
+<UL>
+<DT>
+<TT>if ( (opz+cur_frame) &lt; zbuffer[y*320+x] )</TT></DT>
+
+<UL>
+<DT>
+<TT>zbuffer[y*320+x] = opz</TT></DT>
+
+<DT>
+<TT>plot(x,y,color)</TT></DT>
+</UL>
+
+<DT>
+<TT>endif</TT></DT>
+
+<DT>
+<TT>opz = opz + k_opz ; interpolate z</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+<A NAME="chap43"></A>
+<H3>
+4.3 BSP-Tree</H3>
+BSP-tree (Binary Space Partitioning tree) is a very hard-to-implement but
+great sorting technique. I'm not describing how to code linked lists, so
+if you can't use them, find a good programming book and read about it.
+The special case of linked lists, a <I>binary tree</I>, means that every
+element of the tree is attached to two other elements below it in the hierarchy:
+<UL>
+<UL><script pagespeed_no_defer="" type="text/javascript">//<![CDATA[
+(function(){var g=this,h=function(b,d){var a=b.split("."),c=g;a[0]in c||!c.execScript||c.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===d?c[e]?c=c[e]:c=c[e]={}:c[e]=d};var l=function(b){var d=b.length;if(0<d){for(var a=Array(d),c=0;c<d;c++)a[c]=b[c];return a}return[]};var m=function(b){var d=window;if(d.addEventListener)d.addEventListener("load",b,!1);else if(d.attachEvent)d.attachEvent("onload",b);else{var a=d.onload;d.onload=function(){b.call(this);a&&a.call(this)}}};var n,p=function(b,d,a,c,e){this.f=b;this.h=d;this.i=a;this.c=e;this.e={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.g=c;this.b={};this.a=[];this.d={}},q=function(b,d){var a,c,e=d.getAttribute("pagespeed_url_hash");if(a=e&&!(e in b.d))if(0>=d.offsetWidth&&0>=d.offsetHeight)a=!1;else{c=d.getBoundingClientRect();var f=document.body;a=c.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);c=c.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+c;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.e.height&&c<=b.e.width)}a&&(b.a.push(e),b.d[e]=!0)};p.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&q(this,b)};h("pagespeed.CriticalImages.checkImageForCriticality",function(b){n.checkImageForCriticality(b)});h("pagespeed.CriticalImages.checkCriticalImages",function(){r(n)});var r=function(b){b.b={};for(var d=["IMG","INPUT"],a=[],c=0;c<d.length;++c)a=a.concat(l(document.getElementsByTagName(d[c])));if(0!=a.length&&a[0].getBoundingClientRect){for(c=0;d=a[c];++c)q(b,d);a="oh="+b.i;b.c&&(a+="&n="+b.c);if(d=0!=b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),c=1;c<b.a.length;++c){var e=","+encodeURIComponent(b.a[c]);131072>=a.length+e.length&&(a+=e)}b.g&&(e="&rd="+encodeURIComponent(JSON.stringify(s())),131072>=a.length+e.length&&(a+=e),d=!0);t=a;if(d){c=b.f;b=b.h;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(k){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(u){}}f&&(f.open("POST",c+(-1==c.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}},s=function(){var b={},d=document.getElementsByTagName("IMG");if(0==d.length)return{};var a=d[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var c=0;a=d[c];++c){var e=a.getAttribute("pagespeed_url_hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].k&&a.height>=b[e].j)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b},t="";h("pagespeed.CriticalImages.getBeaconData",function(){return t});h("pagespeed.CriticalImages.Run",function(b,d,a,c,e,f){var k=new p(b,d,a,e,f);n=k;c&&m(function(){window.setTimeout(function(){r(k)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','https://www.modeemi.fi/drdoom/3dica/3dica4.htm','l8PuqRhht8',true,false,'SqCWpdK1gII');
+//]]></script><IMG SRC="sort1.gif" HEIGHT=57 WIDTH=90 pagespeed_url_hash="555742214" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+</UL>
+Etcetc. Implementing this should be straightforward so I don't believe
+you'll have any problems.
+<UL><A NAME="chap431"></A>
+<H4>
+4.3.1 The main idea</H4>
+BSP-tree is as easy use in 2-space as in 3-space. It's easier to draw a
+2D world so I'll describe the main idea using one. Here are six lines:
+<UL><IMG SRC="sort2.gif" HEIGHT=137 WIDTH=138 pagespeed_url_hash="850242135" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+(X = camera location) These should be drawn in the right order using BSP-tree.
+First we'll create the tree:
+
+<P>We start with the line 1. We check on which side of it the rest of the
+lines are, and make a binary tree in which we put the lines depending on
+the side they're located. If some lines are partly at the left, partly
+at the right side of the line 1, they're split, and the two pieces are
+placed one to the left, one to the right side. Then we take the line 2
+and perform the same thing with the lines 3, 4, 5, and 6, and go on like
+this until all the lines have been arranged. If we want, we can stop in
+some certain point and sort the remaining lines with some else sorting
+technique.
+
+<P>When we're ready to draw the lines, we perform the next operation: We
+check, on which side of line 1 the camera is located. If it's on the left,
+we check if there are lines at <I>right</I> and if there are some, we go
+down the right branch. When the right branch is ready, we draw the line
+one and go down the left branch. REMEMBER to draw the line 1 in the place
+mentioned.
+
+<P>In our example, we perform the following splits:
+<UL><IMG SRC="sort3.gif" HEIGHT=136 WIDTH=138 pagespeed_url_hash="1144742056" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+The binary tree looks like this:
+<UL><IMG SRC="sort4.gif" HEIGHT=91 WIDTH=141 pagespeed_url_hash="1439241977" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+The drawing order of the lines in respect to the camera point in the picture
+is so the following:
+<UL>
+<DT>
+1) We're on the right side of 1. 2a is drawn first, then 1, then we go
+down the right branch.</DT>
+
+<DT>
+2) We're also on the right side of 2b, so we go down the left branch.</DT>
+
+<DT>
+3) We're on the left of 3a, so we draw first 3a, and then go down the left
+branch (no lines on the right).</DT>
+
+<DT>
+4) We're on the right of 4. So the order is 5c, 4, 5b.</DT>
+
+<DT>
+5) We return back to 2b and draw it, and go down the right branch towards
+3b.</DT>
+
+<DT>
+6) We're on the left of 3b so we draw 6a and 3b and go down the right branch.</DT>
+
+<DT>
+7) Related to 5a we're at left, so we draw 6b and finally 5a.</DT>
+</UL>
+So the final order is 2a,1,3a,5c,4,5b,2b,6a,3b,6b,5a. Seems to be quite
+rational. I suggest testing the functioning of BSP with a paper. I myself
+drew a 18-line 'world' just to clarify the idea of BSP-tree. An A4 full
+of strange lines and symbols X)
+
+<P><A NAME="chap432"></A>
+<H4>
+4.3.2 Required formulas</H4>
+Neat thing that, but how to implement it? Here I'll describe the use of
+all the needed formulas.
+
+<P>The equation of a plane is the following:
+<UL><TT>Nx * (X-ax) + Ny * (Y-ay) + Nz * (Z-az) = 0,</TT></UL>
+where N is the normal vector of the plane, X, Y, and Z arbitrary variables,
+and (ax,ay,az) one point on the plane. Now we should derive the equation
+of the plane going through all the vertices of our polygon. To do it, we
+need the normal vector, which can be calculated by creating two vectors
+from the polygon vertices and by taking their cross product. Now we place
+the coordinates of the desired point into the equation to the places of
+X, Y, and Z. If we get zero as a result, the point is on the plane. If
+the result is negative, the point is located on the one side of the plane,
+and if it's positive, it's on the other side. This technique is used to
+determine on which side of a plane the points are.
+
+<P>If all the vertices of a polygon aren't at the same side of a plane,
+the plane and the polygon intersect each other. In this kind of situation
+we need to calculate the intersecting points and with the help of those
+form two new polygons which are on different sides of the plane. To do
+this, the equation of a line in 3-space is required:
+<UL>
+<DT>
+<TT>X = X1 + (X2-X1)t</TT></DT>
+
+<DT>
+<TT>Y = Y1 + (Y2-Y1)t</TT></DT>
+
+<DT>
+<TT>Z = Z1 + (Z2-Z1)t</TT></DT>
+</UL>
+This line goes through the points (X1,Y1,Z1) and (X2,Y2,Z2) t getting all
+real values. When we place these X, Y, and Z to the places of X, Y, and
+Z in the plane equation, we've get the coordinates of the intersection
+point:
+<UL>
+<DT>
+<TT>Nx*(X1+(X2-X1)t-ax) +</TT></DT>
+
+<DT>
+<TT>Ny*(Y1+(Y2-Y1)t-ay) +</TT></DT>
+
+<DT>
+<TT>Nz*(Z1+(Z2-Z1)t-az) = 0</TT></DT>
+</UL>
+We solve t:
+<UL>
+<DT>
+<TT>Nx*(X2-X1)t + Ny*(Y2-Y1)t + Nz*(Z2-Z1)t =</TT></DT>
+
+<DT>
+<TT>Nx*(X1-ax) + Ny*(Y1-ay) + Nz*(Z1-az)</TT></DT>
+
+<UL><TT>&lt; = ></TT></UL>
+
+<DT>
+<TT>t * ( Nx*(X2-X1) + Ny*(Y2-Y1) + Nz*(Z2-Z1) ) =</TT></DT>
+
+<DT>
+<TT>Nx*(ax-X1) + Ny*(ay-Y1) + Nz*(az-Z1)</TT></DT>
+
+<UL><TT>&lt; = ></TT></UL>
+
+<UL>
+<DT>
+<TT>Nx*(ax-X1) + Ny*(ay-Y1) + Nz*(az-Z1)</TT></DT>
+</UL>
+
+<DT>
+<TT>t = --------------------------------------</TT></DT>
+
+<UL>
+<DT>
+<TT>Nx*(X2-X1) + Ny*(Y2-Y1) + Nz*(Z2-Z1)</TT></DT>
+</UL>
+</UL>
+Luckily we need to use this only in the init part... X)
+
+<P><A NAME="chap433"></A>
+<H4>
+4.3.3 Hints</H4>
+1) Calculating the plane equation is so slow it'd maybe be better to calculate
+the normals just at the beginning of the program and rotate them among
+vertices.
+
+<P>2) The easiest way is seldom the fastest. It would maybe be better to
+find the alternative with the least number of polygon splits -- the number
+of polygons can easily be reduced to a half which speeds up the thing dramatically.</UL>
+<A NAME="chap44"></A>
+<H3>
+4.4 S-buffer</H3>
+S-buffer (or scanline buffer or segmented buffer or span buffer or... :)
+is an enhanced -- and remarkably faster -- version of z-buffer, where we
+sort scanlines rather than single pixels. In the form I'm describing here,
+it was developed by Paul Nettle of Hot Wax Software (_-_ at #coders), but
+some people had used kind of an s-buffer many years before Nettle developed
+his version. In any case, we can get rid of a great amount of calculations
+by using s-buffer; in most of the horizline calls we need only compare
+the ending coordinates. So it looks like a very interesting way of sorting
+polygons.
+
+<P>So we have a&nbsp; table or a linked list into which we save the data
+of every hline call. We compare them to each other, act accordingly, and
+finally draw the visible scanlines (or parts of them). For example the
+following type of table works (for texturemapping, pmode):
+<UL>
+<DT>
+<TT>typedef struct</TT></DT>
+
+<DT>
+<TT>{</TT></DT>
+
+<UL>
+<DT>
+<TT>short xb,xe,zb,ze; // x_begin, x_end, ...</TT></DT>
+
+<DT>
+<TT>byte ub,ue,vb,ve;</TT></DT>
+
+<DT>
+<TT>long kz,ku,kv; // kz = (ze-zb)*65536/(xe-xb) etc</TT></DT>
+
+<DT>
+<TT>unsigned char used; // if 0 -> not used</TT></DT>
+</UL>
+
+<DT>
+<TT>} sbuf_t;</TT></DT>
+
+<DT>
+<TT>sbuftype sbuf[200][100]; // 200 lines in mode 320x200,</TT></DT>
+
+<UL>
+<UL>
+<UL>
+<UL>
+<UL>
+<DT>
+<TT>// max. 100 segments / line</TT></DT>
+</UL>
+</UL>
+</UL>
+</UL>
+</UL>
+</UL>
+<B><I>Note!</I></B> The segments are ordered by the size of the x coordinates
+from left to right. This kind of table consumes memory 200*100*28=560000
+bytes (due to alignment), and the more complicated the world is, the greater
+should the maximum number of segments be. I recommend using a linked list
+instead of a table; there's no maximum number of segments, and adding a
+segment between two other segments is far easier.
+
+<P>An s-buffered polygon routine takes also the z coordinates of the points
+(which have already been transformed into 2D) as parameters. In the outer
+loop, we interpolate also z coordinates. An sbuf-hline doesn't actually
+draw anything but it adds a new scanline into the s-buffer, and not until
+the s-buffer is ready the whole lot is drawn into the screen, just like
+with z-buffer.
+
+<P>Segments on the same horizontal line can be located in many ways related
+to each other, so they must be compared and act accordingly. There are
+six ways in which segments can be located related to each other (old line
+= v, new line = u):
+<UL>(1)
+<UL>
+<UL>
+<UL>
+<DT>
+vvvvvvvv</DT>
+</UL>
+</UL>
+
+<DT>
+uuuuuuuu</DT>
+</UL>
+(2)
+<UL>
+<DT>
+vvvvvvvv</DT>
+
+<UL>
+<UL>
+<DT>
+uuuuuuuu</DT>
+</UL>
+</UL>
+</UL>
+(3)
+<UL>
+<DT>
+vvvvvvvv</DT>
+
+<UL>
+<DT>
+uuuuuuuuuuu</DT>
+</UL>
+</UL>
+(4)
+<UL>
+<UL>
+<DT>
+vvvvvvvv</DT>
+</UL>
+
+<DT>
+uuuuuuuuuuu</DT>
+</UL>
+(5)
+<UL>
+<UL>
+<DT>
+vvvv</DT>
+</UL>
+
+<DT>
+uuuuuuuuuuu</DT>
+</UL>
+(6)
+<UL>
+<DT>
+vvvvvvvvvvv</DT>
+
+<UL>
+<DT>
+uuuu</DT>
+</UL>
+</UL>
+</UL>
+With these six cases we can present all the possible locations related
+to each other, also special cases (like one pixel segments and segments
+located to equal (x,y) coordinates). Humm... Paul mentioned in #coders
+that his own s-buffer requires only two or three compares in the hline!
+I would be interested to see the implementation. Paul has written a document
+describing his technique but he hasn't released it yet (so as not to annoy
+his employees in some weird way...) So everyone flood his email until he
+gives up and finally releases the doc! ;) [addition: the technique is quite
+probably this: he uses BSP-tree for stabile parts of the scene, then he
+inserts these pre-sorted parts into a s-buffer front->back, then uses normal
+s-buffer for moving objects and moving parts of the scene. The bsp-tree->s-buffer
+insertion routine can be optimized ultra fast; a scanline is added if and
+only if there's no segment in the s-buffer already in those coordinates.]
+
+<P>In the case 1 we just add the segment into the buffer <I>before</I>
+the next segment and return to the main polygon routine (all the segments
+to the left have already been checked; the list or table is ordered left
+-> right).
+
+<P>In the case 2 we try the next old segment if it exists. If not, we add
+the segment into the buffer as the last one.
+
+<P>In the case 3 we split the segment at the end of the old segment (remember
+to calculate the new values of z, u, and v), compare the left part to the
+old segment, and add it into the buffer if needed. Then we continue with
+the right part and the next old segment.
+
+<P>In the case 4 we split the segment at the beginning of the old segment,
+add the left part into the buffer before the old segment, and act with
+the right part like above with the left part.
+
+<P>In the case 5 we split the segment at both ends of the old scanline
+and act like in the cases 3 and 4.
+
+<P>In the case 6 we act directly like with the left part in the case 3.
+
+<P>Here are routines to empty and flip a s-buffer using the sbuf table
+above.
+<UL>
+<DT>
+<TT>- tmap is 256x256-sized bitmap</TT></DT>
+
+<DT>
+<TT>function flip_sbuf</TT></DT>
+
+<UL>
+<DT>
+<TT>integer i,j,k</TT></DT>
+
+<DT>
+<TT>integer du,dv</TT></DT>
+
+<DT>
+<TT>for i=0 -> 199</TT></DT>
+
+<UL>
+<DT>
+<TT>j = 0</TT></DT>
+
+<DT>
+<TT>while sbuf[i][j].used&lt;>0 and j&lt;100</TT></DT>
+
+<UL>
+<DT>
+<TT>du = 0</TT></DT>
+
+<DT>
+<TT>dv = 0</TT></DT>
+
+<DT>
+<TT>for k=sbuf[i][j].xb -> sbuf[i][j].xe</TT></DT>
+
+<UL>
+<DT>
+<TT>putpixel(k,i,tmap[sbuf[i][j].ub+du/65536+</TT></DT>
+
+<UL>
+<DT>
+<TT>(sbuf[i][j].vb+dv/65536)*256])</TT></DT>
+</UL>
+
+<DT>
+<TT>du = du + sbuf[i][j].ku</TT></DT>
+
+<DT>
+<TT>dv = dv + sbuf[i][j].kv</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+
+<DT>
+<TT>j = j + 1</TT></DT>
+</UL>
+
+<DT>
+<TT>endwhile</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+
+<DT>
+<TT>function clear_sbuf()</TT></DT>
+
+<UL>
+<DT>
+<TT>integer i,j</TT></DT>
+
+<DT>
+<TT>for i=0 -> 199</TT></DT>
+
+<UL>
+<DT>
+<TT>j = 0</TT></DT>
+
+<DT>
+<TT>while sbuf[i][j].used&lt;>0 and j&lt;200</TT></DT>
+
+<UL>
+<DT>
+<TT>sbuf[i][j].used=0</TT></DT>
+
+<DT>
+<TT>j = j + 1</TT></DT>
+</UL>
+
+<DT>
+<TT>endwhile</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+</UL>
+</UL>
+<A HREF="3dica.htm">Back to the index</A>
+</BODY>
+</HTML>

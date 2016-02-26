@@ -1,0 +1,194 @@
+STARTROOM logo1 1
+MAPROOM map 1
+VAR
+
+  gate 0
+  actroom 0
+
+{***********************************************
+
+   {jak varime polivku
+   {zadna ingredience..0
+   {1,2 ingredience (plisen, ponozka)..1,2
+   {pomichane...3
+  varime 0
+
+   {kolikrat jsem prozkoumal dutinu stromu, kvuli nalezeni praku a doutniku uvnitr
+  dutina_prozkoumal 0
+
+   {pri situacce s jezenim gulase semka zaznamenam stary
+   {stav zidle, aby se pak mohla navratit na jine misto
+   {takova, jak byla
+  stary_stav_zidle 0
+   {teprve az zjistim, ze na pohadku nedosahnu..1
+   { pak muzu premlouvat zidli k pomoci...
+   {uz jsem pohadku dokonce vzal..2
+  nedosahnu_na_pohadku 0
+   {samozrejme nemuzu tusit, ze skretove chteji slyset pohadku, je 1
+   {az mi to reknou..1, potom pri prozkoumavani knihovny na hrade
+   {objevim pohadkovou knihu
+   {uz jsem pohadku vzal..2
+  vim_o_pohadce 0
+
+   {kdyz uz vitr odfoukl mraky..1 a nemuzeme znovu kecat s listem
+  odfoukli_jsme 0
+
+   {plakat me nezajima..0
+   {v pokecu s hostinskym jsem projevil zajem o plakat..1
+  chci_plakat 0
+   {zrcadlo spinave..0
+   {prave sem utrel zrcadlo..1
+   {uz jsem si vyzvedl odmenu, karty..2
+  ciste_zrcadlo 0
+
+   {na zacatku, kdyz vubec o dverich do hodovny nevim.. 0
+   {vyzkousel jsem je pouzit a nesly otevrit.. 1
+   {sveril jsem to zidli a ta rika cosi o cerpani.. 2
+   {  (kdyz=2, muzu u zidli na zem vylit pivo)
+   {vylil jsem na zem pivo.. 3
+   {  (kdyz vyliju pivo, zidle mi prozradi heslo)
+   {znam heslo.. 4
+  hradni_dvere 0
+
+
+   {za delem se skryva trumpeta, hned jak ji vezmu to nastavim zpet na 0
+  je_tam_trumpeta 0
+   {v mrtvem zebrakovi se skryva klika, hned jak ji vezmu to nastavim zpet na 0
+  je_tam_klika 1
+
+   {otec me poucil, proc nemam kridla..1
+  otec_me_poucil 0
+   {nasli jsme prsten?
+  nasel_prsten 0
+   {rytir stale cinka..0
+   {rytir ma slepene nohy, otec usnul..1, muzu tedy zaprasit poklad
+  slepene_nohy 0
+   {az otec zatroubi..1
+  otec_troubil 0
+
+   {jak moc se tresou rytirovy nohy, malo..0, hodne..1
+  tras_nohou 0
+
+   {pri prvnim prozkoumani truhly naleznu pistalu
+  prozkoumal_truhlu 0
+   {az mi sipkar rekne o kornice..1 (i o vade reci)
+   {pak se muzu bavit s komousem o vyslovnosti a on mi prozradi novou lokaci-hory
+  vim_o_kronice 0
+   {vubec o zadne soutezi nevim..0
+   {apokalypso neveri, ze jsem kouzelnik..1
+   {prokazal jsem Apokalypsovi kvalifikaci ukazanim vypujcniho radu..2
+   {pak s nim muzu soutezit- budou na nej reagovat karty
+  prokazal_kvalifikaci 0
+
+   {vic jak jednou drozdi z supliku vzit nemuzeme
+  vzal_drozdi 0
+
+   {nevim o lenosti..0
+   {vim o lenosti..1
+   {mam slibenou lenost, kdyz opravim pristroj..2
+  vim_o_lenosti 0
+   {stroj nefunguje..0
+   {opraveny aspon jednou ingredienci..1
+   {opraveny uplne..2
+   {promluvil jsem o tom s lenochem, muzu vzit lahvicku..3
+  stroj_funguje 0
+
+
+   {jedna se o pristavek u lenocha; pocitadlo, kolikrat jsem prozkoumali
+   {po x-te objevime starou cihlu
+  pristavek_prozkouman 0
+
+   {nasledujici promenne kvuli vznikani novych lokaci
+   {0.. lokace neni vyznacena na mape
+   {1.. prikaz: vyznac lokaci namape
+   {2.. lokace existuje, budou na ni jiskry
+   {3.. uz nam i zajiskrila, znovu vzniknout nemuze
+  new_hory 0
+  new_hospa 0
+  new_komous 0
+  new_mytina 0
+  new_zidle 0
+  new_parezy 0
+  new_hrad 0
+  new_lenoch 0
+  new_obr 0
+  new_most 0
+  new_sipek 0
+  new_skreti 0
+  new_jeskyn 0
+  new_domek 1
+  new_dutina 1
+
+   {az predam sipkari sipky:
+  predal_sipky 0
+
+   {az probehne incident, nikdy do nej uz neskocim, coz je logicke
+  probehl_incident 0
+   {az prozkoumam(promluvim) s rytirem..1
+   {jedna z podminek, abych mohl trola zacit svlkekat z trika
+  vim_o_rytiri 0
+   { az se dozvim, ze mi tricko opravdu jen tak neda ..1
+   { az oslnim trola nytem, bude upeceny ..2
+   { on mi pak da svoje triko (je nahaty) ..3
+   { pak se muzu zeptat na to, jak jde opalovani
+  upeceny_trol 0
+   {az prozkoumam dr.tr., muzu o nem pokecatse zivym tr.
+  dreveny_trol_prozkouman 0
+
+   {pri druhem prozkoumani najdu trpaslici saty
+  prozkoumal_akvarko 0
+   {v prubehu kecani s obrem se inkrementuje, situacka
+   {s pripalenym skretim gulasem se muze stat, teprve kdyz >4
+  pokec_s_obrem 0
+
+   {havran pred obrovym domem mi odpovi po kazdem x-tem prozkoumani
+   {toto je pocitadlo:
+   {testuje to zbytek po deleni na nulu, proto zacneme az od jednicky
+   {aby se ten for neprozradil hned na poprve
+  kanarek_mluvi 1
+
+   {az prozkoumam vyvracene parezy a ziskam jezci bodlinu(jehlu)..1
+   { vic jak jednou vzit nejde ...
+  nasel_bodlinu 0
+   {nedriv nevim ze chteji podrbat, az mi to reknou..1
+   { pak na ne bude ucinkovat jezek
+  budu_drbat 0
+
+  prozkoumal_vykricnik 0
+
+   {nic nevim o zpusobu likvidace hulek..0
+   {kronika mi prozradi, ze v polevce, ale nezna recept..1
+   {pokud je 1, u obra se pak muzu na recept zeptat
+  mam_zjistit_recept 0
+   {kdyz skreti spi, nemuzu vzit pohrabac
+   {skretum prectu pohadku, usnou..1
+  skreti_spi 0
+   {nejdriv kronika sisla a nemuzu s ni mluvit..0
+   {pomoci byliny jsem ji rozmluvil..1
+  kronika_zdrava 0
+   {kdyz POPRVE odchazim z mistnosti, kde jsem
+   {prave ted POPRVE POKECAL s kronikou, zapne se extra dialog,
+   { ..1, pak se hned nastavi zpet na 0
+  kronika_extra_pokec 0
+
+   {nejdriv pokecnu s eulanii, pak to teprve jde s agatou:}
+  eulanie_vykecana 0
+   {nejdriv pokecnu s agatou, nastavi se na jedna, pri kazdem
+   {vstupu do mistnosti se to zvysi a pri patem bude levitovat
+   {vzhuru nohama
+  tereza_levituje 0
+
+
+   {az prozkoumam oblohu u sipku, muzu teprve spustit v horach list
+  prozkoumal_oblohu 0
+
+   {az unika vune obema smery a popojdu kouzek od draci chalupy, objevi se uvnitr Evelyna
+  jdeme_na_outro 0
+
+
+   {stav jesterky na mytine
+  mytina_jesterka 0
+
+   {az mi Apokalypso rekne, ze chce promenit kamen v prach..1
+   {ja pak muzu vymenit kamen za loutku
+  vim_o_kaminku 0

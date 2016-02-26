@@ -1,0 +1,295 @@
+{loutkář}
+
+block _03 ( beg(1) and not been(_03) and isactico(0) )
+title
+  {dokud nepředal dřevěné loutky:}
+  justtalk
+  D: "Mr. Comedian!"
+  juststay
+  start kom "mluvi"
+  U: "What an insult! What are you looking
+      for now?"
+  start kom "mlci"
+  justtalk
+  D: "I have come to practice a few new tricks."
+  D: "Would you like to turn something else into
+      stone?"
+  juststay
+  start kom "mluvi"
+  U: "Clear off!"
+  start kom "mlci"
+  justtalk
+  D: "(I have not mastered this trick yet.
+      Perhaps I should learn it.)"
+  juststay
+  exitdialogue
+gplend
+
+block _05 ( isactico(0) and maxline(1) and beg(1) and not been(_05) and been(_03) )
+title
+  justtalk
+  D: "Mr. Comedian!"
+  D: "I have come to turn your dolls
+      back into wood."
+  juststay
+  start kom "mluvi"
+  U: "Pardon?! What was that last bit?"
+  start kom "mlci"
+  justtalk
+  D: "Your dolls back into wood!"
+  juststay
+  start kom "mluvi"
+  U: "If you want my stone dolls
+      feel free to take them!"
+  U: "Perhaps as a paper-weight, who cares.
+      Now clear off!"
+  start kom "mlci"
+  justtalk
+  D: "Paper-weight - that is tasteless!
+      They fit into my mum's rockery."
+  juststay
+  start kom "mluvi"
+  U: "Don't annoy me and shut up!"
+  start kom "mlci"
+  {dostane loutky}
+  icostat on i_loutka_kamenna
+gplend
+
+block _00 ( maxline(1) and beg(1) and (vim_o_kronice=1) and not been(_00) and been(_04) and isactico(0) )
+title
+  {až mi říkal jazykolamy a zkoušel jsem mluvit s kronikou
+  justtalk
+  D: "How did you learn such excellent
+      diction?"
+  juststay
+  start kom "mluvi"
+  U: "That's nothing.
+      You just need a little practice."
+  start kom "mlci"
+  justtalk
+  D: "But that is not enough by itself, though."
+  juststay
+  start kom "mluvi"
+  U: "You're right. I am not angry with you now,
+      so I can tell you.
+      I extract the medicinal effects of herbs!"
+  start kom "mlci"
+  justtalk
+  D: "So you make herbal teas?"
+  juststay
+  start kom "mluvi"
+  U: "No, I just like to chew their flowers."
+  load kom "zvyka"
+  startplay kom "zvyka"
+  start kom "mlci"
+
+  justtalk
+  D: "Where could I find such an herb?"
+  juststay
+  start kom "mluvi"
+  U: "High, high up in the mountains."
+  start kom "mlci"
+
+  {udela se nova lokace na mape:}
+  let new_hory (1)
+gplend
+
+block _01 ( maxline(1) and beg(1) and not been(_01) and isicoon(i_scenar) )
+title
+ labels skip
+  {až dočte pohádku- hele, v knížce byly vložené nějaké listy,
+  {prozkoumám listy- 'siesta u řeky, hra o třech....
+  {můžu zaást hovor o divadle:
+  justtalk
+  D: "I have got a question concerning
+      the dramatic arts."
+  juststay
+  start kom "mluvi"
+  U: "Ask me, I am an expert."
+  start kom "mlci"
+  justtalk
+  D: "Do you know 'Picnic at the River?'"
+  juststay
+  start kom "mluvi"
+  U: "'Picnic at the River.'
+      A play with three acts and one scene."
+  start kom "mlci"
+  justtalk
+  D: "So you know it!"
+  juststay
+  start kom "mluvi"
+  U: "I only know a little part, I never managed
+      to procure the whole script."
+  U: "However, I have fallen in love
+      with the few lines I know."
+  start kom "mlci"
+  justtalk
+  D: "Can you recite them?"
+  juststay
+  start kom "mluvi"
+  U: "You scoundrel, you broke, without shame,
+      the shy girl's heart."
+  goto skip
+  U: "At the stream she timidly sang,
+      her soul succumb to love..."
+  U: "...and you abused her
+      and, afterwards you didn't pay!"
+  U: "Two golds she was worth,
+      but you had slipped,
+      and the rock was placed just right -"
+  U: "- then, when the girl laughed,
+      I saw the sign."
+ label skip
+  start kom "mlci"
+  justtalk
+  D: "Continue!"
+  juststay
+  start kom "mluvi"
+  U: "That's all. I only know my part after this.
+      It doesn't sound so nice without a playmate..."
+  start kom "mlci"
+
+gplend
+
+block _02 ( isactico(i_scenar) and not been(_02) and ( ((maxline(1) and beg(1))or last(_01)) )
+title
+ labels skip
+  {kliknu na něj scénářem:}
+  load bert "scenar_mluvi"
+  load bert "scenar_mlci"
+  load bert "scenar_diva"
+  load bert "scenar_vytah"
+  load bert "scenar_schov"
+  startplay bert "scenar_vytah"
+  startplay bert "scenar_diva"
+  start bert "scenar_mluvi"
+  D: "An accident happened to me and I ended up
+      with just a scarf to warm me,
+      when the girl called out!"
+  start bert "scenar_mlci"
+  start kom "mluvi"
+  U: "But she only stammered."
+  start kom "mlci"
+  startplay bert "scenar_diva"
+  goto skip
+  start bert "scenar_mluvi"
+  D: "Far from it, it is hard to withstand
+      her sad whining!"
+  start bert "scenar_mlci"
+  start kom "mluvi"
+  U: "That's her mouth gargling!"
+  start kom "mlci"
+  startplay bert "scenar_diva"
+  start bert "scenar_mluvi"
+  D: "Had she faked her love?
+      Her eyes had probed me so."
+  start bert "scenar_mlci"
+  start kom "mluvi"
+  U: "Scarlatina! Scarlatina!"
+  start kom "mlci"
+ label skip
+  start bert "scenar_mluvi"
+  D: "Applause."
+  start bert "scenar_mlci"
+  start kom "mluvi"
+  U: "Of course applause. You're good.
+      You've got a talent, boy.
+      What about the dramatic arts?"
+  start kom "mlci"
+  startplay bert "scenar_schov"
+  start bert "kour-vlevo"
+  justtalk
+  D: "Circus or Theater..."
+  juststay
+  start kom "mluvi"
+  U: "Or would you like to become a crocodile tamer?"
+  start kom "mlci"
+  justtalk
+  D: "That's it!"
+  juststay
+  start kom "mluvi"
+  U: "I guess you will be good at it."
+  U: "Here is the key to my chest,
+      you should find a flute there;
+      it is very important."
+  start kom "mlci"
+
+  icostat on i_klic_truhla
+  icostat off i_scenar
+gplend
+
+block _04 ( maxline(1) and beg(1) and not been(_04) and isactico(i_loutka_drevena) )
+title
+  {když vrací loutky:)
+  start kom "mluvi"
+  U: "Ehm, I thought worse of you than
+      that you could actually turn back my dolls.
+      You don't seem that good at first glance, boy!"
+  start kom "mlci"
+  justtalk
+  D: "That time it was just oversight!"
+  juststay
+  start kom "mluvi"
+  U: "Four score and seven years ago.
+      We hold these truths to be self-evident."
+  start kom "mlci"
+  justtalk
+  D: "What are you doing?"
+  juststay
+  start kom "mluvi"
+  U: "I am reciting famous phrases.
+      It was the best of times,
+      it was the worst of times."
+  start kom "mlci"
+  justtalk
+  D: "Something more traditional..."
+  juststay
+  start kom "mluvi"
+  U: "Call me Ishmael."
+  start kom "mlci"
+  justtalk
+  D: "Well I never!"
+  juststay
+  start kom "mluvi"
+  U: "Happy families are all alike;
+      every unhappy family is unhappy in its own way"
+  start kom "mlci"
+  justtalk
+  D: "I am an invisible man."
+  juststay
+  start kom "mluvi"
+  U: "This is the saddest story I have ever heard."
+  start kom "mlci"
+  justtalk
+  D: "That was not like it!"
+  juststay
+  start kom "mluvi"
+  U: "I am a sick man . . . I am a spiteful man"
+  start kom "mlci"
+  justtalk
+  D: "Not like this either..."
+  juststay
+  start kom "mluvi"
+  U: "The moment one learns English,
+      complications set in."
+  start kom "mlci"
+  justtalk
+  D: "Yeah!"
+  juststay
+
+  icostat off i_loutka_drevena
+gplend
+
+block _08 ( maxline(1) and beg(1) )
+title
+  justtalk
+  D: "Mr. Comedian..."
+  juststay
+  start kom "mluvi"
+  U: "Ehm?"
+  start kom "mlci"
+  justtalk
+  D: "Eh, actually nothing..."
+  juststay
+  exitdialogue
+gplend

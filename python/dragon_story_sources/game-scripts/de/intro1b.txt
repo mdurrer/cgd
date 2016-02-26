@@ -1,0 +1,11 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "Doch eines Tages verschwand Herbert,
+           und niemand wußte wohin."
+Vypravec: "Manche glauben, er zog los,
+           um nach dem alten Drachenschatz zu suchen."
+Vypravec: "Berta und Bert blieben allein zurück."
+
+gplend

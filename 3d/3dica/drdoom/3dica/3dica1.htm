@@ -1,0 +1,470 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.0.27 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER><B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</CENTER>
+
+<CENTER>
+<DT>
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris 1996,1997,1998</DT></CENTER>
+
+<CENTER>
+<DT>
+- Over 150k of pure sh...er, 3d coding power!</DT></CENTER>
+
+<H2>
+
+<HR WIDTH="100%"></H2>
+<A NAME="chap1"></A>
+<H2>
+1 Vector and Matrix Algebra</H2>
+
+<UL><A NAME="chap11"></A>
+<H3>
+1.1 Vectors</H3>
+
+<UL><A NAME="chap111"></A>
+<H4>
+1.1.1 General</H4>
+<I>Vectors</I> are lines which have a constant direction and length (or
+magnitude), and can be moved arbitrarily in a given coordinate system.
+A vector is drawn as in the following picture (a short perpendicular line
+(not necessary) at the starting point, and an arrowhead at the ending point):
+<BR>&nbsp;
+<UL>
+<UL><script pagespeed_no_defer="" type="text/javascript">//<![CDATA[
+(function(){var g=this,h=function(b,d){var a=b.split("."),c=g;a[0]in c||!c.execScript||c.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===d?c[e]?c=c[e]:c=c[e]={}:c[e]=d};var l=function(b){var d=b.length;if(0<d){for(var a=Array(d),c=0;c<d;c++)a[c]=b[c];return a}return[]};var m=function(b){var d=window;if(d.addEventListener)d.addEventListener("load",b,!1);else if(d.attachEvent)d.attachEvent("onload",b);else{var a=d.onload;d.onload=function(){b.call(this);a&&a.call(this)}}};var n,p=function(b,d,a,c,e){this.f=b;this.h=d;this.i=a;this.c=e;this.e={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.g=c;this.b={};this.a=[];this.d={}},q=function(b,d){var a,c,e=d.getAttribute("pagespeed_url_hash");if(a=e&&!(e in b.d))if(0>=d.offsetWidth&&0>=d.offsetHeight)a=!1;else{c=d.getBoundingClientRect();var f=document.body;a=c.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);c=c.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+c;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.e.height&&c<=b.e.width)}a&&(b.a.push(e),b.d[e]=!0)};p.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&q(this,b)};h("pagespeed.CriticalImages.checkImageForCriticality",function(b){n.checkImageForCriticality(b)});h("pagespeed.CriticalImages.checkCriticalImages",function(){r(n)});var r=function(b){b.b={};for(var d=["IMG","INPUT"],a=[],c=0;c<d.length;++c)a=a.concat(l(document.getElementsByTagName(d[c])));if(0!=a.length&&a[0].getBoundingClientRect){for(c=0;d=a[c];++c)q(b,d);a="oh="+b.i;b.c&&(a+="&n="+b.c);if(d=0!=b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),c=1;c<b.a.length;++c){var e=","+encodeURIComponent(b.a[c]);131072>=a.length+e.length&&(a+=e)}b.g&&(e="&rd="+encodeURIComponent(JSON.stringify(s())),131072>=a.length+e.length&&(a+=e),d=!0);t=a;if(d){c=b.f;b=b.h;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(k){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(u){}}f&&(f.open("POST",c+(-1==c.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}},s=function(){var b={},d=document.getElementsByTagName("IMG");if(0==d.length)return{};var a=d[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var c=0;a=d[c];++c){var e=a.getAttribute("pagespeed_url_hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].k&&a.height>=b[e].j)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b},t="";h("pagespeed.CriticalImages.getBeaconData",function(){return t});h("pagespeed.CriticalImages.Run",function(b,d,a,c,e,f){var k=new p(b,d,a,e,f);n=k;c&&m(function(){window.setTimeout(function(){r(k)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','https://www.modeemi.fi/drdoom/3dica/3dica1.htm','l8PuqRhht8',true,false,'WHgCawVqgZ8');
+//]]></script><IMG SRC="vect1.gif" HEIGHT=89 WIDTH=128 pagespeed_url_hash="736305860" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+Vectors are usually marked the same way as the coordinates of a point:
+<B>a</B>=(x1,y1,z1), where x1 is the x-axis vector coefficient, y1 and
+z1 respectively. This vector <B>a</B> can be drawn so that we draw a point
+into the coordinates (x1,y1,z1), and a line from the origin to that point.
+
+<P>The x-, y-, and z-axis <I>unit vectors</I> (vectors that have a length
+of one) have their own special symbols: <B>i</B>, <B>j</B>, and <B>k</B>,
+respectively. So the x-axis unit vector is <B>i</B>=(1,0,0), etc.
+
+<P>Vectors are marked as alphabetical symbols with a line over them, or
+the symbol being written with a bold font. I'm naturally using here the
+latter way.
+
+<P><A NAME="chap112"></A>
+<H4>
+1.1.2 Vector equation</H4>
+Now we'll calculate the equation of a vector <B>AB</B>. If the point A
+is (Ax,Ay,Az), and the point B (Bx,By,Bz), where x, y, and z are subscripts,
+the equation of <B>AB</B> (the vector which starts in the point A and ends
+in the point B that is) is
+<BR>&nbsp;
+<UL><TT><B>AB</B> = (Bx-Ax,By-Ay,Bz-Az)= (X,Y,Z).</TT>
+<BR>&nbsp;</UL>
+This means that the direction of a vector is found by taking an arbitrary
+point and then going X units from that point to the direction of the x-axis,
+then Y units to the direction of the y-axis, and finally Z units to the
+direction of the z-axis. When we draw a line between this point and the
+first point, we've got the vector whose equation is (X,Y,Z). <B><I>Note!</I></B>
+The <I>starting</I> point is always substracted from the <I>ending</I>
+point!
+
+<P><A NAME="chap113"></A>
+<H4>
+1.1.3 Vector length</H4>
+The length of the vector <B>AB</B> is marked as the vector's absolute value
+and calculated by adding the squares of its terms together and taking a
+square root of the result:
+<BR>&nbsp;
+<UL><TT>|<B>AB</B>| = sqrt( X^2 + Y^2 + Z^2 )</TT>.
+<BR>&nbsp;</UL>
+This is the same equation as the distance between the point (X,Y,Z) and
+the origin.
+
+<P>An <I>unit vector</I> is a vector whose length is one. We can calculate
+an unit vector from a vector by dividing all the terms of the vector by
+the length of the vector.
+
+<P>Calculating a vector's length is needed for example with phong shading
+and vertex normal calculation.
+
+<P><B><I>Problem</I></B>:<I> Let <B>a</B> = (1,1,1). Derive the unit vector
+which is parallel to <B>a</B>.</I>
+<DT>
+<B><I>Solution</I></B>:</DT>
+
+<UL>
+<DT>
+<I>|<B>a</B>| = sqrt ( 1^2 + 1^2 + 1^2 ) = sqrt(3),</I></DT>
+
+<DT>
+<I>the unit vector which is parallel to <B>a</B>:</I></DT>
+
+<DT>
+<I>1/sqrt(3)*(1,1,1) = ( 1/sqrt(3) , 1/sqrt(3) , 1/sqrt(3) ).</I></DT>
+</UL>
+<A NAME="chap114"></A>
+<H4>
+1.1.4 Vector addition</H4>
+Vector addition is performed by adding the terms together. Substraction
+respectively, but a negative vector points to the opposite direction than
+a positive vector.
+<BR>&nbsp;
+<UL><TT><B>a</B> + <B>b</B> = (Ax+Bx,Ay+By,Az+Bz).</TT>
+<BR>&nbsp;</UL>
+<I><B>Problem</B>: Let <B>a</B> = (2,-6) and <B>b</B> = (1,3). Calculate
+| 2<B>a</B> - <B>b</B> |.</I>
+<BR>&nbsp;
+<DT>
+<B><I>Solution</I></B>:</DT>
+
+<UL>
+<DT>
+<I>2<B>a</B> = (2*2,2*(-6)) = (4,-12).</I></DT>
+
+<DT>
+<I>2<B>a</B>-<B>b</B> = (4-1,-12-3) = (3,-15).</I></DT>
+
+<DT>
+<I>|2<B>a</B>-<B>b</B>| = sqrt( 3^2 + (-15)^2 ) = sqrt(9+225) = sqrt(234).</I></DT>
+</UL>
+<A NAME="chap115"></A>
+<H4>
+1.1.5 Dot product</H4>
+One vector can be multiplied by another by two ways, and the first one
+is called the dot product (or <I>scalar product</I> if you wish). A dot
+product is read like "<B>a</B> dot <B>b</B>" and it is calculated by multiplying
+the length of <B>a</B> by the length of <B>b</B> and by the cosine of the
+angle between the two vectors. Another way to calculate it is to multiply
+the terms of the two vectors together and to add the products together.
+The geometric meaning of dot product is the length of <B>a</B> projected
+to <B>b</B>. <B><I>Note!</I></B> The angle between the two vectors means
+always the smaller one between them when the two vectors start from the
+same point.
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="vect2.gif" HEIGHT=89 WIDTH=128 pagespeed_url_hash="1030805781" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+<TT><B>a</B> dot <B>b</B> = |<B>a</B>||<B>b</B>|cos(<B>a</B>,<B>b</B>)=
+Ax*Bx + Ay*By + Az*Bz</TT>
+<BR>&nbsp;</UL>
+Cos(<B>a</B>,<B>b</B>) means the angle alpha.
+
+<P><B><I>Note!</I></B> Vectors are perpendicular when the angle between
+them is 90 degrees (cos90 = 0 -> <B>a</B> dot <B>b</B> = 0)!
+
+<P>Dot product is needed for example in phong illuminating and many other
+light manipulation operations.
+
+<P><B><I>Problem</I></B>: <I>Calculate the angle between the vectors <B>a</B>+<B>b</B>
+and <B>a</B>-<B>b</B>, where <B>a</B> = (3,1) and <B>b</B> = (1,-7).</I>
+<BR>&nbsp;
+<DT>
+<B><I>Solution</I></B>:</DT>
+
+<UL>
+<DT>
+<I><B>a</B>+<B>b</B> = (3+1 , 1-7) = (4,-6)</I></DT>
+
+<DT>
+<I><B>a</B>-<B>b</B> = (3-1 , 1+7) = (2,8)</I></DT>
+
+<DT>
+<I>(<B>a</B>+<B>b</B>) dot (<B>a</B>-<B>b</B>) = |<B>a</B>+<B>b</B>| *
+|<B>a</B>-<B>b</B>| * cos(<B>a</B>+<B>b</B>,<B>a</B>-<B>b</B>), on the
+other hand</I></DT>
+
+<DT>
+<I>(<B>a</B>+<B>b</B>) dot (<B>a</B>-<B>b</B>) = 4*2 + (-6)*8 = 8-48 =
+-40.</I></DT>
+
+<DT>
+<I>|<B>a</B>+<B>b</B>| = sqrt( 4^2 + (-6)^2 ) = sqrt(16+36) = sqrt(52),</I></DT>
+
+<DT>
+<I>|<B>a</B>-<B>b</B>| = sqrt( 2^2 + 8^2 ) = sqrt(4+64) = sqrt(68). From
+the equation</I></DT>
+
+<DT>
+<I>sqrt(52) * sqrt(68) * cos(<B>a</B>+<B>b</B>,<B>a</B>-<B>b</B>) = -40
+we get</I></DT>
+
+<DT>
+<I>cos(<B>a</B>+<B>b</B>,<B>a</B>-<B>b</B>) = -40 / sqrt(52*68).</I></DT>
+
+<DT>
+<I>The angle is thus 132.3 degrees.</I></DT>
+</UL>
+<A NAME="chap116"></A>
+<H4>
+1.1.6 Vector projection</H4>
+We are trying to calculate the projection of a vector on another vector,
+or to calculate vector <B>a</B>'s component which is parallel to a vector
+<B>b</B>. <B><I>Note!</I></B> All vectors should be ensured to be unit
+vectors for the calculations to give the correct answer!
+<UL><IMG SRC="vect4.gif" HEIGHT=136 WIDTH=162 pagespeed_url_hash="1619805623" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+
+<DT>
+To clarify, all the vectors in the picture start from the same point, and
+the projection vector of <B>a</B> on <B>b</B> is the short vector which
+is parallel to <B>b</B>.</DT>
+
+
+<P>All we need to do is to calculate the dot product of <B>a</B> and <B>b</B>
+and to multiply <B>b</B> by it:
+<UL>
+<PRE><B>a</B>'s component parallel to <B>b</B> = (<B>a</B> dot <B>b</B>)*<B>b</B>.</PRE>
+</UL>
+
+<DT>
+The result of a dot product is a constant, so (<B>a</B> dot <B>b</B>) just
+scales <B>b</B> which at least I find rational :)</DT>
+
+<DT>
+Vector projection is needed at least when converting a vector to a matrix.</DT>
+
+
+<P><A NAME="chap117"></A>
+<H4>
+1.1.7 Cross product</H4>
+In the 3-space, we define the cross product (or vector product) <B>a</B>x<B>b</B>
+("<B>a</B> cross <B>b</B>") of two vectors <B>a</B> and <B>b</B> as a vector
+which is perpendicular to each of the vectors <B>a</B> and <B>b</B> and
+whose length |<B>a</B> x <B>b</B>| tells the area of the parallelogram
+defined by the two vectors:
+<UL>
+<UL><IMG SRC="vect3.gif" HEIGHT=174 WIDTH=198 pagespeed_url_hash="1325305702" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+|<B>a</B> x <B>b</B>| = |<B>a</B>||<B>b</B>|sin(<B>a</B>,<B>b</B>) (Note:
+this is the equation for the area of a parallelogram, and is used also
+in geometry)
+
+<P><B><I>Note!</I></B> <B>a</B> and <B>b</B> need <I>not</I> to be perpendicular
+to each other even though you might think so by looking at the picture
+X)
+
+<P>Some other things to remember about cross product:
+<DD>
+- <B>a</B> x <B>a</B> = 0,</DD>
+
+<DD>
+- <B>a</B> x <B>b</B> = -(<B>b</B> x <B>a</B>),</DD>
+
+<DD>
+- r being a constant, (r<B>a</B>) x <B>b</B> = r(<B>a</B> x <B>b</B>),</DD>
+
+<DD>
+- <B>a</B> x (<B>b</B> + <B>c</B>) = <B>a</B> x <B>b</B> + <B>a</B> x <B>c</B>,</DD>
+
+<DD>
+- <B>i</B> x <B>j</B> = <B>k</B> (and respectively <B>k</B> x <B>i</B>
+= <B>j</B> and <B>j</B> x <B>k</B> = <B>i</B>).</DD>
+
+
+<P>The cross product expression can be written in an easy-to-remember form
+by using <I>determinants</I>. A two-row determinant is defined as a table
+of four numbers, the value of which is calculated as follows:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx1.gif" HEIGHT=44 WIDTH=124 pagespeed_url_hash="1520318244" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+To solve a cross product, we use three-row determinants:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx2.gif" HEIGHT=72 WIDTH=94 pagespeed_url_hash="1814818165" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+
+<PRE>= ( Ay*Bz-By*Az , Az*Bx-Bz*Ax , Ax*By-Bx*Ay )</PRE>
+</UL>
+In English, we pick each of the <B>i</B>, <B>j</B>, and <B>k</B>, hide
+the column and row going through it, create a two-row determinant from
+the remaining part of the table, and solve it normally. <B><I>Note!</I></B>
+Every second sign is a +, every second a -! REMEMBER this! (the signs go
+like +-+-+...)
+
+<P>There's no restrictions in the size of a determinant, and all of them
+can be solved respectively. For example, from a four-row determinant we
+generate four three-row determinants etc.
+
+<P>Cross product is needed for example when calculating normals and plane
+equations.
+
+<P><I><B>Problem:</B> Find the area of the parallelogram determined by
+the vectors (1,-1,2) and (2,3,-1).</I>
+
+<P><I><B>Solution:</B> (We use the hard way to demonstrate determinants)</I>
+<UL><IMG SRC="matx3.gif" HEIGHT=53 WIDTH=266 pagespeed_url_hash="2109318086" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+
+<P><I>= (-5,5,5).</I></UL>
+<I>Area = the length of this vector = sqrt( (-5)^2 + 5^2 + 5^2 ) = sqrt(75).</I>
+
+<P><A NAME="chap118"></A>
+<H4>
+1.1.8 Scalar triple product</H4>
+A <I>scalar triple product</I> is marked as (<B>a</B>x<B>b</B>) dot <B>c</B>,
+and its absolute value tells the volume of the parallelogramic object determined
+by the three vectors (cf. parallelogram in cross product). <B><I>Note!</I></B>
+If this volume is zero, the three vectors are of course on the same plane!
+
+<P><I><B>Problem:</B> Find a constant a so that the vectors (1,-1,2), (1,3,-1),
+and (a,-4,1) are on the same plane.</I>
+<DT>
+<I><B>Solution:</B> On the same plane -> scalar triple product = 0. We
+first calculate the cross product of arbitrary two of the vectors and then
+the dot product of this vector and the third vector.</I></DT>
+
+<DT>
+<I>This ought to be zero, -5a - 15 = 0 &lt;=> -5a = 15 &lt;=> a = -3.</I></DT>
+</UL>
+<A NAME="chap12"></A>
+<H3>
+1.2 Matrices</H3>
+
+<UL><A NAME="chap121"></A>
+<H4>
+1.2.1 General</H4>
+(Algebra ja Geometria, Simo K. Kivela, Otatieto 1989; translated into English)
+
+<P>A specially ordered table of real or complex numbers is caller a <I>matrix</I>:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx4.gif" HEIGHT=71 WIDTH=192 pagespeed_url_hash="2403818007" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+So, matrices are marked as a table of numbers in great brackets (or round
+brackets). Determinants are different from matrices in that they have only
+absolute value symbol -like vertical lines around the table (see 1.1.6).
+
+<P>The numbers a(y,x) are matrix <I>elements</I>. They form p <I>rows</I>
+and n <I>columns</I>. The <I>type</I> of the matrix is p x n; if needed,
+it can also be written together with the matrix symbol: <B>A</B>(pxn).
+The first index <I>j</I> of a matrix element a(<I>j</I>,<I>k</I>) shows
+the row on which the element is located; the latter index <I>k</I> shows
+respectively the column (the indices go thus like in C's tables: compared
+to the representation of a point (x,y), in matrices and C language tables
+the indices are (y,x)).
+
+<P>We use capital latin letters as names or symbols for matrices.
+
+<P>Matrices of the type 1 x n are called <I>horizontal- </I>or<I> row vectors</I>.
+Exceptionally, they are marked with small latin letters:
+<UL>
+<PRE>a = [ a(1) a(2) .. a(n) ]</PRE>
+</UL>
+The elements can be separated with commas for clarity.
+
+<P>If the amounts of rows and columns in a matrix are equal, we call the
+matrix a <I>square matrix</I> (cf. 3x3 or 4x4 matrices in 3D operations).
+Matrix elements whose indices are equal form the <I>diagonal</I> of a square
+matrix; in other words this is the line from the upper left corner to the
+lower right corner of a matrix. If all the other elements than the ones
+on the diagonal are equal to zero, we call the matrix a <I>diagonal matrix</I>:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx5.gif" HEIGHT=71 WIDTH=191 pagespeed_url_hash="2698317928" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+A special case of diagonal matrices is a <I>unit matrix</I> (or the <I>identity
+matrix</I>), whose all elements a(x,x) (the elements which are located
+on the diagonal that is) are equal to one. The symbol of a unit matrix
+is <B>I</B>.
+
+<P>A matrix whose all elements are zero, is called a <I>zero matrix</I>.
+The type of a zero matrix is not restricted. The symbol is <B>O</B> (or
+<B>o</B> if the matrix is a vector).
+
+<P>A matrix is called <I>orthogonal</I> if its row or column vectors (that
+is, the vectors formed by the rows or columns of the matrix) are perpendicular
+to each other and they are unit vectors.
+
+<P>A matrix <B>B</B> defined like this
+<UL>
+<PRE><B>A</B>*<B>B</B> = <B>I</B> &lt;=> <B>B</B> = <B>A</B>^(-1),</PRE>
+</UL>
+is called the <I>inverse matrix</I> of <B>A</B>.
+
+<P><A NAME="chap122"></A>
+<H4>
+1.2.2 Matrix operations</H4>
+<A NAME="chap1221"></A>
+<H4>
+<I>1.2.2.1 Addition</I></H4>
+Matrix addition is defined so that every element b<I>(j,k)</I> of the second
+matrix is added to every element a(j,k) of the first matrix:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx6.gif" HEIGHT=56 WIDTH=277 pagespeed_url_hash="2992817849" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+</UL>
+<A NAME="chap1222"></A>
+<H4>
+<I>1.2.2.2 Multiplying by a scalar</I></H4>
+(A scalar = a constant) This goes like addition, but instead of the +'s
+we put *'s, and instead of <I>b(j,k)</I> we put the scalar with which we
+want to multiply the matrix. Multiplying by a scalar scales a matrix.
+
+<P><A NAME="chap1223"></A>
+<H4>
+<I>1.2.2.3 Multiplication</I></H4>
+Here's the algorithm:
+
+<P><IMG SRC="matx7.gif" HEIGHT=50 WIDTH=443 pagespeed_url_hash="3287317770" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+
+<P>Matrix multiplication can be clarified by regarding it as the dot products
+of the vectors formed by the rows of the first matrix and the columns of
+the second matrix: first the uppermost row of the first matrix and the
+first column of the second matrix, then the same uppermost row of the first
+matrix and the second column of the second matrix, etc. And the results
+into the new matrix as in the picture above.
+
+<P><B><I>Note!</I></B> Only certain types of matrices can be multiplied
+by each other. That is, if the first matrix is of the size p x q, the second
+one should be of the size q x r, where p, q, and r are not restricted.
+When we multiply a p x q sized matrix by a q x r sized matrix, we get a
+p x r sized matrix as a result, as can easily be seen from the definition
+of matrix multiplication.
+
+<P>Matrix multiplication is needed in object transformations.
+
+<P><A NAME="chap12231"></A>
+
+<P><B><I>1.2.2.3.1 Multiplying by a vector</I></B>
+
+<P>The case is easiest to understand by making the desired vector a horizontal
+vector:
+<UL>
+<PRE>X<B>i</B>+Y<B>j</B>+Z<B>k</B> = [ X Y Z ].</PRE>
+</UL>
+Now we multiply this vector (which actually is a matrix) by the desired
+matrix,
+<BR>&nbsp;
+<UL><IMG SRC="matx8.gif" HEIGHT=45 WIDTH=348 pagespeed_url_hash="3581817691" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+Neat, isn't it? :) This formula can also be used for vertex transformations,
+when the letters (X,Y,Z) tell the original coordinates of a vertex, and
+the result tells the transformated coordinates, respectively.
+
+<P>Vector*matrix can be thought of as projecting the vector as related
+to the new coordinate axes (the ones in the matrix).
+
+<P><A NAME="chap1224"></A>
+<H4>
+<I>1.2.2.4 Transposition</I></H4>
+Definition: The transpose of a matrix <B>A</B>(pxn) is
+<UL>
+<PRE><B>C</B>(nxp) = <B>A</B><FONT SIZE=-2>T</FONT>,</PRE>
+</UL>
+where <B>C</B>(j,k) = <B>A</B>(k,j). In other words, the matrix is 'flipped'
+around.
+
+<P>Transposition is needed when rotating round an arbitrary vector. <B><I>NOTE!</I>
+The transpose of an orthogonal matrix is also its inverse!</B> (this piece
+of information is used in optimizing 3D routines -- see chapter <A HREF="3dica2.htm#chap27">2.7</A>.)</UL>
+</UL>
+<A HREF="3dica.htm">Back to the index</A>
+</BODY>
+</HTML>

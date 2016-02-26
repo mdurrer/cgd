@@ -1,0 +1,1643 @@
+ROOM chauvn
+{1
+title inside the dragons' house
+     BACK ..\CHAL_IN\I2312.PCX
+     MASK ..\CHAL_IN\DEF\I2311.MSK
+     MAP ..\CHAL_IN\DEF\I2311.MAP
+  persp0 0.784
+  perspstep 0.0015
+  init
+   labels kazani tresem topime vaha
+    if(gate=7) tresem
+    if(gate=4) vaha
+    if(gate=5) vaha
+    if(gate=6) vaha
+    loadmusic "..\midi\music16.mid"
+    startmusic
+    if(gate=2) topime
+    if(gate=3) kazani
+    exit
+   label vaha
+    stayon 148 168 vpravo
+    exit
+   label topime
+     disablequickhero
+     disablespeedtext
+     loadmap "..\chal_in\def\outro2.map"
+     stayon 268 144 vlevo
+     load EvelOut "skace"
+     load EvelOut "neskace"
+     load EvelOut "sipka"
+     load EvelOut "topi se"
+     start EvelOut "skace"
+     exit
+   label tresem
+    stayon 168 168 vlevo
+    load mudr "z"
+    start mudr "z"
+    load mudr "potrasli"
+    exit
+   label kazani
+    stayon 170 185 vlevo
+    objstat away bert
+    load oteckaze "mlci"
+    load oteckaze "zlomil"
+    load drakkaze "mlci"
+    start oteckaze "mlci"
+    start drakkaze "mlci"
+  gplend
+
+  {standardni prichod:}
+  gate 1
+    stayon 268 144 vlevo
+    walkonplay 224 152 vlevo
+  gplend
+  {outro, topime hulku:}
+  gate 2
+    dialogue "eveloutr.txt"
+    newroom outro0 1
+  gplend
+  {otec mi dava zlomenou varecku:}
+  gate 3
+    {zmizime otce z jeskyne:}
+    objstat away herbert
+    objstat away herb_telo
+    objstat away herb_oko
+    objstat away herb_ocas
+    dialogue "herbert.txt"
+    newroom dutina 5
+  gplend
+  gate 4
+   justtalk
+{   D:"No ne, ona byla fakt z čokolády!"
+D: "Let us wait for five minutes,
+    if it doesn't by chance
+    emerge."
+D: "But I'm really not sure if it's dead.
+    The soup is so thick that
+    I can't see anything under the surface."
+   juststay
+   newroom outro0 2
+  gplend
+  gate 5
+    justtalk
+D: "Does the wand have gills? That's the question!"
+D: "Maybe I should have chopped it up
+    before boiling ..."
+    juststay
+   newroom outro0 3
+  gplend
+  gate 6
+    justtalk
+D: "I simply can't believe that it's dead!"
+    juststay
+   newroom outro0 4
+  gplend
+  gate 7
+    justtalk
+D: "The doctor examined the soup
+    and pronounced it dead!"
+    objstat away bert
+    load mudr "treseme"
+    startplay mudr "treseme"
+    start mudr "potrasli"
+    quitgame
+  gplend
+
+  canuse (isactico(i_nocnik))
+  use
+   labels nemuzeme muzeme ph29 ph37 ph46 ph56 ph69
+    justtalk
+D: "Perhaps the fly would come out from the pot ..."
+    juststay
+    walkonplay 96 164 vlevo
+    mark
+    load bert "nocnik_vytah"
+    load bert "nocnik_ceka"
+    load moucha "leti"
+    load bert "nocnik_schov"
+    startplay bert "nocnik_vytah"
+    start bert "nocnik_ceka"
+    startplay moucha "leti"
+    start moucha "uvizla"
+    startplay bert "nocnik_schov"
+    start bert "kour-vlevo"
+    release
+    walkonplay 92 164 vlevo
+    icostat off i_nocnik
+   label nemuzeme
+    if ( (actphase(pavouk)=12) ) muzeme
+    if ( (actphase(pavouk)=29) ) ph29
+    if ( (actphase(pavouk)=37) ) ph37
+    if ( (actphase(pavouk)=46) ) ph46
+    if ( (actphase(pavouk)=56) ) ph56
+    if ( (actphase(pavouk)=69) ) ph69
+    play
+    goto nemuzeme
+   label ph29
+    load pavouk "29 to 12"
+    startplay pavouk "29 to 12"
+    goto muzeme
+   label ph37
+    load pavouk "37 to 12"
+    startplay pavouk "37 to 12"
+    goto muzeme
+   label ph46
+    load pavouk "46 to 12"
+    startplay pavouk "46 to 12"
+    goto muzeme
+   label ph56
+    load pavouk "56 to 12"
+    startplay pavouk "56 to 12"
+    goto muzeme
+   label ph69
+    load pavouk "69 to 12"
+    startplay pavouk "69 to 12"
+   label muzeme
+    load pavouk "spousti nit"
+    startplay pavouk "spousti nit"
+    load pavouk "vraci se"
+    objstat_on chauvn_nit chauvn
+    load chauvn_nit "pada"
+    start chauvn_nit "pada"
+    startplay pavouk "vraci se"
+    start pavouk "leze"
+    start chauvn_nit "zakladni"
+  gplend
+
+
+
+ROOM dutina
+{2
+title at the hollow tree
+     BACK ..\DUTINA\DUTL7.PCX
+     MASK ..\DUTINA\DEF\DUTL7.MSK
+     MAP ..\DUTINA\DEF\DUTL7.MAP
+     music ..\midi\music2.mid
+  persp0 0.434615384
+  perspstep 0.002884615
+  init
+   labels gate1
+    startmusic
+    if(gate=1) gate1
+    exit
+   label gate1
+    stayon 120 178 vpravo
+  gplend
+  {na ESC z intra:}
+  gate 1
+    justtalk
+D: "Hmm, Evelyn is
+    nowhere to be found."
+    juststay
+  gplend
+  {odshora:}
+  gate 2
+    stayon 340 160 vlevo
+    walkonplay 292 160 vlevo
+  gplend
+  {odspod:}
+  gate 3
+    stayon 340 196 vlevo
+    walkonplay 256 196 vlevo
+  gplend
+  {odleva:}
+  gate 4
+    stayon -32 168 vpravo
+    walkonplay 24 168 vpravo
+  gplend
+  {po navratu otce domu:}
+  gate 5
+    stayon -32 168 vpravo
+    walkonplay 24 168 vpravo
+    justtalk
+D: "And now to deal with Evelyn."
+D: "I wonder where she is?"
+    juststay
+  gplend
+
+
+ROOM hory
+{3
+title in the mountains
+ BACK ..\HORY\HORY13.PCX
+ MASK ..\HORY\DEF\HORY12.MSK
+ MAP ..\HORY\DEF\HORY12.MAP
+music ..\midi\music11.mid
+  persp0 -0.53125
+  perspstep 0.0078125
+  init
+   labels gate2
+    startmusic
+    if(gate=2) gate2
+    exit
+   label gate2
+    stayon 240 170 vlevo
+  gplend
+  {standardni:}
+  gate 1
+    stayon -28 184 vpravo
+    walkonplay 24 184 vpravo
+  gplend
+  {kdyz se vracim po odvanuti mraku:}
+  gate 2
+  gplend
+  {list spustime jedine kdyz uz vime o spikovniku:}
+  canuse (isactico(i_list)and(prozkoumal_oblohu=1)and isobjaway(stromek_kym))
+  use immediately
+    walkonplay 228 176 vlevo
+    load bert "list_vytahuj"
+    startplay bert "list_vytahuj"
+    icostat off i_list
+    {pusti po vetru list:}
+    objstat_on hory_list hory
+    start hory_list "lita"
+    load bert "list_schova"
+    startplay bert "list_schova"
+    start bert "kour-vlevo"
+  gplend
+
+
+
+
+ROOM hospuvn
+{4
+title inside the pub
+     BACK ..\HOSP_IN\GASTOK2.PCX
+     MASK ..\HOSP_IN\DEF\GASTOK.MSK
+     MAP ..\HOSP_IN\DEF\GASTOK.MAP
+music ..\midi\music5.mid
+  persp0 0.4444444
+  perspstep 0.0027777
+  init
+    startmusic
+  gplend
+  gate 1
+    stayon -32 188 vpravo
+    walkonplay 24 188 vpravo
+  gplend
+
+
+
+
+ROOM hospven
+{5
+title in front of the pub
+     BACK ..\HOSP_OUT\HOSPODA2.pcx
+     MASK ..\HOSP_OUT\DEF\HOSPODA.MSK
+     MAP ..\HOSP_OUT\DEF\HOSPODA.MAP
+  persp0 -0.225
+  perspstep 0.00625
+music ..\midi\music5.mid
+  init
+   labels hospven_treti hospven_ctvrta namape
+    startmusic
+    if(new_hospa>2) namape
+    let new_hospa (1)
+   label namape
+    if (gate=4) hospven_ctvrta
+    start hospven_dvere "zavrene"
+    if (gate=3) hospven_treti
+    exit
+   label hospven_treti
+    stayon 168 196 vpravo
+    exit
+   label hospven_ctvrta
+    stayon 120 140 vlevo
+  gplend
+  {leva:}
+  gate 1
+    stayon -12 128 vpravo
+    walkonplay 28 128 vpravo
+  gplend
+  {prava:}
+  gate 2
+    stayon 328 128 vlevo
+    walkonplay 292 128 vlevo
+  gplend
+  {spodni:}
+  gate 3
+  gplend
+  {z hospody:}
+  gate 4
+    load hospven_dvere "zavirani"
+    startplay hospven_dvere "zavirani"
+    start hospven_dvere "zavrene"
+  gplend
+
+
+
+
+
+ROOM hraduvn
+{6
+title the castle corridor
+     BACK ..\HRAD_IN\HRAD34.PCX
+     MASK ..\HRAD_IN\DEF\HRAD34.MSK
+     MAP ..\HRAD_IN\DEF\HRAD34.MAP
+music ..\midi\music1.mid
+  persp0 -1.45
+  perspstep 0.0125
+  init
+   labels ne_skrini nedvere z_hodovny
+    startmusic
+    if (hradni_dvere>0) nedvere
+    let hradni_dvere (1)
+   label nedvere
+    if (gate!=1) ne_skrini
+    stayon 228 164 vlevo
+    exit
+   label ne_skrini
+    start hr_skrin "otevrene"
+    if(gate=3) z_hodovny
+    exit
+   label z_hodovny
+    stayon 136 156 vpravo
+  gplend
+  {ze skrine:}
+  gate 1
+    load hr_skrin "otvirani"
+    startplay hr_skrin "otvirani"
+    start hr_skrin "otevrene"
+    walkonplay 196 164 vlevo
+  gplend
+  {z kuchyne:}
+  gate 2
+    stayon 196 148 vlevo
+    walkonplay 176 156 vlevo
+  gplend
+  {z hodovny:}
+  gate 3
+{   stayon 156 148 vlevo
+{   walkonplay 156 156 vpravo
+  gplend
+
+
+
+
+ROOM hradven
+{7
+title in front of the castle
+     BACK ..\HRAD_OUT\CHAT09.PCX
+     MASK ..\HRAD_OUT\DEF\CHAT09.MSK
+     MAP ..\HRAD_OUT\DEF\CHAT09.MAP
+music ..\midi\music4.mid
+  persp0 -1.49999999
+  perspstep 0.010714285
+  init
+   labels hradven_gate2 hnamape
+   startmusic
+    if(new_hrad>1) hnamape
+    let new_hrad (1)
+   label hnamape
+    if (gate=2) hradven_gate2
+    stayon 116 196 vpravo
+    exit
+   label hradven_gate2
+  gplend
+   {standardni prichod:}
+  gate 1
+  gplend
+   {situacka s troubenim:}
+  gate 2
+    dialogue "trubac.txt"
+{    newroom parezy 2
+    popnewroom
+  gplend
+
+
+
+
+ROOM jesuvn
+{8
+title inside the cave
+     BACK ..\JES_IN\JESKBACK.PCX
+     MASK ..\JES_IN\DEF\JESKBACK.MSK
+     MAP ..\JES_IN\DEF\JESKBACK.MAP
+music ..\midi\music13.mid
+  persp0 0.0576923
+  perspstep 0.004807692
+  init
+    startmusic
+    stayon 132 152 vpravo
+  gplend
+  gate 1
+    walkonplay 88 152 vlevo
+  gplend
+
+
+
+
+ROOM JesVen
+{9
+title outside the cave
+     BACK ..\JES_OUT\OUTCAVOK.pcx
+     MASK ..\JES_OUT\DEF\OUTCAVOK.MSK
+     MAP ..\JES_OUT\DEF\OUTCAVOK.MAP
+     music ..\midi\music4.mid
+     persp0 -0.27826
+     perspstep 0.006521
+
+   init
+    labels gate1
+     startmusic
+     let vim_o_rytiri (1)
+     if (gate=1) gate1
+     stayon 100 152 vpravo
+     exit
+    label gate1
+     stayon 56 196 vpravo
+   gplend
+
+   gate 1
+   gplend
+
+   gate 2
+     {z jeskyne}
+     walkonplay 150 180 vlevo
+   gplend
+
+
+
+
+ROOM komous
+{10
+title by the comedian
+     BACK ..\KOMOUS\KOM28.PCX
+     MASK ..\KOMOUS\DEF\KOM26.MSK
+     MAP ..\KOMOUS\DEF\KOM26.MAP
+music ..\midi\music14.mid
+  persp0 0.08125
+  perspstep 0.0046875
+  init
+   labels namape
+    startmusic
+    if(new_komous>2) namape
+    let new_komous (1)
+   label namape
+  gplend
+  gate 1
+    stayon 340 196 vlevo
+    walkonplay 292 196 vlevo
+  gplend
+
+
+
+
+ROOM kuch
+{11
+title the castle kitchen
+     BACK ..\KUCHYNE\KU59.PCX
+     MASK ..\KUCHYNE\DEF\KU57.MSK
+     MAP ..\KUCHYNE\DEF\KU57.MAP
+music ..\midi\music1.mid
+  persp0 0.24615
+  perspstep 0.003846
+  init
+    startmusic
+  gplend
+  gate 1
+    stayon -24 196 vpravo
+    walkonplay 28 196 vpravo
+  gplend
+
+
+ROOM LenUvnitr
+{12
+title inside the idler's house
+     BACK ..\LENOCH_I\LE10.pcx
+     MASK ..\LENOCH_I\DEF\LE09B.MSK
+     MAP ..\LENOCH_I\DEF\LE09B.MAP
+  init
+   labels namape funguje
+    if(new_lenoch>2) namape
+    let new_lenoch (1)
+   label namape
+    stayon -25 190 vpravo
+    if(stroj_funguje>=2) funguje
+    loadmusic "..\midi\music3.mid"
+    startmusic
+    exit
+   label funguje
+    loadmusic "..\midi\music6.mid"
+    startmusic
+  gplend
+  gate 1
+    walkonplay 25 190 vpravo
+  gplend
+
+
+ROOM LenVenku
+{13
+title outside the idler's house
+     BACK ..\LENOCH_O\LCL17.PCX
+     MASK ..\LENOCH_O\DEF\LCL16.MSK
+     MAP ..\LENOCH_O\DEF\LCL16.MAP
+  persp0 0.03125
+  perspstep 0.0046875
+  init
+   labels funguje
+    if(stroj_funguje>=2) funguje
+    loadmusic "..\midi\music3.mid"
+    startmusic
+    exit
+   label funguje
+    loadmusic "..\midi\music6.mid"
+    startmusic
+  gplend
+  {od lesa:}
+  gate 1
+    stayon -32 196 vpravo
+    walkonplay 24 196 vpravo
+  gplend
+  {z baraku:}
+  gate 2
+    stayon 156 164 vlevo
+    walkonplay 124 172 vlevo
+  gplend
+
+
+
+
+ROOM leskriz
+{14
+title the forest intersection
+     BACK ..\LES_KRIZ\LESKRIZ4.PCX
+     MASK ..\LES_KRIZ\DEF\LESKRIZ2.MSK
+     MAP ..\LES_KRIZ\DEF\LESKRIZ2.MAP
+music ..\midi\music17.mid
+  persp0 0.166666666
+  perspstep 0.00416666
+  init
+    startmusic
+  gplend
+  gate 1
+    {odleva}
+    stayon -8 164 vpravo
+    walkonplay 44 164 vpravo
+  gplend
+  gate 2
+    {odshora}
+    stayon 224 128 vlevo
+    walkonplay 188 136 vlevo
+  gplend
+  gate 3
+    {odprava}
+    stayon 344 196 vlevo
+    walkonplay 292 196 vlevo
+  gplend
+  canuse (isactico(i_jablko))
+  use
+    walkonplay 132 172 vpravo
+    icostat off i_jablko
+    objstat_on leskriz_jablko leskriz
+    start leskriz_jablko "zakladni"
+  gplend
+
+
+
+
+ROOM lesleno
+{15
+title the path in the forest|towards to idler
+     BACK ..\LES_LENO\CENLEL07.PCX
+     MASK ..\LES_LENO\DEF\CENLEL07.MSK
+     MAP ..\LES_LENO\DEF\CENLEL07.MAP
+music ..\midi\music17.mid
+  init
+    startmusic
+  gplend
+  {zleva= z krizovatky}
+  gate 1
+    stayon -40 196 vpravo
+    walkonplay 32 196 vpravo
+  gplend
+  {zprava= od lenocha}
+  gate 2
+    stayon 332 156 vlevo
+    walkonplay 268 156 vlevo
+  gplend
+
+
+
+ROOM map
+{16
+title the map
+     BACK ..\MAPA\MAPAPRA4.PCX
+     MASK ..\MAPA\DEF\MAPAPRAZ.MSK
+     MAP ..\MAPA\DEF\MAPAPRAZ.MAP
+  HERO OFF
+  MOUSE ON
+  init
+   labels an_loop an_dom an_dut an_hor an_hos an_kom an_myt an_zid an_par an_len an_obr an_hra an_mos an_skr an_sip an_jes
+   label an_loop
+    if(new_domek=1) an_dom
+    if(new_dutina=1) an_dut
+    if(new_hory=1) an_hor
+    if(new_hospa=1) an_hos
+    if(new_komous=1) an_kom
+    if(new_mytina=1) an_myt
+    if(new_zidle=1) an_zid
+    if(new_parezy=1) an_par
+    if(new_lenoch=1) an_len
+    if(new_obr=1) an_obr
+    if(new_hrad=1) an_hra
+    if(new_most=1) an_mos
+    if(new_sipek=1) an_sip
+    if(new_skreti=1) an_skr
+    if(new_jeskyn=1) an_jes
+    exit
+   label an_dom
+    objstat_on map_domek map
+    start map_domek "z"
+    let new_domek (2)
+    goto an_loop
+   label an_dut
+    objstat_on map_dutina map
+    start map_dutina "z"
+    let new_dutina (2)
+    goto an_loop
+   label an_hor
+    objstat_on map_hory map
+    start map_hory "z"
+    let new_hory (2)
+    goto an_loop
+   label an_hos
+    objstat_on map_hospa map
+    start map_hospa "z"
+    let new_hospa (2)
+    goto an_loop
+   label an_kom
+    objstat_on map_komous map
+    start map_komous "z"
+    let new_komous (2)
+    goto an_loop
+   label an_myt
+    let new_mytina (2)
+    goto an_loop
+    objstat_on map_mytina map
+    start map_mytina "z"
+    let new_mytina (2)
+    goto an_loop
+   label an_zid
+    objstat_on map_zidle map
+    start map_zidle "z"
+    let new_zidle (2)
+    goto an_loop
+   label an_par
+    objstat_on map_parezy map
+    start map_parezy "z"
+    let new_parezy (2)
+    goto an_loop
+   label an_len
+    objstat_on map_lenoch map
+    start map_lenoch "z"
+    let new_lenoch (2)
+    goto an_loop
+   label an_obr
+    objstat_on map_obr map
+    start map_obr "z"
+    let new_obr (2)
+    goto an_loop
+   label an_hra
+    objstat_on map_hrad map
+    start map_hrad "z"
+    let new_hrad (2)
+    goto an_loop
+   label an_mos
+    objstat_on map_most map
+    start map_most "z"
+    let new_most (2)
+    goto an_loop
+   label an_sip
+    objstat_on map_sipek map
+    start map_sipek "z"
+    let new_sipek (2)
+    goto an_loop
+   label an_skr
+    objstat_on map_skreti map
+    start map_skreti "z"
+    let new_skreti (2)
+    goto an_loop
+   label an_jes
+    objstat_on map_jeskyn map
+    start map_jeskyn "z"
+    let new_jeskyn (2)
+    goto an_loop
+  gplend
+  gate 1
+   labels vz_loop vz_dom vz_dut vz_hor vz_hos vz_kom vz_myt vz_zid vz_par vz_len vz_obr vz_hra vz_mos vz_skr vz_sip vz_jes
+   label vz_loop
+    if(new_domek=2) vz_dom
+    if(new_dutina=2) vz_dut
+    if(new_hory=2) vz_hor
+    if(new_hospa=2) vz_hos
+    if(new_komous=2) vz_kom
+    if(new_mytina=2) vz_myt
+    if(new_zidle=2) vz_zid
+    if(new_parezy=2) vz_par
+    if(new_lenoch=2) vz_len
+    if(new_obr=2) vz_obr
+    if(new_hrad=2) vz_hra
+    if(new_most=2) vz_mos
+    if(new_sipek=2) vz_sip
+    if(new_skreti=2) vz_skr
+    if(new_jeskyn=2) vz_jes
+    exit
+   label vz_dom
+    load map_jisk "domek"
+    startplay map_jisk "domek"
+    let new_domek (3)
+    goto vz_loop
+   label vz_dut
+    load map_jisk "dutina"
+    startplay map_jisk "dutina"
+    let new_dutina (3)
+    goto vz_loop
+   label vz_hor
+    load map_jisk "hory"
+    startplay map_jisk "hory"
+    let new_hory (3)
+    goto vz_loop
+   label vz_hos
+    load map_jisk "hospa"
+    startplay map_jisk "hospa"
+    let new_hospa (3)
+    goto vz_loop
+   label vz_kom
+    load map_jisk "komous"
+    startplay map_jisk "komous"
+    let new_komous (3)
+    goto vz_loop
+   label vz_myt
+    let new_mytina (3)
+    goto vz_loop
+    load map_jisk "mytina"
+    startplay map_jisk "mytina"
+    let new_mytina (3)
+    goto vz_loop
+   label vz_zid
+    load map_jisk "zidle"
+    startplay map_jisk "zidle"
+    let new_zidle (3)
+    goto vz_loop
+   label vz_par
+    load map_jisk "parezy"
+    startplay map_jisk "parezy"
+    let new_parezy (3)
+    goto vz_loop
+   label vz_len
+    load map_jisk "lenoch"
+    startplay map_jisk "lenoch"
+    let new_lenoch (3)
+    goto vz_loop
+   label vz_obr
+    load map_jisk "obr"
+    startplay map_jisk "obr"
+    let new_obr (3)
+    goto vz_loop
+   label vz_hra
+    load map_jisk "hrad"
+    startplay map_jisk "hrad"
+    let new_hrad (3)
+    goto vz_loop
+   label vz_mos
+    load map_jisk "most"
+    startplay map_jisk "most"
+    let new_most (3)
+    goto vz_loop
+   label vz_sip
+    load map_jisk "sipek"
+    startplay map_jisk "sipek"
+    let new_sipek (3)
+    goto vz_loop
+   label vz_skr
+    load map_jisk "skreti"
+    startplay map_jisk "skreti"
+    let new_skreti (3)
+    goto vz_loop
+   label vz_jes
+    load map_jisk "jeskyn"
+    startplay map_jisk "jeskyn"
+    let new_jeskyn (3)
+    goto vz_loop
+  gplend
+
+
+
+
+ROOM most
+{17
+title the bridge
+     BACK ..\MOST\mostik3.pcx
+     MASK ..\MOST\DEF\MOSTIK3.MSK
+     MAP ..\MOST\DEF\MOSTIK3.MAP
+  music ..\midi\music15.mid
+  persp0 0.267973856
+  perspstep 0.003734827
+  init
+   labels gate2 mnamape gate4
+    startmusic
+    if(new_most>1) mnamape
+    let new_most (1)
+   label mnamape
+    if(gate=2) gate2
+    if(gate=4) gate4
+    exit
+   label gate2
+    stayon 284 68 vpravo
+    exit
+   label gate4
+    load most_sipkar "mluvipred"
+    start most_sipkar "mluvipred"
+  gplend
+  {od sipkarovy chalupy:}
+  gate 1
+    stayon -32 180 vpravo
+    walkonplay 24 180 vpravo
+  gplend
+  {od hradu:}
+  gate 2
+  gplend
+  {od trola:}
+  gate 3
+    stayon 340 76 vlevo
+    walkonplay 308 76 vlevo
+  gplend
+  {incident:}
+  gate 4
+   {incident probehne kdyz jdu od dutiny na mytinu
+    dialogue "incident.txt"
+{    newroom myt 3
+    popnewroom
+  gplend
+
+
+
+ROOM mrav
+{18
+title the forest with the ant-hill
+     BACK ..\MRAVENEC\MRA11B.PCX
+     MASK ..\MRAVENEC\DEF\MRA11B.MSK
+     MAP ..\MRAVENEC\DEF\MRA11B.MAP
+  music ..\midi\music12.mid
+  persp0 0.02
+  perspstep 0.005
+  init
+    startmusic
+  gplend
+  {odleva (dutina):}
+  gate 1
+    stayon -32 156 vpravo
+    walkonplay 12 156 vpravo
+  gplend
+  {odprava (zidle:}
+  gate 2
+    stayon 340 196 vlevo
+    walkonplay 260 192 vlevo
+  gplend
+
+
+
+
+ROOM myt
+{19
+title the clearing
+     BACK ..\MYTINA\MYT13.PCX
+     MASK ..\MYTINA\DEF\MYT12B.MSK
+     MAP ..\MYTINA\DEF\MYT12B.MAP
+  music ..\midi\music2.mid
+  persp0 -0.566666666
+  perspstep 0.0083333333
+  init
+   labels myt_gate23 namape
+    startmusic
+    if(new_mytina>1) namape
+    let new_mytina (1)
+   label namape
+    if (gate!=1) myt_gate23
+    stayon 116 120 vpravo
+   label myt_gate23
+  gplend
+  {od trola:}
+  gate 1
+  gplend
+  {od hospody:}
+  gate 2
+    stayon -32 164 vpravo
+    walkonplay 16 164 vpravo
+  gplend
+  {z lesa:}
+  gate 3
+    stayon 300 180 vlevo
+    walkonplay 232 180 vlevo
+  gplend
+
+
+
+ROOM ObrUvnitr
+{20
+title inside the Giant's house
+     BACK ..\obr_in\bobr39.pcx
+     MASK ..\obr_in\DEF\BOBR25H3.MSK
+     MAP ..\obr_in\DEF\BOBR25H3.MAP
+   music ..\midi\music7.mid
+     PERSP0 0.83
+     PERSPSTEP 0
+     HERO ON
+     MOUSE ON
+     INIT
+       startmusic
+       STAYON 140 150 vlevo
+     GPLEND
+     GATE 1
+       LOAD obr_uvnitr_dvere "zavirani"
+       WALKON 100 170 vlevo
+       STARTPLAY obr_uvnitr_dvere "zavirani"
+     GPLEND
+     CANUSE (0)
+     USE
+     GPLEND
+
+
+
+ROOM ObrVenku
+{21
+title outside the Giant's house
+     BACK ..\OBR_OUT\OBR11.PCX
+     MASK ..\OBR_OUT\DEF\OBR09.MSK
+     MAP ..\OBR_OUT\DEF\OBR09.MAP
+     music ..\midi\music7.mid
+     PERSP0 0.70
+     PERSPSTEP 0
+     HERO ON
+     MOUSE ON
+     INIT
+       startmusic
+       STAYON -20 185 vlevo
+     GPLENd
+     GATE 1
+       walkon 20 185 vpravo
+     gplend
+     GATE 2
+       LOAD obrvenku_dvere "otvirame"
+       stayon 123 161 vlevo
+       WALKON 100 170 vlevo
+       STARTPLAY obrvenku_dvere "otvirame"
+       start obrvenku_dvere "otevrene"
+     GPLEND
+
+
+ROOM parezy
+{22
+title old stumps
+     BACK ..\PAREZY\PL8.PCX
+     MASK ..\PAREZY\DEF\PL8.MSK
+     MAP ..\PAREZY\DEF\PL8.MAP
+  music ..\midi\music4.mid
+  init
+   labels gate1
+    startmusic
+    if(gate=1) gate1
+    stayon 148 176 vpravo
+    objstat away bert
+   label gate1
+  gplend
+  {z mapy:}
+  gate 1
+    stayon -32 180 vpravo
+    walkonplay 32 180 vpravo
+  gplend
+  {z diry:}
+  gate 2
+    load bert "skace_ven"
+    startplay bert "skace_ven"
+    load bert "dobrej-pravo"
+    startplay bert "dobrej-pravo"
+    start bert "kour-pravo"
+  gplend
+
+
+
+ROOM sipdumuvn
+{23
+title inside the darter's house
+     BACK ..\SIPDUM_I\FIB02.PCX
+     MASK ..\SIPDUM_I\DEF\FIB02.MSK
+     MAP ..\SIPDUM_I\DEF\FIB02.MAP
+  music ..\midi\music17.mid
+  persp0 0.44318
+  perspstep 0.00284
+  init
+    startmusic
+    stayon 350 196 vpravo
+  gplend
+  gate 1
+    walkonplay 296 196 vlevo
+  gplend
+
+
+
+
+ROOM sipdumven
+{24
+title outside the darter's house
+     BACK ..\SIPDUM_O\SIPDUM04.PCX
+     MASK ..\SIPDUM_O\DEF\SIPDUM01.MSK
+     MAP ..\SIPDUM_O\DEF\SIPDUM01.MAP
+  music ..\midi\music17.mid
+  persp0 -0.382352941
+  perspstep 0.007352941
+  init
+   labels sipdumven_gate3
+    startmusic
+    if(gate=3) sipdumven_gate3
+    exit
+   label sipdumven_gate3
+    stayon 192 148 vlevo
+  gplend
+  {od draciho domku:}
+  gate 1
+    stayon 344 188 vlevo
+    walkonplay 292 188 vlevo
+  gplend
+  {od mostu:}
+  gate 2
+    stayon 188 120 vlevo
+    walkonplay 168 120 vlevo
+  gplend
+  {z domku:}
+  gate 3
+  gplend
+
+
+
+ROOM sipek
+{25
+title the Darttree
+     BACK ..\sipek\borjas.PCX
+     MASK ..\SIPEK\DEF\BORJAS.MSK
+     MAP ..\SIPEK\DEF\BORJAS.MAP
+  music ..\midi\music2.mid
+  persp0 1
+  perspstep 0
+  init
+    let prozkoumal_oblohu (1)
+    startmusic
+  gplend
+  {standardni vchod:}
+  gate 1
+    stayon -36 196 vpravo
+    walkonplay 24 196 vpravo
+  gplend
+  {situacka- prilet vetru, odvanuti mraku:}
+  gate 2
+   labels padaji ven
+    mark
+    load sipek_vitr "leti"
+    startplay sipek_vitr "leti"
+    release
+    mark
+    load sipek_obl "vyjasneni"
+    startplay sipek_obl "vyjasneni"
+    release
+    objstat_on sipek_jas sipek
+  { mensi chybka je, ze sipek_jas byl away, takze jasnou zatim dame do zatazene...
+    load sipek_obl "jasna"
+    start sipek_obl "jasna"
+
+  {zapneme spravne sipky:}
+    if(isobjon(sip1zel)) padaji
+  {rostou:}
+    objstat_on sip1zel sipek
+    objstat_on sip2zel sipek
+    load sip1zel "roste"
+    load sip2zel "roste"
+    startplay sip2zel "roste"
+    start sip2zel "z"
+    startplay sip1zel "roste"
+    start sip1zel "z"
+    goto ven
+   label padaji
+  {padaji:}
+    objstat_on sip1cer sipek
+    objstat_on sip2cer sipek
+    load sip1cer "pada"
+    load sip2cer "pada"
+    objstat away sip2zel
+    startplay sip2cer "pada"
+    start sip2cer "z"
+    objstat away sip1zel
+    startplay sip1cer "pada"
+    start sip1cer "z"
+   label ven
+    objstat away sipek_obl
+  {vypneme aji lit v horach:}
+    objstat away hory_list
+    newroom hory 2
+  gplend
+
+ROOM skreti
+{26
+title the goblins|in the forest
+  BACK ..\SKRETI\skretiok.PCX
+  MASK ..\SKRETI\DEF\SKRBOSEJ.MSK
+  MAP ..\SKRETI\DEF\SKRBOSEJ.MAP
+  music ..\midi\music12.mid
+  persp0 0.4
+  perspstep 0.003
+  init
+   labels novypajzl
+    startmusic
+    stayon 16 160 vpravo
+    if(isobjaway(hpajzl)) novypajzl
+    exit
+   label novypajzl
+    objstat_on hpajzl hospuvn
+    objstat_on hpajzl_hlava hospuvn
+  gplend
+  gate 1
+    walkonplay 50 160 vpravo
+  gplend
+
+
+
+
+ROOM lestrol
+{27
+title in the forest|by the Troll
+     BACK ..\TROL\TRODL15.PCX
+     MASK ..\TROL\DEF\trodl14.MSK
+     MAP ..\TROL\DEF\TRODL14.MAP
+  music ..\midi\music15.mid
+  persp0 0.135294
+  perspstep 0.004411764
+  init
+    startmusic
+  gplend
+  {od mostu:}
+  gate 1
+    stayon -12 132 vpravo
+    walkonplay 8 132 vpravo
+  gplend
+  {od mytiny:}
+  gate 2
+    stayon 340 192 vlevo
+    walkonplay 304 192 vlevo
+  gplend
+
+
+ROOM zid
+{28
+title the lea with chairs
+     BACK ..\ZIDLE\sydle4.PCX
+     MASK ..\ZIDLE\DEF\LYDLE6.MSK
+     MAP ..\ZIDLE\DEF\LYDLE6.MAP
+  music ..\midi\music12.mid
+  persp0 0.02
+  perspstep 0.005
+  INIT
+   labels namape
+    startmusic
+    if(new_zidle>2) namape
+    let new_zidle (1)
+   label namape
+  gplend
+  gate 1
+    stayon 0 164 vpravo
+    walkonplay 40 164 vpravo
+  gplend
+  canuse (isactico(i_pivo)and(hradni_dvere=2))
+  use immediately
+    walkonplay 80 196 vpravo
+    load bert "pivo_vytah"
+    load bert "pivo_mluvi"
+    load bert "pivo_leje"
+    startplay bert "pivo_vytah"
+    start bert "pivo_mluvi"
+D: "You may remember
+    when I told you I was a boyscout."
+D: "I forgot to add I'm also
+    a beerscout (snicker) ..."
+D: "Let's see if this works. Cheers!"
+    startplay bert "pivo_leje"
+    start bert "kour-pravo"
+    icostat off i_pivo
+    let hradni_dvere (3)
+  gplend
+
+ROOM chaven
+{29
+title in front of the dragons' house
+     BACK ..\CHAL_OUT\VAR2.PCX
+     MASK ..\CHAL_OUT\DEF\VAR2.MSK
+     MAP ..\CHAL_OUT\DEF\VAR2.MAP
+  music ..\midi\music16.mid
+  persp0 1
+  perspstep 0
+  init
+   labels chaven_gate3 chaven_gate2
+    startmusic
+    if(gate=3) chaven_gate3
+    if(gate=2) chaven_gate2
+    exit
+   label chaven_gate3
+    stayon 104 172 vlevo
+    exit
+   label chaven_gate2
+    stayon 124 196 vlevo
+  gplend
+  {zleva:}
+  gate 1
+    stayon -40 180 vpravo
+    walkonplay 24 180 vpravo
+  gplend
+  gate 2
+  gplend
+  gate 3
+  gplend
+
+ROOM hod
+{30
+title castle library
+     BACK ..\HODOVNA\HODOVNA1.PCX
+     MASK ..\HODOVNA\DEF\HODOVNA1.MSK
+     MAP ..\HODOVNA\DEF\HODOVNA1.MAP
+music ..\midi\music1.mid
+persp0 -0.14619
+perspstep 0.005847953
+init
+ labels zadnypingl hodgate2 hodgate3 hodgate4
+  startmusic
+  if(isobjon(pingl)) zadnypingl
+  objstat_on pingl hospuvn
+ label zadnypingl
+  if(gate=2) hodgate2
+  if(gate=3) hodgate3
+  if(gate=4) hodgate4
+  exit
+ label hodgate2
+  {vypneme zidli mimo:}
+  let stary_stav_zidle (isobjon(hodzid_dobra))
+  objstat off hodzid_dobra
+  objstat off hodzid_blba
+  objstat off hodzid
+  {zapneme pritavenou zidli ke knihovne, atd...:}
+  load bert "knihovna"
+  load bert "knihovna2"
+  start bert "knihovna"
+  exit
+ label hodgate3
+  stayon 44 180 vpravo
+  exit
+ label hodgate4
+  {zapneme jidlo:}
+  objstat_on hodjidlo hod
+  start hodjidlo "z"
+  objstat_on hodrakev hod
+  start hodrakev "z"
+  {vypneme zidli mimo:}
+  let stary_stav_zidle (isobjon(hodzid_dobra))
+  objstat off hodzid_dobra
+  objstat off hodzid_blba
+  objstat off hodzid
+  {zapneme zidli s hradnim panem:}
+  objstat_on hrpan hod
+  load hrpan "pojida"
+  start hrpan "pojida"
+gplend
+
+{standardni prichod:}
+gate 1
+  stayon 340 196 vlevo
+  walkonplay 280 184 vlevo
+gplend
+
+{situacka s vytahovanim knizky:}
+gate 2
+ labels oldgatedobra
+{provedu situacku:}
+  startplay bert "knihovna"
+  start bert "knihovna2"
+
+{bacha, vyskocim odtud do uplne jine mistnosti!!}
+{dam to uz ted, protoze pak muzu vyskocit exitem
+  icostat on i_pohadka
+  objstat away pohadka
+  let vim_o_pohadce (2)
+  let nedosahnu_na_pohadku (2)
+  newroom hod 3
+
+{zpatky vrsek zidle:}
+  objstat_on hodzid hod
+{nastavime zpatky spodek zidle:}
+  if(stary_stav_zidle=1) oldgatedobra
+  objstat_on hodzid_blba hod
+  exit
+ label oldgatedobra
+  objstat_on hodzid_dobra hod
+gplend
+
+{semhle vyskocim po situacce s vytahovanim knihy}
+gate 3
+  {je to v initu}
+gplend
+
+{situacka s jezenim gulase:}
+gate 4
+ labels oldgatedobra
+
+  dialogue "pan.txt"
+
+{bacha, vyskocim odtud do uplne jine mistnosti!!}
+{dam to uz ted, protoze pak muzu vyskocit exitem
+  newroom hradven 2
+
+  {zpatky vrsek zidle:}
+  objstat_on hodzid hod
+  {nastavime zpatky spodek zidle:}
+  if(stary_stav_zidle=1) oldgatedobra
+  objstat_on hodzid_blba hod
+  exit
+ label oldgatedobra
+  objstat_on hodzid_dobra hod
+
+gplend
+
+
+
+{***********************************************************************
+{***********************************************************************
+{************************ i n t r o ************************************
+{***********************************************************************
+{***********************************************************************
+
+ROOM logo0
+  escroom dutina
+  TITLE
+  BACK ..\logo0\vochlogo.PCX
+{  MASK ..\logo0\DEF\logo0.MSK
+  MAP ..\logo0\DEF\logo0.MAP
+  HERO NO
+  MOUSE NO
+  init
+  gplend
+  gate 1
+    fadepaletteplay 0 255 6
+    newroom intro0 1
+  gplend
+
+ROOM logo1
+  escroom dutina
+title intro page nuber x
+     BACK ..\logo1\logomask.PCX
+{     MASK ..\logo1\DEF\logo1.MSK
+     MAP ..\logo1\DEF\logo1.MAP
+  HERO NO
+  MOUSE NO
+  init
+  gplend
+  gate 1
+    startplay logo1_logo "nova2"
+    { newroom logo0 1 #SR: 2006-05-28
+    newroom intro0 1
+  gplend
+
+ROOM intro0
+  escroom dutina
+title intro page number x
+     BACK ..\IN0\reinbac2.PCX
+     MASK ..\IN0\DEF\TITLBACK.MSK
+     MAP ..\IN0\DEF\TITLBACK.MAP
+  music ..\midi\music16.mid
+  HERO NO
+  MOUSE NO
+  init
+    startmusic
+  gplend
+  gate 1
+    mark
+    load spotl "z1"
+    load spotl "z2"
+    load spotl "z"
+    load spotdr "z"
+    start opona_l "zatazena"
+    start opona_r "zatazena"
+    startplay spotl "z1"
+    start spotl "z"
+    startplay spotdr "z"
+    startplay spotl "z2"
+    release
+    mark
+    load opona_l "FLI-animace"
+    load opona_r "FLI-animace"
+    start opona_r "FLI-animace"
+    startplay opona_l "FLI-animace"
+    release
+    dialogue "intro0.txt"
+    newroom intro1 1
+  gplend
+
+ROOM intro1
+  escroom dutina
+title intro 1
+     BACK ..\in1\in1back.PCX
+     MASK ..\in1\DEF\I2311.MSK
+     MAP ..\in1\DEF\I2311.MAP
+  MOUSE NO
+  init
+   labels gate3 gate2
+    if(gate=2) gate2
+    if(gate=3) gate3
+    load foto_cel "z"
+    load foto_cel "z2"
+    start foto_cel "z"
+    exit
+   label gate2
+    load foto_roz "z"
+    start foto_roz "z"
+    load intr_ota "z"
+    start intr_ota "z"
+    exit
+   label gate3
+    stayon 268 144 vlevo
+  gplend
+  {foto:}
+  gate 1
+    dialogue "intro1.txt"
+    newroom intro2 1
+  gplend
+  {otaznik:}
+  gate 2
+    dialogue "intro1b.txt"
+    newroom intro2 2
+  gplend
+  {matka nas hubuje:}
+  gate 3
+    dialogue "intro1c.txt"
+    newroom dutina 1
+  gplend
+
+ROOM intro2
+  escroom dutina
+     TITLE
+     BACK ..\IN2\INTRO04F.PCX
+     MASK ..\IN2\DEF\IN2.MSK
+     MAP ..\IN2\DEF\In2.MAP
+  MOUSE NO
+  init
+  gplend
+  {hulka priskace:}
+  gate 1
+    dialogue "intro2.txt"
+    newroom intro1 2
+  gplend
+  {hulka ukeca draka:}
+  gate 2
+    dialogue "intro2b.txt"
+    newroom intro3 1
+  gplend
+
+
+ROOM intro3
+  escroom dutina
+title intro 3
+     BACK ..\IN3\PIMP09.PCX
+     MASK ..\IN3\DEF\PIMP09.MSK
+     MAP ..\IN3\DEF\PIMP09.MAP
+  MOUSE NO
+init
+  load intr_lout1 "mlci"
+  load intr_lout1 "kamennej"
+  start intr_lout1 "mlci"
+  load intr_lout2 "schovanej"
+  start intr_lout2 "schovanej"
+gplend
+gate 1
+  dialogue "intro3.txt"
+  newroom intro4 1
+gplend
+
+ROOM intro4
+  escroom dutina
+  TITLE
+  BACK ..\in4\KOMintr.PCX
+  MASK ..\KOMOUS\DEF\in4.MSK
+  MAP ..\KOMOUS\DEF\in4.MAP
+  persp0 0.08125
+  perspstep 0.0046875
+  MOUSE NO
+  init
+  gplend
+  gate 1
+    startplay intr_beverly "z"
+    start intr_beverly "z2"
+    newroom intro1 3
+  gplend
+
+{***********************************************************************
+{***********************************************************************
+{************************ o u t r o ************************************
+{***********************************************************************
+{***********************************************************************
+
+ROOM outro0
+title outro...
+  BACK ..\outro\outro12.PCX
+  MASK ..\outro\DEF\outro.MSK
+  MAP ..\outro\DEF\outro.MAP
+  music ..\midi\music9.mid
+  HERO NO
+  MOUSE NO
+  init
+    startmusic
+  gplend
+  gate 1
+    load outrblesk "levej"
+    startplay outrblesk "levej"
+    newroom chauvn 4
+  gplend
+  gate 2
+    load outrkour "zacina"
+    startplay outrkour "zacina"
+    newroom chauvn 5
+  gplend
+  gate 3
+    load outrblesk "pravej"
+    startplay outrblesk "pravej"
+    newroom chauvn 6
+  gplend
+  gate 4
+    disablespeedtext
+    loadpalette "..\outro\outpal1.pcx"
+    fadepalette 0 255 160
+Titulek: "The Dragon History
+          |is written by
+          |Pavel Pospíšil"
+Titulek: "The Dragon History
+          |is written by
+          |Pavel Pospíšil"
+Titulek: "Programmed by
+          |Lukáš Svoboda,
+          Pavel Pospíšil,
+          Robert Špalek"
+Titulek: "Programmed by
+          |Lukáš Svoboda,
+          Pavel Pospíšil,
+          Robert Špalek"
+Titulek: "Graphics by
+          |Pavel Jura,
+          |Jakub Dvorský,
+          Jan Pokorný"
+Titulek: "Graphics by
+          |Pavel Jura,
+          |Jakub Dvorský,
+          Jan Pokorný"
+Titulek: "Music by
+          |Radovan Kramář"
+Titulek: "Music by
+          |Radovan Kramář"
+    load outrblesk "pravej"
+    start outrblesk "pravej"
+    loadpalette "..\outro\outpal2.pcx"
+    fadepalette 0 255 128
+Titulek: "Starring voices of ...
+          |Gabriela Burianová, Jana Dvořáková,
+          Iva Pazderková, Miloš Bednář, Jan Budař,
+          Robert Kocián, Martin Kollár, Radovan Kramář,
+          Pavel Šmíd, Pavel Vraný
+          and others"
+Titulek: "Starring voices of ...
+          |Gabriela Burianová, Jana Dvořáková,
+          Iva Pazderková, Miloš Bednář, Jan Budař,
+          Robert Kocián, Martin Kollár, Radovan Kramář,
+          Pavel Šmíd, Pavel Vraný
+          and others"
+Titulek: "Tested by
+          |Martin Argaláš, Marek Floryán,
+          Tomáš Rektor, Martin Weber
+          and others"
+Titulek: "Very special thanks to
+          |Martin Sedlák"
+Titulek: "Thanks to
+          |Michal Dvorský, David Koblížek,
+          Jarek Kolář, Martin Sajda"
+Titulek: "Revived and cleaned up
+          in 2006-2012 by
+          |Robert Špalek"
+Titulek: "English scripts proofread by
+          |Tom Pietschmann"
+    loadpalette "..\outro\outpal3.pcx"
+    fadepalette 0 255 255
+Titulek: "The Dragon History
+          |(c) 1995 NoSense"
+Titulek: "The Dragon History
+          |(c) 1995 NoSense"
+    enablespeedtext
+Titulek: "The Dragon History
+          |(c) 1995 NoSense"
+Titulek: "The Dragon History
+          |(c) 1995 NoSense"
+    newroom chauvn 7
+  gplend
+

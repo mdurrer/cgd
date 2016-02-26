@@ -1,0 +1,30 @@
+{s větrem v horách- teď vlasně s listem:}
+
+block _00 ( beg(1) )
+title
+  justtalk
+D: "Herr Wind!
+    Das war nicht nett
+    einfach vor mir zu verschwinden."
+  juststay
+V: "Ich geniiiiiesse das Gefüüüühl von Freiheit..."
+  justtalk
+D: "Ich dachte wir hätten eine Abmachung."
+  juststay
+V: "Alsooooo, was hättest duuuuuu gern?"
+  justtalk
+D: "Ich frage mich, ob du ein oder zwei Wolken
+    für mich weg blasen könntest."
+  juststay
+V: "Das ist eiiiinfach...
+    Aber wo?"
+  justtalk
+D: "Wenn du etwas höher fliegst, beim Hügel,
+    dann siehst du sie."
+  juststay
+V: "Abgemacht, ich zieh davooooon...."
+{gejtkou k sipku, odfouknuti mraku, pak zpátky}
+
+  let odfoukli_jsme (1)
+  newroom sipek 2
+gplend

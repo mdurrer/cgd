@@ -1,0 +1,6 @@
+sales	magicman	285	341	60
+player	player	619	375	70
+mace	mace	397	191	100
+exit_pos	point	648	378	100
+cards	cards	351	291	100
+sales_pos	point	437	324	100

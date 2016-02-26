@@ -1,0 +1,178 @@
+Zdrojové kódy Dračí Historie :
+==============================
+(c) 8.5.2010, Robert Špalek <robert@ucw.cz>
+
+Moduly :
+--------
+
+1. old-sources.zip: zdrojáky knihoven, herního programu, kompilátoru hry,
+   herních editorů, a spousty pomocných utilitek
+   
+   Použité programovací jazyky jsou Borland Pascal 7.0 a Turbo Assembler 3.0.
+   Sežeňte si je někde, bohužel se nedají nikde zdarma a legálně stáhnout.
+   Poněvadž jsou moduly rozházené po více adresářích, ke všem klíčovým
+   podprojektům jsem přiložil dvojici souborů bp.tp a bp.dsk, které když
+   načtete, tak vám to nastaví Options/Directories, aby šly knihovny
+   automaticky najít.  Abych ulehčil práci, tak tento archív neobsahuje
+   nejenom zdrojáky, ale také všechny zkompilované OBJ, TPU a EXE soubory.
+   Programů psaných v externím assembleru TASM je pramálo, ale jsou tam, proto
+   jsem raději přiložil i binární formu, protože kompilátor integrovaný do
+   Borland Pascalu to sám automaticky přeložit neumí.
+   
+   Borland Pascal obsahuje chybu v knihovně CRT, která způsobí pád všech
+   zkompilovaných aplikací na počítačích rychlejších než cca 200 MHz.
+   Možností, jak to spravit, je více.  Buď se dají opatchovat přímo in-line
+   knihovny překladače (tak jsem to udělal já, toto řešení má i výhodu, že
+   často jsou alternativní knihovny rychlejší) nebo se dá vygenerovaný
+   EXE-soubor opatchovat speciální utilitkou (přiložena v source/tppatch.exe).
+
+   Tento archív se dnes liší od původní verze tím, že obsahuje opravené 2
+   starobylé chyby: testování přítomnosti c:\autoexec.bat a vložena chybějící
+   instrukce STI v přehrávači MIDI.  Díky nim teď program bez problémů jede
+   pod DosBoxem.
+
+!! Dnes doporučuji stáhnout spíše new-sources.zip, který obsahuje pročištěné
+   a dále opravené zdrojové kódy a většina identifikátorů herního přehrávače
+   je přeložená do angličtiny.
+
+2. old-gfx.zip: veškerý popis hry Dračí Historie, tzn. kompletní grafika,
+   animace, zvuky (kromě namluvených rozhovorů), příběh hry v našem speciálním
+   programovacím jazyku na bázi Basicu a rozhovory
+
+   Tento archív je nutné rozbalit do adresáře \dh\gfx na jakémkoliv disku.
+   Bohužel, kompilátor vyžaduje na některých místech absolutní cesty, tak jsem
+   to aspoň pozměnil, aby to nevyžadovalo natvrdo písmenko konkrétního disku.
+
+   Tento archív obsahuje spoustu adresářů, nejdůležitější jsou 3: all.cz,
+   all.en, all.pl.  Tady sídlí hra a ostatní adresáře obsahují pouze grafiku
+   jednotlivých místností (jak pracovní soubory grafiků, tak finální verze,
+   plus animace editovatelné našimi proprietárními editory).  Pokud se chcete
+   pouze podívat na samotný příběh hry, tak si vystačíte s těmito 3 adresáři.
+   Jinak je v tomto arhívu šílený bordel a nepochybuji, že po odmazání
+   pracovních, starých a záložních souborů by šel zmenšit na čtvrtinu.
+
+   Pokud chcete vidět spoustu hezkých pracovních obrázků, tak v podadresářích
+   tohoto modulu je v tom bordelu určitě najdete :-)
+
+!! Dnes doporučuji stáhnout spíše new-gfx.zip, který má 5MB místo 40MB a který
+   obsahuje pouze soubory nutné pro kompilaci hry (nikoliv spoustu pracovních
+   souborů) a jehož skripty obsahují relativní cesty.  Díky relativním cestám
+   je možno tento archív rozbalit kamkoliv bez starostí o kompilaci.
+
+3. old-midi.zip: MIDI hudba ke hře a prográmek co to umí přehrávat
+
+   Tento archív je dnes již součástí new-gfx.zip a není potřeba ho stahovat
+   zvlášť.
+
+4. mono 8-bitové 22 kHz nekomprimované rozhovory, asi 2400 souborů
+
+   Tento archív nepřikládám, protože je příliš dlouhý a dá se zrekonstruovat z
+   finálního souboru cd.sam příslušejícího ke hře.  Program jsem psal teď,
+   takže na rozdíl od 11 let starých kódů je to zdroják v C-čku odladěný pod
+   Linuxem.  Je v adresáři source/editors/sound/extract.c a umí vyrobit jak
+   RAW soubory, tak soubory s 80-bitovou hlavičkou od Scream Trackeru, se
+   kterými počítá editor MSAM.  MSAM je náš prográmek, který přiřazuje
+   nasamplované zvuky ke konkrétním větám ze zkompilované hry.  Pouštějte ho
+   pod VDM Sound, jinak nic neuslyšíte!
+
+Formáty souborů :
+-----------------
+
+- obrázky jsou většinou PCX nebo LBM
+- texty jsou v nejpodivnějších kódováních: česká verze a komentáře v
+  programech jsou v kódu Kamenických (x-kam-cs), anglická verze normální
+  ASCII, a polská verze v proprietárním kódu, kde polské akcentované znaky
+  mají kódy od 128 do 145, viz. gfx/all.pl/convert/pol_conv.pas
+
+Kompilátor hry :
+----------------
+
+Je uložený v source/compiler/ a hlavní program je K3.EXE.  spouští se s 2
+parametry:
+
+	k3.exe \dh\gfx\all.cz \dh\exe
+
+kde druhý parametr udává, kam se má hra zkompilovat.  Výsledné soubory stačí
+nakopírovat do adresáře s finální hrou, kterou vytváříme.  Samozřejmě je nutné
+přidat spoustu dalších souborů (program P.EXE, který hru spustí, MIDI soubory,
+konfigurační soubor, fonty, ...).
+
+Také se vyrobí soubor retezce.ems, který můžete nakopírovat do
+source/editors/msam/ a pracovat s ním v editoru rozhovorů.  Už jsou jsou teď
+nakopírovány všechny 3 jazykové verze, před spuštěním msam.exe přejmenujte tu,
+kterou chcete používat, na retezce.ems.
+
+Pokud kompilátor spadne, může to být tím, že nenajde spoustu dalších souborů,
+protože jste rozbalili archív gfx.zip jinak než do \dh\gfx\.
+
+Pokud budete měnit herní texty, tak dávejte pozor, aby nebyly širší než šířka
+obrazovky (320 pixelů), protože v herním programu je chyba a pak začne celá
+obrazovka blikat.  V source/editors/width/ je program width.exe, který projde
+všechny textové soubory v aktuálním adresáři a nastrká do nich svislítka "|"
+tak, aby se text včas zalomil.  Dělá to velmi ošklivě a je lepší jeho výstup
+porovnat s originálem, než ho použijete.
+
+Herní program :
+---------------
+
+Je uložený v source/player/ a samotný hlavní program s knihovnou
+lokalizovaných textů je uložen v podadresáři lang.{cz,en,pl}.  Po načtení
+bp.tp je nutné v Options/Directories úplně na konci položky Source Code zvolit
+právě jedenu z lang.{cz,en,pl}, protože jinak si budou moduly stěžovat, že
+nenalezly error.pas.
+
+Knihovny :
+----------
+
+Všechny hlavní knihovny jsou v units/ a jsou rozděleny následovně:
+- bar/ obsahuje Bob's Archiver, něco jako interní ZIP, který umí jak
+  komprimovat, tak ukládat více souborů do jedné obálky.  Celá hra používá
+  tento archivátor.  Občas najdete použit modul dfw, který se používal
+  předtím, a tato novější verze emuluje jeho rozhraní.
+- gpl2/ neni GNU GPL 2 licence, pod kterou to teď šíříme, ale Game Programming
+  Language verze 2.  Samotný interpretter byte-kódu je v Turbo Assembleru a
+  volají se s z něj call-backy v Borland Pascalu.  Tento jazyk je
+  customizovatelný pomocí textových souborů obsahujících seznam podporovaných
+  call-backů.
+- system/ obsahuje všechny hlavní knihovny
+- gui/ obsahuje knihovny pro dialogové panely, menu, textový editor, file
+  selektor, ...
+
+Upozornění: hru naprogramali 3 programátoři mezi 16 a 18 lety, takže
+neočekávejte mistrovství softwarového inženýrství.  Dále v našich dobách
+neexistovaly téměř žádné dostupné rozumné knihovny, takže jsme skoro všechno
+(přístup k EMS paměti, grafická knihovna, myš, zvukovka, ...) museli
+naprogramovat od nuly v assembleru.  Některé zdrojáky jsou nehezké, ale
+funguje to :-)
+
+Herní editory :
+---------------
+
+Jsou asi nejbolestivější moduly vůbec.  Neexistuje jeden hlavní editor.
+Naopak v něčem se editovaly masky lokací (kam se dá chodit a co překrývá co),
+v něčem se editovaly animace (ze sekvencí obrázků a zvuků), v něčem se
+optimalizovala paleta, etd...  Každý editor má svůj adresář a konfigurační
+soubor.  Zkompilovat tyto editory je docela těžké, některé vyžadují starší
+knihovny a nepracují s novějšími, ale to jsem myslím spravil.
+
+Větší problém je asi už zkompilovaný editor spustit, protože každý z nich
+nejprve načte konfigurační soubor (např. gm3/gm3.cfg, aomaker/aomaker.cfg,
+gm4ikon/im4.cfg, palreduc/palreduc.cfg, ...), které nejsou vždy v textovém
+formátu, ale občas jsou v binárním formátu (uložit pole Pascalovských řetězců
+na disk).  Pokud zadaný adresář neexistuje, tak program při spuštění
+nejčastěji spadne, na druhou stranu je potřeba ten program spustit, aby se ten
+konfigurák dal změnit.  Pokud ohackujete, že se vám editor spustí, mělo by se
+objevit "komfortní" prostředí v grafice, kde můžete klávesnicí i myší rejdit
+po GUI a editovat.
+
+Editory lokací jsou gm3 (starý) a gm4ikon a gm4mist (nový).  Netuším, jestli
+ten starý je pouze historický pro úplnost nebo je k něčemu potřeba, ani co
+přesně se edituje v gm4ikon a co v gm4mist.  Možná tohle ještě dopiluji a
+uploadnu verzi s rozumnými konfigy.
+
+Instalátor :
+------------
+
+Zařazen pro úplnost, ani jsem se ho (na rozdíl od ostatních modulů) nesnažil
+vyčistit a rozchodit.  Obyč DOSosovský program, který nakopíruje soubory z
+média na disk.  Nepoužívejte.

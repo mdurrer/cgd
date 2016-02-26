@@ -1,0 +1,175 @@
+{s matkou v dracim dome:}
+
+block _00 ( maxline(1) and beg(1) and not been(_6) )
+title
+  justtalk
+   D: "Mamo, postanowiłem, że będę grzeczny!"
+  juststay
+  start mutti "mluvi"
+   B: "I nie stawiasz żadnych warunków?"
+  start mutti "mlci"
+gplend
+
+block _1 ( beg(0) and last(_00) and not been(_1) )
+   TITLE Jasne, że stawiam. Chcesz posłuchać?
+  load mutti "mlci2sec"
+  justtalk
+   D: "Jasne, że stawiam.
+       Chcesz posłuchać?"
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+
+  justtalk
+   D: "Hm? Nie szkodzi. I tak ci powiem.
+       Pozwolisz mi wracać późno
+       do domu..."
+   D: "Wchodzić przez okno, stawać na stole.
+       Przewracać linijką węgle w kominku,
+       wkładać nóż do buzi..."
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+
+  justtalk
+   D: "Ty wcale nie słuchasz, mamo!"
+  juststay
+{Berta ho neposlouchá}
+  {k obecenstvu}
+  justtalk
+   D: "To straszne gdy człowiek jest ignorowany
+       przez swą własną matkę."
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+  {po chvíli:}
+  start mutti "cili se"
+   B: "Nie będziesz przewracał węgielków linijką!"
+   B: "Linijka się stopi!"
+   B: "Możesz przewracać węgle tylko pogrzebaczem,
+       a ja nie pozwolę nawet na to."
+   B: "Sam wiesz,
+       że te palące się węgielki
+       okropnie kopcą."
+   B: "I o reszcie też zapomnij!"
+  start mutti "mlci"
+  justtalk
+   D: "Wygląda, że matka jest dla mnie surowa."
+  juststay
+  exitdialogue
+gplend
+
+block _2 ( beg(0) and last(_00) )
+   TITLE Ja tylko chcę być grzeczny, to wszystko...
+  justtalk
+   D: "Ja tylko chcę być grzeczny, to wszystko..."
+  juststay
+  start mutti "mluvi"
+   B: "Od kiedy?"
+  start mutti "mlci"
+gplend
+
+block _5 ( beg(0) and last(_2) or last(_4) and not been(_5) )
+   TITLE Muszę się zastanowić...
+  justtalk
+   D: "Muszę się zastanowić..."
+  juststay
+  exitdialogue
+gplend
+
+
+block _6 ( beg(0) and last(_2) or last(_4) and not been(_6) )
+   TITLE Zaczynam od zaraz!
+  justtalk
+   D: "Zaczynam od zaraz!"
+  juststay
+  start mutti "mluvi"
+   B: "Od zaraz? Skoro tak to
+       możesz wziąć ten ostry nóż..."
+   B: "I wyjść się pobawić."
+  start mutti "mlci"
+  justtalk
+   D: "Lecz... mamo?"
+  juststay
+  start mutti "mluvi"
+   B: "Jak bawią się inne grzeczne dzieci?"
+  start mutti "mlci"
+  justtalk
+   D: "Wychodzę, mamo!"
+  juststay
+  start mutti "mluvi"
+   B: "Lecz pamiętaj, że wciąż czeka cię lanie!"
+  start mutti "mlci"
+  justtalk
+   D: "(Rodzice czasem są niekonsekwentni,
+       nieprawdaż?)"
+  juststay
+
+  icostat on i_nuz
+  exitdialogue
+gplend
+
+block _3 ( beg(0) and last(_2) or last(_4) and not been(_3) )
+   TITLE Zaczynam od jutra.
+  justtalk
+   D: "Zaczynam od jutra."
+  juststay
+  start mutti "mluvi"
+   B: "Nie rozumiem.
+       Masz na myśli, że będziesz
+       grzeczny od jutra?"
+  juststay
+  justtalk
+   D: "Tak. Dziś jeszcze będę trochę niegrzeczny."
+  juststay
+  start mutti "mluvi"
+   B: "Nie zechcesz zmienić zdania?
+       Co ty na to by być trochę niegrzecznym
+       przez cały przyszły tydzień?"
+  juststay
+  justtalk
+   D: "Mmmmh, Dobrze, zastanowię sie."
+  juststay
+  exitdialogue
+gplend
+
+block _4 ( beg(0) and last(_2) and not been(_4) )
+   TITLE To będzie moje noworoczne postanowienie.
+  justtalk
+   D: "To będzie moje noworoczne postanowienie."
+  juststay
+  start mutti "mluvi"
+   B: "To za późno!"
+  juststay
+gplend
+
+block _01 ( maxline(1) and beg(1) and random(3) )
+title
+  justtalk
+   D: "Mamo, czy widziałaś gdzieś ojca?"
+  juststay
+  start mutti "mluvi"
+   B: "Żartujesz?
+       Nie widziałam go już od miesiąca!"
+  juststay
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(1) )
+title
+  justtalk
+   D: "Kiedy będzie obiad?"
+  juststay
+  start mutti "mluvi"
+   B: "Za chwilę.
+       Ale ty za karę nie będziesz jadł!"
+  juststay
+  justtalk
+   D: "Biorąc pod uwagę twoje umiejętności kulinarne
+       trudno to uznać za karę..."
+  juststay
+  exitdialogue
+gplend

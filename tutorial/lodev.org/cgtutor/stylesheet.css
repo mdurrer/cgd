@@ -1,0 +1,11 @@
+.code {font-family: monospace; color: rgb(192, 0, 0); white-space:pre; font-size: 12px;}
+.comment {font-family: monospace; color: rgb(0, 0, 192);}
+.string {font-family: monospace; color:red;}
+.codenopre {font-family: monospace; color: rgb(192, 0, 0); font-size: 12px;}
+.inlinecode {font-family: monospace; font-size: 12px;}
+table.codetable
+{
+width: 100%;
+background-color: #EEEEEE;
+text-align: left;
+}

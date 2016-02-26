@@ -1,0 +1,5 @@
+These files are meant to be easily edited in Unix environment and therefore
+are encoded in UTF-8 (instead of x-kam-cs in Czech and some ridiculous
+proprietary encoding in Polish).  The files need to be converted back before
+applying the compiler, using scripts/prune-sources.py, otherwise the wrong
+charset will be rendered incorrectly by the game fonts.

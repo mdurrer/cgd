@@ -1,0 +1,93 @@
+@CT 0
+@LM 1
+@RM 61
+@PL 60
+@TB -----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T-----T
+@MT 4
+@MB 4
+@PO 12
+@PN 1
+@OP 
+@HE                                  #
+@LH 6
+              Dra‡¡ Historie (c) NoSense 1995
+
+
+            Posledn¡ informace k disketov‚ verzi
+------------------------------------------------------------
+
+  P©ed  spou¨tˆn¡m  hry  se  ujistˆte,  ‘e  je CD disk Dra‡¡
+Historie ve va¨¡ CD-ROM jednotce.
+
+  Nedoporu‡ujeme v m vynd vat CD disk z mechaniky v pr–bˆhu
+hran¡ hry.
+
+  Pokud  zm ‡knete p©i  na‡¡t n¡ z  CD disku  kl vesu Pause,
+m–‘e  se st t,  ‘e se  hra zasekne  a pom–‘e  v m u‘  jedinˆ
+tla‡¡tko  Reset na  va¨em po‡¡ta‡i...  Tato nep©¡jemnost  se
+projevuje pouze na  nˆkter˜ch po‡¡ta‡¡ch (konfigurac¡ch), je
+mo‘n‚, ‘e na tom va¨em ne.
+
+  Jestli‘e m te vypnut‚ titulky a nad mluv¡c¡ postavi‡kou se
+v m  zni‡ehonic objev¡  nˆjak‚ ‡tvere‡ky  (te‡ky!), p©¡padnˆ
+vodorovn‚  ‡ rky (poml‡ky!)  a postavi‡ka  p©i tom  nemluv¡,
+neznamen  to  nic jin‚ho, ne‘  ‘e p©em˜¨l¡! To  opravdu nen¡
+chyba...
+
+
+                 Pro majitele karty Adlib
+------------------------------------------------------------
+
+  Hra  nebyla  na  kart ch  Adlib  nikdy  testov na.  P©esto
+vˆ©¡me,  ‘e by v m hudba mo‘n  mohla fungovat, zvuky nikoliv.
+K tomu,   abyste   ji   opravdu   sly¨eli,   mus¡te   udˆlat
+n sleduj¡c¡:
+
+  Zkop¡rovat   do  adres ©e   hry  soubor   MIDI.CFG,  kter˜
+naleznete na CD disku v adres ©i ADLIB.
+
+  Jin˜m   ©e¨en¡m  je   RU€N‰  naeditovat   soubor  MIDI.CFG
+v adres ©i hry. Popis souboru MIDI.CFG naleznete n¡‘e.
+
+
+
+                  Popis souboru MIDI.CFG
+       (konfigura‡n¡ soubor pro hran¡ hudby a zvuk–)
+------------------------------------------------------------
+
+  1.© dek- adresa karty DEKADICKY, v p©¡padˆ karty Adlib sem
+           napi¨te 904
+  2.© dek- ‡¡slo p©eru¨en¡, u karty Adlib nepodstatn‚
+  3.© dek- ‡¡slo kan lu DMA, u karty Adlib nepodstatn‚
+  4.© dek- nechat tam to, co tam je
+  5.© dek- nechat tam to, co tam je
+  6.© dek- typ karty, v p©¡padˆ karty Adlib sem napi¨te 255,
+           jinak typ karty Blaster
+
+
+------------------------------------------------------------
+
+  že¨en¡ probl‚m– neuveden˜ch v manu lu.
+
+
+  Na‡¡tal jsem  ulo‘enou pozici a ona  se buƒ nena‡etla nebo
+hra spadnula!
+  -m te z©ejmˆ na disku m lo m¡sta. Zkuste nˆco nepot©ebn‚ho
+vymazat  a pak  by mˆlo  ukl d n¡ a  na‡¡t n¡ hern¡ch  pozic
+prob¡hat norm lnˆ. Ka‘d  hern¡  pozice pot©ebuje okolo 12 KB
+m¡sta.
+
+  ›el jsem do mapy a p©i  v˜stupu z n¡ se hra chovala velice
+divnˆ...
+  -ten sam˜ probl‚m s nedostatkem m¡sta na disku.
+
+  Moje zvukov  karta ne a ne za‡¡t hr t!
+  -pokud  m   nˆjak‚  ovlada‡e,  dejte  je  z horn¡ pamˆti do
+pamˆti konven‡n¡.
+
+  Hra mi zni‡ehonic spadla.
+  -v ‘nˆ? My  douf me, ‘e to  snad ne! Pak  n m zb˜v  se  v m
+jedinˆ  velice  omluvit  a  doporu‡it  v m  hr t  od posledn¡
+ulo‘en‚ pozice...
+
+------------------------------------------------------------

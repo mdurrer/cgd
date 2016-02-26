@@ -1,0 +1,17 @@
+{když chce vzít pohrabáč a nejde to:}
+
+block _00 (1)
+title
+    load blby_hl "mluvi"
+    start blby_hl "mluvi"
+Iq: "Hey, you,
+     don't touch it!"
+    start blby_hl "mlci"
+    walkonplay 176 162 vlevo
+    justtalk
+D: "What?"
+    juststay
+    start blby_hl "mluvi"
+Iq: "Let it be!"
+    start blby_hl "mlci"
+ gplend

@@ -1,0 +1,531 @@
+{dialog draka s rytířem:}
+
+
+block _05 ( maxline(1) and beg(1) and hasbeen(_04) and not hasbeen(_05) )
+TITLE What about your feeling of fear?
+
+  justtalk
+D: "What about your feeling of fear?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "It d-d-didn't g-ge-get b-better at all."
+  start rytir "mlci"
+
+  justtalk
+D: "Did it get some definite shape?"
+  juststay
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  start rytir "mluvi"
+Ryt: "It-t is the s-s-same
+      unde-scri-scribable t-thing all the time."
+  start rytir "mlci"
+
+  justtalk
+D: "It's a pity.
+    If you explained it somehow
+    I might be able to help you..."
+  juststay
+  exitdialogue
+gplend
+
+block _06 ( maxline(1) and beg(1) and hasbeen(_05) and not hasbeen(_06) )
+TITLE We have to do something about this feeling of fear!
+  justtalk
+D: "We have to do something about this feeling
+    of fear!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "B-but w-wh-what?"
+  start rytir "mlci"
+
+  justtalk
+D: "We have to find its cause.
+    I will ask you some questions
+    and you will answer them, right?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "F-f-fine."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Do you feel that the dragon wants to hurt you?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I d-don't know why h-he should hurt me
+      the-there's nothing p-p-personal in it."
+  start rytir "mlci"
+
+  justtalk
+D: "Uh-oh!"
+D: "You want to cut the dragon's head off,
+    don't you?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Y-yes."
+  start rytir "mlci"
+
+  justtalk
+D: "Do you think he will mind?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I th-think it should not matter t-t-to him
+      if he h-ha-has two h-he-heads or t-three."
+  start rytir "mlci"
+
+  justtalk
+D: "And what if he has only one?!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I b-believe in h-his na-natural
+      re-re-regeneration abilities."
+  start rytir "mlci"
+
+  exitdialogue
+
+gplend
+
+block _07 ( maxline(1) and beg(1) and hasbeen(_06) and not hasbeen(_07) )
+TITLE Do you think that the dragon wants to eat you?
+  justtalk
+D: "Do you have a feeling that the dragon
+    wants to eat you?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "N-no. I d-don't thi-think so.
+      I t-think he wouldn't l-l-like my arm-armor."
+  start rytir "mlci"
+
+  justtalk
+D: "The dragon will like that best of all."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "D-Does he?
+      I th-thought dragons d-did't eat me-metal-plate?!"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "No way, he will eat you with your armor
+    in no time."
+D: "Plate armor has become a famous delicacy
+    these days."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I do-don't b-bb-believe it!"
+  start rytir "mlci"
+
+  justtalk
+D: "Don't believe it then.
+    I thought you would swallow the bait."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I a-ain't na-naive."
+  start rytir "mlci"
+
+  justtalk
+D: "Sure? I hope you won't be surprised!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Why sho-should I b-be surpri-rised?
+      Dr-dragons do n-not like p-plate. Finito!"
+  start rytir "mlci"
+
+  justtalk
+D: "That's your mistake!"
+D: "If there's no can-opener handy
+    and the dragon is really hungry,
+    he will eat you even with your armor."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "And w-what about h-his p-poor digestion."
+  start rytir "mlci"
+
+  exitdialogue
+gplend
+
+
+block _12 ( maxline(1) and beg(1) and not been(_12) and isactico(0) and been(_07) and (otec_troubil=1) )
+TITLE Have you heard of dragons who spit fire and sulphur?
+  justtalk
+D: "Have you heard of dragons who spit
+    fire and sulphur?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Y-yep."
+  start rytir "mlci"
+
+  justtalk
+D: "Now there's even a mutation that
+    spits sulphuric acid."
+D: "Such a dragon will spit a little acid into his
+    stomach and he will easily digest you."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "T-these are rea-really strong st-stomach juices."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Did you hear that noise coming from the cave?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I di-did really he-hear something."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "And it was just his stomach rumbling!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I'm starting to have a very well
+      describable feeling of fear!"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+
+{vytrepani soucastky:}
+  start rytir_nohy "hodne"
+  load nyt_pada "padani"
+  startplay nyt_pada "padani"
+  objstat away nyt_pada
+  objstat_on nyt jesven
+  start nyt "zakladni"
+  let tras_nohou (1)
+
+  exitdialogue
+gplend
+
+
+block _13 ( maxline(1) and beg(1) and isactico(i_tricko))
+title
+  let slepene_nohy (1)
+  icostat off i_tricko
+  objstat_on rytir_nohy_slep jesven
+  start rytir_nohy_slep "zakladni"
+  objstat away rytir_nohy
+
+  justtalk
+D: "Now it's better.
+    The clanking started to get on my nerves"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Thanks for gluing my legs,
+      my knees were quite a bit battered.
+      I even stopped s-stammering!"
+  start rytir "mlci"
+
+  justtalk
+D: "But you will have to stay here forever."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I don't mind, this is quite a nice place."
+Ryt: "I always wanted to die
+      in a place like this."
+  start rytir "mlci"
+
+  justtalk
+D: "I think you will rust to death."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Who knows..."
+  start rytir "mlci"
+
+  justtalk
+D: "And what about dragons now?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "You know what,
+      you could bring the dragons here for me."
+  start rytir "mlci"
+
+  justtalk
+D: "I will have to think about that."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "If you insist,
+      you could cut their heads off
+      instead of me."
+Ryt: "If you don't have a sword
+      you could have mine.
+      But you have to be carefull with it. Deal?"
+  start rytir "mlci"
+
+  justtalk
+D: "It's not really possible,
+    I wield swords like a hooligan!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "In this case you have to
+      get a sword somewhere else."
+Ryt: "If you want to cut dragons' heads
+      you would definitely need to find a sword."
+  start rytir "mlci"
+
+  exitdialogue
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) and isactico(0) )
+title
+  justtalk
+D: "Hello. I am Bert!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Wh-who are you? A dra-dragon?"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "No, I ain't really a dragon.
+    I just came back from Mardi Gras ..."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Th-that costume is rea-really nice.
+      My name is Ter-rordre-read S-solid."
+Ryt: "You're lucky you aren't a dragon,
+      otherwise I would have to cut your head off."
+  start rytir "mlci"
+gplend
+
+block _00a ( maxline(1) and beg(1) and been(_00) and isactico(0) and (slepene_nohy=0) )
+title
+  justtalk
+D: "What about having a chat?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Why not."
+  start rytir "mlci"
+gplend
+
+block _14 ( atbegin(0) and not hasbeen(_14) )
+TITLE What about the cave behind us ...
+  justtalk
+D: "What about the cave behind us ..."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Is th-there a dra-dragon in there?"
+  start rytir "mlci"
+
+  justtalk
+D: "You are the one to know!
+    You are standing in front of it."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "But I do-don't kn-know i-it yet."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "I'd say there is a dragon in there.
+    I have some business with him..."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "If it's s-so, then I hope you ain't going
+      to cut his head. It is mmm-my job!"
+  start rytir "mlci"
+
+  justtalk
+D: "To cut his head? Never!
+    It is certainly my father!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "H-h-how co-come your fa-father is a
+      dr-dragon and you ar-aren't?!"
+  start rytir "mlci"
+
+  justtalk
+D: "I'm just an evolutionary joke ..."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "O-oh!"
+  start rytir "mlci"
+gplend
+
+block _20 ( atbegin(0) and not hasbeen(_20) )
+TITLE How do you feel in that armor of yours?
+  justtalk
+D: "How do you feel in that armor of yours?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "It's a good deal awkward."
+Ryt: "It's be-because I su-suffer from
+      cl-clau-claustrophobia!"
+  start rytir "mlci"
+
+  justtalk
+D: "So try to open your visor."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "The-ther's a screw jammed in it."
+  start rytir "mlci"
+gplend
+
+block _02 ( atbegin(0) and not hasbeen(_02) )
+TITLE Why do your knees tremble so much?
+  justtalk
+D: "Why do your knees tremble so much?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "It ha-happens every t-time I am
+      to cut the head off some dr-dragon."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "What does your psychiatrist say?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I do-don't know w-what he says.
+      But I've g-got a bo-book called
+      'B-be your own psy-psychiatrist'."
+  start rytir "mlci"
+
+  justtalk
+D: "And what does the book say?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "It s-says I have t-to overcome my f- f- fe-"
+  start rytir "mlci"
+
+  justtalk
+D: "Fear?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Th-that's it.
+      I ha-have come to t-try it h-here."
+  start rytir "mlci"
+
+  justtalk
+D: "You didn't succeed very much, did you?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I don't know what the cause is,
+      b-but today I can't mo-move at all!"
+  start rytir "mlci"
+gplend
+
+block _04 ( atbegin(0) and hasbeen(_02) and not hasbeen(_04) )
+title What's the source of your fear?
+  justtalk
+D: "What's the source of your fear?
+    As far as I know, dragons are friendly!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I do-don't know. I si-simply have an
+      indi-indiscribable feeling of fe-fear!"
+  start rytir "mlci"
+
+  justtalk
+D: "If your fear had some definable shape
+    something could be
+    done about it."
+  juststay
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+gplend
+
+
+block _15 ( beg(0) and last(_00a) and maxline(1) and (slepene_nohy=0) )
+title
+  justtalk
+D: "But what could that be?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Th-that's true.
+      S-see you la-later."
+  start rytir "mlci"
+gplend
+
+block _00b ( maxline(1) and beg(1) )
+title
+ {kdyby žádný přdchozí začátek rozhovoru nezabral...
+  justtalk
+D: "What about having a talk?"
+{rytir chvilku mlci}
+Ryt: "---"
+D: "As you wish."
+  juststay
+  exitdialogue
+gplend
+
+block _99 ( not maxline(1) and beg(0) and not last(_00a) )
+TITLE I will leave you for now...
+  justtalk
+D: "I will leave you for now..."
+  juststay
+  start rytir "mluvi"
+Ryt: "Fi-fine."
+Ryt: "S-see you la-later then."
+  start rytir "mlci"
+  exitdialogue
+gplend
+

@@ -1,0 +1,52 @@
+block _0 ( beg(1)
+title
+{disablespeedtext
+disablequickhero
+stayon -24 170 vpravo
+
+start hulka "kamen_mluvi"
+EvIn: "I will rule the World. But how?"
+walkon 75 175 vpravo
+EvIn: "Who is this?"
+start hulka "na kameni"
+EvIn: "I've got it! ... I will manipulate this
+       young, naive, inexperienced dragon being!"
+EvIn: "Hey, stop!"
+startplay hulka "premet"
+start hulka "mluvi"
+justtalk
+D: "A talking stick? How peculiar."
+juststay
+EvIn: "Listen to me.
+       I need to ask you some questions."
+EvIn: "Would you like to rule the World?"
+justtalk
+D: "And what would you know about that?"
+juststay
+start hulka "mluvi"
+
+EvIn: "Well, of course I would.
+       Look, I have a badge."
+startplay hulka "placka_vznik"
+start hulka "placka_mlci"
+
+justtalk
+D: "'I am (almost) the ruler of the World.
+    Ask me how?'"
+D: "Hmm, it sounds interesting.
+    Oh well,
+    I have nothing else to do this afternoon."
+D: "Let's start."
+juststay
+
+start hulka "placka_mluvi"
+EvIn: "But a little practice in ruling the World
+       couldn't spoil anything, right?"
+EvIn: "What about we start by playing some tricks?"
+start hulka "placka_mlci"
+justtalk
+D: "Good idea, we could do it for
+    the rest of the afternoon."
+juststay
+
+gplend

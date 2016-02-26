@@ -1,0 +1,215 @@
+{rozhovor s pinglem v hospodě:}
+
+block _05 ( beg(1) and isactico(i_doutnik) and (chci_plakat=1) )
+title
+  justtalk
+D: "What about a cigar?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Tempting..."
+  start pingl "mlci"
+  justtalk
+D: "It's an original cigar from the Dragon History."
+  juststay
+  start pingl "mluvi"
+Vrch: "Alright, I'll take it!"
+  start pingl "mlci"
+  justtalk
+D: "Will you smoke it now?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Hey, don't you know
+       that smoking kills?!"
+Vrch: "No, I will care only
+       about its preciousness."
+Vrch: "Maybe I will sniff it from time to time"
+Vrch: "...and the poster is yours, of course!"
+  start pingl "mlci"
+
+  objstat away hosp_plakat
+  icostat off i_doutnik
+  icostat on i_plakat
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and maxline(1) )
+title
+  justtalk
+D: "Waiter..."
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+TITLE ...what about the poster?
+  justtalk
+D: "...what about the poster?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Do you like it?"
+  start pingl "mlci"
+  justtalk
+D: "I'd like to have it in my room."
+  juststay
+  start pingl "mluvi"
+Vrch: "And what would you like more?"
+  start pingl "mlci"
+  justtalk
+D: "Flags, stickers, badges..."
+  juststay
+  justtalk
+D: "...coasters, do you have any?..."
+  juststay
+  justtalk
+D: "... also a baseball cap..."
+  juststay
+  justtalk
+D: "...and a T-shirt with a logo!"
+  juststay
+  start pingl "mluvi"
+Vrch: "None of that!"
+  start pingl "mlci"
+  justtalk
+D: "And what about the poster?"
+  juststay
+  start pingl "mluvi"
+Vrch: "I could give it to you,
+       but not for free."
+  start pingl "mlci"
+
+  let chci_plakat (1)
+gplend
+
+block _02 ( beg(0) and not been(_02) )
+TITLE ...will you lend me darts?
+  justtalk
+D: "...will you lend me darts?"
+  juststay
+  start pingl "mluvi"
+Vrch: "We do not lend darts."
+  start pingl "mlci"
+  justtalk
+D: "Why?"
+  juststay
+  start pingl "mluvi"
+Vrch: "There are no darts."
+  start pingl "mlci"
+  justtalk
+D: "I don't understand!"
+  juststay
+  start pingl "mluvi"
+Vrch: "Simple, there are no darts."
+Vrch: "If there were some
+       then the bar would perhaps be full..."
+Vrch: "Even one of our finest guests went
+       to hang himself in the woods because of it."
+  start pingl "mlci"
+  justtalk
+D: "Where did he go to, exactly?"
+  juststay
+  start pingl "mluvi"
+Vrch: "I don't know, he went to look for a branch..."
+  start pingl "mlci"
+
+{a objevime sipkare v lese:}
+  objstat_on leskriz_sipkar leskriz
+gplend
+
+block _03 ( beg(0) and not been(_03) )
+TITLE ...where does this door lead to?
+  justtalk
+D: "...where does this door lead to?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Outside the pub. But it isn't used
+       because of the darts."
+  start pingl "mlci"
+  justtalk
+D: "That sounds like an interesting story..."
+  juststay
+  start pingl "mluvi"
+Vrch: "It was used originally,
+       but too many accidents happened."
+Vrch: "When somebody entered unexpectedly,
+       as happened often
+       he ended up with a dart in his head."
+  start pingl "mlci"
+  justtalk
+D: "How did you keep score then?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Ten for an Eye and five for a Nose."
+Vrch: "If the throw was extremely powerful
+       there were two points for every missing tooth."
+Vrch: "And when the dart was flying so fast
+       that it took the man with itself..."
+Vrch: "...and pinned him outside the pub
+       on a tree, that counted for one hundered."
+  start pingl "mlci"
+  justtalk
+D: "Is that what the rules say?"
+  juststay
+  start pingl "mluvi"
+Vrch: "That's what it was, yet there were arguments
+       about it."
+Vrch: "And that's why the door is locked forever
+       and the key is safely lost."
+  start pingl "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+TITLE ...do you have hamburgers?
+  justtalk
+D: "...do you have hamburgers?"
+  juststay
+  start pingl "mluvi"
+Vrch: "We don't cook!"
+  start pingl "mlci"
+  justtalk
+D: "It needn't be cooked..."
+  juststay
+  start pingl "mluvi"
+Vrch: "We have no kitchen."
+  start pingl "mlci"
+  justtalk
+D: "And what about the sign outside?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Just a gimmick."
+  start pingl "mlci"
+  justtalk
+D: "I see."
+  juststay
+gplend
+
+
+
+block _06 ( beg(0) and been(_04) and not been(_05) and last(_00) and maxline(1) )
+title
+  justtalk
+D: "...the poster..."
+  juststay
+  start pingl "mluvi"
+Vrch: "I thought we understood each other.
+       It could be yours, but not for free."
+  start pingl "mlci"
+  exitdialogue
+gplend
+
+block _08 ( beg(0) and last(_00) and maxline(1) )
+title
+  justtalk
+D: "...nothing."
+  juststay
+  exitdialogue
+gplend
+
+block _07 ( beg(0) and not last(_00) )
+TITLE ...bye then.
+  justtalk
+D: "...bye then."
+  juststay
+  start pingl "mluvi"
+Vrch: "Yeah..."
+  start pingl "mlci"
+  exitdialogue
+gplend

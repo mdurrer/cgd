@@ -1,0 +1,649 @@
+<html>
+<head>
+  <title></title>
+  <meta content="">
+  <style></style>
+</head>
+<body>
+  
+  
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1" cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Vector3</td>
+      <td style="vertical-align: top;">A 3-dimensional vector class, with components x, y and z, and vareous functions.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Matrix3</td>
+      <td style="vertical-align: top;">A 3x3 matrix class, with components a, b, c, d, e, f, g, h, i and various functions.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Camera</td>
+      <td style="vertical-align: top;">A 3D camera class full of handy functions for 3D transformations.</td>
+    </tr>
+  </tbody>
+</table>
+  
+  
+  
+<h3><a name="QuickCG_Vector3_Class_Functions_and_" id="QuickCG_Vector3_Class_Functions_and_"></a>QuickCG Vector3 Class
+Functions and Members<br />
+</h3>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>Function</b></td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <b>Information</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>x, y, z</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double x, double y, double z</span><br /> The 3 elements of the 3D vector. The vector is of the form<br />
+      <tt>[ x ]</tt><br />
+      <tt>[ y ]</tt><br />
+      <tt>[ z ]</tt></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;"><br />
+      </td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3(double x, double y, double z);</span><br />Constructor, create vector with given x, y and z coordinate</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;"><br />
+      </td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3();</span><br />Constructor, create vector with x, y and z set to 0</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">length</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double length();</span><br />Returns the length of the vector</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">normalize</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void normalize();</span><br />Normalizes the vector</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>distance</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double distance(const Vector3&amp; v);</span><br />Returns the distance between this vector and v</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>dot</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double dot(const Vector3&amp; v);</span><br />Returns the dot product between this vector and v</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">cross</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 cross(const Vector3&amp; v);</span><br />Returns the cross product between this vector and v</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h3><a name="QuickCG_Matrix3_Class_Functions_and_" id="QuickCG_Matrix3_Class_Functions_and_"></a>QuickCG Matrix3 Class Functions and Members<br />
+</h3>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>Function</b></td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <b>Information</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>a to i</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double a, double b, double c, double d, double e, double f, double g, double h, double i</span><br />The 9 elements of the 3x3 matrix. The matrix is of the form<br />
+      <tt>[ a b c ]</tt><br />
+      <tt>[ d e f ]</tt><br />
+      <tt>[ g h i ]</tt></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;"><br />
+      </td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Matrix3(double a, double b, double c, double d, double e, double f, double g, double h, double i);</span><br />Constructor, create vector with given values for the elements.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;"><br />
+      </td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Matrix3();</span><br />Constructor, create vector with all elements set to 0</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">transpose</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void transpose();</span><br />Transpose the matrix</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">determinant</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double determinant();</span><br />Returns the determinant of the matrix</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>invert</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void invert();</span><br />Invert the matrix</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h3><a name="QuickCG_Camera_Class_Functions_and"
+ id="QuickCG_Camera_Class_Functions_and"></a>QuickCG Camera Class Functions and Members</h3>White rows are public, grey rows are private.<br />
+<br />
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>Function</b></td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <b>Information</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">nearClip</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double nearClip</span><br />The near clipping distance of the camera</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">farClip</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">farClip</span><br />The far clipping distance of the camera</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;"><br />
+      </td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Camera(double posx, double posy, double posz,<br />
+double ux, double uy, double uz,<br />
+double vx, double vy, double vz,<br />
+double dirx, double diry, double dirz,<br />
+double nearClip, double farClip);</span><br />
+Generate the camera with given values</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;"><br />
+      </td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Camera();</span><br />
+Generate the camera with default values</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>getU,<br />
+getV,<br />
+getDir,<br />
+getPos</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">Vector3 getU();<br />
+Vector3 getV();<br />
+Vector3 getDir();<br />
+Vector3 getPos();</span><br />
+Returns the horizontal, vertical, direction or position vector of
+the camera</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>setU,<br />
+setV,<br />
+setDir,<br />
+setPos</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void
+setU();<br />
+void setV();<br />
+void setDir();<br />
+void setPos();</span><br />
+Sets the horizontal, vertical, direction or position vector of the
+camera</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">move</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void move(const Vector3&amp; offset);</span><br />
+Move with given offset</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>rotate</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void
+rotate(const Vector3&amp; axis, double angle);<br />
+      </span> Rotate the camera
+around given axis with given angle</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+setLookDir</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void setLookDir(const Vector3&amp; newDir);</span><br />
+Let the camera look in given direction</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+lookAt</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void lookAt(const Vector3&amp; lookAtMe);</span><br />
+Look at given point</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+getDist,<br />
+setDist</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double getDist(const Vector3&amp; point);<br />
+void setDist(const Vector3&amp; point, double dist);<br />
+      </span> Get and set
+the distance of the camera to a certain point (translate without
+rotating it)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>getZoomU,<br />
+getZoomV<br />
+      </tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double
+getZoomU();<br />
+double getZoomV();</span><br />
+Get the zoom value of the camera in horizontal or vertical
+direction<br />
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>setZoomU,<br />
+setZoomV<br />
+      </tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void
+setZoomU(double a);<br />
+void setZoomV(double a);</span><br />
+Set the zoom of the camera in horizontal or vertical direction</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+zoom,<br />
+zoomU,<br />
+zoomV</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void zoom(double a);<br />
+void zoomU(double a);<br />
+void zoomV(double a);</span><br />
+Zoom both horizontally and vertically, only horizontally or only
+vertically, with a certain factor.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>getFOVU,<br />
+getFOVV<br />
+      </tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double
+getFOVU();<br />
+double getFOVV();<br />
+      </span> Returns the Field Of View in
+horizontal or vertical direction in radians. This is just another
+way of describing the zoom, with an angle instead of a
+factor.<br />
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>setFOVU,<br />
+setFOVV<br />
+      </tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void
+setFOVU(double angle);<br />
+void setFOVV(double angle);</span><br />
+Set the Field Of View in horizontal or vertical direction.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+getYaw,<br />
+getPitch,<br />
+getRoll</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double getYaw();<br />
+double getPitch();<br />
+double getRoll();</span><br />
+Get those 3 Euler Angles from the camera. These aren't native
+members of the camera but have to be calculated out of it's
+vectors.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+setYaw,<br />
+setPitch,<br />
+setRoll</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void setYaw(double angle);<br />
+void setPitch(double angle);<br />
+void setRoll(double angle);</span><br />
+Get those 3 Euler Angles from the camera. These aren't native
+members of the camera but have to be converted to it's
+vectors.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+yawPlanet,<br />
+yawSpace,<br />
+pitch,<br />
+roll</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void yawPlanet(double angle);<br />
+void yawSpace(double angle);<br />
+void pitch(double angle);<br />
+void roll(double angle);</span><br />
+yawPlanet rotates the camera around the world y axis with given angle<br />
+yawSpace rotates the camera around the camera "up" axis with given angle<br />
+pitch rotates the camera around the camera "right" axis with given angle<br />
+roll rotates the camera around the camera "direction" axis with given angle</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+resetSkewU,<br />
+resetSkewV</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 resetSkewU();<br />
+Vector3 resetSkewV();</span><br />
+Make the camera orthogonal again if somehow it became skewed.<br />
+resetSkewU maintains exact direction and roll if only v was skewed<br />
+resetSkewV maintains exact direction and roll if only u was skewed</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+getRatioUV,<br />
+getRatioVU</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double getRatioUV();<br />
+double getRatioVU();</span><br />
+Returns length(u)/length(v) and length(v)/length(u)
+respectively.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+setRatioUV,<br />
+setRatioVU</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void setRatioUV(double ratio);<br />
+void setRatioVU(double ratio);</span><br />
+Sets the ratio of the length of u and v, to have a good view on the
+computer screen, ratioUV should match the resolution ratio of the
+screen, e.g. if using resolution 1024 * 768, then ratioUV should be
+set to 1024 / 768 = 1.333333</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+getScale,<br />
+setScale,<br />
+scale</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double getScale();<br />
+void setScale(double dirLength);<br />
+void scale(double factor);</span><br />
+Scaling the camera changes the length of u, v and dir with the same
+ratio. This has no effect on what you see. getScale returns the
+length of the direction vector, and setScale scales the camera
+until the direction vector has given length.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+generateMatrix</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void generateMatrix();</span><br />
+Generates the internal variable camMatrix. This matrix is nothing
+else than the column vectors u, v and dir sticked together, and is
+used for the transformation calculations.<br />
+Generatematrix has to be used everytime you change u, v or dir. For
+the functions given above that rotate, scale, etc... this is
+already done automaticly.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+getMatrix<br />
+setMatrix,</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Matrix3 getMatrix();<br />
+void setMatrix(const Matrix3&amp; matrix);</span><br />
+Get or set camMatrix. Setting it automaticly updates u, v and dir
+as well.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+transform</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 transform(const Vector3&amp; v);</span><br />
+Multiply given vector v with the inverse of camMatrix</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+projectOnScreen</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool projectOnScreen(const Vector3&amp; point, int
+&amp; x,
+int &amp; y, double &amp; z);<br />
+bool projectOnScreen(const Vector3&amp; point, int &amp; x, int &amp;
+y);</span><br />
+Return the coordinates a certain 3D point has on screen. You can
+choose wether or not you want it to return the distance of that
+point to the screen in camera space.</td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; font-family: monospace; background-color: rgb(204, 204, 204);">
+pos</td>
+      <td colspan="1" rowspan="1"
+ style="vertical-align: top; background-color: rgb(204, 204, 204);">
+      <span class="codenopre">Vector3 pos;</span><br />
+The position of the camera in the world</td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; font-family: monospace; background-color: rgb(204, 204, 204);">
+u</td>
+      <td
+ style="vertical-align: top; background-color: rgb(204, 204, 204);">
+      <span class="codenopre">Vector3 u;<br />
+      </span> The "right" vector of
+the camera, parallel with the horizontal bottom of the computer
+screen, the unit vector of the X axis of the camera space</td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; font-family: monospace; background-color: rgb(204, 204, 204);">
+v</td>
+      <td colspan="1" rowspan="1"
+ style="vertical-align: top; background-color: rgb(204, 204, 204);">
+      <span class="codenopre">Vector3 v;</span><br />
+The "up" vector of the camera, parallel with the vertical side of
+the computer screen, the unit vector of the Y axis of the camera
+space</td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; font-family: monospace; background-color: rgb(204, 204, 204);">
+dir</td>
+      <td colspan="1" rowspan="1"
+ style="vertical-align: top; background-color: rgb(204, 204, 204);">
+      <span class="codenopre">Vector3 dir;</span><br />
+The direction of the camera, where you're looking at, points into
+the computer screen, the unit vector of the Z axis of the camera
+space</td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; font-family: monospace; background-color: rgb(204, 204, 204);">
+camMatrix</td>
+      <td colspan="1" rowspan="1"
+ style="vertical-align: top; background-color: rgb(204, 204, 204);">
+      <span class="codenopre">Matrix3 camMatrix;</span><br />
+The camera matrix for transformations. Should always be updated
+together with the u, v and dir vectors.</td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; font-family: monospace; background-color: rgb(204, 204, 204);">
+invCamMatrix</td>
+      <td
+ style="vertical-align: top; background-color: rgb(204, 204, 204);">
+      <span class="codenopre">Matrix3 invCamMatrix;</span><br />
+The inverse camera matrix for transformations. Should always be
+updated together with the u, v and dir vectors.</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h3><a name="QuickCG_3D_Functions_" id="QuickCG_3D_Functions_"></a>QuickCG
+3D Functions</h3>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>Function</b></td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <b>Information</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+length</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double length(const Vector3&amp; v);</span><br />
+Returns the length of vector v</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+normalize</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 normalize(const Vector3&amp; v);</span><br />
+Returns a vector with length 1 and the same direction as v</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+distance</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double distance(const Vector3&amp; v, const Vector3&amp;
+w);</span><br />
+Returns the distance between v and w</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>dot</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double
+dot(const Vector3&amp; v, const Vector3&amp; w);</span><br />
+Returns the dot product of v and w</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>cross</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">Vector3
+cross(const Vector3&amp; v, const Vector3&amp; w);</span><br />
+Returns the corss product of v and w</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">-</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 operator-(const Vector3&amp; v, const Vector3&amp;
+w);</span><br />
+Returns v - w</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>-</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">Vector3
+operator-(const Vector3&amp; v);</span><br />
+Returns -v</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">+</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 operator+(const Vector3&amp; v, const Vector3&amp;
+w);</span><br />
+Returns v + w</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">*</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 operator*(const Vector3&amp; v, double a);<br />
+const Vector3&amp; operator*(double a, const Vector3&amp; v);</span><br />
+Returns v multiplied with a</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">/</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 operator/(const Vector3&amp; v, double
+a);</span><br />
+Return v divided through a</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>vectorAngle</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double
+vectorAngle(const Vector3&amp; v, const Vector3&amp; w);</span><br />
+Return angle between vectors v and w</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <tt>rotateAroundArbitrary</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">Vector3
+rotateAroundArbitrary(const Vector3&amp; v, const Vector3&amp; axis, double
+angle);<br />
+      </span> Returns vector v rotated around axis through
+the origin over the given angle</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+transpose</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Matrix3 transpose(const Matrix3&amp; A);</span><br />
+Returns the transpose of A</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>determinant</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">double
+determinant(const Matrix3&amp; A);</span><br />
+Returns the determinant of A</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>inverse</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">Matrix3
+inverse(const Matrix3&amp; A);</span><br />
+Returns the inverse of A</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">+</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Matrix3 operator+(const Matrix3&amp; A, const Matrix3&amp;
+B);</span><br />
+Returns A + B</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">-</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Matrix3 operator-(const Matrix3&amp; A, const Matrix3&amp;
+B);</span><br />
+Returns A - B</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">*</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Matrix3 operator*(const Matrix3&amp; A, double a);<br />
+Matrix3 operator*(double a, const Matrix3&amp; A);</span><br />
+Returns A multiplied with a</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">/</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Matrix3 operator/(const Matrix3&amp; A, double
+a);</span><br />
+Returns A divided through a</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">*</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">Vector3 operator*(const Matrix3&amp; A, const Vector3&amp; v);<br />
+Vector3 operator*(const Vector3&amp; v, const Matrix3&amp; A);<br />
+Matrix3 operator*(const Matrix3&amp; A, const Matrix3&amp; B);</span><br />
+Returns matrix multiplied with vector, vector multiplied with
+matrix, or matrix multiplied with matrix</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+radToDeg,<br />
+degToRad</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">double radToDeg(double rad);<br />
+double degToRad(double deg);</span><br />
+Convert from radians to degrees or from degrees to radians.</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<hr />
+Last edited: 2004
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+</body>
+</html>

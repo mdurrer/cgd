@@ -1,0 +1,346 @@
+{Bert s hlavní židlí:}
+
+{kliknuti cihlou chytneme hned na zacatku:}
+block _11 ( not last(_11) and ((beg(1) and maxline(1) and isactico(i_cihla))or beg(0)) and (nedosahnu_na_pohadku=1) and isobjon(pohadka) and isobjon(hodzid_dobra) )
+title Potřeboval bych od vás menší službu...
+ labels nemamcihlu
+  justtalk
+   D: "Potřeboval bych od vás menší službu..."
+  juststay
+  start hodzid "mluvi"
+  Ka: "V čem to spočívá?"
+  start hodzid "mlci"
+  justtalk
+   D: "Trošku si na vás stoupnu..."
+  juststay
+  start hodzid "mluvi"
+  Ka: "Uh!"
+  start hodzid "mlci"
+  justtalk
+   D: "Upozorňuju vás,
+       že je to ode mě hodně odvážné."
+   D: "Možná budu
+       balancovat jenom na jedné noze!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "A co teprve já na mých třech!"
+  start hodzid "mlci"
+
+  if(isactico(0)) nemamcihlu
+  justtalk
+   D: "Nemějte strach o vaše tři nohy,
+       našel jsem cosi na podložení."
+  juststay
+  start hodzid "mluvi"
+  Ka: "Cože? Starou cihlu?"
+  start hodzid "mlci"
+  justtalk
+   D: "Ale je plně funkční."
+  juststay
+
+   icostat off i_cihla
+{   icostat on i_pohadka
+{   objstat away pohadka
+{do obou identifikatoru dam, ze uz tam pohadka neni
+{   let nedosahnu_na_pohadku (2)
+{   let vim_o_pohadce (2)
+{nyni zaridit situacku s vyndanim knihy:}
+   newroom hod 2
+   exitdialogue
+ label nemamcihlu
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) )
+title
+  justtalk
+   D: "Jste to Vy, Vaše urozenosti?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Jsem to skutečně já, Karmela pátá,
+       i když ve zbídačeném stavu!
+       Přišel jsi mě zachránit?"
+  start hodzid "mlci"
+  justtalk
+   D: "(Mám přece dost svých starostí.
+       Možná někdy příště...
+       Musím to rychle zamluvit!)"
+   D: "Ale vypadáte opravdu celá
+       tak nějak omšele!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "No nediv se..."
+  start hodzid "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and not been(_01) and been(_00) )
+title
+  justtalk
+   D: "Karmelo, řečená pátá!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Jestli zrovna řečená si nejsem jistá,
+       ale pátá jsem. Přeješ si?"
+      start hodzid "mlci"
+gplend
+
+block _02 ( maxline(1) and beg(1) and been(_01) )
+title
+  justtalk
+   D: "Karmelo pátá!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Ano?"
+  start hodzid "mlci"
+gplend
+
+block _10 ( beg(0) and not been(_10) )
+title Posílají mě za vámi vaše poddané.
+  justtalk
+   D: "Posílají mě za vámi vaše poddané."
+  juststay
+  start hodzid "mluvi"
+  Ka: "Máš nějaké zprávy?"
+  start hodzid "mlci"
+  justtalk
+   D: "Melánie je celá rozklížená."
+  juststay
+  start hodzid "mluvi"
+  Ka: "To má z toho."
+  start hodzid "mlci"
+  justtalk
+   D: "Eulánie nadává,
+       že je celá prolezlá červotočem."
+  juststay
+  start hodzid "mluvi"
+  Ka: "Ta si stěžuje už aspoň padesát let!"
+  start hodzid "mlci"
+  justtalk
+   D: "Z Agáty se odlupuje překližka!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Vydrží?"
+  start hodzid "mlci"
+  justtalk
+   D: "Ta už to má za sebou..."
+  juststay
+  start hodzid "mluvi"
+  Ka: "Ach! Moje nejoblíbenější přítelkyně!"
+  start hodzid "mlci"
+gplend
+
+block _14 ( beg(0) and not been(_14) and isobjon(hodzid_dobra) and not maxline(1) )
+title Tak jak se cítíte po malé opravě?
+  justtalk
+   D: "Tak jak se cítíte po malé opravě?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Připadám si jako v nové kůži!
+       Ta záplata mi moc pomohla."
+      start hodzid "mlci"
+  start hodzid "mluvi"
+  Ka: "Jsem ti hluboce zavázána."
+  start hodzid "mlci"
+gplend
+
+block _13 ( not last(_13) and beg(0) and (nedosahnu_na_pohadku=1) and isobjon(pohadka) and not isobjon(hodzid_dobra) )
+title Co kdybych po vás chtěl menší službu...
+  justtalk
+   D: "Co kdybych po vás chtěl menší službu..."
+  juststay
+  start hodzid "mluvi"
+  Ka: "Když já nevím..."
+  Ka: "...připadá mi, že si ode mně
+       žádnou pomoc nezasloužíš.
+       Fakt promiň, ale nemůžu!"
+      start hodzid "mlci"
+gplend
+
+block _1 ( beg(0) and not been(_1) )
+title Musíte být určitě celá rozvrzaná!
+  justtalk
+   D: "Musíte být určitě celá rozvrzaná!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Kdyby jenom to!"
+  start hodzid "mlci"
+  justtalk
+   D: "Vždyť vy máte taky jednu nohu kratší!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "To je taková normální exekuce..."
+  start hodzid "mlci"
+gplend
+
+block _2 ( beg(0) and not been(_2) )
+title Jak jste se tady vůbec ocitla?
+  justtalk
+   D: "Jak jste se tady vůbec ocitla?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Zajala mě Pánnapětova stráž..."
+  start hodzid "mlci"
+  justtalk
+   D: "Neměla jste se nechat!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Zkoušela jsem do jednoho
+       z těch ozbrojenců zapíchnout třísku,
+       ale měl plechové brnění!"
+      start hodzid "mlci"
+gplend
+
+block _3 ( beg(0) and not been(_3) )
+title Vždycky jsem se o to zajímal, mučí vás nějak speciálně?
+  justtalk
+   D: "Vždycky jsem se o to zajímal,
+       mučí vás nějak speciálně?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Každý den po obědě
+       se na mě Pánnapět půl hodiny houpá!"
+      start hodzid "mlci"
+  justtalk
+   D: "To je snad zlej sen!"
+  juststay
+gplend
+
+block _4 ( beg(0) and not been(_4) )
+title Proč vás vůbec zajali?
+  justtalk
+   D: "Proč vás vůbec zajali?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Ach, to je všechno kvůli Otomanovi..."
+{#Otoman - this is a name, but it is also a special kind of sofa
+  start hodzid "mlci"
+  justtalk
+   D: "Kvůli komu?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Tys nikdy neslyšel jméno Emruš Otoman?!"
+  Ka: "Ty nevíš o legendárním neohroženém
+       vůdci všech židlí?"
+  Ka: "Vždyť to ví i každé malé štokrle!"
+  start hodzid "mlci"
+gplend
+
+block _5 ( beg(0) and not been(_5) and been(_4) )
+title Jak může být nějaký otoman vůdcem židlí?
+  justtalk
+   D: "Jak může být nějaký otoman vůdcem židlí?"
+  juststay
+  justtalk
+   D: "Vždyť sám židle není!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Otoman židle byl!"
+  Ka: "Pocházel z velmi starobylého
+       židlího rodu, jeho prababička
+       z levé přední šprušle byla pohovka."
+  start hodzid "mlci"
+gplend
+
+block _6 ( beg(0) and not been(_6) and been(_4) )
+title Povězte mi něco o historii židlí!
+  justtalk
+   D: "Povězte mi něco o historii židlí!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Ehm, tedy..."
+  Ka: "Je to už opravdu hodně dávno,
+       co žily židle v područí bytostí,
+       které -"
+  Ka: "- vím, dnes to někomu
+       může připadat divné -
+       měly pouhé dvě nohy!"
+  start hodzid "mlci"
+  justtalk
+   D: "To je směšný!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "No právě!
+       Potom ale přišel statečný Emruš."
+  Ka: "Díky němu se pozvedla rebelie
+       proti utlačovatelům a také on
+       vyhlásil to známé heslo."
+  start hodzid "mlci"
+gplend
+
+block _7 ( beg(0) and not been(_7) and been(_6) )
+title Jak ona židlí rebelie dopadla?
+  justtalk
+   D: "Jak ona židlí rebelie dopadla?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Přišla tuhá zima a celá rebelie
+       byla krutě potlačena."
+  start hodzid "mlci"
+  justtalk
+   D: "Židle umrzly na válečném tažení?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Kdepak, zatopili jimi!"
+  start hodzid "mlci"
+gplend
+
+block _8 ( beg(0) and not been(_8) and been(_6) )
+title Jak znělo Emrušovo heslo?
+  justtalk
+   D: "Jak znělo Emrušovo heslo?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Čtyři nohy nejsou o nic míň než dvě nohy!"
+  start hodzid "mlci"
+  justtalk
+   D: "To zní úžasně!
+       (I když jsme to už někde slyšel...)"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Intelektuál protřelý četbou, co?"
+  start hodzid "mlci"
+gplend
+
+block _9 ( beg(0) and not been(_9) and been(_7) )
+title Jak skončil Emruš Otoman?
+  justtalk
+   D: "Jak skončil Emruš Otoman?"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Nejdřív ho rozsekali na malá polínka
+       a definitivně s ním skoncovali
+       až někdy v létě při grilování."
+  start hodzid "mlci"
+  justtalk
+   D: "To je potupa!"
+   D: "Já osobně bych nesnesl,
+       aby na mě kapal omastek!"
+  juststay
+  start hodzid "mluvi"
+  Ka: "Jeho dědictví s námi ale žije dál."
+  Ka: "Od té doby si židle nenechají
+       jen tak něco líbit!"
+      start hodzid "mlci"
+gplend
+
+block _99 ( beg(0) and not(last(_01) or last(_02) or last(_11) ) and not maxline(1) )
+title Musím jít, zatím se opatrujte...
+  justtalk
+   D: "Musím jít, zatím se opatrujte..."
+  juststay
+  start hodzid "mluvi"
+  Ka: "Ty taky."
+  start hodzid "mlci"
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and maxline(1) and (last(_01) or last(_02)) )
+title
+  justtalk
+   D: "Ne."
+  juststay
+  start hodzid "mluvi"
+  Ka: "Suchý humor, že?
+       Se mnou prosímtě nežertuj!"
+      start hodzid "mlci"
+  exitdialogue
+gplend

@@ -1,0 +1,11 @@
++ fix charset of the credits
++ proofread all English scripts
++ make sure lines are not too long (for the original player, which cannot
+  reformat strings) using editors/width/width.pas
++ add Tom to the old player's credits
++ verify changes in character1: -> character2: by sed & diff
+- fix the incorrect translations from branch my-proofreading
+- unify WORD... and WORD ...
+- unify () and []
+- unify dwarf and Dwarf
+- add Denis and me to credits for ScummVM?

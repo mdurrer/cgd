@@ -1,0 +1,13 @@
+{kanarek odpovida:}
+
+block _ (1)
+title
+  justtalk
+D: "Does it talk?"
+  juststay
+Kanarek: "What do you want?"
+Kanarek: "|   Go away!"
+  justtalk
+D: "I guess it does ..."
+  juststay
+gplend

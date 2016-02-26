@@ -1,0 +1,3 @@
+#00f	tollbooth
+#f00	mainst
+#0f0	shack

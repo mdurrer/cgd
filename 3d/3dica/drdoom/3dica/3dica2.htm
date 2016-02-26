@@ -1,0 +1,838 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.0.27 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER><B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</CENTER>
+
+<CENTER>
+<DT>
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris 1996,1997,1998</DT></CENTER>
+
+<CENTER>
+<DT>
+- Over 150k of pure sh...er, 3d coding power!</DT></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+
+
+<P><A NAME="chap2"></A>
+<H2>
+2. 3D Geometry</H2>
+
+<UL><A NAME="chap21"></A>
+<H3>
+2.1 The Relationship Between 2D and 3D Worlds</H3>
+</UL>
+
+<UL>A point in 3-space is defined by three <I>coordinates</I>: x, y, and
+z. We can't draw a point like this straight to the computer screen. Hence,
+we need a formula with which we can make the x and y coordinates somehow
+dependent on the z coordinate. Let's think about the case. A point can
+be multiplied by a constant the result point staying on a line that goes
+through the origin and the original point:
+<UL>
+<PRE>k*(X, Y, Z) = (kX, kY, kZ)</PRE>
+</UL>
+If we define the origin as the location of the camera, we can use this
+formula and take <I>1/z</I> as <I>k.</I> Now the z coordinate is a constant:
+<UL>
+<PRE>1/Z * (X, Y, Z) = (X/Z, Y/Z, 1).</PRE>
+</UL>
+This kind of points lie on the plane z=1. If we want our plane to be closer
+/ farther, we can change the formula a bit:
+<UL>
+<PRE>a/Z * (X, Y, Z) = (X*a/Z, Y*a/Z, a)</PRE>
+</UL>
+(Using <I>a</I> actually affects the perspective.) Now the equation of
+the projection plane is z=a,
+<UL>
+<UL><script pagespeed_no_defer="" type="text/javascript">//<![CDATA[
+(function(){var g=this,h=function(b,d){var a=b.split("."),c=g;a[0]in c||!c.execScript||c.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===d?c[e]?c=c[e]:c=c[e]={}:c[e]=d};var l=function(b){var d=b.length;if(0<d){for(var a=Array(d),c=0;c<d;c++)a[c]=b[c];return a}return[]};var m=function(b){var d=window;if(d.addEventListener)d.addEventListener("load",b,!1);else if(d.attachEvent)d.attachEvent("onload",b);else{var a=d.onload;d.onload=function(){b.call(this);a&&a.call(this)}}};var n,p=function(b,d,a,c,e){this.f=b;this.h=d;this.i=a;this.c=e;this.e={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.g=c;this.b={};this.a=[];this.d={}},q=function(b,d){var a,c,e=d.getAttribute("pagespeed_url_hash");if(a=e&&!(e in b.d))if(0>=d.offsetWidth&&0>=d.offsetHeight)a=!1;else{c=d.getBoundingClientRect();var f=document.body;a=c.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);c=c.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+c;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.e.height&&c<=b.e.width)}a&&(b.a.push(e),b.d[e]=!0)};p.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&q(this,b)};h("pagespeed.CriticalImages.checkImageForCriticality",function(b){n.checkImageForCriticality(b)});h("pagespeed.CriticalImages.checkCriticalImages",function(){r(n)});var r=function(b){b.b={};for(var d=["IMG","INPUT"],a=[],c=0;c<d.length;++c)a=a.concat(l(document.getElementsByTagName(d[c])));if(0!=a.length&&a[0].getBoundingClientRect){for(c=0;d=a[c];++c)q(b,d);a="oh="+b.i;b.c&&(a+="&n="+b.c);if(d=0!=b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),c=1;c<b.a.length;++c){var e=","+encodeURIComponent(b.a[c]);131072>=a.length+e.length&&(a+=e)}b.g&&(e="&rd="+encodeURIComponent(JSON.stringify(s())),131072>=a.length+e.length&&(a+=e),d=!0);t=a;if(d){c=b.f;b=b.h;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(k){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(u){}}f&&(f.open("POST",c+(-1==c.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}},s=function(){var b={},d=document.getElementsByTagName("IMG");if(0==d.length)return{};var a=d[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var c=0;a=d[c];++c){var e=a.getAttribute("pagespeed_url_hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].k&&a.height>=b[e].j)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b},t="";h("pagespeed.CriticalImages.getBeaconData",function(){return t});h("pagespeed.CriticalImages.Run",function(b,d,a,c,e,f){var k=new p(b,d,a,e,f);n=k;c&&m(function(){window.setTimeout(function(){r(k)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','https://www.modeemi.fi/drdoom/3dica/3dica2.htm','l8PuqRhht8',true,false,'M0ryqIyN92E');
+//]]></script><IMG SRC="3d22d.gif" HEIGHT=218 WIDTH=286 pagespeed_url_hash="904409994" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+so all points in the 3-space are transformed onto this plane in a way that
+they stay on a line that goes through the origin and the original point.
+The formula is thus the following:
+<UL>
+<DT>
+<TT>X_SCREEN = X0 * SCALE / Z0</TT></DT>
+
+<DT>
+<TT>Y_SCREEN = Y0 * SCALE / Z0</TT></DT>
+</UL>
+<I>SCALE</I> tells the perspective value of the world. Usually values like
+256 are used but try yourself and find the best value suitable for your
+purposes! When the z value is changed, we notice a 3D effect.
+
+<P><B><I>Note!</I></B> If z reaches somehow the value zero, the program
+naturally crashes (division by zero). Be careful!
+
+<P><I>Example:</I> Visualizing three dimensions with a pseudo code (plots
+a pixel to the center of the screen. When the z value changes, it vanishes
+from the screen):
+<UL>
+<DT>
+<TT>x = 1</TT></DT>
+
+<DT>
+<TT>y = 1</TT></DT>
+
+<DT>
+<TT>z = 256</TT></DT>
+
+<DT>
+<TT>while (gx&lt;320) and (gx>-1) and (gy&lt;200) and (gy>-1)</TT></DT>
+
+<UL>
+<DT>
+<TT>gx = x * 256 / z + 160 ; center = the center of the screen</TT></DT>
+
+<DT>
+<TT>gy = y * 256 / z + 100 ; (mode 320x200)</TT></DT>
+
+<DT>
+<TT>putpixel(gx,gy,15)</TT></DT>
+
+<DT>
+<TT>z = z - 1</TT></DT>
+
+<DT>
+<TT>if (z = 0)</TT></DT>
+
+<UL>
+<DT>
+<TT>z = -1 ; just to ensure...</TT></DT>
+</UL>
+
+<DT>
+<TT>endif</TT></DT>
+</UL>
+
+<DT>
+<TT>endwhile</TT></DT>
+</UL>
+It's very easy to improve the code above to make it a 3D starfield, a basic
+and widely used effect in the demoscene half a decade ago. A good excercise&nbsp;
+btw!</UL>
+
+<UL><A NAME="chap22"></A>
+<H3>
+2.2 The Matrix Technique -- Foreword</H3>
+</UL>
+
+<UL><B><I>NOTE!</I></B> Even if you didn't understand a word about matrices,
+see the source code, and use some cut'n'paste to create a base of your
+own 3D engine. Later when you feel ready, come back and learn more about
+3D geometry; <I>using</I> matrix technique doesn't demand too much knowledge.
+<DT>
+In the matrix technique, the orientation of an object is presented with
+an <I>object matrix,</I> which consists of three vectors (the directions
+<I>down</I>, <I>left,</I> and <I>forward</I>). Every operation is performed
+to the matrix, and not until in a certain point the vertices are taken
+into account by multiplying them by the object matrix.</DT>
+
+<DT>
+This technique has many advantages: it's faster, easier to understand,
+and more exact than the 'traditional' way we usually see in 3D tutorials.
+In what way more exact, you ask.</DT>
+
+
+<P>Let's take an airplane as an example (yeah, <I>straight</I> from otmmatx.doc
+:) The original orientation of the plane is as follows: the nose points
+to the direction of the z-axis, the right wing to the direction of the
+x-axis, and the y-axis pointing to the 'up' direction of the plane. Rotate
+the plane about the y-axis so that the nose points to the direction of
+the negative x-axis. Now when you rotate it about z-axis, does it turn
+around its <I>own</I> z-axis or the <I>space's</I> z-axis? It <I>should</I>
+turn around its own axis (or how could you implement a flight simulator
+otherwise?), but with basic rotations this is not what happens. So matrices
+are used.
+
+<P>In 3D coding, we use 4x4 matrices in which the data is located as follows:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx9.gif" HEIGHT=53 WIDTH=74 pagespeed_url_hash="3876317612" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+In English, the three first cells of the three first rows tell the
+coefficients of the object's axis vectors (x, y, z), and the three
+first cells of the bottom row tell the center point of the object. The
+last column is always (0, 0, 0, 1).
+<B><I>Note!</I></B> The axis vectors are <I>unit</I> vectors; hence their
+length should <I>always</I> be one!
+
+<P>It would maybe be better to format the object matrix always so that
+the object lies (as in the plane example) on the xz plane, so it is naturally
+a unit matrix (see 1.2.1). Now the unit vectors of the object's axes are
+<B>i</B>, <B>j</B>, and <B>k</B>, the same as the vectors of the world
+axes.
+
+<P>(Nearly) all 3D operations in matrix technique are done using matrix
+math.
+
+<P><A NAME="chap23"></A>
+<H3>
+2.3 Rotating the Object Matrix</H3>
+</UL>
+
+<UL>When rotating an object about its own center point, we just multiply
+<B>the 3x3 upper left corner</B> 
+of the object matrix by these matrices (or the general rotation matrix 
+derived below). Rotations in 3D
+can also be thought of as changes in the coordinate systems.
+
+<P>About the x-axis:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx10.gif" HEIGHT=55 WIDTH=88 pagespeed_url_hash="2054019176" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+About the y-axis:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx11.gif" HEIGHT=53 WIDTH=100 pagespeed_url_hash="2348519097" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+About the z-axis:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx12.gif" HEIGHT=53 WIDTH=100 pagespeed_url_hash="2643019018" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+cx, sx, cy, sy, cz, and sz mean the cosines and sines of the rotation angles.
+
+<P>We can of course precalculate a bit (just basic matrix multiplying):
+<UL>
+<PRE><IMG SRC="matx13.gif" HEIGHT=98 WIDTH=345 pagespeed_url_hash="2937518939" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></PRE>
+</UL>
+So we get the rotated object matrix <B>O</B> from the formula
+<BR>&nbsp;
+<UL>
+<DT>
+<TT><B>O</B> = <B>O</B>*<B>XYZ</B>.</TT></DT>
+</UL>
+<B><I>NOTE!</I></B> In the versions &lt;2.2 of 3dica I recommended using
+precalculated trigonometric functions to speed up the engine. The Pentium
+performs trigonometric functions so fast there's no sense in consuming
+memory to get a large enough table. For example, when using big hierarchical
+objects, we'd need enormous trigonometric tables to get a good enough result.
+This is due to cumulativity and the possibly huge size of the object. Thanks
+to the #coders gurus who enlightened me in this topic.
+
+<P><A NAME="chap231"></A>
+<UL>
+<H4>
+2.3.1 Rotating about an arbitrary vector</H4>
+Where does one need this formula? Well, you need it only if you want the
+airplane in the example or any object to rotate right in your engine :)
+Also you need this if you want to code keyframing. So the basic formula
+is this:
+<UL>
+<PRE><B>U</B> = <B>n</B>*<B>n</B>(t) + cos(a)*(<B>I</B>-<B>n</B>*<B>n</B>(t)) + sin(a)*<B>N</B>(x).</PRE>
+
+<DT>
+<B>n</B> = the rotation axis vector</DT>
+
+<DT>
+<B>n</B>(t) = the transpose of <B>n</B></DT>
+
+<DT>
+a = rotation angle</DT>
+
+<DT>
+<B>I</B> = the unit matrix</DT>
+
+<DT>
+<B>N</B>(x) = so-called cross product matrix:</DT>
+
+<UL>
+<DT>
+<IMG SRC="matx17.gif" HEIGHT=51 WIDTH=98 pagespeed_url_hash="4115518623" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">,</DT>
+</UL>
+</UL>
+
+<DT>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+where n* are the elements of the rotation axis vector.</DT>
+
+<BR>I myself derived the matrix from the formula above and got the following
+matrix (works, tested well):
+<BR>&nbsp;
+<UL><IMG SRC="matx18.gif" HEIGHT=104 WIDTH=368 pagespeed_url_hash="115051248" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+If you try this matrix using the vectors (1,0,0), (0,1,0), and (0,0,1)
+as rotation axes one after another, you'll notice you get the right results
+(the rotation matrices around the x-, y-, and z-axis). And how to use this?
+Easy:
+<BR>&nbsp;
+<UL>
+<DT>
+<TT>for a=0 -> 2</TT></DT>
+
+<UL>
+<DT>
+<TT>axis.x = objectmatrix[a][0] ; in (y,x) syntax</TT></DT>
+
+<DT>
+<TT>axis.y = objectmatrix[a][1]</TT></DT>
+
+<DT>
+<TT>axis.z = objectmatrix[a][2]</TT></DT>
+
+<DT>
+<TT>tm[a] = rotate_with_the_matrix_above(</TT></DT>
+
+<UL>
+<UL>
+<DT>
+<TT>axis,angle_x,angle_y,angle_z)</TT></DT>
+</UL>
+</UL>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+
+<DT>
+<TT>matrix_mul(tm[0],tm[1])</TT></DT>
+
+<DT>
+<TT>matrix_mul(tm[0],tm[2])</TT></DT>
+
+<DT>
+<TT>matrix_mul(objectmatrix,tm[0])</TT></DT>
+</UL>
+This is certainly not a too fast way. It works perfectly, though, but if
+you have any better suggestions please e-mail me.
+
+<P><B><I>Note!</I></B> Remember to normalize the object matrices after
+some frames! The formula requires so much float math the object matrices
+tend to 'bend' very quickly. Using <TT>double</TT>s, I myself need to normalize
+them about every tenth frame.</UL>
+<A NAME="chap24"></A>
+<H3>
+2.4 The Camera</H3>
+</UL>
+
+<UL>Wow, it's so easy to attach a real camera into a matrix based engine:
+nothing else is needed than multiplying the rotated object matrix by the
+camera matrix! (Ok, you must also fiddle with the center points but
+that's a minor thing.) In practice:
+<BR>&nbsp;
+<UL>
+<DT>
+<TT>[Rotate & translate the camera matrix]</TT></DT>
+<DT>
+<TT>for every object:</TT></DT>
+<DT>
+<TT>  [Normalize the object matrix if needed]</TT></DT>
+<DT>
+<TT>  [Rotate & translate the object matrix]</TT></DT>
+<DT>
+<TT>  [Substract the camera center from the object center]</TT></DT>
+<DT>
+<TT>  [Multiply the upper left 3x3 of the object matrix by the camera
+matrix]</TT></DT>
+<DT>
+<TT>  [Rotate the object center by the camera matrix]</TT></DT>
+</UL>
+And that's it!
+
+<P><B><I>Note!</I></B> Remember to transform <I>vertices</I> with the <B>O'</B>
+matrix and <I>normals</I> with the <B>O</B> matrix (otherwise the light
+sources are rotated also when the camera is rotated).
+
+<P>There are good camera routines (including camera moving) in the
+source code, go check 'em out!
+<UL><A NAME="chap241"></A>
+<H4>
+2.4.1 Deriving the camera matrix from a vector</H4>
+Chem asked about the use of this chapter. Just to let everyone to know,
+cameras in 3D Studio are defined only by a direction vector, so it's kinda
+hard to operate with them without certain mathematical operations and the
+information of this chapter.
+
+<P>Ok. This has been The Big Question for many 3D coders. I was also interested
+in the topic so much, I derived a 'nice' complicated and hard-to-use way
+of doing the thing on a maths class in about three hours. Right after I
+had finished, the guy sitting next to me, Jussi Vainionpaa, asked innocently,
+"wouldn't this be a bit more useful way?" I went through the system he
+had derived in five minutes, and came to the decision that not only his
+way was much more elegant, but it also worked better X) So here's the technique
+developed by Jussi Vainionpaa. Based on straightforward vector algebra.
+
+<P>Deriving a rotation matrix for the camera from a single vector to whose
+direction the camera is pointing (<B>z</B> = camera forward, <B>y</B> =
+camera down, <B>j</B> = world down, (<B>j</B> dot <B>z</B>)*<B>z</B> =
+the projection of <B>j</B> on <B>z</B>):
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx14.gif" HEIGHT=164 WIDTH=156 pagespeed_url_hash="3232018860" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+The world's down vector <B>j</B> is known: (0,1,0). We calculate the component
+of <B>j</B> parallel to <B>z</B>, (<B>j</B> dot <B>z</B>)*<B>z</B>, and
+substract it from <B>j</B>, the result being <B>y</B>:
+<UL>
+<PRE><B>y</B> = <B>j</B> - (<B>j</B> dot <B>z</B>)*<B>z</B>.</PRE>
+</UL>
+(vector projection, see <A HREF="3dica1.htm#chap116">1.1.6</A>). The formula
+is very straightforward and can be derived straight from the situation
+in the picture. It even shrinks due to the speciality of <B>j</B>:
+<BR>&nbsp;
+<UL>
+<DT>
+<TT>(yx,yy,yz)</TT></DT>
+
+<UL>
+<DT>
+<TT>= (0,1,0) - (0*zx+1*zy+0*zz)*(zx,zy,zz)</TT></DT>
+
+<DT>
+<TT>= (0,1,0) - (zy*zx,zy*zy,zy*zz)</TT></DT>
+
+<DT>
+<TT>= (-zy*zx,1-zy*zy,-zy</TT>*zz).</DT>
+</UL>
+</UL>
+After normalization, what we have is the final <B>y</B> vector of the camera
+(vector normalization, see 1.1.3). The <B>z</B> vector is known, but it
+must also be normalized. Finally we get the <B>x</B> vector as the cross
+product of <B>y</B> and <B>z</B> (notice the order):
+<UL>
+<PRE><B>x</B> = <B>y</B>x<B>z</B>.</PRE>
+</UL>
+The <B>x</B> vector needen't to be normalized if <B>y</B> and <B>z</B>
+already were unit vectors. Now we place the vectors to the camera matrix
+as in the chapter 2.2 and the camera matrix is ready.
+
+<P>Note that if the camera z-axis is equal to the y-axis of the world (or
+its opposite or even <I>roughly</I> equal to it), you get (0,0,0) as the
+camera y-axis vector. The solution to this problem is to perform a compare
+and if needed, to use the world z- or x-axis instead. Thanks to Arho Huttunen
+who noticed this first.
+
+<P>Another point by the same dude: if you're reading your camera from a .3DS,
+you'll also need rotate the y vector you've got <PRE>bank</PRE> degrees in
+order to get the exact orientation (<PRE>bank</PRE> is a constant which can
+be read from the 3DS file).
+
+<P><A NAME="chap242"></A>
+<H4>
+2.4.2 B-Splines</H4>
+They sound cool, they look cool, they're cool to use, they simply <I>are</I>
+cool. What in the world are they? They are <I>B-splines</I>!
+
+<P>B-splines are actually not lines but curves (ok, clever). They are used
+to find a nice way through or near a specified list of key points for example
+to smoothen camera movement. A B-spline looks like this:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="bspline.gif" HEIGHT=124 WIDTH=216 pagespeed_url_hash="1376472566" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+As you probably noticed, this particular B-spline was created using a formula
+that doesn't require the spline to go through all of the key points. I'm
+describing here only this one.
+
+<P>A B-spline is constructed using <I>arcs</I>. If we want to form a B-spline
+using n arcs, we need n+3 key points, let them be <TT>c(0),c(1)</TT>,...,<TT>c(n+2)</TT>.
+The k:th arc (k = 1,2,...,n) of the B-spline is calculated from the formula
+<BR>&nbsp;
+<UL>
+<DT>
+<TT>r<FONT SIZE=-1>k</FONT>(t) =</TT></DT>
+
+<UL>
+<DT>
+<TT>1/6*(1-3t+3t^2-t^3)*c(k-1) +</TT></DT>
+
+<DT>
+<TT>1/6*(4-6t^2+3t^3)*c(k) +</TT></DT>
+
+<DT>
+<TT>1/6*(1+3t+3t^2-3t^3)*c(k+1) +</TT></DT>
+
+<DT>
+<TT>1/6*t^3*c(k+2),</TT></DT>
+</UL>
+</UL>
+where t ranges linearly from 0 to 1. The more different t values, the more
+accurate curve. Note that the ending point of the k:th arc and the starting
+point of the k+1:th arc are the same point. Even better, the curve is all
+smooth in these most significant points, too, mainly due to the truth that
+the shape of an arc is determined by as many as four key points summarized
+(see the formula above).
+
+<P>A piece of pseudo that I used to create the picture above:
+<BR>&nbsp;
+<UL>
+<DT>
+<TT>- point is the key point table</TT></DT>
+
+<DT>
+<TT>- STEPS is the number of steps</TT></DT>
+
+<DT>
+<TT>- k is the current arc index</TT></DT>
+
+<DT>
+<TT>- bl_i = bspline index (zero at first)</TT></DT>
+
+<DT>
+<TT>for k=1 -> POINTS-2 ; note! start from 1, not 0</TT></DT>
+
+<UL>
+<DT>
+<TT>t=0</TT></DT>
+
+<DT>
+<TT>while t&lt;1.0</TT></DT>
+
+<UL>
+<DT>
+<TT>t2=t*t; ; some precalculation</TT></DT>
+
+<DT>
+<TT>t3=t*t*t; ; more precalculation :)</TT></DT>
+
+<DT>
+<TT>k1=1-3*t+3*t2-t3;</TT></DT>
+
+<DT>
+<TT>k2=4-6*t2+3*t3;</TT></DT>
+
+<DT>
+<TT>k3=1+3*t+3*t2-3*t3;</TT></DT>
+
+<DT>
+<TT>bspline[bl_i].x =</TT></DT>
+
+<UL>
+<DT>
+<TT>1/6.0*(k1*point[k-1].x+</TT></DT>
+
+<DT>
+<TT>k2*point[k].x+</TT></DT>
+
+<DT>
+<TT>k3*point[k+1].x+</TT></DT>
+
+<DT>
+<TT>t3*point[k+2].x);</TT></DT>
+</UL>
+
+<DT>
+<TT>bspline[bl_i].y =</TT></DT>
+
+<UL>
+<DT>
+<TT>1/6.0*(k1*point[k-1].y+</TT></DT>
+
+<DT>
+<TT>k2*point[k].y+</TT></DT>
+
+<DT>
+<TT>k3*point[k+1].y+</TT></DT>
+
+<DT>
+<TT>t3*point[k+2].y);</TT></DT>
+</UL>
+
+<DT>
+<TT>bspline[bl_i].z =</TT></DT>
+
+<UL>
+<DT>
+<TT>1/6.0*(k1*point[k-1].z+</TT></DT>
+
+<DT>
+<TT>k2*point[k].z+</TT></DT>
+
+<DT>
+<TT>k3*point[k+1].z+</TT></DT>
+
+<DT>
+<TT>t3*point[k+2].z);</TT></DT>
+</UL>
+
+<DT>
+<TT>bl_i++;</TT></DT>
+
+<DT>
+<TT>t=t+1.0/STEPS</TT></DT>
+</UL>
+
+<DT>
+<TT>endwhile</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+</UL>
+<A NAME="chap25"></A>
+<H3>
+2.5 Transforming a Vertex by the Object Matrix</H3>
+Now we need only to transform all the vertices by the rotation matrix,
+and we're finished! Transforming can easily be performed by using the information
+in the chapter <A HREF="3dica1.htm#chap12231">1.2.2.3.1</A>, regarding
+a vertex as a vector:
+<BR>&nbsp;
+<UL>
+<DT>
+<TT>X = X0*a + Y0*d + Z0*g + center_x</TT></DT>
+
+<DT>
+<TT>Y = X0*b + Y0*e + Z0*h + center_y</TT></DT>
+
+<DT>
+<TT>Z = X0*c + Y0*f + Z0*i + center_z.</TT></DT>
+</UL>
+We need thus nine adds and nine multiplies.
+
+<P>Pseudo example (rotating a point around all the three axes with the
+matrix technique):
+<BR>&nbsp;
+<UL>
+<LI>
+tm (transformation matrix), om (object matrix), t_om (transformed object
+matrix) (3,3)-sized float tables</LI>
+
+<LI>
+(xp,yp,zp) original point, (x,y,z) rotated point</LI>
+
+<LI>
+ox, oy, oz object origo coordinates</LI>
+
+<LI>
+ORIGO_X, ORIGO_Y screen center coordinates</LI>
+</UL>
+
+<UL>
+<DT>
+<TT>reset_matrix(om) ; object matrix is reset only at the beginning</TT></DT>
+
+<DT>
+<TT>xa,ya,za = 1*PI/180 ; one degree in radians (rotation angles)</TT></DT>
+
+<DT>
+<TT>ox = 0 ; object SCALE units from the origo along the z-axis</TT></DT>
+
+<DT>
+<TT>oy = 0</TT></DT>
+
+<DT>
+<TT>oz = SCALE</TT></DT>
+
+<DT>
+<TT>xp = 50</TT></DT>
+
+<DT>
+<TT>yp = 0</TT></DT>
+
+<DT>
+<TT>zp = 30</TT></DT>
+
+<DT>
+<TT>loop for each frame:</TT></DT>
+
+<UL>
+<DT>
+<TT>reset_matrix(tm)</TT></DT>
+
+<DT>
+<TT>reset_matrix(t_om)</TT></DT>
+
+<DT>
+<TT>tm[0,0] = cos(ya)*cos(za)</TT></DT>
+
+<DT>
+<TT>tm[0,1] = cos(ya)*sin(za)</TT></DT>
+
+<DT>
+<TT>tm[0,2] = -sin(ya)</TT></DT>
+
+<DT>
+<TT>tm[1,0] = sin(xa)*sin(ya)*cos(za)-cos(xa)*sin(za)</TT></DT>
+
+<DT>
+<TT>tm[1,1] = sin(xa)*sin(ya)*sin(za)+cos(xa)*cos(za)</TT></DT>
+
+<DT>
+<TT>tm[1,2] = sin(xa)*cos(ya)</TT></DT>
+
+<DT>
+<TT>tm[2,0] = cos(xa)*sin(ya)*cos(za)+sin(xa)*sin(za)</TT></DT>
+
+<DT>
+<TT>tm[2,1] = cos(xa)*sin(ya)*sin(za)-sin(xa)*cos(za)</TT></DT>
+
+<DT>
+<TT>tm[2,2] = cos(xa)*cos(ya)</TT></DT>
+
+<DT>
+<TT>matrix_mul(om,tm) ; transform the object matrix</TT></DT>
+
+<DT>
+<TT>matrix_mul(t_om,om) ; transform the world matrix</TT></DT>
+
+<DT>
+<TT>; rotate the point</TT></DT>
+
+<DT>
+<TT>x = xp*t_om[0,0] + yp*t_om[1,0] + zp*t_om[2,0] + ox</TT></DT>
+
+<DT>
+<TT>y = xp*t_om[0,1] + yp*t_om[1,1] + zp*t_om[2,1] + oy</TT></DT>
+
+<DT>
+<TT>z = xp*t_om[0,2] + yp*t_om[1,2] + zp*t_om[2,2] + oz</TT></DT>
+
+<DT>
+<TT>x = x * SCALE / z + ORIGO_X ; 2D transforming</TT></DT>
+
+<DT>
+<TT>y = y * SCALE / z + ORIGO_Y</TT></DT>
+
+<DT>
+<TT>putpixel(x,y)</TT></DT>
+</UL>
+
+<DT>
+<TT>stop_looping</TT></DT>
+</UL>
+<B><I>NOTE!</I></B> The object rotates steadily as long as the angles are
+not touched, in other words it stops spinning not until the angles are
+set zero. Why? You see, the object matrix is not reset anywhere, so it
+rotates always one degree / frame if the angle is kept constant. This kinda
+technique is called <I>cumulative rotating</I>, and I strongly suggest
+you use it too in your own engine.
+
+<P><A NAME="chap26"></A>
+<H3>
+2.6 Hierarchical Transformations</H3>
+Apologies to the OTM people, this part is almost straight from otmmatx.doc
+too. X)
+
+<P>Have you ever thought how in the world are implemented games where vector-based
+human-like objects move nicely (Tomb Raiders, Quakes, ...)? The thing is
+done with hierarchical transformations.
+
+<P>Let's take a human arm as an example. When you move your arm from the
+shoulder, the whole arm moves: wrist, palm, fingers, everything. If you
+move just your wrist, the arm is not moved above it but palm and fingers
+are. The different parts of an arm are thus hierarchically dependent on
+each other: the palm can command the fingers but not the wrist; it's located
+between them in the hierarchical order. With the same method we can create
+a linked list of all parts of the body. In hierarchical systems, an object
+is thus divided to parts, and different parts are dependent on other parts.
+But how to implement this?
+
+<P>Let's continue with the arm example. The wrist matrix is called <B>R
+</B>(the Finnish acronym for a wrist), the palm matrix <B>K</B> and finger
+matrices <B>S1</B>, <B>S2</B>, <B>S3</B>, <B>S4</B>, and <B>S5</B>. They're
+located in the linked list as follows:
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx15.gif" HEIGHT=69 WIDTH=117 pagespeed_url_hash="3526518781" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+We can rotate the wrist like this:
+<UL>
+<PRE><B>R</B> = <B>R</B>*<B>XYZr</B>.</PRE>
+</UL>
+The palm must be rotated not only with its own rotation matrix but also
+with the formula above,
+<UL><TT><B>K</B> = <B>K</B>*<B>XYZk</B>*<B>R</B></TT>, and fingers with
+the formula
+<PRE><B>S?</B> = <B>S?</B>*<B>XYZs?</B>*<B>K</B>.</PRE>
+</UL>
+<B><I>Note!</I></B> To use these formulas, the preceding matrix should
+be already transformed, so the calculating order is in the linked list
+from top to bottom.
+
+<P><A NAME="chap27"></A>
+<H3>
+2.7 Inverse Transformations</H3>
+(I wrote this chapter just to annoy Altair a bit :) Using inverse transformations,
+we can get rid of vertex normal rotating and perform backface culling (object
+culling / portals if you wish, too) before rotating the vertices. This
+means of course a remarkable speedup when about 80% of the scene is suddenly
+dropped out the calculations even before rotations (that is, before doing
+practically anything). Even better, this all is very simple to implement!
+I'll take the vertex normal thing as an example.
+
+<P>We use vertex normals to calculate the amount of light hitting a surface.
+So, why bother rotating these all using the object matrix when we can achieve
+the same result by rotating the light(s) to the opposite direction? Think
+about it: you've got a cube (located in the origin) rotated 90 degrees
+about the y-axis, and a light source in the negative z-axis infinity pointing
+towards the positive z-axis. The most brightness is now got by the side
+that was originally facing the positive x-axis (but currently facing the
+negative z-axis). If we rotate the light -90 degrees, we get the light
+pointing towards the negative x-axis and the highest amount of light hits
+the same side as when rotating the vertex normals 90 degrees. So it seems
+to work. :)
+
+<P>Nice, but how to implement it? <I>Pas de problem</I>:&nbsp; find the
+inverse of the object matrix, transform the light by it and <I>voila</I>!
+Since object matrices are always orthogonal (see the matrix stuff in the
+1 part of the doc), we can use the transpose as the inverse.
+<DT>
+Backface culling, object culling, and portals use the same idea. I'm describing
+only backface culling in detail but it can be applied to the others as
+well.</DT>
+
+<DT>
+So, there are three steps:</DT>
+
+<UL>
+<DT>
+1. Find the inverse of the object matrix (transponate it)</DT>
+
+<DT>
+2. Transform the camera vector and position by it</DT>
+
+<DT>
+3. Perform the following for each face in the object:</DT>
+
+<UL>
+<DT>
+a) find the vector between the camera position and any vertex in the face</DT>
+
+<DT>
+b) calculate the cosine of the angle between this vector and the camera
+vector (that is, perform a simple dot product)</DT>
+
+<DT>
+c) examine its sign: if it's positive, the face can be seen, otherwise
+not.</DT>
+</UL>
+</UL>
+Quite straightforward, isn't it? What you've maybe wondering is, why any
+of the face vertices suffices. Think: the idea of backface culling is that
+if a polygon is not facing the camera, it certainly can't be seen. So we
+need only one point in the plane on which the polygon is lying.
+
+<P>Hmm... Maybe a small picture clarifies the case a bit :)
+<BR>&nbsp;
+<UL>
+<UL><IMG SRC="matx19.gif" HEIGHT=153 WIDTH=155 pagespeed_url_hash="409551169" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<BR>&nbsp;</UL>
+</UL>
+C = inverse-rotated camera vector, alpha = the angle the cosine of which
+is wanted, N = the normal of the face (no actual need for it, put it there
+just to make the picture a bit clearlier :)
+
+<P>Ok, that's it. Just GO USE 'EM! :)</UL>
+<A HREF="3dica.htm">Back to the index</A>
+</BODY>
+</HTML>

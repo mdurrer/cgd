@@ -1,0 +1,46 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+   Vypravec: "Ale była sobie także czarodziejska różdżka."
+   Vypravec: "Była to zła różdżka, na imię miała Ewelina."
+   Vypravec: "Ponieważ życie czarodziejskiej różdżki jest
+              raczej nudne..."
+   Vypravec: "...rozmyślała, jak by tu sobie
+              znaleźć jakąś rozrywkę."
+
+load hulka "priskace"
+startplay hulka "priskace"
+load hulka "na kameni"
+load hulka "kamen_mluvi"
+start hulka "kamen_mluvi"
+   EvIn: "Umie-ram z nuuudów!"
+   EvIn: "Naprawdę umie-ram z nuuudów!"
+   EvIn: "Co mam począć?"
+start hulka "na kameni"
+   EvIn: "..."
+   EvIn: "Mam pomysł!"
+start hulka "kamen_mluvi"
+   EvIn: "Zostanę dobrą różdżką."
+start hulka "na kameni"
+   EvIn: "..."
+   EvIn: "Nie, to nie jest dobry pomysł!"
+start hulka "na kameni"
+   EvIn: "..."
+   EvIn: "Będę obgryzać paznokcie!"
+start hulka "kamen_mluvi"
+   EvIn: "..."
+   EvIn: "To też do niczego!"
+start hulka "na kameni"
+   EvIn: "..."
+   EvIn: "Będę władać światem!"
+start hulka "kamen_mluvi"
+   EvIn: "O, właśnie, będę władać światem!"
+start hulka "na kameni"
+
+   Vypravec: "Dziwne, że dotąd o tym nie pomyślała..."
+   Vypravec: "...przez tysiąc lat swego istnienia."
+   Vypravec: "Ale tym lepiej dla nas, że wpadła na
+              to właśnie teraz."
+
+gplend

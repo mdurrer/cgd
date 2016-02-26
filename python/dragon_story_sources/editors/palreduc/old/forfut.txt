@@ -1,0 +1,6 @@
+{pro budoucnost:}
+{u palety vsude zasadne pouzivat PPalatte a ne obecny pointer;
+ prepsat tak vsechny LoadImage...}
+{zavest switch u LoadImage - jestli se ma pro paletu vyhradit misto,
+ nebo jestli se predpoklada, ze je jiz vyhrazene; jestli se ma nahrat
+ pouze paleta, nebo pouze image}

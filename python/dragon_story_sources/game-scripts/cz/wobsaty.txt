@@ -1,0 +1,18 @@
+{kdyz jsem nasel saty:}
+
+block _00 ( beg(1) )
+title
+  let prozkoumal_akvarko (2)
+  icostat on i_zaplata
+
+  justtalk
+  D: "Něco se tady povalovalo."
+  D: "Vypadá to jako obnošené trpasličí šatstvo,
+      snad mi padne..."
+  juststay
+  start obr_hlava "mluvi"
+  O: "Kdepak, to je moje oblečení.
+      Po každém praní se takto srazí."
+  start obr_hlava "mlci"
+
+gplend

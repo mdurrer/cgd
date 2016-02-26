@@ -1,0 +1,233 @@
+{s žebrákem:(žebrák mluví velice nevrle)
+
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+D: "Hello, stimmt was nicht mit dir?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich verhungere."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Kann ich irgendwie helfen?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich will essen!"
+  start zebrak_ziv "mlci"
+  justtalk
+D: "OK , ich frag meine Mutter
+    nach einem Teller Essen."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Deine Mutter lieber nicht,
+    ihre Kochkünste sind fürchterlich."
+  start zebrak_ziv "mlci"
+gplend
+
+block _07 ( maxline(1) and beg(1) and been(_00b) and been(_04) and been(_05) and been(_02) )
+TITLE Stirbst du immer noch?
+  justtalk
+D: "Stirbst du immer noch??"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ja, immer noch.
+    Hast du einen Donut mit Cremefüllung
+    für mich?"
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Gerade nicht, unglücklicherweise..."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Dann warte ich."
+  start zebrak_ziv "mlci"
+  exitdialogue
+gplend
+
+block _00b ( maxline(1) and beg(1) and been(_00) )
+title
+  justtalk
+D: "Mann..."
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+TITLE Ich versuch ein altes Stück Brot für dich zu finden.
+  justtalk
+D: "Ich versuch ein altes, vergammeltes
+    Stück Brot für dich zu finden."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Das würde ich niemals essen."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Und wenn etwas 'alter' Käse drauf wär?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Bäh. Ich will einen Donut mit Cremefüllung."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Und was, wenn es ein Milchbrötchen wär?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich kann Milchbrötchen nicht leiden!"
+  start zebrak_ziv "mlci"
+gplend
+
+block _05 ( beg(0) and been(_04) and not been(_05) )
+TITLE Darf der Donut auch ohne Cremefüllung sein?
+  justtalk
+D: "Darf der Donut auch ohne Cremefüllung sein?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich esse keine Donuts ohne Cremefüllung."
+  start zebrak_ziv "mlci"
+gplend
+
+block _06 (0)
+TITLE Magst du lieber Zuckerguss oder Streußel?
+  justtalk
+D: "Magst du lieber Zuckerguss
+    oder Streußel auf deinem Donut?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich will nur einen stinknormalen Donut
+    mit Cremefüllung von Gingerdough."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Ich möchte keine Garnierungen!"
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Das dachte ja nur..."
+  juststay
+gplend
+
+block _01 ( beg(0) and not been(_01) and been(_00) )
+TITLE Du kennst meine Mutter?!
+  justtalk
+D: "Du kennst meine Mutter?!"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich hab seit zehn Jahren
+    keinen aus deiner Familie mehr gesehen."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Dich kenne ich noch,
+    aber du warst noch ein kleines Drachenbaby."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Aber jetzt hast du mich vergessen,
+    es ist ja auch schon ewig her."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Das hab ich sicher."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich kam öfter mal zu eurem Haus,
+    um die Reste zu essen."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Deine Mutter war sehr großzügig."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Warum bist du nicht mal wieder aufgekreuzt?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Das wollte ich immer.
+    Aber dann fiel mir ein,
+    wie gräßlich die Kochkünste deiner Mutter sind."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Nun würde ich lieber verhungern."
+  start zebrak_ziv "mlci"
+gplend
+
+block _02 ( beg(0) and been(_01) and been(_04) and not been(_02) )
+TITLE Wie kommt es, daß du jetzt so verwöhnt bist?
+  justtalk
+D: "Wie kommt es, daß du jetzt so verwöhnt bist?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Verwöhnt?
+    Das ist nicht das richtige Wort."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Ich würde eher sagen - ich bin ein Gourmet."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Also ein Gourmet..."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich hab mich seit fünf Jahren
+    mit den Überbleibseln im Schlossgraben
+    über Wasser gehalten."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Ich hab mich weitere fünf Jahre davon ernährt.
+    Und nun bin ich wieder hungrig."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Aber jetzt gibt es hier keinen Graben mehr."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Sie haben ihn aufgefüllt."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Und ich dachte, du hättest dir den Hunger
+    seit langer Zeit eingebildet!"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Ich leide seit meiner Geburt unter Hunger,
+    aber ich bilde mir erst seit kurzer Zeit was ein."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Das interessiert mich sehr!"
+  juststay
+  start zebrak_ziv "mluvi"
+  start zebrak_ziv "mluvi"
+Z: "Ich habe geträumt,
+    daß ich einen Schokoriegel treffe."
+Z: "Und weißt du was?
+    Wir hatten dann einen kleinen Plausch."
+Z: "Und dann fing ich an nach ihr zu lechzen
+    und dann war sie weg!"
+Z: "Deshalb hab ich jetzt auch Hunger
+    auf was Süßes."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Vielleicht war das keine Einbildung."
+  juststay
+  justtalk
+D: "Ist der Schokoriegel zufällig
+    in der Gegend herum gehüpft?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Warum, ja tatsächlich."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Hah, dann war es Evelyn!
+    Und sie war übrigens aus Holz."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Nein! Sie war wirklich aus Schokolade!"
+Z: "Sogar mit Nüssen."
+Z: "Wenn ich sie sehe, werd ich sie essen!"
+Z: "Aber ich würde gern vorher
+    einen Donut haben..."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "(Jetzt bildet er sich wahrscheinlich
+    wieder was ein.)"
+  juststay
+gplend
+
+block _09 ( beg(0) and not last(_00b) and not maxline(1) )
+TITLE Jetzt bin ich hungrig, ich muß weg...
+  justtalk
+D: "(Jetzt bin ich hungrig,
+    ich muß nach Hause um was zu essen.)"
+D: "Jedenfalls wären meine Eltern nicht dafür,
+    dass ich mit einem Bettler rede..."
+  juststay
+  exitdialogue
+gplend
+

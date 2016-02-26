@@ -1,0 +1,62 @@
+\documentclass[a4paper,12pt]{g-brief}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{pdfpages}
+\usepackage{times}
+\pdfcompresslevel=9
+\usepackage[%
+    %%% general options
+    pdftex=true,      %% sets up hyperref for use with the pdftex program
+    %plainpages=false, %% set it to false, if pdflatex complains: ``destination with same identifier already exists''
+    %
+    %%% extension options
+    colorlinks=true,   %% turn on colored links (true is better for on-screen reading, false is better for printout versions)
+    %
+    %%% PDF-specific display options
+    bookmarks=false,          %% if true, generate PDF bookmarks (requires two passes of pdflatex)
+    bookmarksopen=false,     %% if true, show all PDF bookmarks expanded
+    bookmarksnumbered=false, %% if true, add the section numbers to the bookmarks
+    %pdfstartpage={1},        %% determines, on which page the PDF file is opened
+    pdfpagemode=None         %% None, UseOutlines (=show bookmarks), UseThumbs (show thumbnails), FullScreen
+]{hyperref}
+\hypersetup{
+    pdftitle={Bewerbung}, %%
+    pdfauthor={Vorname Nachname}, %%
+    pdfsubject={Bewerbung}, %%
+    pdfcreator={Vorname Nachname}, %% 
+    pdfproducer={pdflatex}, %%
+    pdfkeywords={Bewerbung Lebenslauf Vorname Nachname} %%
+}
+
+\fenstermarken \trennlinien
+
+\Name {Vorname Nachname}
+\Strasse {Meinestra\ss{}e 36}
+\Ort {90489 N\"urnberg}
+\Telefon {0999 9999999}
+\Telefax {0999 9999999}
+%\HTTP {http://www.maxis-welt.de}
+\EMail {meine@email.de}
+\Unterschrift {Vorname Nachname}
+
+\Adresse {is Industrie Software GmbH\\
+Herr Jens Dinstühler\\
+Nordring 26\\
+90408 Nürnberg\\
+Deutschland}
+
+\Betreff {Bewerbung als PHP/MySQL Entwickler}
+\Datum {\today}
+\Anrede {Sehr geehrte Damen und Herren,}
+\Gruss {Mit freundlichen Gr\"u\ss{}en}{1cm}
+
+\begin{document}
+\hyphenation{ Sys-tem-in-te-gra-tion }
+\begin{g-brief}
+mit gro\ss{}em Interesse habe ich Ihre Stellenanzeige in der Jobb\"orse der Agentur f\"ur Arbeit gelesen.
+Meine umfangreichen Erfahrungen im Bereich Web-Entwicklung und Datenbanken haben mich dazu bewogen, diese Bewerbung auf die von Ihnen ausgeschriebene Stelle zu schreiben.
+
+Gerne w\"urde ich mehr \"uber die ausgeschriebene Stelle erfahren
+und mich \"uber eine pers\"onliche Einladung sehr freuen.
+\end{g-brief}
+\end{document}

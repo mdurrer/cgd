@@ -1,0 +1,554 @@
+{Potulný kouzelník Apokalypso:}
+
+block _09 ( maxline(1) and beg(1) and isactico(i_karty) and not been(_09) )
+title
+  disablequickhero
+  load bert "karty_mluvi"
+  load bert "karty_mlci"
+  load bert "karty_vytah"
+  load bert "karty_schova"
+  load bert "karty_vejnah"
+  load bert "karty_vejir"
+  load bert "karty_vejdol"
+  load bert "karty_micha"
+  load bert "karty_ukanah"
+  load bert "karty_ukazuj"
+  load bert "karty_ukadol"
+
+  justtalk
+  D: "Už mám načerpáno dost síly!"
+  juststay
+  start apok "mluvi"
+  A: "Já taky, můžeme začít naši soutěž.
+      Co sis připravil?"
+  start apok "mlci"
+  justtalk
+  D: "Je to takovej malej trik,
+      jenom zlomek
+      mých magických schopností."
+  D: "U nás v rodině se ale předává
+      z generace na generaci..."
+  juststay
+  walkonplay 116 164 vpravo
+{vytáhne balíček karet a rozevře ho do vějíře:}
+  startplay bert "karty_vytah"
+  start bert "karty_mluvi"
+  D: "Vyber si kartu..."
+  startplay bert "karty_vejnah"
+  start bert "karty_vejir"
+
+{kouzelník ukáže na kartu:}
+  mark
+  load apok "ukaznahoru"
+  startplay apok "ukaznahoru"
+  load apok "ukazmluvi"
+  start apok "ukazmluvi"
+  A: "Tahle karta se mi zamlouvá."
+  load apok "ukazdolu"
+  startplay apok "ukazdolu"
+  release
+  start apok "mlci"
+
+  startplay bert "karty_vejdol"
+  start bert "karty_mluvi"
+  D: "Tak, a teď to pěkně promícháme."
+  startplay bert "karty_micha"
+  start bert "karty_mluvi"
+  D: "Byla to tahle?!"
+  startplay bert "karty_ukanah"
+  start bert "karty_ukazuj"
+
+  start apok "mluvi"
+  A: "No to teda ne!
+      Byla to hercová desítka."
+  start apok "mlci"
+
+  startplay bert "karty_ukadol"
+  start bert "karty_mluvi"
+  D: "Nesmysl, v tom balíčku jsou samý esa.
+      Muselo to být eso!
+      Nepodíval ses špatně?"
+  start bert "karty_mlci"
+
+  start apok "mluvi"
+  A: "Je možné, že jsem si kartu
+      opravdu špatně prohlídl."
+  start apok "mlci"
+  start bert "karty_mluvi"
+  D: "No vidíš, určitě to bylo eso."
+  start bert "karty_mlci"
+  start apok "mluvi"
+  A: "Máš pravdu!
+      No ano, bylo to eso,
+      spletl jsem se já."
+  A: "Jsi příliš skromný na to,
+      co dovedeš!"
+  start apok "mlci"
+  startplay bert "karty_schova"
+  start bert "kour-pravo"
+  walkonplay 100 164 vlevo
+  justtalk
+  D: "Takovou pochvalu si nezasloužím..."
+  juststay
+  {Drak by mohl zčervenat v ksichtě- a pak zase zezelenat
+  justtalk
+  D: "Teď jsi na řadě ty.
+      Byl to támhleten kámen, ne?"
+  juststay
+  start apok "mluvi"
+  A: "Nevím, nevypadal předtím trošku jinak?"
+  start apok "mlci"
+  justtalk
+  D: "To je erozí.
+      V těchto místech fouká dost silnej vítr."
+  juststay
+  {a zvedne se poryv větru, který může odnést
+  {kouzelníkovi čepici, nebo nadzvednout plášť-vida! mohl by
+  {mít křivé nohy a červené trenýrky! stačily by ty
+  {trenýrky...
+  exitdialogue
+gplend
+
+block _09a ( maxline(1) and beg(1) and isactico(i_karty) and not been(_09a) )
+title
+  disablequickhero
+
+  start apok "mluvi"
+  A: "Tak tedy -
+      ať se tento kámen promění v prach..."
+{kouzlime:}
+  load apok "kouzli"
+  load apok "mlci1sec"
+  startplay apok "kouzli"
+
+  startplay apok "mlci1sec"
+  {nic se neděje, chvíli pauza, jenom oba civí na kámen
+  start apok "mluvi"
+  A: "Přeji si, aby se tento kámen proměnil v prach!"
+
+  startplay apok "kouzli"
+  startplay apok "kouzli"
+  start apok "mlci"
+{zase se nic neděje, drak se podívá tázavě na kouzelníka
+  start apok "mluvi"
+  A: "Rozkazuji, ať se tento kámen promění v prach!"
+  startplay apok "kouzli"
+  startplay apok "mlci1sec"
+  startplay apok "mlci1sec"
+
+  start apok "mlci"
+  {nic se neděje, chvíli pauza, jenom oba civí na kámen
+  start apok "mluvi"
+  A: "Pokud se tento kámen
+      okamžitě nepromění v prach,
+      nechám proměnit v prach celou zemi!"
+  startplay apok "kouzli"
+  start apok "mlci"
+{dokouzlili jsme}
+  exitdialogue
+gplend
+
+block _09b ( maxline(1) and beg(1) and isactico(i_karty) and not been(_09b) )
+title
+  {shora udeří blesk do kamene a ten se promění
+    load myt_blesk "FLI-animace"
+    load loutka_kam "promena"
+    objstat_on loutka_dre myt
+    start loutka_dre "zakladni"
+    start loutka_kam "promena"
+    startplay myt_blesk "FLI-animace"
+    objstat away loutka_kam
+  exitdialogue
+gplend
+
+block _09c ( maxline(1) and beg(1) and isactico(i_karty) and not been(_09c) )
+title
+  disablequickhero
+  load apok "mlci1sec"
+  walkonplay 100 168 vpravo
+  justtalk
+  D: "Divím se, že to zabralo."
+  juststay
+  start apok "mluvi"
+  A: "Tahle výhružka zabírá vždycky."
+  startplay apok "mlci1sec"
+  startplay apok "mlci1sec"
+  start apok "mlci"
+  {Chvilka mlčení}
+  justtalk
+  D: "Kdo vyhrál?
+      Já hlasuju pro sebe."
+  juststay
+  start apok "mluvi"
+  A: "Všecku čest tobě, ale já zas pro sebe."
+  start apok "mlci"
+  justtalk
+  D: "Takže remíza?"
+  juststay
+  start apok "mluvi"
+  A: "Remíza."
+  A: "I když to tvoje kouzlo se mi dost líbilo.
+      Mohl bys mě ho naučit?"
+  start apok "mlci"
+  justtalk
+  D: "Možná někdy příště..."
+  juststay
+
+  icostat off i_karty
+  exitdialogue
+gplend
+
+block _07 ( beg(1) and isactico(i_rad) and not been(_07) )
+title
+  disablequickhero
+  load bert "rad_vytahuje"
+  load bert "rad_schovava"
+  load bert "rad_mluvi"
+  load bert "rad_mlci"
+  justtalk
+  D: "Nesu ti ukázat svoje vysvědčení
+      z čarodějné školy.
+      Studoval jsem s vyznamenáním."
+  D: "Dokonce jsem dostal řád!"
+  juststay
+  start apok "mluvi"
+  A: "Jenom aby to nebyl jízdní řád,
+      známe ty ubohé triky."
+  A: "Nejdřív mi ho ukaž."
+  start apok "mlci"
+  {ukáže mu výpujční řád z knihovny}
+  walkonplay 116 164 vpravo
+  startplay bert "rad_vytahuje"
+  start bert "rad_mluvi"
+  D: "Jízdní zrovna není..."
+  D: "Vidíš?"
+  D: "Samé jedničky!"
+  start bert "rad_mlci"
+{kouzelnik zabrejli na rad:}
+  load apok "kouka"
+  startplay apok "kouka"
+
+  start apok "mluvi"
+  A: "No co to tady vidím,
+      4 : 00 ze čtení magických spisů."
+  A: "To je vyloženě slabé!"
+  start apok "mlci"
+  start bert "rad_mluvi"
+  D: "To byl naprosto nedůležitej předmět.
+      Podívej se na průměr."
+  start bert "rad_mlci"
+{kouzelnik zabrejli na rad:}
+  startplay apok "kouka"
+
+  start apok "mluvi"
+  A: "1 : 30, hm, to celkem jde.
+      No vidím, že si to spolu opravdu můžeme rozdat."
+  start apok "mlci"
+  startplay bert "rad_schovava"
+  start bert "kour-pravo"
+  walkonplay 112 164 vpravo
+  start apok "mluvi"
+  A: "Začneme třeba hned,
+      jaké kouzlo sis připravil?"
+  start apok "mlci"
+  justtalk
+  D: "Ehm..."
+  D: "...ještě..."
+  D: "...musím někde načerpat magickou sílu!"
+  D: "Půjdu se po ní podívat někam po okolí."
+  juststay
+  let prokazal_kvalifikaci (2)
+  icostat off i_rad
+  exitdialogue
+gplend
+
+block _00a ( beg(1) and been(_00b) and isactico(0) )
+title
+  justtalk
+  D: "Apokalypso..."
+  juststay
+gplend
+
+block _00b ( beg(1) and not been(_00b) and isactico(0) )
+title
+  justtalk
+  D: "Hej, člověče!
+      Nepotřebuješ nějakou pomoc?"
+  juststay
+  start apok "mluvi"
+  A: "Pomoc?
+      To jsi ještě nikdy neviděl nikoho
+      čerpat magickou sílu?"
+  A: "Pomoc, to v žádném případě.
+      Je tady té síly akorát tak pro mě."
+  A: "Pokud si chceš načerpat nějakou pro sebe,
+      prosím - ale najdi si nějaké jiné místo."
+  start apok "mlci"
+  justtalk
+  D: "Škoda, myslel jsem, že se rozdělíme."
+  juststay
+  start apok "mluvi"
+  A: "Tůdle!"
+  start apok "mlci"
+  justtalk
+  D: "Nevadí, i tak mě těší,
+      že jsme se poznali."
+  D: "Jmenuju se Bert."
+  D: "Moje jméno je Bert!"
+  juststay
+  start apok "mluvi"
+  A: "Moje jméno je Apokalypso.  "
+  A: "  Moje jméno je Apokalypso.|"
+  start apok "mlci"
+gplend
+
+block _0011 ( beg(0) and not been(_0011) )
+title Neviděls' někde poblíž jednu kouzelnou hůlku?
+  justtalk
+  D: "Neviděls' někde poblíž jednu kouzelnou hůlku?"
+  juststay
+  start apok "mluvi"
+  A: "Blázníš?
+      O kouzelné hůlky se nestarám.
+      Vystačím si sám."
+  A: "Já žádnou hůlku nepotřebuju."
+  start apok "mlci"
+  justtalk
+  D: "Ty kouzlíš jenom holýma rukama?"
+  juststay
+  start apok "mluvi"
+  A: "Občas v sobě dokonce koncentruji
+      takovou magickou sílu,
+      že si při kouzlení popálím prsty!"
+  A: "Od toho v nich mám třas."
+  start apok "mlci"
+gplend
+
+block _02 ( beg(0) and not been(_02) and not been(_09) )
+title Tak ty jsi kouzelník, že?
+  justtalk
+  D: "Tak ty jsi kouzelník, že?"
+  juststay
+  start apok "mluvi"
+  A: "Jaks' to probůh poznal?!"
+  start apok "mlci"
+  justtalk
+  D: "Poznal jsem to podle čepice!"
+  juststay
+  start apok "mluvi"
+  A: "Ano, někteří o mě říkají,
+      že kouzelník jsem."
+  start apok "mlci"
+  justtalk
+  D: "Kteří někteří?"
+  juststay
+  start apok "mluvi"
+  A: "No, pokud vím,
+      tak v první řadě jsem to já, a..."
+  A: "...mnoho dalších."
+  start apok "mlci"
+  justtalk
+  D: "Určitě by to trvalo aspoň půl dne,
+      než bys je všecky vyjmenoval."
+  D: "Vidím, že máš ty nejlepší reference."
+  juststay
+  start apok "mluvi"
+  A: "To bych řekl.
+      A co bych se já víc unavoval mluvením."
+  A: "Určitě by mi to odčerpalo
+      část mé magické síly,
+      a to by mě dost mrzelo."
+  A: "Všechno, jenom ne toto!"
+  start apok "mlci"
+gplend
+
+block _03 ( (1=2) and beg(0) and not been(_03) and not been(_07) )
+title
+  D: "."
+  D: "."
+  A: "."
+  A: "."
+  A: "."
+  D: "."
+  D: "."
+  D: "."
+  A: "."
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+title Nemáš už té síly načerpáno dost?
+  justtalk
+  D: "Nemáš už té síly načerpáno dost?"
+  juststay
+  start apok "mluvi"
+  A: "Kdepak!
+      Chystám se totiž provést úplně nové kouzlo."
+  A: "Ještě fantastičtější a velkolepější,
+      než všechno, co jsem doposud provedl."
+  start apok "mlci"
+  justtalk
+  D: "A co to bude?"
+  juststay
+  start apok "mluvi"
+  A: "Nevím, jestli ti to můžu prozradit."
+  start apok "mlci"
+  justtalk
+  D: "Já myslím, že můžeš."
+  juststay
+  start apok "mluvi"
+  A: "No tak dobrá.
+      Teď se ale podrž -
+      chci proměnit kámen v prach!"
+  start apok "mlci"
+  justtalk
+  D: "Vždyť to dokáže každej začátečník!"
+  juststay
+  start apok "mluvi"
+  A: "Začátečník možná.
+      Ale přece sis o mě nemyslel,
+      že jsem nějaký prachobyčejný začátečník!"
+  start apok "mlci"
+  justtalk
+  D: "To v žádným případě."
+  juststay
+  start apok "mluvi"
+  A: "No vidíš!"
+  start apok "mlci"
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_04) )
+title Máš už nějakej kámen vyhlídnutej?
+  justtalk
+  D: "Máš už nějakej kámen vyhlídnutej?"
+  juststay
+  start apok "mluvi"
+  A: "Poohlížel jsem se tady kolem
+      a myslím, že jsem něco našel.
+      Je to támhleten kámen."
+  start apok "mlci"
+  {kouzelník ukáže na malinkej kámen opodál, drak otočí hlavu,
+  {podívá se na něj a udělá udivenej ksicht
+  walkonplay 100 164 vlevo
+  justtalk
+  D: "Tak malinkatej?"
+  juststay
+  start apok "mluvi"
+  A: "Je neobyčejně tvrdý."
+  start apok "mlci"
+  walkonplay 104 164 vpravo
+
+  let vim_o_kaminku (1)
+gplend
+
+block _06 ( beg(0) and not been(_06) and been(_04) )
+title Mohl bych to tvoje kouzlo vidět?
+  justtalk
+  D: "Mohl bych to tvoje kouzlo vidět?"
+  juststay
+  start apok "mluvi"
+  A: "Myslím, že to nebude možné.
+      Ledaže..."
+  start apok "mlci"
+  justtalk
+  D: "Ledaže co?"
+  juststay
+  start apok "mluvi"
+  A: "Ledaže bychom si dali soutěž v kouzlení.
+      Nepamatuju si už přesně, co jsi říkal,
+      ale doufám, že kouzlit dovedeš!"
+  start apok "mlci"
+  justtalk
+  D: "No jo, pamatuješ si to úplně přesně.
+      Ten nápad se soutěží je dobrej!"
+  juststay
+  start apok "mluvi"
+  A: "Nechci se ale zahazovat jen tak s někým.
+      Můžeš mi nějak prokázat svoji kvalifikaci?"
+  start apok "mlci"
+  justtalk
+  D: "Jsem kouzelník stejně jako ty,
+      co ti mám dokazovat?"
+  D: "Snad bych mohl trošku zakouzlit..."
+  juststay
+  start apok "mluvi"
+  A: "Kdepak, kdepak, známe ty ubohé triky!
+      Vidím ti až do žaludku, podvodníku!"
+  A: "Na lep ti nesednu."
+  start apok "mlci"
+
+  let prokazal_kvalifikaci (1)
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_07) and been(_07) and not been(_09) )
+title Ale kdo bude v naší soutěži rozhodovat o vítězi?
+  justtalk
+  D: "Ale kdo bude v naší soutěži
+      rozhodovat o vítězi?"
+  juststay
+  start apok "mluvi"
+  A: "Já."
+  start apok "mlci"
+  justtalk
+  D: "Cože?!
+      Nešlo by to zařídit nějak jinak?"
+  juststay
+  start apok "mluvi"
+  A: "No dobrá, o vítězi můžeme tedy hlasovat."
+  start apok "mlci"
+  justtalk
+  D: "Jo..."
+  juststay
+  start apok "mluvi"
+  A: "Já hlas a ty hlas."
+  start apok "mlci"
+  justtalk
+  D: "Ale já chci mít dva hlasy."
+  juststay
+  start apok "mluvi"
+  A: "Já tři."
+  start apok "mlci"
+  justtalk
+  D: "Já čtyři!"
+  juststay
+  start apok "mluvi"
+  A: "Pět!"
+  start apok "mlci"
+  justtalk
+  D: "Šest!"
+  juststay
+  start apok "mluvi"
+  A: "Sedm!"
+  start apok "mlci"
+  justtalk
+  D: "Osm!"
+  juststay
+  start apok "mluvi"
+  A: "Devět!"
+  start apok "mlci"
+  justtalk
+  D: "Deset!"
+  juststay
+  justtalk
+  D: "Skončili jsme.
+      Větší bere."
+  juststay
+  start apok "mluvi"
+  A: "To je fakt, stejně neznám žádné větší číslo."
+  start apok "mlci"
+gplend
+
+block _11 ( beg(0) and maxline(1) and last(_00a) )
+title
+  justtalk
+  D: "Vlastně nic."
+  juststay
+  exitdialogue
+gplend
+
+block _10 ( beg(0) and not maxline(1) and not (last(_00b) or last(_00a)))
+title Tak zatím...
+  justtalk
+  D: "Tak zatím..."
+  juststay
+  exitdialogue
+gplend

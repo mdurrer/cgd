@@ -1,0 +1,12 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+Vypravec: "Byla jedna pohádková země."
+    load intr_ptak "FLI-animace"
+    startplay intr_ptak "FLI-animace"
+Vypravec: "Alespoň nám jako pohádková připadá..."
+Vypravec: "...jejím obyvatelům možná jenom trochu..."
+
+Vypravec: "...anebo vůbec ne."
+
+gplend

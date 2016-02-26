@@ -1,0 +1,335 @@
+{drak s lenochem:}
+
+block _10 ( beg(1) and not been(_10) and (stroj_funguje=1) )
+title How is your machine working now?
+  justtalk
+  D: "How is your machine working now?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Mmmh, much better, but it's not perfect yet.
+      I'm not sure what's still missing."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "What about...?!"
+  juststay
+
+  exitdialogue
+gplend
+
+block _11 ( beg(1) and not been(_11) and (stroj_funguje=2) )
+title And how is your machine working now?
+{když už přístroj definitivně opravil}
+  justtalk
+  D: "And how is your machine working now?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Absolutely flawless!
+      I almost don't miss swallowing the cakes."
+  L: "But have I not always said
+      that it is a masterpiece?"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "As far as I know you said
+      that if I repair your flying-cake machine
+      you would give me a flask of your laziness."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "What? Actually, you are right.
+      You can take your just reward then,
+      enjoy it!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "I am not afraid of that!"
+  juststay
+
+  {abych mohl vzit lahvicku:}
+  let stroj_funguje (3)
+  exitdialogue
+gplend
+
+block _09 ( atbegin(0) and been(_08) and been(_05) and not been(_09) and isobjon(lahvicka) )
+title If not the machine, what should I want ...
+  justtalk
+  D: "If not the machine, what should I want for
+      my birthday then?!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "You could tell your parents to buy
+      my laziness in a flask."
+  L: "My business is not going very well this year."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _00a ( beg(1) and not hasbeen(_00a) and maxline(1) )
+title
+  justtalk
+  D: "I am Bert and who are you?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "I am me.
+      I have forgotten what my name is."
+  L: "Once I felt that I was going to recall my name
+      but the feeling didn't last very long."
+  L: "I am too lazy to have feelings."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "I don't understand!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "That is your problem."
+  L: "I am too lazy to explain everything to you again."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _00b ( maxline(1) and beg(1) and hasbeen(_00a) )
+title
+  justtalk
+  D: "Yeah, once more..."
+  juststay
+gplend
+
+block _06 ( atbegin(0) and been(_05) and not been(_06) and been(_08) )
+title I will buy your laziness!
+  justtalk
+  D: "I will buy your laziness!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Erm, right now I don't know if it is for sale..."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "What?!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Well -"
+  L: "- I think there is nothing in the world
+      that could offset its value."
+  L: "Unless ..."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Unless what?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Unless you repair my flying-cake machine!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "If this is the only chance to get your laziness,
+      I could try it..."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "But you should hurry up.
+      Maybe I will sell all of it before this evening
+      and none would be left for you!"
+  start lenuvnitr_hlava "mlci"
+
+  let vim_o_lenosti (2)
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+title Have you been this lazy since you were born?
+  justtalk
+  D: "Have you been this lazy since you were born?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "I guess I have."
+  L: "When I was a small kid, my parents were
+      a bit worried about me."
+  L: "My mum
+      - let her rest in peace -
+      always said to me:"
+  L: "'Remember that no roasted pigeons
+      will ever fly into your mouth!'"
+  L: "And you see that she was right."
+  L: "Cakes fly there instead!"
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _12 ( beg(0) and not been(_12) )
+title Do you ever go to the toilet?
+  justtalk
+  D: "Do you ever go to the toilet?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "No, not at all.
+      I have been lying here for a few years,
+      but I didn't have to yet."
+  start lenuvnitr_hlava "mlci"
+  justtalk
+  D: "What about the chamber pot?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Chamber pot?"
+  L: "I don't remember any chamber pot."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _02 ( atbegin(0) and not been(_02) )
+title What is the principle of this extraordinary machine?
+  justtalk
+  D: "What is the principle of this extraordinary
+      machine?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "I don't know, I never tried to figure it out.
+      I am too lazy for that."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _03 ( atbegin(0) and been(_02) and not been(_03) )
+title I know how this machine works!
+  justtalk
+  D: "I know how this machine works!"
+  D: "Would you like to hear it?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "I am too lazy to be interested in it.
+      No, thanks."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _04 ( atbegin(0) and not been(_04) )
+title Where did this machine come from?
+  justtalk
+  D: "Where did this machine come from?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "I don't remember.
+      I am too lazy to recall."
+  L: "It is possible that I built it."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "I would be really surprised then!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Me too. I really don't know where it came from.
+      But I don't care at all that it is here."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _05 ( atbegin(0) and not been(_05) )
+title I would not like to be as lazy like you!
+  justtalk
+  D: "I would not like to be as lazy like you!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "I don't see anything bad in my laziness.
+      I feel quite comfortable with it."
+  L: "I have done great business with it -"
+  L: "- I sell it in pieces bottled in a flask!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Has anybody ever bought one?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Not yet."
+  L: "But I think I will make a fortune of it."
+  start lenuvnitr_hlava "mlci"
+
+  let vim_o_lenosti (1)
+gplend
+
+
+block _07 ( atbegin(0) and not been(_07) )
+title What will you do when the machine breaks down?
+  justtalk
+  D: "What will you do when the machine breaks down?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "I think that it will never break down.
+      It seems to be on some kind of perpetual motion."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "That would be your only safeguard."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Hmm ..."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _08 ( atbegin(0) and not been(_08) )
+title I would like to have a device like this at home!
+  justtalk
+  D: "I would like to have a device like this at home!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "I am sorry, but I am not planning
+      to throw this device away yet."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "I am not saying that I want yours."
+  D: "Maybe I could convince my parents
+      to give me a similar one for my birthday."
+  D: "But I don't know which brand to choose -
+      are you content with this model?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Well, this is what I want to talk to you about.
+      It has been working without fail
+      for quite a few years."
+  L: "But it also has some bugs,
+      sometimes it happens that the cake flies outside."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "That is an unpleasant flaw!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "I would say so.
+      Hence I don't recommend you this purchase
+      at all."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _98 ( beg(0) and not last(_00b) )
+title See you...
+  justtalk
+  D: "See you..."
+  D: "...and good digestion!"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Thanks."
+  start lenuvnitr_hlava "mlci"
+  exitdialogue
+gplend
+
+block _99 ( beg(0) and last(_00b) and maxline(1) )
+title
+  justtalk
+  D: "...nothing."
+  juststay
+  exitdialogue
+gplend

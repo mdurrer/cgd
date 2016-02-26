@@ -1,0 +1,364 @@
+block _17 ( maxline(1) and beg(1) and (upeceny_trol=2) )
+title Zkusím na něj nyní zapůsobit telepaticky.
+  justtalk
+  D: "Zkusím na něj nyní zapůsobit telepaticky."
+  juststay
+  walkonplay 156 116 vpravo
+  objstat away bert
+  load most_drak "telepatie"
+  start most_drak "telepatie"
+
+  {po chvíli mlčení:}
+  start most_trol_huba "mluvi"
+  R: "Máš pravdu, na záda je mi opravdu teplo.
+      To tričko může být tvoje."
+  start most_trol_huba "mlci"
+
+  load most_trol "svlekani2"
+  load most_drak "beretriko"
+  start most_trol "svlekani2"
+  startplay most_drak "beretriko"
+  start most_trol "nahaty"
+  stayon 156 116 vpravo
+  play
+  walkonplay 148 120 vlevo
+
+  justtalk
+  D: "No vida, telepaticky jsme si povídali o tom,
+      jaké je mu vedro a zabralo to!"
+  D: "Možná jsem měl telepatii zkusit hned na
+      začátku..."
+  juststay
+  {trol svleče triko a dá nám ho}
+
+  icostat on i_tricko
+  let upeceny_trol (3)
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(1) and not been(_17) and not been(_02) and (vim_o_rytiri=1) )
+title
+  justtalk
+  D: "Mám delikátní prosbu.
+      Potřebuju tvoje tričko."
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Co?!"
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Tvoje tričko.
+      Doufám, že na sobě
+      kromě něho ještě něco máš!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Ne..."
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Nevadí, mě nazí trolové nepohoršujou."
+  D: "Abych řekl pravdu, myslím si,
+      že trolové by měli stejně chodit jenom nazí."
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Nazí? To mě dosud nenapadlo.
+      Ale je to naprosto revoluční!"
+  R: "O tom zkusím uvažovat..."
+  start most_trol_huba "mlci"
+  justtalk
+  D: "A dáš mi tvoje tričko!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "A tak to ne!
+      To tričko nosil už můj prapraděd."
+  R: "Prostě ti ho nedám!"
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Měl bys být o trochu víc revolučnější.
+      A jednou provždy se rozloučit
+      se všema starýma, hloupýma tradicema!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "To nejde.
+      Vždycky, když se začne mluvit
+      o tom tričku, přepadne mě nostalgie..."
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Ale já to tričko nutně musím mít!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Nač potřebuješ moje tričko?"
+  start most_trol_huba "mlci"
+
+{ let upeceny_trol (1)
+gplend
+
+block _03 ( beg(0) and been(_02) and not been(_03) )
+title Strašně se mi líbí na tvém tričku ten proužek!
+  justtalk
+  D: "Strašně se mi líbí na tvém tričku ten proužek!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Mí prapředkové měli vkus, co?"
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Ne ne, chtěl jsem říct,
+      že je šíleně nevkusnej."
+  D: "Nechápu, jak na sobě můžeš mít něco,
+      co ti nesluší!"
+  D: "Proužky se dnes přece nosí jedině SVISLE!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Já doufám,
+      že zase jednou přijdou do módy
+      vodorovné proužky."
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Jsem si jistej, že vodorovné proužky
+      už NIKDY do módy nepřijdou."
+  D: "To tričko mi můžeš úplně klidně věnovat!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Zapomeň na to."
+  start most_trol_huba "mlci"
+gplend
+
+block _04 ( beg(0) and been(_02) and not been(_04) )
+title Chci z tvého trička vyrábět koláž...
+  justtalk
+  D: "Chci z tvého trička vyrábět koláž..."
+  D: "...vlastně frotáž..."
+  D: "...možná asambláž."
+  juststay
+  start most_trol_huba "mluvi"
+  R: "To zní zajímavě, proč ne.
+      Ale vrátil bys mi pak moje tričko?"
+  start most_trol_huba "mlci"
+  justtalk
+  D: "To těžko, bude nastříhané na malinké kousky."
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Začínám mít pocit,
+      že svoje tričko do tvých rukou
+      nikdy nesvěřím."
+  R: "Ani kdybys s ním měl ty nejlepší úmysly!"
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Nemáš vůbec pochopení pro umění!"
+  juststay
+gplend
+
+block _06 ( beg(0) and been(_02) and not been(_06) )
+title ...na tomto jediném tričku závisí osud celé naší země!
+  justtalk
+  D: "Je docela možné,
+      že na tomto jediném tričku
+      závisí osud celé naší země!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Hraješ na moje vlastenecké city, co?"
+  start most_trol_huba "mlci"
+gplend
+
+block _07 ( beg(0) and been(_02) and not been(_07) )
+title ...na tomto jediném tričku závisí osud celé galaxie!
+  justtalk
+  D: "Na tomto jediném tričku
+      závisí osud celé galaxie!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Myslím, že by si Galaxie
+      měla pěkně rychle vyhlédnout
+      nějaké jiné tričko!"
+  start most_trol_huba "mlci"
+gplend
+
+block _08 ( beg(0) and been(_02) and not been(_08) )
+title Ale já to tričko potřebuju hodně naléhavě!
+  justtalk
+  D: "Ale já to tričko potřebuju hodně naléhavě!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Co chceš provádět mému ubohému tričku?!
+      To tričko je moje jediné oblečení!"
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Netušil jsem,
+      že jsou na tom trolové tak nuzně."
+  juststay
+  justtalk
+  D: "Tak jako tak, značka ti musí stačit!"
+  juststay
+gplend
+
+block _09 ( beg(0) and been(_02) and not been(_09) )
+title Zkusím to asertivně...
+  justtalk
+  D: "Zkusím to asertivně..."
+  juststay
+  justtalk
+  D: "Ty máš tak úžasný bicáky!
+      Nejsi náhodou kulturista?"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Co to povídáš, vždyť ty moje
+      bicepsy nejsou vůbec vidět!"
+  start most_trol_huba "mlci"
+  justtalk
+  D: "No, je pravda, že přes to tričko
+      moc vidět nejsou.
+      Ale je to hrozná škoda!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Neřek bych."
+  start most_trol_huba "mlci"
+gplend
+
+block _10 ( beg(0) and been(_02) and not been(_10) )
+title Musí ti být hrozný vedro!
+  justtalk
+  D: "Musí ti být hrozný vedro!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Kdepak, dá se to vydržet!"
+  start most_trol_huba "mlci"
+gplend
+
+block _11 ( beg(0) and been(_02) and not been(_11) )
+title Vypadáš nějak bledě. Měl by ses trochu opalovat.
+  justtalk
+  D: "Vypadáš nějak bledě.
+      Měl by ses trochu opalovat."
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Opalování mi moc nesvědčí."
+  start most_trol_huba "mlci"
+gplend
+
+block _12 ( beg(0) and been(_02) and not been(_12) )
+title Dej mi tvoje tričko!
+  justtalk
+  D: "Dej mi tvoje tričko!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Nikdy!"
+  start most_trol_huba "mlci"
+gplend
+
+block _13 ( beg(0) and been(_02) and not been(_13) )
+title Chci tvoje tričko!
+  justtalk
+  D: "Chci tvoje tričko!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Máš smůlu!"
+  start most_trol_huba "mlci"
+gplend
+
+block _14 ( beg(0) and been(_02) and not been(_14) )
+title Tričko, tričko, tričko!
+  justtalk
+  D: "Tričko, tričko, tričko!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "NE!"
+  start most_trol_huba "mlci"
+gplend
+
+block _15 ( beg(0) and been(_02) and not been(_15) and been(_09) )
+title Asi bych neměl být tak asertivní...
+  justtalk
+  D: "Asi bych neměl být tak asertivní..."
+  D: "Okamžitě mi dej svoje hnusný tričko,
+      který ti vůbec nesluší!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Co's to říkal?
+      V žádném případě!"
+  start most_trol_huba "mlci"
+gplend
+
+
+
+block _19 ( maxline(1) and not been (_19) and beg(1) and (probehl_incident=1) )
+title
+  justtalk
+  D: "Co zdraví?"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Ujde to, jenom mám trochu napuchlej nos."
+  start most_trol_huba "mlci"
+  start most_trol_huba "mluvi"
+  R: "Nějakej halama se na mě
+      rozhodl spáchat atentát!
+      Tak jsem mu taky dal pořádně do nosu."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend
+
+block _18 ( maxline(1) and beg(1) and (upeceny_trol=3) )
+title
+  justtalk
+  D: "Jak se vede?"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Dík za optání."
+  start most_trol_huba "mlci"
+  start most_trol_huba "mluvi"
+  R: "Už jsem dost opálený?
+      A pořádně dotmavozelena?"
+  start most_trol_huba "mlci"
+  justtalk
+  D: "Mmmh, řekl bych, že spíš do hněda."
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Tak to ještě nejsem opálený ani trochu.
+      Hnědá je totiž má přirozená pigmentace."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend
+
+block _16 ( maxline(1) and beg(1) and been(_02) and (upeceny_trol!=3) )
+title Tričkóóó!
+  justtalk
+  D: "Tričkóóó!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Neeeeee!"
+  start most_trol_huba "mlci"
+gplend
+
+block _20 ( maxline(1) and last(_16) )
+title
+  justtalk
+  D: "Uf..."
+  juststay
+  exitdialogue
+gplend
+
+block _21 ( beg(0) and not last(_16) )
+title Myslím, že si mi dva už nemáme co říct...
+  justtalk
+  D: "Myslím, že si mi dva už nemáme co říct..."
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Můžeme si ještě chvilku povídat
+      o mém nádherném tričku."
+  start most_trol_huba "mlci"
+  justtalk
+  D: "To k ničemu nevede!"
+  juststay
+  exitdialogue
+gplend
+
+block _01 ( maxline(1) and beg(1) )
+title
+  justtalk
+  D: "Co děláš tady na mostě?"
+  D: "Co vím trolové byli stvořeni k tomu,
+      aby leželi pod stromem!"
+  juststay
+  start most_trol_huba "mluvi"
+  R: "Částečně jsem přehodnotil
+      svoji životní filozofii..."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend

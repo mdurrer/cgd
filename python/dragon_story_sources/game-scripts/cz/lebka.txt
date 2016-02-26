@@ -1,0 +1,29 @@
+{rozhovor s lebkou:}
+
+block _ (1)
+title
+  justtalk
+  D: "Haló!"
+  juststay
+  Leb: "???"
+  D: "!!!"
+  Leb: "!!"
+  D: "!,!,?!"
+  Leb: "..."
+  D: "!!!"
+  Leb: ",;."
+  D: "?, !"
+  Leb: "!"
+  D: "-"
+  Leb: "---"
+  D: "?"
+  Leb: "."
+  D: "?!"
+  Leb: "-,-"
+  D: "..."
+  D: "?!?"
+  D: "!"
+  justtalk
+  D: "Došlo jí slov."
+  juststay
+gplend

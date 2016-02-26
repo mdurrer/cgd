@@ -1,0 +1,53 @@
+{s červem:}
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+D: "Hey, warte ne Minute!
+    Kannst du mir kurz zuhören?"
+  juststay
+
+C: "Wohl Kaum. Ich arbeite!"
+  justtalk
+D: "Schäm dich!
+    Du verzehrst ein Kulturmonument."
+  juststay
+
+  justtalk
+D: "Such dir ne andere Arbeit!"
+  juststay
+
+C: "Der eine macht eben dies, der andere macht das."
+  justtalk
+D: "Machst du nie Pause?"
+  juststay
+
+C: "Nein, die Arbeit ist das Wichtigste."
+  justtalk
+D: "Wie kannst du das Arbeit nennen!?
+    Du frisst doch nur die ganze Zeit!"
+  juststay
+
+C: "Ich esse, weil ich einen hohen
+    Energieausstoß habe."
+C: "Die muss ich ja irgendwie wieder reinbekommen."
+  justtalk
+D: "Das nenn ich mal ein Perpetuum Mobile..."
+  juststay
+
+gplend
+
+block _01 ( beg(1) and been(_00) )
+title
+  justtalk
+D: "Hi. Wie geht's?"
+  juststay
+
+C: "Danke, gut."
+C: "Aber stör mich jetzt nicht,
+    es gibt Arbeit zu tun."
+  justtalk
+D: "Die Gottlosen haben keinen Frieden?"
+  juststay
+
+gplend
+

@@ -1,0 +1,227 @@
+{s žebrákem:(žebrák mluví velice nevrle)
+
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+D: "Hello, is anything wrong with you?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I am starving to death."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Can I help you somehow?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I want to eat!"
+  start zebrak_ziv "mlci"
+  justtalk
+D: "O.K. , I'll ask my mother for a plate of food."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Better not your mother, her cooking is terrible."
+  start zebrak_ziv "mlci"
+gplend
+
+block _07 ( maxline(1) and beg(1) and been(_00b) and been(_04) and been(_05) and been(_02) )
+TITLE Are you still dying?
+  justtalk
+D: "Are you still dying?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Yes, still. Do you have a doughnut with cream
+    for me?"
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Not now, unfortunately..."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I will wait."
+  start zebrak_ziv "mlci"
+  exitdialogue
+gplend
+
+block _00b ( maxline(1) and beg(1) and been(_00) )
+title
+  justtalk
+D: "Man..."
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+TITLE I will try to find an old rotten piece of bread for you
+  justtalk
+D: "I will try to find an old rotten
+    piece of bread for you."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I would never eat that."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "And if it had some 'aged' cheese?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Yuck. I want a doughnut with cream."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "What if it were a scone?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I can't stand scones!"
+  start zebrak_ziv "mlci"
+gplend
+
+block _05 ( beg(0) and been(_04) and not been(_05) )
+TITLE Could the doughnut be without cream?
+  justtalk
+D: "Could the doughnut be without cream?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I don't eat doughnuts without cream."
+  start zebrak_ziv "mlci"
+gplend
+
+block _06 (0)
+TITLE Would you prefer glaze or sprinkles on your doughnut?
+  justtalk
+D: "Would you prefer glaze or sprinkles
+    on your doughnut?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I want an ordinary doughnut with cream
+    from ginger dough."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "I don't care about the toppings!"
+  start zebrak_ziv "mlci"
+  justtalk
+D: "I just thought ..."
+  juststay
+gplend
+
+block _01 ( beg(0) and not been(_01) and been(_00) )
+TITLE You know my mother?!
+  justtalk
+D: "You know my mother!?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I haven't seen anybody of your family
+    for almost ten years."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "I knew you too,
+    but you were just a small dragon baby."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "But now you have forgotten me
+    since it's been a very long time."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "I certainly have."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I came over to your house every
+    other day to eat the leftovers."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Your mother was very generous."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Why didn't you turn up again sometime?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I always wanted to.
+    But then I remembered
+    how terrible your mother's cooking is."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "Now I'd rather starve to death."
+  start zebrak_ziv "mlci"
+gplend
+
+block _02 ( beg(0) and been(_01) and been(_04) and not been(_02) )
+TITLE How is it you are so spoiled now?
+  justtalk
+D: "How is it you are so spoiled now?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Spoiled - that's not
+    the right word."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "I'd rather say - I'm a gourmet."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "So a gourmet..."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I lived on the leftovers in the
+    castle-ditch for five years."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+Z: "It fed me for another five years.
+    And now I started to be hungry again."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "But there is no ditch here."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "They have filled it."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "And I thought you had the illusion
+    of hunger for a long time!"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "I've suffered from hunger since birth,
+    but I had my first illusion only
+    a short while ago."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "I am very interested in this!"
+  juststay
+  start zebrak_ziv "mluvi"
+  start zebrak_ziv "mluvi"
+Z: "I dreamt that I met a chocolate stick."
+Z: "You know what,
+    we then talked a little."
+Z: "And I started to have desire for it
+    but then she was gone!"
+Z: "That's also why I now have an appetite for
+    something sweet."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "It may not have been an illusion."
+  juststay
+  justtalk
+D: "Wasn't the stick of chocolate jumping around
+    a little bit?"
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "Why, yes. It was."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "Hah, it was Evelyn!
+    And she was made out of wood by the way."
+  juststay
+  start zebrak_ziv "mluvi"
+Z: "No! It was really made out of chocolate!"
+Z: "Even with nuts."
+Z: "When I see her I will eat her!"
+Z: "But I would have a doughnut before..."
+  start zebrak_ziv "mlci"
+  justtalk
+D: "(He is probably having an illusion again.)"
+  juststay
+gplend
+
+block _09 ( beg(0) and not last(_00b) and not maxline(1) )
+TITLE I started to get hungry, I have to go ...
+  justtalk
+D: "(I started to get hungry, I have to go home to
+    have something.)"
+D: "Anyway, my parents wouldn't like that I am talking
+    to a beggar ..."
+  juststay
+  exitdialogue
+gplend
+

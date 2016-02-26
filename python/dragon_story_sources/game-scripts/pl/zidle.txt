@@ -1,0 +1,351 @@
+{Bert s hlavní židlí:}
+
+{kliknuti cihlou chytneme hned na zacatku:}
+block _11 ( not last(_11) and ((beg(1) and maxline(1) and isactico(i_cihla))or beg(0)) and (nedosahnu_na_pohadku=1) and isobjon(pohadka) and isobjon(hodzid_dobra) )
+   title Proszę byś mi trochę pomogła...
+ labels nemamcihlu
+  justtalk
+   D: "Proszę byś mi trochę pomogła..."
+  juststay
+  start hodzid "mluvi"
+   Ka: "W czym?"
+  start hodzid "mlci"
+  justtalk
+   D: "Po prostu stanę na tobie..."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Och!"
+  start hodzid "mlci"
+  justtalk
+   D: "Muszę zwrócić ci uwagę,
+       że to bardzo ryzykowne."
+   D: "Może stanę
+       tylko na jednej nodze!"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Ale ja mam trzy nogi!"
+  start hodzid "mlci"
+
+  if(isactico(0)) nemamcihlu
+  justtalk
+   D: "Nie martw się, że masz tylko trzy nogi.
+       Znalazłem coś, co można pod ciebie podłożyć."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Co to? Stara cegła?"
+  start hodzid "mlci"
+  justtalk
+   D: "Chyba się nada."
+  juststay
+
+   icostat off i_cihla
+{   icostat on i_pohadka
+{   objstat away pohadka
+{do obou identifikatoru dam, ze uz tam pohadka neni
+{   let nedosahnu_na_pohadku (2)
+{   let vim_o_pohadce (2)
+{nyni zaridit situacku s vyndanim knihy:}
+   newroom hod 2
+   exitdialogue
+ label nemamcihlu
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) )
+title
+  justtalk
+   D: "Czy to wy, Wasza Wysokość?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Tak, to naprawdę ja, Karmela Piąta,
+        nawet w tej nędzy pozostaję sobą!
+        Czy przybyłeś by mnie uwolnić?"
+  start hodzid "mlci"
+  justtalk
+   D: "(Mam dość własnych zmartwień.
+       Może innym razem.
+       Muszę szybko z tym skończyć!)"
+   D: "Wyglądasz
+       na strasznie wychudzoną."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Nic dziwnego..."
+  start hodzid "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and not been(_01) and been(_00) )
+title
+  justtalk
+   D: "Karmelo Piąta!"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Słucham.
+        Czym mogę służyć?"
+      start hodzid "mlci"
+gplend
+
+block _02 ( maxline(1) and beg(1) and been(_01) )
+title
+  justtalk
+   D: "Karmelo Piąta!"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Tak?"
+  start hodzid "mlci"
+gplend
+
+block _10 ( beg(0) and not been(_10) )
+   title Twoje damy prosiły, abym tu przybył.
+  justtalk
+   D: "Twoje damy prosiły, abym tu przybył."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Masz jakieś nowiny?"
+  start hodzid "mlci"
+  justtalk
+   D: "Melania jest całkiem połamana."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Nic dziwnego."
+  start hodzid "mlci"
+  justtalk
+   D: "Eulania skarży się,
+       że pełno w niej korników."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Ona narzeka na to conajmniej od 50 lat!"
+  start hodzid "mlci"
+  justtalk
+   D: "Agata próchnieje."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Czy przeżyje?"
+  start hodzid "mlci"
+  justtalk
+   D: "Przykro mi, jest wykończona..."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Och, moja najlepsza przyjaciółka!"
+  start hodzid "mlci"
+gplend
+
+block _14 ( beg(0) and not been(_14) and isobjon(hodzid_dobra) and not maxline(1) )
+   title Jak się czujesz po tej drobnej naprawie?
+  justtalk
+   D: "Jak się czujesz po tej drobnej naprawie?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Jak nowo narodzona!
+        Ta łata jest wspaniała."
+      start hodzid "mlci"
+  start hodzid "mluvi"
+   Ka: "Jestem ci wielce zobowiązana."
+  start hodzid "mlci"
+gplend
+
+block _13 ( not last(_13) and beg(0) and (nedosahnu_na_pohadku=1) and isobjon(pohadka) and not isobjon(hodzid_dobra) )
+   title Chciałbym, żebyś mi pomogła...
+  justtalk
+   D: "Chciałbym, żebyś mi pomogła..."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Naprawdę?"
+   Ka: "Nie sądzę abyś zasługiwał
+        na jakąś pomoc z mojej strony.
+        Przykro mi. Nie mogę."
+      start hodzid "mlci"
+gplend
+
+block _1 ( beg(0) and not been(_1) )
+   title Z pewnością skrzypisz!
+  justtalk
+   D: "Z pewnością skrzypisz!"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Nie tylko."
+  start hodzid "mlci"
+  justtalk
+   D: "Jedna z twoich nóg jest krótsza
+       od pozostałych..."
+  juststay
+  start hodzid "mluvi"
+   Ka: "To zwykła kolej rzeczy..."
+  start hodzid "mlci"
+gplend
+
+block _2 ( beg(0) and not been(_2) )
+   title Jak się tu znalazłaś?
+  justtalk
+   D: "Jak się tu znalazłaś?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Zostałam aresztowana przez żołnierzy
+        pana Piątalusa."
+  start hodzid "mlci"
+  justtalk
+   D: "Nie powinnaś była pozwolić, by cię zabrali."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Próbowałam wbić jednemu drzazgę,
+        lecz miał na sobie
+        zbroję."
+      start hodzid "mlci"
+gplend
+
+block _3 ( beg(0) and not been(_3) )
+   title Ciekaw jestem, czy torturują cię w jakiś...
+  justtalk
+   D: "Ciekaw jestem,
+       czy zadają ci jakieś specjalne tortury?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Piątalus buja mnie codziennie po obiedzie
+        przez pół godziny!"
+      start hodzid "mlci"
+  justtalk
+   D: "To wstrętne!"
+  juststay
+gplend
+
+block _4 ( beg(0) and not been(_4) )
+   title Czemu cię aresztowali?
+  justtalk
+   D: "Czemu cię aresztowali?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Myślę, że to wszystko przez Otomanę..."
+{#Otoman - this is a name, but it is also a special kind of sofa
+  start hodzid "mlci"
+  justtalk
+   D: "Przez kogo?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Czy kiedykolwiek słyszałeś imię
+        Emrusa Otomana?!"
+   Ka: "Nie znasz legendarnego
+        wodza wszystkich krzeseł?"
+   Ka: "Każdy stołek go zna!"
+  start hodzid "mlci"
+gplend
+
+block _5 ( beg(0) and not been(_5) and been(_4) )
+   title Jak otomana może być wodzem krzeseł?
+  justtalk
+   D: "Jak otomana może być wodzem
+       wszystkich krzeseł?"
+  juststay
+  justtalk
+   D: "Przecież nie jest krzesłem!"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Otomana był krzesłem!"
+   Ka: "Pochodził ze starodawnego
+        rodu krzeseł, jego prababcia
+        była leżanką."
+  start hodzid "mlci"
+gplend
+
+block _6 ( beg(0) and not been(_6) and been(_4) )
+   title Opowiedz mi coś o dziejach krzeseł!
+  justtalk
+   D: "Opowiedz mi coś o dziejach krzeseł!"
+  juststay
+  start hodzid "mluvi"
+   Ka: "No... dobrze..."
+   Ka: "Dawno temu
+        krzesła żyły w niewoli u stworów
+        które -"
+   Ka: "- wiem, że w obecnych czasach można
+        uważać to za śmieszne -
+        które miały tylko dwie nogi."
+  start hodzid "mlci"
+  justtalk
+   D: "To zabawne!"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Tak.
+        Przybył jednak dzielny Emrus."
+   Ka: "Wszczął bunt
+        przeciw ciemiężycielom, i to właśnie on
+        sformułował naszą, znaną dziś dobrze maksymę."
+  start hodzid "mlci"
+gplend
+
+block _7 ( beg(0) and not been(_7) and been(_6) )
+   title Jak zakończyło się powstanie?
+  justtalk
+   D: "Jak zakończyło się powstanie?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Nadeszła bardzo sroga zima i siły powstańców
+        poniosły poważne straty."
+  start hodzid "mlci"
+  justtalk
+   D: "Czy krzesła zamarzły w czasie
+       działań wojennych?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Nie, zostały spalone!"
+  start hodzid "mlci"
+gplend
+
+block _8 ( beg(0) and not been(_8) and been(_6) )
+   title Jak brzmiała maksyma Emrusa?
+  justtalk
+   D: "Jak brzmiała maksyma Emrusa?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Cztery nogi to nie mniej niż dwie!"
+  start hodzid "mlci"
+  justtalk
+   D: "Brzmi to imponująco!
+       (Chyba już przedtem gdzieś to słyszałem...)"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Jesteś wszak oczytanym intelektualistą, prawda?"
+  start hodzid "mlci"
+gplend
+
+block _9 ( beg(0) and not been(_9) and been(_7) )
+   title Jak zginął Emrus Otoman?
+  justtalk
+   D: "Jak zginął Emrus Otoman?"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Najpierw pocięli go na drobne szczapki
+        i wykończyli
+        latem, podczas pieczenia kiełbasek."
+  start hodzid "mlci"
+  justtalk
+   D: "Co za hańba!"
+   D: "Nie wytrzymałbym
+       tego tłuszczu topiącego się na moim ciele!"
+  juststay
+  start hodzid "mluvi"
+   Ka: "Lecz jego spuścizna pozostała wśród nas."
+   Ka: "Odtąd krzesła
+        nie cierpiały już dłużej."
+      start hodzid "mlci"
+gplend
+
+block _99 ( beg(0) and not(last(_01) or last(_02) or last(_11) ) and not maxline(1) )
+   title Muszę iść, życzę ci miłego dnia...
+  justtalk
+   D: "Muszę iść, życzę ci miłego dnia..."
+  juststay
+  start hodzid "mluvi"
+   Ka: "Ja tobie też."
+  start hodzid "mlci"
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and maxline(1) and (last(_01) or last(_02)) )
+title
+  justtalk
+   D: "No, nie żartuj."
+  juststay
+  start hodzid "mluvi"
+   Ka: "To kiepski dowcip, prawda?
+        Nie kpij sobie ze mnie, proszę!"
+      start hodzid "mlci"
+  exitdialogue
+gplend

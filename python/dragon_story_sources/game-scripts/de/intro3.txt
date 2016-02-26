@@ -1,0 +1,60 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+load intr_lout1 "kameni"
+load intr_lout1 "mluvi"
+
+load intr_lout2 "kameni"
+load intr_lout2 "mluvi"
+load intr_lout2 "mlci"
+load intr_lout2 "vyleza"
+
+{[jsme u komedianta:]
+{komediant mění hlas pro následující dvě postavy:}
+{má to být pimprlové divadýlko, no...
+{kdyžtak si to upravte dle vaší libovůle!
+
+{jedna:}
+start intr_lout1 "mluvi"
+KoIn: "Komm aus der Truhe raus, du bist enttarnt,
+       du Verräter!"
+start intr_lout1 "mlci"
+{dva:}
+startplay intr_lout2 "vyleza"
+start intr_lout2 "mluvi"
+KoIn: "Ich habe keinen Grund,
+       mich in der Truhe zu verstecken."
+KoIn: "Denn ich habe nichts zu verbergen,
+       sondern DU, Zauberer!"
+KoIn: "Ich werde dein wahres Gesicht entlarven!"
+start intr_lout2 "mlci"
+{jedna:}
+start intr_lout1 "mluvi"
+KoIn: "Du verbreitest Unfug!
+       Denn du bist es, der Duckmäuser des Königs!"
+start intr_lout1 "mlci"
+{dva:}
+start intr_lout2 "mluvi"
+KoIn: "Hah, wenn dem so ist, möge ich zu Stein..."
+
+start intr_lout1 "kameni"
+startplay intr_lout2 "kameni"
+
+start intr_lout1 "kamennej"
+
+{uprostřed věty přetrženo, loutky zkamení, jedna spadne {komediantovi na nohu,
+
+{komediant už svým hlasem:}
+KoIn: "Aua!"
+
+gplend
+
+block _1 ( (1=2) )
+title
+KoIn: "."
+KoIn: "."
+KoIn: "."
+KoIn: "."
+KoIn: "."
+gplend

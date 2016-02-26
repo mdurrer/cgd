@@ -1,0 +1,43 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "Byla ale také jedna kouzelná hůlka."
+Vypravec: "Byla zlá a jmenovala se Evelýna."
+Vypravec: "Protože být kouzelnou hůlkou je pěkná otrava..."
+Vypravec: "...přemýšlela, čím by se mohla dobře bavit."
+
+load hulka "priskace"
+startplay hulka "priskace"
+load hulka "na kameni"
+load hulka "kamen_mluvi"
+start hulka "kamen_mluvi"
+EvIn: "Já - asi - umřu - nudou!"
+EvIn: "Já - asi - vážně - umřu - nudou!"
+EvIn: "Co - mám - dělat?"
+start hulka "na kameni"
+EvIn: "..."
+EvIn: "Už to mám!"
+start hulka "kamen_mluvi"
+EvIn: "Budu HODNÁ kouzelná hůlka."
+start hulka "na kameni"
+EvIn: "..."
+EvIn: "Ne, to není - dobrej - nápad!"
+start hulka "na kameni"
+EvIn: "..."
+EvIn: "Budu si okusovat nehty!"
+start hulka "kamen_mluvi"
+EvIn: "..."
+EvIn: "Ne, to taky - není - dobrej - nápad."
+start hulka "na kameni"
+EvIn: "..."
+EvIn: "Ovládnu svět!"
+start hulka "kamen_mluvi"
+EvIn: "Já ovládnu svět, to je ono!"
+start hulka "na kameni"
+
+Vypravec: "Je divné, že na to za tisíc let své existence..."
+Vypravec: "...nepřišla dřív."
+Vypravec: "My ovšem máme štěstí, že ji to napadlo právě teď."
+
+gplend

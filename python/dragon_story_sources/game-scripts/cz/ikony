@@ -1,0 +1,462 @@
+{ikonky}
+
+ICON i_nit
+  TITLE pavoučí nit
+  STATUS off
+  PICTURE ..\ikony\def\01.gcf
+look
+  D: "Křehká je jenom na pohled.
+      Ve skutečnosti se vyrovná ocelovému lanu."
+gplend
+
+ICON i_lzicka
+  TITLE lžička
+  STATUS off
+  PICTURE ..\ikony\def\02.gcf
+look
+  D: "Při pohledu na ni mě napadá
+      jedině ta infantilní říkanka."
+gplend
+
+ICON i_nocnik
+  TITLE nočník
+  STATUS off
+  PICTURE ..\ikony\def\03.gcf
+look
+  D: "Není zrovna prázdný."
+  D: "Co kdyby z něj vyletěla moucha...?!"
+gplend
+
+ICON i_ponozka
+  TITLE ponožka
+  STATUS off
+  PICTURE ..\ikony\def\04.gcf
+look
+  D: "Skřetí fusekla."
+gplend
+
+ICON i_plisen
+  TITLE slepičí bujón
+  STATUS off
+  PICTURE ..\ikony\def\05.gcf
+look
+  D: "Ten ochutnávat nebudu,
+      lepší bude hned ho povařit."
+gplend
+
+ICON i_klika
+  TITLE klika
+  STATUS off
+  PICTURE ..\ikony\def\06.gcf
+look
+  D: "To mám ale kliku, že jsem tu kliku našel!"
+gplend
+
+ICON i_provaz
+  TITLE provaz
+  STATUS off
+  PICTURE ..\ikony\def\07.gcf
+  look
+    D: "Pevný a tenký."
+  gplend
+  canuse (isactico(i_varecka_zlomena))
+  use
+    D: "Vařečku vyspravíme provázkem..."
+    icostat off i_varecka_zlomena
+    icostat off i_provaz
+    icostat on i_varecka
+  gplend
+
+ICON i_varecka_zlomena
+  TITLE zlomená vařečka
+  STATUS off
+  PICTURE ..\ikony\def\08.gcf
+  look
+    D: "Tyhle dva kousky dřeva mi na nic nebudou."
+  gplend
+  canuse (isactico(i_provaz))
+  use
+    D: "Provázkem vařečka půjde vyspravit..."
+    icostat off i_varecka_zlomena
+    icostat off i_provaz
+    icostat on i_varecka
+  gplend
+
+ICON i_varecka
+  TITLE vařečka
+  STATUS off
+  PICTURE ..\ikony\def\09.gcf
+look
+  D: "Dmu se pýchou;
+      svýma vlatníma rukama...!"
+gplend
+
+ICON i_prak
+  status off
+     TITLE prak
+  PICTURE ..\ikony\def\10.gcf
+look
+  D: "Snad nebude guma moc vytahaná."
+gplend
+
+ICON i_doutnik
+  status off
+     TITLE doutník
+  PICTURE ..\ikony\def\11.gcf
+look
+  D: "Originál doutníček z Dračí Historie."
+gplend
+
+ICON i_cihla
+  TITLE cihla
+  STATUS off
+  PICTURE ..\ikony\def\12.gcf
+look
+  D: "Vždycky jsem chtěl mít vilku uprostřed lesů.
+      Sen se mi právě začíná plnit."
+  D: "Tato cihla je dobrým začátkem!"
+gplend
+
+ICON i_plakat
+  TITLE plakát
+  STATUS off
+  PICTURE ..\ikony\def\13.gcf
+look
+  D: "Snad mě rodiče nezabijou."
+gplend
+
+ICON i_pohadka
+  TITLE pohádková kniha
+  STATUS off
+  PICTURE ..\ikony\def\14.gcf
+look
+  D: "Kdopak ji asi napsal?"
+gplend
+
+ICON i_rakev
+  TITLE rakvička
+  STATUS off
+  PICTURE ..\ikony\def\15.gcf
+look
+  D: "Ta šlehačka bude stejně zkažená."
+gplend
+
+ICON i_rad
+  TITLE výpůjční řád
+  STATUS off
+  PICTURE ..\ikony\def\16.gcf
+look
+  D: "Cedule - z papíru - je to dost jasné?"
+gplend
+
+ICON i_jehla
+  TITLE ježčí bodlina
+  STATUS off
+  PICTURE ..\ikony\def\17.gcf
+look
+  D: "Co kdyby posloužila jako jehla?"
+  D: "Dokonce má i ouško!"
+gplend
+
+ICON i_zaplata
+  TITLE šatstvo
+  STATUS off
+  PICTURE ..\ikony\def\18.gcf
+look
+  D: "Nevěděl jsem, že si obr otevřel sekáč.
+      Škoda jen, že to není moje číslo."
+gplend
+
+ICON i_bylina
+  STATUS off
+  TITLE léčivá bylina
+  PICTURE ..\ikony\def\19.gcf
+look
+  D: "Voňavý červený květ."
+gplend
+
+ICON i_list
+  STATUS off
+  TITLE list
+  PICTURE ..\ikony\def\20.gcf
+look
+  D: "Kvůli tomuto listu
+      mám doposud výčitky svědomí."
+gplend
+
+ICON i_karty
+  TITLE balíček karet
+  STATUS off
+  PICTURE ..\ikony\def\21.gcf
+look
+  D: "Dvaatřicet falešných es."
+  D: "A navíc jsou všechna poznačená!"
+gplend
+
+ICON i_hadra
+  TITLE hadra
+  STATUS off
+  PICTURE ..\ikony\def\22.gcf
+look
+  D: "Smradlavá a špinavá,
+      barvy naprosto nedefinovatelné."
+gplend
+
+ICON i_pivo
+  TITLE džbánek piva
+  STATUS off
+  PICTURE ..\ikony\def\23.gcf
+look
+  D: "Už z něho vyprchaly všechny bublinky."
+gplend
+
+ICON i_prsten
+  status off
+     TITLE prsten
+  PICTURE ..\ikony\def\24.gcf
+  look
+    D: "Co když je kouzelný?"
+  gplend
+
+ICON i_saze
+  status off
+  TITLE fousy se sazemi
+  PICTURE ..\ikony\def\25.gcf
+look
+  D: "Snad saze po cestě všechny nevypráším."
+gplend
+
+ICON i_zvonek
+  status off
+     TITLE zvonek
+  PICTURE ..\ikony\def\26.gcf
+look
+  D: "Mmmmmmmhhhh."
+gplend
+
+ICON i_trubka
+  status off
+  TITLE trubka
+  PICTURE ..\ikony\def\27.gcf
+look
+  D: "Prozradím vám jedno tajemství."
+  D: "Anebo ne."
+gplend
+
+ICON i_tricko
+  TITLE tričko
+  STATUS off
+  PICTURE ..\ikony\def\28.gcf
+look
+  D: "Od smůly je dokonale ulepené."
+gplend
+
+ICON i_nyt
+  TITLE součástka
+  STATUS off
+  PICTURE ..\ikony\def\29.gcf
+look
+  D: "Skvěle se leskne."
+gplend
+
+ICON i_kameny_1
+  status off
+  TITLE kámen
+  PICTURE ..\ikony\def\30.gcf
+look
+  D: "Kámen ke kameni a budu mít
+      dostatek munice do praku."
+gplend
+
+ICON i_kameny_2
+  status off
+  TITLE dva kameny
+  PICTURE ..\ikony\def\31.gcf
+look
+  D: "To jsem na tom teď mnohem líp,
+      než s jedním kamenem!"
+gplend
+
+ICON i_kameny_3
+  status off
+  TITLE tři kameny
+  PICTURE ..\ikony\def\32.gcf
+look
+  D: "Tři kameny mi stačí
+      i kdybych mířil poslepu."
+gplend
+
+
+ICON i_pistala
+  status off
+  TITLE fakírská píšťala
+  PICTURE ..\ikony\def\33.gcf
+look
+  D: "Foukneme si?"
+gplend
+
+
+ICON i_klic_truhla
+  status off
+  TITLE klíč od truhly
+  PICTURE ..\ikony\def\34.gcf
+look
+  D: "Tak akorát ho co nejdřív použít,
+      co bych se s ním zbytečně nosil."
+  D: "Ještě bych ho někde vytratil!"
+gplend
+
+
+ICON i_loutka_kamenna
+  status off
+  TITLE kamenná loutka
+  PICTURE ..\ikony\def\35.gcf
+look
+  D: "Skutečně to není vůdů panenka."
+gplend
+
+ICON i_loutka_drevena
+  status off
+  TITLE dřevěná loutka
+  PICTURE ..\ikony\def\36.gcf
+look
+  D: "Raději ji dám tomu, komu patří."
+gplend
+
+ICON i_scenar
+  status off
+  TITLE kus papíru
+  PICTURE ..\ikony\def\37.gcf
+  look
+    D: "Útržek scénáře, 'Siesta u řeky'..."
+    D: "Dostojevskij?"
+    D: "Shakespeare?"
+    D: "Puškin?"
+  gplend
+
+ICON i_jablko
+  status off
+  TITLE jablko
+  PICTURE ..\ikony\def\38.gcf
+look
+  D: "Jen ho nakousnout..."
+gplend
+
+
+ICON i_drozdi
+  STATUS off
+  TITLE droždí
+  PICTURE ..\ikony\def\39.gcf
+look
+  D: "Co vím, dává se do těsta.
+      Máte snad na věc jiný názor, než já?"
+gplend
+
+ICON i_trychtyr
+  STATUS off
+  TITLE trychtýř
+  PICTURE ..\ikony\def\40.gcf
+look
+  D: "Takovým nám ve škole
+      nalívají vědomosti."
+  D: "Divili jste se čím to je,
+      že jsem tak chytrej, co?"
+gplend
+
+ICON i_cukr
+  STATUS off
+  TITLE lžička s cukrem
+  PICTURE ..\ikony\def\41.gcf
+look
+  D: "Pardon, ale já nejsem na sladký."
+gplend
+
+ICON i_pohrabac
+  STATUS off
+  TITLE pohrabáč
+  PICTURE ..\ikony\def\42.gcf
+look
+  D: "Možná pohrabáče opravdu sloužívají
+      i k něčemu jinému, k nějakému dobrému,
+      mírumilovnému účelu..."
+  D: "...ale pro mě jsou především
+      mučícím nástrojem!"
+gplend
+
+ICON i_souska
+  STATUS off
+  TITLE uschlá větev
+  PICTURE ..\ikony\def\43.gcf
+look
+  D: "Spíš větývka."
+gplend
+
+ICON i_kolo
+  TITLE ozubené kolo
+  STATUS off
+  PICTURE ..\ikony\def\44.gcf
+look
+  D: "Já vám to říkám,
+      žádné obyčejné kolo,
+      náhradní díl!"
+gplend
+
+ICON i_lenost
+  TITLE lenost
+  STATUS off
+  PICTURE ..\ikony\def\45.gcf
+look
+  D: "Tekutý koncentrát, je to vážně síla."
+gplend
+
+ICON i_jezek
+  TITLE ježek
+  status off
+  PICTURE ..\ikony\def\46.gcf
+look
+  D: "Mám ho jenom na chvíli,
+      určitě ho zase pustím."
+gplend
+
+ICON i_sipky
+  TITLE šipky
+  status off
+  PICTURE ..\ikony\def\47.gcf
+look
+  D: "Uzrály nám pěkně do baculata."
+gplend
+
+
+ICON i_klic_sipdum
+  TITLE šipkařův klíč
+  status off
+  PICTURE ..\ikony\def\48.gcf
+look
+  D: "Je od jeho domku."
+gplend
+
+ICON i_mravenec
+  TITLE mravenec
+  STATUS off
+  PICTURE ..\ikony\def\49.gcf
+look
+  D: "Neštípne mě a ani mi neuteče."
+  D: "Nemějte strach."
+  D: "Na stopro."
+gplend
+
+ICON i_fousy
+  STATUS off
+  TITLE skřetí fousy
+  PICTURE ..\ikony\def\50.gcf
+look
+  D: "To je trofej!"
+gplend
+
+ICON i_nuz
+  STATUS off
+  TITLE nůž
+  PICTURE ..\ikony\def\51.gcf
+look
+  D: "Dostal jsem ho od Berty."
+gplend

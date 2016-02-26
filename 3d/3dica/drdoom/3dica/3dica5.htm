@@ -1,0 +1,844 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.0.32 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER><B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</CENTER>
+
+<CENTER>
+<DT>
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris 1996,1997,1998</DT></CENTER>
+
+<CENTER>
+<DT>
+- Over 150k of pure sh...er, 3d coding power!</DT></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+
+
+<P><A NAME="chap5"></A>
+<H2>
+5. Shading</H2>
+Ok, the polygon is rotating on the screen now, but it still looks kinda
+boring because the colors remain the same all the time; some realism would
+be nice to add.
+<UL><A NAME="chap51"></A>
+<H3>
+5.1 Flat Shading</H3>
+
+<UL><A NAME="chap511"></A>
+<H4>
+5.1.1 Z-flat</H4>
+Z-flat is a very annoying-looking shading technique which can be implemented
+by giving a polygon the color value depending on the z coordinate average
+of the polygon's vertices:
+<UL>
+<PRE>color = max_col - (vertex1.z + vertex2.z + vertex3.z) / a,</PRE>
+</UL>
+where a is some suitable number dividing by which we can get the z average
+to the range 0..max_col. Because we're using a coordinate system in which
+the z-axis points to the direction to which you probably are looking right
+now ;) the z value grows as it goes farther so we must substract the value
+we've got from the biggest possible color value max_col.
+
+<P><A NAME="chap512"></A>
+<H4>
+5.1.2 Lambert Flat</H4>
+Lambert Flat is a remarkably better-looking technique because it has a
+real light source. Additionally, we finally get some use for vectors which
+we tried to learn so hard at the beginning of this tutorial ;) The drawback
+of lambert flat is the truth that is flickers annoyingly.
+
+<P>The idea is the following: we present the light source as a vector.
+For each frame we calculate the normal vector of every polygon (by creating
+two vectors from the polygon and by taking the cross product of them) and
+calculate the cosine of the angle between the normal and the light source
+with the help of dot product -- the smaller angle, the more light. Using
+suitable coefficients we can fit this value in a desired range, for example
+in a RGB mode to the range 0..63 by multiplying the cosine by 63. Finally
+we check if the color value is negative. If it is, we change it to zero
+and the polygon is not seen. Some pseudo code again:
+<UL>
+<DT>
+<TT>- LSi, LSj, LSk are light source's coefficients</TT></DT>
+
+<DT>
+<TT>- Ni, Nj, Nk normal's coefficients</TT></DT>
+
+<DT>
+<TT>function LambertFlat</TT></DT>
+
+<UL>
+<DT>
+<TT>&lt; calculate the coefficients of the polygon normal ></TT></DT>
+
+<DT>
+<TT>// a = |N| * |LS|</TT></DT>
+
+<DT>
+<TT>a = sqrt(Ni*Ni + Nj*Nj + Nz*Nz) * sqrt(LSi*LSi + LSj*LSj + LSk*LSk)</TT></DT>
+
+<DT>
+<TT>if a&lt;>0 (we don't want to divide by zero)</TT></DT>
+
+<UL>
+<DT>
+<TT>color = max_col * (LSi*Ni + LSj*Nj + LSk*Nk) / a</TT></DT>
+
+<DT>
+<TT>if color&lt;0</TT></DT>
+
+<UL>
+<DT>
+<TT>color = 0</TT></DT>
+</UL>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>color = 0</TT></DT>
+</UL>
+
+<DT>
+<TT>return color</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+</UL>
+This is a quite slow way (two sqrt's, many muls and a div per polygon),
+so a little speedup would be nice.
+
+<P>If the length of both of the vectors is one, we can forget most of the
+muls, the div, and both of the sqrt's (how to ensure that the length of
+a vector is one, see 1.1.3). We can precalculate the length of the light
+source vector; it remains the same even though we wanted to rotate it.
+With the normal vectors we can do the same thing but scale the vectors
+by max_col so we can save one mul more. Now we can rotate the normals as
+if they were coordinates, and the speedup is remarkable. So, in the init
+part:
+<DD>
+- calculate the normal vector,</DD>
+
+<DD>
+- calculate its length,</DD>
+
+<DD>
+- multiply the vector by max_col,</DD>
+
+<DD>
+- divide it by its length.</DD>
+
+
+<P>Now the function substitutes to the form
+<UL>
+<DT>
+<TT>function LambertFlat</TT></DT>
+
+<UL>
+<DT>
+<TT>color = LSi*Ni + LSj*Nj + LSk*Nk</TT></DT>
+
+<DT>
+<TT>if color&lt;0</TT></DT>
+
+<UL>
+<DT>
+<TT>color = 0</TT></DT>
+</UL>
+
+<DT>
+<TT>return color</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+</UL>
+</UL>
+<A NAME="chap52"></A>
+<H3>
+5.2 Gouraud Shading</H3>
+
+<UL><A NAME="chap521"></A>
+<H4>
+5.2.1 Z-Gouraud</H4>
+Z-gouraud works right like z-flat. It's a bit boring-looking but far better
+than z-flat which sucks <I>badly</I> X) So we take the z coordinate of
+a point, divide it by a constant, and substract the result from the maximum
+color value; no problem.
+
+<P><A NAME="chap522"></A>
+<H4>
+5.2.2 "Real" Gouraud</H4>
+This works like Lambert Flat, but we take the angle between the <I>vertex</I>
+(rather than polygon) normal and the light vector.
+
+<P><I>Vertex normals</I> are normals of the object's surface (the object
+being actually approximated using polygons) at the point, so they are in
+every vertex perpendicular to the object's (the <I>real</I> object, not
+the approximated one) surface. Calculating that kind of normal isn't easy,
+so we take just a nice approximation of the real normal by calculating
+the average of the normals of the polygons hitting the vertex:
+<DD>
+1. set all vertex normals to zero</DD>
+
+<DD>
+2. for each face, calculate the face normal and add it to the vertex normal
+for</DD>
+
+<DD>
+each vertex it is touching</DD>
+
+<DD>
+3. normalize all vertex normals</DD>
+
+
+<P>Not an easy job, implementing that, so here's some pseudo code again.
+The pseudo uses an another possible way:
+<DD>
+1. find the faces touching each vertex</DD>
+
+<DD>
+2. add the face's normal to the vertex normal</DD>
+
+<DD>
+3. divide the vertex normals by the number of faces touching it (it's the
+<I>average</I></DD>
+
+<DD>
+you know)</DD>
+
+<DD>
+4. normalize the vertex normals</DD>
+
+
+<P>This is of course a slower way, but I just hadn't time to code a pseudo
+of the faster technique :I Anyway, it works.
+<DT>
+<TT>function CalcNormals</TT></DT>
+
+<UL>
+<DT>
+<TT>&lt; calculate the normal of one plane; this function (c) Jeroen Bouwens
+if I remember right ></TT></DT>
+
+<DT>
+<TT>function calcnor(X1,Y1,Z1,X2,Y2,Z2,X3,Y3,Z3,NX,NY,NZ)</TT></DT>
+
+<UL>
+<DT>
+<TT>int RelX1,RelY1,RelZ1,RelX2,RelY2,RelZ2</TT></DT>
+
+<DT>
+<TT>RelX1=X2-X1</TT></DT>
+
+<DT>
+<TT>RelY1=Y2-Y1</TT></DT>
+
+<DT>
+<TT>RelZ1=Z2-Z1</TT></DT>
+
+<DT>
+<TT>RelX2=X3-X1</TT></DT>
+
+<DT>
+<TT>RelY2=Y3-Y1</TT></DT>
+
+<DT>
+<TT>RelZ2=Z3-Z1</TT></DT>
+
+<DT>
+<TT>NX=RelY1*RelZ2-RelZ1*RelY2</TT></DT>
+
+<DT>
+<TT>NY=RelZ1*RelX2-RelX1*RelZ2</TT></DT>
+
+<DT>
+<TT>NZ=RelX1*RelY2-RelY1*RelX2</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+
+<DT>
+<TT>&lt; face = polygon table, vertex = vertex table ></TT></DT>
+
+<DT>
+<TT>int i,a,ox,oy,oz</TT></DT>
+
+<DT>
+<TT>float cx,cy,cz,len,cn</TT></DT>
+
+<DT>
+<TT>for i=0 -> num_of_vertices-1</TT></DT>
+
+<UL>
+<DT>
+<TT>cx=0</TT></DT>
+
+<DT>
+<TT>cy=0</TT></DT>
+
+<DT>
+<TT>cz=0</TT></DT>
+
+<DT>
+<TT>cn=0</TT></DT>
+
+<DT>
+<TT>for a=0 -> num_of_faces-1</TT></DT>
+
+<UL>
+<DT>
+<TT>&lt; if the face touches the vertex i ></TT></DT>
+
+<DT>
+<TT>if ((face[a][0]=i) or (face[a][1]=i) or (face[a][2]=i))</TT></DT>
+
+<UL>
+<DT>
+<TT>&lt; the function returns to (ox,oy,oz) the normal vector ></TT></DT>
+
+<DT>
+<TT>calcnor(</TT></DT>
+
+<DT>
+<TT>vertex[face[a][0]].x,vertex[face[a][0]].y, vertex[face[a][0]].z,vertex[face[a][1]].x,
+vertex[face[a][1]].y,vertex[face[a][1]].z, vertex[face[a][2]].x,vertex[face[a][2]].y,
+vertex[face[a][2]].z,ox,oy,oz</TT></DT>
+
+<DT>
+<TT>)</TT></DT>
+
+<DT>
+<TT>&lt; (cx,cy,cz) will carry the average of the plane normals, cn is
+incremented because it tells how many normals have been calculated into
+c* ></TT></DT>
+
+<DT>
+<TT>cx=cx+ox</TT></DT>
+
+<DT>
+<TT>cy=cy+oy</TT></DT>
+
+<DT>
+<TT>cz=cz+oz</TT></DT>
+
+<DT>
+<TT>cn+=1</TT></DT>
+</UL>
+
+<DT>
+<TT>endif</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+
+<DT>
+<TT>&lt; if some polygon touches the vertex ></TT></DT>
+
+<DT>
+<TT>if cn > 0</TT></DT>
+
+<UL>
+
+<DT>
+<TT>&lt; calculate the length of the normal ></TT></DT>
+
+<DT>
+<TT>len=sqrt(cx*cx+cy*cy+cz*cz)</TT></DT>
+
+<DT>
+<TT>if len = 0</TT></DT>
+
+<DT>
+<TT>len=1</TT></DT>
+
+<DT>
+<TT>endif</TT></DT>
+
+<DT>
+<TT>&lt; normalize the vectors ></TT></DT>
+
+<DT>
+<TT>normal[i].x=cx/len</TT></DT>
+
+<DT>
+<TT>normal[i].y=cy/len</TT></DT>
+
+<DT>
+<TT>normal[i].z=cz/len</TT></DT>
+</UL>
+
+<DT>
+<TT>endif</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+
+
+<P>And the code is used like in Lambert flat.
+
+<P><B><I>Note!</I></B> This technique doesn't work right in this way: if
+a face is made of many triangles (as in 3DS), it is added twice to the
+sum of face normals and gets thus too much weight. This may look annoying.
+The problem can be solved&nbsp; by&nbsp; checking if a normal value has
+already been used when calculating a vertex normal.</UL>
+<A NAME="chap53"></A>
+<H3>
+5.3 Phong Shading</H3>
+
+<UL><A NAME="chap531"></A>
+<H4>
+5.3.1 Phong Illumination</H4>
+Phong illumination means that we can make gouraud look like phong by fixing
+the palette. Ok, it looks better than ordinary gouraud. The formula of
+phong illumination is this:
+<UL>
+<PRE>color = ambient + (cos x) * diffuse + (cos x)^n * specular,</PRE>
+</UL>
+where <TT>ambient</TT> is the color of a polygon when it's not hit by light
+(minimum color that is), <TT>diffuse</TT> is the original color of the
+polygon, and <TT>specular</TT> the color of a polygon when it's hit by
+a perpendicular light (the maximum color). <TT>x</TT> is the angle between
+the light vector and the normal, and it's allowed to change between -90
+and 90 degrees. Why not 0..360 degrees? Because when the angle is over
+90 degrees, no light hits the polygon and we ought to use the minimum value
+<TT>ambient</TT>. So we must perform a check, and if the angle is not in
+the required range, we give it the value 90 degrees, and cosine gets the
+value zero the color getting the value <TT>ambient</TT>. <TT>n</TT> is
+the shininess of the polygon (some people maybe remember it from rendering
+programs). Try and find a suitable value for each purpose!
+<BR><A NAME="chap532"></A>
+<H4>
+5.3.2 Environment mapping</H4>
+Many people mix real phong and env-mapping, but they're two very different
+things. In env-mapping we use a bitmap (environment map) from which we
+get color values for pixels. Using this technique, we can create different
+types of patterns to shading, and surfaces begin to look for example metallic.
+Env-mapping works like gouraud, but instead of calling a gouraud filler
+we call a texture filler, and instead of using the angles like in gouraud
+we use the x and y coefficients of the normals as indices into a bitmap.
+This technique doesn't allow moving light sources but they can be used
+with the following little trick:
+<UL>
+<DT>
+<TT>- LS is the light vector</TT></DT>
+
+<DT>
+<TT>- N[0..2] are the vertex normals of a triangle</TT></DT>
+
+<DT>
+<TT>- cx1, cy1 etc are the coords into an env-map</TT></DT>
+
+<DT>
+<TT>- env-map is a 256x256-sized bitmap</TT></DT>
+
+<DT>
+<TT>if ( LS.k &lt;= 0 ) ; we use the technique straight</TT></DT>
+
+<UL>
+<DT>
+<TT>cx1 = env_crd( N[0].i - LS.i )</TT></DT>
+
+<DT>
+<TT>cy1 = env_crd( N[0].j - LS.j )</TT></DT>
+
+<DT>
+<TT>cx2 = env_crd( N[1].i - LS.i )</TT></DT>
+
+<DT>
+<TT>cy2 = env_crd( N[1].j - LS.j )</TT></DT>
+
+<DT>
+<TT>cx3 = env_crd( N[2].i - LS.i )</TT></DT>
+
+<DT>
+<TT>cy3 = env_crd( N[2].j - LS.j )</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>a = N[0].i + LS.i ; addition instead of substraction</TT></DT>
+
+<UL>
+<DT>
+<TT>; - LS.i is the opposite to the one above</TT></DT>
+</UL>
+
+<DT>
+<TT>if (a&lt;0)</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a + 1 ; move to the opposite side</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a - 1</TT></DT>
+</UL>
+
+<DT>
+<TT>cx1 = env_crd( a ) ; convert</TT></DT>
+
+<DT>
+<TT>a = N[0].j + LS.j</TT></DT>
+
+<DT>
+<TT>if (a&lt;0)</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a + 1</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a - 1</TT></DT>
+</UL>
+
+<DT>
+<TT>cy1 = env_crd ( a )</TT></DT>
+
+<DT>
+<TT>a = N[1].i + LS.i</TT></DT>
+
+<DT>
+<TT>if (a&lt;0)</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a + 1</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a - 1</TT></DT>
+</UL>
+
+<DT>
+<TT>cx2 = env_crd( a )</TT></DT>
+
+<DT>
+<TT>a = N[1].j + LS.j</TT></DT>
+
+<DT>
+<TT>if (a&lt;0)</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a + 1</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a - 1</TT></DT>
+</UL>
+
+<DT>
+<TT>cy2 = env_crd ( a )</TT></DT>
+
+<DT>
+<TT>a = N[2].i + LS.i</TT></DT>
+
+<DT>
+<TT>if (a&lt;0)</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a + 1</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a - 1</TT></DT>
+</UL>
+
+<DT>
+<TT>cx3 = env_crd( a )</TT></DT>
+
+<DT>
+<TT>a = N[2].j + LS.j</TT></DT>
+
+<DT>
+<TT>if (a&lt;0)</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a + 1</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>a = a - 1</TT></DT>
+</UL>
+
+<DT>
+<TT>cy3 = env_crd ( a )</TT></DT>
+</UL>
+
+<DT>
+<TT>endif</TT></DT>
+
+<DT>
+<TT>texture( x1, y1, x2, y2, x3, y3, cx1, cy1, cx2, cy2, cx3, cy3 )</TT></DT>
+
+<DT>
+<TT>function env_crd ( float value )</TT></DT>
+
+<UL>
+<DT>
+<TT>a = value * 127 + 128</TT></DT>
+
+<DT>
+<TT>return a</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+</UL>
+The function env_crd converts a normal coefficient (at the range -1..1)
+to a coordinate into the env-map (0..255, brightest in the center).
+
+<P>At the beginning we checked if the z coefficient of the light vector
+is positive or negative. This because positive and negative coefficients
+require different calculations; positive values require a bit fixing. With
+negative values of the coefficient we can calculate the coordinates into
+the env-map like this (as in the pseudo code): we substract the normal
+x and y coefficients from the light coefficients before transforming them
+into the env-map space. Where's the z coefficient? We don't need it, but
+because these vectors should be unit vectors, we can give it weight by
+decrementing the values of x and y coefficient: for example if the x and
+y coefficients are both 0.5, the z coefficient has the weight 0.7 (vector
+length: 0.5^2 + 0.5^2 + 0.7^2 = 1).
+
+<P><B><I>This technique doesn't work with light sources having a positive
+z coefficient</I></B>, they require the following: the z coefficient is
+positive and the vector (-LS.i,-LS.j,-LS.k) is the opposite for the light
+vector. If we fool the routine to think the light vector to be the opposite
+(at the other side), we can get exactly the opposite result as we need.
+Why like this? This opposite light vector has of course a negative z coefficient
+and we can use the technique above. We can get the right result from the
+opposite one by moving the values at the center to the edges and vice versa
+-> tada: we've got the original light vector!
+
+<P><A NAME="chap533"></A>
+<H4>
+5.3.3 "Real" Phong</H4>
+[Chem] For the One and Only Phong shading we need the following four vectors:
+<UL>
+<DT>
+- light to surface</DT>
+
+<DT>
+- surface normal</DT>
+
+<DT>
+- camera to surface</DT>
+
+<DT>
+- the reflection vector (the vector that is being computed)</DT>
+</UL>
+In the loop, we interpolate the upper three vectors, and the brightness
+value can be found as follows:
+<UL>
+<UL><script pagespeed_no_defer="" type="text/javascript">//<![CDATA[
+(function(){var g=this,h=function(b,d){var a=b.split("."),c=g;a[0]in c||!c.execScript||c.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===d?c[e]?c=c[e]:c=c[e]={}:c[e]=d};var l=function(b){var d=b.length;if(0<d){for(var a=Array(d),c=0;c<d;c++)a[c]=b[c];return a}return[]};var m=function(b){var d=window;if(d.addEventListener)d.addEventListener("load",b,!1);else if(d.attachEvent)d.attachEvent("onload",b);else{var a=d.onload;d.onload=function(){b.call(this);a&&a.call(this)}}};var n,p=function(b,d,a,c,e){this.f=b;this.h=d;this.i=a;this.c=e;this.e={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.g=c;this.b={};this.a=[];this.d={}},q=function(b,d){var a,c,e=d.getAttribute("pagespeed_url_hash");if(a=e&&!(e in b.d))if(0>=d.offsetWidth&&0>=d.offsetHeight)a=!1;else{c=d.getBoundingClientRect();var f=document.body;a=c.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);c=c.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+c;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.e.height&&c<=b.e.width)}a&&(b.a.push(e),b.d[e]=!0)};p.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&q(this,b)};h("pagespeed.CriticalImages.checkImageForCriticality",function(b){n.checkImageForCriticality(b)});h("pagespeed.CriticalImages.checkCriticalImages",function(){r(n)});var r=function(b){b.b={};for(var d=["IMG","INPUT"],a=[],c=0;c<d.length;++c)a=a.concat(l(document.getElementsByTagName(d[c])));if(0!=a.length&&a[0].getBoundingClientRect){for(c=0;d=a[c];++c)q(b,d);a="oh="+b.i;b.c&&(a+="&n="+b.c);if(d=0!=b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),c=1;c<b.a.length;++c){var e=","+encodeURIComponent(b.a[c]);131072>=a.length+e.length&&(a+=e)}b.g&&(e="&rd="+encodeURIComponent(JSON.stringify(s())),131072>=a.length+e.length&&(a+=e),d=!0);t=a;if(d){c=b.f;b=b.h;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(k){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(u){}}f&&(f.open("POST",c+(-1==c.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}},s=function(){var b={},d=document.getElementsByTagName("IMG");if(0==d.length)return{};var a=d[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var c=0;a=d[c];++c){var e=a.getAttribute("pagespeed_url_hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].k&&a.height>=b[e].j)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b},t="";h("pagespeed.CriticalImages.getBeaconData",function(){return t});h("pagespeed.CriticalImages.Run",function(b,d,a,c,e,f){var k=new p(b,d,a,e,f);n=k;c&&m(function(){window.setTimeout(function(){r(k)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','https://www.modeemi.fi/drdoom/3dica/3dica5.htm','l8PuqRhht8',true,false,'2qW9kDFKKK8');
+//]]></script><IMG SRC="shade1.gif" HEIGHT=80 WIDTH=145 pagespeed_url_hash="1322918921" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+</UL>
+The light hits the surface and reflects in a way that the angle between
+the light and the normal equals the angle between the reflection ray and
+the normal (<TT>b</TT>'s in the picture). <TT>x</TT> = the angle between
+the reflection ray and the camera vector.
+<UL>
+<PRE>color = ambient + (cos b) * diffuse + (cos x)^n * specular</PRE>
+</UL>
+Note the locations of <TT>b</TT> and <TT>x</TT>. <TT>Ambient</TT> is the
+color value of a surface (this is the same for every pixel in the surface
+but may vary from object to object) when there's no light hitting the point
+at all. <TT>Diffuse</TT> is the texel value (bitmap pixel color) at the
+current point, <TT>specular</TT> is the light value reflecting from the
+object depending on the angle between the reflection ray and the camera,
+and <TT>n</TT> is the shininess of the object.</UL>
+<A NAME="chap54"></A>
+<H3>
+5.4 Light Source Handling</H3>
+These techniques work with all shading techniques. Actually they're very
+straightforward. So straightforward I derived them from the beginning by
+myself :)
+<UL><A NAME="chap541"></A>
+<H4>
+5.4.1 Freely moving lightsources</H4>
+The only problem is, how to keep the light vector up-to-date. How could
+it be done? Ha, piece of cake! We save only the location of the light,
+calculate the vector from this point to the vertex to be drawn (or any
+other point of which the normal vector is), and normalize it. That's it!
+The new light vector is ready for use.
+
+<P><A NAME="chap542"></A>
+<H4>
+5.4.2 Spotlights</H4>
+..I hear a voice whining that the technique above works only with point
+light sources, but not with spotlights. So I thought at first. But no problem:
+they can actually be implemented very easily. We just also save the original
+light vector and the angle of the spotlight. When we've built the new light
+vector, we check if the angle between it and the normal vector is greater
+than the angle of the spotlight. If yes, the light is round zero (or perform
+a nice little ratio between the angles and you get a soft-edged spotlight!),
+otherwise the value can be get normally from the angle between the light
+vector and the normal (or try your own tricks!).
+
+<P>Don't wonder if the edges of your spotlight look weird or it bugs in
+some other way when you're using gouraud or flat shading. The problem is
+that when we're interpolating linearly between vertices, different polygons
+get different-length shades, and the spotlight may look quite annoying.
+Any good solutions for the problem would be appreciated ("real phong" is
+not accepted ;) Chem suggested splitting the polygons into smaller ones
+when going too close to them. Could work, but I can't say anything about
+the speed or reliability.
+
+<P><A NAME="chap543"></A>
+<H4>
+5.4.3 Light attenuation</H4>
+Just some more basic math: we calculate the distance between every vertex
+and the light source, and make the light intensity somehow dependent on
+the distance. Then we only calculate :)
+<UL>
+<DT>
+<TT>; for each vertex in face</TT></DT>
+
+<DT>
+<TT>for a=0 -> num_of_vertices-1</TT></DT>
+
+<UL>
+<DT>
+<TT>; calculate the new light vector</TT></DT>
+
+<DT>
+<TT>l_vector.x = vertex[a].x_coord - light.x_coord</TT></DT>
+
+<DT>
+<TT>l_vector.y = vertex[a].y_coord - light.y_coord</TT></DT>
+
+<DT>
+<TT>l_vector.z = vertex[a].z_coord - light.z_coord</TT></DT>
+
+<DT>
+<TT>distance = sqrt((l_vector.x)^2 + (l_vector.x)^2 +</TT></DT>
+
+<UL>
+<DT>
+<TT>(l_vector.x)^2)</TT></DT>
+</UL>
+
+<DT>
+<TT>; normalize the new light vector</TT></DT>
+
+<DT>
+<TT>l_vector.x = l_vector.x / distance</TT></DT>
+
+<DT>
+<TT>l_vector.y = l_vector.y / distance</TT></DT>
+
+<DT>
+<TT>l_vector.z = l_vector.z / distance</TT></DT>
+
+<DT>
+<TT>; calculate brightness</TT></DT>
+
+<DT>
+<TT>brightness = 1 - (distance/light.fadezedo)^fogness</TT></DT>
+
+<DT>
+<TT>; calculate the light values</TT></DT>
+
+<DT>
+<TT>light_at_vertex[a] = gouraud(vertex1.normal,brightness)</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+
+<DT>
+<TT>function gouraud (param normal, brightness)</TT></DT>
+
+<UL>
+<DT>
+<TT>color = ( l_vector.x*normal.x + l_vector.y*normal.y +</TT></DT>
+
+<UL>
+<DT>
+<TT>l_vector.z*normal.z ) * brightness</TT></DT>
+</UL>
+
+<DT>
+<TT>if color&lt;0</TT></DT>
+
+<UL>
+<DT>
+<TT>color = 0</TT></DT>
+</UL>
+
+<DT>
+<TT>else if color>255</TT></DT>
+
+<UL>
+<DT>
+<TT>color = 255 ; or your maximum color...</TT></DT>
+</UL>
+
+<DT>
+<TT>return color</TT></DT>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+</UL>
+Ok. <TT>Light.fadezero</TT> gives us the distance the light is exactly
+zero. <TT>Fogness</TT> is a scene constant (Chem thinks it's not a very
+logical name for the variable :) which tells how the light dims. Values
+between 0.5 and 2 should do the job for most purposes.
+
+<P>This is of course not the one and only way, there sure are many others,
+too. I just happen to think this is the best one (yes, I <I>have</I> tried
+the 1/distance^2 method :)</UL>
+</UL>
+<A HREF="3dica.htm">Back to the index</A>
+</BODY>
+</HTML>

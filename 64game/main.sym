@@ -1,0 +1,12 @@
+.label movesprites=$11cb
+.label animatecolors=$11cc
+.label main=$11b4
+.label wrbip=$116c
+.label animatesprites=$11cd
+.label cont=$11c8
+.label sortalgo=$11ce {
+}
+.label mloop=$11b9
+.label initl=$1160
+.label start=$1000
+.label colorRam=$1c00

@@ -1,0 +1,6 @@
+arcade_pos	point	771	293	100
+lair_pos	point	1503	388	100
+player	player	491	359	45
+magic_pos	point	427	324	100
+swamp_pos	point	52	385	100
+bar_pos	point	1183	339	100

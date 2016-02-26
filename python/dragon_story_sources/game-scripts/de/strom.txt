@@ -1,0 +1,101 @@
+{s větrem v horách:}
+
+block _00 ( beg(1) and isactico(0) and not been(_00) )
+title
+ labels skip
+  justtalk
+D: "Herr Baum."
+  juststay
+  justtalk
+D: "Herr Baum!"
+  juststay
+  justtalk
+D: "Wie konnte ich nur denken,
+    daß ein dämlicher Baum sprechen kann?"
+  juststay
+  goto skip
+  justtalk
+D: "Herr Baum!!!"
+  juststay
+V: "Dieser duuuuuuuumme..."
+V: "...blöööööööööde..."
+V: "...zurückgebliiiiiebene..."
+V: "...dääääääämliche Baum..."
+ label skip
+V: "...kann wiiiiirklich nicht sprechen.
+    Aber vielleicht wüüüüüüürdest du gern
+    mit miiiiiir reden."
+  justtalk
+D: "Wer bist du?"
+  juststay
+V: "Wiiiiind..."
+  justtalk
+D: "Und ich dachte, du seist ein Baum."
+  juststay
+V: "Nein, ich bin Wiiiind!"
+  justtalk
+D: "Also...du hast etwas gegen den Wald?"
+  juststay
+V: "Das fraaaagst du noooooch?
+    Siiiiehst du nicht, dass ich hiiiier festsitze?"
+  justtalk
+D: "Ich seh nur einen schwingenden Ast."
+  juststay
+V: "Genaaaau das ist es ja.
+    Ich versuuuuuche hier herauszukommen,
+    aber ich schaffe es nicht ohne Hiiiiilfe!"
+  justtalk
+D: "In Ordnung, ich schauuuuuu mal,
+    was ich tuuuuun kann."
+  juststay
+V: "Sei nicht soooooo neckisch,
+    Ich verliiiiiere jeden Moment meine Kraft."
+V: "Ich werd dich belooooohnen."
+  justtalk
+D: "Schon besser.
+    Umsonst gibts auch nichts!"
+  juststay
+  justtalk
+D: "Ich versichere dir,
+    daß ich's für nicht weniger als 150$
+    die Stunde mache!"
+  juststay
+V: "Ich hoooooffe, du überlegst es dir nochmal.
+    Ich vertrauuuue dir!"
+  justtalk
+D: "Es wird ganz schön viel Vertrauen
+    in mich gesetzt,
+    dafür daß mich jemand in diesem Spiel steuert."
+  juststay
+gplend
+
+block _01 ( beg(1) and isactico(i_prsten) )
+title
+  icostat off i_prsten
+    objstat away stromek_kym
+    objstat_on stromek hory
+    start stromek "zakladni"
+    load hory_jisk "FLI-animace"
+    startplay hory_jisk "FLI-animace"
+    objstat away hory_jisk
+V: "Daaaanke!"
+  justtalk
+D: "Und weg ist er."
+  juststay
+  justtalk
+D: "Keine Chance!"
+  juststay
+gplend
+
+block _02 ( maxline(1) and beg(1) and isactico(0) )
+title
+  justtalk
+D: "Herr Wind!"
+  juststay
+V: "Ich stecke hiiiiiier fest.
+    Das weiiiiiißt du.
+    Was willst du dagegen tuuuuuuuun?"
+  justtalk
+D: "Das wüßte ich auch gern."
+  juststay
+gplend

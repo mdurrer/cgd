@@ -1,0 +1,28 @@
+{0=návěští            není potřeba uvádět}
+{1=proměnné           vezme se z initu}
+{2=objekty            vezme se ještě před initem}
+{3=ikony}
+{4=místnosti}
+{5=stav1 (on, off, away nebo off) zde uvedeno}
+{6=kam se kouka (nahoru, dolu, doleva, doprava)}
+{7=řízení rozhovoru (poslední) definováno zde}
+{8=povídáčci (mluvící objekty) vezme se ze seznamu, <>objektů,}
+  {vlastní číslování, pouze budou většinou odpovídat nějakému objektu}
+{9=bloky rozhovoru             vezme se z rozhovoru}
+{rozhovory a jména animací jsou řetězce}
+
+class 5
+on 1
+off 2
+away 3
+
+class 6
+neurceno 0
+namysku 1
+vpravo 3
+vlevo 4
+
+class 7
+posledni 1
+
+{zbytek musí doplnit kompilátor po zjištění, jak se věci mají}

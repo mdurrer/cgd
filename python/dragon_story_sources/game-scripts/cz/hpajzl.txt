@@ -1,0 +1,221 @@
+{s pajzlem v hospodě:}
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+  D: "Pane trpaslíku..."
+  D: "Zaplatíte mi pivo?"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Odprejskni."
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Mě nejde jen tak zastrašit!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "To pivo je teplý!"
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Kolik jste toho probůh vypil?"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Padej vocaď,
+      mladej!"
+  start hpajzl_hlava "pije"
+  justtalk
+  D: "Tedy nejste zrovna moc sdílnej...
+      Vypadáte dost přepadle."
+  D: "Určitě jste prošel nějakým hrozným traumatem!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Starej se vo sebe!"
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Potřebujete to ze sebe všechno dostat..."
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Dobrá,
+      kde je tady toaleta?"
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "...ty všechny děsivé zážitky,
+      co se ve vás hromadily!"
+  juststay
+gplend
+
+block _00b ( last(_00) )
+title
+ labels skip
+  start hpajzl_hlava "mluvi"
+  P: "Pivo!"
+  start hpajzl_hlava "pije"
+  justtalk
+  D: "Nesnažte se utopit vaše problémy v alkoholu!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Cože?"
+  goto skip
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Mnohem lepší je řešit problémy drogami!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Vážně?
+      To bych moh' zkusit."
+ label skip
+  P: "Teď jsem prohlíd,
+      otevřel jsi mi oči."
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "A svěříte se mi?"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Asi jo,
+      asi bude lepší,
+      když se ti svěřím."
+  P: "Právě jsem unikl
+      ze spárů smrti!"
+  P: "Taktak,
+      že jsem nebyl snězen."
+  P: "Jo, jo."
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "A vida!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Je to hrůza, jak si ještě
+      někdo v dnešní době může
+      dovolit pojídat trpaslíky."
+  P: "Jo jo, jsou takový země,
+      kde je pojídání trpaslíků
+      mnoho let zakázaný."
+  start hpajzl_hlava "mlci"
+gplend
+
+block _00c ( last(_00b) )
+title
+ labels skip
+  start hpajzl_hlava "mluvi"
+  P: "Cožpak my nejsme
+      dost civilizovaní,
+      synu?"
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Ehm, to je mezinárodní ostuda."
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Ještě,
+      že ty mi to potvrdíš."
+  P: "Ale co já, co teprve
+      mí chudáčci bratříčci,
+      co je čeká."
+  goto skip
+  P: "Jo, co já."
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Čeká je nějaký silně traumatizující zážitek?"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Jo, co já.
+      Ale co voni."
+  label skip
+  P: "Nejdřív je trochu popepří."
+  P: "Potom naklepe."
+  P: "Pak podusí."
+  P: "Možná osmahne."
+  P: "Fuj!"
+  P: "To bych já nemohl,
+      nesnáším cholesterol!"
+  P: "Anebo taková
+      strouhanka do očí."
+  P: "Potom je pokape citrónem..."
+  start hpajzl_hlava "pije"
+  justtalk
+  D: "Začaly se mi sbíhat sliny,
+      kde můžu tu exotickou specialitu ochutnat?"
+  D: "Pozveš mě na párty?"
+  juststay
+  {pajzl odpovídá velice smutně a zklamaně:}
+  start hpajzl_hlava "mluvi"
+  P: "Nepozvu. Mám depresi."
+  start hpajzl_hlava "pije"
+gplend
+
+block _00d ( last(_00c) )
+title
+  justtalk
+  D: "Promiň, nechtěl jsem se tě dotknout.
+      Kde tvoji bratříčci jsou?"
+  D: "Jdu je osvobodit!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Ty bys to vážně dokázal?"
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Jasná páka."
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Moji bratříčci
+      čekají na snězení..."
+  P: "...ve strašlivém doupěti
+      ještě hrozivějšího obra."
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Kde přesně?"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Směr severoseverovýchod."
+  P: "Kdybys to chtěl přesně, tak
+      pětsetpatnáct stupňů a sedmdesátpět
+      úhlových hodin ... teda minut."
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "To těžko najdu!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "A šedesát úhlových
+      sekund k tomu."
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "To stačí!
+      Vím přesně, kde to je."
+  D: "Jdu do toho!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Hodně štěstí.
+      Vyřiď mým bratříčkům,
+      že na ně čekám tady."
+  P: "Kdyby mě nemohli najít,
+      budu pod stolem."
+  start hpajzl_hlava "mlci"
+{hodime semka newroom do mapy- objeveni se lokace s obrem}
+{a z mapy opet gejt semka...}
+  let new_obr (1)
+gplend
+
+block _01 ( beg(1) and been(_00) )
+title
+ labels skip
+  justtalk
+  D: "Pane trpaslíku..."
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Co moji bratříčci?"
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Vede se jim dobře."
+  goto skip
+  D: "Evidentně prospívají."
+ label skip
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Proč's je nedoved sem?"
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Kdybych jim měl pokazit jejich letní dovolenku,
+      nemohl bych se ani sám sobě podívat do očí."
+  D: "To po mě nemůžete chtít."
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Vodprejskni."
+  start hpajzl_hlava "mlci"
+gplend

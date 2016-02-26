@@ -1,0 +1,97 @@
+{s větrem v horách:}
+
+block _00 ( beg(1) and isactico(0) and not been(_00) )
+title
+ labels skip
+  justtalk
+   D: "Panie drzewo."
+  juststay
+  justtalk
+   D: "Panie drzewo!"
+  juststay
+  justtalk
+   D: "To głupie drzewo jest nieme, czy co?"
+  juststay
+  goto skip
+  justtalk
+   D: "Panie drzewo!!"
+  juststay
+   V: "To tępe..."
+   V: "... głupie..."
+   V: "... zwyrodniałe.."
+   V: "... idiotyczne drzewo..."
+ label skip
+   V: "... naprawdę nie umie mówić.
+       Lecz może ty zechcesz
+       porozmawiać ze mną."
+  justtalk
+   D: "Kim jesteś?"
+  juststay
+   V: "Jestem Wiatr."
+  justtalk
+   D: "A ja myślałem, że jesteś drzewem."
+  juststay
+   V: "Nie, ja jestem wiatr!"
+  justtalk
+   D: "A więc! Czy przeszkadza ci ten las?"
+  juststay
+   V: "Jeszcze się pytasz?
+       Czy nie widzisz, że jestem tu w potrzasku!"
+  justtalk
+   D: "Widzę tylko kołyszące się gałęzie."
+  juststay
+   V: "To jest właśnie to.
+       Próbuję się stąd wydostać,
+       Lecz sam sobie nie poradzę!"
+  justtalk
+   D: "Zobaczymy, co się da zrobić!"
+  juststay
+   V: "Nie odpowiadaj tak wykrętnie,
+       Z każdą chwilą opadam z sił."
+   V: "Wynagrodzę ci to."
+  justtalk
+   D: "To byłoby możliwe.
+       Ale nie możesz oczekiwać, że zrobię to za darmo!"
+  juststay
+  justtalk
+   D: "Zapewniam cię, że nie biorę mniej
+       niż 150 za godzinę!"
+  juststay
+   V: "Mam nadzieję, że zmienisz zdanie!
+       Ufam ci!"
+  justtalk
+   D: "W takiej sytuacji
+       trzeba mieć do mnie dużo zaufania."
+  juststay
+gplend
+
+block _01 ( beg(1) and isactico(i_prsten) )
+title
+  icostat off i_prsten
+    objstat away stromek_kym
+    objstat_on stromek hory
+    start stromek "zakladni"
+    load hory_jisk "FLI-animace"
+    startplay hory_jisk "FLI-animace"
+    objstat away hory_jisk
+   V: "Dzięki!"
+  justtalk
+   D: "Poszedł sobie."
+  juststay
+  justtalk
+   D: "Nie ma rady!"
+  juststay
+gplend
+
+block _02 ( maxline(1) and beg(1) and isactico(0) )
+title
+  justtalk
+   D: "Panie wietrze!"
+  juststay
+   V: "Jestem tu uwięziony.
+       Wiesz o tym.
+       Jak mógłbyś mi pomóc?"
+  justtalk
+   D: "Sam chciałbym wiedzieć."
+  juststay
+gplend

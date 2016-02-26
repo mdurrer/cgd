@@ -1,0 +1,338 @@
+{drak s lenochem:}
+
+block _10 ( beg(1) and not been(_10) and (stroj_funguje=1) )
+   TITLE Jak ta maszyna teraz pracuje?
+  justtalk
+   D: "Jak ta maszyna teraz pracuje?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Trochę lepiej, ale nadal nie tak jak trzeba.
+       Czy wiesz czego jeszcze brakuje?"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "Chyba tak...!?"
+  juststay
+
+  exitdialogue
+gplend
+
+block _11 ( beg(1) and not been(_11) and (stroj_funguje=2) )
+   TITLE A teraz, jak działa?
+{když už přístroj definitivně opravil}
+  justtalk
+   D: "A teraz, jak działa?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Bez zarzutu!
+       Nawet nie nadążam połykać ciasteczek."
+   L: "Czyż nie mówiłem
+       że to cud techniki?"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "O ile sobie przypominam, to mówiłeś
+       że jak naprawię twoją maszynę
+       dasz mi butelkę z lenistwem."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Co? Rzeczywiście.
+       Możesz odebrać zasłużoną nagrodę.
+       Baw się dobrze!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "O to się już nie martw!"
+  juststay
+
+  {abych mohl vzit lahvicku:}
+  let stroj_funguje (3)
+  exitdialogue
+gplend
+
+block _09 ( atbegin(0) and been(_08) and been(_05) and not been(_09) and isobjon(lahvicka) )
+   TITLE Co powinienem sobie zażyczyć na urodziny,...
+  justtalk
+   D: "Co powinienem sobie zażyczyć na urodziny,
+       jeśli nie taką właśnie maszynę?!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Móglbyś powiedzieć rodzicom, żeby ci kupili
+       moje lenistwo w butelce."
+   L: "W tym roku interesy idą mi kiepsko."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _00a ( beg(1) and not hasbeen(_00a) and maxline(1) )
+title
+  justtalk
+   D: "Jestem Bert, a ty?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Ja jestem ja.
+       Zapomniałem jak się nazywam."
+   L: "Kiedyś miałem wrażenie, że pamiętam swoje imię,
+       lecz nie trwało to długo."
+   L: "Jestem zbyt leniwy by odczuwać wrażenia."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "Nie rozumiem tego!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Tym gorzej dla ciebie."
+   L: "Jestem zbyt leniwy by jeszcze raz się
+       nad tym zastanawiać."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _00b ( maxline(1) and beg(1) and hasbeen(_00a) )
+title
+  justtalk
+   D: "A co..."
+  juststay
+gplend
+
+block _06 ( atbegin(0) and been(_05) and not been(_06) and been(_08) )
+   TITLE Kupię twoje lenistwo!
+  justtalk
+   D: "Kupię twoje lenistwo!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Erm, właściwie nie wiem, czy można
+       je sprzedawać..."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "Co?!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Właściwie..."
+   L: "...myślę, że na całym świecie nie ma nic
+       równie cennego."
+   L: "Ale..."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "Ale?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Ale jeśli naprawisz moją maszynę do
+       wrzucania ciastek!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "Jeśli tylko w ten sposób można je zdobyć,
+       to mogę spróbować."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Ale musisz się spieszyć,
+       może być tak, że do wieczora
+       wszystko sprzedam."
+  start lenuvnitr_hlava "mlci"
+
+  let vim_o_lenosti (2)
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+   TITLE Czy jesteś taki leniwy już od urodzenia?
+  justtalk
+   D: "Czy jesteś taki leniwy już od urodzenia?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+   L: "Sądzę, że tak."
+   L: "Gdy byłem młody, moi rodzice
+       martwili się o mnie trochę."
+   L: "Moja matka
+       - niech spoczywa w spokoju -
+       zawsze mówiła do mnie:"
+   L: "'Pamiętaj, pieczone gołąbki
+       nie wlatują same do gąbki!'"
+   L: "I miała rację."
+   L: "Ciastka wlatują!"
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _12 ( beg(0) and not been(_12) )
+   TITLE Czy nigdy nie chodzisz do ubikacji?
+  justtalk
+   D: "Czy nigdy nie chodzisz do ubikacji?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+   L: "Nie, wcale.
+       Leżę tu już od wielu lat,
+       lecz nie odczuwam potrzeby."
+  start lenuvnitr_hlava "mlci"
+  justtalk
+   D: "A co powiesz na butelkę taniego wina?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+   L: "Wina?"
+   L: "Nie pamiętam żadnego wina."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _02 ( atbegin(0) and not been(_02) )
+   TITLE Na jakiej zasadzie działa ta dziwaczna maszyna?
+  justtalk
+   D: "Na jakiej zasadzie działa ta dziwaczna maszyna?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Nie wiem, nigdy nie próbowałem się nad
+       tym zastanawiać.
+       Jestem na to zbyt leniwy."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _03 ( atbegin(0) and been(_02) and not been(_03) )
+   TITLE Wiem jak ona działa!
+  justtalk
+   D: "Wiem jak ona działa!"
+   D: "Chcesz posłuchać?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Nie, dziękuję.
+       Jestem za leniwy by się tym interesować."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _04 ( atbegin(0) and not been(_04) )
+   TITLE Skąd ona się tu wzięła?
+  justtalk
+   D: "Skąd ona się tu wzięła?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Nie pamiętam.
+       Jestem zbyt leniwy by pamiętać."
+   L: "Możliwe, że to ja ją zbudowałem."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "Wydawałoby mi się to raczej dziwne."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Mnie też. Naprawdę nie wiem skąd ona się
+       tu wzięła.
+       Lecz nie przeszkadza mi, że tu jest."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _05 ( atbegin(0) and not been(_05) )
+   TITLE Nie chciałbym być aż tak leniwy.
+  justtalk
+   D: "Nie chciałbym być aż tak leniwy."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Nie widzę nic złego w moim lenistwie.
+       Wydaje mi się ono całkiem przyjemne."
+   L: "A w dodatku można zrobić na nim interes -"
+   L: "- sprzedaję je w butelkach!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "Czy ktoś to już kupił?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Jak dotąd, nie."
+   L: "Lecz myślę, że się na tym wzbogacę."
+  start lenuvnitr_hlava "mlci"
+
+  let vim_o_lenosti (1)
+gplend
+
+
+block _07 ( atbegin(0) and not been(_07) )
+   TITLE Co zrobisz jak maszyna stanie?
+  justtalk
+   D: "Co zrobisz jak maszyna stanie?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Myślę, że nigdy nie stanie.
+       Wydaje mi się, że jest ona czymś w rodzaju
+       perpetuum mobile."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "To twoja jedyna nadzieja."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Hmm."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _08 ( atbegin(0) and not been(_08) )
+   TITLE Chciałbym mieć w domu ten wspaniały wynalazek!
+  justtalk
+   D: "Chciałbym mieć w domu ten wspaniały wynalazek!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Przykro mi, lecz nie zamierzam
+       się jej pozbywać."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "Nie mówię, że chcę mieć tą twoją."
+   D: "Może przekonam moich rodziców żeby kupili mi
+       na urodziny podobną maszynę."
+   D: "Ale nie wiem jaki model powinienen wybrać -
+       Czy jesteś zadowolony z tej swojej?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "O właśnie, chciałem o tym z tobą porozmawiać.
+       Służy mi ona do zjadania ciastek już od lat."
+   L: "Lecz ma pewne wady,
+       czasem zdarza się, że ciastko wypada na zewnątrz."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+   D: "To nieprzyjemny defekt."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+   L: "Też tak sądzę.
+       Dlatego nie polecam tej maszyny."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _98 ( beg(0) and not last(_00b) )
+   TITLE Do widzenia...
+  justtalk
+   D: "Do widzenia..."
+   D: "...dobrego trawienia."
+  juststay
+  start lenuvnitr_hlava "mluvi"
+   L: "Dziękuję."
+  start lenuvnitr_hlava "mlci"
+  exitdialogue
+gplend
+
+block _99 ( beg(0) and last(_00b) and maxline(1) )
+title
+  justtalk
+   D: "...nie ma za co."
+  juststay
+  exitdialogue
+gplend

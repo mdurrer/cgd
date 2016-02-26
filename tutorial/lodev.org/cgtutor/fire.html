@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Fire Effect</title>
+<meta content="text/html; charset=us-ascii" http-equiv="content-type" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Fire Effect</h1>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#The_Classic_Fire_Effect">The Classic Fire
+Effect</a></li>
+</ul>
+<a href="index.html">Back to Index</a>
+<h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+This is a very short tutorial, about the very classic Fire Effect,
+and creating a fire color palette for it. Maybe this article will
+be extended later with fire made by particles or other better
+looking fires.
+<h2><a name="The_Classic_Fire_Effect" id="The_Classic_Fire_Effect"></a>The Classic Fire Effect</h2>
+This fire effect has been used quite often for java demos, oldskool
+demos, etc... It's very easy to program, and gives very neat
+looking fire.<br />
+<br />
+First you have to create a palette, typically of 256 colors, but it
+can be any other amount as well here because we emulate it. With
+the HSLtoRGB function it's easy to create a good palette, select a
+hue range from red to yellow, keep saturation at 255, and
+brightness from 0 to 255 so that more red colors become darker as
+well. The palette is created to be used with the drawBuffer
+function, so the RGB colors are stored in a single integer value in
+BGR order.<br />
+<br />
+To contain the fire, you need a buffer (called fire[][] here) with
+the same size as the screen. In a graphics mode that uses a
+palette, this buffer can be the screen itself, but here we use RGB
+mode and the palette is emulated. The buffer starts with every
+pixel at 0. Then at the bottom row, give a random value to each
+pixel, and keep changing the random values every frame. Each frame,
+calculate each row of pixels based on the two rows below it: the
+value of each pixel, becomes the sum of the 3 pixels below it (one
+directly below it, one to the left of this one, and one to the
+right of this one), and one pixel directly two rows below it. Then
+divide the sum through a value slightly larger than 4, so that the
+fire dies out as it rises. The larger the value you divide it
+through, the lower the flames can rise. For example, if you use
+*16, /65, which is the same as dividing through 4.0625, the flames
+will rise higher than if you use *4, /17, which is the same as
+dividing through 4.25. If you divide it though 4, the fire keeps
+rising forever, and if you divide it though 5, it dies out way to
+fast.<br />
+<br />
+This image shows which pixels are included in the calculation: the
+pixel with the cross is the current pixel, and the 4 green pixels
+are the ones used to calculate the value of the current
+pixel.<br />
+<br />
+<img alt="" src="images/firepixel.gif" style="width: 115px; height: 115px;" /><br />
+<br />
+Do this from top to bottom, if you do the calculations in the wrong
+order, some pixels will already be recalculated while other pixels
+that depend on them still have to be calculated. Each new frame may
+depend only on the values of the previous frame. The top of the
+screen has y-coordinate 0, and the bottom has y-coordinate
+h-1.<br />
+<br />
+On the sides of the screen, the pixels have no neighbors to the
+left or right anymore, and to overcome this, the effect can be made
+circular so that the rightmost pixel has the leftmost pixel as it's
+neighbor and vica versa. For this, modulo division through the
+width of the screen can be used on the x-coordinate of the
+neighbors.<br />
+<br />
+The version of the effect here isn't very fast at high resolutions,
+but there's still set a maximum number of frames per second by
+using the waitFrame function, so that it won't run too fast on
+faster computers in the future.<br />
+<br />
+Because we have a fire buffer, we can use the drawBuffer function
+instead of drawing each pixel separately, which is much faster. The
+buffer that gets drawn isn't the same as the fire array though,
+because that one has values from 0 to 256, which gives the wrong
+colors. Instead we create a new buffer and store the RGB color
+gotten from the palette in it, and then draw this buffer (which
+also has the name "buffer" here).<br />
+<br />
+Put the following code inside the the main.cpp file. The comments in the code will explain a bit more:<br />
+<br />
+<center>
+<table class="codetable"><tr><td style="vertical-align: top;"><pre><span class="code">#include &lt;cmath>
+#include &lt;string>
+#include &lt;vector>
+#include &lt;iostream>
+
+#include "quickcg.h"
+using namespace QuickCG;
+
+//define the width and height of the screen and the buffers
+const int screenWidth = 640;
+const int screenHeight = 128;
+
+Uint32 fire[screenWidth][screenHeight];  //this buffer will contain the fire
+Uint32 buffer[screenWidth][screenHeight];  //this is the buffer to be drawn to the screen
+Uint32 palette[256]; //this will contain the color palette
+
+int main(int argc, char *argv[])
+{
+  //set up the screen
+  screen(screenWidth, screenHeight, 0, "fire");
+  
+  //declarations
+  ColorRGB color; //used during palette generation
+  float time = getTime(), oldTime; //the time of this and the previous frame, for timing
+  
+  //make sure the fire buffer is zero in the beginning
+  for(int x = 0; x &lt; w; x++)
+  for(int y = 0; y &lt; h; y++)
+  fire[x][y] = 0;
+  
+  //generate the palette
+  for(int x = 0; x &lt; 256; x++)
+  {
+    //HSLtoRGB is used to generate colors:
+    //Hue goes from 0 to 85: red to yellow
+    //Saturation is always the maximum: 255
+    //Lightness is 0..255 for x=0..128, and 255 for x=128..255
+    color = HSLtoRGB(ColorHSL(x / 3, 255, std::min(255, x * 2)));
+    //set the palette to the calculated RGB value
+    palette[x] = RGBtoINT(color);
+  }
+  
+  //start the loop (one frame per loop)
+  while(!done())
+  {
+    //timing: set to maximum 50 milliseconds per frame = 20 frames per second
+    oldTime = time;
+    waitFrame(oldTime, 0.05);
+    time = getTime();
+    
+    //randomize the bottom row of the fire buffer
+    for(int x = 0; x &lt; w; x++) fire[x][h - 1] = abs(32768 + rand()) % 256;
+    //do the fire calculations for every pixel, from top to bottom
+    for(int y = 0; y &lt; h - 1; y++)
+    for(int x = 0; x &lt; w; x++)
+    {
+      fire[x][y] =
+        ((fire[(x - 1 + w) % w][(y + 1) % h]
+        + fire[(x) % w][(y + 1) % h]
+        + fire[(x + 1) % w][(y + 1) % h]
+        + fire[(x) % w][(y + 2) % h])
+        * 32) / 129;
+    }
+
+    //set the drawing buffer to the fire buffer, using the palette colors
+    for(int x = 0; x &lt; w; x++)
+    for(int y = 0; y &lt; h; y++)
+    {
+      buffer[x][y] = palette[fire[x][y]];
+    }
+    
+    //draw the buffer and redraw the screen
+    drawBuffer(buffer[0]);
+    redraw();
+  }
+}
+</span></pre></td>
+</tr>
+</table>
+</center>
+<br />
+If you run it, first everything is black, and the flames rise two
+pixels every frame until they reached their maximum height. Then
+they'll still keep animating because the bottom is randomized every
+frame:<br />
+<br />
+<img alt="" src="images/fire.jpg" style="width: 639px; height: 126px;" /><br />
+<br />
+If you don't randomize the bottom of the fire buffer every frame
+but only at the beginning, the flames won't be animated either, and
+once they have risen to their maximum height, they'll stay still
+forever:<br />
+<br />
+<img alt="" src="images/firestill.jpg" style="width: 639px; height: 127px;" /><br />
+<br />
+By changing parameters, you can tweak the fire, for example this is
+what I got for changing the calculations to:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code">fire[x][y]= ((fire[(x - 1) % w][(y + 1) % h]
+            + fire[(x) % w][(y + 2) % h]
+            + fire[(x + 1) % w][(y + 1) % h]
+            + fire[(x) % w][(y + 3) % h])
+            * 64) / 257;</span>
+</pre></td>
+</tr>
+</table>
+</center>
+<br />
+Instead of randomizing the bottom row of pixels you can also
+randomize the edges of objects, for example to make flaming text,
+...<br />
+<br />
+<hr />
+Last edited: 20 august 2007
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+</body>
+</html>

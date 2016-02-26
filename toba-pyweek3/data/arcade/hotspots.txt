@@ -1,0 +1,4 @@
+#00f	claw
+#f00	exit
+#0f0	game
+#f0f	trash

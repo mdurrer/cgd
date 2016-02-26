@@ -1,0 +1,405 @@
+{Bert se skřety:}
+
+block _00 ( atbegin(1) and maxline(1) and not hasbeen(_00) )
+title
+  justtalk
+   D: "Panowie..."
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Co ty tu robisz?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  justtalk
+   D: "Jestem specjalistą od wad wymowy,
+       przyszedłem uzdrowić kronikę!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Nie damy ci jej!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Ty głupi, głupi!"
+  start blbejsi_hl "mlci"
+
+  justtalk
+   D: "(Nic nie słyszałem. I tym lepiej dla nich...)"
+  juststay
+gplend
+
+block _00a ( atbegin(1) and hasbeen(_00) and ( (varblock(_00a)<5)or(varblock(_00b)>5) ) )
+title
+ labels nic
+  justtalk
+   D: "Panowie..."
+  juststay
+
+   Iq: "......."
+   Blb: "------"
+
+  justtalk
+   D: "Wy idioci!"
+  juststay
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Co?"
+  start blbejsi_hl "mlci"
+
+  if (varblock(_00b)<6) nic
+  resetdialoguefrom
+ label nic
+gplend
+
+block _00b ( atbegin(1) and maxline(1) and hasbeen(_00a) )
+title
+ labels nic
+  justtalk
+   D: "Głupcy!"
+  juststay
+
+  start blby_hl "mluvi"
+   Iq: "Heh?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+   Blb: "Huh?"
+  start blbejsi_hl "mlci"
+
+  if (varblock(_00b)>0) nic
+  resetdialoguefrom
+ label nic
+gplend
+
+block _01 ( atbegin(0) and not hasbeen(_01) )
+   title Muszę pomówić z kroniką!
+  justtalk
+   D: "Muszę pomówić z kroniką!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Ha,ha,ha!
+        My też!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Ona nie chce gadać z nikim,
+         za wyjątkiem naszego szefa."
+  start blbejsi_hl "mlci"
+gplend
+
+block _02 ( atbegin(0) and not hasbeen(_02) and hasbeen(_01) )
+   title Czy mogę ją zobaczyć?
+  justtalk
+   D: "Czy mogę ją zobaczyć?"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Daj sobie z tym spokój."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+   Blb: "Hej, czenu nie, jasne, że możesz."
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Proszę, oto nasza księga.
+        Jest naprawdę wzruszająca."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Rzeczywiście - dramat i makabra."
+  start blbejsi_hl "mlci"
+
+  justtalk
+   D: "Zawsze myślałem, że gobliny czytają tylko
+       sensacyjne powieścidła!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Czytają?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Co mają czytac?"
+  start blbejsi_hl "mluvi na bl"
+   Blb: "Co to znaczy czytać?"
+  start blbejsi_hl "mlci"
+gplend
+
+block _11 ( atbegin(0) and not hasbeen(_11) and hasbeen(_02) )
+   title Nie wiecie co to znaczy czytać?
+  justtalk
+   D: "Nie wiecie co to znaczy czytać?"
+  juststay
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Nie, ja nie wiem."
+{#goblins are fools, they speak like lunatics
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Głupi, ja wiem co to znaczy."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+   Blb: "No to powiedz mi, ha?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "I tak nie zrozumiesz."
+   Iq: "Pamiętaj, że
+        gobliny nie muszą czytać!
+        Od czego są mówiące księgi."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "On dobrze gada,
+         ta księga sama nam się przeczyta!"
+   Blb: "Ale jak dotąd nie powiedziała ani słowa!"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Pewnego dnia zmieni zdanie!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+   Blb: "Ale powinniśmy zaprzestać tortur."
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Zamknij się, ty głupcze!"
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _03 ( atbegin(0) and not hasbeen(_03) and hasbeen(_11) )
+   title Torturujcie biedną, bezbronną księgę?!
+ labels skip
+  justtalk
+   D: "Torturujcie biedną, bezbronną księgę?!"
+  juststay
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Troszeczkę.
+         To jest okaz zdrowia, prawdziwa bestia.
+         Odmawia zeznań niczym bezzębny krasnoludek!"
+  start blbejsi_hl "mlci"
+
+  goto skip
+   Vypravec: "[Dobry ten dowcip z krasnoludkiem, prawda?
+              Aż zimno się robi.]"
+ label skip
+
+  justtalk
+   D: "Barbarzyńcy!
+       To tak postępujecie z księgą?!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Och nie, pan nas nie zrozumiał.
+        My jej nie torturujemy."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+   Blb: "To co z nią robicie?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Próbujemy nauczyć ją mówić!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+   Blb: "A po co?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Ze względu na ciebie, ty głupcze!"
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _04 ( atbegin(0) and not hasbeen(_04) )
+   title Co poczniecie z mówiącą kroniką?
+  let vim_o_pohadce (1)
+
+  justtalk
+   D: "Co poczniecie z mówiącą kroniką?"
+  juststay
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Nasz szef pragnie z kimś porozmawiać,
+         zaś ja nie jestem zbyt rozmowny."
+   Blb: "Jestem zupełnie głupi!"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Tak, to prawda.
+        Kto to chciał przed zaśnięciem
+        posłuchać bajki, he?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "O tak, ja chcę bajki!"
+   Blb: "Bajki! |"
+   Blb: "Bajki!"
+   Blb: "Bajki!  |"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Zamknij się, ty głupcze!"
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _06 ( atbegin(0) and not hasbeen(_06) )
+   title Skąd zdobyliście tą kronikę?
+  justtalk
+   D: "Skąd zdobyliście tą kronikę?"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Cały czas mamy ją u siebie."
+   Iq: "Gdy mamy zły humor
+        ona opowiada nam dowcip."
+   Iq: "Zna jeden naprawdę dobry kawał."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+   Blb: "Śmieliśmy się z niego
+         przez pół roku, prawda?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "O, tak.
+        I każdego wieczora przy kominku zawsze
+        śpiewa z nami 'Pijanego Goblina'!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Albo 'Wesoły Spacer Nieboszczyka'."
+   Blb: "Śpiewając ten utwór zawsze płaczę,
+         taki już jestem wrażliwy."
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Jedynym problemem jest to, że ona fałszuje
+        i śpiewa o oktawę za wysoko."
+   Iq: "I to stanowi problem.
+        Pewnego razu zdradził nas
+        jej piskliwy głos."
+   Iq: "Ale ona już się z nami zaprzyjaźniła.
+        Znamy się dość dobrze."
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _07 ( atbegin(0) and not hasbeen(_07) and hasbeen(_06) )
+   title Ukradliście tą księgę!
+  justtalk
+   D: "Ukradliście tą księgę!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Patrzaj, ten frajer
+        próbuje nas oskarżać."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Czy to tobie żeśmy ją ukradli, hę?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Nikomu jej nie ukradliśmy!"
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _08 ( atbegin(0) and not hasbeen(_08) and hasbeen(_03) )
+   title Przestańcie ją męczyć!
+  justtalk
+   D: "Przestańcie ją męczyć!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Daj sobie z tym spokój.
+        Nasze sposoby to nasza sprawa."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+   Blb: "Szef mówi, że nasze metody
+         oparte są na najnowszych osiągnięciach nauki."
+  start blbejsi_hl "mlci"
+gplend
+
+block _09 ( atbegin(0) and not hasbeen(_09) and lastblock(_08) )
+   title Czy mogę poznać nazwę tej nowej metody?
+  justtalk
+   D: "Czy mogę poznać nazwę tej nowej metody?"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+   Iq: "Nauka jako tortura."
+{#it is based on typical czech student's excuse that
+{#learning is some kind of heavy torture
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+{block _10 ( atbegin(0) and not hasbeen(_10) and hasbeen(_04) )
+{title Copak skřetové mají rádi pohádky?
+{  justtalk
+{ D:  "Copak skřetové mají rádi pohádky?
+{      (Já už jsem z pohádek naštěstí vyrostl!)"
+{ juststay
+{
+{ start blbejsi_hl "mluvi na dr"
+{ Blb:"Já pohádky žeru!"
+{ start blbejsi_hl "mlci"
+{
+{ start blby_hl "mluvi"
+{ start blby "mluvi"
+{ Iq: "Von pohádky vážně žere.
+{      Ale to je asi jedinej."
+{ start blby_hl "mlci"
+{ start blby "bdi"
+{gplend

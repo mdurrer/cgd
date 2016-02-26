@@ -1,0 +1,525 @@
+{Bert s Herbertem:}
+
+block _10 ( maxline(1) and beg(1) and not been(_10) and isactico(i_zvonek) )
+title
+  icostat off i_zvonek
+{zazvonime:}
+  objstat away jesuvn_kap
+  mark
+  load bert "zvoni"
+  startplay bert "zvoni"
+  release
+  objstat_on jesuvn_kap jesuvn
+  start jesuvn_kap "kapani"
+  start bert "kour-vlevo"
+  objstat_on herb_oko jesuvn
+  start herb_oko "zakladni"
+
+  start herbert "mluvi"
+H: "Bert, why are you waking me?
+    I want to sleeeeep."
+  start herbert "mlci"
+  justtalk
+D: "Father, there's no time to sleep."
+  juststay
+  start herbert "mluvi"
+H: "I was having a really adventurous dream.
+    I discovered an old dragon treasure ..."
+  start herbert "mlci"
+  justtalk
+D: "Father ..."
+  juststay
+  start herbert "mluvi"
+H: "I know what you're about to say, son."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "Every normal civilized dragon knows that
+    the dragon treasures have been lost
+    in our land for centuries."
+  start herbert "mlci"
+  justtalk
+D: "Hmm ... You're right in this point.
+    But now we have to go home,
+    Berta is waiting for you with lunch."
+  juststay
+  start herbert "mluvi"
+H: "Home?
+    Aren't we at home?"
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "Ho, we really aren't at home..."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "Bert, can you explain to me
+    exactly where we are now?!"
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "And what is this terrible
+    heap of junk here for?"
+  start herbert "mlci"
+  justtalk
+D: "I will try to explain it to you on our way HOME ..."
+  juststay
+
+{vyskocime do draci chalupy, situacka s vareckou
+{newroom chauvn ...
+  newroom chauvn 3
+{vypneme aji draci matku v chalupe, zapneme listek na stole
+  objstat away mutti
+  objstat away mutti_noh
+  objstat away mutti_ruk
+
+  exitdialogue
+gplend
+
+block _11 ( maxline(1) and beg(1) and not been(_11) and isactico(i_trubka) )
+title
+  icostat off i_trubka
+
+  justtalk
+D: "Father, what if we jam together a little?"
+  juststay
+  start herbert "mluvi"
+H: "What do you want now?
+    Go home to annoy Berta!"
+  start herbert "mlci"
+  justtalk
+D: "I want you to blow this trumpet for me."
+  juststay
+  justtalk
+D: "It will remind me of my childhood,
+    I loved blowing the trumpet."
+  juststay
+  justtalk
+D: "And I know you enjoyed it too, father."
+  juststay
+  justtalk
+D: "We played it all the time ..."
+  juststay
+  start herbert "mluvi"
+H: "That's why I can't stand it now."
+  start herbert "mlci"
+  justtalk
+D: "You stopped liking music?"
+  juststay
+  justtalk
+D: "Where has your musical feeling gone off to?"
+  juststay
+  start herbert "mluvi"
+H: "I haven't looked into it; I'm just that way now."
+  start herbert "mlci"
+  justtalk
+D: "Please, father,
+    just try to cajole a sound or two
+    out of this royal instrument."
+  juststay
+  start herbert "mluvi"
+H: "You won't stop, will you?"
+  start herbert "mlci"
+  justtalk
+D: "No, I won't. Because I want to be reminded of
+    the brighter moments in my childhood
+    spent with YOU."
+  juststay
+  justtalk
+D: "You should understand that!"
+  juststay
+  start herbert "mluvi"
+H: "Not only do I hear clanking,
+    but now my head is starting to ache
+    because of your yapping."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "Give me that trumpet so I can have some peace."
+  start herbert "mlci"
+
+{akční situačka s troubením...}
+  walkonplay 84 176 vlevo
+  objstat away bert
+  mark
+  load draktrum "zastrkuje"
+  startplay draktrum "zastrkuje"
+  stayon 84 176 vlevo
+  objstat away jesuvn_kap
+  release
+    let otec_troubil (1)
+    load herbert "troubi"
+    objstat off herb_oko
+    startplay herbert "troubi"
+    start herbert "mlci"
+    objstat_on herb_oko jesuvn
+    start herb_oko "zakladni"
+  mark
+  objstat_on jesuvn_kap jesuvn
+  start jesuvn_kap "kapani"
+  load draktrum "vyndava"
+  startplay draktrum "vyndava"
+  release
+  walkonplay 80 156 vlevo
+
+  justtalk
+D: "Thanks Dad.
+    It will make me feel a lot better,
+    really."
+  juststay
+  start herbert "mluvi"
+H: "I hope you won't want more of me!"
+  start herbert "mlci"
+  justtalk
+D: "Nope, this experience will stay
+    with me for at least the next year."
+  juststay
+  start herbert "mluvi"
+H: "I want you to know, I really love you.
+    It was a small thing to do for you."
+  start herbert "mlci"
+  justtalk
+D: "I love you too, Dad..."
+  juststay
+  start herbert "mluvi"
+H: "I know ..."
+  start herbert "mlci"
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and maxline(1) and not been(_00) )
+title
+  justtalk
+D: "Father ..."
+  juststay
+  start herbert "mluvi"
+H: "Who are you?
+    I don't recognize you!"
+  start herbert "mlci"
+  justtalk
+D: "It's me! Bert.."
+  juststay
+  start herbert "mluvi"
+H: "I know somebody called Bert.
+    It's my son."
+  start herbert "mlci"
+  justtalk
+D: "I am your son!"
+  juststay
+  start herbert "mluvi"
+H: "Then go home.
+    This is none of your business!."
+  start herbert "mlci"
+  justtalk
+D: "But father ..."
+  juststay
+  start herbert "mluvi"
+H: "I'm sorry, son,
+    it sometimes has to be this way."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "Is that really you, Bert?"
+  start herbert "mlci"
+  justtalk
+D: "No, I'm just a figment of your imagination,
+    you unreliable, egotistical father
+    and disruptor of a happy family life."
+  juststay
+  start herbert "mluvi"
+H: "So now I have visions?!
+    Isn't it enough that
+    I hear clanking all the time."
+  start herbert "mlci"
+  exitdialogue
+gplend
+
+block _00a ( beg(1) and maxline(1) and not been(_00a) )
+title
+  justtalk
+D: "Father..., it's me, Bert..."
+  juststay
+  start herbert "mluvi"
+H: "...so it's no vision?
+    I nearly didn't recognize you."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "You've changed a lot during the years, son."
+  start herbert "mlci"
+  justtalk
+D: "Father, it hasn't been years,
+    it's hardly been a month!"
+  juststay
+  start herbert "mluvi"
+H: "I have completely lost track of time."
+  start herbert "mlci"
+gplend
+
+block _00c ( beg(1) and (varblock(_00b)=3) and maxline(1) )
+title
+  justtalk
+D: "Father... I miss you very badly."
+  juststay
+  start herbert "mluvi"
+{řekne to tónem, jako "Polib mi..."}
+H: "I miss you too!"
+  start herbert "mlci"
+  resetblock _00b
+  exitdialogue
+gplend
+
+block _00b ( beg(1) and maxline(1) )
+title
+  justtalk
+D: "Father..."
+  juststay
+  start herbert "mluvi"
+H: "What, son?"
+  start herbert "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+TITLE I think you should return home.
+  justtalk
+D: "I think you should return home."
+  juststay
+  start herbert "mluvi"
+H: "And leave the treasure here? Never!"
+  start herbert "mlci"
+  justtalk
+D: "You can take the treasure with you."
+  juststay
+  start herbert "mluvi"
+H: "That's not possible!"
+  start herbert "mlci"
+  justtalk
+D: "It's just a bit?"
+  juststay
+  start herbert "mluvi"
+H: "What if we lose something along the way?
+    I won't leave a single gold coin behind."
+  start herbert "mlci"
+  justtalk
+D: "Isn't it enough that I am your treasure?"
+  juststay
+  start herbert "mluvi"
+H: "Now you've done it,
+    you'd better stay here with me!"
+  start herbert "mlci"
+gplend
+
+block _02 ( beg(0) and not been(_02) )
+TITLE Parental duties need to be done!
+  justtalk
+D: "Parental duties need to be done!"
+  juststay
+  justtalk
+D: "Berta wants you to punish me -
+    she herself doesn't know how."
+  juststay
+  start herbert "mluvi"
+H: "You have to admit, now that I found this treasure
+    I have no time for such unimportant things
+    as bringing up a son."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "I don't care what you have done,
+    maybe you deserve punishment, and maybe not.
+    But I'm really busy right now."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "I am very sorry,
+    but if you insist on that punishment
+    you will have to ask Berta."
+  start herbert "mlci"
+gplend
+
+block _03 ( beg(0) and not been(_03) )
+TITLE Would you believe we are missing you back home?
+  justtalk
+D: "Would you believe we are missing you
+    back home?"
+  juststay
+  start herbert "mluvi"
+H: "It won't be that terrible.
+    You can visit me on holidays!"
+  start herbert "mlci"
+  justtalk
+D: "We go to Grandad's place
+    on holidays ..."
+  juststay
+  start herbert "mluvi"
+H: "You can bring Grandad here as well."
+  start herbert "mlci"
+  justtalk
+D: "He walks with a cane!
+    You can't ask that from a dragon his age."
+  juststay
+  justtalk
+D: "Moreover ... it would certainly aggravate
+    his rheumatism!"
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+TITLE What are you doing all day long?
+  justtalk
+D: "What are you doing all day long?"
+  juststay
+  start herbert "mluvi"
+H: "I'm still guarding that treasure, why do you ask?"
+  start herbert "mlci"
+  justtalk
+D: "It has to be really boring!"
+  juststay
+  start herbert "mluvi"
+H: "How can you say something like that?
+    I can't think of better fun than
+    guarding this treasure."
+  start herbert "mlci"
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_04) )
+TITLE You don't have any rest?
+  justtalk
+D: "You don't have any rest?"
+  juststay
+  start herbert "mluvi"
+H: "No. Never."
+  start herbert "mlci"
+gplend
+
+block _06 ( beg(0) and not been(_06) and been(_05) )
+TITLE Don't you ever feel like sleeping?
+  justtalk
+D: "Don't you ever feel like sleeping?"
+  juststay
+  start herbert "mluvi"
+H: "Just between the two of us - I'd like to sleep
+    a little,
+    I haven't slept for a month already."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "But something is clanking in my head all the time
+    and I can't fall asleep."
+  start herbert "mlci"
+gplend
+
+block _07 ( beg(0) and not been(_07) and been(_06) )
+TITLE Do you have black spots before your eyes?
+  justtalk
+D: "Do you have black spots before your eyes?"
+  juststay
+  start herbert "mluvi"
+H: "I can see only you, Bert."
+  start herbert "mlci"
+  justtalk
+D: "All right.
+    And isn't your head tingling?"
+  juststay
+  start herbert "mluvi"
+H: "I'd say that I can plainly hear
+    clanking in my ears."
+  start herbert "mlci"
+  justtalk
+D: "If your head tingles I would know
+    what's going on."
+  juststay
+  justtalk
+D: "I've had this kind of feeling before
+    when I came back
+    from the 'Filthy Goblin's Hand'."
+  juststay
+  start herbert "mluvi"
+H: "You have entered this damned den?!"
+  start herbert "mlci"
+  justtalk
+D: "It's just a comfortable and cozy pub..."
+  juststay
+  start herbert "mluvi"
+H: "You have still plenty of time
+    for these kind of things."
+  start herbert "mlci"
+  justtalk
+D: "Well father, I was just kidding.
+    I simply have a more vivid imagination than you."
+  juststay
+  justtalk
+D: "My head never tingles."
+  juststay
+  justtalk
+D: "All the world is just swinging with me."
+  juststay
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_06) )
+TITLE In which ear do you hear that clanking?
+  justtalk
+D: "In which ear do you hear that clanking?"
+  juststay
+  start herbert "mluvi"
+H: "It depends."
+  start herbert "mlci"
+  start herbert "mluvi"
+H: "Sometimes I have a feeling that
+    it's in both of them!"
+  start herbert "mlci"
+  justtalk
+D: "Do you have this feeling now?"
+  juststay
+  start herbert "mluvi"
+H: "No, not now.
+    But I can wait..."
+  start herbert "mlci"
+  justtalk
+D: "Do you hear anything?"
+  juststay
+  start herbert "mluvi"
+H: "Nothing."
+  start herbert "mlci"
+  justtalk
+D: "I can't hear anything either."
+  juststay
+  load herbert "cinka"
+  startplay herbert "cinka"
+  start herbert "mluvi"
+H: "Now, there was a clank!"
+  start herbert "mlci"
+  justtalk
+D: "Hey! I've heard it too."
+  juststay
+  start herbert "mluvi"
+H: "I hope it isn't hereditary."
+  start herbert "mlci"
+  justtalk
+D: "Let's hope it isn't."
+  juststay
+gplend
+
+block _09 ( beg(0) and not been(_09) )
+TITLE Father, why don't we have wings?!
+  justtalk
+D: "Father, why don't we have wings,
+    are we not dragons after all?!"
+  juststay
+  start herbert "mluvi"
+H: "All this is just because of evolution, son..."
+  start herbert "mlci"
+
+  let otec_me_poucil (1)
+gplend
+
+
+block _99 ( beg(0) and last(_00b) and maxline(1) )
+title
+  justtalk
+D: "Nothing..."
+  juststay
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and not last(_00b) )
+TITLE Father, we have estranged a lot.
+  justtalk
+D: "Father, we have estranged a lot.
+    I have nothing more to say."
+  juststay
+  start herbert "mluvi"
+H: "As you wish, son..."
+  start herbert "mlci"
+  exitdialogue
+gplend

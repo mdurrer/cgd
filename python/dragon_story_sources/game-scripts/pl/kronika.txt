@@ -1,0 +1,487 @@
+{Bert s kronikou:}
+
+block _01 ( atbegin(1) and not been(_01) )
+   title Pani Kroniko!
+{abysme si s ni pokecali o tom, ze ji tady musime nechat,
+{az budeme poprve odchazet
+  let kronika_extra_pokec (1)
+
+  justtalk
+   D: "Pani Kroniko!"
+  juststay
+
+  start kronika "mluvi"
+   K: "A B C D E F G H"
+  start kronika "mlci"
+
+  justtalk
+   D: "To ty mówisz!
+       I do tego poprawnie!"
+  juststay
+
+  start kronika "mluvi"
+   K: "I J K L M N O!"
+  start kronika "mlci"
+
+  justtalk
+   D: "Widzę, że można z tobą porozmawiać."
+  juststay
+
+  start kronika "mluvi"
+   K: "Gałąź!"
+   K: "Gatki!"
+   K: "Gówno!"
+{#this is based on a typical Czech speech sound, which is very
+{#difficult to pronounce; the third word is a little rude in Czech, too
+  start kronika "mlci"
+
+  justtalk
+   D: "Wow, to brzmi całkiem nieźle!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Dziękuję bardzo, mój nieznany specjalisto
+       od wad wymowy!"
+  start kronika "mlci"
+
+gplend
+
+block _01b ( atbegin(1) and  been(_01) )
+   title Pani Kroniko!
+  justtalk
+   D: "Pani Kroniko!"
+  juststay
+gplend
+
+
+block _25 ( atbegin(0) and last(_01b) and been(_hulkakill) and been(_hulka) and been(_poklad) and been(_draci) )
+   title Chciałbym coś wyjaśnić...
+  justtalk
+   D: "Chciałbym coś wyjaśnić..."
+  juststay
+
+  start kronika "mluvi"
+   K: "Proszę bardzo."
+  start kronika "mlci"
+
+  resetblock _hulkakill
+  resetblock _hulka
+  resetblock _draci
+  resetblock _poklad
+gplend
+
+block _05 ( atbegin(0)  and not been(_05) and not last(_25) )
+   title Opowiedz mi bajkę!
+  justtalk
+   D: "Opowiedz mi bajkę!
+       (Co ja mówię?!
+       Przecież teraz nie cierpię bajek!)"
+  juststay
+
+  start kronika "mluvi"
+   K: "Nie znam żadnych bajek,
+       pamiętam tylko prawdziwe wydarzenia."
+  start kronika "mlci"
+
+  justtalk
+   D: "Och, zdjęłaś mi ciężar z serca."
+  juststay
+
+gplend
+
+{block _20 ( atbegin(0)  and not been(_20) and not last(_25) )
+{title Zazpívej!
+{  justtalk
+{  D:"Zazpívej!"
+{  juststay
+{
+{  start kronika "mluvi"
+{  K:"Promiň, ale nemám hudební sluch."
+{  start kronika "mlci"
+{
+{  justtalk
+{  D:"To je fajn, můžeme dát duet."
+{  juststay
+{
+{gplend
+
+block _02 ( atbegin(0) and not been(_02) and not last(_25) )
+   title Co ci zrobiły Gobliny?
+  justtalk
+   D: "Co ci zrobiły Gobliny?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Och, troszkę mnie torturowały."
+  start kronika "mlci"
+
+gplend
+
+block _03 ( atbegin(0) and not been(_03) and been(_02) and not last(_25) )
+   title Jesteś nadzwyczaj odważna!
+  justtalk
+   D: "Jesteś nadzwyczaj odważna!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Od 50 lat nie przemówiłam słowem,
+       więc nie mogłam się zniżyć do rozmowy
+       z tymi prymitywnymi stworami!"
+  start kronika "mlci"
+
+gplend
+
+block _04 ( atbegin(0)  and not been(_04) and not last(_25) )
+   title Dlaczego nie broniłaś się, gdy próbowali...
+  justtalk
+   D: "Dlaczego nie broniłaś się, gdy próbowali
+       cię uprowadzić?
+       Mogłaś zamknąć swe stronice i schwytać w
+       potrzask
+       dwa Gobliny naraz!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Przepraszam, nie potrzebuję zakładek!"
+  start kronika "mlci"
+
+gplend
+
+block _06 ( atbegin(0)  and not been(_06) and not last(_25) )
+   title Czy pamiętasz te czasy, gdy...
+  justtalk
+   D: "Czy pamiętasz te czasy, gdy..."
+  juststay
+
+  start kronika "mluvi"
+   K: "Nie, nie pamiętam."
+  start kronika "mlci"
+
+  justtalk
+   D: "A czy pamiętasz..."
+  juststay
+
+  start kronika "mluvi"
+   K: "Też nie!"
+  start kronika "mlci"
+
+gplend
+
+block _19 ( atbegin(0)  and not been(_19) and last(_hulkakill) )
+   title A co z przepisem?
+  justtalk
+   D: "A co z przepisem?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Szukając przepisu uświadomiliśmy sobie,
+       że już od dawna nie mamy wieści o Ofelinie."
+   K: "Dziś słyszę o niej po raz pierwszy od wielu lat."
+   K: "Przepis był nieznany aż po dziś dzień,
+       i ja też go nie znałam"
+  start kronika "mlci"
+
+gplend
+
+block _hulkakill ( atbegin(0)  and ((not been(_hulkakill) and been(_hulka))or last(_25)) )
+   title Czy wiesz coś o tym, jak karze się złe...
+
+  let mam_zjistit_recept (1)
+
+  justtalk
+   D: "Czy wiesz coś o unieszkodliwianiu,
+       och... o... o...
+       karaniu złych różdżek czarodziejskich?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Musiałbym poszukać."
+   K: "No, właśnie, od lat myśleliśmy nad tym
+       jak rozwiązać problem Ofeliny..."
+   K: "... i ktoś usłyszał
+       że złe czrodziejskie różdżki
+       należy gotować w zupie."
+   K: "To powinno być proste;
+       jak tylko różdżka poczuje zapach zupy
+       przychodzi sama!"
+  start kronika "mlci"
+
+  justtalk
+   D: "To jest dość łagodna kara,
+       lecz na razie powinna wystarczyć..."
+  juststay
+
+  resetblock _19
+
+gplend
+
+block _09 ( atbegin(0)  and not been(_09) and last(_draci) )
+   title Czyżbym nie był smokiem!?
+  justtalk
+   D: "Czyżbym nie był smokiem!?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Mam na myśli PRAWDZIWEGO smoka,
+       który niszczy wsie, rabuje, zabija
+       i sieje strach i zniszczenie."
+  start kronika "mlci"
+
+{
+{"Jde ze mě ta správná hrůza? Bléééé!"
+{  "Ha, hahaha, hah..."
+{
+gplend
+
+block _draci ( atbegin(0)  and (not been(_draci) or last(_25)) )
+   title Czy przypominasz sobie coś o smokach?
+  justtalk
+   D: "Czy przypominasz sobie coś o smokach?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Och, pamiętam jedynie kilka podstawowych
+       faktów."
+   K: "Wiem, że żaden prawdziwy smok od 500 lat
+       nie zawitał do tej krainy."
+  start kronika "mlci"
+
+gplend
+
+block _poklad ( atbegin(0)  and (not been(_poklad) or last(_25) ) )
+   title A co z dawnymi skarbami smoków?
+ labels namape
+  justtalk
+   D: "A co z dawnymi skarbami smoków?"
+  juststay
+
+  start kronika "mluvi"
+   K: "No, właśnie,
+       kilka mil stąd, na północ
+       jest opuszczona smocza jama."
+   K: "Ostatni smok żył tam
+       pięćset pięćdziesiąt siedem lat temu. Jeśli
+       tam był
+       jakiś skarb, to został z pewnością skradziony..."
+  start kronika "mlci"
+
+  justtalk
+   D: "Jestem pewien, że nie!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Skoro tak sądzisz to..."
+  start kronika "mlci"
+
+  if(new_jeskyn>1) namape
+  let new_jeskyn (1)
+ label namape
+
+gplend
+
+block _hulka ( atbegin(0)  and (not been(_hulka) or last(_25) ) )
+   title Czy może wiesz coś o złych czarodziejskich różdżkach?
+  justtalk
+   D: "Czy może wiesz coś o złych
+       czarodziejskich różdżkach?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Znam tylko jedną różdżkę,
+       kilka razy przybywała odwiedzić nasze
+       okolice.
+       Err ...jak też jej na imię?"
+   K: "...nazywają ją Ofelina."
+  start kronika "mlci"
+
+  justtalk
+   D: "Nic mi to nie mówi!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Imię nie ma znaczenia,
+       pewne miejsca odwiedza ona incognito!"
+  start kronika "mlci"
+
+  justtalk
+   D: "Czy wygląda ona na dobrą różdżkę?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Raczej tak."
+  start kronika "mlci"
+
+  justtalk
+   D: "Skoro tak, to ją znam!
+       Kiedyś łączyły nas wspólne interesy..."
+   D: "Czy nie wiesz, gdzie mogę ją odnaleźć?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Nie sądzę, by było to możliwe,
+       Nie widziałam jej od wieków."
+  start kronika "mlci"
+
+gplend
+
+block _12 ( atbegin(0)  and not been(_12) and been(_hulka) )
+   title Co uczyniła Ofelina?
+  justtalk
+   D: "Co uczyniła Ofelina?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Dziewięćset dwadzieścia osiem lat temu
+       zatkała wypływ wody ze żródeł,
+       które nawadniały naszą krainę."
+   K: "Na szczęście uratował nas magiczny korkociąg.
+       Musieliśmy jednak uzyskać go z sąsiedniego
+       królestwa w zamian za 2.000 baryłek rumu."
+  start kronika "mlci"
+
+  justtalk
+   D: "To was zrujnowało, nieprawdaż?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Oczywiście."
+   K: "Zapomniałam podkreślić,
+       że to królestwo nazywane było odtąd
+       'krajem wiecznych ciemności'."
+{#because of drinking badly distilled alcohol
+  start kronika "mlci"
+
+gplend
+
+block _13 ( atbegin(0)  and not been(_13) and been(_12) )
+   title Jestem pewien, że Ofelina wciaż coś knuje!
+  justtalk
+   D: "Jestem pewien, że Ofelina wciaż coś knuje!"
+  juststay
+
+  start kronika "mluvi"
+   K: "To jasne."
+   K: "Sześćset dziewięćdziesięt lat temu,
+       podczas wyścigu w toczeniu beczek
+       zamieniła beczki w ule z pszczołami."
+   K: "Z powodu łoskotu nikt nie słyszał,
+       że beczki brzęczą."
+   K: "Zwyciężca był tak pożądlony,
+       że nie można było mu włożyć
+       wieńca na szyję."
+   K: "Lecz co gorsza, wszyscy widzowie uciekli
+       i całą gala spaliła na panewce."
+  start kronika "mlci"
+
+  justtalk
+   D: "Uwielbiam takie imprezy. To coś nadzwyczajnego!"
+  juststay
+
+gplend
+
+block _14 ( atbegin(0)  and not been(_14) and been(_13) )
+   title Jeszcze jedna rozróba Eweliny!
+  justtalk
+   D: "Jeszcze jedna rozróba Eweliny!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Z Ofeliną miałam też inne przykre
+       doświadczenia."
+   K: "Powiedziała mi, że każda wykształcona kronika
+       włada przynajmniej dwoma językami."
+  start kronika "mlci"
+
+  justtalk
+   D: "Czyżby chciała cię nauczyć?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Po prostu, sprzedawała słowniki."
+   K: "Zaczęłam poważnie myśleć o nauce
+       języka Himilisz.
+       Wyobrażasz sobie?"
+{#Hamilish is a word for the language the chronicle studied
+{#but the name "Hamilish" is fictitious in Czech too
+   K: "Posiada on pięćdziesiąt czasów,
+       dwadzieścia rodzajów,
+       10.000 czasowników nieregularnych!"
+  start kronika "mlci"
+
+gplend
+
+block _15 ( atbegin(0)  and not been(_15) and (last(_14) or last(_16) or last(_17)) )
+   title Powiedz coś w Himlisz!
+  justtalk
+   D: "Powiedz coś w Himlisz!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Shrrrrph!"
+  start kronika "mlci"
+
+  justtalk
+   D: "Co to znaczy?"
+  juststay
+
+  start kronika "mluvi"
+   K: "To jest tylko wykrzyknik..."
+  start kronika "mlci"
+
+gplend
+
+block _16 ( atbegin(0)  and not been(_16) and (last(_14) or last(_15) or last(_17)) )
+   title Gdzie mówi się w Himlisz?
+  justtalk
+   D: "Gdzie mówi się w Himlisz?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Nigdzie!
+       A ja przez dwa lata uczyłam się słówek!"
+  start kronika "mlci"
+
+gplend
+
+block _17 ( atbegin(0)  and not been(_17) and (last(_14) or last(_16) or last(_15)) )
+   title Kiedy powstały twoje problemy z wymową?...
+  justtalk
+   D: "Kiedy powstały twoje problemy z wymową?
+       Wskutek nauki Himlisz?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Tak! Mogę rzec, że właśnie po tym
+       zaczęły się moje problemy.
+       To wszystko było celowe."
+  start kronika "mlci"
+
+  justtalk
+   D: "To obrzydliwe. Moim zdaniem,
+       Ofelina, a raczej Ewelina, powinna
+       zostać surowo ukarana!"
+  juststay
+
+gplend
+
+{block _21 ( atbegin(0)  and not been(_21) )
+{title Tak mi pověz aspoň vtip!
+{  justtalk
+{  D:"Tak mi pověz aspoň vtip!"
+{  juststay
+{
+{gplend
+
+block _22 ( atbegin(0) )
+   title Bardzo miło nam się rozmawiało. Do zobaczenia...
+  justtalk
+   D: "Bardzo miło nam się rozmawiało.
+       Do zobaczenia..."
+  juststay
+
+  start kronika "mluvi"
+   K: "O.K. Do widzenia..."
+  start kronika "mlci"
+
+  exitdialogue
+gplend

@@ -1,0 +1,60 @@
+{incident na moste mezi spikarem a trolem:}
+
+block _00 ( beg(1) )
+title
+ labels nanudu
+   Vypravec: "Tymczasem..."
+  mark
+  load most_sipkar "mluvipo"
+  load most_sipkar "mlcipo"
+  load most_sipkar "haze"
+  load most_sipkar "jde3"
+  load most_sipkar "stojiutrola"
+  load most_trol_huba "cili se"
+  load most_trol_huba "mlci"
+  load most_siplet "leti"
+  load most_siplet "zabodnuta"
+
+  start most_sipkar "mluvipred"
+{bacha! testovat, jestli je trol nahaty, nebo ne!!!}
+   SM: "Długo nie trenowałem,
+        Obawiam sie, że nie jestem w formie..."
+  start most_siplet "leti"
+  startplay most_sipkar "haze"
+  start most_siplet "zabodnuta"
+  {hodi sipku na trola:}
+  start most_sipkar "mluvipo"
+   SM: "Patrzaj, trafiłem!
+        Hej ty, tarcza, ile było?"
+  start most_sipkar "mlcipo"
+  start most_trol_huba "cili se"
+   R: "Dziesiątka."
+  start most_trol_huba "mlci"
+  start most_sipkar "mluvipo"
+   SM: "O! Dziwne, tarcza dziś gada..."
+  start most_sipkar "mlcipo"
+  startplay most_sipkar "jde3"
+  {dojde si vytáhnout šipku z trola, proběhne incident}
+  start most_sipkar "stojiutrola"
+  start most_trol_huba "cili se"
+   R: "NIKT!
+       NIGDY!
+       NIE BĘDZIE SOBIE ZE MNIE KPIŁ!"
+  release
+  objstat away most_sipkar
+  objstat away most_siplet
+  objstat_on most_zvonek most
+  let probehl_incident (1)
+
+  if (upeceny_trol=3) nanudu
+  load most_trol "inc-oblecen5"
+  load most_trol "inc-obl-end"
+  startplay most_trol "inc-oblecen5"
+  start most_trol "inc-obl-end"
+  exit
+ label nanudu
+  load most_trol "inc-nahaty2"
+  load most_trol "inc-nah-end"
+  startplay most_trol "inc-nahaty2"
+  start most_trol "inc-nah-end"
+gplend

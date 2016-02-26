@@ -1,0 +1,30 @@
+{s větrem v horách- teď vlasně s listem:}
+
+block _00 ( beg(1) )
+title
+  justtalk
+   D: "Panie Wietrze!
+       Czy nie można by ukryć się
+       w ten sposób?"
+  juststay
+   V: "Cieszyłem się wolnością...."
+  justtalk
+   D: "Myślę, że umawialiśmy się!"
+  juststay
+   V: "A więc, czego sobie życzysz?"
+  justtalk
+   D: "Czy zechciałbyś mi przywiać
+       jedną lub dwie chmurki?"
+  juststay
+   V: "To proste...
+       Ale dokąd?"
+  justtalk
+  D: "Jeśli wzlecisz trochę wyżej,
+      powinieneś zobaczyć."
+  juststay
+  V: "Sporo tego jest..."
+{gejtkou k sipku, odfouknuti mraku, pak zpátky}
+
+  let odfoukli_jsme (1)
+  newroom sipek 2
+gplend

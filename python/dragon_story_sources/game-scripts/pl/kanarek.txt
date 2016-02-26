@@ -1,0 +1,13 @@
+{kanarek odpovida:}
+
+block _ (1)
+title
+  justtalk
+   D: "Mówi?"
+  juststay
+   Kanarek: "Mówi!"
+   Kanarek: "|  Mówi !"
+  justtalk
+   D: "Mówi..."
+  juststay
+gplend

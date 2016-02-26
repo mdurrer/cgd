@@ -1,0 +1,140 @@
+{dialog s Eulanii- ufnukanou zidli:}
+
+block _00 ( beg(1) )
+title
+  justtalk
+D: "Frau Fußhocker..."
+D: "Lieber Küchenstuhl..."
+D: "Adeliger Schemel!"
+D: "Hochwohlgeborener kleiner Sessel..."
+  juststay
+  start zid_prava_huba "mluvi"
+{#this part is based on the large variety of words
+{#for a very little (arm-)chair in Czech
+Z2: "Oh, kann ich dir helfen?"
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Ich suche nach jemanden
+    der meine Gesellschaft genießt."
+  juststay
+  justtalk
+D: "Ich möchte mit dir sprechen!"
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Aber ich bin schüchtern ..."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Das macht ja nichts,
+    ich werde das meiste Reden übernehmen."
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Du belästigst mich."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Warum bist du so scheu?
+    Ich will dich nicht belästigen..."
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Nun, das hoffe ich..."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Du siehst so hübsch und gemütlich aus!"
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Ach wirklich?"
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Ja, wirklich.
+    Ehrenwort."
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Du lügst doch."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Ich habe heut schon zwei mal gelogen.
+    Aber jetzt spreche ich die geschminkte Wahrheit."
+{#this is based on the the phrase "to tell downright lies"
+{#the sentence "to tell downright the truth" is imposiible
+{#and it sounds ridiculous in Czech
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Du erzählst mir Lügen
+     und willst, dass ich lächerlich wirke.
+     Du magst mich überhaupt nicht."
+  start zid_prava_huba "mlci"
+gplend
+
+block _01 ( last(_00) )
+title
+  justtalk
+D: "Was sagst du da?"
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Niemand mag mich."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Wie kannst du nur so einen Unsinn reden?"
+D: "Ich mag dich wirklich.
+    Ich hätte dich gern auf meinem Speicher."
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Ahhh, ich habe Höhenangst..."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Du kannst auch im Schuppen bleiben!"
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Uhh, ich hasse Dreck."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Wo ich gerade darüber nachdenke,
+    ich weiß gar nicht, wo du bleiben könntest.
+    Ich möchte schließlich keinen Schandfleck
+    in meinem Wohnzimmer."
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Ooch, du bist genau wie die anderen.
+     Du magst mich nicht."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Ich hab nur Spaß gemacht."
+D: "Ich wollte dir beweisen,
+    dass ich nur Blödsinn rede.
+    Du bist wirklich hübsch."
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Aber das stimmt nicht.
+     Siehst du nicht den kleinen Punkt
+     an meinem rechten Bein?"
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Welchen?"
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Der kleine Punkt genau in der Mitte."
+  {přímo plačtivě:}
+Z2: "Der ist deutlich sichtbar!"
+  start zid_prava_huba "mlci"
+  {drak zabrejlí:}
+  justtalk
+D: "Ich sehe nichts ..."
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Der stammt von einem Holzwurm!"
+  start zid_prava_huba "mlci"
+  justtalk
+D: "(schielend)
+    Oh, der da!"
+D: "Aber der ist ziemlich klein ..."
+  juststay
+  start zid_prava_huba "mluvi"
+Z2: "Siehst du, niemand mag mich,
+     alle wollen immer nur, dass ich lächerlich wirke.
+     Ist also kein Wunder, dass ich so schüchtern bin."
+  start zid_prava_huba "mlci"
+  justtalk
+D: "Da hast recht, das ist kein Wunder."
+D: "(Sie scheint nicht besonders redselig zu sein,
+    ich versuche es lieber woanders.)"
+  juststay
+gplend

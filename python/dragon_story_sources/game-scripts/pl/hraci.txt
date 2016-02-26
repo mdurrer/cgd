@@ -1,0 +1,208 @@
+{s hráči karet v hospodě:}
+block _08 ( maxline(1) and beg(1) and (ciste_zrcadlo=1) )
+title
+  {prave sem vylestil zrcadlo, dostanu karty}
+  justtalk
+   D: "Jak leci?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+   H2: "Lepiej nie pytaj, bo zapeszysz."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Szczęście zaczyna mi sprzyjać."
+  justtalk
+   D: "To dzięki moim dobrym radom!"
+  juststay
+   H1: "Przynosisz mi szczęście.
+        Powinienen się ciebie trzymać..."
+   H1: "Co byś powiedział na talię 32 znaczonych asów."
+  justtalk
+   D: "Asów! I w dodatku trzydziestu dwóch?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+   H2: "Nic dziwnego.
+        Ja mam same dziesiątki."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+
+  icostat on i_karty
+  let ciste_zrcadlo (2)
+gplend
+
+block _00 ( beg(1) and not been(_00) and maxline(1) )
+title
+  justtalk
+   D: "W co gracie?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+   H2: "Spadaj, głupi."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "W oko."
+  justtalk
+   D: "Umiem grać w brydża. Mogę zagrać z wami?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+   H2: "Ile masz pieniędzy?"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  justtalk
+   D: "Nie mam nic!"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+   H2: "Przykro nam, chłopcze..."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _01 ( beg(1) and not been(_01) and maxline(1) )
+title
+  justtalk
+   D: "Wyszedłbym damą trefl..."
+  juststay
+   H1: "Nie patrz mi w karty, człowieku!"
+  justtalk
+   D: "A teraz joker atutowy!"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Nie będzie potrzebny. Bierz wszystko!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Próbujemy jeszcze?"
+   H1: "Jakbym miał asa z królem to wygrywam."
+   H1: "Wkrótce będę zruinowany."
+  justtalk
+   D: "Czy chcesz coś położyć?"
+  juststay
+   H1: "Przestań sobie kpić."
+gplend
+
+block _02 ( beg(1) and not been(_02) and maxline(1) )
+title
+  justtalk
+   D: "Teraz bierz waleta pik."
+  juststay
+   H1: "Dobra, przebijamy."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "A na końcu siódemkę."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "O Jezu, mam dwie karty, ale nie do pary."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Patrz, para atutów."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Jeszcze jedna partia i zostanę żebrakiem."
+gplend
+
+block _03 ( beg(1) and not been(_03) and maxline(1) )
+title
+  justtalk
+   D: "Podniósłbym stawkę."
+  juststay
+   H1: "Zamnknij się!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Patrz, jeszcze jedna para."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Mam żonę i dwoje dzieci!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Ha ha ha."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _04 ( beg(1) and not been(_04) and maxline(1) )
+title
+  justtalk
+   D: "To wygląda kiepsko."
+  juststay
+   H1: "Fatalnie."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Próżne gadanie!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Oszukujesz!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Wcale nie..."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Tak!"
+   H1: "Ten znaczony as pod stołem był mój."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Widzę, ale mnie się przydał."
+   H2: "Zgarniam wszystko
+        Wygrałem!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _05 ( beg(1) and not been(_05) and maxline(1) )
+title
+  justtalk
+   D: "Patrz, ja bym..."
+  juststay
+   H1: "Spróbujemy jeszcze?"
+  justtalk
+   D: "Ja tylko..."
+  juststay
+   H1: "Zamknij się!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Spadaj, głupi."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Co?"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Nie miałeś szczęścia."
+   H2: "To nie moja wina
+        znów byłeś w tyle."
+   H2: "Trzeba mieć szybszy refleks."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Ale ja straciłem wszystkie kolory."
+gplend
+
+block _06 ( beg(1) and not been(_06) and maxline(1) )
+title
+   H1: "Oszukujesz!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Patrzaj, jak ty na to wpadłeś, panie Cwaniaczku?"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+   H1: "Ten walet trefl ma zagięty róg!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+   H2: "Cholera! Róg jest w porządku."
+   H2: "Biorę wszystko!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _07 ( maxline(1) and beg(1) and (ciste_zrcadlo=0) )
+title
+  {standardni pokec, az se vykecam a nedostanu karty}
+  justtalk
+   D: "Ludzie..."
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+   H2: "Człowieku, to nie twój interes."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend

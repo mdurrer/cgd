@@ -1,0 +1,386 @@
+{drak s obrem:}
+
+block _00a ( beg(1) and not been(_00a)) )
+title
+  justtalk
+D: "Hey!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Who are you? A dwarf?
+    No? That's a pity.
+    I like dwarves."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "I am Bert and I am a dragon!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Hmm ..."
+O: "You kind of look like the other dragons,
+    I have seen ...
+    But you have no wings!"
+  start obr_hlava "mlci"
+  justtalk
+D: "I will have them some day ..."
+  juststay
+  start obr_hlava "mluvi"
+O: "I don't know. Think about it sometime!"
+  start obr_hlava "mlci"
+  justtalk
+D: "Darn, now I will start to have a wing complex."
+  juststay
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _00b ( atbegin(1) and been(_00a) )
+title
+ labels jsemchytry
+  justtalk
+D: "Hi, I have some more questions for you..."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Hmm..."
+  start obr_hlava "mlci"
+  if(otec_me_poucil=1) jsemchytry
+  exit
+ label jsemchytry
+  let otec_me_poucil (2)
+  start obr_hlava "mluvi"
+O: "Do you still remember what I have asked you
+    before?"
+  start obr_hlava "mlci"
+  justtalk
+D: "I think so."
+  juststay
+  start obr_hlava "mluvi"
+O: "So why do you have no wings?
+    Are you a dragon or not?"
+  start obr_hlava "mlci"
+  justtalk
+D: "Well, it's just a matter of evolution..."
+D: "But now, it's my turn to ask questions."
+  juststay
+  start obr_hlava "mluvi"
+O: "As you wish."
+  start obr_hlava "mlci"
+
+gplend
+
+block _01 ( atbegin(0)) and not been(_01) and isobjon(obr_pajzl1) )
+TITLE What are you grinding in that mill?
+  justtalk
+D: "What are you grinding in that mill?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Eeeh, don't ask."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "You are grinding dwarves in that mill!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "There you go, you guessed it!"
+  start obr_hlava "mlci"
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _02 ( atbegin(0) and not been(_02) and been(_01) and isobjon(obr_pajzl1) )
+TITLE You throw the dwarves in just as they are?
+  justtalk
+D: "You throw the dwarves in just as they are?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Why not? The dwarves
+    are quite clean."
+O: "I take only their caps off
+    as it blocks my mill."
+  start obr_hlava "mlci"
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _03 ( atbegin(0) and not been(_03) and been(_01) and isobjon(obr_pajzl1) )
+TITLE You really eat dwarves?
+  justtalk
+D: "You really eat dwarves?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "What are these vermin good for?
+    Only for eating I say."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "And you like them."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "I love them!"
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_03) and isobjon(obr_pajzl1) )
+TITLE Can you tell me some good recipes?
+  justtalk
+D: "Can you tell me some good recipes?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "I know many recipes!"
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Can you tell me a really good one?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "It's hard to choose ..."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _04 ( beg(0) and not been(_04) and been(_01) and isobjon(obr_pajzl1) )
+TITLE To grind dwarves is inhuman!
+  justtalk
+D: "To grind dwarves is inhuman!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Maybe. But this is cruel
+    fairy-tale reality."
+O: "I will have a meatloaf on Sunday."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _06 ( atbegin(0) and not been(_06) and been(_03) and isobjon(obr_pajzl1) )
+TITLE But all the dwarves will be extinct if you keep this up!
+  justtalk
+D: "But all the dwarves will be extinct
+    if you keep this up!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Do not worry,
+    I won't starve.
+    I have plenty of them canned!"
+  start obr_hlava "mlci"
+
+  justtalk
+D: "With a lot of onion?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "The main thing is a lot of pepper
+    and then let it mellow for at least a year."
+O: "Then they are really tasty."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _07 ( beg(0) and not been(_07) and isobjaway(obr_pajzl1) )
+TITLE Where did these bound Dwarves disappear to?
+  justtalk
+D: "Where did these bound Dwarves disappear to?
+    You had to feel real sorry for yourself
+    when you set them free."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "I don't know what you are talking about.
+    I ate them."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Ate them?!
+    But, I liked them so much ..."
+D: "... we shared our interests,
+    our problems,
+    we were drinking out of the same cup ..."
+D: "... we shared epidemic icterus,
+    we even lent our pencils to each other!"
+D: "They were such sympathetic Dwarves,
+    they had nice beards!"
+D: "Can't you make amends somehow?
+    Take it back?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Take them back, you say?
+    It wouldn't help them much."
+O: "I have grinded them perfectly."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Why did you do it, you murderer?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Well, to swallow big morsels is unhealthy."
+O: "I get flatulence out of it.
+    You don't want me to get sick, do you?"
+  start obr_hlava "mlci"
+gplend
+
+block _13 ( beg(0) and not been(_13) and isobjaway(obr_pajzl1) )
+TITLE What will you eat now that Dwarves are forbidden?
+  justtalk
+D: "What will you eat now
+    that Dwarves are forbidden?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Still Dwarves.
+    But canned and stewed."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "As far as I know,
+    you were to set ALL the dwarves free!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "I know, my dragon friend
+    how you care about those Dwarves,
+    but some little accident happened."
+O: "I don't know how,
+    but all the dwarves died in the stew."
+O: "Even giving first aid was futile."
+O: "I am sorry to say
+    that your friends couldn't swim."
+  start obr_hlava "mlci"
+gplend
+
+
+block _10 ( beg(0) and (mam_zjistit_recept=1) and not been(_10) )
+TITLE I am looking for one recipe...
+  justtalk
+D: "I am looking for one recipe..."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "I surely won't know that one."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "...for cooking bad magic wands!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "You are lucky. I know this one by accident!"
+  start obr_hlava "mlci"
+
+  justtalk
+D: "So tell me!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Boil two pints of water and
+    one sliced moldy mushroom.
+    Add chives, one goblin sock
+    and stir properly."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Is that all?
+    That sounds exactly like the soup
+    Berta is cooking."
+D: "Without that goblin sock, of course!
+    (I should recommend it to her next time.)"
+  juststay
+gplend
+
+block _11 ( beg(0) and been(_10) and not been(_11) )
+TITLE Does that mushroom need to be moldy?
+  justtalk
+D: "Does that mushroom need to be moldy?
+    Isn't that goblin sock enough?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "No way, it's really necessary.
+    At worst you can add mold.
+    It really helps."
+O: "Hold on, I can give you some moldy bouillon."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "I don't know if I can accept it ..."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Take it, it's completely healthy,
+    with no chemicals in it!"
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Healthy?
+    That's what I am afraid of.
+    But if you insist, thanks ..."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "I don't know how else I could help you."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "It won't be necessary.
+    As for the goblin sock,
+    I happen to know some goblins by accident."
+  juststay
+{obr dá drakovi plíseň do polévky}
+
+  icostat on i_plisen
+  exitdialogue
+gplend
+
+block _12 ( beg(0) and not been(_12) and been(_10) )
+TITLE How do goblins taste?
+  justtalk
+D: "How do goblins taste?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "I don't eat goblins because of their socks."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Too spicy?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Yes, kind of."
+  start obr_hlava "mlci"
+gplend
+
+block _99 ( beg(0) and not (last(_00a) or last(_00b)) )
+TITLE Bye now.
+  justtalk
+D: "Bye now."
+  juststay
+  start obr_hlava "mluvi"
+O: "See you later..."
+  start obr_hlava "mlci"
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and (last(_00a) or last(_00b)) and maxline(1) )
+title
+  justtalk
+D: "I just forgot, what were the questions?"
+  juststay
+  start obr_hlava "mluvi"
+O: "Never mind, maybe you will remember
+    them next time."
+  start obr_hlava "mlci"
+  exitdialogue
+gplend

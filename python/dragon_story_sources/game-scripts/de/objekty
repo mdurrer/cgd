@@ -1,0 +1,7790 @@
+OBJECT bert
+title Das bin ich, Bert der Drache
+  PRIORITY 1
+  STATUS AWAY
+  SEQ ..\_animace\drek
+
+  INIT
+    LOAD bert "dolu"
+    LOAD bert "nahoru"
+    LOAD bert "vpravo"
+    LOAD bert "vlevo"
+    LOAD bert "pravo-dolu"
+    LOAD bert "pravo-nahoru"
+    LOAD bert "levo-dolu"
+    LOAD bert "levo-nahoru"
+    LOAD bert "dolu-pravo"
+    LOAD bert "hore-vpravo"
+    LOAD bert "dolu-vlevo"
+    LOAD bert "hore-vlevo"
+    LOAD bert "levo-pravo"
+    LOAD bert "pravo-levo"
+    LOAD bert "h-levostoji"
+    LOAD bert "h-pravostoji"
+    LOAD bert "mluv-vpravo"
+    LOAD bert "mluv-vlevo"
+    LOAD bert "kour-pravo"
+    LOAD bert "kour-vlevo"
+  GPLEND
+  canuse (0)
+  use
+    dialogue "rozhovor.txt"
+  gplend
+ look
+   labels incident zranice nic
+    if((probehl_incident=0)and(predal_sipky=1)and(isobjon(most_trol))) incident
+    if(isobjon(uhliky_hori)and(pokec_s_obrem>1)) zranice
+    exit
+  label incident
+   {most
+    if(actroom=17) nic
+    pushnewroom
+    newroom most 4
+    exit
+  label zranice
+   {hraduvn
+    if(actroom=6) nic
+   {kuch
+    if(actroom=11) nic
+   {hodovna
+    if(actroom=30) nic
+    pushnewroom
+    newroom hod 4
+  label nic
+    exit
+ gplend
+
+{************************ chauvn *********************************}
+
+{objekt z masek naexportován MM4}
+OBJECT obj_chauvn_maska149 right
+title verlasse das Haus
+  ROOM chauvn
+  PRIORITY 149
+  STATUS ON
+  SEQ ..\CHAL_IN\DEF\EXIT
+  INIT
+    load obj_chauvn_maska149 "ZAKLADNI"
+    start obj_chauvn_maska149 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 268 144 vpravo
+  use
+    newroom chaven 3
+  gplend
+
+OBJECT pavouk
+title Spinne
+  ROOM chauvn
+  PRIORITY 29
+  STATUS ON
+  SEQ ..\CHAL_IN\DEF\pavouk
+  INIT
+    load pavouk "leze"
+    start pavouk "leze"
+  GPLEND
+  look
+    justtalk
+D: "Zu schade, dass es kein Kehrblech
+    in diesem Spiel gibt."
+D: "Sie versaut unser ganzes Heim."
+D: "Wenn ich sie rauswerfe,
+    kommt sie einfach wieder rein."
+    juststay
+  gplend
+
+OBJECT chauvn_nit
+title Ein Teil des Spinnennetzes
+  ROOM chauvn
+  PRIORITY 30
+  STATUS off
+  SEQ ..\CHAL_IN\DEF\nit
+  INIT
+    load chauvn_nit "zakladni"
+    start chauvn_nit "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Ich sollte es mitnehmen,
+    bevor Mutter es noch raus fegt."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    justtalk
+D: "Es wird sicherer bei mir sein,
+    als unter einem Fuß."
+    juststay
+    objstat away chauvn_nit
+    icostat on i_nit
+  gplend
+
+OBJECT chauvn_pol2
+  TITLE
+  ROOM chauvn
+  PRIORITY 30
+  STATUS off
+  SEQ ..\CHAL_IN\DEF\polivka1
+  INIT
+    load chauvn_pol1 "zakladni"
+    start chauvn_pol1 "zakladni"
+  GPLEND
+
+OBJECT chauvn_pol1
+  TITLE
+  ROOM chauvn
+  PRIORITY 30
+  STATUS off
+  SEQ ..\CHAL_IN\DEF\polivka2
+  INIT
+    load chauvn_pol2 "zakladni"
+    start chauvn_pol2 "zakladni"
+  GPLEND
+
+OBJECT mutti
+title Berta
+  ROOM chauvn
+  PRIORITY 31
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\mutina
+  INIT
+    load mutti "mlci"
+    start mutti "mlci"
+    loadmap "..\chal_in\def\mutina.map"
+  GPLEND
+  lookc 64 156 vpravo
+  look
+    justtalk
+D: "Meine Mutter."
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 64 156 vpravo
+  use
+    load mutti "mluvi"
+    load mutti "cili se"
+    dialogue "matka.txt"
+    start mutti "mlci"
+  gplend
+
+OBJECT mutti_ruk
+title Berta
+  ROOM chauvn
+  PRIORITY 31
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\muti_ruk
+  INIT
+    load mutti_ruk "z"
+    start mutti_ruk "z"
+  GPLEND
+  lookc 64 156 vpravo
+  look
+    execlook mutti
+  gplend
+  canuse (isactico(0))
+  usec 64 156 vpravo
+  use
+    execuse mutti
+  gplend
+
+OBJECT mutti_noh
+title Berta
+  ROOM chauvn
+  PRIORITY 31
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\muti_noh
+  INIT
+    load mutti_noh "z"
+    start mutti_noh "z"
+  GPLEND
+  lookc 64 156 vpravo
+  look
+    execlook mutti
+  gplend
+  canuse (isactico(0))
+  usec 64 156 vpravo
+  use
+    execuse mutti
+  gplend
+
+OBJECT dc_okzav
+title Fenster
+  ROOM chauvn
+  PRIORITY 15
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\dc_okzav
+  INIT
+    load dc_okzav "zavrene"
+    start dc_okzav "zavrene"
+  GPLEND
+  look
+    justtalk
+D: "Öffnet sich nicht, weil der Griff vor langer Zeit
+    abhanden gekommen ist..."
+    juststay
+  gplend
+  canuse (isactico(i_klika)and isobjaway(mutti))
+  use
+   labels jestene
+    justtalk
+D: "Ich könnte etwas frische Luft vertragen..."
+    juststay
+    icostat off i_klika
+ {nasazeni kliky:
+    objstat away dc_okzav
+    objstat away chaven_okno_zav
+    objstat_on dc_okote chauvn
+    objstat_on chaven_okno chaven
+    load dc_okote "otvirani"
+    startplay dc_okote "otvirani"
+    start dc_okote "otevrene"
+ {!!!! testovat, jak jsme na tom s polivkou a kdyztak spustit vune!!!
+    if(varime!=3) jestene
+    objstat_on chauvn_pol2 chauvn
+    objstat_on chaven_pol2 chaven
+    start chauvn_pol2 "zakladni"
+   label jestene
+
+{!!!!!! i vune pred chalupou !!!!!
+
+  gplend
+
+OBJECT dc_okote
+  TITLE
+  ROOM chauvn
+  PRIORITY 15
+  STATUS off
+  SEQ ..\CHAL_IN\DEF\dc_okote
+  INIT
+    load dc_okote "otevrene"
+    start dc_okote "otevrene"
+  GPLEND
+
+OBJECT dc_lzicka
+title Ein Löffel
+  ROOM chauvn
+  PRIORITY 15
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\dc_lzice
+  INIT
+    load dc_lzicka "z"
+    start dc_lzicka "z"
+  GPLEND
+  look
+    justtalk
+D: "So eine Überraschung - ein Holzlöffel."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+   labels skip
+    justtalk
+D: "Ich hab mit meinen Ansprüchen
+    fast dafür bezahlt."
+    goto skip
+D: "Ich fand nicht, dass das unvernünftig ist!"
+    label skip
+{#small exigency means to urinate, big exigency to make a shit...--- cleaned up
+    juststay
+    objstat away dc_lzicka
+    icostat on i_lzicka
+  gplend
+
+OBJECT polivka
+title Kochtopf|mit Suppe
+  ROOM chauvn
+  PRIORITY 15
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\polivka
+  INIT
+    load polivka "z"
+    start polivka "z"
+  GPLEND
+  canuse ((isactico(i_plisen)or isactico(i_ponozka)or (isactico(i_varecka)and(varime<3))and isobjaway(mutti))
+  usec 100 100 vlevo
+  use
+   labels jestenemichame plisen ponozka zavrene
+    if(isactico(i_plisen)) plisen
+    if(isactico(i_ponozka)) ponozka
+    if(isactico(i_varecka)and(varime<2)) jestenemichame
+   {jo! uz tam sou obe ingredience, pomichame to:
+    justtalk
+D: "Jetzt muss ich umrühren."
+    juststay
+    icostat off i_varecka
+    let varime (3)
+    walkonplay 116 144 vlevo
+    load bert "micha"
+    startplay bert "micha"
+    start bert "kour-vlevo"
+   {zapnuti vuuniii:
+    objstat_on chauvn_pol1 chauvn
+    objstat_on chaven_pol1 chaven
+    start chauvn_pol1 "zakladni"
+    if(not isobjon(dc_okote)) zavrene
+    objstat_on chauvn_pol2 chauvn
+    objstat_on chaven_pol2 chaven
+    start chauvn_pol2 "zakladni"
+
+{!!!!!! i vune pred chalupou !!!!!
+   label zavrene
+    walkonplay 124 152 vpravo
+    exit
+   label jestenemichame
+    justtalk
+D: "Es ist zu früh zum Rühren."
+    juststay
+    exit
+   label plisen
+    let varime (varime+1)
+    icostat off i_plisen
+    justtalk
+D: "Lass mich das noch reinwerfen."
+    juststay
+    exit
+   label ponozka
+    let varime (varime+1)
+    icostat off i_ponozka
+    justtalk
+D: "Und drin isses!"
+    juststay
+    objstat_on bublanina chauvn
+    start bublanina "z"
+    exit
+  gplend
+  look
+   labels uzbubla uzvoni
+    if(isobjon(bublanina)) uzbubla
+    if(isobjon(chauvn_pol1)) uzvoni
+    justtalk
+D: "Ein kulinarisches Produkt meiner Mutter.
+    Das braucht keine Erklärung. Bäh!"
+    juststay
+    exit
+   label uzbubla
+    justtalk
+D: "Schau, es kocht richtig gut!"
+    juststay
+    exit
+   label uzvoni
+    justtalk
+D: "Mmmmh, das ist wirklich..."
+D: "...ein toller Geruch, nichts könnte besser sein!"
+    juststay
+  gplend
+
+OBJECT bublanina
+title Kochtopf|mit Suppe
+  ROOM chauvn
+  PRIORITY 16
+  STATUS off
+  SEQ ..\CHAL_IN\DEF\bublani
+  INIT
+    load bublanina "z"
+    start bublanina "z"
+  GPLEND
+  canuse ((isactico(i_plisen)or isactico(i_ponozka)or (isactico(i_varecka)and(varime<3))and isobjaway(mutti))
+  use
+    execuse polivka
+  gplend
+  look
+    execlook polivka
+  gplend
+
+OBJECT oteckaze
+  TITLE
+  ROOM chauvn
+  PRIORITY 50
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\oteckaze
+
+OBJECT drakkaze
+  TITLE
+  ROOM chauvn
+  PRIORITY 60
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\drakkaze
+
+OBJECT mudr
+  TITLE
+  ROOM chauvn
+  PRIORITY 60
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\mudr
+
+OBJECT evelout
+  TITLE
+  ROOM chauvn
+  PRIORITY 160
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\eveloutr
+
+OBJECT moucha
+  TITLE
+  ROOM chauvn
+  PRIORITY 60
+  STATUS on
+  SEQ ..\CHAL_IN\DEF\moucha
+  init
+    load moucha "uvizla"
+  gplend
+
+{************************ dutina *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_dutina_maska169
+title Absolut|sinnloser|Zettel
+  ROOM dutina
+  PRIORITY 169
+  STATUS ON
+  SEQ ..\DUTINA\DEF\PAPIR
+  INIT
+    load obj_dutina_maska169 "ZAKLADNI"
+    start obj_dutina_maska169 "ZAKLADNI"
+  GPLEND
+  lookc 220 188 vlevo
+  look
+    justtalk
+D: "Ich esse nicht mit dreckigen Händen."
+D: "Ich lüge maximal zwei mal pro Tag."
+D: "Ich wärm keine Ameisen
+    mit meinem Feueratem auf,
+    selbst wenn sie kalt sind."
+D: "Ich kämpfe gegen schwächere Gegner."
+D: "Ich kämpfe gegen stärkere Gegner."
+D: "Ich hol meinen Vater zurück nach Hause."
+D: "Ich werde Evelyn bestrafen!"
+D: "Ich werde ein pflicht bewusster
+    und fürsorglicher Sohn -
+    aber da bin ich NICHT wirklich sicher..."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_dutina_maska168
+title Loch
+  ROOM dutina
+  PRIORITY 168
+  STATUS ON
+  SEQ ..\DUTINA\DEF\DUT_DIRA
+  INIT
+    load obj_dutina_maska168 "ZAKLADNI"
+    start obj_dutina_maska168 "ZAKLADNI"
+  GPLEND
+  lookc 160 180 vlevo
+  look
+   labels lookdut_2 lookdut_3 lookdut_4 lookdut_5 lookdut_6
+    let dutina_prozkoumal (dutina_prozkoumal+1)
+    if (dutina_prozkoumal=2) lookdut_2
+    if (dutina_prozkoumal=3) lookdut_3
+    if (dutina_prozkoumal=4) lookdut_4
+    if (dutina_prozkoumal=5) lookdut_5
+    if (dutina_prozkoumal>5) lookdut_6
+    {teprve po prve:}
+    justtalk
+D: "Das ist mein Geheimversteck."
+    juststay
+    exit
+   label lookdut_2
+    justtalk
+D: "Oh, schau, was ich versteckt hab.
+    Eine Steinschleuder!"
+    juststay
+    icostat on i_prak
+    exit
+   label lookdut_3
+    let dutina_prozkoumal (4)
+    goto lookdut_4
+    justtalk
+D: "Da sind nur noch ein paar
+    unanständige Zeitschriften drin."
+    juststay
+    exit
+   label lookdut_4
+    justtalk
+D: "Ich sag dir,
+    da ist sonst wirklich nichts drin."
+    juststay
+    exit
+   label lookdut_5
+    justtalk
+D: "Andererseits - eine Zigarre!
+    Deine Beharrlichkeit zahlt sich aus..."
+    juststay
+    icostat on i_doutnik
+    exit
+   label lookdut_6
+    justtalk
+D: "Das ist sonst nichts. Ernsthaft."
+    juststay
+  gplend
+
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_dutina_maska1 left
+title Zur Lichtung
+  ROOM dutina
+  PRIORITY 1
+  STATUS ON
+  SEQ ..\DUTINA\DEF\EX_LEFT
+  INIT
+    load obj_dutina_maska1 "ZAKLADNI"
+    start obj_dutina_maska1 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 0 168 vlevo
+  use
+{   labels incident
+{    if((probehl_incident=0)and(predal_sipky=1)and(isobjon(most_trol))) incident
+    newroom myt 3
+{    exit
+{   label incident
+{    newroom most 4
+  gplend
+  look
+    justtalk
+D: "Was?"
+D: "Kannst du das nochmal wiederholen?"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_dutina_maska2 right
+title Oberer|Pfad
+  ROOM dutina
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\DUTINA\DEF\EX_UP
+  INIT
+    load obj_dutina_maska2 "ZAKLADNI"
+    start obj_dutina_maska2 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 320 160 vpravo
+  use
+    newroom leskriz 1
+  gplend
+  look
+    justtalk
+D: "Nimm den oberen Pfad"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_dutina_maska3 right
+title Unterer|Pfad
+  ROOM dutina
+  PRIORITY 3
+  STATUS ON
+  SEQ ..\DUTINA\DEF\EX_DOWN
+  INIT
+    load obj_dutina_maska3 "ZAKLADNI"
+    start obj_dutina_maska3 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 320 196 vpravo
+  use
+    newroom mrav 1
+  gplend
+  look
+    justtalk
+D: "Nimm den unteren Pfad"
+    juststay
+  gplend
+
+OBJECT sova
+title Eule
+  ROOM dutina
+  PRIORITY 202
+  STATUS ON
+  SEQ ..\DUTINA\DEF\sova
+  INIT
+    load sova "Z"
+    start sova "Z"
+  GPLEND
+  lookc 220 188 vlevo
+  look
+    load sova "odlet"
+    startplay sova "odlet"
+  gplend
+
+OBJECT mochom1
+  TITLE
+  ROOM dutina
+  PRIORITY 30
+  STATUS ON
+  SEQ ..\DUTINA\DEF\moch1
+  INIT
+    load mochom1 "Z"
+    start mochom1 "Z"
+  GPLEND
+
+OBJECT mochom2
+  TITLE
+  ROOM dutina
+  PRIORITY 30
+  STATUS ON
+  SEQ ..\DUTINA\DEF\moch2
+  INIT
+    load mochom2 "Z"
+    start mochom2 "Z"
+  GPLEND
+
+{************************ hod *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hod_maska14 right
+title Zum Gang
+  ROOM hod
+  PRIORITY 14
+  STATUS ON
+  SEQ ..\HODOVNA\DEF\EXIT
+  INIT
+    load obj_hod_maska14 "ZAKLADNI"
+    start obj_hod_maska14 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Ich werde dir nicht sagen, wohin du gehen sollst."
+    juststay
+  gplend
+  canuse (1)
+  use
+    newroom hraduvn 3
+  gplend
+
+OBJECT pohadka
+title Märchenbuch
+  ROOM hod
+  PRIORITY 30
+  STATUS on
+  SEQ ..\HODOVNA\DEF\pohadka
+  INIT
+    load pohadka "Z"
+    start pohadka "Z"
+  GPLEND
+  lookc 72 128 vlevo
+  look
+    justtalk
+D: "Das könnte das Buch sein,
+    das ich brauche."
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 72 128 vlevo
+  use
+    justtalk
+D: "Ich komme nicht ran.
+    Es ist zu weit oben."
+    juststay
+    let nedosahnu_na_pohadku (1)
+  gplend
+
+OBJECT knihstol
+title Buch
+  ROOM hod
+  PRIORITY 182
+  STATUS on
+  SEQ ..\HODOVNA\DEF\knihstol
+  INIT
+    load knihstol "Z"
+    start knihstol "Z"
+  GPLEND
+  look
+    justtalk
+D: "'Wie man Drachengerichte lecker zubereitet
+    und vernünftig genießt.'
+    Wow, wenn ich das nur Mama
+    nach Hause mitbringen könnte."
+    juststay
+  gplend
+
+OBJECT hodrad
+title Zettel an der Wand
+  ROOM hod
+  PRIORITY 30
+  STATUS on
+  SEQ ..\HODOVNA\DEF\rad
+  INIT
+    load hodrad "Z"
+    start hodrad "Z"
+  GPLEND
+  look
+    justtalk
+D: "Magische Bibliothek,
+    Abteilung für Okkulte Literatur."
+D: "Verleihtermine:"
+D: "Wir verleihen jeden ungeraden Donnerstag."
+D: "Die Verleihzeit läuft von Mitternacht
+    bis Sonnenaufgang."
+D: "Der Leseraum ist aus technischen Gründen
+    nur von 1 bis 4 Uhr geöffnet."
+D: "Warum muß ausgerechnet heute Montag sein?"
+    juststay
+  gplend
+  canuse (isactico(i_plakat))
+  use
+    justtalk
+D: "Es ist geradezu ein Wunder,
+    daß keiner diesen Plan vor mir geklaut hat."
+D: "Aber um ehrlich zu sein,
+    klau ich ihn auch nicht."
+D: "Niemand konnte das von Weitem sehen."
+    juststay
+    icostat off i_plakat
+    icostat on i_rad
+    objstat away hodrad
+    objstat_on hodplakat hod
+    start hodplakat "z"
+  gplend
+
+OBJECT hodplakat
+title Zettel an der Wand
+  ROOM hod
+  PRIORITY 30
+  STATUS off
+  SEQ ..\HODOVNA\DEF\plakat
+  INIT
+    load hodplakat "Z"
+    start hodplakat "Z"
+  GPLEND
+  look
+    justtalk
+D: "Es scheint hier besser hinzupassen."
+    juststay
+  gplend
+
+OBJECT hodjidlo
+  TITLE
+  ROOM hod
+  PRIORITY 175
+  STATUS off
+  SEQ ..\HODOVNA\DEF\jidlo
+  INIT
+    load hodjidlo "Z"
+    start hodjidlo "Z"
+  GPLEND
+  look
+  gplend
+
+OBJECT hodrakev
+title Donut
+  ROOM hod
+  PRIORITY 176
+  STATUS off
+  SEQ ..\HODOVNA\DEF\rakev
+  INIT
+    load hodrakev "Z"
+    start hodrakev "Z"
+  GPLEND
+  look
+    justtalk
+D: "Ein Donut...mit Cremefüllung."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    justtalk
+D: "Soll ich ihn jetzt essen?"
+D: "Soll ich oder nicht?"
+D: "Ich behalte ihn für später."
+    juststay
+    objstat away hodrakev
+    icostat on i_rakev
+{ nechat zmizet zebraka a objevit kostru!!!
+    objstat away zebrak_ziv
+    objstat_on zebrak_mrt hradven
+  gplend
+
+OBJECT hodzid
+title Stuhl
+  ROOM hod
+  PRIORITY 190
+  STATUS on
+  SEQ ..\HODOVNA\DEF\zid_oper
+  INIT
+    load hodzid "mlci"
+    start hodzid "mlci"
+  GPLEND
+  lookc 40 180 vpravo
+  look
+   labels zidlookok
+    if(isobjon(hodzid_dobra)) zidlookok
+    justtalk
+D: "Die Polsterung ist aufgerissen."
+    juststay
+    exit
+   label zidlookok
+    justtalk
+D: "Jetzt wo es genäht wurde,
+    sieht er besser aus..."
+    juststay
+  gplend
+  canuse ((isactico(i_cihla)and (nedosahnu_na_pohadku=1)and isobjon(pohadka)and isobjon(hodzid_dobra)) or isactico(0) or isactico(i_jehla) or isactico(i_nit) or isactico(i_zaplata) )
+  usec 40 180 vpravo
+  use
+   labels zidroz mamevse kljeh klnit zapoba zapnit jehoba jehnit nitoba nitjeh
+    if(isactico(0)or isactico(i_cihla)) zidroz
+    if(isicoon(i_jehla)and isicoon(i_nit) and isicoon(i_zaplata) ) mamevse
+    if(isactico(i_jehla)) kljeh
+    if(isactico(i_nit)) klnit
+
+    {pouzivame zaplatu:}
+       justtalk
+D: "Ich hab den Flicken..."
+       juststay
+       if(not isicoon(i_jehla)and not isicoon(i_nit)) zapoba
+       if(not isicoon(i_nit)) zapnit
+      {nemame jehlu:}
+        justtalk
+D: "...aber ich hab noch keine Nadel."
+        juststay
+        exit
+      label zapnit
+      {nemame nit:}
+        justtalk
+D: "...aber ich hab noch keinen Faden."
+        juststay
+        exit
+      label zapoba
+      {nemame nit i jehlu:}
+        justtalk
+D: "...aber ich hab weder Nadel noch Faden.
+    Wo könnte ich die her bekommen?"
+        juststay
+        exit
+
+    label kljeh
+    {pouzivame jehlu:}
+       justtalk
+D: "Ich hab eine Nadel..."
+       juststay
+       if(not isicoon(i_zaplata)and not isicoon(i_nit)) jehoba
+       if(not isicoon(i_nit)) jehnit
+      {nemame zaplatu:}
+        justtalk
+D: "...aber ich hab noch keinen Flicken."
+        juststay
+        exit
+      label jehnit
+      {nemame nit:}
+        justtalk
+D: "...aber ich hab noch keinen Faden."
+        juststay
+        exit
+      label jehoba
+      {nemame nit i zaplatu:}
+        justtalk
+D: "...aber ich hab weder Faden noch Flicken.
+    Wo könnte ich die her bekommen?"
+        juststay
+        exit
+
+    label klnit
+    {pouzivame nit:}
+       justtalk
+D: "Ich hab ein Stück Faden..."
+       juststay
+       if(not isicoon(i_zaplata)and not isicoon(i_jehla)) nitoba
+       if(not isicoon(i_jehla)) nitjeh
+      {nemame zaplatu:}
+        justtalk
+D: "...aber ich hab noch keinen Flicken."
+        juststay
+        exit
+      label nitjeh
+      {nemame jehlu:}
+        justtalk
+D: "...aber ich hab noch keine Nadel."
+        juststay
+        exit
+      label nitoba
+      {nemame nit i zaplatu:}
+        justtalk
+D: "...aber ich hab weder Nadel noch Flicken.
+    Wo könnte ich die wohl her bekommen?"
+        juststay
+        exit
+
+    label mamevse
+    {zasivame zidli:}
+      icostat off i_jehla
+      icostat off i_nit
+      icostat off i_zaplata
+      justtalk
+D: "Mit dem Spinnenfaden
+    und dem Igelstachel
+    kann ich die Kleidung des Zwergen
+    als Flicken benutzen."
+D: "Schade das ich mich nicht bei ihm bedanken kann."
+D: "Wir wären sicher gute Freunde geworden..."
+      juststay
+      walkonplay 44 196 vpravo
+      load bert "sije"
+      objstat away hodzid_blba
+      objstat_on hodzid_dobra hod
+      load hodzid_dobra "sijem"
+      start hodzid_dobra "sijem"
+      startplay bert "sije"
+      start hodzid_dobra "z"
+      start bert "kour-pravo"
+      exit
+
+
+    label zidroz
+    {obycejny rozhovor:}
+     load hodzid "mluvi"
+     dialogue "zidle.txt"
+  gplend
+
+OBJECT hodzid_blba
+title Stuhl
+  ROOM hod
+  PRIORITY 190
+  STATUS on
+  SEQ ..\HODOVNA\DEF\zid_kao
+  INIT
+    load hodzid_blba "Z"
+    start hodzid_blba "Z"
+  GPLEND
+  look
+    execlook hodzid
+  gplend
+  canuse ((isactico(i_cihla)and (nedosahnu_na_pohadku=1)and isobjon(pohadka)and isobjon(hodzid_dobra)) or isactico(0) or isactico(i_jehla) or isactico(i_nit) or isactico(i_zaplata) )
+  usec 40 180 vpravo
+  use
+    execuse hodzid
+  gplend
+
+OBJECT hodzid_dobra
+title Stuhl
+  ROOM hod
+  PRIORITY 190
+  STATUS off
+  SEQ ..\HODOVNA\DEF\zid_ok
+  INIT
+    load hodzid_dobra "Z"
+    start hodzid_dobra "Z"
+  GPLEND
+  look
+    execlook hodzid
+  gplend
+  canuse ((isactico(i_cihla)and (nedosahnu_na_pohadku=1)and isobjon(pohadka)and isobjon(hodzid_dobra)) or isactico(0) or isactico(i_jehla) or isactico(i_nit) or isactico(i_zaplata) )
+  usec 40 180 vpravo
+  use
+    execuse hodzid
+  gplend
+
+OBJECT hodlustr
+  TITLE
+  ROOM hod
+  PRIORITY 1
+  STATUS on
+  SEQ ..\HODOVNA\DEF\lustr
+  INIT
+    load hodlustr "Z"
+    start hodlustr "Z"
+  GPLEND
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hod_maska12
+title Bücherregal
+  ROOM hod
+  PRIORITY 12
+  STATUS ON
+  SEQ ..\HODOVNA\DEF\HOVNA1
+  INIT
+    load obj_hod_maska12 "ZAKLADNI"
+    start obj_hod_maska12 "ZAKLADNI"
+  GPLEND
+  lookc 72 128 vlevo
+  look
+   labels naslipohad
+    if(vim_o_pohadce=1) naslipohad
+    justtalk
+D: "Total verwirrend."
+D: "Die Bücher sind vollkommen durcheinander!"
+    juststay
+    exit
+   label naslipohad
+    justtalk
+D: "Wenn ich weiß, was ich finden muss..."
+D: "Es scheint, als sei das Geschichtsbuch
+    das große rote Buch auf der unteren Ablage."
+    juststay
+    objstat away hiddenpohadka
+    objstat_on pohadka hod
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hod_maska2
+title Bücherregal
+  ROOM hod
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\HODOVNA\DEF\HOVNA2
+  INIT
+    load obj_hod_maska2 "ZAKLADNI"
+    start obj_hod_maska2 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Wer liest diesen ganzen Quatsch!?"
+    juststay
+  gplend
+
+OBJECT hiddenpohadka
+title Bücherregal
+  ROOM hod
+  PRIORITY 30
+  STATUS on
+  SEQ ..\HODOVNA\DEF\pohadka
+  INIT
+    load hiddenpohadka "Z"
+    start hiddenpohadka "Z"
+  GPLEND
+  look
+    execlook obj_hod_maska12
+  gplend
+
+OBJECT hrpan
+  TITLE
+  ROOM hod
+  PRIORITY 201
+  STATUS on
+  SEQ ..\HODOVNA\DEF\hrpan
+
+{************************ hory  *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hory_maska200 left
+title zur Zivilisation
+  ROOM hory
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\HORY\DEF\HOR_EXIT
+  INIT
+    load obj_hory_maska200 "ZAKLADNI"
+    start obj_hory_maska200 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 0 184 vlevo
+    newroom map 1
+  gplend
+  look
+    justtalk
+D: "Hmm..."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT bylina
+title Kraut
+  ROOM hory
+  PRIORITY 143
+  STATUS ON
+  SEQ ..\HORY\DEF\BYLINA
+  INIT
+    load bylina "ZAKLADNI"
+    start bylina "ZAKLADNI"
+  GPLEND
+  canuse (isactico(0) and isobjon(hory_kvet))
+  use
+    objstat away hory_kvet
+    icostat on i_bylina
+    justtalk
+D: "Ich brauch nur ein Blütenblatt."
+    juststay
+ {ukradli zaroven kroniku:
+    objstat away sd_kronika
+    objstat_on stopy1 sipdumuvn
+    objstat_on stopy2 sipdumuvn
+    objstat_on stopy3 sipdumuvn
+    objstat_on vykricnik sipdumuvn
+  gplend
+  look
+    justtalk
+D: "Eine medizinische Pflanze..."
+    juststay
+  gplend
+
+OBJECT hory_kvet
+title Kraut
+  ROOM hory
+  PRIORITY 144
+  STATUS on
+  SEQ ..\HORY\DEF\hor_kvet
+  INIT
+    load hory_kvet "z"
+    start hory_kvet "z"
+  GPLEND
+  canuse (isactico(0) and isobjon(hory_kvet))
+  use
+    execuse bylina
+  gplend
+  look
+    execlook bylina
+  gplend
+
+OBJECT stromek_kym
+title Baum
+  ROOM hory
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\HORY\DEF\stromek
+  INIT
+    load stromek_kym "kymaceni"
+    start stromek_kym "kymaceni"
+  GPLEND
+  canuse (isactico(0) or isactico(i_prsten))
+  usec 256 164 vlevo
+  use
+    dialogue "strom.txt"
+  gplend
+  lookc 256 164 vlevo
+  look
+    justtalk
+D: "Was willst du noch von ihm hören?"
+D: "Typisches Rascheln..."
+    juststay
+  gplend
+
+OBJECT hory_jisk
+  TITLE
+  ROOM hory
+  PRIORITY 21
+  STATUS ON
+  SEQ ..\HORY\DEF\strjisk
+
+OBJECT stromek
+title Baum
+  ROOM hory
+  PRIORITY 20
+  STATUS off
+  SEQ ..\HORY\DEF\stromek
+  INIT
+    load stromek "zakladni"
+    start stromek "zakladni"
+  GPLEND
+  lookc 256 164 vlevo
+  look
+    justtalk
+D: "Tja, der Wind sprach die Wahrheit.
+    Dieser Baum kann nicht sprechen!"
+    juststay
+  gplend
+
+OBJECT hory_orel
+  TITLE
+  ROOM hory
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\HORY\DEF\horyorel
+  INIT
+    load hory_orel "lita"
+    start hory_orel "lita"
+  GPLEND
+
+OBJECT hory_list
+title Blatt
+  ROOM hory
+  PRIORITY 21
+  STATUS off
+  SEQ ..\HORY\DEF\horylist
+  INIT
+    load hory_list "lita"
+    start hory_list "lita"
+  GPLEND
+  canuse (isactico(0)and(odfoukli_jsme=0))
+  usec 240 170 vlevo
+  use
+    dialogue "list.txt"
+{ skocime na odvati mraku od sipkovniku
+{ newroom sipek
+  gplend
+  look
+    justtalk
+D: "Kann das Ding
+    nicht etwas langsamer fliegen?"
+    juststay
+  gplend
+
+{************************ hospuvn *********************************}
+
+OBJECT hospuvn_svicka
+  TITLE
+  room hospuvn
+  PRIORITY 20
+  STATUS on
+  SEQ ..\hosp_in\def\svicka
+  INIT
+    load hospuvn_svicka "hori"
+    start hospuvn_svicka "hori"
+  gplend
+
+OBJECT hospuvn_lampa
+  TITLE
+  room hospuvn
+  PRIORITY 20
+  STATUS on
+  SEQ ..\hosp_in\def\lampa
+  INIT
+    load hospuvn_lampa "hori"
+    start hospuvn_lampa "hori"
+  gplend
+
+OBJECT zrcadlo_ciste
+title Spiegel
+  room hospuvn
+  PRIORITY 21
+  STATUS on
+  SEQ ..\hosp_in\def\zrc_cist
+  INIT
+    load zrcadlo_ciste "zakladni"
+    start zrcadlo_ciste "zakladni"
+  gplend
+  look
+   labels skip
+    justtalk
+    goto skip
+D: "Ich seh ordentlich aus."
+   label skip
+D: "Oh nein, ich hab einen Pickel!"
+    juststay
+  gplend
+
+OBJECT zrcadlo_spina
+title Spiegel
+  room hospuvn
+  PRIORITY 22
+  STATUS on
+  SEQ ..\hosp_in\def\zrc_spin
+  INIT
+    load zrcadlo_spina "zakladni"
+    start zrcadlo_spina "zakladni"
+  gplend
+  look
+    justtalk
+D: "Er ist ziemlich dreckig."
+    juststay
+  gplend
+  canuse (isactico(i_hadra))
+  usec 84 128 vlevo
+  use
+    load bert "hadra"
+    load zrcadlo_spina "utirani"
+    start zrcadlo_spina "utirani"
+    startplay bert "hadra"
+    juststay
+    icostat off i_hadra
+    objstat away zrcadlo_spina
+    let ciste_zrcadlo (1)
+  gplend
+
+OBJECT hrac1
+title Stammgast
+  room hospuvn
+  PRIORITY 188
+  STATUS on
+  SEQ ..\hosp_in\def\h1_telo
+  INIT
+    load hrac1 "zakladni"
+    start hrac1 "zakladni"
+  gplend
+  look
+    justtalk
+D: "Den Typ hab ich, glaub ich, schon mal gesehen."
+D: "Wo könnte das gewesen sein..."
+D: "Ich hab's!
+    Ich hab ihn auf der Kaugummipackung gesehen!"
+D: "Das ist der Typ..."
+    juststay
+  gplend
+  canuse (isactico(0)and(ciste_zrcadlo<2))
+  usec 48 192 vpravo
+  use
+    execuse hrac2
+  gplend
+
+OBJECT hrac1_ruce
+title Stammgast
+  room hospuvn
+  PRIORITY 188
+  STATUS on
+  SEQ ..\hosp_in\def\h1_ruce
+  INIT
+    load hrac1_ruce "hraje2"
+    start hrac1_ruce "hraje2"
+  gplend
+  look
+    execlook hrac1
+  gplend
+  canuse (isactico(0)and(ciste_zrcadlo<2))
+  usec 48 192 vpravo
+  use
+    execuse hrac1
+  gplend
+
+OBJECT hospuvn_krygl
+title Krug
+  room hospuvn
+  PRIORITY 170
+  STATUS on
+  SEQ ..\hosp_in\def\krygl
+  INIT
+    load hospuvn_krygl "zakladni"
+    start hospuvn_krygl "zakladni"
+  gplend
+  lookc 48 192 vpravo
+  look
+    justtalk
+D: "Das Bier steht hier
+    seit mindestens zwei Tagen."
+D: "Oh, schau mal,
+    da schwimmen Käfer drin!"
+D: "Bravo! Gut gemacht!"
+D: "Sie üben Synchronschwimmen..."
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 48 192 vpravo
+  use
+    dialogue "hracpivo.txt"
+  gplend
+
+OBJECT hrac2
+title Stammgast
+  room hospuvn
+  PRIORITY 169
+  STATUS on
+  SEQ ..\hosp_in\def\h2_telo
+  INIT
+    load hrac2 "zakladni"
+    start hrac2 "zakladni"
+  gplend
+  look
+    justtalk
+D: "Er trägt ein schneeweißes gewöhnliches Hemd,
+    mit schicker grüner Taille und Verzierungen..."
+D: "...blau gestreiften Unterhosen
+    und hellbraunen Stricksocken."
+    juststay
+  gplend
+  canuse (isactico(0)and(ciste_zrcadlo<2))
+  usec 48 192 vpravo
+  use
+    load hrac2_voci "na hrace"
+    load hrac2_voci "na draka"
+    load hrac2_voci "nic"
+    load hrac2_huba "mluvi"
+    load hrac2_huba "nic"
+    dialogue "hraci.txt"
+  gplend
+
+OBJECT hrac2_ruce
+title Stammgast
+  room hospuvn
+  PRIORITY 169
+  STATUS on
+  SEQ ..\hosp_in\def\h2_ruce
+  INIT
+    load hrac2_ruce "hraje2"
+    start hrac2_ruce "hraje2"
+  gplend
+  look
+    execlook hrac2
+  gplend
+  canuse (isactico(0)and(ciste_zrcadlo<2))
+  usec 48 192 vpravo
+  use
+    execuse hrac2
+  gplend
+
+OBJECT hrac2_voci
+title Stammgast
+  room hospuvn
+  PRIORITY 170
+  STATUS on
+  SEQ ..\hosp_in\def\h2_voci
+  INIT
+  gplend
+  look
+    execlook hrac2
+  gplend
+  canuse (isactico(0)and(ciste_zrcadlo<2))
+  usec 48 192 vpravo
+  use
+    execuse hrac2
+  gplend
+
+OBJECT hrac2_huba
+title Stammgast
+  room hospuvn
+  PRIORITY 170
+  STATUS on
+  SEQ ..\hosp_in\def\h2_huba
+  INIT
+  gplend
+  look
+    execlook hrac2
+  gplend
+  canuse (isactico(0)and(ciste_zrcadlo<2))
+  usec 48 192 vpravo
+  use
+    execuse hrac2
+  gplend
+
+OBJECT hpajzl
+title Zwerg
+  room hospuvn
+  PRIORITY 188
+  STATUS away
+  SEQ ..\hosp_in\def\paj_telo
+  INIT
+    load hpajzl "zakladni"
+    start hpajzl "zakladni"
+  gplend
+  look
+    justtalk
+D: "Sieht aus wie ein deprimierter Zwerg."
+D: "Sein Becher wird nicht leer,
+    vielleicht gurgelt er das Bier!"
+D: "Vielleicht kann ich ihn aufheitern."
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 224 160 vpravo
+  use
+    load hpajzl_hlava "mluvi"
+    load hpajzl_hlava "mlci"
+    dialogue "hpajzl.txt"
+    start hpajzl_hlava "pije"
+  gplend
+
+OBJECT hpajzl_hlava
+title Zwerg
+  room hospuvn
+  PRIORITY 188
+  STATUS away
+  SEQ ..\hosp_in\def\paj_hlav
+  INIT
+    load hpajzl_hlava "pije"
+    start hpajzl_hlava "pije"
+  gplend
+  look
+    execlook hpajzl
+  gplend
+  canuse (isactico(0))
+  usec 224 160 vpravo
+  use
+    execuse hpajzl
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospuvn_maska16 left
+title Verlasse die Kneipe
+  ROOM hospuvn
+  PRIORITY 16
+  STATUS ON
+  SEQ ..\HOSP_IN\DEF\EXIT
+  INIT
+    load obj_hospuvn_maska16 "ZAKLADNI"
+    start obj_hospuvn_maska16 "ZAKLADNI"
+  GPLEND
+  look
+  gplend
+  canuse (1)
+  usec 0 188 vlevo
+  use
+    newroom hospven 4
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospuvn_maska20
+title Spiritus
+  ROOM hospuvn
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\HOSP_IN\DEF\FLAS1
+  INIT
+    load obj_hospuvn_maska20 "ZAKLADNI"
+    start obj_hospuvn_maska20 "ZAKLADNI"
+  GPLEND
+  look
+    exit
+    justtalk
+D: "Mmmmmmmh!"
+D: "Wir sind harte Jungs."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospuvn_maska21
+title Magenbitter
+  ROOM hospuvn
+  PRIORITY 21
+  STATUS ON
+  SEQ ..\HOSP_IN\DEF\FLAS2
+  INIT
+    load obj_hospuvn_maska21 "ZAKLADNI"
+    start obj_hospuvn_maska21 "ZAKLADNI"
+  GPLEND
+  look
+    exit
+    justtalk
+D: "Au."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospuvn_maska22
+title Pfefferminz|Likör
+  ROOM hospuvn
+  PRIORITY 22
+  STATUS ON
+  SEQ ..\HOSP_IN\DEF\FLAS3
+  INIT
+    load obj_hospuvn_maska22 "ZAKLADNI"
+    start obj_hospuvn_maska22 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Brrr!"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospuvn_maska23
+title Absinth
+  ROOM hospuvn
+  PRIORITY 23
+  STATUS ON
+  SEQ ..\HOSP_IN\DEF\FLAS4
+  INIT
+    load obj_hospuvn_maska23 "ZAKLADNI"
+    start obj_hospuvn_maska23 "ZAKLADNI"
+  GPLEND
+  look
+    exit
+    justtalk
+D: "Ja!"
+    juststay
+  gplend
+
+OBJECT hosp_plakat
+title Poster
+  ROOM hospuvn
+  PRIORITY 21
+  STATUS ON
+  SEQ ..\HOSP_IN\DEF\ho_plak
+  INIT
+    load hosp_plakat "Z"
+    start hosp_plakat "Z"
+  GPLEND
+  look
+    justtalk
+D: "Unser Menü:"
+D: "10 Ale,
+    11 Helle and
+    12 Dunkle."
+    juststay
+  gplend
+
+OBJECT pingl
+title Barkeeper
+  room hospuvn
+  PRIORITY 13
+  STATUS away
+  SEQ ..\hosp_in\def\pingl
+  INIT
+    load pingl "mlci"
+    start pingl "mlci"
+  gplend
+  lookc 252 120 vlevo
+  look
+    justtalk
+D: "Ein normaler Barkeeper."
+    juststay
+  gplend
+  canuse (isactico(0)or(isactico(i_doutnik)and(chci_plakat=1)))
+  usec 252 120 vlevo
+  use
+    load pingl "mluvi"
+    dialogue "pingl.txt"
+    start pingl "mlci"
+  gplend
+
+
+{************************ hospven *********************************}
+
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospven_maska135 left
+title Zum Haus|der Drachen
+  ROOM hospven
+  PRIORITY 135
+  STATUS ON
+  SEQ ..\HOSP_OUT\DEF\EX_LEFT
+  INIT
+    load obj_hospven_maska135 "ZAKLADNI"
+    start obj_hospven_maska135 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 0 128 vlevo
+    newroom chaven 2
+  gplend
+  look
+    justtalk
+D: "Zuhause ist es doch am schönsten."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospven_maska137 right
+title Zur Lichtung
+  ROOM hospven
+  PRIORITY 137
+  STATUS ON
+  SEQ ..\HOSP_OUT\DEF\EX_RIGHT
+  INIT
+    load obj_hospven_maska137 "ZAKLADNI"
+    start obj_hospven_maska137 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 316 128 vpravo
+    newroom myt 2
+  gplend
+  look
+    justtalk
+D: "So sei es."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospven_maska200 down
+title Zum Puppenspieler
+  ROOM hospven
+  PRIORITY 1
+  STATUS ON
+  SEQ ..\HOSP_OUT\DEF\EX_DOWN
+  INIT
+    load obj_hospven_maska200 "ZAKLADNI"
+    start obj_hospven_maska200 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 168 196 vpravo
+    newroom komous 1
+  gplend
+  look
+    justtalk
+D: "Bist du sicher?"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hospven_maska11
+title Schild
+  ROOM hospven
+  PRIORITY 11
+  STATUS ON
+  SEQ ..\HOSP_OUT\DEF\POUTAC
+  INIT
+    load obj_hospven_maska11 "ZAKLADNI"
+    start obj_hospven_maska11 "ZAKLADNI"
+  GPLEND
+  lookc 240 140 vlevo
+  look
+    justtalk
+D: "Zur schmutzigen Goblinhand."
+D: "Heiße und kalte Gerichte."
+    juststay
+  gplend
+
+OBJECT hospven_kour
+  TITLE
+  ROOM hospven
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\HOSP_OUT\DEF\kour
+  INIT
+    load hospven_kour "ZAKLADNI"
+    start hospven_kour "ZAKLADNI"
+  GPLEND
+
+OBJECT hospven_dvere right
+title In die Kneipe
+  ROOM hospven
+  PRIORITY 135
+  STATUS ON
+  SEQ ..\HOSP_OUT\DEF\dvere
+  INIT
+    load hospven_dvere "zavrene"
+  GPLEND
+  canuse (1)
+  usec 116 140 vpravo
+  use
+    walkonplay 120 140 vpravo
+    load hospven_dvere "otvirani"
+    startplay hospven_dvere "otvirani"
+    newroom hospuvn 1
+  gplend
+  lookc 116 140 vpravo
+  look
+    justtalk
+D: "Ich hoffe,
+    sie servieren kleinen Drachen Drinks."
+{#drowns - typical Czech dish a man can get in several pubs# --- changed to drink
+    juststay
+  gplend
+
+{************************ hraduvn *********************************}
+
+object hu_louc1
+title Fackel
+  room hraduvn
+  priority 2
+  status on
+  seq ..\hrad_in\def\louc1
+  init
+    load hu_louc1 "hori"
+    start hu_louc1 "hori"
+  gplend
+  look
+    justtalk
+D: "F-A-C-K-E-L"
+D: "Verstanden?"
+    juststay
+  gplend
+
+object hu_louc2
+title Fackel
+  room hraduvn
+  priority 2
+  status on
+  seq ..\hrad_in\def\louc2
+  init
+    load hu_louc2 "hori"
+    start hu_louc2 "hori"
+  gplend
+  look
+    execlook hu_louc1
+  gplend
+
+object hu_louc3
+title Fackel
+  room hraduvn
+  priority 2
+  status on
+  seq ..\hrad_in\def\louc3
+  init
+    load hu_louc3 "hori"
+    start hu_louc3 "hori"
+  gplend
+  look
+    execlook hu_louc1
+  gplend
+
+object hr_skrin right
+title Durch den Geheimpfad|verlassen
+  room hraduvn
+  priority 173
+  status on
+  seq ..\hrad_in\def\hr_dvere
+  init
+    load hr_skrin "otevrene"
+  gplend
+  lookc 180 164 vpravo
+  look
+    justtalk
+D: "Hier bin ich durch gekrochen."
+    juststay
+  gplend
+  canuse (1)
+  usec 228 164 vpravo
+  use
+{   labels situace
+    load hr_skrin "zavirani"
+    startplay hr_skrin "zavirani"
+{    if(isobjon(uhliky_hori)and(pokec_s_obrem>4)) situace
+    newroom parezy 2
+{    exit
+{   label situace
+    {zereme pripaleny gulas:
+    {zmeny objektu, atd. jsou v dialogu trubac.txt a pan.txt
+{    newroom hod 4
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hraduvn_maska166
+  TITLE
+  ROOM hraduvn
+  PRIORITY 172
+  STATUS ON
+  SEQ ..\HRAD_IN\DEF\SKRIN
+  INIT
+    load obj_hraduvn_maska166 "ZAKLADNI"
+    start obj_hraduvn_maska166 "ZAKLADNI"
+  GPLEND
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hraduvn_maska152 up
+title Zur Bibliothek
+  ROOM hraduvn
+  PRIORITY 152
+  STATUS ON
+  SEQ ..\HRAD_IN\DEF\EX_HOD
+  INIT
+    load obj_hraduvn_maska152 "ZAKLADNI"
+    start obj_hraduvn_maska152 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Hier geht es zur Bibliothek."
+    juststay
+  gplend
+  canuse (1)
+  usec 136 156 vlevo
+  use
+    newroom hod 1
+  gplend
+
+OBJECT hraduvn_zavrdve
+title Tür
+  ROOM hraduvn
+  PRIORITY 153
+  STATUS ON
+  SEQ ..\HRAD_IN\DEF\EX_HODza
+  INIT
+    load hraduvn_zavrdve "ZAKLADNI"
+    start hraduvn_zavrdve "ZAKLADNI"
+{   loadmap "..\hrad_in\def\ex_hodza.map"
+  GPLEND
+  look
+    justtalk
+D: "Sie ist zu."
+D: "Was soll ich mit ihr machen?"
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+   labels hrdv_znamheslo hrdv_nepoprve
+    if (hradni_dvere=4) hrdv_znamheslo
+    justtalk
+D: "Zu schade, sie lässt sich nicht öffnen."
+    juststay
+    if (hradni_dvere>0) hrdv_nepoprve
+    let hradni_dvere (1)
+    exit
+   label hrdv_znamheslo
+    justtalk
+D: "Ich hoffe, ich hab's nicht vergessen..."
+D: "Memoriter - Menander - Mendacium."
+    objstat away hraduvn_zavrdve
+D: "Hey, es hat funktioniert!"
+{    roommap
+    juststay
+    exit
+   label hrdv_nepoprve
+  gplend
+
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hraduvn_maska155 up
+title Zur Küche
+  ROOM hraduvn
+  PRIORITY 155
+  STATUS ON
+  SEQ ..\HRAD_IN\DEF\EX_KUCH
+  INIT
+    load obj_hraduvn_maska155 "ZAKLADNI"
+    start obj_hraduvn_maska155 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Hmm..."
+    juststay
+  gplend
+  canuse (1)
+  use
+    walkonplay 196 148 vlevo
+    newroom kuch 1
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hraduvn_maska20
+title Karte
+  ROOM hraduvn
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\HRAD_IN\DEF\HU_MAPA
+  INIT
+    load obj_hraduvn_maska20 "ZAKLADNI"
+    start obj_hraduvn_maska20 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Die hab ich schon mal gesehen..."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    newroom map 1
+  gplend
+
+{************************ hradven *********************************}
+
+OBJECT zebrak_ziv
+title Bettler
+  ROOM hradven
+  PRIORITY 20
+  STATUS on
+  SEQ ..\hrad_out\def\zebr_ziv
+  init
+    load zebrak_ziv "mlci"
+    start zebrak_ziv "mlci"
+  gplend
+  canuse (isactico(0))
+  usec 152 196 vpravo
+  use
+    load zebrak_ziv "mluvi"
+    dialogue "zebrak.txt"
+  gplend
+  lookc 152 196 vpravo
+  look
+    justtalk
+D: "Armer Teufel, was für ein trübes Gesicht!"
+    juststay
+  gplend
+
+OBJECT zebrak_mrt
+title Bettler
+  ROOM hradven
+  PRIORITY 20
+  STATUS off
+  SEQ ..\hrad_out\def\zebr_mrt
+  init
+    load zebrak_mrt "zakladni"
+    start zebrak_mrt "zakladni"
+  gplend
+  lookc 152 196 vpravo
+  look
+   labels zebr_klika
+    justtalk
+D: "Er ist bloß noch ein Skelett!"
+    juststay
+    if (je_tam_klika=1) zebr_klika
+    exit
+   label zebr_klika
+    let je_tam_klika (0)
+    icostat on i_klika
+    justtalk
+D: "Oha, der Fenstergriff aus unserem Haus!"
+    juststay
+  gplend
+
+OBJECT delo
+title Kanone
+  ROOM hradven
+  PRIORITY 19
+  STATUS on
+  SEQ ..\hrad_out\def\delo
+  init
+    load delo "zakladni"
+    start delo "zakladni"
+  gplend
+  lookc 148 188 vpravo
+  look
+   labels delo_trump
+    justtalk
+D: "Eine Atrappe aus Holz im Maßstab 1:5."
+    juststay
+    if (je_tam_trumpeta=1) delo_trump
+    exit
+   label delo_trump
+    let je_tam_trumpeta (0)
+    icostat on i_trubka
+    justtalk
+D: "Ich hab hier eine Trompete
+    runter fallen sehen..."
+D: "Hier ist sie!"
+    juststay
+  gplend
+
+OBJECT vlajka
+title Rotes Banner
+  ROOM hradven
+  PRIORITY 19
+  STATUS on
+  SEQ ..\hrad_out\def\vlajka
+  init
+    load vlajka "zakladni"
+    start vlajka "zakladni"
+  gplend
+  look
+    justtalk
+D: "Wer hat hier einen fahren lassen?!"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hradven_maska2 down
+title Weg vom der Burg
+  ROOM hradven
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\HRAD_OUT\DEF\EXIT
+  INIT
+    load obj_hradven_maska2 "ZAKLADNI"
+    start obj_hradven_maska2 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 116 196 vlevo
+    newroom most 2
+  gplend
+  look
+    justtalk
+D: "Eine gute Idee."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_hradven_maska4
+title Tor
+  ROOM hradven
+  PRIORITY 4
+  STATUS ON
+  SEQ ..\HRAD_OUT\DEF\BRANA
+  INIT
+    load obj_hradven_maska4 "ZAKLADNI"
+    start obj_hradven_maska4 "ZAKLADNI"
+  GPLEND
+  look
+   labels skip
+   justtalk
+   goto skip
+D: "Es rührt sich nicht und keiner antwortet."
+   label skip
+D: "Ich glaube nicht, dass ich so hinein komme."
+   juststay
+  gplend
+
+OBJECT trub
+title
+  ROOM hradven
+  PRIORITY 19
+  STATUS on
+  SEQ ..\hrad_out\def\trubac
+  init
+  gplend
+
+OBJECT hradven_trump
+title
+  ROOM hradven
+  PRIORITY 18
+  STATUS on
+  SEQ ..\hrad_out\def\trump2
+  init
+  gplend
+
+{************************ jesuvn *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_jesuvn_maska159 right
+title Hinaus aus der Höhle
+  ROOM jesuvn
+  PRIORITY 159
+  STATUS ON
+  SEQ ..\JES_IN\DEF\EXIT
+  INIT
+    load obj_jesuvn_maska159 "ZAKLADNI"
+    start obj_jesuvn_maska159 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 132 152 vpravo
+  use
+    newroom jesven 2
+  gplend
+
+OBJECT p_cist_1
+title Schatz
+  ROOM jesuvn
+  PRIORITY 163
+  STATUS ON
+  SEQ ..\JES_IN\DEF\p_cist_1
+  INIT
+    load p_cist_1 "ZAKLADNI"
+    start p_cist_1 "ZAKLADNI"
+  GPLEND
+  canuse (isactico(i_saze))
+  usec 76 160 vpravo
+  use
+   labels nemuze
+    if(slepene_nohy!=1) nemuze
+    icostat off i_saze
+    objstat away jesuvn_lesk
+    objstat_on  sazeleti jesuvn
+    load sazeleti "leti"
+    startplay sazeleti "leti"
+    objstat away p_cist_1
+    objstat away p_cist_2
+    objstat away p_cist_3
+    objstat_on  p_spin_1 jesuvn
+    objstat_on  p_spin_2 jesuvn
+    objstat_on  p_spin_3 jesuvn
+    start p_spin_1 "ZAKLADNI"
+    start p_spin_2 "ZAKLADNI"
+    start p_spin_3 "ZAKLADNI"
+    objstat away sazeleti
+    exit
+   label nemuze
+    justtalk
+D: "Soll ich den Schatz durcheinander bringen?"
+D: "Das kann ich nicht vor meinem Vater!"
+    juststay
+  gplend
+  lookc 76 160 vpravo
+  look
+   labels pokl_prst
+    justtalk
+    if (nasel_prsten=0) pokl_prst
+D: "Wow!"
+D: "Reichtum befriedigt mich zwar nicht,
+    aber ich fange an meinen Vater
+    etwas besser zu verstehen."
+D: "Aber ein Versprechen ist ein Versprechen..."
+D: "Ich hab meine Entscheidung getroffen:
+    Ich bleibe arm bis ich sterbe."
+    juststay
+    exit
+   label pokl_prst
+D: "Ich könnte etwas mitnehmen,
+    sowas wie ein kleines Souvenir."
+    juststay
+    let nasel_prsten (1)
+    icostat on i_prsten
+  gplend
+
+OBJECT p_cist_2
+title Schatz
+  ROOM jesuvn
+  PRIORITY 163
+  STATUS ON
+  SEQ ..\JES_IN\DEF\p_cist_2
+  INIT
+    load p_cist_2 "ZAKLADNI"
+    start p_cist_2 "ZAKLADNI"
+  GPLEND
+  canuse (isactico(i_saze)and(slepene_nohy=1))
+  usec 76 160 vpravo
+  use
+    execuse p_cist_1
+  gplend
+  lookc 76 160 vpravo
+  look
+    execlook p_cist_1
+  gplend
+
+OBJECT p_cist_3
+title Schatz
+  ROOM jesuvn
+  PRIORITY 163
+  STATUS On
+  SEQ ..\JES_IN\DEF\p_cist_3
+  INIT
+    load p_cist_3 "ZAKLADNI"
+    start p_cist_3 "ZAKLADNI"
+  GPLEND
+  canuse (isactico(i_saze)and(slepene_nohy=1))
+  usec 76 160 vpravo
+  use
+    execuse p_cist_1
+  gplend
+  lookc 76 160 vpravo
+  look
+    execlook p_cist_1
+  gplend
+
+OBJECT p_spin_1
+title Haufen Schrott
+  ROOM jesuvn
+  PRIORITY 162
+  STATUS Off
+  SEQ ..\JES_IN\DEF\p_spin_1
+  INIT
+    load p_spin_1 "ZAKLADNI"
+    start p_spin_1 "ZAKLADNI"
+  GPLEND
+  lookc 76 160 vpravo
+  look
+   labels pokl_prst
+    if (nasel_prsten=0) pokl_prst
+    justtalk
+D: "Anscheinend ein Haufen Metallschrott."
+D: "Natürlich nimmt man ihn
+    nur auf den ersten Blick,
+    als einen Haufen Schrott wahr."
+D: "Nur du und ich wissen,
+    welch furchtbares Geheimnis er verbirgt..."
+D: "Diese grausige Tatsache
+    darf diese Höhle nie verlassen!"
+    juststay
+    exit
+   label pokl_prst
+    justtalk
+D: "Ich könnte etwas vom Stapel nehmen.
+    Nur ein kleines Souvenir."
+    juststay
+    let nasel_prsten (1)
+    icostat on i_prsten
+  gplend
+
+OBJECT p_spin_2
+title Haufen Schrott
+  ROOM jesuvn
+  PRIORITY 162
+  STATUS Off
+  SEQ ..\JES_IN\DEF\p_spin_2
+  INIT
+    load p_spin_2 "ZAKLADNI"
+    start p_spin_2 "ZAKLADNI"
+  GPLEND
+  lookc 76 160 vpravo
+  look
+    execlook p_spin_1
+  gplend
+
+OBJECT p_spin_3
+title Haufen Schrott
+  ROOM jesuvn
+  PRIORITY 162
+  STATUS Off
+  SEQ ..\JES_IN\DEF\p_spin_3
+  INIT
+    load p_spin_3 "ZAKLADNI"
+    start p_spin_3 "ZAKLADNI"
+  GPLEND
+  lookc 76 160 vpravo
+  look
+    execlook p_spin_1
+  gplend
+
+OBJECT sazeleti
+  TITLE
+  ROOM jesuvn
+  PRIORITY 164
+  STATUS off
+  SEQ ..\JES_IN\DEF\sazeleti
+  INIT
+  GPLEND
+
+OBJECT jesuvn_kap
+title Tropfen
+  ROOM jesuvn
+  PRIORITY 200
+  STATUS on
+  SEQ ..\JES_IN\DEF\kap!
+  INIT
+    load jesuvn_kap "kapani"
+    start jesuvn_kap "kapani"
+  GPLEND
+  lookc 68 168 vpravo
+  look
+    justtalk
+D: "Ich hab ihn!"
+    juststay
+  gplend
+
+OBJECT jesuvn_lesk
+title Schatz
+  ROOM jesuvn
+  PRIORITY 164
+  STATUS on
+  SEQ ..\JES_IN\DEF\lesk
+  INIT
+    load jesuvn_lesk "lesk"
+    start jesuvn_lesk "lesk"
+  GPLEND
+  canuse (isactico(i_saze)and(slepene_nohy=1))
+  usec 76 160 vpravo
+  use
+    execuse p_cist_1
+  gplend
+  lookc 76 160 vpravo
+  look
+    execlook p_cist_1
+  gplend
+
+OBJECT herbert
+title Herbert
+  ROOM jesuvn
+  PRIORITY 201
+  STATUS on
+  SEQ ..\JES_IN\DEF\otec_hla
+  INIT
+   labels herbert_init_spi
+    loadmap "..\jes_in\def\otec_hla.map"
+    load herbert "mlci"
+    load herbert "spi"
+    if (slepene_nohy=1) herbert_init_spi
+    start herbert "mlci"
+    exit
+   label herbert_init_spi
+    start herbert "spi"
+  GPLEND
+  canuse ( ((slepene_nohy=0) and (isactico(0) or (isactico(i_trubka)and(otec_troubil=0))))) or (isactico(i_zvonek)and(slepene_nohy=1)and isobjon(p_spin_1)) )
+  usec 80 156 vlevo
+  use
+   labels herbert_use_spi herbert_pokecame herbert_zatroubime
+    {bud normalne pokecame:}
+    load herbert "mluvi"
+    if (isactico(0)) herbert_pokecame
+    {nebo zatroubime:}
+    if (isactico(i_trubka)) herbert_zatroubime
+    {nebo zazvonime zvoneckem:}
+{    if (slepene_nohy) herbert_use_spi
+{    {je bdely, usneme ho:}
+{    objstat off herb_oko
+{    let slepene_nohy (1)
+{    start herbert "spi"
+{    exit
+   label herbert_use_spi
+    {spi, probudime ho:}
+    let slepene_nohy (0)
+    dialogue "otec.txt"
+    exit
+   label herbert_pokecame
+    dialogue "otec.txt"
+    start herbert "mlci"
+    exit
+   label herbert_zatroubime
+    dialogue "otec.txt"
+  gplend
+  lookc 80 156 vlevo
+  look
+   labels otecnespi
+    justtalk
+D: "Darf ich vorstellen: Mein Vater.
+    Vater, das ist der Mensch, der mich steuert."
+D: "Wir sind uns ziemlich ähnlich, oder?"
+D: "Na gut, mein Ei ist aufgebrochen als ich jung war;
+    das war nicht sein Fehler."
+    if(not slepene_nohy) otecnespi
+D: "Papa schläft."
+   label otecnespi
+    juststay
+  gplend
+
+OBJECT herb_oko
+title Herbert
+  ROOM jesuvn
+  PRIORITY 202
+  STATUS on
+  SEQ ..\JES_IN\DEF\otec_oko
+  INIT
+   labels otecspi
+    load herb_oko "zakladni"
+    if(slepene_nohy) otecspi
+    start herb_oko "zakladni"
+   label otecspi
+  GPLEND
+  canuse ( ((slepene_nohy=0) and (isactico(0) or (isactico(i_trubka)and(otec_troubil=0))))) or (isactico(i_zvonek)and(slepene_nohy)and isobjon(p_spin_1)) )
+  usec 80 156 vlevo
+  use
+    execuse herbert
+  gplend
+  lookc 80 156 vlevo
+  look
+    execlook herbert
+  gplend
+
+OBJECT herb_ocas
+title Herbert
+  ROOM jesuvn
+  PRIORITY 201
+  STATUS on
+  SEQ ..\JES_IN\DEF\otec_oca
+  INIT
+    load herb_ocas "zakladni"
+    start herb_ocas "zakladni"
+  GPLEND
+  canuse ( ((slepene_nohy=0) and (isactico(0) or (isactico(i_trubka)and(otec_troubil=0))))) or (isactico(i_zvonek)and(slepene_nohy)and isobjon(p_spin_1)) )
+  usec 80 156 vlevo
+  use
+    execuse herbert
+  gplend
+  lookc 80 156 vlevo
+  look
+    execlook herbert
+  gplend
+
+OBJECT herb_telo
+title Herbert
+  ROOM jesuvn
+  PRIORITY 201
+  STATUS on
+  SEQ ..\JES_IN\DEF\otec_tel
+  INIT
+    load herb_telo "zakladni"
+    start herb_telo "zakladni"
+  GPLEND
+  canuse ( ((slepene_nohy=0) and (isactico(0) or (isactico(i_trubka)and(otec_troubil=0))))) or (isactico(i_zvonek)and(slepene_nohy)and isobjon(p_spin_1)) )
+  usec 80 156 vlevo
+  use
+    execuse herbert
+  gplend
+  lookc 80 156 vlevo
+  look
+    execlook herbert
+  gplend
+
+OBJECT draktrum
+title
+  ROOM jesuvn
+  PRIORITY 199
+  STATUS on
+  SEQ ..\JES_IN\DEF\draktrum
+
+{************************ JesVen *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_JesVen_maska3 left
+title In die Höhle
+  ROOM JesVen
+  PRIORITY 3
+  STATUS ON
+  SEQ ..\JES_OUT\DEF\JO_EX
+  INIT
+    load obj_JesVen_maska3 "ZAKLADNI"
+    start obj_JesVen_maska3 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 100 152 vlevo
+  use
+    newroom jesuvn 1
+  gplend
+  look
+    justtalk
+D: "Was könnte in dieser dunklen
+    und staubigen Höhle sein?"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+OBJECT obj_JesVen_maska6 down
+title Fort von hier
+  ROOM JesVen
+  PRIORITY 6
+  STATUS ON
+  SEQ ..\JES_OUT\DEF\JO_EX2
+  INIT
+    load obj_JesVen_maska6 "ZAKLADNI"
+    start obj_JesVen_maska6 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 40 196 vlevo
+    newroom map 1
+  gplend
+  look
+    justtalk
+D: "So sei es..."
+    juststay
+  gplend
+
+OBJECT rytir_nohy
+title Ritter
+  ROOM JesVen
+  PRIORITY 188
+  STATUS on
+  SEQ ..\JES_OUT\DEF\r_nohy
+  INIT
+   labels ryno_malo
+    load rytir_nohy "hodne"
+    if (tras_nohou=0) ryno_malo
+    start rytir_nohy "hodne"
+    exit
+   label ryno_malo
+    load rytir_nohy "malo"
+    start rytir_nohy "malo"
+  GPLEND
+  canuse (isactico(0)or((isactico(i_tricko))and(slepene_nohy=0)))
+  usec 128 180 vpravo
+  use
+    execuse rytir
+  gplend
+  lookc 128 180 vpravo
+  look
+    execlook rytir
+  gplend
+
+OBJECT rytir_nohy_slep
+title Ritter
+  ROOM JesVen
+  PRIORITY 188
+  STATUS off
+  SEQ ..\JES_OUT\DEF\r_nohysl
+  INIT
+    load rytir_nohy_slep "zakladni"
+    start rytir_nohy_slep "zakladni"
+  GPLEND
+  canuse (isactico(0)or((isactico(i_tricko))and(slepene_nohy=0)))
+  usec 128 180 vpravo
+  use
+    execuse rytir
+  gplend
+  lookc 128 180 vpravo
+  look
+    execlook rytir
+  gplend
+
+OBJECT rytir
+title Ritter
+  ROOM JesVen
+  PRIORITY 188
+  STATUS on
+  SEQ ..\JES_OUT\DEF\r_hlava
+  INIT
+    load rytir "mlci"
+    start rytir "mlci"
+  GPLEND
+  canuse (isactico(0)or((isactico(i_tricko))and(slepene_nohy=0)))
+  usec 128 180 vpravo
+  use
+    load rytir "mluvi"
+    dialogue "rytir.txt"
+    start rytir "mlci"
+  gplend
+  lookc 128 180 vpravo
+  look
+    justtalk
+D: "Was für eine Karte..."
+    juststay
+  gplend
+
+OBJECT jesven_motyl
+title Schmetterling
+  ROOM JesVen
+  PRIORITY 180
+  STATUS on
+  SEQ ..\JES_OUt\DEF\cavmotyl
+  INIT
+    load jesven_motyl "lita1"
+    start jesven_motyl "lita1"
+  GPLEND
+  look immediately
+    justtalk
+D: "Hübsch."
+    juststay
+  gplend
+
+OBJECT jesven_snek
+title Schnecke
+  ROOM JesVen
+  PRIORITY 8
+  STATUS on
+  SEQ ..\JES_OUt\DEF\cavesnek
+  INIT
+    load jesven_snek "leze2"
+    start jesven_snek "leze2"
+  GPLEND
+  LOOK
+    justtalk
+D: "Eine Schnecke und Zentrifugalkraft?"
+D: "Ich dachte, das gibt's nur,
+    wenn man sie in den Trockner steckt?"
+    justtalk
+  GPLEND
+
+OBJECT jesven_kamen
+title Stein
+  ROOM jesven
+  PRIORITY 9
+  STATUS ON
+  SEQ ..\jes_out\DEF\jes_kam
+  INIT
+    load jesven_kamen "zakladni"
+    start jesven_kamen "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Wow, mehr Munition."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+   labels jv_mam1 jv_mam2
+    justtalk
+D: "Ein hübscher Kiesel.
+    Der wird ziepen!"
+    juststay
+    objstat away jesven_kamen
+    if (isicoon(i_kameny_2)) jv_mam2
+    if (isicoon(i_kameny_1)) jv_mam1
+    {jeste nemame ani jeden kamen:}
+    icostat on i_kameny_1
+    exit
+   label jv_mam1
+    icostat off i_kameny_1
+    icostat on i_kameny_2
+    exit
+   label jv_mam2
+    icostat off i_kameny_2
+    icostat on i_kameny_3
+  gplend
+
+OBJECT nyt
+title Apparat
+  ROOM JesVen
+  PRIORITY 8
+  STATUS off
+  SEQ ..\JES_OUt\DEF\nytlezi
+  INIT
+    load nyt "zakladni"
+    start nyt "zakladni"
+    loadmap "..\jes_out\def\nytlezi.map"
+  GPLEND
+  LOOK
+    justtalk
+D: "Da ist was von der Ritterrüstung abgefallen."
+    juststay
+  GPLEND
+  canuse (isactico(0))
+  use
+    justtalk
+D: "Tja, nun gehört's mir!"
+    juststay
+    objstat away nyt
+    icostat on i_nyt
+    roommap
+  gplend
+
+OBJECT nyt_pada
+  TITLE
+  ROOM JesVen
+  PRIORITY 185
+  STATUS on
+  SEQ ..\JES_OUt\DEF\rytirnyt
+
+{************************ komous *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_komous_maska2 right
+title Fort
+  ROOM komous
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\KOMOUS\DEF\EXIT
+  INIT
+    load obj_komous_maska2 "ZAKLADNI"
+    start obj_komous_maska2 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 316 196 vpravo
+    newroom hospven 3
+  gplend
+  look
+    justtalk
+D: "Auf geht's..."
+    juststay
+  gplend
+
+OBJECT kom
+title Puppenspieler
+  ROOM komous
+  PRIORITY 172
+  STATUS ON
+  SEQ ..\KOMOUS\DEF\komous
+  INIT
+    load kom "mlci"
+    start kom "mlci"
+  GPLEND
+  canuse (isactico(0)or(isactico(i_scenar))or isactico(i_loutka_drevena))
+  usec 148 192 vlevo
+  use
+    load kom "mluvi"
+    dialogue "komous.txt"
+    start kom "mlci"
+  gplend
+  lookc 148 192 vlevo
+  look
+    justtalk
+D: "Ein gescheiter, gebildeter Typ."
+D: "Nur gescheite und gebildete Leute
+    tragen solche Pyjamas."
+    juststay
+  gplend
+
+OBJECT kom_telo
+title Puppenspieler
+  ROOM komous
+  PRIORITY 172
+  STATUS ON
+  SEQ ..\KOMOUS\DEF\kom_telo
+  INIT
+    load kom_telo "z"
+    start kom_telo "z"
+  GPLEND
+  canuse (isactico(0)or(isactico(i_scenar))or isactico(i_loutka_drevena))
+  usec 148 192 vlevo
+  use
+    execuse kom
+  gplend
+  lookc 148 192 vlevo
+  look
+    execlook kom
+  gplend
+
+OBJECT kom_ruka
+title Puppenspieler
+  ROOM komous
+  PRIORITY 172
+  STATUS ON
+  SEQ ..\KOMOUS\DEF\kom_ruk
+  INIT
+    load kom_ruka "z"
+    start kom_ruka "z"
+  GPLEND
+  canuse (isactico(0)or(isactico(i_scenar))or isactico(i_loutka_drevena))
+  usec 148 192 vlevo
+  use
+    execuse kom
+  gplend
+  lookc 148 192 vlevo
+  look
+    execlook kom
+  gplend
+
+OBJECT kom_truhla
+title Truhe
+  ROOM komous
+  PRIORITY 154
+  STATUS ON
+  SEQ ..\KOMOUS\DEF\ko_truhl
+  INIT
+    load kom_truhla "zakladni"
+    start kom_truhla "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Verschlossen."
+    juststay
+  gplend
+  canuse (isactico(i_klic_truhla))
+  use
+    icostat off i_klic_truhla
+    justtalk
+D: "Der Schlüssel passt!"
+    juststay
+    objstat away kom_truhla
+    objstat_on kom_truhla_ot komous
+    load kom_truhla_ot "otvirani"
+    startplay kom_truhla_ot "otvirani"
+    start kom_truhla_ot "zakladni"
+  gplend
+
+OBJECT kom_truhla_ot
+title Truhe
+  ROOM komous
+  PRIORITY 155
+  STATUS off
+  SEQ ..\KOMOUS\DEF\ko_trote
+  INIT
+    load kom_truhla_ot "zakladni"
+    start kom_truhla_ot "zakladni"
+  GPLEND
+  look
+   labels kotr_look1
+    if(prozkoumal_truhlu=1) kotr_look1
+    justtalk
+D: "Da ist nichts Verwunderliches drin,
+    nur eine Zauberflöte."
+    juststay
+    let prozkoumal_truhlu (1)
+    icostat on i_pistala
+    exit
+   label kotr_look1
+    justtalk
+D: "Da ist nichts Interessantes für mich drin."
+    juststay
+  gplend
+
+OBJECT kom_jabko
+title Apfel
+  ROOM komous
+  PRIORITY 154
+  STATUS ON
+  SEQ ..\KOMOUS\DEF\ko_jabko
+  INIT
+    load kom_jabko "zakladni"
+    start kom_jabko "zakladni"
+  GPLEND
+  lookc 224 164 vlevo
+  look
+    justtalk
+D: "Ein runder Apfel."
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 224 164 vlevo
+  use
+    icostat on i_jablko
+    objstat away kom_jabko
+    justtalk
+D: "Der wird nützlich sein."
+    juststay
+  gplend
+
+{************************ kuch *********************************}
+
+OBJECT kuch_louc
+title
+  ROOM kuch
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\kuchyne\DEF\louc
+  INIT
+    load kuch_louc "hori"
+    start kuch_louc "hori"
+  GPLEND
+
+OBJECT uhliky_chlad
+title Asche
+  ROOM kuch
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\kuchyne\DEF\uhl_chla
+  INIT
+    load uhliky_chlad "zakladni"
+    start uhliky_chlad "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Sie glüht nicht sehr gut."
+    juststay
+  gplend
+  canuse (isactico(i_pohrabac)or isactico(i_souska))
+  use
+   labels souska_na_chlad
+    if (isactico(i_souska)) souska_na_chlad
+    walkonplay 136 180 vpravo
+    load bert "pohrabac2"
+    startplay bert "pohrabac2"
+    start bert "kour-pravo"
+    icostat off i_pohrabac
+    objstat away uhliky_chlad
+    objstat_on uhliky_zhave kuch
+    start uhliky_zhave "zakladni"
+    justtalk
+D: "Ich wär überrascht,
+    wenn sie jetzt nicht auflodert."
+    juststay
+    exit
+   label souska_na_chlad
+    justtalk
+D: "Ich werd den trockenen Zweig noch nicht benutzen,
+    wir müssen die Kohlen anfachen."
+    juststay
+  gplend
+
+OBJECT uhliky_zhave
+title Asche
+  ROOM kuch
+  PRIORITY 10
+  STATUS off
+  SEQ ..\kuchyne\DEF\uhl_zhav
+  INIT
+    load uhliky_zhave "zakladni"
+    start uhliky_zhave "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Sie lodert wie ein Inferno..."
+D: "...sie muß versorgt werden."
+    juststay
+  gplend
+  canuse (isactico(i_souska))
+  use
+    icostat off i_souska
+    objstat away uhliky_zhave
+    objstat_on uhliky_hori kuch
+    start uhliky_hori "zakladni"
+    justtalk
+D: "Leider ist sie verglüht...!"
+    juststay
+  gplend
+
+OBJECT uhliky_hori
+title Flammen
+  ROOM kuch
+  PRIORITY 10
+  STATUS off
+  SEQ ..\kuchyne\DEF\uhl_hori
+  INIT
+    load uhliky_hori "zakladni"
+    start uhliky_hori "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Die brennen wunderbar."
+D: "London's burning, London's burning..."
+    juststay
+  gplend
+
+OBJECT kuch_zapadka
+title
+  ROOM kuch
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\kuchyne\DEF\zapadka
+  INIT
+   labels zap_otevrena
+    load kuch_zapadka "zavrena"
+    load kuch_zapadka "otevrena"
+    if (isobjon(dvir_ote)) zap_otevrena
+    start kuch_zapadka "zavrena"
+    exit
+   label zap_otevrena
+    start kuch_zapadka "otevrena"
+  GPLEND
+
+OBJECT dvir_zav
+title Geschlossenes Türchen
+  ROOM kuch
+  PRIORITY 11
+  STATUS ON
+  SEQ ..\kuchyne\DEF\dvir_zav
+  INIT
+    load dvir_zav "zavrena"
+    start dvir_zav "zavrena"
+  GPLEND
+  canuse (isactico(0))
+  use
+    walkonplay 168 180 vpravo
+    load dvir_zav "otvirani"
+    start kuch_zapadka "otevrena"
+    startplay dvir_zav "otvirani"
+    objstat off dvir_zav
+    objstat_on dvir_ote kuch
+    start dvir_ote "otevrena"
+  gplend
+  look
+    justtalk
+D: "Wie wär's mit Öffnen?"
+    juststay
+  gplend
+
+OBJECT dvir_ote
+title Offenes Türchen
+  ROOM kuch
+  PRIORITY 163
+  STATUS off
+  SEQ ..\kuchyne\DEF\dvir_ote
+  INIT
+    load dvir_ote "otevrena"
+    start dvir_ote "otevrena"
+  GPLEND
+  look
+  gplend
+  canuse (isactico(0))
+  use
+    walkonplay 128 172 vpravo
+    objstat off dvir_ote
+    objstat_on dvir_zav kuch
+    load dvir_zav "zavirani"
+    startplay dvir_zav "zavirani"
+    start dvir_zav "zavrena"
+    start kuch_zapadka "zavrena"
+  gplend
+
+OBJECT trychtyr
+title Trichter
+  ROOM kuch
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\kuchyne\DEF\trychtyr
+  INIT
+    load trychtyr "zakladni"
+    start trychtyr "zakladni"
+  GPLEND
+  canuse (isactico(0))
+  use
+    icostat on i_trychtyr
+    objstat away trychtyr
+  gplend
+  look
+    justtalk
+D: "Ein blauer Trichter..."
+    juststay
+  gplend
+
+OBJECT hadra
+title Lumpen
+  ROOM kuch
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\kuchyne\DEF\hadra
+  INIT
+    load hadra "zakladni"
+    start hadra "zakladni"
+  GPLEND
+  canuse (isactico(0))
+  use
+    icostat on i_hadra
+    justtalk
+D: "Willst du wirklich, daß ich das aufhebe?"
+    juststay
+    objstat away hadra
+  gplend
+  look
+    justtalk
+D: "Ihh, hast du gesehen wie die ausschauen?"
+    juststay
+  gplend
+
+OBJECT supl_zav
+title Schublade
+  ROOM kuch
+  PRIORITY 12
+  STATUS ON
+  SEQ ..\kuchyne\DEF\supl_zav
+  INIT
+    load supl_zav "zavreny"
+    start supl_zav "zavreny"
+  GPLEND
+  canuse (isactico(0))
+  usec 104 152 vpravo
+  use
+    objstat off supl_zav
+    objstat_on supl_ote kuch
+    load supl_ote "otvirani"
+    startplay supl_ote "otvirani"
+    start supl_ote "otevreny"
+  gplend
+  lookc 104 152 vpravo
+  look
+    justtalk
+D: "Eine schöne Schublade."
+    juststay
+  gplend
+
+OBJECT supl_ote
+title Offene Schublade
+  ROOM kuch
+  PRIORITY 12
+  STATUS off
+  SEQ ..\kuchyne\DEF\supl_ote
+  INIT
+    load supl_ote "otevreny"
+    start supl_ote "otevreny"
+  GPLEND
+  lookc 104 152 vpravo
+  look
+    justtalk
+D: "Die Schublade ist voll mit weißem Pulver."
+D: "Das ist sicher Zucker!
+    Schließlich ist das hier ein Spiel
+    für die ganze Familie."
+    juststay
+  gplend
+  canuse (isactico(0)or isactico(i_lzicka))
+  usec 104 152 vpravo
+  use
+   labels nabiram
+    if(isactico(i_lzicka)) nabiram
+    objstat off supl_ote
+    objstat_on supl_zav kuch
+    load supl_zav "zavirani"
+    startplay supl_zav "zavirani"
+    start supl_zav "zavreny"
+    exit
+   label nabiram
+    icostat off i_lzicka
+    icostat on i_cukr
+    justtalk
+D: "Ich nehme etwas mit dem Löffel."
+    juststay
+  gplend
+
+OBJECT sup2_zav
+title Schublade
+  ROOM kuch
+  PRIORITY 11
+  STATUS ON
+  SEQ ..\kuchyne\DEF\sup2_zav
+  INIT
+    load sup2_zav "zavreny"
+    start sup2_zav "zavreny"
+  GPLEND
+  canuse (isactico(0))
+  usec 96 152 vpravo
+  use
+    objstat off sup2_zav
+    objstat_on sup2_ote kuch
+    load sup2_ote "otvirani"
+    startplay sup2_ote "otvirani"
+    start sup2_ote "otevreny"
+  gplend
+  lookc 96 152 vpravo
+  look
+    justtalk
+D: "Sie ist zu."
+    juststay
+  gplend
+
+OBJECT sup2_ote
+title Offene Schublade
+  ROOM kuch
+  PRIORITY 11
+  STATUS off
+  SEQ ..\kuchyne\DEF\sup2_ote
+  INIT
+    load sup2_ote "otevreny"
+    start sup2_ote "otevreny"
+  GPLEND
+  lookc 96 152 vpravo
+  look
+   labels uzmame
+    justtalk
+D: "Sie ist voll mit Hefe."
+    juststay
+    if(vzal_drozdi) uzmame
+    justtalk
+D: "Ich nehm ein bißchen mit..."
+    juststay
+    icostat on i_drozdi
+    let vzal_drozdi (1)
+   label uzmame
+  gplend
+  canuse (isactico(0))
+  usec 96 152 vpravo
+  use
+    objstat off sup2_ote
+    objstat_on sup2_zav kuch
+    load sup2_zav "zavirani"
+    startplay sup2_zav "zavirani"
+    start sup2_zav "zavreny"
+  gplend
+
+OBJECT hrnec
+title Topf
+  ROOM kuch
+  PRIORITY 11
+  STATUS on
+  SEQ ..\kuchyne\DEF\hrnec
+  INIT
+    load hrnec "z"
+    start hrnec "z"
+  GPLEND
+  look
+   labels pripaleny bubla
+    if(isobjon(uhliky_hori)) pripaleny
+    if(isobjon(uhliky_zhave)) bubla
+    justtalk
+D: "Etwas kühlt darin ab."
+    juststay
+    exit
+   label bubla
+    justtalk
+D: "Etwas köchelt darin."
+    juststay
+    exit
+   label pripaleny
+    justtalk
+D: "Etwas verbrennt darin."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT kuch_jidelnicek
+title Speisekarte
+  ROOM kuch
+  PRIORITY 9
+  STATUS ON
+  SEQ ..\KUCHYNE\DEF\JIDEL
+  INIT
+    load kuch_jidelnicek "ZAKLADNI"
+    start kuch_jidelnicek "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Die haben heute guten Fraß."
+D: "Frittierte Zwergenfinger"
+D: "und Zwergengulasch."
+D: "Pflegen Zwerge ihre Nägel selber?"
+D: "und wie steht's mit der Fußpflege!"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_kuch_maska10 left
+title Zum Flur
+  ROOM kuch
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\KUCHYNE\DEF\EXIT
+  INIT
+    load obj_kuch_maska10 "ZAKLADNI"
+    start obj_kuch_maska10 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 0 196 vlevo
+  use
+    newroom hraduvn 2
+  gplend
+  look
+    justtalk
+D: "Ja, da komm ich her."
+    juststay
+  gplend
+
+{************************ LenUvnitr *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_LenUvnitr_maska1 left
+title Verlasse das Haus
+  ROOM LenUvnitr
+  PRIORITY 1
+  STATUS ON
+  SEQ ..\LENOCH_I\DEF\L_EXIT
+  INIT
+    load obj_LenUvnitr_maska1 "ZAKLADNI"
+    start obj_LenUvnitr_maska1 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    newroom lenvenku 2
+  gplend
+  look
+    justtalk
+D: "Triff eine letzte Entscheidung:"
+D: "Ja oder Nein?"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT stroj
+title Kuchenmaschine
+  ROOM LenUvnitr
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\LENOCH_I\DEF\STROJ
+  INIT
+    load stroj "ZAKLADNI"
+    start stroj "ZAKLADNI"
+  GPLEND
+  look
+   labels skip
+    justtalk
+    goto skip
+D: "Nur zwei Worte:"
+    juststay
+D: "....."
+D: "------"
+    justtalk
+D: "Da fehlen mir die Worte."
+   label skip
+D: "Das ist ein echtes Meisterstück!"
+    juststay
+  gplend
+  canuse ((isactico(i_kolo) or isactico(i_drozdi))and(vim_o_lenosti=2))
+  use
+   labels uz_jo use_kolo use_dal wait_anim
+    {nejdriv provedeme neco v zavislosti na ikonce:}
+    if(isactico(i_kolo)) use_kolo
+    icostat off i_drozdi
+    goto use_dal
+   label use_kolo
+    icostat off i_kolo
+    objstat_on kolo2 lenuvnitr
+    start kolo2 "zakladni"
+   label use_dal
+    {a tady provedeme cosi se strojem:}
+    let stroj_funguje (stroj_funguje+1)
+    if(stroj_funguje=2) uz_jo
+    {jeste nezacal fungovat uplne:}
+    exit
+   label uz_jo
+   {uz funguje uplne OK:}
+     loadmusic "..\midi\music6.mid"
+     startmusic
+   label wait_anim
+     play
+     if(actphase(chapadlo)!=1) wait_anim
+     start lenuvnitr_buchta "dobre"
+     start chapadlo "pracuje"
+  gplend
+
+object chapadlo
+title Spuckendes Tentakel
+  room lenuvnitr
+  priority 70
+  status on
+  seq ..\lenoch_i\def\chapadlo
+  init
+    load chapadlo "pracuje"
+    start chapadlo "pracuje"
+  gplend
+  look
+    justtalk
+D: "Ich glaube, ich verstehe.
+    Ich erkenne das Prinzip."
+D: "Der in Flüssigkeit getauchter Körper
+    wird hoch gehoben..."
+D: "... mit Gewalt? ..."
+D: "...und so geht's, klar."
+D: "Ich bin sicher, ich habe recht!"
+    juststay
+  gplend
+
+object kolo1
+title Kuchenmaschine
+  room lenuvnitr
+  priority 30
+  status on
+  seq ..\lenoch_i\def\kolo1
+  init
+    load kolo1 "otaceni"
+    start kolo1 "otaceni"
+  gplend
+  canuse ((isactico(i_kolo) or isactico(i_drozdi))and(vim_o_lenosti=2))
+  use
+    execuse stroj
+  gplend
+  look
+    execlook stroj
+  gplend
+
+{nasledujici kolo je zatim NEnamontovane}
+object kolo2
+title Kuchenmaschine
+  room lenuvnitr
+  priority 31
+  status off
+  seq ..\lenoch_i\def\kolo2
+  init
+    load kolo2 "zakladni"
+    start kolo2 "zakladni"
+  gplend
+  canuse ((isactico(i_kolo) or isactico(i_drozdi))and(vim_o_lenosti=2))
+  use
+    execuse stroj
+  gplend
+  look
+    execlook stroj
+  gplend
+
+object dvekola
+title Kuchenmaschine
+  room lenuvnitr
+  priority 30
+  status on
+  seq ..\lenoch_i\def\dvekola
+  init
+    load dvekola "otaceni"
+    start dvekola "otaceni"
+  gplend
+  canuse ((isactico(i_kolo) or isactico(i_drozdi))and(vim_o_lenosti=2))
+  use
+    execuse stroj
+  gplend
+  look
+    execlook stroj
+  gplend
+
+object lenuvnitr_kominek
+title Hüpfender|Stapel
+  room lenuvnitr
+  priority 37
+  status on
+  seq ..\lenoch_i\def\kominek
+  init
+    load lenuvnitr_kominek "skaka"
+    start lenuvnitr_kominek "skaka"
+  gplend
+  look
+    exit
+    justtalk
+D: "Ich sag dir meine Meinung."
+D: "Er ist wirklich wunderschön, himmlisch, reizend."
+D: "Nicht wahr?"
+    juststay
+  gplend
+
+object lenuvnitr_buchta
+  title
+  room lenuvnitr
+  priority 74
+  status on
+  seq ..\lenoch_i\def\buchta
+  init
+   labels buchta_ok
+    load lenuvnitr_buchta "dobre"
+    if(stroj_funguje>=2) buchta_ok
+    load lenuvnitr_buchta "spatne"
+    start lenuvnitr_buchta "spatne"
+    exit
+   label buchta_ok
+    start lenuvnitr_buchta "dobre"
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT lenoch
+title Liegt wach, schluckt
+  ROOM LenUvnitr
+  PRIORITY 72
+  STATUS On
+  SEQ ..\LENOCH_I\DEF\LENOCH
+  INIT
+    load lenoch "ZAKLADNI"
+    start lenoch "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Wie kann er bei der Aufruhr
+    nur so friedlich schlafen?"
+{   D:"Chci říct, že to prostěradlo mi připadá čistější,
+{       než bych očekával."
+    juststay
+{do outra na kod:
+{ posrane prosteradlo:
+{ "Cely leta sem nesral, ale ted to na mne prislo..."
+  gplend
+  canuse (isactico(0))
+  usec 201 169 vlevo
+  use
+    load lenuvnitr_hlava "mluvi"
+    dialogue "lenoch.txt"
+    start lenuvnitr_hlava "mlci"
+  gplend
+
+OBJECT lenuvnitr_hlava
+title Liegt wach, schluckt
+  ROOM LenUvnitr
+  PRIORITY 73
+  STATUS On
+  SEQ ..\LENOCH_I\DEF\hlava
+  INIT
+    load lenuvnitr_hlava "mlci"
+    start lenuvnitr_hlava "mlci"
+  GPLEND
+  canuse (isactico(0))
+  usec 201 169 vlevo
+  use
+    execuse lenoch
+  gplend
+  look
+    execlook lenoch
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_LenUvnitr_maska33
+title Gemälde
+  ROOM LenUvnitr
+  PRIORITY 33
+  STATUS ON
+  SEQ ..\LENOCH_I\DEF\L_Obraz
+  INIT
+    load obj_LenUvnitr_maska33 "ZAKLADNI"
+    start obj_LenUvnitr_maska33 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Ein Kuchen-Stillleben."
+    juststay
+  gplend
+
+OBJECT lahvicka
+title Fläschchen
+  ROOM LenUvnitr
+  PRIORITY 33
+  STATUS ON
+  SEQ ..\LENOCH_I\DEF\lahvicka
+  INIT
+    load lahvicka "ZAKLADNI"
+    start lahvicka "ZAKLADNI"
+  GPLEND
+  look
+   labels lah_lenost
+    if(vim_o_lenosti>0) lah_lenost
+    justtalk
+D: "Es könnte Rasierwasser sein"
+D: "oder Jod."
+    juststay
+    exit
+   label lah_lenost
+    justtalk
+D: "Ich glaub, da ist Faulheit drin."
+    juststay
+  gplend
+  canuse (isactico(0)and(stroj_funguje=3))
+  use
+    justtalk
+D: "Und wir haben sie..."
+    juststay
+    icostat on i_lenost
+    objstat away lahvicka
+  gplend
+
+OBJECT nocnik
+title Nachttopf
+  ROOM LenUvnitr
+  PRIORITY 33
+  STATUS ON
+  SEQ ..\LENOCH_I\DEF\nocnik
+  INIT
+    load nocnik "ZAKLADNI"
+    start nocnik "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Ihhhhh."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    justtalk
+D: "Alles zählt..."
+    juststay
+    icostat on i_nocnik
+    objstat away nocnik
+  gplend
+
+
+{************************ LenVenku *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_LenVenku_maska7 left
+title Zum Wald
+  ROOM LenVenku
+  PRIORITY 7
+  STATUS ON
+  SEQ ..\LENOCH_O\DEF\EXIT1
+  INIT
+    load obj_LenVenku_maska7 "ZAKLADNI"
+    start obj_LenVenku_maska7 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 0 196 vlevo
+  use
+    newroom lesleno 2
+  gplend
+  look
+    justtalk
+D: "Da gibt's nichts hinzu zu fügen."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_LenVenku_maska98 right
+title Ins Haus
+  ROOM LenVenku
+  PRIORITY 98
+  STATUS ON
+  SEQ ..\LENOCH_O\DEF\L_DVERE
+  INIT
+    load obj_LenVenku_maska98 "ZAKLADNI"
+    start obj_LenVenku_maska98 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 156 164 vpravo
+  use
+    newroom lenuvnitr 1
+  gplend
+  look
+    justtalk
+D: "Eine nette, hübsche Hütte..."
+D: "Wie es wohl drinnen aussieht?"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_LenVenku_maska10
+title Schuppen
+  ROOM LenVenku
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\LENOCH_O\DEF\PRIST
+  INIT
+    load obj_LenVenku_maska10 "ZAKLADNI"
+    start obj_LenVenku_maska10 "ZAKLADNI"
+  GPLEND
+  look
+   labels pri_look1 pri_look2 pri_look3 pri_look4
+    if (pristavek_prozkouman=4) pri_look4
+    let pristavek_prozkouman (pristavek_prozkouman+1)
+    if (pristavek_prozkouman=1) pri_look1
+    if (pristavek_prozkouman=2) pri_look2
+    if (pristavek_prozkouman=3) pri_look3
+   label pri_look1
+    justtalk
+D: "Es ist ziemlich dunkel!"
+    juststay
+    exit
+   label pri_look2
+    justtalk
+D: "Ich sehe gar nichts!"
+D: "Ich warte am besten, bis sich meine Augen
+    daran gewöhnt haben..."
+    juststay
+    exit
+   label pri_look3
+    justtalk
+D: "Ich sehe was!"
+D: "Ich sehe eine große Stadt...."
+{#I can see...- a passage from Czech national stories.
+{#I can see a big town, which fame is reaching the starlight sky....the Prague...
+D: "Ich sehe einen alten Ziegelstein..."
+D: "Ich bin schon ein komischer Kerl.
+    Ich hab soviel Kram,
+    der einfach nur auf den Müll gehört..."
+D: "...der Ziegelstein ist sicher meiner!"
+D: "Ja, das ist er, ich hab ihn zuerst gesehen!"
+    juststay
+    icostat on i_cihla
+    exit
+   label pri_look4
+    justtalk
+D: "Es wird keinen anderen Ziegelstein
+    geben neben diesem geben..."
+    juststay
+    exit
+  gplend
+
+OBJECT LenVenku_okenice
+title
+  ROOM LenVenku
+  PRIORITY 174
+  STATUS ON
+  SEQ ..\LENOCH_O\DEF\lenokeni
+  INIT
+    load LenVenku_okenice "Z"
+    start LenVenku_okenice "Z"
+  GPLEND
+
+OBJECT LenVenku_kour
+  TITLE
+  ROOM LenVenku
+  PRIORITY 120
+  STATUS ON
+  SEQ ..\LENOCH_O\DEF\lenkom
+  INIT
+    load LenVenku_kour "Z"
+    start LenVenku_kour "Z"
+  GPLEND
+
+{************************ leskriz *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_leskriz_maska150 right
+title Den Weg entlang
+  ROOM leskriz
+  PRIORITY 150
+  STATUS ON
+  SEQ ..\LES_KRIZ\DEF\EX_LENO
+  INIT
+    load obj_leskriz_maska150 "ZAKLADNI"
+    start obj_leskriz_maska150 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 224 128 vpravo
+    newroom lesleno 1
+  gplend
+  look
+    justtalk
+D: "An Kreuzungen gerate ich immer ins Dilemma."
+D: "Besonders wenn es nur zwei Richtungen gibt."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_leskriz_maska200 left
+title Zum hohlen Baum
+  ROOM leskriz
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\LES_KRIZ\DEF\EX_LEFT
+  INIT
+    load obj_leskriz_maska200 "ZAKLADNI"
+    start obj_leskriz_maska200 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 0 164 vlevo
+    newroom dutina 2
+  gplend
+  look
+    justtalk
+D: "Kein Problem."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_leskriz_maska4
+  TITLE
+  ROOM leskriz
+  PRIORITY 4
+  STATUS ON
+  SEQ ..\LES_KRIZ\DEF\EX_RIGHT
+  INIT
+    load obj_leskriz_maska4 "ZAKLADNI"
+    start obj_leskriz_maska4 "ZAKLADNI"
+  GPLEND
+{  canuse (1)
+{  use
+{    walkonplay 316 196 vpravo
+{    newroom parezy 1
+{  gplend
+{  look
+{    justtalk
+{    D:"Já vážně nevím..."
+{    juststay
+{  gplend
+
+OBJECT leskriz_jablko
+title Apfel
+  ROOM leskriz
+  PRIORITY 164
+  STATUS off
+  SEQ ..\LES_KRIZ\DEF\jablko
+  INIT
+    load leskriz_jablko "zakladni"
+    start leskriz_jablko "ZAKLADNI"
+  GPLEND
+  lookc 132 172 vpravo
+  look
+    justtalk
+D: "Der Apfel liegt hier so frech rum..."
+    juststay
+  gplend
+
+OBJECT jezek
+title Igel
+  ROOM leskriz
+  PRIORITY 165
+  STATUS ON
+  SEQ ..\LES_KRIZ\DEF\jezek
+  INIT
+   labels cmucha kutali
+    if (isobjon(leskriz_jablko)) cmucha
+    if (gate!=3) kutali
+    exit
+   label kutali
+    load jezek "kutaleni"
+    start jezek "kutaleni"
+    exit
+   label cmucha
+    load jezek "cmuchani"
+    start jezek "cmuchani"
+  GPLEND
+  canuse (isobjon(leskriz_jablko))
+  usec 132 172 vpravo
+  use
+    justtalk
+D: "Ich leih dich mal kurz aus, Igel."
+D: "Vielleicht werden deine Stacheln nützlich sein."
+    juststay
+    objstat away jezek
+    icostat on i_jezek
+  gplend
+  lookc 132 172 vpravo
+  look
+   labels lookcmucha
+    if (isobjon(leskriz_jablko)) lookcmucha
+    justtalk
+D: "Ich konnte ihn nicht fangen."
+    juststay
+    exit
+   label lookcmucha
+    justtalk
+D: "Er hat seine Schutzvorrichtung eingefahren..."
+    juststay
+  gplend
+
+OBJECT leskriz_sipkar
+title Hoffnungsloser Dartspieler
+  ROOM leskriz
+  PRIORITY 5
+  STATUS away
+  SEQ ..\LES_KRIZ\dEF\l_sipkar
+  INIT
+    load leskriz_sipkar "mlci"
+    start leskriz_sipkar "mlci"
+  GPLEND
+  lookc 136 160 vlevo
+  look
+    justtalk
+D: "Ich würde dem Mann wirklich gern helfen."
+D: "Ich hab was übrig für Dart!"
+    juststay
+  gplend
+  canuse (isactico(0)or isactico(i_sipky))
+  usec 136 160 vlevo
+  use
+    load leskriz_sipkar "mluvi"
+    dialogue "lessipka.txt"
+    start leskriz_sipkar "mlci"
+  gplend
+
+
+
+{************************ lesleno *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_lesleno_maska2 left
+title Zur Kreuzung
+  ROOM lesleno
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\LES_LENO\DEF\EXLEFT
+  INIT
+    load obj_lesleno_maska2 "ZAKLADNI"
+    start obj_lesleno_maska2 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 0 196 vlevo
+    newroom leskriz 2
+  gplend
+  look
+    justtalk
+D: "Eine Lichtung. Sieh es dir selbst an."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_lesleno_maska200 right
+title Verlasse den Wald
+  ROOM lesleno
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\LES_LENO\DEF\EXRIGHT
+  INIT
+    load obj_lesleno_maska200 "ZAKLADNI"
+    start obj_lesleno_maska200 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 316 156 vlevo
+    newroom lenvenku 1
+  gplend
+  look
+    justtalk
+D: "Da riecht es gut."
+    juststay
+  gplend
+
+OBJECT lesleno_oci1
+title Katzenaugen
+  ROOM lesleno
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\LES_LENO\DEF\oci1
+  INIT
+    load lesleno_oci1 "Z"
+    start lesleno_oci1 "Z"
+  GPLEND
+  look
+    justtalk
+D: "Was ist wenn das keine Katzenaugen sind?"
+    juststay
+  gplend
+
+OBJECT lesleno_oci2
+title Augen
+  ROOM lesleno
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\LES_LENO\DEF\oci2
+  INIT
+    load lesleno_oci2 "Z"
+    start lesleno_oci2 "Z"
+  GPLEND
+  look
+    justtalk
+D: "Das könnte ein geheimes Signal sein!"
+    juststay
+  gplend
+
+OBJECT lesleno_oci3
+title Augen
+  ROOM lesleno
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\LES_LENO\DEF\oci3
+  INIT
+    load lesleno_oci3 "Z"
+    start lesleno_oci3 "Z"
+  GPLEND
+  look
+    justtalk
+D: "Da muß es einen Trick geben."
+    juststay
+  gplend
+
+OBJECT lesleno_had
+title Schlange
+  ROOM lesleno
+  PRIORITY 201
+  STATUS ON
+  SEQ ..\LES_LENO\DEF\had3
+  INIT
+    load lesleno_had "Z"
+    start lesleno_had "Z"
+  GPLEND
+  lookc 156 172 vpravo
+  look
+    load lesleno_had "syci"
+    startplay lesleno_had "syci"
+    start lesleno_had "Z"
+  gplend
+
+{************************ map *********************************}
+
+OBJECT map_dutina down
+title Hohler Baum
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_dutina
+  INIT
+    load map_dutina "z"
+    start map_dutina "z"
+  gplend
+  look
+D: "Was für ein schöner Ort
+    um das Spiel zu beginnen!"
+  gplend
+  canuse (1)
+  use
+   newroom dutina 4
+  gplend
+
+OBJECT map_hory down
+title Hoch in den Bergen
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_hory
+  INIT
+    load map_hory "z"
+    start map_hory "z"
+  gplend
+  look
+D: "Hier wächst ein Kraut, das hilft zu sprechen."
+  gplend
+  canuse (1)
+  use
+   newroom hory 1
+  gplend
+
+OBJECT map_obr down
+title Bau des Riesen
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_obr
+  INIT
+    load map_obr "z"
+    start map_obr "z"
+  gplend
+  look
+D: "Er liegt nord-nord-östlich von der Kneipe."
+  gplend
+  canuse (1)
+  use
+   newroom obrvenku 1
+  gplend
+
+OBJECT map_zidle down
+title Stühle
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_zidle
+  INIT
+    load map_zidle "z"
+    start map_zidle "z"
+  gplend
+  look
+D: "Eine Lichtung mit Stühlen mitten im Wald."
+  gplend
+  canuse (1)
+  use
+   newroom zid 1
+  gplend
+
+OBJECT map_parezy down
+title Zwei alte Stümpfe
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_parezy
+  INIT
+    load map_parezy "z"
+    start map_parezy "z"
+  gplend
+  look
+D: "Eine geheime Passage zur Burg."
+  gplend
+  canuse (1)
+  use
+   newroom parezy 1
+  gplend
+
+OBJECT map_lenoch down
+title Habitat des Faulenzers
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_lenoch
+  INIT
+    load map_lenoch "z"
+    start map_lenoch "z"
+  gplend
+  look
+D: "Was für ein Leben - faul bis auf die Knochen."
+  gplend
+  canuse (1)
+  use
+   newroom lenvenku 1
+  gplend
+
+OBJECT map_mytina down
+title Waldlichtung
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_mytina
+  INIT
+    load map_mytina "z"
+    start map_mytina "z"
+  gplend
+  look
+D: "Die Lichtung mit dem verwirrten Zauberer."
+  gplend
+  canuse (1)
+  use
+   newroom myt 1
+  gplend
+
+OBJECT map_hospa down
+title Kneipe
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_hospa
+  INIT
+    load map_hospa "z"
+    start map_hospa "z"
+  gplend
+  look
+D: "Ein Drache kann viele Leute
+    in einer Kneipe treffen."
+  gplend
+  canuse (1)
+  use
+   newroom hospven 1
+  gplend
+
+OBJECT map_domek down
+title Haus der Drachen
+  room map
+  PRIORITY 10
+  STATUS on
+  SEQ ..\mapa\def\l_domek
+  INIT
+    load map_domek "z"
+    start map_domek "z"
+  gplend
+  look
+D: "Das ist mein Zuhause.
+    Ich rieche die Küche meiner Mutter von hier."
+  gplend
+  canuse (1)
+  use
+   newroom chaven 1
+  gplend
+
+OBJECT map_komous down
+title Puppenspieler
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_komous
+  INIT
+    load map_komous "z"
+    start map_komous "z"
+  gplend
+  look
+D: "Der Puppenspieler mit seinem Wohnwagen
+    und dem Puppentheater."
+  gplend
+  canuse (1)
+  use
+   newroom komous 1
+  gplend
+
+OBJECT map_sipek down
+title Dart-Baum
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_sipek
+  INIT
+    load map_sipek "z"
+    start map_sipek "z"
+  gplend
+  look
+D: "Ein grosser Baum auf einer Anhöhe."
+  gplend
+  canuse (1)
+  use
+   newroom sipek 1
+  gplend
+
+OBJECT map_skreti down
+title Goblins
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_skreti
+  INIT
+    load map_skreti "z"
+    start map_skreti "z"
+  gplend
+  look
+D: "Aha, das Goblinlager..."
+  gplend
+  canuse (1)
+  use
+   newroom skreti 1
+  gplend
+
+OBJECT map_jeskyn down
+title Höhle
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_jeskyn
+  INIT
+    load map_jeskyn "z"
+    start map_jeskyn "z"
+  gplend
+  look
+D: "Alte Drachenschätze? So ein Quatsch!"
+  gplend
+  canuse (1)
+  use
+   newroom jesven 1
+  gplend
+
+OBJECT map_most down
+title Brücke
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_most
+  INIT
+    load map_most "z"
+    start map_most "z"
+  gplend
+  look
+D: "Der Pfad hinter der Brücke gabelt sich
+    zwischen der Burg und dem Wald."
+  gplend
+  canuse (1)
+  use
+   newroom most 1
+  gplend
+
+OBJECT map_hrad down
+title Burg
+  room map
+  PRIORITY 10
+  STATUS off
+  SEQ ..\mapa\def\l_hrad
+  INIT
+    load map_hrad "z"
+    start map_hrad "z"
+  gplend
+  look
+D: "Ich komme so nur zur VORDERSEITE der Burg..."
+  gplend
+  canuse (1)
+  use
+   newroom hradven 1
+  gplend
+
+OBJECT map_jisk
+title Burg
+  room map
+  PRIORITY 11
+  STATUS on
+  SEQ ..\mapa\def\jiskry
+
+{************************ most *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_most_maska4 left
+title Nach|Hause
+  ROOM most
+  PRIORITY 4
+  STATUS ON
+  SEQ ..\MOST\DEF\EX_LEFT
+  INIT
+    load obj_most_maska4 "ZAKLADNI"
+    start obj_most_maska4 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Alles klar."
+    juststay
+  gplend
+  canuse (1)
+  usec 0 180 vlevo
+  use
+    newroom sipdumven 2
+  gplend
+
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_most_maska6 left
+title Zur Burg
+  ROOM most
+  PRIORITY 6
+  STATUS ON
+  SEQ ..\MOST\DEF\EX_HRAD
+  INIT
+    load obj_most_maska6 "ZAKLADNI"
+    start obj_most_maska6 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Noch ein weiter Weg."
+    juststay
+  gplend
+  canuse (1)
+  usec 284 68 vlevo
+  use
+    newroom hradven 1
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_most_maska13 right
+title Zum Wald
+  ROOM most
+  PRIORITY 13
+  STATUS ON
+  SEQ ..\MOST\DEF\EX_TROL
+  INIT
+    load obj_most_maska13 "ZAKLADNI"
+    start obj_most_maska13 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Anscheinend"
+    juststay
+  gplend
+  canuse (1)
+  usec 316 76 vpravo
+  use
+    newroom lestrol 1
+  gplend
+
+OBJECT most_voda
+  TITLE
+  ROOM most
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\MOST\DEF\vodatece
+  INIT
+    load most_voda "ZAKLADNI"
+    start most_voda "ZAKLADNI"
+  GPLEND
+
+OBJECT most_list
+title
+  ROOM most
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\MOST\DEF\listvoda
+  INIT
+    load most_list "plave"
+    start most_list "plave"
+  GPLEND
+
+OBJECT most_sipkar
+  TITLE
+  ROOM most
+  PRIORITY 170
+  STATUS ON
+  SEQ ..\MOST\DEF\msipkar
+
+OBJECT most_siplet
+  TITLE
+  ROOM most
+  PRIORITY 169
+  STATUS ON
+  SEQ ..\MOST\DEF\siplet
+
+OBJECT most_drak
+  TITLE
+  ROOM most
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\MOST\DEF\mostdrak
+
+OBJECT most_prase
+  TITLE
+  ROOM most
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\MOST\DEF\prase
+
+OBJECT drakpras
+  TITLE
+  ROOM most
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\MOST\DEF\drakpras
+
+OBJECT most_trol
+title Troll
+  ROOM most
+  PRIORITY 100
+  STATUS away
+  SEQ ..\MOST\DEF\mtrol
+  INIT
+   labels hadry
+    load most_trol "nahaty"
+    if(upeceny_trol<=2) hadry
+    start most_trol "nahaty"
+    exit
+   label hadry
+    load most_trol "obleceny"
+    start most_trol "obleceny"
+  GPLEND
+  lookc 144 112 vpravo
+  look
+   labels trol_sipka
+    justtalk
+D: "Ein echter Troll."
+    juststay
+    if(probehl_incident=1) trol_sipka
+    exit
+   label trol_sipka
+    justtalk
+D: "Anscheinend wurde er als Zielscheibe benutzt!?!"
+    juststay
+  gplend
+{  canuse (isactico(0)or((isactico(i_nyt))and(upeceny_trol=1)))
+  canuse (isactico(0)or(isactico(i_nyt))
+  usec 144 112 vpravo
+  use
+   labels trmo_kecame
+    if(isactico(0)) trmo_kecame
+    {jinak budeme oslnovat nytem:}
+    icostat off i_nyt
+    walkonplay 256 80 vlevo
+    objstat away bert
+    load most_prase "FLI-animace"
+    start most_prase "FLI-animace"
+    load drakpras "prase"
+    startplay drakpras "prase"
+    stayon 256 80 vlevo
+    let upeceny_trol (2)
+    exit
+   label trmo_kecame
+    load most_trol_huba "mluvi"
+    dialogue "trolmost.txt"
+    start most_trol_huba "mlci"
+  gplend
+
+OBJECT most_trol_huba
+title Troll
+  ROOM most
+  PRIORITY 101
+  STATUS away
+  SEQ ..\MOST\DEF\tr_hlava
+  INIT
+    load most_trol_huba "mlci"
+    start most_trol_huba "mlci"
+  gplend
+  canuse (isactico(0)or((isactico(i_nyt))and(upeceny_trol=1)))
+  usec 144 112 vpravo
+  use
+    execuse most_trol
+  gplend
+  lookc 144 112 vpravo
+  look
+    execlook most_trol
+  gplend
+
+OBJECT most_terc
+title Troll
+  ROOM most
+  PRIORITY 100
+  STATUS on
+  SEQ ..\MOST\DEF\terc
+  INIT
+    load most_terc "z"
+    start most_terc "z"
+  GPLEND
+  lookc 144 112 vpravo
+  look
+    justtalk
+D: "Der ist aus Holz..."
+D: "...er diente wohl als Zielscheibe!"
+    juststay
+    let dreveny_trol_prozkouman (1)
+  gplend
+
+OBJECT most_zvonek
+title Glocke
+  ROOM most
+  PRIORITY 20
+  STATUS away
+  SEQ ..\MOST\DEF\zvonek
+  INIT
+    load most_zvonek "z"
+    start most_zvonek "z"
+    loadmap "..\most\def\zvonek.map"
+  GPLEND
+  look
+    justtalk
+D: "Glücklicherweise hatte er ein Loch in der Tasche..."
+D: "Ich hab mir schon gedacht,
+    dasßich die Glocke hier finde."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    objstat away most_zvonek
+    icostat on i_zvonek
+    roommap
+  gplend
+
+{************************ mrav *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_mrav_maska1 left
+title Zum hohlen Baum
+  ROOM mrav
+  PRIORITY 1
+  STATUS ON
+  SEQ ..\MRAVENEC\DEF\EX_LEFT
+  INIT
+    load obj_mrav_maska1 "ZAKLADNI"
+    start obj_mrav_maska1 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 0 156 vlevo
+    newroom dutina 3
+  gplend
+  look
+    justtalk
+D: "Scheint so."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT exright right
+title Zur Aue
+  ROOM mrav
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\MRAVENEC\DEF\EX_RIGHT
+  INIT
+    load exright "ZAKLADNI"
+    start exright "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 316 196 vpravo
+    newroom zid 1
+  gplend
+  look
+    justtalk
+D: "Ich mag den Ausblick dort..."
+D: "...wirklich!"
+    juststay
+  gplend
+
+OBJECT mraveniste
+title Ameisenhügel
+  ROOM mrav
+  PRIORITY 50
+  STATUS ON
+  SEQ ..\MRAVENEC\DEF\MRAVENIS
+  INIT
+    load mraveniste "ZAKLADNI"
+    start mraveniste "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Ein Haufen voller kleiner, fleißiger Ameisen."
+    juststay
+  gplend
+  canuse (isactico(i_cukr))
+  use
+    icostat off i_cukr
+    icostat on i_mravenec
+    justtalk
+D: "Wir locken die Ameisen mit Zucker..."
+D: "...sitz...
+    ...roll rüber...
+    ...mach Männchen..."
+D: "...eigentlich nur eine Ameise.
+    Schade, dass du nicht gesehen hast,
+    wie sie Männchen macht!"
+D: "Diese Ameise wird sicher nützlich sein."
+    juststay
+  gplend
+
+OBJECT veverka
+title Eichhörnchen
+  ROOM mrav
+  PRIORITY 50
+  STATUS ON
+  SEQ ..\MRAVENEC\DEF\veverka3
+  INIT
+    load veverka "Z"
+    start veverka "z"
+  GPLEND
+  lookc 124 188 vlevo
+  look
+    load veverka "janci"
+    startplay veverka "janci"
+    start veverka "z"
+  gplend
+
+{************************ ObrUvnitr *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obr
+title Riese
+  ROOM ObrUvnitr
+  PRIORITY 168
+  STATUS ON
+  SEQ ..\obr_in\DEF\OBRUVNIT
+  INIT
+    load obr "ZAKLADNI"
+    start obr "ZAKLADNI"
+  GPLEND
+  lookc 230 160 vlevo
+  look
+    justtalk
+D: "Oh schau mal, polierte Kahlköpfigkeit.
+    Er sollte in Haarwasser investieren."
+    juststay
+  gplend
+  CANUSE (isactico(0))
+  usec 230 160 vlevo
+  USE
+    load obr_hlava "mluvi"
+    dialogue "wobr.txt"
+  GPLEND
+
+OBJECT obr_ruka
+  ROOM ObrUvnitr
+title Riese
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\obr_in\def\obr
+  INIT
+   labels nemelem
+    if(isobjaway(obr_pajzl1)) nemelem
+    load obr_Ruka "mele"
+    start obr_ruka "mele"
+    exit
+   label nemelem
+    load obr_Ruka "nemele"
+    start obr_ruka "nemele"
+  GPLEND
+  CANUSE (isactico(0))
+  USE
+    execuse Obr
+  gplend
+
+OBJECT obr_hlava
+  ROOM ObrUvnitr
+title Riese
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\obr_in\def\obr
+  INIT
+    load Obr_hlava "mlci"
+    start obr_hlava "mlci"
+  GPLEND
+  CANUSE (isactico(0))
+  USE
+    execuse Obr
+  GPLEND
+
+object obr_louc1
+  title
+  room ObrUvnitr
+  priority 100
+  status on
+  seq ..\obr_in\def\obr_louc
+  init
+    load obr_louc1 "velka"
+    start obr_louc1 "velka"
+  gplend
+
+object obr_louc2
+  title
+  room ObrUvnitr
+  priority 100
+  status on
+  seq ..\obr_in\def\obr_louc
+  init
+    load obr_louc2 "mala"
+    start obr_louc2 "mala"
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_ObrUvnitr_maska81 LEFT
+title Fort|vom Haus des Riesen
+  ROOM ObrUvnitr
+  PRIORITY 80
+  STATUS ON
+  SEQ ..\obr_in\DEF\ou_dvere
+  INIT
+    load obj_ObrUvnitr_maska81 "ZAKLADNI"
+    start obj_ObrUvnitr_maska81 "ZAKLADNI"
+  GPLEND
+  LOOK
+    justtalk
+D: "O.K."
+D: "Schöne Türen."
+    juststay
+  gplend
+  CANUSE (1)
+  USE
+    load obr_uvnitr_dvere "otvirani"
+    walkon 150 155 vlevo
+    startplay obr_uvnitr_dvere "otvirani"
+    newroom Obrvenku 2
+  gplend
+
+OBJECT obr_uvnitr_dvere
+  ROOM ObrUvnitr
+  PRIORITY 81
+  STATUS ON
+  SEQ ..\obr_in\def\obr_dver
+  init
+    load obr_uvnitr_dvere "otevrene"
+    start obr_uvnitr_dvere "otevrene"
+  gplend
+
+object obr_pajzl1
+title Verwitterter Zwerg
+  room ObrUvnitr
+  priority 20
+  status on
+  seq ..\obr_in\def\pajzl1
+  init
+    load obr_pajzl1 "mlci"
+    start obr_pajzl1 "mlci"
+  gplend
+  look
+    justtalk
+D: "Dieser Zwerg ist eher Kleinholz."
+    juststay
+  gplend
+
+object obr_pajzl2
+title Verwitterter Zwerg
+  room ObrUvnitr
+  priority 20
+  status on
+  seq ..\obr_in\def\pajzl2
+  init
+    load obr_pajzl2 "mlci"
+    start obr_pajzl2 "mlci"
+  gplend
+  lookc 88 172 vlevo
+  look
+    justtalk
+D: "Seine Augen zwinkern."
+D: "Das bedeutet wohl, daß er am Leben ist!"
+D: "Hurra!"
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 88 172 vlevo
+  use
+    load obr_pajzl2 "mluvi"
+    dialogue "wobpajzl.txt"
+    start obr_pajzl2 "mlci"
+  gplend
+
+OBJECT oko_leve
+title Schädel
+  ROOM ObrUvnitr
+  PRIORITY 160
+  STATUS ON
+  SEQ ..\obr_in\def\woko1
+  INIT
+   labels nemelem
+    if(isobjaway(obr_pajzl1)) nemelem
+    load oko_leve "leve"
+    start oko_leve "leve"
+    exit
+   label nemelem
+    load oko_leve "nemele"
+    start oko_leve "nemele"
+  GPLEND
+  look
+    execlook lebka
+  gplend
+
+OBJECT oko_prave
+title Schädel
+  ROOM ObrUvnitr
+  PRIORITY 160
+  STATUS ON
+  SEQ ..\obr_in\def\woko2
+  INIT
+   labels nemelem
+    if(isobjaway(obr_pajzl1)) nemelem
+    load oko_prave "prave"
+    start oko_prave "prave"
+    exit
+   label nemelem
+    load oko_prave "nemele"
+    start oko_prave "nemele"
+  GPLEND
+  look
+    execlook lebka
+  gplend
+
+object wob_provaz
+title Schnur
+  ROOM ObrUvnitr
+  PRIORITY 20
+  STATUS away
+  SEQ ..\obr_in\def\ob_prov
+  INIT
+    load wob_provaz "z"
+    start wob_provaz "z"
+  GPLEND
+  look
+    justtalk
+D: "Ich hebe das besser mal auf."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    justtalk
+D: "So etwas ist immer nützlich."
+    juststay
+    objstat away wob_provaz
+    icostat on i_provaz
+  gplend
+
+object wob_kolo
+title Zahnrad
+  ROOM ObrUvnitr
+  PRIORITY 20
+  STATUS away
+  SEQ ..\obr_in\def\ob_kolo
+  INIT
+    load wob_kolo "z"
+    start wob_kolo "z"
+    loadmap "..\obr_in\def\ob_kolo.map"
+  GPLEND
+  look
+    justtalk
+D: "Ein rostiges Metallrad."
+D: "Das ist wohl von einer Mühle."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    justtalk
+D: "Von nun an
+    wird dieses wertlose Metallstück
+    ein Ersatzteil sein."
+    juststay
+    objstat away wob_kolo
+    icostat on i_kolo
+    roommap
+  gplend
+
+OBJECT akvarko
+title Eingelegte Zwerge
+  ROOM ObrUvnitr
+  PRIORITY 201
+  STATUS ON
+  SEQ ..\obr_in\def\akvarko
+  INIT
+    load akvarko "z"
+    start akvarko "z"
+    loadmap "..\obr_in\def\akvarko.map"
+  GPLEND
+  look
+   labels mamesaty
+    if(prozkoumal_akvarko=1) mamesaty
+    justtalk
+D: "Ein Zwergen-Aquarium."
+    juststay
+  {po 32767. se to muze zblbnout, tolikrat snad nikdo akvarko neprozkouma...
+    let prozkoumal_akvarko (prozkoumal_akvarko+1)
+    exit
+  label mamesaty
+    load obr_hlava "mluvi"
+    dialogue "wobsaty.txt"
+  gplend
+
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT lebka
+title Schädel
+  ROOM ObrUvnitr
+  PRIORITY 90
+  STATUS ON
+  SEQ ..\obr_in\DEF\oi_lebka
+  INIT
+    load lebka "ZAKLADNI"
+    start lebka "ZAKLADNI"
+  GPLEND
+  lookc 192 180 vpravo
+  look
+    labels nemelem
+    justtalk
+    if (objstat(obr_pajzl1)=away) nemelem
+D: "Er zermahlt etwas. Igitt!"
+    juststay
+    exit
+  label nemelem
+D: "Der zermahlt keine Zwerge mehr."
+    juststay
+  gplend
+
+{************************ ObrVenku *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_ObrVenku_maska2 left
+title Weg
+  ROOM ObrVenku
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\OBR_OUT\DEF\EXIT
+  INIT
+    load obj_ObrVenku_maska2 "ZAKLADNI"
+    start obj_ObrVenku_maska2 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    newroom map 1
+  gplend
+  look
+    justtalk
+D: "Es gibt keinen Grund zu gehen,
+    es ist schön auf dem Land."
+    juststay
+  gplend
+
+object obrvenku_dvere right
+title In den Bau des Riesen
+  room obrvenku
+  priority 169
+  status on
+  seq ..\obr_out\def\dvere
+  init
+   labels gate2
+    load obrvenku_dvere "otevrene"
+    load obrvenku_dvere "zavrene"
+    if (gate=2) gate2
+    start obrvenku_dvere "otevrene"
+    exit
+   label gate2
+    start obrvenku_dvere "zavrene"
+  gplend
+  canuse (1)
+  use
+    walkonplay 123 161 vpravo
+    load obrvenku_dvere "zavirame"
+    startplay obrvenku_dvere "zavirame"
+    start obrvenku_dvere "zavrene"
+    newroom Obruvnitr 1
+  gplend
+  look
+    justtalk
+D: "Laß uns reingehen"
+    juststay
+  gplend
+
+object obrvenku_havran
+title Kanarienvogel
+  room obrvenku
+  priority 180
+  status on
+  seq ..\obr_out\def\havran
+  init
+    load obrvenku_havran "sedi"
+    start obrvenku_havran "sedi"
+  gplend
+  lookc 96 180 vpravo
+  look
+   labels ted_odpovidame
+    let kanarek_mluvi (kanarek_mluvi+1)
+    if ((kanarek_mluvi mod 4)=0) ted_odpovidame
+    justtalk
+D: "Hallo Vögelchen?"
+    juststay
+    exit
+   label ted_odpovidame
+    dialogue "kanarek.txt"
+  gplend
+
+object obrvenku_souska
+title Zweig
+  room obrvenku
+  priority 180
+  status on
+  seq ..\obr_out\def\souska
+  init
+    load obrvenku_souska "z"
+    start obrvenku_souska "z"
+  gplend
+  look
+    justtalk
+D: "Der wäre gut für ein Feuer."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    objstat away obrvenku_souska
+    icostat on i_souska
+    justtalk
+D: "Ich nehm ihn mal mit."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_ObrVenku_maska176
+title Schädel
+  ROOM ObrVenku
+  PRIORITY 176
+  STATUS ON
+  SEQ ..\OBR_OUT\DEF\LEBKA
+  INIT
+    load obj_ObrVenku_maska176 "ZAKLADNI"
+    start obj_ObrVenku_maska176 "ZAKLADNI"
+  GPLEND
+  lookc 108 176 vpravo
+  look
+    justtalk
+D: "Der hat einen Zahndefekt"
+D: "und sein Unterkiefer ist auch verschwunden."
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 108 176 vpravo
+  use
+    dialogue "lebka.txt"
+  gplend
+
+OBJECT vlk
+  TITLE
+  ROOM ObrVenku
+  PRIORITY 202
+  STATUS ON
+  SEQ ..\OBR_OUT\DEF\vlk
+  INIT
+    load vlk "z"
+    start vlk "z"
+  GPLEND
+  lookc 108 176 vpravo
+  look
+    justtalk
+D: "Wuff!"
+    juststay
+  gplend
+
+{************************ parezy *********************************}
+
+{parezy normal:}
+OBJECT par
+title Zwei alte Stümpfe
+  ROOM parezy
+  PRIORITY 10
+  STATUS on
+  SEQ ..\parezy\def\par_1
+  INIT
+    load par "z"
+    start par "z"
+  gplend
+  canuse (isactico(0)or(isactico(i_jezek)and(budu_drbat=1))
+  usec 68 160 vpravo
+  use
+   labels parezy_pokec
+    if(isactico(0)) parezy_pokec
+  {jinak podrbeme:}
+    walkonplay 12 152 vpravo
+    load jezdrb "drbe"
+    load bert "jezek"
+    start jezdrb "drbe"
+    startplay bert "jezek"
+    stayon 12 152 vpravo
+    icostat off i_jezek
+    objstat away par
+    objstat away par2
+    objstat away par3
+    objstat away par5
+    objstat away par6
+    objstat_on par0 parezy
+    objstat_on tajnyvchod parezy
+    start tajnyvchod "z"
+    load par0 "otvirani"
+    startplay par0 "otvirani"
+    start par0 "z"
+    exit
+   label parezy_pokec
+    load par4 "mluvi"
+    load par5 "mluvi"
+    load par6 "mluvi"
+    load par7 "mluvi"
+    load par7 "mlci"
+    dialogue "parezy.txt"
+  gplend
+  look
+    justtalk
+D: "Das sind uralte Zeitgenossen."
+D: "Die erinnern sich sicher noch an die Zeit,
+    als ich geboren wurde..."
+    juststay
+  gplend
+
+{parezy s vchodem:}
+OBJECT par0
+title Zwei alte Stümpfe
+  ROOM parezy
+  PRIORITY 11
+  STATUS off
+  SEQ ..\parezy\def\par_0
+  INIT
+    load par0 "z"
+    start par0 "z"
+  gplend
+  canuse (isactico(0))
+  usec 68 160 vpravo
+  use
+    load par4 "mluvi"
+    load par7 "mluvi"
+    load par7 "mlci"
+    dialogue "parezy.txt"
+  gplend
+  lookc 68 160 vpravo
+  look
+   labels par0_bodl
+    if (nasel_bodlinu=0) par0_bodl
+    justtalk
+D: "So altes Holz hätte sicher
+    so seine Schwierigkeit damit
+    sich den Rücken zu stärken."
+    juststay
+    exit
+   label par0_bodl
+    let nasel_bodlinu (1)
+    icostat on i_jehla
+    justtalk
+D: "Autsch, mein Zeh!
+    Ein Igelstachel
+    ist in der Wurzel stecken geblieben."
+    juststay
+  gplend
+
+OBJECT par2
+title Zwei alte Stümpfe
+  ROOM parezy
+  PRIORITY 10
+  STATUS on
+  SEQ ..\parezy\def\par_2
+  INIT
+    load par2 "z"
+    start par2 "z"
+  gplend
+  canuse (isactico(0)or(isactico(i_jezek)and(budu_drbat=1))
+  usec 68 160 vpravo
+  use
+    execuse par
+  gplend
+  lookc 68 160 vpravo
+  look
+    execlook par
+  gplend
+
+OBJECT par3
+title Zwei alte Stümpfe
+  ROOM parezy
+  PRIORITY 10
+  STATUS on
+  SEQ ..\parezy\def\par_3
+  INIT
+    load par3 "z"
+    start par3 "z"
+  gplend
+  canuse (isactico(0)or(isactico(i_jezek)and(budu_drbat=1))
+  usec 68 160 vpravo
+  use
+    execuse par
+  gplend
+  lookc 68 160 vpravo
+  look
+    execlook par
+  gplend
+
+OBJECT par4
+title Zwei alte Stümpfe
+  ROOM parezy
+  PRIORITY 10
+  STATUS on
+  SEQ ..\parezy\def\par_4
+  INIT
+    load par4 "mlci"
+    start par4 "mlci"
+  gplend
+  canuse (isactico(0)or(isactico(i_jezek)and(budu_drbat=1))
+  usec 68 160 vpravo
+  use
+   labels par4_par
+    if(isobjon(par)) par4_par
+    execuse par0
+    exit
+   label par4_par
+    execuse par
+  gplend
+  lookc 68 160 vpravo
+  look
+   labels lookpar4_par
+    if(isobjon(par)) lookpar4_par
+    execlook par0
+    exit
+   label lookpar4_par
+    execlook par
+  gplend
+
+OBJECT par5
+title Zwei alte Stümpfe
+  ROOM parezy
+  PRIORITY 10
+  STATUS on
+  SEQ ..\parezy\def\par_5
+  INIT
+    load par5 "mlci"
+    start par5 "mlci"
+  gplend
+  canuse (isactico(0)or(isactico(i_jezek)and(budu_drbat=1))
+  usec 68 160 vpravo
+  use
+    execuse par
+  gplend
+  lookc 68 160 vpravo
+  look
+    execlook par
+  gplend
+
+OBJECT par6
+title Zwei alte Stümpfe
+  ROOM parezy
+  PRIORITY 10
+  STATUS on
+  SEQ ..\parezy\def\par_6
+  INIT
+    load par6 "mlci"
+    start par6 "mlci"
+  gplend
+  canuse (isactico(0)or(isactico(i_jezek)and(budu_drbat=1))
+  usec 68 160 vpravo
+  use
+   labels par7_par
+    if(isobjon(par)) par7_par
+    execuse par0
+    exit
+   label par7_par
+    execuse par
+  gplend
+  lookc 68 160 vpravo
+  look
+   labels lookpar7_par
+    if(isobjon(par)) lookpar7_par
+    execlook par0
+    exit
+   label lookpar7_par
+    execlook par
+  gplend
+
+OBJECT par7
+title Zwei alte Stümpfe
+  ROOM parezy
+  PRIORITY 11
+  STATUS on
+  SEQ ..\parezy\def\par_7
+  canuse (isactico(0)or(isactico(i_jezek)and(budu_drbat=1))
+  usec 68 160 vpravo
+  use
+    execuse par
+  gplend
+  lookc 68 160 vpravo
+  look
+    execlook par
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_parezy_maska4 left
+title Irgendwo anders
+  ROOM parezy
+  PRIORITY 4
+  STATUS ON
+  SEQ ..\PAREZY\DEF\EXIT
+  INIT
+    load obj_parezy_maska4 "ZAKLADNI"
+    start obj_parezy_maska4 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Aber ABSOLUT irgendwo anders!"
+    juststay
+  gplend
+  canuse (1)
+  use
+    walkonplay 0 180 vlevo
+    newroom map 1
+  gplend
+
+OBJECT tajnyvchod down
+title Durch den Geheimpfad
+  ROOM parezy
+  PRIORITY 4
+  STATUS off
+  SEQ ..\PAREZY\DEF\tajnej
+  INIT
+    load tajnyvchod "z"
+    start tajnyvchod "z"
+  GPLEND
+  look
+    justtalk
+D: "'Geheimloch' trifft es wohl eher."
+    juststay
+  gplend
+  canuse (1)
+  usec 148 176 vpravo
+  use
+    load bert "skace_dovnit"
+    startplay bert "skace_dovnit"
+    newroom hraduvn 1
+  gplend
+
+OBJECT netopil
+  TITLE
+  ROOM parezy
+  PRIORITY 50
+  STATUS on
+  SEQ ..\PAREZY\DEF\netopyr
+  init
+    load netopil "z"
+    start netopil "z"
+  gplend
+
+OBJECT jezdrb
+  TITLE
+  ROOM parezy
+  PRIORITY 50
+  STATUS on
+  SEQ ..\PAREZY\DEF\jez2drb
+
+{************************ SipDumUvn *********************************}
+object sd_kronika
+title Chronik
+  room sipdumuvn
+  priority 142
+  status on
+  seq ..\sipdum_i\def\sd_kron
+  init
+    load sd_kronika "zakladni"
+    start sd_kronika "zakladni"
+  gplend
+  look
+    justtalk
+D: "Ein echter Hingucker."
+D: "Ich hätte wirklich nicht gedacht,
+    daß sie so ein schmuddeliges,
+    fettes Taschenbuch sein würde..."
+D: "...das hat mich echt überrascht!"
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    justtalk
+D: "Chronik?"
+D: "Komm schon..."
+D: "Vielleicht sollte ich lispeln,
+    damit du mit mir sprichst?"
+D: "Stell dich nicht so an und hau rein!"
+D: "Ich hoffe, du bist nicht taubstumm."
+D: "(Vielleicht ist ihr iPod einfach zu laut...)"
+    juststay
+    let vim_o_kronice (1)
+  gplend
+
+object stopy1
+title Fußabdruck
+  room sipdumuvn
+  priority 10
+  status off
+  seq ..\sipdum_i\def\stopy1
+  init
+    load stopy1 "zakladni"
+    start stopy1 "zakladni"
+  gplend
+  look
+   labels povykricniku
+    if (prozkoumal_vykricnik>1) povykricniku
+    justtalk
+D: "Wem gehören die wohl?"
+    juststay
+    exit
+   label povykricniku
+    justtalk
+D: "Ich glaube, die Fußspuren
+    weisen auf eine Verbindung
+    zu den Schmierereien hin."
+D: "Aber ich bin nicht sicher!"
+    juststay
+  gplend
+
+object stopy2
+title Fußabdruck
+  room sipdumuvn
+  priority 10
+  status off
+  seq ..\sipdum_i\def\stopy2
+  init
+    load stopy2 "zakladni"
+    start stopy2 "zakladni"
+  gplend
+  look
+    execlook stopy1
+  gplend
+
+object stopy3
+title Fußspur
+  room sipdumuvn
+  priority 142
+  status off
+  seq ..\sipdum_i\def\stopy3
+  init
+    load stopy3 "zakladni"
+    start stopy3 "zakladni"
+  gplend
+  look
+    execlook stopy1
+  gplend
+
+object vykricnik
+title Hinweis
+  room sipdumuvn
+  priority 10
+  status off
+  seq ..\sipdum_i\def\vykric
+  init
+    load vykricnik "zakladni"
+    start vykricnik "zakladni"
+  gplend
+  look
+   labels vy_podruhe vy_potreti vy_poctvrte vy_popate
+    if (prozkoumal_vykricnik=1) vy_podruhe
+    if (prozkoumal_vykricnik=2) vy_potreti
+    if (prozkoumal_vykricnik=3) vy_poctvrte
+    if (prozkoumal_vykricnik=4) vy_popate
+    justtalk
+D: "Ich glaub, ich hab diese Zeichnung
+    schon mal gesehen..."
+    juststay
+    let prozkoumal_vykricnik (1)
+    exit
+   label vy_podruhe
+    justtalk
+D: "Der Lehm und das weiche Moos können nur aus..."
+D: "...ja, woher eigentlich kommen?!"
+    juststay
+    let prozkoumal_vykricnik (2)
+    exit
+   label vy_potreti
+    justtalk
+D: "Schwierig aus den Fußspuren zu erkennen,
+    aber der Frische der Erde nach..."
+D: "...kann der Täter nicht weit sein!"
+    juststay
+    let prozkoumal_vykricnik (3)
+    exit
+   label vy_poctvrte
+    justtalk
+D: "Natürlich, jetzt erinnere ich mich!"
+D: "Spuren wie diese können nur
+    von einem Ort stammen!"
+D: "Dem dunklen Wald im Nordwesten!"
+    juststay
+    let new_skreti (1)
+    let prozkoumal_vykricnik (4)
+    exit
+   label vy_popate
+    justtalk
+D: "Wow, diese Schmierereien
+    erinnern mich an früher..."
+    juststay
+  gplend
+
+object sd_dvirka
+  title
+  room sipdumuvn
+  priority 140
+  status away
+  seq ..\sipdum_i\def\sd_dvirk
+  init
+    load sd_dvirka "zakladni"
+    start sd_dvirka "zakladni"
+  gplend
+
+object saze
+title Ruß
+  room sipdumuvn
+  priority 140
+  status away
+  seq ..\sipdum_i\def\saze
+  init
+    load saze "zakladni"
+    start saze "zakladni"
+  gplend
+  look
+    justtalk
+D: "Etwas Asche aus dem Schornstein.
+    Ziemlich schmutzig."
+    juststay
+  gplend
+  canuse (isactico(i_fousy))
+  use
+    justtalk
+D: "Das war eine gute Idee!"
+D: "Es gibt nichts besseres um Schmutz zu sammeln
+    als ein dreckiger Goblinbart..."
+    juststay
+    icostat off i_fousy
+    icostat on i_saze
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipdumuvn_maska3
+title Diplom
+  ROOM sipdumuvn
+  PRIORITY 3
+  STATUS ON
+  SEQ ..\SIPDUM_I\DEF\DIPLOM
+  INIT
+    load obj_sipdumuvn_maska3 "ZAKLADNI"
+    start obj_sipdumuvn_maska3 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Hmm, er hat ein Diplom..."
+D: "Ein Diplom, nichts wertvolles..."
+D: "Nur ein wertloses Stück Papier!"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipdumuvn_maska2
+title Ruhmeshalle
+  ROOM sipdumuvn
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\SIPDUM_I\DEF\MEDAJLE
+  INIT
+    load obj_sipdumuvn_maska2 "ZAKLADNI"
+    start obj_sipdumuvn_maska2 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Ich trau meinen Augen nicht?!"
+D: "Der Dartpfeil ist aus Gold!"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipdumuvn_maska6 right
+title Das Haus verlassen
+  ROOM sipdumuvn
+  PRIORITY 6
+  STATUS ON
+  SEQ ..\SIPDUM_I\DEF\SU_EXIT
+  INIT
+    load obj_sipdumuvn_maska6 "ZAKLADNI"
+    start obj_sipdumuvn_maska6 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    newroom sipdumven 3
+  gplend
+  look
+    justtalk
+D: "Raus an die frische Luft?"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipdumuvn_maska30
+title Zielscheibe
+  ROOM sipdumuvn
+  PRIORITY 30
+  STATUS ON
+  SEQ ..\SIPDUM_I\DEF\TERC
+  INIT
+    load obj_sipdumuvn_maska30 "ZAKLADNI"
+    start obj_sipdumuvn_maska30 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Sieht aus als wäre es aus Pappe geschnitten."
+    juststay
+  gplend
+
+{************************ sipdumven *********************************}
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipdumven_maska6 right
+title Entlang der Wiese
+  ROOM sipdumven
+  PRIORITY 6
+  STATUS ON
+  SEQ ..\SIPDUM_O\DEF\EX_MOST
+  INIT
+    load obj_sipdumven_maska6 "ZAKLADNI"
+    start obj_sipdumven_maska6 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  usec 188 100 vpravo
+  use
+    newroom most 1
+  gplend
+  look
+    justtalk
+D: "Also los."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+OBJECT obj_sipdumven_maska3 right
+title Zum Haus der|Drachen
+  ROOM sipdumven
+  PRIORITY 3
+  STATUS ON
+  SEQ ..\SIPDUM_O\DEF\EX_DRCH
+  INIT
+    load obj_sipdumven_maska3 "ZAKLADNI"
+    start obj_sipdumven_maska3 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 320 188 vpravo
+    newroom chaven 1
+  gplend
+  look
+    justtalk
+D: "Der Pfad zu meinem Haus."
+{#A path...-typical Czech school poetry --- no english variation#
+D: "Wir sollten weiter...
+    Ich rieche schon die Küche."
+    juststay
+  gplend
+
+OBJECT ptak
+title Vögelchen
+  ROOM sipdumven
+  PRIORITY 160
+  STATUS ON
+  SEQ ..\SIPDUM_O\DEF\vtaky
+  INIT
+    load ptak "ZAKLADNI"
+    start ptak "ZAKLADNI"
+  GPLEND
+  canuse (isactico(i_prak))
+  usec 252 188 vlevo
+  use
+    labels mam_munici mam_malo_munice
+    if(isicoon(i_kameny_3)) mam_munici
+    if(isicoon(i_kameny_2)) mam_malo_munice
+    if(isicoon(i_kameny_1)) mam_malo_munice
+    {zatim nemam zadnou munici:}
+    justtalk
+D: "Ich liebe es arme, hilflose Vögel abzuschießen..."
+D: "...aber ich habe keine Munition!"
+    juststay
+    exit
+   label mam_malo_munice
+    justtalk
+D: "Ich sollte Munition sammeln,
+    für den Fall daß ich daneben schieße."
+    juststay
+    exit
+   label mam_munici
+    icostat off i_prak
+    icostat off i_kameny_3
+    load ptak "cili se"
+    load sipdumven_list_up "padani"
+    mark
+    load bert "prak_vytahuj"
+    load bert "prak_schova"
+    load bert "prak_mluvi"
+    load bert "prak_strili1"
+    load bert "prak_strili2"
+    load munice "mimo"
+    load munice "hnizdo"
+    load munice "list"
+
+    startplay bert "prak_vytahuj"
+    start bert "prak_mluvi"
+D: "Ich tue das selten
+    und nun zum letzten Mal, das schwöre ich."
+D: "Ich sollte nicht auf Vögel schießen!"
+    startplay bert "prak_strili1"
+    start munice "mimo"
+    startplay bert "prak_strili2"
+    start bert "prak_mluvi"
+D: "So ein Mist, ich hab ihn verfehlt."
+D: "Aber das hält mich nicht auf!"
+   {podruhe shodime list:}
+    startplay bert "prak_strili1"
+    start munice "list"
+    start sipdumven_list_up "padani"
+    startplay bert "prak_strili2"
+    start bert "prak_mluvi"
+D: "Ich hab wohl mein Mojo verloren."
+D: "Ich sollte mich schämen."
+   {potreti se ptak prestehuje:}
+    startplay bert "prak_strili1"
+    start munice "hnizdo"
+    start ptak "cili se"
+    startplay bert "prak_strili2"
+    startplay bert "prak_schova"
+    release
+    start bert "kour-vlevo"
+    disablequickhero
+    walkon 100 100 vpravo
+
+    load ptak "stehovani"
+    load sipdumven_kour "skripnuti"
+    start sipdumven_kour "skripnuti"
+    startplay ptak "stehovani"
+    objstat away ptak
+    objstat away sipdumven_kour
+    objstat_on ptak_na_komine sipdumven
+    start ptak_na_komine "zakladni"
+    walkonplay 100 100 vpravo
+    enablequickhero
+    justtalk
+D: "Keine gute Tat bleibt ungestraft!"
+    juststay
+   {a jeste pridame na zem listecek:}
+    objstat away sipdumven_list_up
+    objstat_on sipdumven_list_down sipdumven
+    start sipdumven_list_down "zakladni"
+    objstat_on saze sipdumuvn
+    objstat_on sd_dvirka sipdumuvn
+  gplend
+  look
+    justtalk
+D: "Es ist ein Vogel - der singt."
+D: "Wie schrecklich.
+    Er hat sich einen Flügel verletzt!"
+    juststay
+  gplend
+
+OBJECT ptak_na_komine
+title Vögelchen
+  ROOM sipdumven
+  PRIORITY 160
+  STATUS off
+  SEQ ..\SIPDUM_O\DEF\vtaky_pr
+  INIT
+    load ptak_na_komine "ZAKLADNI"
+    start ptak_na_komine "ZAKLADNI"
+  GPLEND
+  lookc 136 148 vpravo
+  look
+    justtalk
+D: "Es ist ein Vogel - der singt."
+D: "Wie furchtbar. Er hat sich beide Flügel verletzt!"
+D: "Es ist ein verkrüppelter Vogel - der singt."
+    juststay
+  gplend
+
+OBJECT sipdumven_list_up
+  TITLE
+  ROOM sipdumven
+  PRIORITY 160
+  STATUS ON
+  SEQ ..\SIPDUM_O\DEF\list_up
+  INIT
+    load sipdumven_list_up "ZAKLADNI"
+    start sipdumven_list_up "ZAKLADNI"
+  GPLEND
+
+OBJECT sipdumven_list_down
+title Blatt
+  ROOM sipdumven
+  PRIORITY 10
+  STATUS off
+  SEQ ..\SIPDUM_O\DEF\list_dwn
+  INIT
+    load sipdumven_list_down "ZAKLADNI"
+    start sipdumven_list_down "ZAKLADNI"
+  GPLEND
+  canuse (isactico(0))
+  use
+    objstat away sipdumven_list_down
+    icostat on i_list
+  gplend
+  look
+   labels skip
+    justtalk
+D: "Wenn jemand einen Truthahn rupft,
+    dann fliegen Federn herum."
+D: "Ich bezweifel ernsthaft,
+    dass solch ein Sprichwort existiert."
+D: "Aber ich möchte vermitteln,
+    wie sehr ich bedaure,
+    daß ich dem Blatt weh getan habe."
+D: "Es fiel vom Baum!"
+D: "Was wird jetzt damit passieren?"
+D: "Es wird wohl verdorren."
+    goto skip
+D: "Sag es ruhig...
+    ...es wird sterben!"
+D: "Oh nein!!!"
+D: "Herrje, was hab ich nur getan!!!"
+D: "So eine vorzeitige Begegnung mit dem Tod..."
+D: "...könnte bei mir,
+    einer jungen beeinflußbaren Drachenkreatur,
+    [wie du ja weisst]..."
+D: "...ein enormes psychologisches Trauma auslösen!"
+D: "Schnell weg von hier!"
+D: "Lass mich meine Spuren verwischen!"
+D: "(Der erste Windstoß wird das erledigen ...)"
+D: "Oder vielleicht sollte ich eine kleine Zeremonie
+    für das Blatt abhalten?"
+D: "Nichts Großes, nichts Teures, versteht sich,
+    aber trotzdem..."
+D: "Schau es nur an,
+    wie es da so würdevoll liegt..."
+   label skip
+D: "Ich sollte versuchen es zu recyclen!"
+D: "Das ist eine gute Idee,
+    und obendrein gibt es kein schlechtes Gewissen!
+    So ein Glück, daß es heruntergefallen ist.
+    Es könnte nützlich sein."
+    juststay
+  gplend
+
+OBJECT sipdumven_kour
+title
+  ROOM sipdumven
+  PRIORITY 161
+  STATUS ON
+  SEQ ..\SIPDUM_O\DEF\chkour2
+  INIT
+    load sipdumven_kour "ZAKLADNI"
+    start sipdumven_kour "ZAKLADNI"
+  GPLEND
+
+{nasledujici objekt je kvuli strileni prakem, pozdeji
+{ty animace mozna pridame primo do hlavniho hrdiny
+OBJECT bert2
+title
+  ROOM sipdumven
+  PRIORITY 202
+  STATUS on
+  SEQ ..\SIPDUM_O\DEF\draprak2
+
+OBJECT sipdumven_dvere right
+title In das Haus
+  ROOM sipdumven
+  PRIORITY 131
+  STATUS off
+  SEQ ..\SIPDUM_O\DEF\chdverot
+  INIT
+    load sipdumven_dvere "otevrene"
+    start sipdumven_dvere "otevrene"
+  GPLEND
+  canuse (1)
+  usec 192 148 vpravo
+  use
+    newroom sipdumuvn 1
+  gplend
+  lookc 192 148 vpravo
+  look
+    justtalk
+D: "Der Schlüssel hat die Tür geöffnet."
+D: "Was könnte darin versteckt sein?"
+    juststay
+  gplend
+
+OBJECT sipdumven_dvere_zav
+title Tür
+  ROOM sipdumven
+  PRIORITY 131
+  STATUS on
+  SEQ ..\SIPDUM_O\DEF\chdverza
+  INIT
+    load sipdumven_dvere_zav "zavrene"
+    start sipdumven_dvere_zav "zavrene"
+  GPLEND
+  canuse (isactico(i_klic_sipdum))
+  usec 192 148 vpravo
+  use
+    icostat off i_klic_sipdum
+    justtalk
+D: "Sollte einfach sein mit diesem Schlüssel."
+    juststay
+    load sipdumven_dvere_zav "otvirani"
+    startplay sipdumven_dvere_zav "otvirani"
+    objstat away sipdumven_dvere_zav
+    objstat_on sipdumven_dvere sipdumven
+    start sipdumven_dvere "otevrene"
+  gplend
+  lookc 192 148 vpravo
+  look
+    justtalk
+D: "Sie ist verschlossen."
+D: "Wie ist das möglich?!"
+D: "Ich will sicher nichts stehlen,
+    höchstens was für einige Zeit ausborgen."
+D: "Auch wenn ich nicht weiß was
+    ...bis jetzt..."
+    juststay
+  gplend
+
+OBJECT munice
+title
+  ROOM sipdumven
+  PRIORITY 161
+  STATUS ON
+  SEQ ..\SIPDUM_O\DEF\sutrprak
+
+
+{************************ sipek *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipek_maska2 left
+title Fort
+  ROOM sipek
+  PRIORITY 2
+  STATUS ON
+  SEQ ..\SIPEK\DEF\EXIT
+  INIT
+    load obj_sipek_maska2 "ZAKLADNI"
+    start obj_sipek_maska2 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 0 196 vlevo
+    newroom map 1
+  gplend
+  look
+    justtalk
+D: "Na klar, ich verstehe."
+    juststay
+  gplend
+
+OBJECT cerv
+title Wurm
+  ROOM sipek
+  PRIORITY 20
+  STATUS off
+  SEQ ..\SIPEK\DEF\sipcerv
+  INIT
+    load cerv "zije"
+    start cerv "zije"
+  GPLEND
+  canuse (isactico(0)or isactico(i_lenost))
+  usec 56 172 vpravo
+  use
+   labels likvidace padaji ven
+    if(isactico(i_lenost)) likvidace
+    dialogue "cerv.txt"
+    exit
+   label likvidace
+    icostat off i_lenost
+    justtalk
+D: "Ich hoffe, das Elixir ist stark genug."
+    juststay
+    walkonplay 92 160 vlevo
+    load bert "lenost"
+    load sip_kysel "z"
+    objstat away cerv
+    start sip_kysel "z"
+    startplay bert "lenost"
+    start bert "kour-vlevo"
+    walkonplay 86 180 vpravo
+
+    {zapneme spravne sipky:}
+    if(isobjon(sip1zel)) padaji
+   {rostou:}
+    objstat_on sip1zel sipek
+    objstat_on sip2zel sipek
+    load sip1zel "roste"
+    load sip2zel "roste"
+    startplay sip2zel "roste"
+    start sip2zel "z"
+    startplay sip1zel "roste"
+    start sip1zel "z"
+    goto ven
+   label padaji
+   {padaji:}
+    objstat_on sip1cer sipek
+    objstat_on sip2cer sipek
+    load sip1cer "pada"
+    load sip2cer "pada"
+    objstat away sip2zel
+    startplay sip2cer "pada"
+    start sip2cer "z"
+    objstat away sip1zel
+    startplay sip1cer "pada"
+    start sip1cer "z"
+   label ven
+  gplend
+  look
+    justtalk
+D: "Gefräßiger Dartfresser."
+D: "Du wolltest den lateinischen Ausdruck hören?"
+D: "Da hast du kein Glück."
+D: "Wir alten Lateiner
+    behalten alles für uns."
+    juststay
+  gplend
+
+OBJECT sipek_obl
+title Himmel
+  ROOM sipek
+  PRIORITY 20
+  STATUS ON
+  SEQ ..\SIPEK\DEF\mojeobl
+  INIT
+    load sipek_obl "tmava"
+    start sipek_obl "tmava"
+  GPLEND
+  look
+    justtalk
+D: "Donnerwetter, es scheint,
+    als würde es bald regnen."
+D: "Oder es könnte sich
+    zu einem grossen Sturm entwickeln."
+D: "Wirf alle metallischen Gegenstände weg!"
+D: "Das wird wahrscheinlich nichts bringen,
+    weil ich einen Blitzstab als Baby gegessen hab..."
+    juststay
+    let prozkoumal_oblohu (1)
+  gplend
+
+OBJECT sipek_jas
+  TITLE
+  ROOM sipek
+  PRIORITY 20
+  STATUS away
+  SEQ ..\SIPEK\DEF\mojeobl
+  INIT
+    load sipek_jas "jasna"
+    start sipek_jas "jasna"
+  GPLEND
+
+OBJECT sipek_vitr
+  TITLE
+  ROOM sipek
+  PRIORITY 21
+  STATUS ON
+  SEQ ..\SIPEK\DEF\vitrnew
+  INIT
+  GPLEND
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipek_maska5
+title Landmarke
+  ROOM sipek
+  PRIORITY 22
+  STATUS ON
+  SEQ ..\SIPEK\DEF\PATNIK1
+  INIT
+    load obj_sipek_maska5 "ZAKLADNI"
+    start obj_sipek_maska5 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Schau da, eine Landmarke."
+D: "Und ich dachte schon jemand wäre hier gestorben!"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipek_maska4
+title Landmarke
+  ROOM sipek
+  PRIORITY 22
+  STATUS ON
+  SEQ ..\SIPEK\DEF\PATNIK2
+  INIT
+    load obj_sipek_maska4 "ZAKLADNI"
+    start obj_sipek_maska4 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Diese Landmarke muß ein Ausreißer sein!?"
+    juststay
+  gplend
+
+OBJECT sipkovnik
+title Dart-Baum
+  ROOM sipek
+  PRIORITY 3
+  STATUS ON
+  SEQ ..\SIPEK\DEF\STR1
+  INIT
+    load sipkovnik "ZAKLADNI"
+    start sipkovnik "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Oh, es ist der große alte Baum!"
+    juststay
+  gplend
+  canuse (isactico(i_trychtyr))
+  use immediately
+   labels skip
+    icostat off i_trychtyr
+    justtalk
+D: "Lass uns Doktor spielen..."
+    goto skip
+D: "Ein Trichter wie dieser könnte als Otoskop
+    fungieren, oder sogar als Stethoskop!"
+   label skip
+    juststay
+    walkonplay 92 160 vlevo
+    load bert "trych_nahoru"
+    startplay bert "trych_nahoru"
+    load bert "trych_mluvi"
+    load bert "trych_poslou"
+    startplay bert "trych_poslou"
+    start bert "trych_mluvi"
+D: "Scheint ernst zu sein."
+    startplay bert "trych_poslou"
+    load bert "trych_cerv1"
+    load bert "trych_cerv3"
+    load bert "trych_cerv"
+    startplay bert "trych_cerv1"
+    start bert "trych_cerv"
+D: "Hoooooooo - heh - heh - hoooo!"
+    startplay bert "trych_cerv3"
+    load bert "trych_dolu"
+    startplay bert "trych_dolu"
+    start bert "kour-vlevo"
+    objstat_on cerv sipek
+    start cerv "zije"
+    walkonplay 86 180 vpravo
+    justtalk
+D: "Das war eine mächtige Erfahrung."
+D: "Ich hätte nie gedacht,
+    daß diese medizinischen Instrumente
+    so effektiv sein können!"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipek_maska9
+title Dart-Baum
+  ROOM sipek
+  PRIORITY 9
+  STATUS ON
+  SEQ ..\SIPEK\DEF\sipek9
+  INIT
+    load obj_sipek_maska9 "ZAKLADNI"
+    start obj_sipek_maska9 "ZAKLADNI"
+  GPLEND
+  look
+    execlook sipkovnik
+  gplend
+  canuse (isactico(i_trychtyr))
+  use
+    execuse sipkovnik
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipek_maska10
+title Dart-Baum
+  ROOM sipek
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\SIPEK\DEF\STR3
+  INIT
+    load obj_sipek_maska10 "ZAKLADNI"
+    start obj_sipek_maska10 "ZAKLADNI"
+  GPLEND
+  look
+    execlook sipkovnik
+  gplend
+  canuse (isactico(i_trychtyr))
+  use
+    execuse sipkovnik
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_sipek_maska11
+title Dart-Baum
+  ROOM sipek
+  PRIORITY 11
+  STATUS ON
+  SEQ ..\SIPEK\DEF\STR4
+  INIT
+    load obj_sipek_maska11 "ZAKLADNI"
+    start obj_sipek_maska11 "ZAKLADNI"
+  GPLEND
+  look
+    execlook sipkovnik
+  gplend
+  canuse (isactico(i_trychtyr))
+  use
+    execuse sipkovnik
+  gplend
+
+OBJECT sip1cer
+title Dartpfeil
+  ROOM sipek
+  PRIORITY 30
+  STATUS off
+  SEQ ..\SIPEK\DEF\sipk1cer
+  INIT
+    load sip1cer "Z"
+    start sip1cer "Z"
+    loadmap "..\sipek\def\sipk1cer.map"
+  GPLEND
+  look
+    justtalk
+D: "Er ist rot und reif wie eine Tomate."
+D: "Ich hoffe, er ist nicht überreif."
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 172 188 vpravo
+  use
+   labels druhou
+    objstat away sip1cer
+    if(isobjon(sip2cer)) druhou
+    roommap
+    exit
+   label druhou
+    icostat on i_sipky
+    justtalk
+D: "Ich nehm beide."
+    juststay
+    walkonplay 30 180 vlevo
+    execuse sip2cer
+  gplend
+
+OBJECT sip2cer
+title Dartpfeil
+  ROOM sipek
+  PRIORITY 30
+  STATUS off
+  SEQ ..\SIPEK\DEF\sipk2cer
+  INIT
+    load sip2cer "Z"
+    start sip2cer "Z"
+  GPLEND
+  look
+    execlook sip1cer
+  gplend
+  canuse (isactico(0))
+  usec 30 180 vlevo
+  use
+   labels druhou
+    objstat away sip2cer
+    if(isobjon(sip1cer)) druhou
+    roommap
+    exit
+   label druhou
+    icostat on i_sipky
+    justtalk
+D: "Ich nehm beide."
+    juststay
+    walkonplay 172 188 vpravo
+    execuse sip1cer
+  gplend
+
+OBJECT sip1zel
+title Dartpfeil
+  ROOM sipek
+  PRIORITY 30
+  STATUS off
+  SEQ ..\SIPEK\DEF\sipk1zel
+  INIT
+    load sip1zel "Z"
+    start sip1zel "Z"
+  GPLEND
+  look
+    justtalk
+D: "Er ist noch nicht ganz ausgewachsen,
+    er hat noch so eine ungesunde grüne Farbe!"
+    juststay
+  gplend
+
+OBJECT sip2zel
+title Dartpfeil
+  ROOM sipek
+  PRIORITY 30
+  STATUS off
+  SEQ ..\SIPEK\DEF\sipk2zel
+  INIT
+    load sip2zel "Z"
+    start sip2zel "Z"
+  GPLEND
+  look
+    execlook sip1zel
+  gplend
+
+OBJECT sip_kysel
+title
+  ROOM sipek
+  PRIORITY 30
+  STATUS on
+  SEQ ..\SIPEK\DEF\kyselin2
+
+{************************ skreti *********************************}
+
+object skr_ohen
+title Feuer
+  room skreti
+  priority 5
+  status on
+  seq ..\skreti\def\ohen
+  init
+    load skr_ohen "hori"
+    start skr_ohen "hori"
+  gplend
+  look
+    justtalk
+D: "Mist!"
+D: "Ich hab meine Bratwürstchen vergessen!"
+    juststay
+  gplend
+
+object kronika
+title Chronik
+  room skreti
+  priority 5
+  status on
+  seq ..\skreti\def\kronika
+  init
+    load kronika "mlci"
+    start kronika "mlci"
+  gplend
+  look
+   labels kr_look_mluvi
+    justtalk
+    if (kronika_zdrava=1) kr_look_mluvi
+D: "Sie spricht immer noch nicht."
+    juststay
+    exit
+   label kr_look_mluvi
+D: "Sie spricht wieder."
+    juststay
+  gplend
+  canuse (isobjaway(o_pohrabac) and (isactico(0) or isactico(i_bylina)))
+  usec 184 162 vpravo
+  use
+   labels kr_mluvi kr_lecim
+    {bylinou uzdravime:}
+    if (isactico(i_bylina)) kr_lecim
+    {jinak se budeme snazir pokecat:}
+    if (kronika_zdrava=1) kr_mluvi
+    justtalk
+D: "Frau Chronik!"
+    juststay
+D: "???"
+    justtalk
+D: "Sie bleibt stumm..."
+    juststay
+    exit
+   label kr_mluvi
+    load kronika "mluvi"
+    dialogue "kronika.txt"
+    start kronika "mlci"
+    exit
+   label kr_lecim
+    let kronika_zdrava (1)
+    load skreti_jiskry "jiskreni"
+    startplay skreti_jiskry "jiskreni"
+    objstat away skreti_jiskry
+    icostat off i_bylina
+    load kronika "mluvi"
+    dialogue "kronika.txt"
+    start kronika "mlci"
+  gplend
+
+object skreti_jiskry
+  title
+  room skreti
+  priority 6
+  status on
+  seq ..\skreti\def\krjiskry
+
+object o_pohrabac
+title Schürhaken
+  room skreti
+  priority 6
+  status on
+  seq ..\skreti\def\o_pohr
+  init
+    load o_pohrabac "zakladni"
+    start o_pohrabac "zakladni"
+  gplend
+  look
+    justtalk
+D: "Jetzt hab ich was zum Popeln."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+   labels muzu
+    if (skreti_spi=1) muzu
+    dialogue "skrepohr.txt"
+    exit
+   label muzu
+    objstat away o_pohrabac
+    justtalk
+D: "Ich bin sicher, der wird nützlich sein."
+    juststay
+    icostat on i_pohrabac
+  gplend
+
+object blby
+title Goblin
+  room skreti
+  priority 6
+  status on
+  seq ..\skreti\def\blby
+  init
+   labels blby_spi
+    load blby "spi"
+    if (skreti_spi=1) blby_spi
+    load blby "bdi"
+    start blby "bdi"
+    exit
+   label blby_spi
+    start blby "spi"
+  gplend
+  look
+    justtalk
+D: "Dumm."
+    juststay
+  gplend
+  canuse ((skreti_spi=0)and(isactico(0) or isactico(i_pohadka)))
+  usec 196 172 vlevo
+  use
+   labels skreti_pohadka
+    if (isactico(i_pohadka)) skreti_pohadka
+    load blby "mluvi"
+    load blby_hl "mluvi"
+    load blbejsi_hl "mluvi na dr"
+    load blbejsi_hl "mluvi na bl"
+    dialogue "skreti.txt"
+    start blby "bdi"
+    start blby_hl "mlci"
+    start blbejsi_hl "mlci"
+    exit
+   label skreti_pohadka
+ {jiz v prubehu cteni je nechat usnout!!!
+ {az docteme, najit v knize scenar
+    dialogue "pohadka.txt"
+    let skreti_spi (1)
+    start blby "spi"
+    start blby_hl "spi"
+    start blbejsi "spi"
+    objstat_on bota skreti
+    start bota "zakladni"
+    objstat_on blbejsi_fousy skreti
+    start blbejsi_fousy "zakladni"
+  gplend
+
+object blby_hl
+title Goblin
+  room skreti
+  priority 6
+  status on
+  seq ..\skreti\def\blby_hl
+  init
+   labels blby_hl_spi
+    load blby_hl "spi"
+    if (skreti_spi=1) blby_hl_spi
+    load blby_hl "mlci"
+    start blby_hl "mlci"
+    exit
+   label blby_hl_spi
+    start blby_hl "spi"
+  gplend
+  look
+    execlook blby
+  gplend
+  canuse ((skreti_spi=0)and(isactico(0) or isactico(i_pohadka)))
+  usec 196 172 vlevo
+  use
+    execuse blby
+  gplend
+
+object bota
+title Stiefel
+  room skreti
+  priority 8
+  status off
+  seq ..\skreti\def\skrbota
+  init
+    load bota "zakladni"
+    start bota "zakladni"
+  gplend
+  look
+    justtalk
+D: "Die Schnürsenkel scheinen ziemlich
+    verknotet zu sein."
+    juststay
+  gplend
+  canuse (isactico(i_pistala))
+  usec 88 148 vpravo
+  use
+    justtalk
+D: "Lass uns jammen."
+    icostat off i_pistala
+    objstat_on fusekle skreti
+    load bert "piska_vytahu"
+    startplay bert "piska_vytahu"
+    load fusekle "tkanicky"
+    load bota "tkanicky"
+    load bert "piska_piska"
+    start bert "piska_piska"
+    start fusekle "tkanicky"
+    startplay bota "tkanicky"
+    start fusekle "zakladni"
+    stayon 88 148 vpravo
+    walkonplay 80 156 vlevo
+    objstat away bota
+  gplend
+
+object fusekle
+title Socke
+  room skreti
+  priority 7
+  status off
+  seq ..\skreti\def\fusekle
+  init
+    load fusekle "zakladni"
+    start fusekle "zakladni"
+  gplend
+  look
+    justtalk
+D: "Da pellt sich mir die Nase..."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    objstat away fusekle
+    objstat_on bosanoha skreti
+    icostat on i_ponozka
+    start bosanoha "zakladni"
+  gplend
+
+object bosanoha
+title Goblin
+  room skreti
+  priority 7
+  status off
+  seq ..\skreti\def\bosanoha
+  init
+    load bosanoha "zakladni"
+    start bosanoha "zakladni"
+  gplend
+  look
+    execlook blby
+  gplend
+
+object blbejsi
+title Goblin
+  room skreti
+  priority 6
+  status on
+  seq ..\skreti\def\blbejsi
+  init
+   labels blbejsi_spi
+    load blbejsi "spi"
+    if (skreti_spi=1) blbejsi_spi
+    load blbejsi "bdi"
+    start blbejsi "bdi"
+    exit
+   label blbejsi_spi
+    start blbejsi "spi"
+  gplend
+  look
+    justtalk
+D: "Dümmer."
+    juststay
+  gplend
+  canuse ((skreti_spi=0)and(isactico(0) or isactico(i_pohadka)))
+  usec 196 172 vlevo
+  use
+    execuse blby
+  gplend
+
+object blbejsi_hl
+title Goblin
+  room skreti
+  priority 7
+  status on
+  seq ..\skreti\def\blbsi_hl
+  init
+    load blbejsi_hl "mlci"
+    start blbejsi_hl "mlci"
+  gplend
+  look
+    execlook blbejsi
+  gplend
+  canuse ((skreti_spi=0)and(isactico(0) or isactico(i_pohadka)))
+  usec 196 172 vlevo
+  use
+    execuse blbejsi
+  gplend
+
+object blbejsi_fousy
+title Bart
+  room skreti
+  priority 8
+  status off
+  seq ..\skreti\def\blbsi_fo
+  init
+    load blbejsi_fousy "zakladni"
+    start blbejsi_fousy "zakladni"
+  gplend
+  lookc 164 148 vpravo
+  look
+    justtalk
+D: "Schau an, da hängt noch Ei vom Frühstück drin."
+    juststay
+  gplend
+  canuse (isactico(i_nuz))
+  usec 164 148 vpravo
+  use
+    icostat off i_nuz
+    justtalk
+D: "Ich hoffe, man kann ihn mit einem Messer schneiden..."
+    juststay
+    objstat away blbejsi_fousy
+    icostat on i_fousy
+  gplend
+
+object skreti_darkeye
+  title
+  room skreti
+  priority 7
+  status on
+  seq ..\skreti\def\darkeye
+  init
+    load skreti_darkeye "zakladni"
+    start skreti_darkeye "zakladni"
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_skreti_maska197 left
+title Fort von hier
+  ROOM skreti
+  PRIORITY 197
+  STATUS ON
+  SEQ ..\SKRETI\DEF\S_EXIT
+  INIT
+    load obj_skreti_maska197 "ZAKLADNI"
+    start obj_skreti_maska197 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+   labels kr_extra
+    if (kronika_extra_pokec) kr_extra
+    walkonplay 16 160 vlevo
+    newroom map 1
+    exit
+   label kr_extra
+    walkonplay 56 160 vpravo
+    load kronika "mluvi"
+    dialogue "kroextra.txt"
+    start kronika "mlci"
+    walkonplay 16 160 vlevo
+    newroom map 1
+  gplend
+  look
+    justtalk
+D: "Das könnte ich tun."
+    juststay
+  gplend
+
+{************************ lestrol *********************************}
+
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_lestrol_maska8 right
+title Zur Lichtung
+  ROOM lestrol
+  PRIORITY 8
+  STATUS ON
+  SEQ ..\TROL\DEF\EX_RIGHT
+  INIT
+    load obj_lestrol_maska8 "ZAKLADNI"
+    start obj_lestrol_maska8 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 316 196 vpravo
+    newroom myt 1
+  gplend
+  look
+    justtalk
+D: "Wirklich?"
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+OBJECT obj_lestrol_maska5 left
+title Zur Brücke
+  ROOM lestrol
+  PRIORITY 5
+  STATUS ON
+  SEQ ..\TROL\DEF\EX_LEFT
+  INIT
+    load obj_lestrol_maska5 "ZAKLADNI"
+    start obj_lestrol_maska5 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 4 132 vlevo
+    newroom most 3
+  gplend
+  look
+    justtalk
+D: "Na klar."
+    juststay
+  gplend
+
+OBJECT trol
+title Troll
+  ROOM lestrol
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\TROL\DEF\troll
+  INIT
+    load trol "ZAKLADNI"
+    start trol "ZAKLADNI"
+    loadmap "..\trol\def\troll.map"
+  GPLEND
+  canuse (isactico(0) or isactico(i_mravenec))
+  usec 168 168 vpravo
+  use
+   labels trol_mravenec
+    if (isactico(i_mravenec)) trol_mravenec
+    load trol_huba "mlci"
+    load trol_huba "mluvi"
+    dialogue "trol.txt"
+    exit
+   label trol_mravenec
+    walkonplay 296 192 vlevo
+    dialogue "trolutek.txt"
+    load trol "utika"
+    load trol_stin "utika"
+    objstat away trol_oci
+    objstat away trol_palec
+    start trol_stin "utika"
+    startplay trol "utika"
+    objstat away trol
+    objstat away trol_stin
+    objstat away most_terc
+    objstat_on most_trol most
+    objstat_on most_trol_huba most
+    roommap
+    icostat off i_mravenec
+  gplend
+  look
+    justtalk
+D: "Ein hübscher Muskelhaufen."
+    juststay
+  gplend
+
+OBJECT trol_oci
+title Troll
+  ROOM lestrol
+  PRIORITY 11
+  STATUS ON
+  SEQ ..\TROL\DEF\tr_voci
+  INIT
+    load trol_oci "mrkani"
+    start trol_oci "mrkani"
+  GPLEND
+  canuse (isactico(0) or isactico(i_mravenec))
+  usec 168 168 vpravo
+  use
+    execuse trol
+  gplend
+
+OBJECT trol_palec
+title Troll
+  ROOM lestrol
+  PRIORITY 11
+  STATUS ON
+  SEQ ..\TROL\DEF\tr_palec
+  INIT
+    load trol_palec "ZAKLADNI"
+    start trol_palec "ZAKLADNI"
+  GPLEND
+  canuse (isactico(0) or isactico(i_mravenec))
+  usec 168 168 vpravo
+  use
+    execuse trol
+  gplend
+
+OBJECT trol_huba
+title Troll
+  ROOM lestrol
+  PRIORITY 11
+  STATUS ON
+  SEQ ..\TROL\DEF\tr_huba
+  INIT
+  GPLEND
+
+OBJECT trol_stin
+  title
+  ROOM lestrol
+  PRIORITY 11
+  STATUS ON
+  SEQ ..\TROL\DEF\stin
+  INIT
+    load trol_stin "zakladni"
+    start trol_stin "zakladni"
+  GPLEND
+
+OBJECT trol_kamen
+title Stein
+  ROOM lestrol
+  PRIORITY 9
+  STATUS ON
+  SEQ ..\TROL\DEF\tr_kamen
+  INIT
+    load trol_kamen "zakladni"
+    start trol_kamen "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Mehr Munition!"
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+   labels tr_mam1 tr_mam2
+    justtalk
+D: "Den nehm ich mit,
+    der könnte nützlich sein"
+    juststay
+    objstat away trol_kamen
+    if (isicoon(i_kameny_2)) tr_mam2
+    if (isicoon(i_kameny_1)) tr_mam1
+    {jeste nemame ani jeden kamen:}
+    icostat on i_kameny_1
+    exit
+   label tr_mam1
+    icostat off i_kameny_1
+    icostat on i_kameny_2
+    exit
+   label tr_mam2
+    icostat off i_kameny_2
+    icostat on i_kameny_3
+  gplend
+
+OBJECT trol_smula
+title Harz
+  ROOM lestrol
+  PRIORITY 9
+  STATUS ON
+  SEQ ..\TROL\DEF\tr_smula
+  INIT
+    load trol_smula "zakladni"
+    start trol_smula "zakladni"
+  GPLEND
+  look
+    justtalk
+D: "Etwas Harz, sehr klebrig!"
+    juststay
+  gplend
+
+OBJECT trol_ptak
+title
+  ROOM lestrol
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\TROL\DEF\ptacek
+  INIT
+   labels nic
+    if(random(2)!=1) nic
+    load trol_ptak "z"
+    start trol_ptak "z"
+   label nic
+  GPLEND
+
+{************************ zid *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_zid_maska200 left
+title Zurück zum Pfad
+  ROOM zid
+  PRIORITY 188
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\EX_LEFT
+  INIT
+    load obj_zid_maska200 "ZAKLADNI"
+    start obj_zid_maska200 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 0 176 vlevo
+    newroom mrav 2
+  gplend
+  look
+    justtalk
+D: "Ich mag diesen Ort."
+D: "Ich will nicht gehen!"
+    juststay
+  gplend
+
+OBJECT zid_leva
+title Stuhl
+  ROOM zid
+  PRIORITY 184
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\z_left_1
+  INIT
+    load zid_leva "ZAKLADNI"
+    start zid_leva "ZAKLADNI"
+  GPLEND
+  canuse ((eulanie_vykecana=1)and isactico(0) )
+  usec 84 188 vpravo
+  use
+    load zid_leva_huba "mluvi"
+    dialogue "agata.txt"
+    start zid_leva_huba "mlci"
+  gplend
+  look
+    justtalk
+D: "Scheint wackelig zu sein!"
+D: "Da setz ich mich nicht drauf!"
+    juststay
+  gplend
+
+OBJECT zid_leva_huba
+title Stuhl
+  ROOM zid
+  PRIORITY 184
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\z_left_2
+  INIT
+    load zid_leva_huba "mlci"
+    start zid_leva_huba "mlci"
+  GPLEND
+  canuse ((eulanie_vykecana=1)and isactico(0) )
+  usec 84 188 vpravo
+  use
+    execuse zid_leva
+  gplend
+  look
+    execlook zid_leva
+  gplend
+
+OBJECT zid_leva_oci
+title Stuhl
+  ROOM zid
+  PRIORITY 184
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\z_left_3
+  INIT
+    load zid_leva_oci "ZAKLADNI"
+    start zid_leva_oci "ZAKLADNI"
+  GPLEND
+  canuse ((eulanie_vykecana=1)and isactico(0) )
+  usec 84 188 vpravo
+  use
+    execuse zid_leva
+  gplend
+  look
+    execlook zid_leva
+  gplend
+
+OBJECT zid_prava
+title Stuhl
+  ROOM zid
+  PRIORITY 179
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\z_righ_1
+  INIT
+    load zid_prava "ZAKLADNI"
+    start zid_prava "ZAKLADNI"
+  GPLEND
+  canuse ((eulanie_vykecana=0)and isactico(0) )
+  usec 260 172 vlevo
+  use
+    load zid_prava_huba "mluvi"
+    dialogue "eulanie.txt"
+    start zid_prava_huba "mlci"
+    let eulanie_vykecana (1)
+  gplend
+  look
+    justtalk
+D: "Sieht aus wie ein hübscher Stuhl."
+    juststay
+  gplend
+
+OBJECT zid_prava_huba
+title Stuhl
+  ROOM zid
+  PRIORITY 179
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\z_righ_2
+  INIT
+    load zid_prava_huba "mlci"
+    start zid_prava_huba "mlci"
+  GPLEND
+  canuse ((eulanie_vykecana=0)and isactico(0) )
+  usec 260 172 vlevo
+  use
+    execuse zid_prava
+  gplend
+  look
+    execlook zid_prava
+  gplend
+
+OBJECT zid_prava_oci
+title Stuhl
+  ROOM zid
+  PRIORITY 179
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\z_righ_3
+  INIT
+    load zid_prava_oci "ZAKLADNI"
+    start zid_prava_oci "ZAKLADNI"
+  GPLEND
+  canuse ((eulanie_vykecana=0)and isactico(0) )
+  usec 260 172 vlevo
+  use
+    execuse zid_prava
+  gplend
+  look
+    execlook zid_prava
+  gplend
+
+OBJECT mala_prava
+title Schwebender Stuhl
+  ROOM zid
+  PRIORITY 163
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\zid_prav
+  INIT
+   labels levitace_ne
+    if (tereza_levituje<=0) levitace_ne
+    let tereza_levituje (tereza_levituje+1)
+    if (tereza_levituje<5) levitace_ne
+    {prave popate budeme levitovat VZHURU NOHAMA:}
+    load mala_prava "extra"
+    start mala_prava "extra"
+    exit
+   label levitace_ne
+    load mala_prava "ZAKLADNI"
+    start mala_prava "ZAKLADNI"
+  GPLEND
+  look
+   labels skip
+    justtalk
+D: "Sie ist genau mein Typ..."
+    goto skip
+D: "Könnte dieser Stuhl das Nirvana erfahren?"
+D: "Die Antwort zu der Frage such ich schon
+    seitdem ich denken kann."
+   label skip
+D: "Ganz davon zu schweigen, daß dieser Stuhl
+    allen Gesetzen der Optik trotzt!"
+    juststay
+  gplend
+
+OBJECT mala_leva
+title Stuhl
+  ROOM zid
+  PRIORITY 153
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\zid_leva
+  INIT
+    load mala_leva "ZAKLADNI"
+    start mala_leva "ZAKLADNI"
+  GPLEND
+  look
+    exit
+    justtalk
+D: "Ja..."
+D: "Hm..."
+D: "Äh..."
+D: "Wow..."
+    juststay
+  gplend
+
+OBJECT mala_pros
+title Stuhl
+  ROOM zid
+  PRIORITY 158
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\zid_mala
+  INIT
+    load mala_pros "ZAKLADNI"
+    start mala_pros "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Ein typischer Gartenstuhl."
+D: "Er mäht dir den Rasen."
+    juststay
+  gplend
+
+OBJECT zid_stin
+  TITLE
+  ROOM zid
+  PRIORITY 10
+  STATUS ON
+  SEQ ..\ZIDLE\DEF\stin
+  INIT
+    load zid_stin "Z"
+    start zid_stin "Z"
+  GPLEND
+
+{************************ chaven *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_chaven_maska199 left
+title Nach links
+  ROOM chaven
+  PRIORITY 199
+  STATUS ON
+  SEQ ..\CHAL_OUT\DEF\EXLEFT
+  INIT
+    load obj_chaven_maska199 "ZAKLADNI"
+    start obj_chaven_maska199 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Nimm den rechten Pfad!"
+    juststay
+  gplend
+  canuse (1)
+  use
+   labels zadneoutro
+    newroom sipdumven 1
+    if(not (isobjon(chaven_pol1)and isobjon(chaven_pol2)) ) zadneoutro
+    let jdeme_na_outro (1)
+   label zadneoutro
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_chaven_maska8 right
+title Nach rechts
+  ROOM chaven
+  PRIORITY 8
+  STATUS ON
+  SEQ ..\CHAL_OUT\DEF\EXRIGHT
+  INIT
+    load obj_chaven_maska8 "ZAKLADNI"
+    start obj_chaven_maska8 "ZAKLADNI"
+  gplend
+  look
+    justtalk
+D: "Nimm den linken Pfad!"
+D: "Mach dich nicht über mich lustig!"
+    juststay
+  gplend
+  canuse (1)
+  use
+    newroom hospven 1
+  gplend
+
+OBJECT chaven_dvere_zav
+title Tür
+  ROOM chaven
+  PRIORITY 8
+  STATUS ON
+  SEQ ..\CHAL_OUT\DEF\dradver
+  INIT
+    load chaven_dvere_zav "zavrene"
+    start chaven_dvere_zav "zavrene"
+  GPLEND
+  look
+    justtalk
+D: "Die Tür klemmt!"
+    juststay
+  gplend
+  canuse (isactico(0))
+  usec 92 172 vpravo
+  use
+    justtalk
+D: "Schau mich an..."
+    juststay
+    {kopnuti do dveri..}
+    objstat away chaven_dvere_zav
+    objstat_on chaven_dvere chaven
+    load chaven_dvere "otvirani"
+    load bert "kope"
+    start chaven_dvere "otvirani"
+    startplay bert "kope"
+    start chaven_dvere "otevrene"
+    load bert "dobrej-pravo"
+    startplay bert "dobrej-pravo"
+    start bert "kour-pravo"
+  gplend
+
+OBJECT chaven_dvere up
+title In das Haus
+  ROOM chaven
+  PRIORITY 8
+  STATUS off
+  SEQ ..\CHAL_OUT\DEF\dradver
+  INIT
+    load chaven_dvere "otevrene"
+    start chaven_dvere "otevrene"
+  GPLEND
+  look
+    justtalk
+D: "Warum nicht..."
+    juststay
+  gplend
+  canuse (1)
+  use
+   labels outro
+    if(jdeme_na_outro=1) outro
+    newroom chauvn 1
+    exit
+   label outro
+    newroom chauvn 2
+  gplend
+
+OBJECT chaven_okno_zav
+title
+  ROOM chaven
+  PRIORITY 8
+  STATUS on
+  SEQ ..\CHAL_OUT\DEF\dc_okzav
+  INIT
+    load chaven_okno_zav "Z"
+    start chaven_okno_zav "Z"
+  GPLEND
+
+OBJECT chaven_okno
+title
+  ROOM chaven
+  PRIORITY 8
+  STATUS away
+  SEQ ..\CHAL_OUT\DEF\dc_okote
+  INIT
+    load chaven_okno "Z"
+    start chaven_okno "Z"
+  GPLEND
+
+OBJECT chaven_pol1
+title
+  ROOM chaven
+  PRIORITY 8
+  STATUS off
+  SEQ ..\CHAL_OUT\DEF\oprpol1
+  INIT
+    load chaven_pol1 "FLI-animace"
+    start chaven_pol1 "FLI-animace"
+  GPLEND
+
+OBJECT chaven_pol2
+  TITLE
+  ROOM chaven
+  PRIORITY 8
+  STATUS off
+  SEQ ..\CHAL_OUT\DEF\oprpol2
+  INIT
+    load chaven_pol2 "FLI-animace"
+    start chaven_pol2 "FLI-animace"
+  GPLEND
+
+OBJECT chaven_kour
+title
+  ROOM chaven
+  PRIORITY 8
+  STATUS on
+  SEQ ..\CHAL_OUT\DEF\kour
+  INIT
+    load chaven_kour "FLI-animace"
+    start chaven_kour "FLI-animace"
+  GPLEND
+
+{************************ myt *********************************}
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_myt_maska4 up
+title Diesen Weg
+  ROOM myt
+  PRIORITY 4
+  STATUS ON
+  SEQ ..\MYTINA\DEF\EX_UP
+  INIT
+    load obj_myt_maska4 "ZAKLADNI"
+    start obj_myt_maska4 "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "An welchen anderen Weg hast du gedacht?!"
+    juststay
+  gplend
+  canuse (1)
+  usec 128 112 vlevo
+  use
+    newroom lestrol 2
+  gplend
+
+{objekt z masek naexportován MM4}
+{nebyla kontrolována duplicita, nutno smazat příp. předch. výskyt}
+OBJECT obj_myt_maska199 left
+title Zur Kneipe
+  ROOM myt
+  PRIORITY 199
+  STATUS ON
+  SEQ ..\MYTINA\DEF\EX_LEFT
+  INIT
+    load obj_myt_maska199 "ZAKLADNI"
+    start obj_myt_maska199 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 0 164 vlevo
+    newroom hospven 2
+  gplend
+  look
+    justtalk
+D: "Na los, auf ein Bier.
+    Hey, verurteil mich nicht.
+    Ich bin sehr reif für mein Alter."
+    juststay
+  gplend
+
+{objekt z masek naexportován MM4}
+OBJECT obj_myt_maska200 right
+title Zum Wald
+  ROOM myt
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\MYTINA\DEF\EX_RIGHT
+  INIT
+    load obj_myt_maska200 "ZAKLADNI"
+    start obj_myt_maska200 "ZAKLADNI"
+  GPLEND
+  canuse (1)
+  use
+    walkonplay 300 180 vpravo
+    newroom dutina 4
+  gplend
+  look
+    justtalk
+D: "Die Entscheidung liegt bei dir."
+    juststay
+  gplend
+
+OBJECT mytina_kamen
+title Stein
+  ROOM myt
+  PRIORITY 40
+  STATUS ON
+  SEQ ..\MYTINA\DEF\M_kamen
+  INIT
+    load mytina_kamen "zakladni"
+    start mytina_kamen "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Klein, aber massiv."
+    juststay
+  gplend
+  canuse (isactico(i_loutka_kamenna)and(vim_o_kaminku=1))
+  use
+   labels my_mam1 my_mam2
+    justtalk
+D: "Ich hoffe, der Trottel merkt's nicht."
+    juststay
+    objstat away mytina_kamen
+    icostat off i_loutka_kamenna
+    objstat_on loutka_kam myt
+    start loutka_kam "zakladni"
+    if (isicoon(i_kameny_2)) my_mam2
+    if (isicoon(i_kameny_1)) my_mam1
+    {jeste nemame ani jeden kamen:}
+    icostat on i_kameny_1
+    exit
+   label my_mam1
+    icostat off i_kameny_1
+    icostat on i_kameny_2
+    exit
+   label my_mam2
+    icostat off i_kameny_2
+    icostat on i_kameny_3
+  gplend
+
+OBJECT loutka_kam
+title Steinpuppe
+  ROOM myt
+  PRIORITY 40
+  STATUS off
+  SEQ ..\MYTINA\DEF\M_kalout
+  INIT
+    load loutka_kam "zakladni"
+    start loutka_kam "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Die Natur bringt schon
+    interessante Formen hervor..."
+    juststay
+  gplend
+
+OBJECT loutka_dre
+title Holzpuppe
+  ROOM myt
+  PRIORITY 39
+  STATUS off
+  SEQ ..\MYTINA\DEF\M_drlout
+  INIT
+    load loutka_dre "zakladni"
+    start loutka_dre "ZAKLADNI"
+  GPLEND
+  look
+    justtalk
+D: "Ich hoffe, seine hölzerne Erscheinung
+    ist nicht von kurzer Dauer..."
+    juststay
+  gplend
+  canuse (isactico(0))
+  use
+    justtalk
+D: "Und nun schnell zurück damit zum Puppenspieler."
+    juststay
+    objstat away loutka_dre
+    icostat on i_loutka_drevena
+  gplend
+
+OBJECT myt_blesk
+  TITLE
+  ROOM myt
+  PRIORITY 41
+  STATUS on
+  SEQ ..\MYTINA\DEF\blesk3b
+
+OBJECT apok
+title Zauberer
+  ROOM myt
+  PRIORITY 40
+  STATUS on
+  SEQ ..\MYTINA\DEF\kouzvrse
+  INIT
+    load apok "cerpa"
+    start apok "cerpa"
+  GPLEND
+  lookc 104 164 vpravo
+  look
+    justtalk
+D: "Eins - Zwei,
+    Eins - Zwei!"
+D: "Glubschaugen und Blitzerei."
+D: "Mit Robe und Hut, doch ohne Stab."
+D: "Das ist der seltsamste Zauberer,
+    den es jemals gab."
+D: "Hey, was wäre ein Märchen ohne Reime..."
+    juststay
+  gplend
+  canuse ( isactico(0) or (isactico(i_rad) and (prokazal_kvalifikaci=1)) or (isactico(i_karty) and (prokazal_kvalifikaci=2) and isobjon(loutka_kam) ) )
+  usec 104 164 vpravo
+  use
+   labels muzeme cekame nepodruhe
+    load apok "mluvi"
+    load apok "mlci"
+   label cekame
+    if(actphase(apok)=1) muzeme
+    if(actphase(apok)=5) muzeme
+    if(actphase(apok)=17) muzeme
+    if(actphase(apok)=26) muzeme
+    if(actphase(apok)=38) muzeme
+    if(actphase(apok)=46) muzeme
+    if(actphase(apok)=52) muzeme
+    if(actphase(apok)=61) muzeme
+    if(actphase(apok)=66) muzeme
+    play
+    goto cekame
+   label muzeme
+    start apok "mlci"
+    dialogue "apok.txt"
+    if(not isactico(i_karty)) nepodruhe
+  {protoze byl kod do jednoho bloku prilis dlouhy, mame malou flignu:
+    dialogue "apok.txt"
+    dialogue "apok.txt"
+    dialogue "apok.txt"
+   label nepodruhe
+    start apok "cerpa"
+  gplend
+
+OBJECT apok_nohy
+title Zauberer
+  ROOM myt
+  PRIORITY 39
+  STATUS on
+  SEQ ..\MYTINA\DEF\kouzspod
+  INIT
+    load apok_nohy "zakladni"
+    start apok_nohy "zakladni"
+  GPLEND
+  lookc 104 164 vpravo
+  look
+    execlook apok
+  gplend
+  canuse ( isactico(0) or (isactico(i_rad) and (prokazal_kvalifikaci=1)) or (isactico(i_karty) and (prokazal_kvalifikaci=2) and isobjon(loutka_kam) ) )
+  usec 104 164 vpravo
+  use
+    execuse apok
+  gplend
+
+OBJECT myt_jester
+title Salamander
+  ROOM myt
+  PRIORITY 202
+  STATUS on
+  SEQ ..\MYTINA\DEF\jesterka
+  INIT
+    let mytina_jesterka (2)
+    load myt_jester "z"
+    load myt_jester "z2"
+    start myt_jester "z"
+  GPLEND
+  look
+   labels presun
+    let mytina_jesterka (mytina_jesterka-1)
+    if(mytina_jesterka=1) presun
+    load myt_jester "presun2"
+    startplay myt_jester "presun2"
+    exit
+   label presun
+    load myt_jester "presun"
+    startplay myt_jester "presun"
+    start myt_jester "z2"
+  gplend
+
+{***********************************************************************
+{***********************************************************************
+{************************ i n t r o ************************************
+{***********************************************************************
+{***********************************************************************
+
+{************************ logo0 *********************************}
+
+OBJECT logo0_logo
+  title
+  ROOM logo0
+  PRIORITY 201
+  STATUS ON
+  SEQ ..\logo0\DEF\vochlogo
+  INIT
+    load logo0_logo "z"
+    start logo0_logo "z"
+  GPLEND
+
+{************************ logo1 *********************************}
+
+OBJECT logo1_logo
+  title
+  ROOM logo1
+  PRIORITY 201
+  STATUS ON
+  SEQ ..\logo1\DEF\nose
+  INIT
+    load logo1_logo "nova2"
+{    start logo1_logo "nova"
+  GPLEND
+
+OBJECT logo1_nap
+  title
+  ROOM logo1
+  PRIORITY 201
+  STATUS ON
+  SEQ ..\logo1\DEF\napis
+  INIT
+    load logo1_nap "3"
+    start logo1_nap "3"
+  GPLEND
+
+{************************ intro0 *********************************}
+
+OBJECT opona_l
+  title
+  ROOM intro0
+  PRIORITY 202
+  STATUS ON
+  SEQ ..\in0\DEF\op_left
+  init
+    load opona_l "zatazena"
+    start opona_l "zatazena"
+  gplend
+
+OBJECT opona_r
+title
+  ROOM intro0
+  PRIORITY 202
+  STATUS ON
+  SEQ ..\in0\DEF\op_right
+  init
+    load opona_r "zatazena"
+    start opona_r "zatazena"
+  gplend
+
+OBJECT spotl
+title
+  ROOM intro0
+  PRIORITY 203
+  STATUS ON
+  SEQ ..\in0\DEF\opspot
+
+OBJECT spotdr
+  title
+  ROOM intro0
+  PRIORITY 204
+  STATUS ON
+  SEQ ..\in0\DEF\drakspot
+
+OBJECT intr_ptak
+  title
+  ROOM intro0
+  PRIORITY 202
+  STATUS ON
+  SEQ ..\in0\DEF\remintro
+
+{************************ intro1 *********************************}
+
+OBJECT intromutti
+  TITLE
+  ROOM intro1
+  PRIORITY 31
+  STATUS on
+  SEQ ..\in1\DEF\mutiintr
+  INIT
+   labels gate3
+    if(gate=3) gate3
+    exit
+   label gate3
+    load intromutti "mlci"
+    start intromutti "mlci"
+  GPLEND
+
+OBJECT foto_cel
+  TITLE
+  ROOM intro1
+  PRIORITY 29
+  STATUS ON
+  SEQ ..\IN1\DEF\foto_cel
+
+OBJECT foto_roz
+  TITLE
+  ROOM intro1
+  PRIORITY 29
+  STATUS ON
+  SEQ ..\IN1\DEF\foto_roz
+
+OBJECT intr_ota
+  TITLE
+  ROOM intro1
+  PRIORITY 29
+  STATUS ON
+  SEQ ..\IN1\DEF\otaznik
+
+OBJECT intr_nap1
+  TITLE
+  ROOM intro1
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\IN1\DEF\zktitl
+
+OBJECT intr_nap2
+  TITLE
+  ROOM intro1
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\IN1\DEF\zktitl
+
+{************************ intro2 *********************************}
+
+OBJECT hulka
+  title
+  ROOM intro2
+  PRIORITY 202
+  STATUS ON
+  SEQ ..\in2\DEF\evel
+  init
+    load hulka "na kameni"
+    load hulka "kamen_mluvi"
+    load hulka "premet"
+    load hulka "placka_vznik"
+    load hulka "placka_mluvi"
+    load hulka "placka_mlci"
+    load hulka "mluvi"
+  gplend
+
+OBJECT intrsnek
+  title
+  ROOM intro2
+  PRIORITY 202
+  STATUS ON
+  SEQ ..\in2\DEF\intrsnek
+  init
+    load intrsnek "z"
+    start intrsnek "z"
+  gplend
+
+{************************ intro3 *********************************}
+
+OBJECT intr_lout1
+title
+  ROOM intro3
+  PRIORITY 200
+  STATUS on
+  SEQ ..\in3\def\pimp1
+
+OBJECT intr_lout2
+title
+  ROOM intro3
+  PRIORITY 200
+  STATUS on
+  SEQ ..\in3\def\pimp2
+
+{************************ intro4 *********************************}
+
+OBJECT intr_beverly
+title
+  ROOM intro4
+  PRIORITY 200
+  STATUS ON
+  SEQ ..\in4\DEF\evelkom
+  init
+    load intr_beverly "z"
+    load intr_beverly "z2"
+    start intr_beverly "z"
+  gplend
+
+
+{***********************************************************************
+{***********************************************************************
+{************************ o u t r o ************************************
+{***********************************************************************
+{***********************************************************************
+
+
+{************************ outro0 *********************************}
+
+OBJECT outrblesk
+  TITLE
+  ROOM outro0
+  PRIORITY 200
+  STATUS on
+  SEQ ..\outro\def\blesk2
+
+OBJECT outrkour
+  TITLE
+  ROOM outro0
+  PRIORITY 200
+  STATUS on
+  SEQ ..\outro\def\outkour

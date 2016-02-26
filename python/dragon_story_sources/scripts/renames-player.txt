@@ -1,0 +1,35 @@
+# player/vars.pas
+TPohybyDraka	TDragonMoves
+Nedefinovano	DM_Undefined
+Dolu	DM_Down
+Nahoru	DM_Up
+Vpravo	DM_Right
+Vlevo	DM_Left
+PravoDolu	DM_RightDown
+PravoHore	DM_RightUp
+LevoDolu	DM_LeftDown
+LevoHore	DM_LeftUp
+DolePravo	DM_DownRight
+HorePravo	DM_UpRight
+DoleLevo	DM_DownLeft
+HoreLevo	DM_UpLeft
+LevoPravo	DM_LeftRight
+PravoLevo	DM_RightLeft
+HoreStojLevo	DM_UpStopLeft
+HoreStojPravo	DM_UpStopRight
+MluvPravo	DM_SpeakRight
+MluvLevo	DM_SpeakLeft
+StujPravo	DM_StopRight
+StujLevo	DM_StopLeft
+tpole	TComputedPath
+ppole	PComputedPath
+
+# player/rungpl2.pas
+LoadMusicObal	LoadBackgroundMusic
+
+# player/*/p.pas
+ProvizorniInit	ProvisionalInit
+ProvizorniDone	ProvisionalDone
+loudujeme	loading_game
+sejvujeme	saving_game
+Cesta_CD_SAM	path_to_cd_sam

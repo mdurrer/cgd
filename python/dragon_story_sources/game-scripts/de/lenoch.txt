@@ -1,0 +1,344 @@
+{drak s lenochem:}
+
+block _10 ( beg(1) and not been(_10) and (stroj_funguje=1) )
+title Wie läuft deine Maschine jetzt?
+  justtalk
+  D: "Wie läuft deine Maschine jetzt?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Mmmh, viel besser, aber noch nicht perfekt.
+      Ich bin nicht sicher was noch fehlt."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Was ist mit...?!"
+  juststay
+
+  exitdialogue
+gplend
+
+block _11 ( beg(1) and not been(_11) and (stroj_funguje=2) )
+title Und wie funktioniert deine Maschine jetzt?
+{když už přístroj definitivně opravil}
+  justtalk
+  D: "Und wie funktioniert deine Maschine jetzt?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Absolut makellos!
+      Ich vermisse es fast gar nicht,
+      die Kuchen zu schlucken."
+  L: "Aber hab ich nicht immer gesagt,
+      daß sie ein Meisterstück ist?"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Soweit ich weiß, sagtest du, daß,
+      wenn ich deine fliegende Kuchenmaschine repariere,
+      du mir eine Flasche Faulheit gibst."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Was? Stimmt, du hast ja recht.
+      Du sollst deine gerechte Belohnung haben,
+      viel Spaß damit!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Da hab ich keine Bedenken!"
+  juststay
+
+  {abych mohl vzit lahvicku:}
+  let stroj_funguje (3)
+  exitdialogue
+gplend
+
+block _09 ( atbegin(0) and been(_08) and been(_05) and not been(_09) and isobjon(lahvicka) )
+title Wenn nicht die Maschine, was soll ich mir wünschen...
+  justtalk
+  D: "Wenn nicht die Maschine,
+      was soll ich mir zum Geburtstag wünschen?!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Du kannst deinen Eltern sagen,
+      sie sollen meine Faulheit in der Flasche kaufen."
+  L: "Mein Geschäft läuft nicht sehr gut dieses Jahr."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _00a ( beg(1) and not hasbeen(_00a) and maxline(1) )
+title
+  justtalk
+  D: "Ich bin Bert und wer bist du?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Ich bin ich.
+      Ich hab meinen Namen vergessen."
+  L: "Einmal hatte ich das Gefühl,
+      daß er mir wieder einfallen würde,
+      aber das Gefühl hielt nicht lange an."
+  L: "Ich bin einfach zu faul, um Gefühle zu haben."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Versteh ich nicht!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Das ist dein Problem."
+  L: "Ich bin zu faul,
+      um dir alles nochmal zu erklären."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _00b ( maxline(1) and beg(1) and hasbeen(_00a) )
+title
+  justtalk
+  D: "Ja, noch einmal..."
+  juststay
+gplend
+
+block _06 ( atbegin(0) and been(_05) and not been(_06) and been(_08) )
+title Ich kauf deine Faulheit!
+  justtalk
+  D: "Ich kauf deine Faulheit!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Ähm, im Moment weiß ich nicht,
+      ob sie zum Verkauf steht..."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Was?!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Naja -"
+  L: "- ich glaub es gibt nichts auf der Welt,
+      was ihrem Wert gleichkommt."
+  L: "Außer ..."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Außer was?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Außer du reparierst meine Flugkuchen-Maschine!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Wenn das die einzige Möglichkeit ist
+      deine Faulheit zu bekommen,
+      versuch ich es mal..."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Aber beeil dich.
+      Vielleicht verkauf ich alles vor heute Abend
+      und nichts wäre mehr für dich übrig!"
+  start lenuvnitr_hlava "mlci"
+
+  let vim_o_lenosti (2)
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+title Bist du schon von Geburt an so faul?
+  justtalk
+  D: "Bist du schon von Geburt an so faul?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Schätze, das bin ich wohl."
+  L: "Als ich noch ein kleines Kind war,
+      waren meine Eltern etwas besorgt um mich."
+  L: "Meine Mutter
+      - möge sie in Frieden ruhen -
+      sagte immer zu mir:"
+  L: "'Vergiss nicht, dass dir niemals gebratene Tauben
+      in den Mund fliegen werden!'"
+  L: "Wie du siehst, hatte sie recht."
+  L: "Da fliegen jetzt statt dessen Kuchen rein!"
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _12 ( beg(0) and not been(_12) )
+title Gehst du überhaupt zur Toilette?
+  justtalk
+  D: "Gehst du überhaupt zur Toilette?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Nein, gar nicht.
+      Ich liege hier schon seit einigen Jahren,
+      aber ich musste noch nicht."
+  start lenuvnitr_hlava "mlci"
+  justtalk
+  D: "Was ist mit dem Nachttopf?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Nachttopf?"
+  L: "Ich erinnere mich an keinen Nachttopf."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _02 ( atbegin(0) and not been(_02) )
+title Was ist das Prinzip dieser Maschine?
+  justtalk
+  D: "Was ist das Prinzip
+      dieser aussergewöhnlichen Maschine?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Weiß ich nicht,
+      ich hab nie versucht es heraus zu finden.
+      Dazu bin ich zu faul."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _03 ( atbegin(0) and been(_02) and not been(_03) )
+title Ich weiß, wie die Maschine funktioniert!
+  justtalk
+  D: "Ich weiß, wie die Maschine funktioniert!"
+  D: "Willst du's hören?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Nein danke.
+      Ich bin zu faul, um interessiert zu sein."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _04 ( atbegin(0) and not been(_04) )
+title Wo kommt die Maschine her?
+  justtalk
+  D: "Wo kommt die Maschine her?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Ich erinnere mich nicht.
+      Ich bin zu faul, um mich zu erinnern."
+  L: "Möglich, dass ich sie gebaut hab."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Da wär ich aber sehr überrascht!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Ich auch. Ich weiß wirklich nicht ,
+      wo sie herkommt. Aber es interessiert mich nicht,
+      solange sie hier ist."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _05 ( atbegin(0) and not been(_05) )
+title Ich wär nicht gern so faul wie du!
+  justtalk
+  D: "Ich wär nicht gern so faul wie du!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Ich seh nichts schlechtes in meiner Faulheit.
+      Ich fühl mich wohl dabei."
+  L: "Ich hab damit gute Geschäfte gemacht,"
+  L: "ich verkauf sie, in Flaschen abgefüllt!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Hat sie je irgend jemand gekauft?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Noch nicht."
+  L: "Aber ich werde sicher ein Vermögen damit machen."
+  start lenuvnitr_hlava "mlci"
+
+  let vim_o_lenosti (1)
+gplend
+
+
+block _07 ( atbegin(0) and not been(_07) )
+title Was machst du, wenn die Maschine kaputt geht?
+  justtalk
+  D: "Was machst du, wenn die Maschine kaputt geht?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Ich glaube, die wird nie kaputt gehen.
+      Sie scheint so eine Art
+      Perpetuum Mobile zu sein."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Das wär deine einzige Versicherung."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Hmm..."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _08 ( atbegin(0) and not been(_08) )
+title Ich hätte auch gern so einen Apparat zu Hause!
+  justtalk
+  D: "Ich hätte auch gern so einen Apparat zu Hause!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Tut mir leid, aber ich habe nicht vor
+      das Gerät schon weg zu werfen."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Ich hab nicht gesagt, dass ich deins will."
+  D: "Vielleicht kann ich meine Eltern überreden
+      mir ein ähnliches zum Geburtstag zu schenken."
+  D: "Aber ich weiß nicht,
+      welche Marke ich wählen soll -
+      bist du zufrieden mit diesem Modell?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Nun, darüber wollte ich mit dir sprechen.
+      Sie hat nun schon seit etlichen Jahren
+      ohne Ausfall funktioniert."
+  L: "Aber sie hat so ihre Macken,
+      manchmal fliegen die Kuchen nach draußen."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Das ist ein ungünstiger Makel!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Würd ich auch so sehen.
+      Demnach würde ich sie dir
+      nicht gerade empfehlen."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _98 ( beg(0) and not last(_00b) )
+title Bis bald...
+  justtalk
+  D: "Bis bald..."
+  D: "...und gute Verdauung!"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Danke."
+  start lenuvnitr_hlava "mlci"
+  exitdialogue
+gplend
+
+block _99 ( beg(0) and last(_00b) and maxline(1) )
+title
+  justtalk
+  D: "...nichts."
+  juststay
+  exitdialogue
+gplend

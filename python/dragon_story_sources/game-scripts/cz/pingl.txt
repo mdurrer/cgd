@@ -1,0 +1,213 @@
+{rozhovor s pinglem v hospodě:}
+
+block _05 ( beg(1) and isactico(i_doutnik) and (chci_plakat=1) )
+title
+  justtalk
+     D: "Co takhle doutníček?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Lákavé..."
+  start pingl "mlci"
+  justtalk
+     D: "Originál z Dračí Historie."
+  juststay
+  start pingl "mluvi"
+  Vrch: "Dej to sem!"
+  start pingl "mlci"
+  justtalk
+     D: "Vykouříte ho hned?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Cožpak nevíš,
+         že kouření škodí zdraví?!"
+  Vrch: "Kdepak, takovou vzácnost
+         budu jenom pečlivě opatrovat."
+  Vrch: "Možná se na něj jednou za čas podívám..."
+  Vrch: "...a ten plakát je samozřejmě tvůj!"
+  start pingl "mlci"
+
+  objstat away hosp_plakat
+  icostat off i_doutnik
+  icostat on i_plakat
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and maxline(1) )
+title
+  justtalk
+     D: "Pane hostinský..."
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+title ...co ten plakát na stěně?
+  justtalk
+     D: "...co ten plakát na stěně?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Líbí se ti?"
+  start pingl "mlci"
+  justtalk
+     D: "Rád bych ho měl doma nad postelí."
+  juststay
+  start pingl "mluvi"
+  Vrch: "A co bys ještě chtěl?"
+  start pingl "mlci"
+  justtalk
+     D: "Odznáčky, nálepky, vlaječky..."
+  juststay
+  justtalk
+     D: "...pivní tácek, nemáte? ..."
+  juststay
+  justtalk
+     D: "...taky kšiltovku..."
+  juststay
+  justtalk
+     D: "...a tričko s nápisem!"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Nic z toho nemám!"
+  start pingl "mlci"
+  justtalk
+     D: "A co ten plakát?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Ten bych ti možná mohl věnovat,
+         ale zadarmo to nebude."
+  start pingl "mlci"
+
+  let chci_plakat (1)
+gplend
+
+block _02 ( beg(0) and not been(_02) )
+title ...půjčíte mi šipky?
+  justtalk
+     D: "...půjčíte mi šipky?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Šipky nepůjčujeme."
+  start pingl "mlci"
+  justtalk
+     D: "Pročpak?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Žádné šipky nejsou."
+  start pingl "mlci"
+  justtalk
+     D: "To nechápu!"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Prostě nejsou."
+  Vrch: "Kdyby byly,
+         bylo by to tu možná plnější..."
+  Vrch: "Dokonce jeden z našich častých hostů
+         se šel před chvílí kvůli šipkám oběsit do lesa."
+  start pingl "mlci"
+  justtalk
+     D: "Kam přesně?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Nevím, šel si teprve vyhlídnout větev..."
+  start pingl "mlci"
+
+{a objevime sipkare v lese:}
+  objstat_on leskriz_sipkar leskriz
+gplend
+
+block _03 ( beg(0) and not been(_03) )
+title ...kam vedou ty dveře?
+  justtalk
+     D: "...kam vedou ty dveře?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Před hospodu. Ale nepoužívají se kvůli šipkám."
+  start pingl "mlci"
+  justtalk
+     D: "To bude možná zajímavá story..."
+  juststay
+  start pingl "mluvi"
+  Vrch: "Původně se dveřmi vedle terče opravdu chodilo,
+         ale stávala se spousta nehod."
+  Vrch: "Když někdo vstoupil nečekaně dovnitř,
+         často se přihodilo,
+         že se mu šipka zabodla do obličeje."
+  start pingl "mlci"
+  justtalk
+     D: "Jak jste to potom počítali?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Oko za deset bodů a nos za pět."
+  Vrch: "Jestliže byl rozmach obzvlášť silný,
+         dva body za každý vyražený zub."
+  Vrch: "A pokud šipka letěla tak prudce,
+         že s sebou toho člověka nabrala..."
+  Vrch: "...a připíchla ho před hospodou
+         na strom, tak za sto."
+  start pingl "mlci"
+  justtalk
+     D: "Je to podle pravidel?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "No to je právě ono, bylo to dost sporné."
+  Vrch: "A proto se dveře pro jistotu navždy zamčely
+         a klíč byl bezpečně ztracen."
+  start pingl "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+title ...máte utopence?
+  justtalk
+     D: "...máte utopence?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Nevaříme!"
+  start pingl "mlci"
+  justtalk
+     D: "Nemusí být vařenej..."
+  juststay
+  start pingl "mluvi"
+  Vrch: "Nemáme kuchyni."
+  start pingl "mlci"
+  justtalk
+     D: "A co ten nápis venku?"
+  juststay
+  start pingl "mluvi"
+  Vrch: "Reklamní trik."
+  start pingl "mlci"
+  justtalk
+     D: "Aha."
+  juststay
+gplend
+
+
+
+block _06 ( beg(0) and been(_04) and not been(_05) and last(_00) and maxline(1) )
+title
+  justtalk
+     D: "...ten plakát..."
+  juststay
+  start pingl "mluvi"
+  Vrch: "Myslel jsem, že si rozumíme.
+         Může být tvůj, ale ne zadarmo."
+  start pingl "mlci"
+  exitdialogue
+gplend
+
+block _08 ( beg(0) and last(_00) and maxline(1) )
+title
+  justtalk
+     D: "...vlastně nic."
+  juststay
+  exitdialogue
+gplend
+
+block _07 ( beg(0) and not last(_00) )
+title ...tak zatím.
+  justtalk
+     D: "...tak zatím."
+  juststay
+  start pingl "mluvi"
+  Vrch: "Jo..."
+  start pingl "mlci"
+  exitdialogue
+gplend

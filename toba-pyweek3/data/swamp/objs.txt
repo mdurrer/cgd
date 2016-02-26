@@ -1,0 +1,7 @@
+log	log	526	354	100
+skull	skull	281	166	100
+log_pos	point	481	330	100
+lady_pos	point	282	232	100
+mainst_pos	point	587	89	100
+player	player	475	95	45
+lady	voodoo	362	183	40

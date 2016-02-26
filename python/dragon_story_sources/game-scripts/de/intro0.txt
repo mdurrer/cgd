@@ -1,0 +1,12 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+Vypravec: "Vor langer Zeit gab es einmal ein Märchenland."
+    load intr_ptak "FLI-animace"
+    startplay intr_ptak "FLI-animace"
+Vypravec: "Zumindest bezeichnen wir es als Märchenland..."
+Vypravec: "...die Bewohner sahen das..."
+
+Vypravec: "...ein wenig anders."
+
+gplend

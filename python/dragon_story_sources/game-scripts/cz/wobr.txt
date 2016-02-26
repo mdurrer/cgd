@@ -1,0 +1,385 @@
+{drak s obrem:}
+
+block _00a ( beg(1) and not been(_00a)) )
+title
+  justtalk
+  D: "Haló!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Kdopak jsi? Trpaslík?
+      Ne? To je škoda.
+      Mám rád trpaslíky."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Jsem Bert a jsem drak!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Hmm..."
+  O: "Vypadáš sice hodně podobně jako ostatní draci,
+      co jsem kdy viděl, ale...
+      nemáš křídla!"
+  start obr_hlava "mlci"
+  justtalk
+  D: "Jednou mi dorostou..."
+  juststay
+  start obr_hlava "mluvi"
+  O: "Nevím, nevím. Zkus o tom někdy popřemýšlet!"
+  start obr_hlava "mlci"
+  justtalk
+  D: "To mi teď bude vrtat hlavou..."
+  juststay
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _00b ( atbegin(1) and been(_00a) )
+title
+ labels jsemchytry
+  justtalk
+  D: "Ahoj, mám na tebe ještě pár otázek..."
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Hmm..."
+  start obr_hlava "mlci"
+  if(otec_me_poucil=1) jsemchytry
+  exit
+ label jsemchytry
+  let otec_me_poucil (2)
+  start obr_hlava "mluvi"
+  O: "Pamatuješ si ještě,
+      na co jsem se tě poprvé ptal?"
+  start obr_hlava "mlci"
+  justtalk
+  D: "Myslím, že jo."
+  juststay
+  start obr_hlava "mluvi"
+  O: "Jaktože tedy nemáš křídla -
+      a jsi vůbec drak, nebo nejsi?"
+  start obr_hlava "mlci"
+  justtalk
+  D: "Mmmh, to je všechno pouze otázkou evoluce..."
+  D: "Ale teď je čas na moje otázky."
+  juststay
+  start obr_hlava "mluvi"
+  O: "Jak je libo."
+  start obr_hlava "mlci"
+
+gplend
+
+block _01 ( atbegin(0)) and not been(_01) and isobjon(obr_pajzl1) )
+title Copak meleš v tom mlýnku?
+  justtalk
+  D: "Copak meleš v tom mlýnku?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Ále, ani se neptej."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Ty v tom mlýnku meleš trpaslíky!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Helemese, uhodl!"
+  start obr_hlava "mlci"
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _02 ( atbegin(0) and not been(_02) and been(_01) and isobjon(obr_pajzl1) )
+title To tam hážeš trpaslíky úplně celý?
+  justtalk
+  D: "To tam hážeš trpaslíky úplně celý?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Proč ne? Trpaslíci jsou
+      docela čistotní."
+  O: "Jenom čepičky jim sundávám,
+      zanášejí mi mlýnek."
+  start obr_hlava "mlci"
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _03 ( atbegin(0) and not been(_03) and been(_01) and isobjon(obr_pajzl1) )
+title Ty trpaslíky vážně pojídáš?
+  justtalk
+  D: "Ty trpaslíky vážně pojídáš?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "K čemupak ta havěť je?
+      K snědku."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "A chutnají ti?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Zbožňuju trpaslíky!"
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_03) and isobjon(obr_pajzl1) )
+title Prozradíš mi nějakej dobrej recept?
+  justtalk
+  D: "Prozradíš mi nějakej dobrej recept?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Znám spoustu receptů!"
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Nějakej opravdu dobrej!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Je těžké vybrat..."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _04 ( beg(0) and not been(_04) and been(_01) and isobjon(obr_pajzl1) )
+title Mlít trpaslíky v mlýnku je nehumánní!
+  justtalk
+  D: "Mlít trpaslíky v mlýnku je nehumánní!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Možná, ale tohle je krutá
+      pohádková realita."
+  O: "V neděli bude sekaná."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _06 ( atbegin(0) and not been(_06) and been(_03) and isobjon(obr_pajzl1) )
+title Vždyť za chvíli všichni trpaslíci vymřou!
+  justtalk
+  D: "Vždyť za chvíli všichni trpaslíci vymřou!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Nemusíš mít strach,
+      já bych jen tak hlady neumřel.
+      Mám jich spousty naložených v láku!"
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Hodně cibule?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Hlavně nešetřit pepřem
+      a nechat uležet aspoň rok."
+  O: "Potom se úplně rozplývají na jazyku!"
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _07 ( beg(0) and not been(_07) and isobjaway(obr_pajzl1) )
+title Kam zmizeli ti svázaní trpaslíci?
+  justtalk
+  D: "Kam zmizeli ti svázaní trpaslíci?
+      To ti muselo být dost líto,
+      když jsi je pouštěl na svobodu!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Nevím, o čem to mluvíš. Snědl jsem je."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Snědl?!
+      Byli mi tak blízcí..."
+  D: "...měli jsme společné zájmy,
+      společné problémy,
+      pili jsme z jednoho hrníčku..."
+  D: "...společně jsme dostali infekční žloutenku,
+      půjčovali si psací potřeby!"
+  D: "Byli to přece takoví sympaťáci,
+      měli tak krásný fusiska!"
+  D: "Nešlo by to všechno nějak vrátit?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Vrátit, říkáš?
+      To by jim moc nepomohlo."
+  O: "Všechny jsem je dokonale rozkousal."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Proč's to dělal, ty vrahu?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Polykat příliš velká sousta je nezdravé."
+  O: "Mívám z toho nadýmání.
+      Přece nechceš, abych si ničil zdraví!"
+  start obr_hlava "mlci"
+gplend
+
+block _13 ( beg(0) and not been(_13) and isobjaway(obr_pajzl1) )
+title Co budeš jíst, když jsou teď trpaslíci zakázaní?
+  justtalk
+  D: "Co budeš jíst,
+      když jsou teď trpaslíci zakázaní?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Trpaslíky.
+      Akorátže naložený v láku."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Pokud vím,
+      měl jsi pustit na svobodu trpaslíky
+      úplně všechny!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Já vím můj dračí příteli,
+      jak ti na těch trpaslících záleželo,
+      ale stala se menší nehoda."
+  O: "Nechápu, jak je to možné,
+      ale všichni trpaslíci v láku pochcípali."
+  O: "Ani umělý dýchání nezabralo!"
+  O: "Je mi líto, že ti to musím sdělit,
+      ale tvoji kamarádi asi neuměli plavat."
+  start obr_hlava "mlci"
+gplend
+
+
+block _10 ( beg(0) and (mam_zjistit_recept=1) and not been(_10) )
+title Sháním jeden recept...
+  justtalk
+  D: "Sháním jeden recept..."
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Ten určitě nebudu vědět."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "...na vaření zlých kouzelných hůlek!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Máš štěstí, zvláštní shodou okolností
+      tento recept znám!"
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Sem s ním!"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Dáme vařit čtvrt vědra vody,
+      jeden plesnivý hřib nakrájený na tenké plátky,
+      přidáme najemno nakrájenou pažitku,
+      jednu skřetí ponožku a vše dobře mícháme."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "A to je všechno?
+      To je přece skoro přesně sváteční polívka,
+      jakou vaří Berta."
+  D: "Kromě té skřetí ponožky, ovšem!
+      (Tu bych mohl matce propříště doporučit.)"
+  juststay
+gplend
+
+block _11 ( beg(0) and been(_10) and not been(_11) )
+title Musí  být  hřib  nutně  plesnivej?
+  justtalk
+  D: "Musí být hřib nutně plesnivej?
+      Nestačila by jenom ta skřetí ponožka?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Kdepak, je to dost nutné.
+      Ale přinejhorším můžeš plíseň ještě přidat,
+      snad to pomůže."
+  O: "Můžu ti věnovat plesnivý slepičí bujón."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Nevím, jestli to můžu přijmout..."
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Ber, je naprosto zdraví neškodný,
+      bez konzervačních přísad!"
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Zdraví neškodný?
+      Toho se právě bojím,
+      ale když jinak nedáš, tak dík..."
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Nevím, jak bych ti víc mohl pomoct."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "To nebude potřeba,
+      co se týká skřetí ponožky,
+      tak o jednom skřetovi náhodou vím."
+  juststay
+{obr dá drakovi plíseň do polévky}
+
+  icostat on i_plisen
+  exitdialogue
+gplend
+
+block _12 ( beg(0) and not been(_12) and been(_10) )
+title Jak takoví skřetové vlastně chutnají?
+  justtalk
+  D: "Jak takoví skřetové vlastně chutnají?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Skřety nejím. Kvůli jejich ponožkám."
+  start obr_hlava "mlci"
+
+  justtalk
+  D: "Příliš pikantní?"
+  juststay
+
+  start obr_hlava "mluvi"
+  O: "Tak nějak."
+  start obr_hlava "mlci"
+gplend
+
+block _99 ( beg(0) and not (last(_00a) or last(_00b)) )
+title Zatím ahoj.
+  justtalk
+  D: "Zatím ahoj."
+  juststay
+  start obr_hlava "mluvi"
+  O: "Na viděnou..."
+  start obr_hlava "mlci"
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and (last(_00a) or last(_00b)) and maxline(1) )
+title
+  justtalk
+  D: "Právě jsem zapomněl, co to bylo vlastně za
+      otázky."
+  juststay
+  start obr_hlava "mluvi"
+  O: "Nevadí, třeba si dopříště vzpomeneš."
+  start obr_hlava "mlci"
+  exitdialogue
+gplend

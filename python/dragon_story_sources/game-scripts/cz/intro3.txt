@@ -1,0 +1,58 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+load intr_lout1 "kameni"
+load intr_lout1 "mluvi"
+
+load intr_lout2 "kameni"
+load intr_lout2 "mluvi"
+load intr_lout2 "mlci"
+load intr_lout2 "vyleza"
+
+{[jsme u komedianta:]
+{komediant mění hlas pro následující dvě postavy:}
+{má to být pimprlové divadýlko, no...
+{kdyžtak si to upravte dle vaší libovůle!
+
+{jedna:}
+start intr_lout1 "mluvi"
+KoIn: "Vylez z truhly, povídám, jsi odhalen, zrádče!"
+start intr_lout1 "mlci"
+{dva:}
+startplay intr_lout2 "vyleza"
+start intr_lout2 "mluvi"
+KoIn: "Nemám proč bych se v té truhle ukrýval."
+KoIn: "Neb kdo něco skrývá, nejsem já,
+       anébrž ty, kouzelníče!"
+KoIn: "To ty odhal svoji pravou tvář!"
+start intr_lout2 "mlci"
+{jedna:}
+start intr_lout1 "mluvi"
+KoIn: "K smíchu, co to povídáš!
+       To ty jsi ten králův žalobníček!"
+start intr_lout1 "mlci"
+{dva:}
+start intr_lout2 "mluvi"
+KoIn: "Celá věc má jeden háček. Ať zkamením, když mo-"
+
+start intr_lout1 "kameni"
+startplay intr_lout2 "kameni"
+
+start intr_lout1 "kamennej"
+
+{uprostřed věty přetrženo, loutky zkamení, jedna spadne {komediantovi na nohu,
+
+{komediant už svým hlasem:}
+KoIn: "Jau!"
+
+gplend
+
+block _1 ( (1=2) )
+title
+KoIn: "Jau!"
+KoIn: "Jau!"
+KoIn: "Jau!"
+KoIn: "Jau!"
+KoIn: "Jau!"
+gplend

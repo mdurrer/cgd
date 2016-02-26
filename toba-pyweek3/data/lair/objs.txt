@@ -1,0 +1,4 @@
+tarbukas	point	101	112	100
+lackey	point	523	215	100
+eye	eye	312	136	100
+player	blank	314	359	100

@@ -1,0 +1,46 @@
+{domluva otce s drakem v draci chalupe:}
+
+block _00 ( beg(1) )
+title
+  icostat on i_varecka_zlomena
+  load oteckaze "mluvi"
+  load oteckaze "zlomluvi"
+  load oteckaze "lame"
+  load drakkaze "mluvi"
+
+  start oteckaze "mluvi"
+  start drakkaze "mlci"
+  Herb: "...víš synu, teď se stydím."
+  Herb: "Já starý pošetilec!
+         Že mě jenom napadlo přemýšlet
+         o nějakém pochybném pokladu."
+  Herb: "Jsi to ty, který zažehnal naši rodinnou krizi
+         a vůbec zachránil celou naši rodinu před rozvratem."
+  Herb: "Vidím, že jsi zkrátka dospěl."
+  Herb: "Teď můžeš denně vypít dvě piva a chodit
+         za holkama."
+  start oteckaze "mlci"
+  start drakkaze "mluvi"
+     D: "To počká, mám svoje POSLÁNÍ!"
+     D: "Jak to vyřešíme s mým trestem?"
+  start drakkaze "mlci"
+  start oteckaze "mluvi"
+  Herb: "To je dobrá otázka."
+  Herb: "Jak to vyřešíme s tvým trestem..."
+  Herb: "Nebudu tě trestat, ukázalo se,
+         že máš skoro víc rozumu, než já."
+  Herb: "Už tě v životě nebudu mlátit!"
+  Herb: "A abych dodal svým slovům váhu..."
+  startplay oteckaze "lame"
+  start oteckaze "zlomil"
+
+  start drakkaze "mluvi"
+     D: "Nevyhazuj ji, chci ji mít jako upomínku
+         na moje rozverné dětství..."
+  start drakkaze "mlci"
+  start oteckaze "zlomluvi"
+  Herb: "Je tvoje."
+  start oteckaze "zlomil"
+  start drakkaze "mlci"
+{zmizí z dračí chalupy}
+gplend

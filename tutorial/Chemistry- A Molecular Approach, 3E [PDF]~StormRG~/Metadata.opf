@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">1564</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">eca82f42-4d2b-45d3-a41e-62799a95bc4b</dc:identifier>
+        <dc:title>Chemistry: A Molecular Approach</dc:title>
+        <dc:creator opf:file-as="Tro, Nivaldo J." opf:role="aut">Nivaldo J. Tro</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (0.9.42) [http://calibre-ebook.com]</dc:contributor>
+        <dc:date>2013-01-17T14:00:00+00:00</dc:date>
+        <dc:description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Uploaded by ~StormRG~&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;ALERT: &lt;/strong&gt;&lt;em&gt;This is a standalone book and does not contain an access code. If you would like to purchase the version that includes the Access Card Package please visit: http://www.amazon.com/dp/0321804716&lt;/em&gt;&lt;/p&gt;&lt;hr&gt;&lt;hr&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Chemistry: A Molecular Approach&lt;/em&gt;, Third Edition&lt;/strong&gt; is an innovative, pedagogically driven text that explains challenging concepts in a student-oriented manner.  Nivaldo Tro creates a rigorous and accessible treatment of general chemistry in the context of relevance and the big picture. Chemistry is presented visually through multi-level images–macroscopic, molecular, and symbolic representations–helping students see the connections between the world they see around them (macroscopic), the atoms and molecules that compose the world (molecular), and the formulas they write down on paper (symbolic). The hallmarks of Dr. Tro’s problem-solving approach are reinforced through interactive media that provide students with an office-hour type of environment built around worked examples and expanded coverage on the latest developments in chemistry. Pioneering features allow students to sketch their ideas through new problems, and much more.&lt;/p&gt;&lt;p&gt;&lt;em&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;&lt;em&gt;&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;&lt;em&gt;&lt;strong&gt; &lt;/strong&gt; &lt;/em&gt;&lt;/em&gt;&lt;/p&gt;&lt;h3&gt;&lt;em&gt;&lt;em&gt;About the Author&lt;/em&gt;&lt;/em&gt;&lt;/h3&gt;&lt;p&gt;&lt;em&gt;&lt;em&gt;&lt;strong&gt;Nivaldo Tro&lt;/strong&gt; is Professor of Chemistry at Westmont College in Santa Barbara, California, where he has been a faculty member since 1990.   He received his Ph.D. in chemistry from Stanford University, for work on developing and using optical techniques to study the adsorption and desorption of molecules to and from surfaces in ultrahigh vacuum.   He then went on to the University of California at Berkeley, where he did post-doctoral research on ultra-fast reaction dynamics in solution.  Since coming to Westmont, Professor Tro has been awarded grants from the American Chemical Society Petroleum Research Fund, from Research Corporation, and from the National Science Foundation to study the dynamics of various processes occurring in thin layer films adsorbed on dielectric surfaces.   He has been honored as Westmont's outstanding teacher of the year three times and has also received the college's outstanding researcher of the year award.   Professor Tro lives in Santa Barbara with his wife, Ann, and their four children, Michael, Ali, Kyle, and Kaden.  In his leisure time, Professor Tro enjoys mountain biking, surfing, reading to his children, and being outdoors with his family.&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;</dc:description>
+        <dc:publisher>Prentice Hall</dc:publisher>
+        <dc:identifier opf:scheme="AMAZON">0321809246</dc:identifier>
+        <dc:identifier opf:scheme="ISBN">9780321809247</dc:identifier>
+        <dc:language>eng</dc:language>
+        <dc:subject>Education &amp; Reference</dc:subject>
+        <dc:subject>Science &amp; Math</dc:subject>
+        <dc:subject>Science &amp; Mathematics</dc:subject>
+        <dc:subject>General &amp; Reference</dc:subject>
+        <dc:subject>Chemistry</dc:subject>
+        <dc:subject>Physics</dc:subject>
+        <meta content="{&quot;Nivaldo J. Tro&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="6.0" name="calibre:rating"/>
+        <meta content="2014-02-26T09:57:14+00:00" name="calibre:timestamp"/>
+        <meta content="Chemistry: A Molecular Approach" name="calibre:title_sort"/>
+    </metadata>
+    <guide>
+        <reference href="Chemistry_ A Molecular Approach - Nivaldo J. Tro.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>

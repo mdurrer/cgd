@@ -1,0 +1,358 @@
+{Bert s hlavní židlí:}
+
+{kliknuti cihlou chytneme hned na zacatku:}
+block _11 ( not last(_11) and ((beg(1) and maxline(1) and isactico(i_cihla))or beg(0)) and (nedosahnu_na_pohadku=1) and isobjon(pohadka) and isobjon(hodzid_dobra) )
+title Ich brauche ein bißchen Hilfe von euch...
+ labels nemamcihlu
+  justtalk
+D: "Ich brauche ein bißchen Hilfe von euch..."
+  juststay
+  start hodzid "mluvi"
+Ka: "Welche Art von Hilfe?"
+  start hodzid "mlci"
+  justtalk
+D: "Ich müsste auf euch stehen..."
+  juststay
+  start hodzid "mluvi"
+Ka: "Oh!"
+  start hodzid "mlci"
+  justtalk
+D: "Ich muss erwähnen,
+    daß es sehr abenteuerlich wäre."
+D: "Vielleicht balancier ich
+    auf einem Bein!"
+  juststay
+  start hodzid "mluvi"
+Ka: "Aber ich hab doch nur drei!"
+  start hodzid "mlci"
+
+  if(isactico(0)) nemamcihlu
+  justtalk
+D: "Macht euch keine Sorgen
+    wegen eurer drei Beine,
+    ich hab etwas, was ich unter euch stellen kann."
+  juststay
+  start hodzid "mluvi"
+Ka: "Was? Einen alten Ziegel?"
+  start hodzid "mlci"
+  justtalk
+D: "Das sollte klappen."
+  juststay
+
+   icostat off i_cihla
+{   icostat on i_pohadka
+{   objstat away pohadka
+{do obou identifikatoru dam, ze uz tam pohadka neni
+{   let nedosahnu_na_pohadku (2)
+{   let vim_o_pohadce (2)
+{nyni zaridit situacku s vyndanim knihy:}
+   newroom hod 2
+   exitdialogue
+ label nemamcihlu
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) )
+title
+  justtalk
+D: "Seid ihr das, eure Exzellenz?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Ich bin es tatsächlich, Karmela die Fünfte,
+     wenn auch in erbärmlichem Zustand!
+     Bist du gekommen, um mich zu retten?"
+  start hodzid "mlci"
+  justtalk
+D: "(Ich hab genug eigene Probleme.
+    Vielleicht nächstes Mal.
+    Ich muss es schnell hinter mich bringen!)"
+D: "Ihr seht wirklich ganz schön
+    schmutzig aus."
+  juststay
+  start hodzid "mluvi"
+Ka: "Kein Wunder..."
+  start hodzid "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and not been(_01) and been(_00) )
+title
+  justtalk
+D: "Karmela, die Fünfte!"
+  juststay
+  start hodzid "mluvi"
+Ka: "Ja, das bin ich.
+     Kann ich dir helfen?"
+      start hodzid "mlci"
+gplend
+
+block _02 ( maxline(1) and beg(1) and been(_01) )
+title
+  justtalk
+D: "Karmela, die Fünfte!"
+  juststay
+  start hodzid "mluvi"
+Ka: "Ja?"
+  start hodzid "mlci"
+gplend
+
+block _10 ( beg(0) and not been(_10) )
+title Eure Freundin sagte mir, ich solle mich zu euch begeben.
+  justtalk
+D: "Eure Freundin sagte mir,
+    ich solle mich zu euch begeben."
+  juststay
+  start hodzid "mluvi"
+Ka: "Irgendwelche Neuigkeiten?"
+  start hodzid "mlci"
+  justtalk
+D: "Melanie ist total kaputt."
+  juststay
+  start hodzid "mluvi"
+Ka: "Kein Wunder."
+  start hodzid "mlci"
+  justtalk
+D: "Eulanie beschwert sich,
+    daß sie voller Holzwürmer ist."
+  juststay
+  start hodzid "mluvi"
+Ka: "Sie beschwert sich darüber
+     seit mindestens 50 Jahren!"
+  start hodzid "mlci"
+  justtalk
+D: "Agatha zerfällt."
+  juststay
+  start hodzid "mluvi"
+Ka: "Wird sie überleben?"
+  start hodzid "mlci"
+  justtalk
+D: "Nein, tut mir leid, es ist vorbei..."
+  juststay
+  start hodzid "mluvi"
+Ka: "Oh! Meine wohlgeschätzte Freundin!"
+  start hodzid "mlci"
+gplend
+
+block _14 ( beg(0) and not been(_14) and isobjon(hodzid_dobra) and not maxline(1) )
+title Wie fühlt Ihr euch nach der kleinen Reparatur?
+  justtalk
+D: "Wie fühlt Ihr euch nach der kleinen Reparatur?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Wie neugeboren!
+     Der Flicken ist großartig."
+      start hodzid "mlci"
+  start hodzid "mluvi"
+Ka: "Ich schulde dir etwas."
+  start hodzid "mlci"
+gplend
+
+block _13 ( not last(_13) and beg(0) and (nedosahnu_na_pohadku=1) and isobjon(pohadka) and not isobjon(hodzid_dobra) )
+title Ich möchte euch um Hilfe bitten...
+  justtalk
+D: "Ich möchte euch um Hilfe bitten..."
+  juststay
+  start hodzid "mluvi"
+Ka: "Ach ja?"
+Ka: "Ich glaube nicht,
+     daß ihr irgendwelche Hilfe von mir verdient.
+     Tut mir leid. Das kann ich nicht."
+      start hodzid "mlci"
+gplend
+
+block _1 ( beg(0) and not been(_1) )
+title Ihr seid ganz schön knirschig!
+  justtalk
+D: "Ihr seid ganz schön knirschig!"
+  juststay
+  start hodzid "mluvi"
+Ka: "Ohh, nicht nur das."
+  start hodzid "mlci"
+  justtalk
+D: "Eines eurer Beine ist kürzer
+    als die anderen!"
+  juststay
+  start hodzid "mluvi"
+Ka: "Wow, du hast wirklich Adleraugen."
+  start hodzid "mlci"
+gplend
+
+block _2 ( beg(0) and not been(_2) )
+title Wie seid Ihr hier hinein geraten?
+  justtalk
+D: "Wie seid Ihr hier hinein geraten?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Ich wurde von Masterfives Soldaten
+     gefangen genommen."
+  start hodzid "mlci"
+  justtalk
+D: "Ihr hättet euch wehren sollen."
+  juststay
+  start hodzid "mluvi"
+Ka: "Ich versuchte einen von ihnen zu treten,
+     aber er trug eine Zinnrüstung."
+      start hodzid "mlci"
+gplend
+
+block _3 ( beg(0) and not been(_3) )
+title Foltern sie euch auf eine bestimmte Art?
+  justtalk
+D: "Das klingt vielleicht geschmacklos,
+    aber foltern sie euch auf eine bestimmte Art?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Masterfive setzt sich jeden Tag nach dem Essen
+     eine halbe Stunde auf mich!"
+      start hodzid "mlci"
+  justtalk
+D: "Das ist furchtbar."
+  juststay
+gplend
+
+block _4 ( beg(0) and not been(_4) )
+title Warum haben sie euch eingesperrt?
+  justtalk
+D: "Warum haben sie euch eingesperrt?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Das ist alles wegen Ottomane..."
+{#Otoman - this is a name, but it is also a special kind of sofa
+  start hodzid "mlci"
+  justtalk
+D: "Wegen wem?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Hast du noch nie den Namen
+     Emrus Ottomane gehört?!"
+Ka: "Weißt du nichts von dem legendären,
+     unerschrockenen Führer der Stühle?"
+Ka: "Jeder kleine Hocker kennt ihn!"
+  start hodzid "mlci"
+gplend
+
+block _5 ( beg(0) and not been(_5) and been(_4) )
+title Wie kann ein Ottomane der Führer aller Stühle sein?
+  justtalk
+D: "Wie kann ein Ottomane
+    der Führer aller Stühle sein?"
+  juststay
+  justtalk
+D: "Er ist technisch gesehen eigentlich kein Stuhl."
+  juststay
+  start hodzid "mluvi"
+Ka: "Ottomane war ein Diwan!"
+Ka: "Er stammt aus einem uralten Stuhlgeschlecht,
+     seine Urgroßmutter aus vorderer linker Linie
+     war eine Couch."
+  start hodzid "mlci"
+gplend
+
+block _6 ( beg(0) and not been(_6) and been(_4) )
+title Erzählt mir etwas über die Geschichte der Stühle!
+  justtalk
+D: "Erzählt mir etwas
+    über die Geschichte der Stühle!"
+  juststay
+  start hodzid "mluvi"
+Ka: "Ähm...nun..."
+Ka: "Vor sehr langer Zeit,
+     lebten die Stühle im Verbund mit den Kreaturen,
+     die -"
+Ka: "- ich weiß, das klingt seltsam
+     heutzutage -
+     nur zwei Füße hatten."
+  start hodzid "mlci"
+  justtalk
+D: "Das ist lächerlich!"
+  juststay
+  start hodzid "mluvi"
+Ka: "Ja, ist es.
+     Wie auch immer, der tapfere Emrus kam daher."
+Ka: "Er startete eine Rebellion
+     gegen unseren Unterdrücker
+     und er war es der diesen
+     berühmten Ausdruck prägte."
+  start hodzid "mlci"
+gplend
+
+block _7 ( beg(0) and not been(_7) and been(_6) )
+title Wie ging die Rebellion aus?
+  justtalk
+D: "Wie ging die Rebellion aus??"
+  juststay
+  start hodzid "mluvi"
+Ka: "Ein sehr heftiger Winter kam
+     und die ganze Rebellion
+     wurde heftig zerschlagen."
+  start hodzid "mlci"
+  justtalk
+D: "Die Stühle sind während des Feldzugs
+    eingefroren?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Nein, sie wurden verbrannt!"
+  start hodzid "mlci"
+gplend
+
+block _8 ( beg(0) and not been(_8) and been(_6) )
+title Was war das Motto vom Emrus?
+  justtalk
+D: "Was war das Motto von Emrus?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Vier Füße sind nicht weniger als zwei!"
+  start hodzid "mlci"
+  justtalk
+D: "Klingt perfekt!
+    (Obwohl ich glaube,
+    das schon mal gehört zu haben...)"
+  juststay
+  start hodzid "mluvi"
+Ka: "Du bist ein Intellektueller,
+     der durch das Lesen inspiriert wurde, oder?"
+  start hodzid "mlci"
+gplend
+
+block _9 ( beg(0) and not been(_9) and been(_7) )
+title Wie ist Emrus Ottomane gestorben?
+  justtalk
+D: "Wie ist Emrus Ottomane gestorben?"
+  juststay
+  start hodzid "mluvi"
+Ka: "Zunächst hackten sie ihn in kleine Holzblöcke
+     und dann verbrannten sie ihn im Sommer,
+     beim Grillen."
+  start hodzid "mlci"
+  justtalk
+D: "Was für eine Schande!"
+D: "Ich könnte das träufelnde Fett
+    auf meinem Körper nicht aushalten!"
+  juststay
+  start hodzid "mluvi"
+Ka: "Aber sein Erbe bleibt uns erhalten."
+Ka: "Auf Stühlen wurde seitdem
+     nicht mehr gesessen."
+      start hodzid "mlci"
+gplend
+
+block _99 ( beg(0) and not(last(_01) or last(_02) or last(_11) ) and not maxline(1) )
+title Ich muss gehen, habt einen schönen Tag...
+  justtalk
+D: "Ich muss gehen, habt einen schönen Tag..."
+  juststay
+  start hodzid "mluvi"
+Ka: "Dir auch."
+  start hodzid "mlci"
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and maxline(1) and (last(_01) or last(_02)) )
+title
+  justtalk
+D: "Nein."
+  juststay
+  start hodzid "mluvi"
+Ka: "Das war ein schlechter Witz, oder?
+     Scherze bitte nicht mit mir!"
+      start hodzid "mlci"
+  exitdialogue
+gplend

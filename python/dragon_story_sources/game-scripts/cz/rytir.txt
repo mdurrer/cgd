@@ -1,0 +1,526 @@
+{dialog draka s rytířem:}
+
+
+block _05 ( maxline(1) and beg(1) and hasbeen(_04) and not hasbeen(_05) )
+title Co tvůj pocit strachu?
+
+  justtalk
+  D: "Co tvůj pocit strachu?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Vu-vůbec se to ne-nezlepšilo."
+  start rytir "mlci"
+
+  justtalk
+  D: "Už nabyl nějaké konkrétní podoby?"
+  juststay
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  start rytir "mluvi"
+  Ryt: "Je po-pořád stejně nede-definovatelný."
+  start rytir "mlci"
+
+  justtalk
+  D: "To je škoda.
+      Kdybys ho mohl nějak konkrétně popsat,
+      třeba bych ti pomohl..."
+  juststay
+  exitdialogue
+gplend
+
+block _06 ( maxline(1) and beg(1) and hasbeen(_05) and not hasbeen(_06) )
+title S tvým pocitem strachu musíme něco provést!
+  justtalk
+  D: "S tvým pocitem strachu musíme něco provést!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Ale c-co?"
+  start rytir "mlci"
+
+  justtalk
+  D: "Musíme už konečně zjistit jeho příčinu.
+      Budu ti klást otázky
+      a ty mi na ně budeš odpovídat, ano?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Do-dobrá."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+  D: "Máš pocit, že ti ten drak chce ublížit?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Ne-nevím proč by-by mi měl ubližovat.
+        Nema-mám proti němu nic o-osobního."
+  start rytir "mlci"
+
+  justtalk
+  D: "Ach jo!"
+  D: "Ty chceš tomu drakovi useknout hlavu, že?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "N-no."
+  start rytir "mlci"
+
+  justtalk
+  D: "Myslíš, že mu to bude vadit?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "My-myslím, že drakovi na nějaké té hla-hlavě
+        to-tolik nesejde."
+  start rytir "mlci"
+
+  justtalk
+  D: "Co když je to jeho jediná hlava?!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "V-věřím v jeho při-přirozené
+        rege-generační schopnosti."
+  start rytir "mlci"
+
+  exitdialogue
+
+gplend
+
+block _07 ( maxline(1) and beg(1) and hasbeen(_06) and not hasbeen(_07) )
+title Máš pocit, že tě ten drak chce sežrat?
+  justtalk
+  D: "Máš pocit, že tě ten drak chce sežrat?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "K-kde-pak. My-myslím,
+        že by mu mo-moje brnění mo-moc nechutnalo."
+  start rytir "mlci"
+
+  justtalk
+  D: "Na tvém brnění si drak smlsne ze všeho nejvíc!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Va-vážně?
+        Já my-myslel, že-že draci p-plech ne-nežerou?!"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+  D: "Kdepak, slupne tě jak malinu i s brněním."
+  D: "Poslední dobou se plechové brnění stalo
+      tou nejvybranější lahůdkou!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "To-tomu ne-nevěřím!"
+  start rytir "mlci"
+
+  justtalk
+  D: "Nevěř.
+      Škoda, myslel jsem si, že mi naletíš."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Ne-nejsem naivní."
+  start rytir "mlci"
+
+  justtalk
+  D: "Abyses potom nedivil!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Če-čemu bych se měl divit?
+        Dr-drakům prostě plech nechutná a ba-basta!"
+  start rytir "mlci"
+
+  justtalk
+  D: "Omyl!"
+  D: "Když není po ruce otvírák na konzervy
+      a drak má hodně velký hlad,
+      sežere tě i s brněním."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Co-co chu-chudák zažívací trakt?"
+  start rytir "mlci"
+
+  exitdialogue
+gplend
+
+
+block _12 ( maxline(1) and beg(1) and not been(_12) and isactico(0) and been(_07) and (otec_troubil=1) )
+title Slyšel jsi už někdy o dracích, kteří dští oheň a síru?
+  justtalk
+  D: "Slyšel jsi už někdy o dracích, kteří dští
+      oheň a síru?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "To-to jo."
+  start rytir "mlci"
+
+  justtalk
+  D: "Teď se objevila dračí mutace,
+      co dští kyselinu sírovou!"
+  D: "Takový drak si jenom nadští trochu kyseliny
+      do břicha a pak tě v pohodě stráví."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "T-to jsou te-teda va-vážně silný žaludeční
+        šť-šťávy."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+  D: "Zaslechl jsi ty zvuky, co vycházely tůhle z
+      jeskyně?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Co-cosi jsem opravdu za-zaslechl."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+  D: "A to mu zatím jenom kručelo v břiše!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Za-začínám mít zcela ko-konkrétně
+        de-definovatelný po-pocit strachu!"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+
+{vytrepani soucastky:}
+  start rytir_nohy "hodne"
+  load nyt_pada "padani"
+  startplay nyt_pada "padani"
+  objstat away nyt_pada
+  objstat_on nyt jesven
+  start nyt "zakladni"
+  let tras_nohou (1)
+
+  exitdialogue
+gplend
+
+
+block _13 ( maxline(1) and beg(1) and isactico(i_tricko))
+title
+  let slepene_nohy (1)
+  icostat off i_tricko
+  objstat_on rytir_nohy_slep jesven
+  start rytir_nohy_slep "zakladni"
+  objstat away rytir_nohy
+
+  justtalk
+  D: "Tak to bude lepší.
+      Taky mi to cinkání už lezlo na nervy."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Díky, že's mi slepil nohy,
+        už jsem měl docela otlučená kolena.
+        A navíc jsem přestal i ko-koktat!"
+  start rytir "mlci"
+
+  justtalk
+  D: "Teď tady ale asi budeš muset zůstat navždycky..."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Nevadí, tohle je docela pěkné místo."
+  Ryt: "Vždycky jsem si přál umřít
+        na takovém krásném místě."
+  start rytir "mlci"
+
+  justtalk
+  D: "Vidím to tak, že zrezivíš za živa!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Kdoví..."
+  start rytir "mlci"
+
+  justtalk
+  D: "Co teď ale bude s draky?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Víš co,
+        mohl bys draky vodit rovnou sem za mnou!"
+  start rytir "mlci"
+
+  justtalk
+  D: "Ještě o tom popřemýšlím..."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Pokud bys na tom trval,
+        mohl bys jim taky klidně
+        sekat hlavy místo mě."
+  Ryt: "Jestli nemáš meč,
+        klidně ti půjčím svůj.
+        Ale musíš s ním šetrně zacházet, platí?"
+  start rytir "mlci"
+
+  justtalk
+  D: "Tak to ne, já s meči zacházím jako hulvát!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "V tom případě si budeš muset
+        meč sehnat někde jinde."
+  Ryt: "Když chceš mermomocí sekat drakům hlavy,
+        nějaký meč potřebovat budeš."
+  start rytir "mlci"
+
+  exitdialogue
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) and isactico(0) )
+title
+  justtalk
+  D: "Ahoj, já jsem Bert!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "K-kdo jsi? D-d-rak?"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+  D: "Kdepak, jdu z maškarního bálu.
+      Nejsem ve skutečnosti drak."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "M-m-máš hezkou ma-ma-masku.
+        Já jsem Hrůzo-zo-straš By-bytelný."
+  Ryt: "Ma-máš štěstí, že d-drak nejsi,
+        protože jinak by-bych ti mu-musel useknout hlavu!"
+  start rytir "mlci"
+gplend
+
+block _00a ( maxline(1) and beg(1) and been(_00) and isactico(0) and (slepene_nohy=0) )
+title
+  justtalk
+  D: "Pokecáme?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Do-dobrá."
+  start rytir "mlci"
+gplend
+
+block _14 ( atbegin(0) and not hasbeen(_14) )
+title Co ta jeskyně, tady za námi...
+  justtalk
+  D: "Co ta jeskyně, tady za námi..."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Je-je v ní d-drak?"
+  start rytir "mlci"
+
+  justtalk
+  D: "To bys snad měl vědět sám!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Za-zatím to-to ale ne-nevím."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+  D: "Já bych řekl, že tam drak je.
+      Máme spolu nějaký nevyřízený účty..."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Pa-pak do-doufám, že mu ne-nejdeš
+        useknout hlavu,
+        od to-toho jsem ta-tady já!"
+  start rytir "mlci"
+
+  justtalk
+  D: "Useknout hlavu? Nikdy!
+      Vždyť je to určitě můj otec!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Jakto-tože tvůj otec je d-drak a ty-ty ne-nejsi?!"
+  start rytir "mlci"
+
+  justtalk
+  D: "Ále, jsem hříčka přírody..."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "O-oh!"
+  start rytir "mlci"
+gplend
+
+block _20 ( atbegin(0) and not hasbeen(_20) )
+title Jak se cítíš v tom brnění?
+  justtalk
+  D: "Jak se cítíš v tom brnění?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Do-do-dost mizerně."
+  Ryt: "Jsem to-to-tiž klaustro-tro-fobik!"
+  start rytir "mlci"
+
+  justtalk
+  D: "Zkus si otevřít hledí!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Za-za-zasekl se mi šroubek."
+  start rytir "mlci"
+gplend
+
+block _02 ( atbegin(0) and not hasbeen(_02) )
+title Proč se ti tak třesou kolena?
+  justtalk
+  D: "Proč se ti tak třesou kolena?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Vždy-dycky když mám nějakému d-drakovi
+        useknout hla-hlavu, třesou se mi t-takhle."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+  D: "Co na to říká psycholog?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Co-co ps-psycholog, to-to nevím,
+        ale mám p-příručku 'Sa-sám so-sobě psychologem'."
+  start rytir "mlci"
+
+  justtalk
+  D: "A co říká ta příručka?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Ří-říká, že mu-mu-musím překonat stra-
+        stra- stra-"
+  start rytir "mlci"
+
+  justtalk
+  D: "Strach?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "T-to říká.
+        Še-šel jsem ho překonávat se-sem."
+  start rytir "mlci"
+
+  justtalk
+  D: "Zatím se ti to moc nedaří."
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Ne-ne-nevím, čím to je.
+        Dneska-ka se-se ne-nemůžu vůbec
+        po-poh-pohnout z místa!"
+  start rytir "mlci"
+gplend
+
+block _04 ( atbegin(0) and hasbeen(_02) and not hasbeen(_04) )
+title Z čeho vůbec pramení tvůj strach?
+  justtalk
+  D: "Z čeho vůbec pramení tvůj strach?
+      Co vím, draci jsou celkem prima!"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "Ne-nevím. Mám prostě b-blíže nede-definovatelný
+        po-pocit strachu!"
+  start rytir "mlci"
+
+  justtalk
+  D: "Kdyby tvůj strach nabyl trochu
+      konkrétnější podoby,
+      třeba by se pak s ním něco dalo dělat..."
+  juststay
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+gplend
+
+
+block _15 ( beg(0) and last(_00a) and maxline(1) and (slepene_nohy=0) )
+title
+  justtalk
+  D: "Ale o čem?"
+  juststay
+
+  start rytir "mluvi"
+  Ryt: "T-to je fakt.
+        T-tak zase ně-někdy."
+  start rytir "mlci"
+gplend
+
+block _00b ( maxline(1) and beg(1) )
+title
+ {kdyby žádný přdchozí začátek rozhovoru nezabral...
+  justtalk
+  D: "Pokecáme?"
+{rytir chvilku mlci}
+  Ryt: "---"
+  D: "No tak teda ne."
+  juststay
+  exitdialogue
+gplend
+
+block _99 ( not maxline(1) and beg(0) and not last(_00a) )
+title Zatím tě opustím...
+  justtalk
+  D: "Zatím tě opustím..."
+  juststay
+  start rytir "mluvi"
+  Ryt: "Do-dobrá."
+  Ryt: "T-tak zase ně-někdy."
+  start rytir "mlci"
+  exitdialogue
+gplend
+

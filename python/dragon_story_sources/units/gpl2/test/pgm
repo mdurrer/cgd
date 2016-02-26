@@ -1,0 +1,5 @@
+labels konec
+if ((random(100)*100-20)/2) konec
+{if (prom1=random(4)) konec}
+ahoj: "ahoj"
+label konec

@@ -1,0 +1,59 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+load intr_lout1 "kameni"
+load intr_lout1 "mluvi"
+
+load intr_lout2 "kameni"
+load intr_lout2 "mluvi"
+load intr_lout2 "mlci"
+load intr_lout2 "vyleza"
+
+{[jsme u komedianta:]
+{komediant mění hlas pro následující dvě postavy:}
+{má to být pimprlové divadýlko, no...
+{kdyžtak si to upravte dle vaší libovůle!
+
+{jedna:}
+start intr_lout1 "mluvi"
+KoIn: "Get out of that chest! You are discovered,
+       you traitor!"
+start intr_lout1 "mlci"
+{dva:}
+startplay intr_lout2 "vyleza"
+start intr_lout2 "mluvi"
+KoIn: "I have no reason to hide in the chest."
+KoIn: "For it isn't me who hides something,
+       but you wizard!"
+KoIn: "I will expose your true nature!"
+start intr_lout2 "mlci"
+{jedna:}
+start intr_lout1 "mluvi"
+KoIn: "You are sputtering nonsense!
+       For it is you, the king's sneak!"
+start intr_lout1 "mlci"
+{dva:}
+start intr_lout2 "mluvi"
+KoIn: "Hah, let me turn to stone if that is ..."
+
+start intr_lout1 "kameni"
+startplay intr_lout2 "kameni"
+
+start intr_lout1 "kamennej"
+
+{uprostřed věty přetrženo, loutky zkamení, jedna spadne {komediantovi na nohu,
+
+{komediant už svým hlasem:}
+KoIn: "Ouch!"
+
+gplend
+
+block _1 ( (1=2) )
+title
+KoIn: "."
+KoIn: "."
+KoIn: "."
+KoIn: "."
+KoIn: "."
+gplend

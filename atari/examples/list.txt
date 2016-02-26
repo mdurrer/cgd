@@ -1,0 +1,76 @@
+------- FILE sample1.asm LEVEL 1 PASS 1
+sample1.asm (1): error: Unknown Mnemonic '6502'.
+      1  0000				   processor  6502
+sample1.asm (2): error: Unknown Mnemonic '"vcs'.
+      2  0000				   include    "vcs.h"
+sample1.asm (3): error: Unknown Mnemonic '"macro'.
+      3  0000				   include    "macro.h"
+      4  0000 ????
+      5  0000 ????			   SEG
+sample1.asm (6): error: Unknown Mnemonic '$F000'.
+      6  0000 ????			   ORG	      $F000
+      7  0000 ????
+      8  0000 ????			   Reset
+      9  0000 ????			   StartOfFrame
+     10  0000 ????
+     11  0000 ????			   CLEAN_START
+sample1.asm (12): error: Unknown Mnemonic '#0'.
+     12  0000 ????			   lda	      #0
+sample1.asm (13): error: Unknown Mnemonic 'VBLANK'.
+     13  0000 ????			   sta	      VBLANK
+sample1.asm (14): error: Unknown Mnemonic '#2'.
+     14  0000 ????			   lda	      #2
+sample1.asm (15): error: Unknown Mnemonic 'VSYNC'.
+     15  0000 ????			   sta	      VSYNC
+     16  0000 ????
+sample1.asm (17): error: Unknown Mnemonic 'WSYNC'.
+     17  0000 ????			   sta	      WSYNC
+sample1.asm (18): error: Unknown Mnemonic 'WSYNC'.
+     18  0000 ????			   sta	      WSYNC
+sample1.asm (19): error: Unknown Mnemonic 'WSYNC'.
+     19  0000 ????			   sta	      WSYNC
+sample1.asm (20): error: Unknown Mnemonic '#0'.
+     20  0000 ????			   lda	      #0
+sample1.asm (21): error: Unknown Mnemonic 'VSYNC'.
+     21  0000 ????			   sta	      VSYNC
+     22  0000 ????
+sample1.asm (23): error: Unknown Mnemonic '37'.
+     23  0000 ????			   REPEAT     37
+sample1.asm (24): error: Unknown Mnemonic 'sta'.
+     24  0000 ????				      sta	WSYNC
+     25  0000 ????			   REPEND
+     26  0000 ????
+sample1.asm (27): error: Unknown Mnemonic '#$00'.
+     27  0000 ????			   ldx	      #$00
+     28  0000 ????
+sample1.asm (29): error: Unknown Mnemonic '192'.
+     29  0000 ????			   REPEAT     192
+sample1.asm (30): error: Unknown Mnemonic 'inx'.
+     30  0000 ????				      inx
+sample1.asm (31): error: Unknown Mnemonic 'stx'.
+     31  0000 ????				      stx	COLUBK
+sample1.asm (32): error: Unknown Mnemonic 'sta'.
+     32  0000 ????				      sta	WSYNC
+     33  0000 ????			   REPEND
+sample1.asm (34): error: Unknown Mnemonic '#%01000010'.
+     34  0000 ????			   lda	      #%01000010
+sample1.asm (35): error: Unknown Mnemonic 'VBLANK'.
+     35  0000 ????			   sta	      VBLANK
+     36  0000 ????
+sample1.asm (37): error: Unknown Mnemonic '30'.
+     37  0000 ????			   REPEAT     30
+sample1.asm (38): error: Unknown Mnemonic 'sta'.
+     38  0000 ????				      sta	WSYNC
+     39  0000 ????			   REPEND
+sample1.asm (40): error: Unknown Mnemonic 'StartOfFrame'.
+     40  0000 ????			   jmp	      StartOfFrame
+     41  0000 ????
+sample1.asm (42): error: Unknown Mnemonic '$FFFA'.
+     42  0000 ????			   ORG	      $FFFA
+sample1.asm (43): error: Unknown Mnemonic 'Reset'.
+     43  0000 ????			   .word      Reset
+sample1.asm (44): error: Unknown Mnemonic 'Reset'.
+     44  0000 ????			   .word      Reset
+sample1.asm (45): error: Unknown Mnemonic 'Reset'.
+     45  0000 ????			   .word      Reset
+     46  0000 ????			   END

@@ -1,0 +1,387 @@
+{dva staré letité pařezy- Strombuk a Stromdub:
+
+block _08 ( maxline(1) and beg(1) and not been(_08) and been(_07) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "Wie steht es mit der Migräne von Eiche?"
+  juststay
+  start par6 "mluvi"
+  dub: "Keine Besserung!
+        Kennst du eine gute Behandlung?"
+  start par6 "mlci"
+  justtalk
+    D: "Warte ne Sekunde, ich hol eine Säge..."
+  juststay
+  start par6 "mluvi"
+  dub: "Bei so einer Therapie mache ich nicht mit!"
+  start par6 "mlci"
+  exitdialogue
+gplend
+
+block _09 ( maxline(1) and beg(1) and isobjon(tajnyvchod) )
+title
+  justtalk
+    D: "Was ist mit deinen spröden Wurzeln?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Ja, ich dachte, es könnte nicht schaden
+        wenn ich sie mir ab und an hoch krempel!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  exitdialogue
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) )
+title
+  justtalk
+    D: "Guten Abend, Herr Stumpf."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Wenn es dich interessiert, mein Name ist Buche."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Und ich bin Eiche. Vernachlässige mich nicht."
+  start par6 "mlci"
+  justtalk
+    D: "Ihr seid also ein Paar..."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Wer...?"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Wir...?"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Nein...!"
+  buk: "Wenn du was anderes gehört hast,
+        war das wohl ein Echo."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Du hast es vermasselt, du Blödmann.
+        Ich war dran!"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Ho ho, da liegst du falsch, mein Bruder!
+        Wir haben es seit zehn Jahren
+        vollkommen gleich gesagt..."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "Aufhören!
+        Euer Witz ist nicht sehr originell!"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Tut uns leid.
+        Außerdem ist es abgefahren
+        ein Stumpf zu sein!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "Das ist es sicherlich. Mein Name is Bert."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Freut mich."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Ignorier ihn, es freut mich!"
+  start par6 "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and been(_00) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "Liebe Stümpfe..."
+  juststay
+gplend
+
+block _02 ( beg(0) and not been(_02) and isobjoff(tajnyvchod) )
+title Könnt ihr mir etwas über euch erzählen?
+  justtalk
+    D: "Könnt ihr mir etwas über euch erzählen?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Also..."
+  buk: "In meinem ersten Lebensjahr
+        war ich ein kleiner Samen,
+        der durch die Luft flog."
+  buk: "Ich weiß nicht, wie lange ich so geflogen bin,
+        aber in dem Moment,
+        als ich diesen Ort zum ersten Mal
+        gesehen habe, hat er sich bei mir eingebrannt."
+  buk: "Ich wußte sofort,
+        daß ich hier meine Wurzeln schlagen werde.
+        Ich taumelte herum und landete auf dem Boden."
+  buk: "Ich fiel sanft ins Moos neben der Eiche,
+        die schon eine Weile vor mir da war."
+  buk: "Es gab einen heftigen Blizzard an diesem Tag.
+        Es sah nach Regen aus und er suchte Schutz hier."
+  buk: "Letztlich beschlossen wir hier zu bleiben."
+  buk: "In meinem zweiten Lebensjahr
+        wurde ich zu einem kleinen Sämling
+        und Eiche war etwas kleiner."
+  buk: "Obwohl er schon etwas eher hier gelandet war,
+        konnte ich schneller Wurzeln schlagen."
+  buk: "Seitdem versuche ich Eiche ständig zu erklären,
+        daß ich der Ältere bin und damit auch der Weisere."
+  buk: "Er versucht mich damit zu überzeugen,
+        daß er vor mir hier war.
+        Vielleicht war er das, aber weiser ist er nicht."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Er lügt."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Nein, er lügt.
+        Im dritten Jahr hat sich nicht viel verändert."
+  buk: "Im vierten Jahr wuchs ich ganz plötzlich
+        und habe Eiche komplett überschattet."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Das kann passieren,
+        wenn ein Baum in der Pubertät ist."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Hör nicht auf ihn,
+        er war immer ein Spätzünder."
+  buk: "Im fünften Jahr..."
+
+  {stále otvírá hubou; objeví se titulek "Později..."}
+  {obrazovka může setmět a zase se rozsvítit
+
+  blackpalette
+  fadepaletteplay 0 255 50
+  loadpalette "..\PAREZY\PL8.PCX"
+  disablespeedtext
+  fadepalette 0 255 50
+  Vypravec: "Einige Tage später..."
+  Vypravec: "Einige Tage später..."
+  Vypravec: "Einige Tage später..."
+  enablespeedtext
+
+  buk: "...und im 538ten Jahr,
+        vermoderte ich noch viel stärker."
+  buk: "Nun kennst du mein ganzes Leben
+        und ich hoffe du bist nicht müde geworden."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  {drak měl mezitím zavřené oči, najednou se probudí
+  justtalk
+    D: "Keineswegs!
+        Wenn ich doch nur eine weitere Woche Zeit hätte,
+        würde ich auch gern die Geschichte von Eiche hören."
+  juststay
+  start par6 "mluvi"
+  dub: "Es war im ersten Jahr, als ich..."
+  start par6 "mlci"
+  justtalk
+    D: "Tut mir leid, aber..."
+  juststay
+  start par6 "mluvi"
+  dub: "...als Samen durch die Luft flog.
+        Ich weiß nicht für wie lange..."
+  start par6 "mlci"
+  justtalk
+    D: "Ich hab gerade keine Zeit!"
+  juststay
+  {chvíli oba mlčí}
+  start par6 "mluvi"
+  dub: "Interessiert es dich nicht
+        was wirklich passiert ist?"
+  start par6 "mlci"
+  justtalk
+    D: "Ich schau einfach in 538 Jahren nochmal vorbei."
+  juststay
+  start par6 "mluvi"
+  dub: "Kommst du auch wirklich?"
+  start par6 "mlci"
+  justtalk
+    D: "Ich versprech's."
+  juststay
+gplend
+
+block _03 ( beg(0) and not been(_03) and isobjoff(tajnyvchod) )
+title Was seid ihr für Bäume?
+  justtalk
+    D: "Was seid ihr für Bäume?"
+  juststay
+  start par6 "mluvi"
+  dub: "Ich bin eine Pappel."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Er macht Witze, er ist ne gewöhnliche Eiche.
+        Aber er hatte schon immer einen
+        Minderwertigkeitskomplex
+        und wollte eine große Pappel sein..."
+  buk: "...bis er irgendwann anfing, es zu glauben."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "Und was bist du?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Ich bin eine große Pappel."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+gplend
+
+
+block _06 ( beg(0) and not been(_06) )
+title Ihr versteckt doch was vor mir!!
+  justtalk
+    D: "Ihr versteckt doch was vor mir!"
+  juststay
+  start par6 "mluvi"
+  dub: "Ich? Ich kann nicht sagen, was ich nicht weiß."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Oder vielleicht doch? Ho ho!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "Ihr versteckt einen geheimen Eingang!"
+  juststay
+  start par6 "mluvi"
+  dub: "Darum ist er ja geheim, du Schlaumeier."
+  start par6 "mlci"
+gplend
+
+block _07 ( beg(0) and not been(_07) and been(_06) )
+title Könntet ihr den geheimen Eingang enthüllen?
+  justtalk
+    D: "Könntet ihr den geheimen Eingang enthüllen?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Wohl kaum.
+        Wir bedecken ihn mit unseren Wurzeln,
+        und die sind über die Jahre steif geworden."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Ich bin doch nicht lebensmüde.
+        Höchstwahrscheinlich brechen mir dabei
+        alle Wurzeln ab."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Wir lassen dich nicht unsere Wurzeln verletzen!
+        Wir hatten schon genug Ärger,
+        weil wir über dem Geheimgang
+        Wurzeln geschlagen haben!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Ich fühl mich schon morsch
+        in den Wurzeln, wenn ich nur daran denke,
+        wie sie langsam aber sicher knacken."
+  dub: "Autsch !!!"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Außerdem juckt mir die Flechte so sehr.
+        Uhhh, welcher Terror!"
+  buk: "Ganz zu schweigen von den Wurzeln."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Ja, die Flechte hab ich ganz vergessen.
+        Und seit Kurzem hat sich jemand entschlossen
+        Holz auf mir zu spalten.
+        Seitdem hab ich Migräne."
+  start par6 "mlci"
+  justtalk
+    D: "Ich hab noch nie solche
+        hypochondrischen Stümpfe gesehen!"
+  juststay
+
+  let budu_drbat (1)
+gplend
+
+block _04 ( beg(0) and maxline(1) and last(_01) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "...Ich hab euch nichts zu sagen."
+    D: "Ihr vielleicht?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Nee."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Also im ersten Jahr, als ich..."
+  start par6 "mlci"
+  justtalk
+    D: "Das ist nicht das, was ich hören wollte!"
+  juststay
+  exitdialogue
+gplend
+
+block _05 ( beg(0) and not last(_01) )
+title Auf Wiedersehen für's erste.
+  justtalk
+    D: "Auf Wiedersehen für's erste."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Tschüss."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  exitdialogue
+gplend
+

@@ -1,0 +1,255 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.0.32 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER><B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</CENTER>
+
+<CENTER>
+<DT>
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris 1996,1997,1998</DT></CENTER>
+
+<CENTER>
+<DT>
+- Over 150k of pure sh...er, 3d coding power!</DT></CENTER>
+
+
+<P>
+<HR WIDTH="100%">
+
+<P><A NAME="chap6"></A>
+<H2>
+6. Hidden face removal</H2>
+
+<UL><A NAME="chap61"></A>
+<H3>
+6.1 Backface Culling</H3>
+The idea of backface culling is simple: if a polygon is a <I>backface</I>
+(it's not facing the camera), there's no need to draw it. This can be checked
+by finding the z value of its normal and by examining its sign. This won't
+work if the faces haven't been defined right, so be careful (for example
+3D Studio creates the correct type of faces; the vertices are in counterclockwise
+order). Here's a pseudo-backface-culler:
+<DT>
+<TT>function backface(x1, y1, x2, y2, x3, y3)</TT></DT>
+
+<UL>
+
+<DT>
+<TT>; find the z value of the cross product</TT></DT>
+
+<DT>
+<TT>if ( (x3-x1)*(y3-y2) - (x3-x2)*(y3-y1) > 0 )</TT></DT>
+
+<UL>
+<DT>
+<TT>return TRUE</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>return FALSE</TT></DT>
+</UL>
+</UL>
+
+<DT>
+<TT>endf</TT></DT>
+
+
+<P><A NAME="chap62"></A>
+<H3>
+6.2 View Cone</H3>
+<I>View cone</I> means the conical area that can be seen by looking at
+some direction. Here's a picture of a view cone:
+<UL>
+<UL><script pagespeed_no_defer="" type="text/javascript">//<![CDATA[
+(function(){var g=this,h=function(b,d){var a=b.split("."),c=g;a[0]in c||!c.execScript||c.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===d?c[e]?c=c[e]:c=c[e]={}:c[e]=d};var l=function(b){var d=b.length;if(0<d){for(var a=Array(d),c=0;c<d;c++)a[c]=b[c];return a}return[]};var m=function(b){var d=window;if(d.addEventListener)d.addEventListener("load",b,!1);else if(d.attachEvent)d.attachEvent("onload",b);else{var a=d.onload;d.onload=function(){b.call(this);a&&a.call(this)}}};var n,p=function(b,d,a,c,e){this.f=b;this.h=d;this.i=a;this.c=e;this.e={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.g=c;this.b={};this.a=[];this.d={}},q=function(b,d){var a,c,e=d.getAttribute("pagespeed_url_hash");if(a=e&&!(e in b.d))if(0>=d.offsetWidth&&0>=d.offsetHeight)a=!1;else{c=d.getBoundingClientRect();var f=document.body;a=c.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);c=c.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+c;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.e.height&&c<=b.e.width)}a&&(b.a.push(e),b.d[e]=!0)};p.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&q(this,b)};h("pagespeed.CriticalImages.checkImageForCriticality",function(b){n.checkImageForCriticality(b)});h("pagespeed.CriticalImages.checkCriticalImages",function(){r(n)});var r=function(b){b.b={};for(var d=["IMG","INPUT"],a=[],c=0;c<d.length;++c)a=a.concat(l(document.getElementsByTagName(d[c])));if(0!=a.length&&a[0].getBoundingClientRect){for(c=0;d=a[c];++c)q(b,d);a="oh="+b.i;b.c&&(a+="&n="+b.c);if(d=0!=b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),c=1;c<b.a.length;++c){var e=","+encodeURIComponent(b.a[c]);131072>=a.length+e.length&&(a+=e)}b.g&&(e="&rd="+encodeURIComponent(JSON.stringify(s())),131072>=a.length+e.length&&(a+=e),d=!0);t=a;if(d){c=b.f;b=b.h;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(k){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(u){}}f&&(f.open("POST",c+(-1==c.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}},s=function(){var b={},d=document.getElementsByTagName("IMG");if(0==d.length)return{};var a=d[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var c=0;a=d[c];++c){var e=a.getAttribute("pagespeed_url_hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].k&&a.height>=b[e].j)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b},t="";h("pagespeed.CriticalImages.getBeaconData",function(){return t});h("pagespeed.CriticalImages.Run",function(b,d,a,c,e,f){var k=new p(b,d,a,e,f);n=k;c&&m(function(){window.setTimeout(function(){r(k)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','https://www.modeemi.fi/drdoom/3dica/3dica6.htm','l8PuqRhht8',true,false,'HePf98D1hwg');
+//]]></script><IMG SRC="hfr1.gif" HEIGHT=131 WIDTH=154 pagespeed_url_hash="1568882374" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+</UL>
+(C = camera point, P = projection plane. The camera point is actually the
+watcher's eye, and the projection plane is the computer screen.) So there
+are five planes against which we must clip (or six planes if we want to
+use a back plane in a defined maximum range when using fog or light attenuation
+for example). If a polygon is not inside the cone, we can drop it out the
+calculations and save a great amount of processing time. If it's partly
+inside, we clip it against the cone and draw only the part which is inside.
+The more elegant (and faster) form of view cone uses 3D clipping to clip
+this kind of polygons but I recommend using graphical clipping in the polygon
+routine at first; it's far more straightforward to implement and it <I>works</I>,
+too (ok there's a problem with the z thing).
+
+<P>The thing is done by comparing the 2Dx, 2Dy, and z coordinates to the
+screen edges and by acting accordingly. Applying to the z coordinate, we
+don't draw the polygon if <I>any</I> of its vertices' z is less than zero;
+we can't draw or interpolate right a polygon like that. If your scene bugs
+with this, please read the following chapter. Pseudo:
+<UL>
+<DT>
+<TT>if</TT></DT>
+
+<UL>
+<DT>
+<TT>(</TT></DT>
+
+<UL>
+<DT>
+<TT>EVERY vertex.z>0</TT></DT>
+</UL>
+
+<DT>
+<TT>and</TT></DT>
+
+<UL>
+<DT>
+<TT>SOME vertex.x at the range 0..MAX_X</TT></DT>
+</UL>
+
+<DT>
+<TT>and</TT></DT>
+
+<UL>
+<DT>
+<TT>SOME vertex.y at the range 0..MAX_Y</TT></DT>
+</UL>
+
+<DT>
+<TT>)</TT></DT>
+
+<DT>
+<TT>draw.</TT></DT>
+</UL>
+</UL>
+
+<UL><A NAME="chap621"></A>
+<H4>
+6.2.1 3D clipping</H4>
+This is a bit trickier thing to implement. It's best if you're using n-sided
+polygons; a clipped triangle might become a quadrangle, and if you were
+using only triangles, you should create two triangles out of it. No good.
+Anyway, some pseudo to clip the z's (really not the one and only way to
+do the thing, try your own ways!):
+<UL>
+<DT>
+<TT>; check the z's</TT></DT>
+
+<DT>
+<TT>every_z_out=true</TT></DT>
+
+<DT>
+<TT>every_z_in=true</TT></DT>
+
+<DT>
+<TT>for a=0 -> vertices_in_poly-1</TT></DT>
+
+<UL>
+<DT>
+<TT>if z[a]>1 ; or zero if this doesn't work with you</TT></DT>
+
+<UL>
+<DT>
+<TT>every_z_out=false</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>every_z_in=false</TT></DT>
+</UL>
+</UL>
+
+<DT>
+<TT>if (not every_z_out) and (not every_z_in)</TT></DT>
+
+<UL>
+<DT>
+<TT>clip z's</TT></DT>
+
+<DT>
+<TT>every_z_in=true</TT></DT>
+</UL>
+
+<DT>
+<TT>perform 2d transformations</TT></DT>
+
+<DT>
+<TT>...</TT></DT>
+
+<DT>
+<TT>if every_z_in</TT></DT>
+
+<UL>
+<DT>
+<TT>draw_using_graphical_clipping.</TT></DT>
+</UL>
+</UL>
+That's the main idea. Clipping can be performed by using the parametric
+equation of a line (((x0,y0,z0) = vertex 1 etc):
+<UL>
+<DT>
+<TT>x = x0 + t*(x1-x0)</TT></DT>
+
+<DT>
+<TT>y = y0 + t*(y1-y0)</TT></DT>
+
+<DT>
+<TT>z = z0 + t*(z1-z0)</TT></DT>
+</UL>
+Z-clip: we define z=0.5 and calculate t:
+<UL>
+<DT>
+<TT>z0 + t*(z1-z0) = 0.5</TT></DT>
+
+<DT>
+<TT>t = (0.5-z0) / (z1-z0)</TT></DT>
+</UL>
+This is placed into the equations of x and y:
+<UL>
+<DT>
+<TT>x = x0 + (x1-x0)*(0.5-z0)/(z0-z1)</TT></DT>
+
+<DT>
+<TT>y = y0 + (y1-y0)*(0.5-z0)/(z0-z1)</TT></DT>
+
+<DT>
+<TT>z = 1</TT></DT>
+</UL>
+And these are the new coordinates of the vertex!</UL>
+<A NAME="chap63"></A>
+<H3>
+6.3 Portals</H3>
+<I>Portals</I> are very simple and easy to understand and implement (at
+least the most primitive versions :) Using them, we can eliminate 70-80%
+of polys from our calculations and do it even before rotating anything
+(another story)!
+
+<P>Portals require the whole scene to consist of <I>rooms</I>. Each room
+has not only its own polygons but also invisible <I>portal polygons</I>
+in the holes (doors, windows, ...) through which one can see into another
+rooms. Portal polygons are handled just like any normal polygon. The difference
+between normal and portal polygons is that when a portal polygon should
+be drawn, we just move into the room it's pointing if it's seen. We continue
+like this until we're satisfied with the result. It's worth noticing that
+portal polygons which are too far away needen't to be handled either. Another
+point is that polygons in the next rooms can only be seen though the portal
+polygons of the preceding rooms.
+
+<P>There are many ways to implement portals. Some like the rooms consist
+of convex polygons and all polygons to be clipped against the portal polygons
+(SLOW!). There are numerous other ways, too, just find the best one for
+your purposes!
+
+<P>An interesting thing is that we can eliminate most rooms just by backface-culling
+the portal polygons; if the portal is a backface, the room it's pointing
+can't be seen!</UL>
+<A HREF="3dica.htm">Back to the index</A>
+</BODY>
+</HTML>

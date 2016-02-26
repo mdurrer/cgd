@@ -1,0 +1,238 @@
+{byvale duplcity : H, Z, K
+
+
+{toto je hrdina, protože má číslo 1}
+{jinou logiku player nedělá}
+{mluví nad hlavou hrdiny}
+PERSON D
+  X 100
+  Y 100
+  FONCOLOR 255
+
+person Vypravec
+  x 160
+  y 185
+  foncolor 230
+
+{obr}
+person O
+  x 160
+  y 70
+  foncolor 29
+
+{trpaslik u obra:}
+person Pajzl
+  x 50
+  y 145
+  foncolor 176
+
+{trol pod stromem:}
+person T
+  x 284
+  y 80
+  foncolor 2
+
+{Berta, moje matka:}
+person B
+  x 115
+  y 63
+  foncolor 109
+
+{draci otec v dracim domku:}
+person Herb
+  x 143
+  y 73
+  foncolor 110
+
+{Evelyna na konci-v dracim dome:}
+person Ev
+  x 144
+  y 100
+  foncolor 111
+
+{Evelyna V HRNCI-v dracim dome:}
+person Yve
+  x 92
+  y 96
+  foncolor 111
+
+{hlavni zidle Karmela:}
+person Ka
+  x 110
+  y 120
+  foncolor 206
+
+{hradni pan v situacce:}
+person Pan
+  x 185
+  y 105
+  foncolor 205
+
+{vitr v horach:}
+person V
+  x 250
+  y 80
+  foncolor 175
+
+{cerv na sipkovniku:}
+person C
+  x 100
+  y 100
+  foncolor 226
+
+{trpaslik v hospode:}
+person P
+  x 296
+  y 121
+  foncolor 205
+
+{hraci karet v hospode:}
+person H1
+  x 132
+  y 124
+  foncolor 206
+
+person H2
+  x 91
+  y 108
+  foncolor 207
+
+{hostinsky - "vrchni" :}
+person Vrch
+  x 223
+  y 63
+  foncolor 204
+
+{lenoch:}
+person L
+  x 80
+  y 60
+  foncolor 207
+
+{dva skretove:}
+{velitel, chytrejsi:}
+person Iq
+  x 86
+  y 86
+  foncolor 207
+
+{ten hloupejsi:}
+person Blb
+  x 196
+  y 86
+  foncolor 206
+
+{kronika:}
+person K
+  x 224
+  y 120
+  foncolor 234
+
+{zebrak:}
+person Z
+  x 200
+  y 170
+  foncolor 175
+
+{trubac pred hradem:}
+person trubac
+  x 150
+  y 0
+  foncolor 226
+
+{Herbert v jeskyni:}
+person H
+  x 38
+  y 92
+  foncolor 207
+
+{kouzelnik Apokalypso:}
+person A
+  x 168
+  y 90
+  foncolor 207
+
+{komediant - komoUs ... }
+person U
+  x 125
+  y 92
+  foncolor 244
+
+{sipkar v lese:}
+person S1
+  x 69
+  y 71
+  foncolor 207
+
+{trol na moste:}
+person R
+  x 180
+  y 60
+  foncolor 206
+
+{sipkar na moste:}
+person SM
+  x 50
+  y 90
+  foncolor 207
+
+{lebka pred obrem:}
+person leb
+  x 148
+  y 96
+  foncolor 207
+
+{kanarek pred obrem:}
+person kanarek
+  x 280
+  y 30
+  foncolor 206
+
+{dva stare parezy:}
+{utapnutejsi:}
+person dub
+  x 230
+  y 100
+  foncolor 214
+
+{chytrejsi:}
+person buk
+  x 116
+  y 96
+  foncolor 231
+
+{zidle Agata (ta vlevo:)}
+person Z1
+  x 120
+  y 116
+  foncolor 4
+
+{zidle Eulanie (ta vpravo:)}
+person Z2
+  x 196
+  y 112
+  foncolor 34
+
+{koktajici rytir:}
+person Ryt
+  x 206
+  y 113
+  foncolor 207
+
+{Evelyna v intru:}
+person EvIn
+  x 120
+  y 132
+  foncolor 223
+
+{komous v intru:}
+person KoIn
+  x 160
+  y 0
+  foncolor 244
+
+{titulek v outru:}
+person Titulek
+  x 160
+  y 120
+  foncolor 230

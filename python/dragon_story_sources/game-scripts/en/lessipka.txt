@@ -1,0 +1,396 @@
+{s házečem šipek:(je dost zasmušilý)}
+
+block _00 ( beg(1) and not been(_00) and isactico(0) )
+title
+ labels skip
+  justtalk
+D: "Ahem, are you going to hang yourself?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "It is true."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Tell me the place and time and I'll be there.
+    I've never seen a real hanging."
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Instead of a tombstone I want a dart target ..."
+  start leskriz_sipkar "mlci"
+  justtalk
+   goto skip
+D: "Dart target?
+    That sounds unconventional ..."
+  label skip
+D: "I am bored with these grey tombstones, too."
+D: "If I am to die during this dangerous mission,
+    I want a dart target
+    instead of a tombstone as well!"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Darts are my only reason for being.
+     Life without them is not worth living!"
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Isn't it a little excessive?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Not for the meaning of darts for me."
+S1: "The Dart League started a long time ago,
+     but I'm without darts and training so far!"
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "How is this possible?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Darttree Common stopped bearing fruit."
+{#it has something to do with darts, it is common, it is tree - Darttree Common
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Darttree?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Yes, the tree that bears darts
+     far across the land.
+     The official tree for the Dart League."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "How could this have happened?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "No-one knows."
+S1: "Darts on Darttree are usually ripe a short time
+     before The Dart League starts."
+S1: "They grow up and then they are ripe
+     one day."
+S1: "This year they haven't grown ripe yet!"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and isactico(0) )
+title
+  justtalk
+D: "Don't be sad, sir..."
+{#in czech it sounds like:don't hang your head
+{#it has a lot of things to do with hanging
+D: "...I have one question."
+  juststay
+gplend
+
+block _1 ( beg(0) and not been(_1) )
+title I didn't know that darts grow on a tree!
+  justtalk
+D: "I didn't know that darts grow on a tree!"
+D: "I thought they were sold in shops!"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Funny idea.
+     But everyone realizes it after short time."
+S1: "Say something else funny,
+     what do you think?"
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Children are brought to their parents
+    by a stork!"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Sure, how else could it possibly be managed?!"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _2 ( beg(0) and not been(_2) )
+title You don't have any darts left for bad times?
+  justtalk
+D: "You don't have any darts left for bad times?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "It is not possible."
+S1: "They always rot during winter,
+     so it is better to compost them
+     in autumn."
+S1: "They are excellent fertilizer!"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _9 ( beg(0) and not been(_9) )
+title You are really keen on darts!
+ labels skip
+  justtalk
+D: "You are really keen on darts!"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Ahem, you're right.
+     Not to be too modest,
+     but I would like to point out
+     that I am a Dart Champion..."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Don't feign modesty.
+    It's fantastic!"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "I have a little exhibition
+     of all my trophys at home..."
+S1: "But people are thievish, you know.
+     I always keep the most valuable trophy with me."
+  start leskriz_sipkar "mlci"
+  {vytáhne z kapsy zlatý zvoneček:}
+  mark
+  load leskriz_sipkar "zvonek"
+  startplay leskriz_sipkar "zvonek"
+  release
+
+  start leskriz_sipkar "mluvi"
+S1: "I better hide it right now."
+S1: "You could say it's an ordinary bell.
+     I got it for second place in the only competition
+     I didn't win."
+  goto skip
+S1: "I don't know,
+     why should I be grudging about it."
+S1: "On the contrary.
+     This bell is a rarity for me ..."
+ label skip
+  start leskriz_sipkar "mlci"
+gplend
+
+block _7 ( beg(0) and not been(_7) )
+title Where exactly is the Dartree Common?
+  justtalk
+D: "Where exactly is the Dartree Common?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "On a big hill. So big that you can't miss it."
+  start leskriz_sipkar "mlci"
+  {nová lokace: šípek}
+  justtalk
+D: "I think,
+    I can consider this question answered..."
+  juststay
+  let new_sipek (1)
+gplend
+
+block _8 ( beg(0) and not been(_8) )
+title Why didn't you try something with the Darttree ...
+ labels skip
+  justtalk
+D: "Why didn't you try something with the
+    Darttree yourselves?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Of course we did!"
+S1: "Totally without result."
+  goto skip
+S1: "It was proof
+     that we are just bunch of incompetent fools."
+ label skip
+S1: "It is a task for a superhero."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Where did your effort fail?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "We tried to find notes in the old chronicles,
+     to see if there was a similar problem
+     in the past."
+S1: "The only chronicle that may have
+     known something,
+     has been refusing to communicate
+     for fifty years."
+S1: "It took offense because they were making
+     fun of the fact that she lisps."
+S1: "And nobody is capable of doing something
+     with her."
+S1: "I was speaking to her for about a week."
+S1: "First, I was tender."
+S1: "Then I was cruel!
+     And by the end of the week, I was hoarse."
+S1: "And she was just looking at me placidly!"
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Maybe we could try a specialist
+    in speech disorders.
+    Where did you say the chronicle is?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "It's in my house.
+     Here's the key."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "And where do you live?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Right besides your dragon house."
+S1: "But you probably never met me,
+     I'm on dart competitions all the time..."
+  start leskriz_sipkar "mlci"
+
+  icostat on i_klic_sipdum
+  exitdialogue
+gplend
+
+block _3 ( beg(0) and not been(_3) and been(_2) )
+title You should conserve some of the darts for next season!
+  justtalk
+D: "You should conserve some of the darts for
+    next season!"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "We tried to make a marmalade of them."
+S1: "But they were so delicious,
+     that everyone had to taste them before spring..."
+S1: "...and before the new season started,
+     the marmalade was already eaten."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "What do you do with darts anyway?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "With half of them we always fertilize the
+     Darttree
+     for it should bear good darts next year
+     and the other half is always preserved."
+S1: "It is tradition to eat the marmalade
+     the evening before the beginning of Dart League
+     during a feast."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "So, last year's darts are already eaten!"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "That's right."
+S1: "We all really enjoyed last year's darts.
+     They were delicious."
+S1: "In delirium we ran
+     to wait under the Darttree."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "In delirium?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "You don't know that preserved dart has,
+     ahem, a really interesting effect?
+     Ahem,..."
+S1: "We were waiting there for about a week,
+     but we didn't see any result."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Were you looking if they had started
+    growing and nothing happened?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "To tell the truth,
+     we were sleeping most of the time."
+S1: "After a week, when the first of the dart players
+     woke up from his delirium, they realized
+     that there were no darts on the tree..."
+S1: "...that there were no darts on the ground
+     but that there were all of the competitors
+     sleeping below the Darttree."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Maybe you had chosen a wrong proportion of
+    composted and preserved darts..."
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "I strongly doubt that!
+     It was the same as last year."
+  start leskriz_sipkar "mlci"
+gplend
+
+block _6 ( beg(0) and not been(_6) and been(_3) )
+title What did you use to mix the stew with?
+  justtalk
+D: "What did you use to mix the stew with?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Well, there wasn't a spoon to mix,
+     so we used some wooden stick."
+S1: "It talked and talked and talked,
+     but it was a volunteer!"
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Hey, what if the stick is the problem?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "I doubt about it."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "What did you use to mix that compost?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "A fork."
+S1: "An ordinary fork."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Did the fork talk?"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "NO!"
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Hell, I lost the clue!"
+D: "And now I really don't know what to do..."
+  juststay
+gplend
+
+block _03 ( beg(0) and not last(_01) and not last(_00) )
+title So bye.
+  justtalk
+D: "So bye."
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Bye, bye."
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "I hope that we will REALLY meet each other
+    again!"
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Believe it, boy..."
+  start leskriz_sipkar "mlci"
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(0) and last(_01) )
+title
+  justtalk
+D: "If I only knew what it was!"
+  juststay
+   exitdialogue
+gplend
+
+block _91 ( maxline(1) and beg(1) and isactico(i_sipky) )
+title
+  icostat off i_sipky
+  justtalk
+D: "I've got good news for you,
+    I've got the darts."
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "The Darttree bears darts again?"
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "Yes."
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "How could it happen that he regained
+     its senses?"
+  start leskriz_sipkar "mlci"
+  justtalk
+D: "I don't know, the tree just thought of something
+    and suddenly..."
+  juststay
+  start leskriz_sipkar "mluvi"
+S1: "Great, now I must get into good shape."
+S1: "Thanks, and I hope we'll see each other
+     on dart competition one day!"
+  start leskriz_sipkar "mlci"
+  load leskriz_sipkar "odchazi"
+  startplay leskriz_sipkar "odchazi"
+  {odejde...}
+  {měl by odejít!!!}
+
+  let predal_sipky (1)
+  objstat away leskriz_sipkar
+  exitdialogue
+gplend

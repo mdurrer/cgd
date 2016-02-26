@@ -1,0 +1,12 @@
+{kdyz trol utika:}
+block _00 ( beg(1) )
+title
+  load trol_huba "mluvi"
+  load trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Leżałem tu przez pół roku..."
+   T: "...ale nie zauważyłem,
+       że leżę na mrowisku!"
+  start trol_huba "mlci"
+gplend

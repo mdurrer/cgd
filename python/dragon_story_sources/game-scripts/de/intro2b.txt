@@ -1,0 +1,51 @@
+block _0 ( beg(1)
+title
+{disablespeedtext
+disablequickhero
+stayon -24 170 vpravo
+
+start hulka "kamen_mluvi"
+EvIn: "Ich werde die Welt beherrschen. Doch wie?"
+walkon 75 175 vpravo
+EvIn: "Wer ist das?"
+start hulka "na kameni"
+EvIn: "Ich hab's! ... ich werde dieses junge,
+       naive, unerfahrene Drachenetwas manipulieren!"
+EvIn: "He du, warte!."
+startplay hulka "premet"
+start hulka "mluvi"
+justtalk
+D: "Ein sprechender Stock? Wie putzig."
+juststay
+EvIn: "Hör mal,
+       ich möchte dich etwas fragen."
+EvIn: "Würdest du gern die Welt beherrschen?"
+justtalk
+D: "Und du würdest wissen, wie das funktioniert?"
+juststay
+start hulka "mluvi"
+
+EvIn: "Aber natürlich!
+       Schau mal, ich hab diesen Anstecker!"
+startplay hulka "placka_vznik"
+start hulka "placka_mlci"
+
+justtalk
+D: "'Ich bin (beinahe) Herrscher der Welt.
+    Frag mich wie's geht!'"
+D: "Hmm, klingt interessant.
+    Also, ich hab gerade nichts Besseres zu tun."
+D: "Dann mal los."
+juststay
+
+start hulka "placka_mluvi"
+EvIn: "Aber etwas Übung im Weltbeherrschen
+       könnte sicherlich nicht schaden, oder?"
+EvIn: "Wie wär's, wenn wir ein paar Streiche spielen?"
+start hulka "placka_mlci"
+justtalk
+D: "Gute Idee, das könnten wir
+    für den Rest des Nachmittags tun."
+juststay
+
+gplend

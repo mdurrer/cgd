@@ -1,0 +1,55 @@
++ quit buttons 
++ help buttons 
++ save/load (maybe)
++ some kind of bug with walking out of the magic shop, maybe? (Xar)
+
++ bug where during the Talk class, loop() isn't called -- so first NPC's line 
+stays on the screen
++ ship that small line isn't quite right...
++ speed adjustment for dialog (mrfun)
++ It is barely hides your feet.. (spelling) .. other mistakes in that dialog part.
+
+================================================
+* each character should have a different dialog color
++ animation code for walking, etc
+
++ flashing eye on lair
+
+==================================================================
+
++ audio cue notator stuff (playing, etc)
+"patron2:blah blah blah|magic.234"
+"lkmz vlk mzcv lkmzcxv|bilge.908"
+
+===================================================================
+music file names are:
+title.wav
+swamp.wav
+theme.wav
+arcade.wav
+lair.wav
+
+-----------
+TODO - SFX: -- also, please use the names suggested.  If a sound is duplicated, just
+make two copies of it :)
+
+IMPORTANT:
+x - red.wav: a sound for clicking the big red button -- big alarm starting ... with loopable after-alarm wailing sound..
+x - lair-explode.wav: sound of the lair getting blasted up
+x - nibbles-nibble.wav: nibbles: get a nibble
+x -  nibbles-wall.wav: nibbles: hit a wall
+x - cards-flip.wav: cards: flipping over a card sound
+x - chicken.wav: aquiring a rubber chicken sound (ba-kawk!)
+x - codes-loser.wav: codes game: got it wrong sound effect (buzzt)
+x - codes-winner.wav: codes game: got it right sound (ba-ding!)
+x - codes-click.wav: codes game: a glassy clinking sound for clicking on stuff
+x - arcade-claw.wav: sound for when you smash the claw machine
+x - arcade-alarm.wav: alarm going off in arcade when you burn it down
+x - potion.wav: glugging the potion sound effect, with turning invisible sound effect
+
+OPTIONAL but would be nice:
+x - get.wav: generic picking up an item sound
+x - gold.wav: cash register sound effect for purchases
+x - nibbles-winner.wav: nibbles: winnig, slot machine sound effect for all the coins coming out
+x - fire.wav: stick bursting into flames sound
+x - grog.wav: grog - glug glug burp sound effect

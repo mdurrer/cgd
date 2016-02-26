@@ -1,0 +1,124 @@
+{s pajzlem u obra:}
+
+block _00a ( atbegin(1) and not hasbeen(_00a) )
+title
+     justtalk
+     D: "Ehm, pane trpaslíku..."
+     D: "Dovolím si vám položit několik otázek.
+         Nebudu vás moc zdržovat,
+         vidím, že toho máte na práci dost."
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Hmptf, ptej se!"
+     start obr_pajzl2 "mlci"
+gplend
+
+block _00b ( atbegin(1) and hasbeen(_00a) )
+title
+     justtalk
+     D: "Omylem jsem spolknul všechny svoje poznámky.
+         Sjedeme to ještě jednou?"
+     juststay
+
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Urgh!"
+     start obr_pajzl2 "mlci"
+
+     justtalk
+     D: "Že ne!?"
+     D: "Mezi náma, ty poznámky byly pěknej hnus."
+     D: "Pokuste se znova koncentrovat..."
+     juststay
+     D: "..."
+     justtalk
+     D: "Jdem na to?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "No dobrá."
+     start obr_pajzl2 "mlci"
+gplend
+
+block _01 ( atbegin(0) )
+title Jak se cítíte?
+     justtalk
+     D: "Jak se cítíte?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Jsem v naprosté pohodě!"
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Kolik jste toho natrénoval?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Hmptf!"
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Věříte si?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Absolutně!"
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Myslíte si, že jste ve formě?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Formu mám načasovanou správně!"
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Nepřetrénoval jste?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Nesmysl."
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Potíte se?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Normálně."
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Co nervozita?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Jsem v klidu."
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Netlačí vás moc ten špagát?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Díky, je to dobrý."
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Ani ten špagát moc nezařezává?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Fakt dobrý."
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Co říkáte na to, že budete
+         pravděpodobně snězen?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Doufám, že mě příliš nepřepepří.
+             Trpím sennou rýmou."
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Á vida, takže přece jenom malý handicap..."
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "To tvrdíte vy. Já jsem absolutně O.K."
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Jak se tedy cítíte těsně před svou smrtí?"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Je to pro mě zcela nová životní zkušenost."
+     start obr_pajzl2 "mlci"
+     justtalk
+     D: "Díky za rozhovor!"
+     juststay
+     start obr_pajzl2 "mluvi"
+     Pajzl: "Rádo se stalo."
+     Pajzl: "Publicita je hrozně důležitá."
+     start obr_pajzl2 "mlci"
+gplend

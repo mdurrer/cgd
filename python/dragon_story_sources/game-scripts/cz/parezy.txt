@@ -1,0 +1,378 @@
+{dva staré letité pařezy- Strombuk a Stromdub:
+
+block _08 ( maxline(1) and beg(1) and not been(_08) and been(_07) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "Co Stromdubova migréna?"
+  juststay
+  start par6 "mluvi"
+  dub: "Vůbec nepolevuje! Nevíš o nějaké vhodné terapii?"
+  start par6 "mlci"
+  justtalk
+    D: "Jenom počkej, donesu si pilu..."
+  juststay
+  start par6 "mluvi"
+  dub: "Takové terapie se odmítám zúčastnit!"
+  start par6 "mlci"
+  exitdialogue
+gplend
+
+block _09 ( maxline(1) and beg(1) and isobjon(tajnyvchod) )
+title
+  justtalk
+    D: "Co vaše rozpraskané kořeny?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Ále, myslím si,
+        že je trochu protáhnout
+        není čas od času vůbec na škodu!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  exitdialogue
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) )
+title
+  justtalk
+    D: "Dobrý den, pane pařez."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Kdyby tě to zajímalo, jmenuju se Strombuk."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "A já Stromdub. Mě nesmíš opomenout."
+  start par6 "mlci"
+  justtalk
+    D: "Takže jste opravdu dva..."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Kdo?"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "My?"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Ne!"
+  buk: "Pokud jsi něco slyšel navíc, byla to asi ozvěna."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Hlupáku, pokazil's to. Teď byla řada na mě!"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Ho hó, brachu, to se mýlíš!
+        Už deset let to říkáme přesně..."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "Zastavte!
+        Tenhle váš vtípek není vůbec vtipnej!"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "To je nám líto.
+        Ostatně, být pařezem
+        není žádná velká zábava!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "Neříkám, že je. Já se jmenuju Bert."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Těší mě."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Kdepak jeho, těší hlavně mě!"
+  start par6 "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and been(_00) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "Milé pařezy..."
+  juststay
+gplend
+
+block _02 ( beg(0) and not been(_02) and isobjoff(tajnyvchod) )
+title Mohli byste mi povyprávět něco o sobě?
+  justtalk
+    D: "Mohli byste mi povyprávět něco o sobě?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Dobrá..."
+  buk: "První rok svého života jsem byl malé
+        semínko a létal jsem vzduchem."
+  buk: "Nevím, jak dlouho jsem vlastně létal,
+        ale utkvěl mi v paměti okamžik,
+        kdy jsem poprvé spatřil toto místo."
+  buk: "Hned jsem věděl, že tady zapustím kořeny.
+        Ladně jsem zakroužil a snesl jsem se k zemi."
+  buk: "Měkce jsem dopadl do mechu
+        hned vedle Stromduba, který tady musel
+        nouzově přistát chvíli přede mnou."
+  buk: "Ten den byla opravdu hrozná fujavice,
+        vypadalo, že bude pršet,
+        a on se tady chtěl ukrýt před deštěm."
+  buk: "Nakonec jsme se rozhodli,
+        že tady zůstaneme oba."
+  buk: "Druhým rokem už ze mě byl
+        malý semenáček a ze Stromduba
+        o něco menší."
+  buk: "I když tady přistál
+        dřív než já, mě se podařilo
+        zakořenit o nějaký čásek před ním."
+  buk: "Od té doby Stromdubovi marně vysvětluju,
+        že jsem starší a tudíž i chytřejší."
+  buk: "Snaží se mě přesvědčit,
+        že tady byl dřív než já.
+        To možná jo, ale chytřejší není."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Lže."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Lže on.
+        Třetím rokem se toho moc nezměnilo."
+  buk: "Čtvrtý rok jsem najednou hodně
+        povyrostl a úplně jsem Stromduba zastínil."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "To se stává, když je strom v pubertě."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Neposlouchej ho,
+        odmalička byl trochu opožděnej."
+  buk: "Pátým rokem..."
+
+  {stále otvírá hubou; objeví se titulek "Později..."}
+  {obrazovka může setmět a zase se rozsvítit
+
+  blackpalette
+  fadepaletteplay 0 255 50
+  loadpalette "..\PAREZY\PL8.PCX"
+  disablespeedtext
+  fadepalette 0 255 50
+  Vypravec: "O pár dní později..."
+  Vypravec: "O pár dní později..."
+  Vypravec: "O pár dní později..."
+  enablespeedtext
+
+  buk: "...a v pětistém třicátém osmém roce
+        jsem ztrouchnivěl zase o něco víc."
+  buk: "Právě jsi slyšel celý můj život,
+        doufám, že tě to moc nenudilo."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  {drak měl mezitím zavřené oči, najednou se probudí
+  justtalk
+    D: "Vůbec ne!
+        Kdybych měl ještě další týden čas,
+        rád bych si poslechl i Stromdubův příběh."
+  juststay
+  start par6 "mluvi"
+  dub: "To bylo ten první rok, kdy jsem byl..."
+  start par6 "mlci"
+  justtalk
+    D: "Promiň, ale..."
+  juststay
+  start par6 "mluvi"
+  dub: "...ještě semínko a létal jsem vzduchem.
+        Nevím, jak dlouho..."
+  start par6 "mlci"
+  justtalk
+    D: "Teď čas nemám!"
+  juststay
+  {chvíli oba mlčí}
+  start par6 "mluvi"
+  dub: "Tebe nezajímá, jak to doopravdy všechno bylo?"
+  start par6 "mlci"
+  justtalk
+    D: "Za dalších pětset třicet osm let
+        si přijdu poslechnout, co je nového."
+  juststay
+  start par6 "mluvi"
+  dub: "A přijdeš určitě?"
+  start par6 "mlci"
+  justtalk
+    D: "Slibuju."
+  juststay
+gplend
+
+block _03 ( beg(0) and not been(_03) and isobjoff(tajnyvchod) )
+title Co jste vlastně za stromy?
+  justtalk
+    D: "Co jste vlastně za stromy?"
+  juststay
+  start par6 "mluvi"
+  dub: "Já jsem topol."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Kecá, je obyčejný dub.
+        Už odmala z toho měl ovšem komplexy
+        a přál si být vzrostlý topol..."
+  buk: "...až tomu nakonec sám uvěřil."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "A co jsi ty?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Já jsem vzrostlý topol."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+gplend
+
+
+block _06 ( beg(0) and not been(_06) )
+title Vy přede mnou něco tajíte!
+  justtalk
+    D: "Vy přede mnou něco tajíte!"
+  juststay
+  start par6 "mluvi"
+  dub: "Já? Co nevím, nepovím."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Nebo snad já? Ho hó!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "Tajíte přede mnou tajný vchod!"
+  juststay
+  start par6 "mluvi"
+  dub: "Proto je taky tajný, chytráku."
+  start par6 "mlci"
+gplend
+
+block _07 ( beg(0) and not been(_07) and been(_06) )
+title Nešlo by ten tajný vchod trochu odtajnit?
+  justtalk
+    D: "Nešlo by ten tajný vchod trochu odtajnit?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "To stěží.
+        Přikrýváme ho svými kořeny,
+        a ty jsou už lety pěkně ztuhlé."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Nejsem sebevrah,
+        nejspíš by se mi všechny kořeny
+        polámaly a popraskaly by."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Na svoje kořeny nedáme dopustit!
+        Kdepak, přidělávat si starosti s tajným vchodem!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "I teď úplně jasně cítím v kořenech,
+        jak pomalu ale jistě rozpraskávají."
+  dub: "Jau!"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Mě navíc příšerně svrbí lišejník.
+        Uhhh, je to hrůza!"
+  buk: "A o kořenech ani nemluvě."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Vida, na lišejník jsem já zapomněl.
+        A tůhle se na mě kdosi rozhodl naštípat dříví.
+        Od té doby trpím i migrénou."
+  start par6 "mlci"
+  justtalk
+    D: "Tak hypochondrické pařezy jsem ještě nepotkal!"
+  juststay
+
+  let budu_drbat (1)
+gplend
+
+block _04 ( beg(0) and maxline(1) and last(_01) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "...nemám vám co říct."
+    D: "Vy snad mně ano?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Ne."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "To bylo ten první rok, kdy jsem byl..."
+  start par6 "mlci"
+  justtalk
+    D: "Tak tohle zrovna nechci slyšet!"
+  juststay
+  exitdialogue
+gplend
+
+block _05 ( beg(0) and not last(_01) )
+title Zatím nashledanou.
+  justtalk
+    D: "Zatím nashledanou."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Nashle."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  exitdialogue
+gplend
+

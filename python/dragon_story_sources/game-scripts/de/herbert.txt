@@ -1,0 +1,48 @@
+{domluva otce s drakem v draci chalupe:}
+
+block _00 ( beg(1) )
+title
+  icostat on i_varecka_zlomena
+  load oteckaze "mluvi"
+  load oteckaze "zlomluvi"
+  load oteckaze "lame"
+  load drakkaze "mluvi"
+
+  start oteckaze "mluvi"
+  start drakkaze "mlci"
+Herb: "...weißt du, Sohn, ich schäme mich ja so."
+Herb: "Was bin ich für ein alter Narr!
+       Was hat mich bloß dazu bewogen
+       nach einem alten Drachenschatz zu suchen?"
+Herb: "Du hast die Trennung unserer Familien verhindert
+       und sie damit vor dem Zusammenbruch gerettet."
+Herb: "Ich sehe jetzt, wie erwachsen du schon
+       geworden bist."
+Herb: "Jetzt darfst du zwei Bier pro Tag zischen
+       und mit Mädels ausgehen."
+  start oteckaze "mlci"
+  start drakkaze "mluvi"
+D: "Das muss warten,
+    ich muss meinen Auftrag erledigen."
+D: "Was machen wir nun mit meiner Bestrafung?"
+  start drakkaze "mlci"
+  start oteckaze "mluvi"
+Herb: "Gute Frage."
+Herb: "Was machen wir mit deiner Bestrafung..."
+Herb: "Ich werde dich nicht bestrafen. Du hast gezeigt,
+       dass du gescheiter bist als ich."
+Herb: "Ich werde dich niemals mehr verprügeln."
+Herb: "Und um meinen Worten Gewicht zu verleihen..."
+  startplay oteckaze "lame"
+  start oteckaze "zlomil"
+
+  start drakkaze "mluvi"
+D: "Nicht wegwerfen! Ich will eine Erinnerung
+    an meine muntere Kindheit behalten..."
+  start drakkaze "mlci"
+  start oteckaze "zlomluvi"
+Herb: "Es soll dir gehören."
+  start oteckaze "zlomil"
+  start drakkaze "mlci"
+{zmizí z dračí chalupy}
+gplend

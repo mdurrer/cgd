@@ -1,0 +1,272 @@
+{BP blbne !!!!!
+   - blbne mu Undo/Redo - spatne to dela
+   - pokud delam s blokama, obcas na nejakou chvili zapomene preoznacit
+     blok (oznac, presun, oznac, undo)}
+
+{pozn.: format fontu :
+  2*1 bajt = rozmer X a Y (nebo opacne ?)
+  x*1 bajt = proporcionalni rozmer toho ktereho znaku (znaky pod 32 se
+    nepocitaji, je to posunute, ale nevim, kdy to konci)
+  y*1 bajt = samotny font v 256 barvach, co bajt, to bod
+    ale nevim, jestli se to rozlisuje do bitovych rovin)
+    - zda se mi, ze je to v matici 13*11-5 znaku = 138 znaku
+    - taky si myslim, ze v jejich starem editoru delali kursor jako 1 na to
+      urceny znak, ktery ale neblikal
+  255=prazdny bod (pozadi), nezobrazuje se
+  251,2,3,4=4 barvy, ktere procedura na vypis textu nevypisuje, ale podiva
+              se do tabulky 4 barev, aby vedela, co zobrazit
+    tzn. pokud se budou fonty slusne navrhovat a treba barva 254 bude
+         vzdycky barva popredi (Stand2), tak mohu snadno menit barvu
+         vypisovaneho textu tak, jako v textovem rezimu
+    pozn. zatim neni domluvena zadna stavba, pouze 255=pozadi a 254=index
+          do tabulky barev na barvu popredi, ty dalsi 3 barvy se jeste
+          domluvime, asi to bude barva stinu atp...
+    ===> fonty mohu zobrazovat jak pomalym starym neefektivnim a nepruznym
+         zpusobem, tak i rychlym novym efektnim univerzalnim zpusobem, ale
+         ten pojede jen s novyma fontama, kdezto ten starej se vsema (ale
+         pokud bude barva 254, zobrazi si ji tak, jak ji ma v palete)
+    timto zpusobem mohu zobrazovat jak typicke fonty pro textovy rezim
+    (barva popred a pozadi), tak pruhledne fonty a tak i fonty, ktere maji
+    pevnou barvu, ale jsou slozeny z mnoha odstinu}
+
+{tak jak je MouseSwitchOn a MouseOn a jejich protejsky,
+ udelat i HardwareCursorSwitchOn a HardwareCursorOn a bude to uplne
+ dokonale a budou se stejne ovladat (stejne jako kdyz musim vypnout mys
+ pri vykreslovani, musim vypnout i kursor atp...) !!!!!!!!!!!!!!!!!!!!!!!!
+ GOOD IDEA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ zas tak dobry to neni, protoze by to dost zdrzovalo a bylo to hodne slozity,
+ protoze na INT8 uz bude napojena hudba s vyzsi frekvenci a to by se muselo
+ slozite prepocitavat}
+
+{bacha na to, ze font if.fon je strasne veliky na tento dialog a ten se na
+ obrazovku vejde jenom uplne vlevo (je siroky asi 300 bodu, tzn. pres celou
+ obrazovku) a na vysku se vejde jenom na 5 radku, protoze jinak se program
+ pokusi alokovat pole pro ulozeni pozadi, ktere ma vic nez 32kb a to BP
+ nesnasi (nechapu jen, proc ta hranice neni u 64kb, ale zde, to by se mi
+ na obrazovku vlezlo az 10 radku a mozna jeste o kousek vice) !!!!!
+
+ pozn. to uz je vyreseno, chyba byla ve mne (pouzil jsem integer misto word
+       na alokaci pole) ===> uz mohu dat plnych 11 radku a ve vsech
+       procedurach uz muzu davat getimage <64kb}
+
+{pri hrani se zmenami cest jsem objevil chybu editoru Pascalu :
+ neeviduje zmenu adresaru a titulky oken maji pak spatne napisy !!!}
+
+{jednou se mi to zblblo s fontem IF.FON, kdyz jsem u chyby mnoha souboru dal
+ prave tlacitko (zaplnila se mi cast obrazovky svislymi carami), ted jsem
+ zjistil, ze to je i v pripade, ze odmacknu normalne tlacitko BeruNavedomi
+ ?????
+ uz vim - neni to tim adresarem Windows atp... je to tim, ze je strasne male
+ okno a pri hodne souborech (ted se mi to totiz s jeste mensim oknem ]
+ projevilo i u vice adresaru) je strasne maly posuvnik vpravo a procedura
+ Bar, ktera ho vykresluje, se zasekne pri nulove vysce (podobne jako kdysi
+ procedura PrintText pri psani prazdneho retezce) !!!!!!!!!!!!!!!!!!!!!!!!
+====> toto je uz udelano vyhybkou ve zdrojovem textu
+- Bar uz je opraveny, ale vyhybka zustava, protoze jinak by to bylo
+  siroke 0 a obdelnik by nebyl videt}
+
+{zkusil jsem dat pokus : ze se bude porad prekreslovat obrazovka pri
+ jakemkoliv pohybu, at se deje co se deje; chtel jsem tim porovnat, zda
+ se opravdu vyplati delat v !NASI! knihovne (ne v akceleratoru videokarty
+ pri pouziti vektorovych fontu Windows !!!) Get&PutImage misto opetneho
+ vykresleni celeho textu
+ vyslo, ze je oboje skoro stejne rychle (ale maly rozdil jsem zaregistroval,
+ pomoci ukladani obrazku je to rychlejsi a neblika to tak, protoze pri psani
+ textu se nejprve vse premaze pozadim a pak se to znovu vypisuje)
+ ale u posunovani pomoci ukladani obrazku se mi to zase zhroutilo, pokud se
+ pouze posunul kursor a nezmenil se zacatek vypisu ===> nerolovalo se
+ z toho plyne, ze v knihovne je chyba pri zadani 0 misto nejakeho parametru
+ nejenom v procedure BAR, ale i jinde !!!!!!!!!!!!!!!!!!!!!!}
+
+{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  (*RegisterFont dat na NewFont a udelat i DisposeFont
+  - musel jsem ho zpravit, protoze jinak zblbl existujici font
+  - tim jsem zrusil prepsani FonWidth atp..., ale pote jsem zjistil, ze se
+    to nesmi, takze jsem to honem dal zase zpatky (cele jsem to zUNDOoval,
+    vcetne komentaru na zacatku), viz. dale !!!!!*)
+  blbost : RegisterFont nedela, ze by nahral font do pameti, to umi kazdy
+           blbec, on ho nahraje vcetne alokace pameti a jeste ke vsemu
+           nastavi promenne FonHeigth a FonWidth, protoze nektere procedury
+           se na to (nevim proc) odkazuji, misto aby si to zjistily samy
+           z tohoto fontu
+!!!!!!!!!!!!! procedury v ASSembleru se celkem spravne na to odkazuji do
+              fontu a taky je zmena techto prihlouplych konstant nijak
+              nevyvede z miry
+!!!!!!!!!!!!! kdezto ostatni (alokacni a disalokacni atp... procedury) se
+              jako pitomci divaji do techto konstant
+!!!!!!!!!!!!! stejne nechapu, proc vubec existuje standardni font, kdyz ho
+              knihovna nepouziva a kazdy musi font pri tisku explicitne
+              zadat (mozna prousetreni prace s deklarace, ale spis to
+              zeslozituje)
+============> kdyby se tyto konstanty, prip. cely Font odstranily, slapalo
+              by to pekne logicky a jako na dratkach
+      pripadne to eliminovat zavedenim procedur Push/PopFont
+  tzn. pokud budu chtit pouzit nejaky font, musim jako blbec nastavit
+       rucne FonWidth a FonHeigth na dany font (to ale udela RegisterFont,
+       aspon neco), ale pak to musim (sam !!!) zas nastavit zpatky, aby na
+       konci programu mohla spravne probehnout disalokace pameti
+!!!!!!!!!!!!! FonColor1 atp... by taky mel byl privatni vlastnost fontu, ne
+              to nastavovat globalne (i kdyz pokud budou fonty vsechny
+              stejne, muze byt, pak to vlastne znamena globalne nastavenou
+              barvu popredi a pozadi
+          dat FontColor, ne FonColor
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+
+{Lukasi :
+  lepsi linearni algoritmy pro Zoom a Line
+  proc je u PrintChar byte a ne char ?????
+  proc nenastavujes automaticky OverFontColor ?????
+  proc je FonColor1=251 a ne 254, i kdyz to ve zdrojovem textu tak mas ?????
+    protoze byly fonty spatne navrzeny (misto aby to dali odzadu, tak to dali
+    odpredu), ted jsem si ty fonty tak trochu spravil, takze zatim O.K.
+  dodelat do ReadColor klavesnici, pripadne to udelat pres dialog !!!!!
+    stejne ti blbne, nespolupracuje dobre s mysi
+  zvetsovatelne (i) rastrove pismo, vektorove stejne (bohuzel) nemame
+  ten mod 320*200 neni ctvercovy !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+
+{ readln :
+    v tomto modu je readln velice zajimave, dela pekne potvory, stejne tak
+    i ovladac mysi
+  ale je spica pri DEBUGovani to prerusit a sledovat rozctvrceny obrazek na
+  4 ctvrtiny vedle sebe, chacha ;-] }
+
+{ pokud se budou kreslit sikme cary, udelat treba i Ditheringovou verzi
+ kreslici rutiny
+
+ at je to kompletni, udelat tam krome Line i Circle a FloodFill}
+
+{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  uz vim, proc to
+    1) obcas za sebou zanechava stopu
+    2) obcas se zblbne dealokace pameti
+  je to proto, ze Push/Pop-mouse neni reentrantni a ja to delam 2* :
+  na zacatku/konci dialogu a pri presouvani; proto se to zblbne tehdy a jen
+  tehdy, pokud posouvam dialog (maji na to jeste vliv i hvezdy, protoze to
+  obcas taky funguje (viz. jednoduche dialogove panely - standardni dialog,
+  u kterych to nevim proc funguje))
+  reseni : uz jsem dodelat Push/Pop-mouse a je to bez problemu
+
+  pozn. pospecova animace u me nefunguje (jako by nekdo zapomel prepinat
+        stranky atp...
+  uz je to vyreseno, dala se tam spatna procedura pro cekani na retrace
+  pozn. jeste se odkomentarovala hudba a vsechno podle ocekavani krasne jede
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+
+{obcas ponecha neco tam, kde byla mys - asi je nekde zblble mouseswitchxxx
+ .....pokud je dialog ukoncen mysi, tak se ponecha stopa tam, kde to bylo
+   ukonceno (ale myslim, ze ne u standardnihodialogu) ????????????????!!!!!
+ je to kvuli (byvale) nereentrantnosti push/pop-mouse; to uz jsem odstranil}
+
+{souradnice se vraci nazpet u files, dialogu, radkoveho editoru (pouze ten,
+ co je v okne), v budoucnu i v textovem editoru
+ standardni dialog se "logicky" vzdy vytvori uprostred obrazovky ===> i pri
+ pripadnem posunu jeho novou pozici vracet zpet nebudu, protoze se ani
+ smerem tam nepredava
+ ale do vytvormenu to na "lukasovo" prani zaradim, protoze ma pravdu a kdyz
+ uz se ty souradnice predaji tam, tak proc by se nemohly predat i zpatky ?}
+
+{vybermoznost uz umoznuje zadat napis, vyber nebo oboje jako prazdne a to
+ se pak vynecha; dodelat jsem vyhybku na testovani nulovosti poctu obou
+ typu objektu a pripadne upraveni rozmeru dialogoveho panelu a ten uz
+ to zvladne sam, nebot jsem ho upravil, ze pokud neni na nem nic nez text,
+ tak pouze pocka na klavesnici nebo na mys a rovnou se ukonci bez
+ jakehokoliv vyberu
+ vytvormenu to umi z principu taky - zapise si postupne vsechno, co najde,
+ do vzestupneho (podle y) seznamu a pak vyvola dialogovy panel, ktery to
+ uz umi (zadny napis nikomu nevadi a zadne tlacitko pripadne oboje uz taky
+ ne)}
+
+{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ closegraph uz nedealokuje pamet !!!!!
+ takze se musi zavolat jeste ste, ktera to provede (closegraph byla
+   rozdelena na tyto 2 procedury, aby to bylo chytre)
+ ted je totiz : sti alokuje a zavola initgraph; pak closegraph a ste
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ ===> musim to do vsech programu pridelat
+ pozn. pro jistotu jsem to okrokoval a sledoval memavail - i pri velice
+       "divokem" programu pouzivajicim dialogu bylo vse ok a memavail bylo
+       stejne jak na zacatku, tak i nakonci
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+
+{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ udelal jsem, ze se dialog smi/nesmi presouvat podle parametru
+ procedury, co ho volaji, s tim pracuji takto :
+   a) primo volani uzivatelem je nastavitelne a vraci novou polohu x a y
+   b) volani pres menu posouvani dovoli a vraci novou pozici x a y
+   c) volani pres vybermoznost nebo standardnidialog posouvani dovoli, ale
+      novou pozici x a y nevraci, protoze si ji ani neprebiraji a automaticky
+      dialog centruji
+
+   d) panel files ZATIM posouvani a zoomovani vzdy umozni a vraci jeho nove
+      parametry
+   e) radkovy editor v konfiguraci Dialog - neni co debatovat, tam je to
+      samozrejme zakazano presouvat
+   f) radkovy editor v konfiguraci Okno ZATIM je vzdy presouvatelny a novou
+      pozici vraci
+   g) textovy editor ZATIM je vzdy presouvatelny a vzdy vraci zpet sve nove
+      parametry
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+
+{hnusnej BP ma pri options/tools/tasm nastaveno /o, coz je generovani
+ Overlay kodu a pokud tim kompiluju sound_p u pospecovy animace, zblbne se
+ mi to ===> vypnul jsem to a zaroven to sem pisu, abych to mohl UNDOovat,
+ kdybych to nahodou nekdy potrewboval (asi ne)}
+
+FILES :
+
+{dodelat parametr zakazujici/povolujici presouvani/zoom panelu files
+
+ tak mam nejak dojem, ze se mysi nedostanu na bod 0,0, ale jen kolem nej
+ ????? co je to za zahada ????? ????????????????????????????????????????}
+
+{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     dodelat zapamatovani vsech cest a jejich opetovne obnoveni
+     (nebo spis je ani nemenit a pamatovat si je vnitrne sam)
+     NEBO SE NA NE UPLNE VYKASLAT, KDYZ TO TAK DELA KAZDEJ
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     at neblbne pri 1 mechanikovem pocitaci, kdyz se chci dostat
+     jak na A:, tak i na b:
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     udelat zrychlene vyhledavani pomoci pocatecnich pismenek
+     jako Alt+pismena v NC, VC a DOSM
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     udelat kliknuti na posuvnik tak jak je v TV2 apod...
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+
+{stand2.fon je spatne navrhnuty, na miste '~' ma ' ' a ja jsem to zrovna
+ v dialogu i ve files testoval (*.~* - jako BAK soubory)}
+
+{ani 4DOS nema doresenu sipku nahoru v menu na zacatku a strasne mu to blika,
+ ja to doreseno mam (ve vyberu souboru ano, v zoomu atp... ne)}
+
+{ani VC, NC, DOSM a 4DOS nema, ze kdyz zmenim jednotku a ona neni pripravena,
+ aby te to vratilo tam, odkuds prisel - oni se te na to zeptaji
+ !!!!! tak to mam udelano i ja !!!!!}
+
+DIALOG :
+
+{tak jsem dodelal, ze dialogovy panel nemusi byt na konci smazany,
+ to se da pekne pouzit napr. pro rozvetvene menu
+ !!!!!!!!!!!!! ale neni to zadano jako parametr i pro menu
+ !!!!!!!!!!!!! dodelat, jinak jsem to CELE delal na houby !!!!!}
+
+{ramecek nejen kolem tlacitka je privatni vlastnost
+ editace : zase obnovit Dialog/Okno, dodelat mys, bloky, Find/Replace,
+           moznost behu jak v textovem, tak i v grafickem rezimu}
+
+{zkusit, co udela dialogovy panel, pokud na nej neumistim nic krome textu,
+ pripadne ani tyto texty ne
+ xxxxx dodelano
+
+ udelat i dialogovy panel ve stylu vystrazneho ramecku ve FoxPro - pouze
+ napisy a zadne aktivni prvky - mozna to pujde i ted, ale :
+   1) udelat na to proceduru (standardnidialog(...,nic))
+   2) zajistit, aby se to nekraklo
+ xxxxx dodelano
+
+ odzkouset poradne spolupraci s novym graph256
+ xxxxx dodelano
+
+ udelat u PageUp/Down, ze i preskakuje mezi objekty, pokud uz bylo na
+ zacatku/konci aktualniho objektu}
+

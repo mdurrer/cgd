@@ -1,0 +1,676 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Raycasting III: Sprites</title>
+<meta content="text/html; charset=us-ascii" http-equiv="content-type" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Raycasting III: Sprites<br /></h1>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#How">How it Works</a></li>
+<li><a href="#Code">The Code</a></li>
+<li><a href="#Scale">Scaling Sprites</a></li>
+<li><a href="#Translucent">Translucent Sprites</a></li>
+</ul>
+<a href="index.html">Back to index</a><br />
+<h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+The articles Raycasting and Raycasting II described how to make textured walls and floors,
+but something is missing. In a game, a world with only walls and floors is empty,
+for a game to work, there have to be goodies, enemies, objects like barrels or trees, ...
+These can't be drawn as wall or floor, and, in the 
+time when raycasting games were made, can't be drawn as 3D models either.
+Instead, they used sprites, 2D pictures always facing to you 
+(so they're easy to draw and require a single picture), 
+but that become smaller if they're further away.<br />
+<br />You can download the full source code of this tutorial <a href="files/raycaster_sprites.cpp">here</a>.
+<h2><a name="How" id="How"></a>How it Works</h2>
+The technique used to draw the sprites is totally different from the raycasting technique.
+Instead, it works very similar to how sprites are drawn in a 3D engine with projections,
+like in the "Points, Sprites and Moving" article. Only, we have to do the projection only
+in 2D, and some extra techniques to combine it with raycasting are used.<br />
+<br />
+Drawing the sprites is done after the walls and floor are already drawn. Here are the steps used to draw the sprites:
+<ul>
+<li>1: While raycasting the walls, store the perpendicular distance of each vertical stripe in a 1D ZBuffer</li>
+<li>2: Calculate the distance of each sprite to the player</li>
+<li>3: Use this distance to sort the sprites, from furthest away to closest to the camera</li>
+<li>4: Project the sprite on the camera plane (in 2D): subtract the player position from the sprite position, then multiply the result with the inverse of the 2x2 camera matrix</li>
+<li>5: Calculate the size of the sprite on the screen (both in x and y direction) by using the perpendicular distance</li>
+<li>6: Draw the sprites vertical stripe by vertical stripe, don't draw the vertical stripe if the distance is further away than the 1D ZBuffer of the walls of the current stripe</li>
+<li>7: Draw the vertical stripe pixel by pixel, make sure there's an invisible color or all sprites would be rectangles</li>
+<li></li>
+</ul>
+You don't have to update the ZBuffer while drawing the stripes: since they're sorted, the ones closer to you will be drawn last, so they're drawn over the further away ones.<br />
+<br />
+How to project the sprite on screen is explained in the 3D graphics tutorials, in the articles "Matrices", "3D Basics" and "Points and Sprites". However, here
+it's done in 2D and no fancy camera class is used. To bring the sprite's coordinates to camera space, first subtract the player's position from the sprite's 
+position, then you have the position of the sprite relative to the player. Then it has to be rotated so that the direction is relative to the player. The camera
+can also be skewed and has a certain size, so it isn't really a rotation, but a transformation. The transformation is done by multiplying the relative
+position of the sprite with the inverse of the camera matrix. The camera matrix is in our case
+<br /><pre>
+[planeX   dirX]
+[planeY   dirY]
+</pre>And the inverse of a 2x2 matrix is very easy to calculate
+<pre>
+____________1___________    [dirY      -dirX]
+(planeX*dirY-dirX*planeY) * [-planeY  planeX]
+</pre><br />
+Then you get the X and Y coordinate of the sprite in camera space, where Y is the depth inside the screen (in a true 3D engine, Z is the depth). To
+project it on screen, divide X through the depth, and then translate and scale it so that it's in pixel coordinates.<br />
+<br />
+To place the objects in the level, many things can be done. Each object can have it's own floating point coordinates, it doesn't have to be 
+exactly in the center of floor tiles. You can make a list of each object and give it's coordinates and texture one by one, or you can place 
+the objects by making a second map (a 2D array), and for every tile coordinate place one or no object, the same way as placing the walls. If you do that,
+then let the program read that map and create a list of objects out of it, with every object placed in the center of the corresponding map tile.
+Coordinates in the center of a tile are a halve, e.g. (11.5, 15.5), while whole coordinates will be the corners of tiles.<br />
+<br />
+The code presented below uses a small list of objects instead of a map.
+<h2><a name="Code" id="Code"></a>The Code</h2>
+The code tries to load the wolfenstein textures, with extra textures for 3 sprites, you can download them <a href="files/wolftex.zip">here (copyright
+by id Software)</a>.
+If you don't want to load textures, you can use the part of code that generates textures from the previous raycasting tutorial instead, but
+it looks less good. You'll also have to invent something yourself for the sprites, black is the invisible color.<br />
+<br /><img alt="" src="images/wolftexturesobj.gif" style="width: 704px; height: 64px;" /><br />
+<br />
+The full code of the whole thing is given, it's similar to the code of Raycasting II, but with added code here and there.<br />
+<br />
+The new variables for sprite casting are the struct Sprite, containing the position and texture of the sprite, the value numSprites: the
+number of sprites, the sprite array: defines the positions and textures of all the Sprites, the declaration of the bubbleSort function:
+this will sort the sprites, and the arrays used as arguments for this function: spriteOrder and spriteDistance, and finally, ZBuffer: this
+is the 1D equivalent of the ZBuffer in a true 3D engine. In the sprite array, every third number is the number of it's texture, you
+can see which number means what there where the textures are loaded.<br />
+<br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">#define screenWidth 640
+#define screenHeight 480
+#define texWidth 64
+#define texHeight 64
+#define mapWidth 24
+#define mapHeight 24
+
+int worldMap[mapWidth][mapHeight] =
+{
+  {8,8,8,8,8,8,8,8,8,8,8,4,4,6,4,4,6,4,6,4,4,4,6,4},
+  {8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
+  {8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,6},
+  {8,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6},
+  {8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
+  {8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,6,6,6,0,6,4,6},
+  {8,8,8,8,0,8,8,8,8,8,8,4,4,4,4,4,4,6,0,0,0,0,0,6},
+  {7,7,7,7,0,7,7,7,7,0,8,0,8,0,8,0,8,4,0,4,0,6,0,6},
+  {7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,0,0,0,0,0,6},
+  {7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,0,0,0,0,4},
+  {7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,6,0,6,0,6},
+  {7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,4,6,0,6,6,6},
+  {7,7,7,7,0,7,7,7,7,8,8,4,0,6,8,4,8,3,3,3,0,3,3,3},
+  {2,2,2,2,0,2,2,2,2,4,6,4,0,0,6,0,6,3,0,0,0,0,0,3},
+  {2,2,0,0,0,0,0,2,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
+  {2,0,0,0,0,0,0,0,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
+  {1,0,0,0,0,0,0,0,1,4,4,4,4,4,6,0,6,3,3,0,0,0,3,3},
+  {2,0,0,0,0,0,0,0,2,2,2,1,2,2,2,6,6,0,0,5,0,5,0,5},
+  {2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
+  {2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5},
+  {2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
+  {2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
+  {2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
+};
+
+struct Sprite
+{
+  double x;
+  double y;
+  int texture;
+};
+
+#define numSprites 19
+
+Sprite sprite[numSprites] =
+{
+  {20.5, 11.5, 10}, //green light in front of playerstart
+  //green lights in every room
+  {18.5,4.5, 10},
+  {10.0,4.5, 10},
+  {10.0,12.5,10},
+  {3.5, 6.5, 10},
+  {3.5, 20.5,10},
+  {3.5, 14.5,10},
+  {14.5,20.5,10},
+  
+  //row of pillars in front of wall: fisheye test
+  {18.5, 10.5, 9},
+  {18.5, 11.5, 9},
+  {18.5, 12.5, 9},
+  
+  //some barrels around the map
+  {21.5, 1.5, 8},
+  {15.5, 1.5, 8},
+  {16.0, 1.8, 8},
+  {16.2, 1.2, 8},
+  {3.5,  2.5, 8},
+  {9.5, 15.5, 8},
+  {10.0, 15.1,8},
+  {10.5, 15.8,8},
+};
+
+Uint32 buffer[screenWidth][screenHeight];
+
+//1D Zbuffer
+double ZBuffer[screenWidth];
+
+//arrays used to sort the sprites
+int spriteOrder[numSprites];
+double spriteDistance[numSprites];
+
+//function used to sort the sprites
+void combSort(int* order, double* dist, int amount);
+
+int main(int /*argc*/, char */*argv*/[])
+{
+  double posX = 22.0, posY = 11.5; //x and y start position
+  double dirX = -1.0, dirY = 0.0; //initial direction vector
+  double planeX = 0.0, planeY = 0.66; //the 2d raycaster version of camera plane
+  
+  double time = 0; //time of current frame
+  double oldTime = 0; //time of previous frame
+  
+  std::vector&lt;Uint32> texture[11];
+  for(int i = 0; i &lt; 11; i++) texture[i].resize(texWidth * texHeight);</span></pre>
+</td></tr></table></center>
+<br />
+3 new textures are loaded: the sprites. There's nothing that stops you from loading more textures, or
+making the textures higher resolution.<br />
+<br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">  screen(screenWidth,screenHeight, 0, "Raycaster");
+  
+  //load some textures
+  unsigned long tw, th, error = 0;
+  error |= loadImage(texture[0], tw, th, "pics/eagle.png");
+  error |= loadImage(texture[1], tw, th, "pics/redbrick.png");
+  error |= loadImage(texture[2], tw, th, "pics/purplestone.png");
+  error |= loadImage(texture[3], tw, th, "pics/greystone.png");
+  error |= loadImage(texture[4], tw, th, "pics/bluestone.png");
+  error |= loadImage(texture[5], tw, th, "pics/mossy.png");
+  error |= loadImage(texture[6], tw, th, "pics/wood.png");
+  error |= loadImage(texture[7], tw, th, "pics/colorstone.png");
+  
+  //load some sprite textures
+  error |= loadImage(texture[8], tw, th, "pics/barrel.png");
+  error |= loadImage(texture[9], tw, th, "pics/pillar.png");
+  error |= loadImage(texture[10], tw, th, "pics/greenlight.png");
+  if(error) { std::cout &lt;&lt; "error loading images" &lt;&lt; std::endl; return 1; }</span></pre>
+</td></tr></table></center>
+<br />
+Here's the main loop which starts with raycasting the walls.
+<br />
+<br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">  //start the main loop
+  while(!done())
+  {
+    for(int x = 0; x &lt; w; x++)
+    {
+      //calculate ray position and direction 
+      double cameraX = 2 * x / double(w) - 1; //x-coordinate in camera space     
+      double rayPosX = posX;
+      double rayPosY = posY;
+      double rayDirX = dirX + planeX * cameraX;
+      double rayDirY = dirY + planeY * cameraX;
+     
+      //which box of the map we're in  
+      int mapX = int(rayPosX);
+      int mapY = int(rayPosY);
+       
+      //length of ray from current position to next x or y-side
+      double sideDistX;
+      double sideDistY;
+       
+      //length of ray from one x or y-side to next x or y-side
+      double deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+      double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+      double perpWallDist;
+       
+      //what direction to step in x or y-direction (either +1 or -1)
+      int stepX;
+      int stepY;
+            
+      int hit = 0; //was there a wall hit?
+      int side; //was a NS or a EW wall hit?
+
+      //calculate step and initial sideDist
+      if (rayDirX &lt; 0)
+      {
+        stepX = -1;
+        sideDistX = (rayPosX - mapX) * deltaDistX;
+      }
+      else
+      {
+        stepX = 1;
+        sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
+      }
+      if (rayDirY &lt; 0)
+      {
+        stepY = -1;
+        sideDistY = (rayPosY - mapY) * deltaDistY;
+      }
+      else
+      {
+        stepY = 1;
+        sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
+      }
+      //perform DDA
+      while (hit == 0)
+      {
+        //jump to next map square, OR in x-direction, OR in y-direction
+        if (sideDistX &lt; sideDistY)
+        {
+          sideDistX += deltaDistX;
+          mapX += stepX;
+          side = 0;
+        }
+        else
+        {
+          sideDistY += deltaDistY;
+          mapY += stepY;
+          side = 1;
+        }
+        //Check if ray has hit a wall       
+        if (worldMap[mapX][mapY] > 0) hit = 1;
+      }
+      
+      //Calculate distance of perpendicular ray (oblique distance will give fisheye effect!)    
+      if (side == 0) perpWallDist = fabs((mapX - rayPosX + (1 - stepX) / 2) / rayDirX);
+      else       perpWallDist = fabs((mapY - rayPosY + (1 - stepY) / 2) / rayDirY);
+      
+      //Calculate height of line to draw on screen       
+      int lineHeight = abs(int(h / perpWallDist));
+      
+      //calculate lowest and highest pixel to fill in current stripe
+      int drawStart = -lineHeight / 2 + h / 2;
+      if(drawStart &lt; 0) drawStart = 0;
+      int drawEnd = lineHeight / 2 + h / 2;
+      if(drawEnd >= h) drawEnd = h - 1;
+      //texturing calculations
+      int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
+      
+      //calculate value of wallX
+      double wallX; //where exactly the wall was hit
+      if (side == 1) wallX = rayPosX + ((mapY - rayPosY + (1 - stepY) / 2) / rayDirY) * rayDirX;
+      else       wallX = rayPosY + ((mapX - rayPosX + (1 - stepX) / 2) / rayDirX) * rayDirY;
+      wallX -= floor((wallX));
+       
+      //x coordinate on the texture
+      int texX = int(wallX * double(texWidth));
+      if(side == 0 &amp;&amp; rayDirX > 0) texX = texWidth - texX - 1;
+      if(side == 1 &amp;&amp; rayDirY &lt; 0) texX = texWidth - texX - 1;
+      for(int y = drawStart; y &lt; drawEnd; y++)
+      {
+        int d = y * 256 - h * 128 + lineHeight * 128; //256 and 128 factors to avoid floats
+        int texY = ((d * texHeight) / lineHeight) / 256;
+        int color = texture[texNum][texWidth * texY + texX];
+        //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+        if(side == 1) color = (color >> 1) &amp; 8355711;
+        buffer[x][y] = color;
+      }</span></pre>
+</td></tr></table></center>
+<br />
+After raycasting the wall, the ZBuffer has to be set. This ZBuffer is 1D, because it only contains the distance to the wall
+of every vertical stripe, instead of having this for every pixel. The rest of this code is the floor casting, which is
+the same as before. This also ends the loop through every vertical stripe, because rendering the sprites
+will be done outside this loop.<br />
+<br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">      //SET THE ZBUFFER FOR THE SPRITE CASTING
+      ZBuffer[x] = perpWallDist; //perpendicular distance is used
+      
+      //FLOOR CASTING
+      double floorXWall, floorYWall; //x, y position of the floor texel at the bottom of the wall
+
+      //4 different wall directions possible
+      if(side == 0 &amp;&amp; rayDirX > 0)
+      {
+        floorXWall = mapX;
+        floorYWall = mapY + wallX;
+      }
+      else if(side == 0 &amp;&amp; rayDirX &lt; 0)
+      {
+        floorXWall = mapX + 1.0;
+        floorYWall = mapY + wallX;
+      }
+      else if(side == 1 &amp;&amp; rayDirY > 0)
+      {
+        floorXWall = mapX + wallX;
+        floorYWall = mapY;
+      }
+      else
+      {
+        floorXWall = mapX + wallX;
+        floorYWall = mapY + 1.0;
+      }
+      
+      double distWall, distPlayer, currentDist;
+
+      distWall = perpWallDist;
+      distPlayer = 0.0;
+      if (drawEnd &lt; 0) drawEnd = h; //becomes &lt; 0 when the integer overflows
+      //draw the floor from drawEnd to the bottom of the screen
+      for(int y = drawEnd + 1; y &lt; h; y++)
+      {
+        currentDist = h / (2.0 * y - h); //you could make a small lookup table for this instead
+
+        double weight = (currentDist - distPlayer) / (distWall - distPlayer);
+         
+        double currentFloorX = weight * floorXWall + (1.0 - weight) * posX;
+        double currentFloorY = weight * floorYWall + (1.0 - weight) * posY;
+        
+        int floorTexX, floorTexY;
+        floorTexX = int(currentFloorX * texWidth) % texWidth;
+        floorTexY = int(currentFloorY * texHeight) % texHeight; 
+        
+        //floor
+        buffer[x][y] = (texture[3][texWidth * floorTexY + floorTexX] >> 1) &amp; 8355711;
+        //ceiling (symmetrical!)
+        buffer[x][h - y] = texture[6][texWidth * floorTexY + floorTexX];
+      }
+    }</span></pre>
+</td></tr></table></center>
+<br />
+After the walls and floors are finally drawn, the sprites can be drawn. This code is very unoptimized, a few improvements
+are explained later. First it sorts the sprites from far to close, so that the far ones will be drawn first. Then it 
+projects each sprite, calculates the size it should have on screen, and draws it stripe by stripe. The matrix multiplication
+for the projection is very easy because it's only a 2x2 matrix. It comes in very handy again that they raycaster already
+used a 2D camera matrix, instead of representing the player with an angle and a position instead like some raycasters do.<br />
+<br />The distance calculated for the sorting of the sprites is never used later on, because the perpendicular distance
+is used instead. For sorting the sprites it doesn't matter if you take the square root of the distance or not, so no
+calculation time is wasted for that.<br />
+<br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">    //SPRITE CASTING
+    //sort sprites from far to close
+    for(int i = 0; i &lt; numSprites; i++)
+    {
+      spriteOrder[i] = i;
+      spriteDistance[i] = ((posX - sprite[i].x) * (posX - sprite[i].x) + (posY - sprite[i].y) * (posY - sprite[i].y)); //sqrt not taken, unneeded
+    }
+    combSort(spriteOrder, spriteDistance, numSprites);
+     
+    //after sorting the sprites, do the projection and draw them
+    for(int i = 0; i &lt; numSprites; i++)
+    {
+      //translate sprite position to relative to camera
+      double spriteX = sprite[spriteOrder[i]].x - posX;
+      double spriteY = sprite[spriteOrder[i]].y - posY;
+         
+      //transform sprite with the inverse camera matrix
+      // [ planeX   dirX ] -1                                       [ dirY      -dirX ]
+      // [               ]       =  1/(planeX*dirY-dirX*planeY) *   [                 ]
+      // [ planeY   dirY ]                                          [ -planeY  planeX ]
+      
+      double invDet = 1.0 / (planeX * dirY - dirX * planeY); //required for correct matrix multiplication
+      
+      double transformX = invDet * (dirY * spriteX - dirX * spriteY);
+      double transformY = invDet * (-planeY * spriteX + planeX * spriteY); //this is actually the depth inside the screen, that what Z is in 3D       
+            
+      int spriteScreenX = int((w / 2) * (1 + transformX / transformY));
+      
+      //calculate height of the sprite on screen
+      int spriteHeight = abs(int(h / (transformY))); //using "transformY" instead of the real distance prevents fisheye
+      //calculate lowest and highest pixel to fill in current stripe
+      int drawStartY = -spriteHeight / 2 + h / 2;
+      if(drawStartY &lt; 0) drawStartY = 0;
+      int drawEndY = spriteHeight / 2 + h / 2;
+      if(drawEndY >= h) drawEndY = h - 1;
+      
+      //calculate width of the sprite
+      int spriteWidth = abs( int (h / (transformY)));
+      int drawStartX = -spriteWidth / 2 + spriteScreenX;
+      if(drawStartX &lt; 0) drawStartX = 0;
+      int drawEndX = spriteWidth / 2 + spriteScreenX;
+      if(drawEndX >= w) drawEndX = w - 1;
+      
+      //loop through every vertical stripe of the sprite on screen
+      for(int stripe = drawStartX; stripe &lt; drawEndX; stripe++)
+      {
+        int texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
+        //the conditions in the if are:
+        //1) it's in front of camera plane so you don't see things behind you
+        //2) it's on the screen (left)
+        //3) it's on the screen (right)
+        //4) ZBuffer, with perpendicular distance
+        if(transformY > 0 &amp;&amp; stripe > 0 &amp;&amp; stripe &lt; w &amp;&amp; transformY &lt; ZBuffer[stripe]) 
+        for(int y = drawStartY; y &lt; drawEndY; y++) //for every pixel of the current stripe
+        {
+          int d = (y) * 256 - h * 128 + spriteHeight * 128; //256 and 128 factors to avoid floats
+          int texY = ((d * texHeight) / spriteHeight) / 256;
+          Uint32 color = texture[sprite[spriteOrder[i]].texture][texWidth * texY + texX]; //get current color from the texture
+          if((color &amp; 0x00FFFFFF) != 0) buffer[stripe][y] = color; //paint pixel if it isn't black, black is the invisible color
+        }
+      }
+    }</span></pre>
+</td></tr></table></center>
+<br />
+After it all is drawn, the screen is updated, and the input keys are handled.
+<br />
+<br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">    drawBuffer(buffer[0]);
+    for(int x = 0; x &lt; w; x++) for(int y = 0; y &lt; h; y++) buffer[x][y] = 0; //clear the buffer instead of cls()
+    
+    //timing for input and FPS counter
+    oldTime = time;
+    time = getTicks();
+    double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
+    print(1.0 / frameTime); //FPS counter
+    redraw();
+    
+    //speed modifiers
+    double moveSpeed = frameTime * 3.0; //the constant value is in squares/second
+    double rotSpeed = frameTime * 2.0; //the constant value is in radians/second
+    readKeys();
+    //move forward if no wall in front of you
+    if (keyDown(SDLK_UP))
+    {
+      if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
+      if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
+    }
+    //move backwards if no wall behind you
+    if (keyDown(SDLK_DOWN))
+    {
+      if(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
+      if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
+    }
+    //rotate to the right
+    if (keyDown(SDLK_RIGHT))
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = dirX;
+      dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
+      dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
+      double oldPlaneX = planeX;
+      planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
+      planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+    }
+    //rotate to the left
+    if (keyDown(SDLK_LEFT))
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = dirX;
+      dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
+      dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
+      double oldPlaneX = planeX;
+      planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
+      planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
+    }
+  }
+}</span></pre>
+</td></tr></table></center>
+<br />
+The combSort function used to sort the sprites is a variant of the bubble sort algorithm. Bubble sort is one of the slowest but also very simple sorting algorithms. combSort is much more efficient after only a slight modification of the bubbleSort.
+<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">//sort algorithm
+void combSort(int* order, double* dist, int amount)
+{
+  int gap = amount;
+  bool swapped = false;
+  while(gap > 1 || swapped)
+  {
+    //shrink factor 1.3
+    gap = (gap * 10) / 13;
+    if(gap == 9 || gap == 10) gap = 11;
+    if (gap &lt; 1) gap = 1;
+    swapped = false;
+    for (int i = 0; i &lt; amount - gap; i++)
+    {
+      int j = i + gap;
+      if (dist[i] &lt; dist[j])
+      {
+        std::swap(dist[i], dist[j]);
+        std::swap(order[i], order[j]);
+        swapped = true;
+      }
+    }
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/raycastsprites1.jpg" style="width: 408px; height: 328px;" /><img alt="" src="images/raycastsprites2.jpg" style="width: 408px; height: 328px;" /><br />
+<br />The green light is a very small sprite, but the program still goes through all it's invisible pixels to check their color. It could be made faster by
+telling which sprites have large invisible parts, and only drawing a smaller rectangular part of them containing all visible pixels.<br />
+<br />
+To make some objects unwalkthroughable, you can either check the distance of the player to every object when he moves for collision detection,
+or, make another 2D map that contains for every square if it's walkthroughable or not, this can be used for walls as well.<br />
+<br />
+In for example Wolfenstein 3D, some objects (for example the soldiers) have 8 different pictures when viewing it from different angles,
+to make it appear as if the sprite is really 3D. You can get the angle of the object to the player for example with the atan2 function,
+and then choose 1 of 8 textures depending on the angle. You can also give the sprites even more textures for animation.
+<h2><a name="Scale" id="Scale"></a>Scaling Sprites</h2>
+It's pretty easy to let the program draw the sprites larger or smaller, and move the sprites up or down. To shrink the sprite, divide spriteWidth and spriteHeight
+through something. If you halve the height of the sprites, for example the pillar, then the bottom will move up so that the pillar appears to be floating. That's
+why in the code below, apart from the parameters uDiv and vDiv to shrink the sprite, also a parameter vMove is added to move the sprite down if it has to stand
+on the floor, or up if it has to hang on the ceiling. vMoveScreen is vMove projected on the screen by dividing it through the depth.<br />
+<br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">      //parameters for scaling and moving the sprites
+      #define uDiv 1
+      #define vDiv 1
+      #define vMove 0.0
+      int vMoveScreen = int(vMove / transformY);
+      
+      //calculate height of the sprite on screen
+      int spriteHeight = abs(int(h / (transformY))) / vDiv; //using "transformY" instead of the real distance prevents fisheye
+      //calculate lowest and highest pixel to fill in current stripe
+      int drawStartY = -spriteHeight / 2 + h / 2 + vMoveScreen;
+      if(drawStartY &lt; 0) drawStartY = 0;
+      int drawEndY = spriteHeight / 2 + h / 2 + vMoveScreen;
+      if(drawEndY >= h) drawEndY = h - 1;
+      
+      //calculate width of the sprite
+      int spriteWidth = abs( int (h / (transformY))) / uDiv;
+      int drawStartX = -spriteWidth / 2 + spriteScreenX;
+      if(drawStartX &lt; 0) drawStartX = 0;
+      int drawEndX = spriteWidth / 2 + spriteScreenX;
+      if(drawEndX >= w) drawEndX = w - 1;
+      
+      
+      //loop through every vertical stripe of the sprite on screen
+      for(int stripe = drawStartX; stripe &lt; drawEndX; stripe++)
+      {
+        int texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
+        //the conditions in the if are:
+        //1) it's in front of camera plane so you don't see things behind you
+        //2) it's on the screen (left)
+        //3) it's on the screen (right)
+        //4) ZBuffer, with perpendicular distance
+        if(transformY > 0 &amp;&amp; stripe > 0 &amp;&amp; stripe &lt; w &amp;&amp; transformY &lt; ZBuffer[stripe]) 
+        for(int y = drawStartY; y &lt; drawEndY; y++) //for every pixel of the current stripe
+        {
+          int d = (y-vMoveScreen) * 256 - h * 128 + spriteHeight * 128;  //256 and 128 factors to avoid floats
+          int texY = ((d * texHeight) / spriteHeight) / 256;
+          Uint32 color = texture[sprite[spriteOrder[i]].texture][texWidth * texY + texX]; //get current color from the texture
+          if((color &amp; 0x00FFFFFF) != 0) buffer[stripe][y] = color; //paint pixel if it isn't black, black is the invisible color
+        }
+      }
+    }</span></pre>
+</td></tr></table></center>
+<br />
+When uDiv = 2, vDiv = 2, vMove = 0.0, the sprites are half as big, and float:<br/>
+<br/>
+<img alt="" src="images/raycastspritescalefloat.jpg" style="width: 328px; height: 268px;" /><br />
+<br/>
+Put it back on the ground by setting vMove to 64.0 (the size of the texture):<br/>
+<br/>
+<img alt="" src="images/raycastspritescale.jpg" style="width: 328px; height: 268px;" /><br />
+<br/>
+If you make vMove even higher to place the sprites under the ground, they'll still be drawn through the ground, because the ZBuffer is 1D
+and can only detect if the sprite is in front or behind a wall.<br/>
+<br/>
+<img alt="" src="images/raycastspritescalesink.jpg" style="width: 328px; height: 268px;" /><br />
+<br/>
+Of course, by lowering the barrels, the green light is lower too so it doesn't hang on the ceiling anymore. To make this useful, you
+have to give each sprite it's own uDiv, vDiv and vMove parameters, for example you can put them in the sprite struct.<br/>
+<br/>
+<img alt="" src="images/raycastspritescalelight.jpg" style="width: 328px; height: 268px;" />
+
+<h2><a name="Translucent" id="Translucent"></a>Translucent Sprites</h2>
+Because we're working in RGB color, making sprites translucent is very simple. All you have to do is take the average of the old color
+in the buffer and the new color of the sprite. Old games like for example Wolfenstein 3D used a palette of 256 colors with no 
+logical mathematical rules for the colors in the palette, so there translucency wasn't so easy. Change the following line of code<br />
+<br />
+
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">if((color &amp; 0x00FFFFFF) != 0) buffer[stripe][y] = color; //paint pixel if it isn't black, black is the invisible color</span></pre>
+</td></tr></table></center>
+
+<br />
+into<br />
+<br />
+
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">if((color &amp; 0x00FFFFFF) != 0) buffer[stripe][y] = RGBtoINT(INTtoRGB(buffer[stripe][y]) / 2 + INTtoRGB(color) / 2); //paint pixel if it isn't black, black is the invisible color</span></pre>
+</td></tr></table></center>
+
+<br /><br/>
+<img alt="" src="images/raycastspritetranslucent.jpg" style="width: 328px; height: 268px;" /><br />
+To make them more translucent, try something like<br />
+<br />
+
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">if((color &amp; 0x00FFFFFF) != 0) buffer[stripe][y] = RGBtoINT(3 * INTtoRGB(buffer[stripe][y]) / 4 + INTtoRGB(color) / 4); //paint pixel if it isn't black, black is the invisible color</span></pre>
+</td></tr></table></center>
+
+<br /><br/>
+<img alt="" src="images/raycastspritetranslucent2.jpg" style="width: 328px; height: 268px;" /><br />
+<br />You can also try more special tricks, for example translucent sprites, that make the walls behind them of negative color:<br />
+<br />
+
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">if((color &amp; 0x00FFFFFF) != 0) buffer[stripe][y] = RGBtoINT((RGB_White - INTtoRGB(buffer[stripe][y])) / 2 + INTtoRGB(color) / 2); //paint pixel if it isn't black, black is the invisible color</span></pre>
+</td></tr></table></center>
+
+<br /><br/>
+<img alt="" src="images/raycastspritetranslucent3.jpg" style="width: 328px; height: 268px;" /><br />
+<br />To be useful for a game, it would be more handy to give each sprite it's own translucency effect (if any), 
+with an extra parameter in the sprite struct. For example the green light could be translucent, but a pillar
+certainly not.
+<br />
+<br />
+<hr />
+Last edited: 12 August 2007
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+</body>
+</html>

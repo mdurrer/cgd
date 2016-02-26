@@ -1,0 +1,62 @@
+Deepstone (unfinished)
+----------------------
+This would/will be a dungeon crawler if I ever finish it.
+
+Copyright (C) 2013 John Tsiombikas <nuclear@member.fsf.org>
+Feel free to use, modify and redistribute this code under the terms of the GNU
+General Public License version 3 (or at your option any later version published
+by the free software foundation). See COPYING for details.
+
+Usage
+-----
+Just start it, walk around with WASD and look around by moving the mouse.
+Nothing else to do at the moment :)
+
+Precompiled binaries included in the archive:
+ * deepston.exe          MS-DOS version (32bit, requires included dos4gw.exe)
+ * deepstone-win32.exe   32bit Windows version
+ * deepstone-linux32     32bit GNU/Linux version
+ * deepstone-linux64     64bit GNU/Linux version
+
+The GNU/Linux binaries require libSDL which depends on a shitload of libraries
+on my system, so you probably won't be able to run it without first installing
+all the dependencies. It might be easier to just compile it yourself, just type
+make and run ./deepstone
+
+Running with DOSBOX
+-------------------
+I've included a dosbox.conf which automatically runs the "game", as well as a
+copy of dosbox.exe for windows. So just change into the dosbox/ subdirectory and
+run dosbox.
+NOTE: you might need to click in the dosbox window first before you can use
+mouse control.
+
+Running on actual MS-DOS
+------------------------
+Just copy deepston.exe, dos4gw.exe and the data directory to your DOS machine,
+and run it. The mouse driver must be installed first! (mouse.com or whatever).
+
+Build on MS-DOS
+---------------
+ * You need the Watcom 32bit compiler and assorted utilities.
+ * Type make
+ * Profit (run deepston.exe)
+
+Build on GNU/Linux
+------------------
+ * Install SDL (libsdl-1.2-dev or whatever).
+ * Type make
+ * Profit (run ./deepstone)
+
+Build on MS-Windows
+-------------------
+ * Install SDL
+ * Open deepstone.sln with visual studio >= 2008
+ * Make sure visual studio knows where to find your copy of SDL (so configure
+   include and library paths... ugh, windows programming.. icky).
+ * Press build solution or whatever it's called this way.
+ * Profit (find the bloody thing and run it, or click the happy little play button).
+
+Contact
+-------
+Feel free to tell me how much I rule, by sending email to nuclear@member.fsf.org

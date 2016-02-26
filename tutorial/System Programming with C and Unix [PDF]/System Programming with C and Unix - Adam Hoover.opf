@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">959</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">e16c6e63-9126-4585-9a03-399c0f9d8869</dc:identifier>
+        <dc:title>System Programming with C and Unix</dc:title>
+        <dc:creator opf:file-as="Hoover, Adam" opf:role="aut">Adam Hoover</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (0.9.42) [http://calibre-ebook.com]</dc:contributor>
+        <dc:date>0101-01-01T00:00:00+00:00</dc:date>
+        <dc:language>eng</dc:language>
+        <meta content="{&quot;Adam Hoover&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="0.0" name="calibre:rating"/>
+        <meta content="2013-11-14T20:28:55+00:00" name="calibre:timestamp"/>
+        <meta content="System Programming with C and Unix" name="calibre:title_sort"/>
+    </metadata>
+    <guide>
+        <reference href="System Programming with C and Unix - Adam Hoover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>

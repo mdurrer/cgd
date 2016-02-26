@@ -1,0 +1,86 @@
+\documentclass[b5paper,10pt,dvips,fleqn,titlepage,twoside]{book}
+%\pagestyle{headings}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{url}
+\usepackage{listings}
+\lstset{language=C}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\pagestyle{headings}
+\usepackage{rotating}
+\usepackage{subfigure}
+
+
+\usepackage[dvips]{hyperref}
+\hypersetup{%
+   pdfauthor=Michael Durrer,%
+   pdfstartview=%
+}
+
+\author{Michael Durrer}
+\title{Auf Kosten der Ärmsten}
+\date{2007-01-21}
+\usepackage{makeidx}
+\makeindex
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\begin{huge} \textbf{Auf Kosten der Ärmsten}\end{huge}
+\newline
+\textit{Eine kritische Betrachtung von einem Jahrhundert Suchttherapie, Drogenpolitik und Sozialarbeit}
+\newline
+%\begin{abstract}
+%Diese Dokumentation beinhaltet eine umfangreiche Analyse über den Zeitraum vom Ende des 19. Jahrhunderts bis zum Anfang des 21. Jahrhunderts mit einem zentrierten Blick auf das 20. Jahrhundert, in welchem die ersten Schritte für die heutige Drogenpolitik getätigt wurden.
+%\end{abstract}
+
+
+\begin{small}Von \emph{Michael Durrer}, geschrieben mit \LaTeX \newline\end{small}
+\end{center}
+\footnotetext{ Last update on \today }
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\begin{center}
+ \textit{Dieses Buch ist all den \emph{Menschen} gewidmet, die sinnlos im Drogenkrieg der Regierungen dieser Welt gegen die eigene Bevölkerung, ein leidvolles, einsames Ende gefunden haben. Ihr seid nicht vergessen!}
+\end{center}
+
+\part{Einleitung}
+\chapter{Vorwort}
+\begin{quotation}
+Ungelebtes Leben zuckt und lodert
+Aus der Körperkraft, die hier vermodert,
+Abgemähter Jugend letztes Walten,
+Letzte Glut verraucht in Wunschgestalten.\newline 
+\begin{flushright}
+\textit{Conrad Ferdinand Meyer} 
+\end{flushright}
+
+\end{quotation}
+\section{Werdegang diese Buchs}
+Endlich liegt dieses Buch vor Ihnen! Es ist das Resultat leidenschaftlicher, monatelanger Recherchier- und Schreibarbeit. Zu keinem Zeitpunkt wusste ich, ob es je den finalen Status erreichen würde. Zumal ich anfangs absolut nicht wusste, ob überhaupt eine berechtigte Nachfrage zu dieser Thematik besteht, denn gibt es nicht schon haufenweise Bücher über psychotrope Substanzen, Schicksalsberichte und drogenpolitische Themen?\\
+Nachdem ich mir im März 2007 einen Überblick zu versuchen verschaffte über das Angebot an Literatur über diesen Medizinskandal, war mein Ergebnis ziemlich ernüchternd.\\
+So gibt es zwar haufenweise aufklärende Bücher über Drogen und man erfährt praktisch alles Notwendige von medizinischen Notfällen wie Überdosierungen, Allergien oder Ähnlichem bis hin zu Dosierungsangaben der jeweiligen Substanzen. Umso lückenhfter ist jedoch das Angebot über den Ausstieg oder die Behandlungsmöglichkeiten Opiatsabhängiger Menschen. Zwar gibt es einiges an Büchern über Schmerztherapien mit Opioiden, doch sind diese in erster Linie, wie gesagt, für Schmerzpatienten die in erster Linie körperlich abhängig von den pharmazeutischen Produkten und eigentlich eher als direkte Auswirkung der Schmerzen auf die Psyche des Patienten wenn er seine Schmerzmittel nicht erhält, auch psychisch.\\
+\section{Beweggründe}
+Da ich seit vielen Jahren bereits den Wunsch gehegt habe, endlich ein aufklärendes Buch über die Missstände in unserem Gesundheits- und Rechtswesen zu schreiben, hat die Ausgangslage, die im vorigen Abschnitt beschrieben wurde, endgültig den Anstoss gegeben, dieses Projekt in die Tat umzusetzen.\\
+Auf die Thematik selber kam ich überhaupt erst dadurch, dass ich selber direkt betroffen war von den Misshandlungen, die die Exekutive des Staates an Suchtkranken Menschen begeht. Meine mehrjährige Opiatabhängigkeit und Begleiterkrankungen haben mich mit vielen interessanten und oftmals an der Problematik beteiligten Menschen zusammengebracht. Diese Menschen stellten im Normalfall keinen Durchschnitt dar, sondern einen Querschnitt durch alle sozialen Schichten. Denn eines habe ich in all den Jahren gelernt: Vor der Sucht sind alle gleich. Keiner kann sich davon loskaufen, egal ob er nun mit einer Disposition geboren wurde, die ihn anfällig machte für Suchtverhalten oder unverschuldet krank wurde und aus medizinischer Sicht auf den Stoff angewiesen ist.\\
+Da ich von jeher philantropisch veranlagt bin, liegt es in meiner Absicht, Menschen zu helfen, die wie ich von der Gesellschaft diskriminiert und misshandelt werden mit unangemessener medizinischer Behandlung, da eine angemessene Behandlung rechtlich nicht möglich ist oder durch Dogmen der Ärzte verhindert werden.
+\part{Opiate und Opioide - Morpheus und seine Verwandtschaft}
+\includegraphics[width=10cm]{schlafmohn.eps}
+\chapter{Historisches und Terminologie}
+
+\section{Was sind Opiate und Opioide?}
+Um über das Thema dieses Buches zu reden, müssen wir etwas ausholen und ersteinmal genau wissen worüber wir hier reden. \emph{Opiate} sind eine Stoffgruppe chemischer Verbindungen, sogenannte \emph{Alkaloide}\footnotetext{Alkaloide sind organische, stickstoffhaltige und meist alkalische natürlich vorkommende Verbindungen. Der Name geht auf den Apotheker C. F. W. Meissner zurück, der den Begriff 1819 einführte.} die natürlich im Milchsaft des \emph{Schlafmohns} (\textit{Papaver Somniferum}) vorkommen. Die Wenigsten von ihnen besitzen einen medizinischen Verwendungszweck. Zu den wichtigsten der über 30 Alkaloide im Mohn zählen \emph{Morphin, Codein, Papaverin und Thebain}. Morphin (früher Morphium genannt, jedoch veraltet) und Codein sind in der Wirkung weitestgehend identisch, zumal sich 10\% des Codeins in der Leber zum eigentlichen Wirkstoff Morphin umwandeln. Beachtenswert ist dabei, dass etwa 10\% der weissen/kaukasischen Bevölkerung nicht fähig sind, Codein zu metabolisieren und deswegen keine eigentliche Wirkung verspüren.\\\\
+Während \emph{Morphin} hauptsächlich wegen seines \emph{analgetischen} Potentials geschätzt und angewendet wird, kommt Codein in (oftmals rezeptpflichtigen, aber auch frei verkäuflichen) Hustensäften als Hauptkomponente zum Einsatz, denn charakteristisch für Opiate sind die atemdepressiven Eigenschaften. So ist Codein bis heute ein effektives, gut verträgliches Medikament gegen unproduktiven Reizhusten (wohingegen produktiver Reizhusten, d.h. Husten wo Schleim produziert und abgehustet wird, auf keinen Fall mit atemdepressiven Medikamenten behandelt werden, da dies zu einr Lungenentzündung führen kann weil der Schleim nicht mehr ausreichend abgehustet werden kann.\\
+\\
+\emph{Papaverin} wird in der Medizin wegen seiner \emph{antikonvulsiven} (krampflösenden) Wirkung auf die glatte Muskulatur eingesetzt. Unter Anderem dient es dabei auch als Mittel gegen Impotenz. Heutzutage wurde es jedoch weitestgehend durch die vielseitigen \emph{Benzodiazepine} (Angst-, Schlaf- und Antikrampfmittel) wie \emph{Diazepam} oder \emph{Alprazolam} ersetzt und für Potenzstörungen hat das allseits bekannte Potenzmittel \emph{Viagra} seinen Platz eingenommen.\\
+Besondere Erwähnung verdient \emph{Thebain}, da es sehr geschätzt wird als Ausgangsstoff für verschiedene synthetische Opiate, welche \emph{Opioide} genannt werden. Aus Thebain werden beispielse das Substitutionsmittel \emph{Buprenorphin} oder \emph{Oxycodon} synthetisiert. Genetiker und Biochemiker arbeiten seit Jahren daran, Schlafmohnsorten zu züchten, die morphinarm sind und dafür gleich direkt bestimmte Opioide synthetisieren oder hohe Anteile an Thebain enthalten für die spätere Synthese.\\
+Die meisten Opioide (Opioide nennt man übrigens auch alle Stoffe, die an den Opioid-Rezeptoren im Hirn andocken und opioidähnlich wirken oder chemisch nah verwandt sind).
+\chapter{Pharmakologie von Opioiden}
+\section{Die vielseitige Droge}
+Wie im vorigen Abschnitt bereits erwähnt, haben Opioide eine beachtliche therapeutische Bandbreite.
+So haben die meisten Opioide grundsätzlich dieselben Auswirkungen, jedoch in unterschiedlicher Potenz und die verschiedenen Effekte sind von unterschiedlicher Intensität.
+Die schmerzhemmende (analgetische) Komponente machen Opioide unverzichtbar in der Medizinwelt.
+\chapter{Anwendungszwecke}
+\end{document}

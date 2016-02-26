@@ -1,0 +1,234 @@
+{kecani s Evelynou pred koncem hry:}
+
+block _0 ( beg(1) )
+title
+  disablequickhero
+{  disablespeedtext
+  walkonplay 224 144 vlevo
+  justtalk
+   D: "Evelyn!"
+  juststay
+  start EvelOut "skace"
+  Ev: "Hallo, Drachenjunge!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Wir müssen uns mal ernsthaft unterhalten!"
+  juststay
+  walkon 196 160 vlevo
+  start EvelOut "skace"
+  Ev: "Dann schieß los,
+       was ist passiert?!
+       Warst du unanständig?"
+  start EvelOut "neskace"
+  walkonplay 196 160 vlevo
+   justtalk
+   D: "Das war ich..."
+  juststay
+  start EvelOut "skace"
+  Ev: "Ausgezeichnet. Du bist ein guter Junge!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Und was ist mit dir?"
+  juststay
+  start EvelOut "skace"
+  Ev: "Nein, ich hatte keine gute Zeit."
+  start EvelOut "neskace"
+   justtalk
+   D: "Das tut mir leid. Ähm...
+       (Wir sollten die unangenehmen Dinge
+       gleich zu Beginn klären)"
+  juststay
+   justtalk
+   D: "Wie wäre es, wenn du dein Leben zusammenfasst?"
+  juststay
+  start EvelOut "skace"
+  Ev: "Mein ganzes Leben? Ist es dafür nicht zu früh?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Wenigstens einige Errungenschaften"
+  juststay
+  start EvelOut "skace"
+  Ev: "Quatsch"
+  start EvelOut "neskace"
+   justtalk
+   D: "Unser erstes Treffen..."
+  juststay
+  start EvelOut "skace"
+  Ev: "Das hab ich schon vergessen!
+       Keine Sorge, ich bin kerngesund!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Du weisst nie, was so alles passieren kann."
+  juststay
+  start EvelOut "skace"
+  Ev: "Hast du etwa eine Vorahnung?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Ich bin nur besorgt um dich, das ist alles.
+       Ich würde dir gerne all deine heroischen Taten
+       in Erinnerung bringen."
+  juststay
+gplend
+
+block _1 ( last(_0) )
+title
+  disablequickhero
+{  disablespeedtext
+  walkon 92 160 vpravo
+  start EvelOut "skace"
+  Ev: "Oh, das würd ich gern hören.
+       Erzähl, aber in aller Kürze, bitte."
+  Ev: "Faß dich kurz! Ich will nicht einschlafen."
+  start EvelOut "neskace"
+  walkonplay 92 160 vpravo
+   justtalk
+   D: "Dann mal los."
+  juststay
+  start EvelOut "skace"
+  Ev: "Ich höre ..."
+  start EvelOut "neskace"
+   justtalk
+   D: "Du hast einmal fast einen Drachen
+       auf Abwege geführt."
+  juststay
+  start EvelOut "skace"
+  Ev: "Gut..."
+  start EvelOut "neskace"
+   justtalk
+   D: "Du hast bei der Chronik ein ernsthaftes,
+       psychologisches Problem verursacht!"
+  juststay
+  start EvelOut "skace"
+  Ev: "He He he...oh ja"
+  start EvelOut "neskace"
+   justtalk
+   D: "Du hast einen Bettler verhungern lassen,
+       indem du ihm seltsame Visionen verschafft hast!"
+  juststay
+  start EvelOut "skace"
+  Ev: "Was noch? Sehr nett von dir,
+       mich an die strahlenden Momente
+       meines Lebens zu erinnern. Was noch?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Was noch? Das ist die Frage!"
+  juststay
+  start EvelOut "skace"
+  Ev: "Ich weiß, was noch.
+       Nun kommt das Größte von allen:
+       Wir werden die Welt erorbern!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Aber meine Eltern haben mir verboten
+       mit dir zu spielen!"
+  juststay
+  start EvelOut "skace"
+  Ev: "Dem kann Abhilfe verschafft werden."
+  start EvelOut "neskace"
+   justtalk
+   D: "Aber nicht so einfach."
+  juststay
+  start EvelOut "skace"
+  Ev: "Wie war das? Du machst mich ärgerlich?"
+  walkon 192 176 vlevo
+  Ev: "Du willst sicher nicht, dass ich Falten bekomme."
+  start EvelOut "neskace"
+  walkonplay 196 172 vlevo
+   justtalk
+   D: "Falten?
+       Nein, das will ich gerade nicht."
+  juststay
+   justtalk
+   D: "Deshalb hab ich ein Heilbad für dich
+       angerichtet."
+  juststay
+  start EvelOut "skace"
+  Ev: "Hast du das?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Das hab ich,
+       als Beweis unserer Freundschaft."
+  juststay
+  start EvelOut "skace"
+  Ev: "Nun...
+       Ich werde es mal ausprobieren.
+       Es duftet verlockend."
+gplend
+
+block _2 ( last(_1) )
+title
+  disablequickhero
+{  disablespeedtext
+  roommap
+  walkon 140 160 vlevo
+  startplay EvelOut "sipka"
+  start EvelOut "topi se"
+
+  {hůlka skočí šipku do polívky:}
+  Yve: "Au, das schmerzt ein wenig!"
+  walkonplay 140 160 vlevo
+   justtalk
+   D: "Na komm schon,
+       ein Indianer kennt keinen Schmerz."
+  juststay
+  Yve: "Ist das wirklich ein Heilbad?"
+   justtalk
+   D: "Natürlich,
+       aber damit es wirkt, mußt du ganz eintauchen."
+  juststay
+  Yve: "Nun denn."
+
+  Yve: "Bin ich schon hübscher?"
+   justtalk
+   D: "Das kann ich noch nicht sagen."
+  juststay
+  Yve: "Und nun?"
+   justtalk
+   D: "Ja,
+       du erscheinst mir schon
+       ein bißchen weniger hässlich."
+  juststay
+  Yve: "Ich werde mal abtauchen."
+   justtalk
+   D: "Nun wirst du leiden, du teuflische Kreatur!"
+  juststay
+  Yve: "Was hast du gesagt?"
+   justtalk
+   D: "Äh, ich sagte,
+       das Bad wirkt wie eine erfrischende Kur."
+  juststay
+  Yve: "...gluck...gluck..."
+   justtalk
+   D: "Vielleicht sollte ich ein wenig nachhelfen."
+  juststay
+  walkonplay  116 140 vlevo
+   justtalk
+   D: "Soll ich dir den Rücken rubbeln?"
+  juststay
+  Yve: "Nur ein wenig."
+  {drak strčí ruku do polívky:}
+
+  load bert "drbe_mluvi"
+  load bert "drbe"
+  load bert "drbe_nahoru"
+  load bert "drbe_dolu"
+  startplay bert "drbe_nahoru"
+  start bert "drbe_mluvi"
+  D: "Etwa so?"
+  start bert "drbe"
+  Yve: "...gluck..."
+  Yve: "Sachte!"
+  objstat away EvelOut
+  Yve: "...gluck...gluck..."
+  startplay bert "drbe_dolu"
+  start bert "kour-vlevo"
+  walkonplay  144 156 vpravo
+   justtalk
+   D: "Die ist hin."
+   D: "Sie wird nicht mehr auftauchen."
+  juststay
+
+
+{a jdeme na titulky....}
+gplend
+

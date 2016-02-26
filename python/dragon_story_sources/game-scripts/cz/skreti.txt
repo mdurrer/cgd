@@ -1,0 +1,411 @@
+{Bert se skřety:}
+
+block _00 ( atbegin(1) and maxline(1) and not hasbeen(_00) )
+title
+  justtalk
+  D: "Pánové..."
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Co tady pohledáváš?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  justtalk
+  D: "Jsem logoped,
+      přišel jsem zachránit kroniku!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Tu ti nedáme!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Usmrkanče, usmrkanče!"
+  start blbejsi_hl "mlci"
+
+  justtalk
+  D: "(Nic jsem neslyšel! A to je jejich štěstí...)"
+  juststay
+gplend
+
+block _00a ( atbegin(1) and hasbeen(_00) and ( (varblock(_00a)<5)or(varblock(_00b)>5) ) )
+title
+ labels nic
+  justtalk
+  D: "Pánové..."
+  juststay
+
+  Iq: "......"
+  Blb: "------"
+
+  justtalk
+  D: "Vy tupci!"
+  juststay
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Có?"
+  start blbejsi_hl "mlci"
+
+  if (varblock(_00b)<6) nic
+  resetdialoguefrom
+ label nic
+gplend
+
+block _00b ( atbegin(1) and maxline(1) and hasbeen(_00a) )
+title
+ labels nic
+  justtalk
+  D: "Hlupáci!"
+  juststay
+
+  start blby_hl "mluvi"
+  Iq: "He?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+  Blb: "Hu?"
+  start blbejsi_hl "mlci"
+
+  if (varblock(_00b)>0) nic
+  resetdialoguefrom
+ label nic
+gplend
+
+block _01 ( atbegin(0) and not hasbeen(_01) )
+title Musím nutně mluvit s kronikou!
+  justtalk
+  D: "Musím nutně mluvit s kronikou!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Ha, ha, ha!
+       Tak to my taky!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Vona nechce mluvit s nikym jinym,
+        než tady s velitelem."
+  start blbejsi_hl "mlci"
+gplend
+
+block _02 ( atbegin(0) and not hasbeen(_02) and hasbeen(_01) )
+title Můžete mě s ní aspoň seznámit?
+  justtalk
+  D: "Můžete mě s ní aspoň seznámit?"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Tak to asi nepude."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+  Blb: "Có, nepude, klidně ho seznámíme, ne?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Tak jó, todle je teda naše knížka.
+       Teda děsně napínavá, jako."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Šílenej krvák."
+  start blbejsi_hl "mlci"
+
+  justtalk
+  D: "Věděl jsem, že skřetové můžou číst jedině brak!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Číst?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Có, číst?"
+  start blbejsi_hl "mluvi na bl"
+  Blb: "Co je to číst?"
+  start blbejsi_hl "mlci"
+gplend
+
+block _11 ( atbegin(0) and not hasbeen(_11) and hasbeen(_02) )
+title Vy nevíte, co je to číst?
+  justtalk
+  D: "Vy nevíte, co je to číst?"
+  juststay
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Né, já teda vosobně neé."
+{#goblins are fools, they speak like lunatics
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Blbečku, to já to vim."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+  Blb: "Tak pověz, no!"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Stejnak by to ta tvoje
+       palice dubová nepochopila."
+  Iq: "Pamatuj si, že my skřetové
+       vůbec nemusíme umět číst!
+       Od čeho sou mluvící knihy, že jo."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "No jo, von řiká,
+        že nám prej ta knížka bude číst,
+        nebo co, úplně sama!"
+  Blb: "Ale zatim ani nežbleptla."
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Ještě chvíli, a změní názor!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+  Blb: "Jenom abysme to s tim
+        mučením nepřepískli. Có?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Ty mlč, hlavo dubová!"
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _03 ( atbegin(0) and not hasbeen(_03) and hasbeen(_11) )
+title Vy tu ubohou knihu mučíte?!
+ labels skip
+  justtalk
+  D: "Vy tu ubohou knihu mučíte?!"
+  juststay
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Jen kapánek.
+        Má děsně tuhej kořínek, mrcha.
+        Zatlouká jako bezzubej trpaslík!"
+  start blbejsi_hl "mlci"
+
+  goto skip
+  Vypravec: "[To byla pěkná narážka na trpaslíky, že?
+             Začíná to být dost vostrý.]"
+ label skip
+
+  justtalk
+  D: "Vy barbaři!
+      Takhle se chovat ke knize!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "To si teda špatně vysvětluješ.
+       Nemučíme ji."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+  Blb: "A có teda?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Učíme ji přece mluvit,
+       abys věděl!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+  Blb: "A próč?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Kvůli tobě, ty tupče!"
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _04 ( atbegin(0) and not hasbeen(_04) )
+title Nač vůbec potřebujete mluvící kroniku?
+  let vim_o_pohadce (1)
+
+  justtalk
+  D: "Nač vůbec potřebujete mluvící kroniku?"
+  juststay
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Ále, velitel si chce
+        s někým pokecat, když
+        se mnou si moc nepokecá."
+  Blb: "Já sem palice dubová!"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Ty si vopravdu palice dubová,
+       kdopak chtěl slyšet
+       před spaním pohádku, có?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "No jó, pohádku!"
+  Blb: "Pohádku!    |"
+  Blb: "Pohádku!"
+  Blb: "    Pohádku!|"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Mlč, dutá hlavo!"
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _06 ( atbegin(0) and not hasbeen(_06) )
+title Kde jste tu kroniku vzali?
+  justtalk
+  D: "Kde jste tu kroniku vzali?"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Tu nosíme pořád s náma."
+  Iq: "Vždycky, když máme mizernou
+       náladu, vona nám poví vtip."
+  Iq: "Umí vykládat jeden
+       vopravdu dobrej vtip."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na bl"
+  Blb: "Řehtáme se mu už aspoň
+        půl roku, co, veliteli?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "No jó.
+       A večer u vohně s náma dycky
+       zpívá 'Vopilýho skřeta'!"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Anebo 'Veselou umrlčí stezku'."
+  Blb: "U tý se dycky rozbrečim,
+        mám hrozně citlivou povahu."
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Akorát, že zpívá falešně.
+       A eště vo voktávu vejš."
+  Iq: "S tim máme problémy.
+       Párkrát nás ten její skřehotavej
+       prohnilej hlásek málem prozradil."
+  Iq: "Ale je to kámoška,
+       už sme si na sebe zvykli."
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _07 ( atbegin(0) and not hasbeen(_07) and hasbeen(_06) )
+title Vy jste tu knihu ukradli!
+  justtalk
+  D: "Vy jste tu knihu ukradli!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Hele, co nás ten usmrkanec
+       neprávem vosočuje."
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Šlohli sme ji snad tobě, hé?"
+  start blbejsi_hl "mlci"
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "My sme ji totiž
+       vůbec nikomu nešlohli!"
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+block _08 ( atbegin(0) and not hasbeen(_08) and hasbeen(_03) )
+title Okamžitě ji přestaňte mučit!
+  justtalk
+  D: "Okamžitě ji přestaňte mučit!"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Tak tohle nech na nás,
+       jaký používame metody, jo?"
+  start blby_hl "mlci"
+  start blby "bdi"
+
+  start blbejsi_hl "mluvi na dr"
+  Blb: "Velitel řikal, že sou to
+        ty nejnovější vědecký."
+  start blbejsi_hl "mlci"
+gplend
+
+block _09 ( atbegin(0) and not hasbeen(_09) and lastblock(_08) )
+title Smím vědět, jak se ty vaše metody nazývají?
+  justtalk
+  D: "Smím vědět, jak se ty vaše metody nazývají?"
+  juststay
+
+  start blby_hl "mluvi"
+  start blby "mluvi"
+  Iq: "Učení - mučení."
+{#it is based on typical czech student's excuse that
+{#learning is some kind of heavy torture
+  start blby_hl "mlci"
+  start blby "bdi"
+gplend
+
+{block _10 ( atbegin(0) and not hasbeen(_10) and hasbeen(_04) )
+{title Copak skřetové mají rádi pohádky?
+{  justtalk
+{ D:  "Copak skřetové mají rádi pohádky?
+{      (Já už jsem z pohádek naštěstí vyrostl!)"
+{ juststay
+{
+{ start blbejsi_hl "mluvi na dr"
+{ Blb:"Já pohádky žeru!"
+{ start blbejsi_hl "mlci"
+{
+{ start blby_hl "mluvi"
+{ start blby "mluvi"
+{ Iq: "Von pohádky vážně žere.
+{      Ale to je asi jedinej."
+{ start blby_hl "mlci"
+{ start blby "bdi"
+{gplend

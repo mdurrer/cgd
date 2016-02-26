@@ -1,0 +1,5 @@
+.label irq1=$3f6a
+.label mainloop=$3f43
+.label initraster=$3f46
+.label start=$3f40
+.label colorRam=$1c00

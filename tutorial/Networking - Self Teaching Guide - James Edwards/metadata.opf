@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">1760</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">b23dae8f-dd01-4646-81aa-74daee440332</dc:identifier>
+        <dc:title>Networking - Self Teaching Guide</dc:title>
+        <dc:creator opf:file-as="Edwards, James" opf:role="aut">James Edwards</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (2.27.0) [http://calibre-ebook.com]</dc:contributor>
+        <dc:date>0101-01-01T00:00:00+00:00</dc:date>
+        <dc:description>&lt;p&gt;IT professionals who want to move into the networking side in a
+corporate or enterprise setting will find the detailed content they
+need to get up to speed on the very latest networking technologies;
+plus, current networking professionals will find this a valuable
+and up-to-date resource. This hands-on guide is designed so that
+you can select, design, and implement an actual network using the
+tutorials and steps in the book. Coverage includes an overview of
+networking technologies, including the hardware, software,
+transmission media, and data transfer processes; in-depth coverage
+of OSI and TCP/IP reference models; operating systems and other
+systems software used in today?s networks; LANs, WANS, and MANs,
+including the components and standards that operate within each
+type of area network; and more.&lt;/p&gt;</dc:description>
+        <dc:language>en</dc:language>
+        <meta content="{&quot;James Edwards&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="2015-07-11T14:42:52.098000+00:00" name="calibre:timestamp"/>
+        <meta content="Networking - Self Teaching Guide" name="calibre:title_sort"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>

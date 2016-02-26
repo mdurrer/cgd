@@ -1,0 +1,125 @@
+block _22 ( atbegin(1)  and not been(_22) )
+   title Przykro mi, ale nie mogę cię stąd zabrać
+  {extra pokecat muzeme jenom jednou, takze to hned tady znemoznime:}
+  let kronika_extra_pokec (0)
+
+  justtalk
+   D: "Dzień dobry, kroniko."
+   D: "Przykro mi, ale nie mogę cię stąd zabrać."
+  juststay
+
+  start kronika "mluvi"
+   K: "No to idź, ja tu zostanę."
+  start kronika "mlci"
+
+  justtalk
+   D: "Zostaniesz?
+       Gobliny zbudzą się, a wtedy..."
+  juststay
+
+  start kronika "mluvi"
+   K: "Czekam na tę chwilę,
+       Chcę zrobić im awanturę!"
+  start kronika "mlci"
+
+  justtalk
+   D: "To dobry pomysł, przypuszczam, że
+       już teraz, śpiąc trzęsą się ze strachu!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Tak sądzisz?"
+  start kronika "mlci"
+
+  justtalk
+   D: "Tak, naprawdę tak myślę."
+  juststay
+
+  start kronika "mluvi"
+   K: "Powiedz mi szczerze,
+       czy się mnie boisz?"
+  start kronika "mlci"
+
+  justtalk
+   D: "Tak, aż zsiusiałem się w pieluszki!"
+  juststay
+
+{  Vypravec:"[Obstarožní kronika balí pubertálního draka:]"
+  start kronika "mluvi"
+   K: "Oh!"
+   K: "To był tylko komplement
+       od przystojnego młodzieńca, prawda?"
+  start kronika "mlci"
+
+  justtalk
+   D: "Jasne, już od sześciu miesięcy nie siusiam
+       w pieluszki..."
+  juststay
+
+  start kronika "mluvi"
+   K: "Och, taki duży chłopiec!
+       A w jaki sposób robisz siusiu?"
+  start kronika "mlci"
+
+  justtalk
+   D: "Spokojnie.
+       Nie bierz sobie tego tak do serca, dobrze?"
+  juststay
+
+  justtalk
+   D: "Jeśli powiedziałbym ci komplement,
+       to chyba przez pomylkę!"
+  juststay
+
+  start kronika "mluvi"
+   K: "Zgoda, spodziewałam się, że
+       możemy sobie trochę pożartować."
+  start kronika "mlci"
+
+   Vypravec: "[Niemiły gość:]"
+  justtalk
+   D: "Nie ma czasu na takie rzeczy!"
+  juststay
+
+  justtalk
+   D: "Słuchaj, jeśli się tobą zajmuję to tylko
+       z naukowego i historycznego punktu widzenia!"
+  juststay
+
+  justtalk
+   D: "Kiedy sobie przypominam, co oni z tobą zrobili..."
+  juststay
+
+  start kronika "mluvi"
+   K: "Nie martw się. Jestem wykonana z
+       niepalnego materiału!"
+  start kronika "mlci"
+
+  justtalk
+   D: "OK, lecz co będzie, jak oni..."
+   D: "Co wytrzyma materiał, z którego
+       jesteś zrobiona?"
+  juststay
+
+  start kronika "mluvi"
+   K: "Jest odporny na mróz, gorąco, wodoszczelny
+       przetrwa upływ czasu i jest niejadalny."
+  start kronika "mlci"
+
+  justtalk
+   D: "Czy ktoś próbuje zjadać stare kroniki?
+       Fe!"
+  juststay
+
+  start kronika "mluvi"
+   K: "W bajkach wszystko jest możliwe..."
+  start kronika "mlci"
+
+  justtalk
+   D: "Cieszę się, zę mogę bez obaw
+       zostawić cię tu na pastwę tych idiotów."
+   D: "Narazie."
+   D: "Być moźe spotkamy się póżniej ..."
+  juststay
+
+gplend

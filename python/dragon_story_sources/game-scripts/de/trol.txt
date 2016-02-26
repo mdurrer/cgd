@@ -1,0 +1,420 @@
+block _00 ( beg(1) and not been (_00) )
+title
+  justtalk
+D: "Hi, ich bin Bert."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Ich bin Hornaine Vierhornig.
+    Und ich bin ein Troll,
+    wie du sicher schon vermutet hast."
+{#quite unbelievable name,isn't it?
+  start trol_huba "mlci"
+
+  justtalk
+D: "Komischer Troll."
+  juststay
+
+  justtalk
+D: "Ich dachte,
+    Trolle würden Brücken bewachen!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "So ein Quatsch!"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Soweit ich weiß,
+    wurden Trolle geboren,
+    um unter Bäumen zu liegen."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Und ich sollte das wissen,
+    ich BIN schließlich einer!"
+  start trol_huba "mlci"
+gplend
+
+block _00a ( beg(1) and been (_00) )
+title
+  justtalk
+D: "Ähem, hallo..."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Hey, du da."
+  start trol_huba "mlci"
+
+  resetblock _98
+gplend
+
+block _98 ( beg(0) and last(_00a) and been(_09) and been(_10) )
+title Ich würde gern ein paar Grundfakten klären.
+  justtalk
+D: "Ich würde gern
+    ein paar ziemlich fundamentale Fakten klären."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Wenn du willst."
+  start trol_huba "mlci"
+  resetblock _09
+  resetblock _10
+  resetblock _12
+gplend
+
+block _09 ( been(_01) and beg(0) and ((not been(_09) and been(_08)) or been(_98)) )
+title Gehst du nicht zurück zur Brücke?
+  justtalk
+D: "Gehst du nicht zurück zur Brücke?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Junge, da hab ich noch nicht dran gedacht!
+    Was sagtest du?"
+T: "Hah, hah, hah, hah, hah..."
+  start trol_huba "mlci"
+
+  resetblock _98
+gplend
+
+block _10 ( beg(0) and not been(_10) )
+title Wie ist es möglich, dass du nur zwei Hörner hast?
+  justtalk
+D: "Wie ist es möglich, dass du nur zwei Hörner hast,
+    wo du doch Vierhornig heißt?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Jeder wundert sich.
+    Aber es gibt einen Grund dafür,
+    daß ich nur zwei Hörner hab?"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Ich nehme meine Hörner
+    über den Winter immer ab!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Blödsinn, das geht doch gar nicht!"
+  juststay
+  start trol_huba "mluvi"
+T: "Oh doch. Jeden Winter wird es mir kalt am Kopf
+    wegen der zwei Extrahörner..."
+T: "...also nahm ich sie einfach ab!"
+  start trol_huba "mlci"
+gplend
+
+block _11 ( last(_10) )
+title Aber wir haben noch nicht Winter!
+  justtalk
+D: "Aber wir haben noch nicht Winter!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Ein leichtes Frösteln, weißt du..."
+  start trol_huba "mlci"
+gplend
+
+block _12 ( beg(0) and not been(_12) and been(_10) )
+title Ich wusste nicht, dass Trolle ihre Hörner...
+  justtalk
+D: "Ich wusste nicht,
+    daß Trolle ihre Hörner abnehmen können!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Natürlich nicht.
+    Keiner meiner Vorfahren hat das getan."
+T: "Ich bedaure meinen Vater,
+    Großvater und Urgroßvater."
+T: "Die haben ihre Hörner nicht abgenommen
+    und haben sich deshalb jeden Winter
+    fast den halben Kopf abgefroren."
+T: "Er taute erst im Frühjahr wieder auf."
+T: "Und fror im nächsten Winter wieder ein."
+  start trol_huba "mlci"
+
+  justtalk
+D: "Hör auf, das ist furchtbar!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Tut mir leid,
+    aber ich muß noch erwähnen,
+    daß er manchmal..."
+T: "...gar nicht mehr auftaute!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Was haben sie dagegen getan?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Kommt drauf an."
+T: "Ein Lagerfeuer oder Ofen
+    war keine Lösung."
+T: "Wenn der halbe Kopf
+    mit Eis und Eiszapfen bedeckt war,
+    passte er da nicht mehr rein!"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Sie mußten warten,
+    bis der Feuerdrache ihr Land besuchte
+    und ihn um Hilfe bitten."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Aber jetzt gibt es keine
+    bereitwilligen Drachen mehr..."
+  start trol_huba "mlci"
+
+  justtalk
+D: "Hey, ich bin ein Drache!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Danke, aber glücklicherweise
+    komm ich ohne aus."
+T: "Die Lösung, die ich mir ausgedacht hab,
+    ist absolut revolutionär."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Übrigens bin ich nicht überrascht,
+    daß mein Vater nicht darauf gekommen ist."
+T: "Er war absolut koservativ!"
+  start trol_huba "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) and (dreveny_trol_prozkouman=1) )
+title Ich sah einen Troll, der eine Brücke bewacht...
+  justtalk
+D: "Ich sah einen Troll, der eine Brücke bewacht,
+    nicht weit von hier!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Das glaub ich nicht!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Er sah aus wie du..."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Hah, hah, hah, was du nicht sagst.
+    Nun ich war's nicht!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Nein, nicht du,
+    der andere Troll war komplett taub."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Armes kleines Ding."
+  start trol_huba "mlci"
+
+  justtalk
+D: "Und er war aus Holz!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Das ist ein Arbeitsunfall."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Es passiert schon mal,
+    daß die dummen Trolle
+    die noch Brücken bewachen..."
+T: "...zu Holz werden."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Das dürfte auch deine Frage beantworten,
+    warum ich keine Brücke bewache."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Ich mag meinen nicht hölzernen Zustand bisher."
+  start trol_huba "mlci"
+gplend
+
+block _02 ( last(_01) )
+title Aber du könntest hier leicht zu Holz werden...
+  justtalk
+D: "Aber du könntest leicht zu Holz werden,
+    während du hier liegst..."
+  juststay
+
+  start trol_huba "mluvi"
+T: "OK, OK, du hast recht.
+    Aber wie hast du erkannt,
+    daß er aus Holz war?"
+T: "Ich dachte,
+    niemand würde es merken!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Wie du siehst, anscheinend schon!"
+D: "Zwischen dem Holztroll und dir
+    gibt es kleine Unterschiede..."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Zum Beispiel?"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Bei dir blättert die Farbe nicht ab!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Tja, da hast du mich erwischt..."
+  start trol_huba "mlci"
+gplend
+
+block _03 ( been(_01) and beg(0) and not been(_03) )
+title Es ist furchtbar, Brücken zu bewachen, oder?
+  justtalk
+D: "Es ist furchtbar, Brücken zu bewachen, oder?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Ja, ist es."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Ich hab's gehasst,
+    dieses unendliche Warten auf der Brücke..."
+T: "...um dann jedes mal,
+    wenn jemand vorbeikommt ein unfreundliches
+    'Bezahl den Troll' zu grummeln."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Und um Geld zu betteln...
+    ...das war das Schlimmste!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Wie ein Bettler?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Stimmt genau.
+    Viele Leute waren verwirrt
+    und haben mir Essensreste gebracht!"
+  start trol_huba "mlci"
+gplend
+
+block _04 ( beg(0) and not been(_04) and been(_03) )
+title Du solltest das ideologisch bekämpfen!
+  justtalk
+D: "Du solltest das ideologisch bekämpfen!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Ich hatte nach einer Weile genug davon."
+T: "Ich habe eine Petition aufgesetzt
+    'Für die Rechte des Trolls Hornaine Vierhornig'
+    aber es war zwecklos."
+T: "Es kamen nicht viele Unterschriften zusammen."
+  start trol_huba "mlci"
+gplend
+
+block _05 ( beg(0) and not been (_05) and been(_04) )
+title Warum kämpfst du nicht für die Rechte aller Trolle?
+  justtalk
+D: "Warum kämpfst du nicht für die Rechte
+    aller Trolle?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Oh nein,
+    da müssen sie schon selber
+    für kämpfen."
+T: "Ich weiß nicht,
+    warum sollte ich etwas für die tun?"
+  start trol_huba "mlci"
+gplend
+
+block _06 ( beg(0) and not been (_06) and been(_04) )
+title Was hast du mit der Petition gefordert?
+  justtalk
+D: "Was hast du mit der Petition gefordert?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Ein Wachpferd, eine Rente,
+    kostenloses Mittag- und Abendessen..."
+T: "...und Aushilfen,
+    welche die Brücke für mich bewachen!"
+  start trol_huba "mlci"
+gplend
+
+block _07 ( last(_06) )
+title Kein Wunder, daß Masterfive nicht zugestimmt hat!
+  justtalk
+D: "Ich bin nicht überrascht,
+    daß der dumme Masterfive nicht zugestimmt hat!"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Hör auf!
+    Er hätte vielleicht zugestimmt,
+    Aber es gab ein Problem..."
+  start trol_huba "mlci"
+
+  justtalk
+D: "Und zwar?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Sie haben keinen Briefkasten
+    in der Burg!"
+  start trol_huba "mlci"
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_03) )
+title Du hättest wenigstens Schecks bekommen sollen.
+  justtalk
+D: "Du hättest wenigstens Schecks bekommen sollen."
+  juststay
+
+  start trol_huba "mluvi"
+T: "Hab ich ausprobiert."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "Aber die sind zur Hälfte geplatzt!"
+  start trol_huba "mlci"
+
+  justtalk
+D: "Und was ist mit Kreditkarten?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Du bist deiner Zeit voraus."
+T: "So hab ich also eine Attrappe von mir
+    für die Brücke gebastelt."
+  start trol_huba "mlci"
+gplend
+
+block _99 ( beg(0) )
+title Kennst du das, wenn man nichts zu sagen hat?
+  justtalk
+D: "Kennst du das Gefühl,
+    wenn man einfach nichts zu sagen hat?"
+  juststay
+
+  start trol_huba "mluvi"
+T: "Hmm."
+  start trol_huba "mlci"
+
+  exitdialogue
+gplend

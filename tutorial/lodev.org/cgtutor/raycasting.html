@@ -1,0 +1,1277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Raycasting</title>
+<meta content="text/html; charset=us-ascii" http-equiv=
+"content-type" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Raycasting<br /></h1>
+<h2>Table of Contents<br /></h2>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#The_Basic_Idea_">The Basic Idea</a></li>
+<li><a href="#Untextured_Raycaster_">Untextured Raycaster</a></li>
+<li><a href="#Textured_Raycaster">Textured Raycaster</a></li>
+<li><a href="#Wolfenstein_3D_Textures_">Wolfenstein 3D
+Textures</a><br /></li>
+</ul>
+<a href="index.html">Back to Index</a>
+<h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+Raycasting is a rendering technique to create a 3D perspective in a
+2D map. Back when computers were slower it wasn't possible to run
+real 3D engines in realtime, and raycasting was the first solution.
+Raycasting can go very fast, because only a calculation has to be
+done for every vertical line of the screen. The most well known
+game that used this technique, is of course Wolfenstein 3D.<br />
+<br />
+<img alt="" src="images/wolf3d.jpg" style="width: 320px; height: 200px;" /><br />
+<br />
+The raycasting engine of Wolfenstein 3D was very limited, allowing
+it to run on a even a 286 computer: all the walls have the same
+height and are orthogonal squares on a 2D grid, as can be seen in
+this screenshot from a mapeditor for Wolf3D:<br />
+<br />
+<img alt="" src="images/wolfmapedit.jpg" style="width: 319px; height: 239px;" /><br />
+<br />
+Things like stairs, jumping or height differences are impossible to
+make with this engine. Later games such as Doom and Duke Nukem 3D
+also used raycasting, but much more advanced engines that allowed
+sloped walls, different heights, textured floors and ceilings,
+transparent walls, etc... The sprites (enemies, objects and
+goodies) are 2D images, but sprites aren't discussed in this
+tutorial for now.<br />
+<br />
+Ray<span style="font-style: italic;">casting</span> is not the same
+as ray<span style="font-style: italic;">tracing</span>! Raycasting
+is a fast semi-3D technique that works in realtime even on 4MHz
+graphical calculators, while raytracing is a realistic rendering
+technique that supports reflections and shadows in true 3D scenes,
+and only recently computers became fast enough to do it in realtime
+for reasonably high resolutions and complex scenes.<br />
+<br />
+The code of the untextured and textured raycasters is given in this
+document completely, but it's quite long, you can also download the
+code instead:<br />
+<br />
+<a href="files/raycaster_flat.cpp">raycaster_flat.cpp</a><br />
+<a href=
+"files/raycaster_textured.cpp">raycaster_textured.cpp</a><br />
+<br />
+<h2><a name="The_Basic_Idea_" id="The_Basic_Idea_"></a>The Basic Idea<br /></h2>
+The basic idea of raycasting is as follows: the map is a 2D square
+grid, and each square can either be 0 (= no wall), or a positive
+value (= a wall with a certain color or texture).<br />
+<br />
+For every x of the screen (i.e. for every vertical stripe of the
+screen), send out a ray that starts at the player location and with
+a direction that depends on both the player's looking direction,
+and the x-coordinate of the screen. Then, let this ray move forward
+on the 2D map, until it hits a map square that is a wall. If it hit
+a wall, calculate the distance of this hit point to the player, and
+use this distance to calculate how high this wall has to be drawn
+on the screen: the further away the wall, the smaller it's on
+screen, and the closer, the higher it appears to be. These are all
+2D calculations. This image shows a top down overview of two such
+rays (red) that start at the player (green dot) and hit blue
+walls:<br />
+<br />
+<img alt="" src="images/raycastgrid.gif" style="width: 192px; height: 192px;" /><br />
+<br />
+To find the first wall that a ray encounters on it's way, you have
+to let it start at the player's position, and then all the time,
+check whether or not the ray is inside a wall. If it's inside a
+wall (hit), then the loop can stop, calculate the distance, and
+draw the wall with the correct height. If the ray position is not
+in a wall, you have to trace it further: add a certain value to
+it's position, in the direction of the direction of this ray, and
+for this new position, again check if it's inside a wall or not.
+Keep doing this until finally a wall is hit.<br />
+<br />
+A human can immediatly see where the ray hits the wall, but it's
+impossible to find which square the ray hits immediatly with a
+single formula, because a computer can only check a finite number
+of positions on the ray. Many raycasters add a constant value to
+the ray each step, but then there's a chance that it may miss a
+wall! For example, with this red ray, it's position was checked at
+every red spot:<br />
+<br />
+<img alt="" src="images/raycastmiss.gif" style="width: 192px; height: 192px;" /><br />
+<br />
+As you can see, the ray goes straight through the blue wall, but
+the computer didn't detect this, because he only checked at the
+positions with the red dots. The more positions you check, the
+smaller the chance that the computer won't detect a wall, but the
+more calculations are needed. Here the step distance was halved, so
+now he detects that the ray went through a wall, though the
+position isn't completely correct:<br />
+<br />
+<img alt="" src="images/raycastmiss2.gif" style="width: 192px; height: 192px;" /><br />
+<br />
+For infinite precision with this method, an infinitely small step
+size, and thus an infinite number of calculations would be needed!
+That's pretty bad, but luckily, there's a better method that
+requires only very few calculations and yet will detect every wall:
+the idea is to check at every side of a wall the ray will
+encounter. We give each square width 1, so each side of a wall is
+an integer value and the places in between have a value after the
+point. Now the step size isn't constant, it depends on the distance
+to the next side:<br />
+<br />
+<img alt="" src="images/raycasthit.gif" style="width: 192px; height: 192px;" /><br />
+<br />
+As you can see on the image above, the ray hits the wall exactly
+where we want it. In the way presented in this tutorial, an
+algorithm is used that's based on DDA or "Digital Differential
+Analysis". DDA is a fast algorithm typically used on square grids
+to find which squares a line hits (for example to draw a line on a
+screen, which is a grid of square pixels). So we can also use it to
+find which squares of the map our ray hits, and stop the algorithm
+once a square that is a wall is hit.<br />
+<br />
+Some raytracers work with Euclidean angles to represent the
+direction of the player and the rays, and determinate the Field Of
+View with another angle. I found however that it's much easier to
+work with vectors and a camera instead: the position of the player
+is always a vector (an x and a y coordinate), but now, we make the
+direction a vector as well: so the direction is now determinated by
+two values: the x and y coordinate of the direction. A direction
+vector can be seen as follows: if you draw a line in the direction
+the player looks, through the position of the player, then every
+point of the line is the sum of the position of the player, and a
+multiple of the direction vector. The length of a direction vector
+doesn't really matter, only it's direction. Multiplying x and y by
+the same value changes the length but keeps the same
+direction.<br />
+<br />
+This method with vectors also requires an extra vector, which is
+the camera plane vector. In a true 3D engine, there's also a camera
+plane, and there this plane is really a 3D plane so two vectors (u
+and v) are required to represent it. Raycasting happens in a 2D map
+however, so here the camera plane isn't really a plane, but a line,
+and is represented with a single vector. The camera plane should
+always be perpendicular on the direction vector. The camera plane
+represents the surface of the computer screen, while the direction
+vector is perpendicular on it and points inside the screen. The
+position of the player, which is a single point, is a point in
+front of the camera plane. A certain ray of a certain x-coordinate
+of the screen, is then the ray that starts at this player position,
+and goes through that position on the screen or thus the camera
+plane.<br />
+<br />
+<img alt="" src="images/raycastingcamera.gif" style="width: 256px; height: 180px;" /><br />
+<br />
+The image above represents such a 2D camera. The green spot is the
+position (vector "pos"). The black line, ending in the black spot,
+represents the direction vector (vector "dir"), so the position of
+the black dot is pos+dir. The blue line represents the full camera
+plane, the vector from the black dot to the right blue dot
+represents the vector "plane", so the position of the right blue
+point is pos+dir+plane, and the posistion of the left blue dot is
+pos+dir-plane (these are all vector additions).<br />
+<br />
+The red lines in the image are a few rays. The direction of these
+rays is easily calculated out of the camera: it's the sum of the
+direction vector of the camear, and a part of the plane vector of
+the camera: for example the third red ray on the image, goes
+through the right part of the camera plane at the point about 1/3th
+of it's length. So the direction of this ray is dir + plane*1/3.
+This ray direction is the vector rayDir, and the X and Y component
+of this vector are then used by the DDA algorithm.<br />
+<br />
+The two outer lines, are the left and right border of the screen,
+and the angle between those two lines is called the Field Of Vision
+or FOV. The FOV is determinated by the ratio of the length of the
+direction vector, and the length of the plane. Here are a few
+examples of different FOV's:<br />
+<br />
+If the direction vector and the camera plane vector have the same
+length, the FOV will be 90&deg;:<br />
+<br />
+<img alt="" src="images/raycastingFOV90.gif" style="width: 256px; height: 180px;" /><br />
+<br />
+If the direction vector is much longer than the camera plane, the
+FOV will be much smaller than 90&deg;, and you'll have a very
+narrow vision. You'll see everything more detailed though and there
+will be less depth, so this is the same as zooming in:<br />
+<br />
+<img alt="" src="images/raycastingFOV0.gif" style="width: 118px; height: 307px;" /><br />
+<br />
+If the direction vector is shorter than the camera plane, the FOV
+will be larger than 90&deg; (180&deg; is the maximum, if the
+direction vector is close to 0), and you'll have a much wider
+vision, like zooming out:<br />
+<br />
+<img alt="" src="images/raycastingFOV180.gif" style="width: 255px; height: 69px;" /><br />
+<br />
+<br />
+<br />
+When the player rotates, the camera has to rotate, so both the
+direction vector and the plane vector have to be rotated. Then, the
+rays will all automaticly rotate as well.<br />
+<br />
+<img alt="" src="images/raycastingcamerarotate.gif" style="width: 219px; height: 228px;" /><br />
+<br />
+To rotate a vector, multiply it with the rotation matrix<br />
+<br />
+<span style="font-family: monospace;">[ cos(a) -sin(a)
+]</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">[ sin(a)&nbsp; cos(a)
+]</span><br />
+<br />
+If you don't know about vectors and matrices, try to find a
+tutorial with google, an appendix about those is planned for this
+tutorial later.<br />
+<br />
+There's nothing that forbids you to use a camera plane that isn't
+perpendicular to the direction, but the result will look like a
+"skewed" world.<br />
+
+
+<h2><a name="Untextured_Raycaster_" id="Untextured_Raycaster_"></a>Untextured Raycaster<br /></h2>
+
+
+Download the source code here: <a href="files/raycaster_flat.cpp">raycaster_flat.cpp</a>
+<br /><br />
+To start with the basics, we'll begin with an untextured raycaster.
+This example also includes an fps counter (frames per second), and
+input keys with collision detection to move and rotate.
+<br /><br />
+The map of the world is a 2D array, where each value represents a
+square. If the value is 0, that square represents an empty,
+walkthroughable square, and if the value is higher than 0, it
+represents a wall with&nbsp; a certain color or texture. The map
+declared here is very small, only 24 by 24 squares, and is defined
+directly in the code. For a real game, like Wolfenstein 3D, you use
+a bigger map and load it from a file instead. All the zero's in the
+grid are empty space, so basicly you see a very big room, with a
+wall around it (the values 1), a small room inside it (the values
+2), a few pilars (the values 3), and a corridor with a room (the
+values 4). Note that this code isn't inside any function yet, put
+it before the main function starts.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">#define mapWidth 24
+#define mapHeight 24
+
+int worldMap[mapWidth][mapHeight]=
+{
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+};</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+A first few variables are declared: posX and posY represent the
+position vector of the player, dirX and dirY represent the
+direction of the player, and planeX and planeY the camera plane of
+the player. Make sure the camera plane is perpendicular to the
+direction, but you can change the length of it. The ratio between
+the length of the direction and the camera plane determinates the
+FOV, here the direction vector is a bit longer than the camera
+plane, so the FOV will be smaller than 90&deg; (more precisely, the
+FOV is 2 * atan(0.66/1.0)=66&deg;, which is perfect for a first person
+shooter game). Later on when rotating around with the input keys,
+the values of dir and plane will be changed, but they'll always
+remain perpendicular and keep the same length.<br />
+<br />
+The variables time and oldTime will be used to store the time of
+the current and the previous frame, the time difference between
+these two can be used to determinate how much you should move when
+a certain key is pressed (to move a constant speed no matter how
+long the calculation of the frames takes), and for the FPS
+counter.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int /*argc*/, char */*argv*/[])
+{
+  double posX = 22, posY = 12;  //x and y start position
+  double dirX = -1, dirY = 0; //initial direction vector
+  double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
+  
+  double time = 0; //time of current frame
+  double oldTime = 0; //time of previous frame</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The rest of the main function starts now. First, the screen is created with a
+resolution of choice. If you pick a large resolution, like
+1280*1024, the effect will go quite slow, not because the raycating
+algorithm is slow, but simply because uploading a whole screen from
+the CPU to the video card goes so slow.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">screen(512, 384, 0, "Raycaster");</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+After setting up the screen, the gameloop starts, this is the loop
+that draws a whole frame and reads the input every time.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">  while(!done())
+  {
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here starts the actual raycasting. The raycasting loop is a for
+loop that goes through every x, so there isn't a calculation for
+every pixel of the screen, but only for every vertical stripe,
+which isn't much at all! To begin the raycasting loop, some
+variables are delcared and calculated:<br />
+<br />
+The ray positoin (rayPos) is initially set to the position of the
+player (posX, posY).<br />
+<br />
+cameraX is the x-coordinate on the camera plane that the current
+x-coordinate of the screen represents, done this way so that the
+right side of the screen will get coordinate 1, the center of the
+screen gets coordinate 0, and the left side of the screen gets
+coordinate -1. Out of this, the direction of the ray can be
+calculated as was explained earlier: as the sum of the direction
+vector, and a part of the plane vector. This has to be done both
+for the x and y coordinate of the vector (since adding two vectors
+is adding their x-coordinates, and adding their
+y-coordinates).<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    for(int x = 0; x &lt; w; x++)
+    {
+      //calculate ray position and direction 
+      double cameraX = 2 * x / double(w) - 1; //x-coordinate in camera space
+      double rayPosX = posX;
+      double rayPosY = posY;
+      double rayDirX = dirX + planeX * cameraX;
+      double rayDirY = dirY + planeY * cameraX;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+In the next code piece, more variables are declared and calculated,
+these have relevance to the DDA algorithm:<br />
+<br />
+mapX and mapY represent the current square of the map the ray is
+in. The ray position itself is a floating point number and contains
+both info about in which square of the map we are, and <span style=
+"font-style: italic;">where</span> in that square we are, but mapX
+and mapY are only the coordinates of that square.<br />
+<br />
+sideDistX and sideDistY are initially the distance the ray has to
+travel from it's start position to the first x-side and the first
+y-side. Later in the code their meaning will slightly change.<br />
+<br />
+deltaDistX and deltaDistY are the distance the ray has to travel to
+go from 1 x-side to the next x-side, or from 1 y-side to the next
+y-side. The following image shows the initial sideDistX, sideDistY
+and deltaDistX and deltaDistY:<br />
+<br />
+<img alt="" src="images/raycastdelta.gif" style="width: 190px; height: 318px;" /><br />
+<br />
+The variable perpWallDist will be used later to calculate the length
+of the ray.<br />
+<br />
+The DDA algorithm will always jump exactly one square each loop,
+either a square in the x-direction, or a square in the y-direction.
+If it has to go in the negative or positive x-direction, and the
+negative or positive y-direction will depend on the direction of
+the ray, and this fact will be stored in stepX and stepY. Those
+variables are always either -1 or +1.<br />
+<br />
+Finally, hit is used to determinate whether or not the coming loop
+may be ended, and side will contain if an x-side or a y-side of a
+wall was hit. If an x-side was hit, side is set to 0, if an y-side
+was hit, side will be 1. By x-side and y-side, I mean the lines of
+the grid that are the borders between two squares.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">      //which box of the map we're in  
+      int mapX = int(rayPosX);
+      int mapY = int(rayPosY);
+       
+      //length of ray from current position to next x or y-side
+      double sideDistX;
+      double sideDistY;
+       
+       //length of ray from one x or y-side to next x or y-side
+      double deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+      double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+      double perpWallDist;
+       
+      //what direction to step in x or y-direction (either +1 or -1)
+      int stepX;
+      int stepY;
+
+      int hit = 0; //was there a wall hit?
+      int side; //was a NS or a EW wall hit?</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Now, before the actual DDA can start, first stepX, stepY, and the
+initial sideDistX and sideDistY still have to be calculated.<br />
+<br />
+If the ray direction has a negative x-component, stepX is -1, if
+the ray direciton has a positive x-component it's +1. If the
+x-component is 0, it doesn't matter what value stepX has since
+it'll then be unused.<br />
+The same goes for the y-component.<br />
+<br />
+If the ray direction has a negative x-component, sideDistX is the
+distance from the ray starting position to the first side to the
+left, if the ray direciton has a positive x-component the first
+side to the right is used instead.<br />
+The same goes for the y-component, but now with the first side
+above or below the position.<br />
+For these values, the integer value mapX is used and the real
+position subtracted from it, and 1.0 is added in some of the cases
+depending if the side to the left or right, of the top or the
+bottom is used. Then you get the perpendicular distance to this
+side, so multiply it with deltaDistX or deltaDistY to get the real
+oblique distance.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">      //calculate step and initial sideDist
+      if (rayDirX &lt; 0)
+      {
+        stepX = -1;
+        sideDistX = (rayPosX - mapX) * deltaDistX;
+      }
+      else
+      {
+        stepX = 1;
+        sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
+      }
+      if (rayDirY &lt; 0)
+      {
+        stepY = -1;
+        sideDistY = (rayPosY - mapY) * deltaDistY;
+      }
+      else
+      {
+        stepY = 1;
+        sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
+      }</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Now the actual DDA starts. It's a loop that increments the ray with
+1 square every time, until a wall is hit. Each time, either it
+jumps a square in the x-direction (with stepX) or a square in the
+y-direction (with stepY), it always jumps 1 square at once. If the
+ray's direction would be the x-direction, the loop will only have
+to jump a square in the x-direction everytime, because the ray will
+never change it's y-direction. If the ray is a bit sloped to the
+y-direction, then every so many jumps in the x-direction, the ray
+will have to jump one square in the y-direction. If the ray is
+exactly the y-direction, it never has to jump in the x-direction,
+etc...<br />
+<br />
+sideDistX and sideDistY get incremented with deltaDistX with every
+jump in their direction, and mapX and mapY get incremented with
+stepX and stepY respectively.<br />
+<br />
+When the ray has hit a wall, the loop ends, and then we'll know
+whether an x-side or y-side of a wall was hit in the variable
+"side", and what wall was hit with mapX and mapY. We won't know
+exactly where the wall was hit however, but that's not needed in
+this case because we won't use textured walls for now.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">      //perform DDA
+      while (hit == 0)
+      {
+        //jump to next map square, OR in x-direction, OR in y-direction
+        if (sideDistX &lt; sideDistY)
+        {
+          sideDistX += deltaDistX;
+          mapX += stepX;
+          side = 0;
+        }
+        else
+        {
+          sideDistY += deltaDistY;
+          mapY += stepY;
+          side = 1;
+        }
+        //Check if ray has hit a wall
+        if (worldMap[mapX][mapY] > 0) hit = 1;
+      } </span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+After the DDA is done, we have to calculate the distance of the ray
+to the wall, so that we can calculate how high the wall has to be
+drawn after this. We don't use the oblique distance however, but
+instead only the distance perpendicular to the camera plane
+(projected on the camera direction), to avoid the fisheye effect.
+The fisheye effect is an effect you see if you use the real
+distance, where all the walls because rounded, and can make you
+sick if you rotate.<br />
+<br />
+Note that this part of the code isn't "fisheye correction", such a
+correction isn't needed for the way of raycasting used here, the
+fisheye effect is simply avoided by the way the distance is
+calculated here. It's even easier to calculate this perpendicular
+distance than the real distance, we don't even need to know the
+exact location where the wall was hit.<br />
+<br />
+First of all, (1-stepX)/2 is 1 if stepX = -1 and 0 if stepX is +1,
+this is needed because we need to add 1 to the length when rayDirX
+&lt; 0, this is for the same reason why 1.0 was added to the
+initial value of sideDistX in one case but not in the other.<br />
+<br />
+The distance is then calculated as follows: if an x-side is hit,
+mapX-rayPosX+(1-stepX)/2) is the number of squares the ray has
+crossed in X direction. If the ray is perpendicular on the X side,
+this is the correct value already, but because the direction of the
+ray is different most of the times, it's real perpendicular
+distance will be larger, so we divide it through the X coordinate
+of the rayDir vector.<br />
+<br />
+Something similar is done in case an y-side is hit. The calculated
+distance is never negative, since mapX-rayPosX will be negative
+only if rayDirX is negative, and we divide these two through each
+other.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">      //Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
+      if (side == 0)
+      perpWallDist = fabs((mapX - rayPosX + (1 - stepX) / 2) / rayDirX);
+      else
+      perpWallDist = fabs((mapY - rayPosY + (1 - stepY) / 2) / rayDirY);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Out of the calculated distance, calculate the height of the line
+that has to be drawn on screen: this is the inverse of perpWallDist,
+and then multiplied by h, the height in pixels of the screen, to
+bring it to pixel coordinates. You can of course also multiply it
+with another value, for example 2*h, if you want to walls to be
+higher or lower. The value of h will make the walls look like cubes
+with equal height, width and depth, while large values will create
+higher boxes (depending on your monitor).<br />
+<br />
+Then out of this lineHeight (which is thus the height of the
+vertical line that should be drawn), the start and end position of
+where we should really draw are calculated. The center of the wall
+should be at the center of the screen, and if these points lie
+outside the screen, they're capped to 0 or h-1.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">      //Calculate height of line to draw on screen
+      int lineHeight = abs(int(h / perpWallDist));
+       
+      //calculate lowest and highest pixel to fill in current stripe
+      int drawStart = -lineHeight / 2 + h / 2;
+      if(drawStart &lt; 0)drawStart = 0;
+      int drawEnd = lineHeight / 2 + h / 2;
+      if(drawEnd &gt;= h)drawEnd = h - 1;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Finally, depending on what number the wall that was hit has, a
+color is chosen. If an y-side was hit, the color is made darker,
+this gives a nicer effect. And then the vertical line is drawn with
+the verLine command. This ends the raycasting loop, after it has
+done this for every x at least.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">      //choose wall color
+      ColorRGB color;
+      switch(worldMap[mapX][mapY])
+      {
+        case 1:  color = RGB_Red;  break; //red
+        case 2:  color = RGB_Green;  break; //green
+        case 3:  color = RGB_Blue;   break; //blue
+        case 4:  color = RGB_White;  break; //white
+        default: color = RGB_Yellow; break; //yellow
+      }
+       
+      //give x and y sides different brightness
+      if (side == 1) {color = color / 2;}
+
+      //draw the pixels of the stripe as a vertical line
+      verLine(x, drawStart, drawEnd, color);
+    }</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+After the raycasting loop is done, the time of the current and the
+previous frame are calculated, the FPS (frames per second) is
+calculated and printed, and the screen is redrawn so that
+everything (all the walls, and the value of the fps counter)
+becomes visible. After that the backbuffer is cleared with cls(),
+so that when we draw the walls again the next frame, the floor and
+ceiling will be black again instead of still containing pixels from
+the previous frame.<br />
+<br />
+The speed modifiers use frameTime, and a constant value, to
+determinate the speed of the moving and rotating of the input keys.
+Thanks to using the frameTime, we can make sure that the moving and
+rotating speed is independent of the processor speed.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    //timing for input and FPS counter
+    oldTime = time;
+    time = getTicks();
+    double frameTime = (time - oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds
+    print(1.0 / frameTime); //FPS counter
+    redraw();
+    cls();
+
+    //speed modifiers
+    double moveSpeed = frameTime * 5.0; //the constant value is in squares/second
+    double rotSpeed = frameTime * 3.0; //the constant value is in radians/second</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The last part is the input part, the keys are read.<br />
+<br />
+If the up arrow is pressed, the player will move forward: add dirX
+to posX, and dirY to posY. This assumes that dirX and dirY are
+normalized vectors (their length is 1), but they were initially set
+like this, so it's ok. There's also a simple collision detection
+built in, namely if the new position will be inside a wall, you
+won't move. This collision detection can be improved however, for
+example by checking if a circle around the player won't go inside
+the wall instead of just a single point.<br />
+<br />
+The same is done if you press the down arrow, but then the
+direction is subtracted instead.<br />
+<br />
+To rotate, if the left or right arrow is pressed, both the
+direction vector and plane vector are rotated by using the formulas
+of multiplication with the rotation matrix (and over the angle
+rotSpeed).<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    readKeys();
+    //move forward if no wall in front of you
+    if (keyDown(SDLK_UP))
+    {
+      if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
+      if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
+    }
+    //move backwards if no wall behind you
+    if (keyDown(SDLK_DOWN))
+    {
+      if(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
+      if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
+    }
+    //rotate to the right   
+    if (keyDown(SDLK_RIGHT))
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = dirX;
+      dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
+      dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
+      double oldPlaneX = planeX;
+      planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
+      planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+    }
+    //rotate to the left
+    if (keyDown(SDLK_LEFT))
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = dirX;
+      dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
+      dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
+      double oldPlaneX = planeX;
+      planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
+      planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
+    }
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This concludes the code of the untextured raycaster, the result
+looks like this, and you can walk around in the map:<br />
+<br />
+<img alt="" src="images/raycasteruntextured.gif" style=
+"width: 518px; height: 408px;" /><br />
+<br />
+Here's an example of what happens if the camera plane isn't
+perpendicular to the direction vector, the world appears
+skewed:<br />
+<br />
+<img alt="" src="images/raycastingskewed.gif" style=
+"width: 511px; height: 143px;" /><br />
+<br />
+<br />
+<h2><a name="Textured_Raycaster" id="Textured_Raycaster"></a>Textured Raycaster</h2>
+
+
+Download the source code here: <a href="files/raycaster_textured.cpp">raycaster_textured.cpp</a>
+<br /><br />
+
+The core of the textured version of the raycaster is almost the
+same, only at the end some extra calculations need to be done for
+the textures, and a loop in the y-direction is required to go
+through every pixel to determinate which texel (texture pixel) of
+the texture should be used for it.<br />
+<br />
+The vertical stripes can't be drawn with the vertical line command
+anymore, instead every pixel has to be drawn seperately. The best
+way is to use a 2D array as screen buffer this time, and copy it to
+the screen at once, that goes a lot faster than using pset.<br />
+<br />
+Of course we now also need an extra array for the textures, and
+since the "drawbuffer" function works with single integer values
+for colors (instead of 3 separate bytes for R, G and B), the
+textures are stored in this format as well. Normally, you'd load
+the textures from a texture file, but for this simple example some
+dumb textures are generated instead.<br />
+<br />
+The code is mostly the same as the previous example, the bold parts
+are new. Only new parts are explained.<br />
+<br />
+The screenWidth and screenHeight are now defined in the beginning
+because we need the same value for the screen function, and to
+create the screen buffer. Also new are the texture width and height
+that are defined here. These are obviously the width and height in
+texels of the textures.<br />
+<br />
+The world map is changed too, this is a more complex map with
+corridors and rooms to show the different textures. Again, the 0's
+are empty walkthrougable spaces, and each positive number
+corresponds to a different texture.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><b>#define screenWidth 640
+#define screenHeight 480
+#define texWidth 64
+#define texHeight 64</b>
+#define mapWidth 24
+#define mapHeight 24
+
+int worldMap[mapWidth][mapHeight]=
+{
+  <b>{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7},
+  {4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
+  {4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
+  {4,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
+  {4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
+  {4,0,4,0,0,0,0,5,5,5,5,5,5,5,5,5,7,7,0,7,7,7,7,7},
+  {4,0,5,0,0,0,0,5,0,5,0,5,0,5,0,5,7,0,0,0,7,7,7,1},
+  {4,0,6,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
+  {4,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,1},
+  {4,0,8,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
+  {4,0,0,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,7,7,7,1},
+  {4,0,0,0,0,0,0,5,5,5,5,0,5,5,5,5,7,7,7,7,7,7,7,1},
+  {6,6,6,6,6,6,6,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
+  {8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+  {6,6,6,6,6,6,0,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
+  {4,4,4,4,4,4,0,4,4,4,6,0,6,2,2,2,2,2,2,2,3,3,3,3},
+  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,0,0,0,2},
+  {4,0,0,0,0,0,0,0,0,0,0,0,6,2,0,0,5,0,0,2,0,0,0,2},
+  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,2,0,2,2},
+  {4,0,6,0,6,0,0,0,0,4,6,0,0,0,0,0,5,0,0,0,0,0,0,2},
+  {4,0,0,5,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,2,0,2,2},
+  {4,0,6,0,6,0,0,0,0,4,6,0,6,2,0,0,5,0,0,2,0,0,0,2},
+  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,0,0,0,2},
+  {4,4,4,4,4,4,4,4,4,4,1,1,1,2,2,2,2,2,2,3,3,3,3,3}</b>
+};</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The screen buffer and texture arrays are declared here. The texture
+array is an array of std::vectors, each with a certain
+width * height pixels.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int /*argc*/, char */*argv*/[])
+{
+  double posX = 22.0, posY = 11.5;  //x and y start position
+  double dirX = -1.0, dirY = 0.0; //initial direction vector
+  double planeX = 0.0, planeY = 0.66; //the 2d raycaster version of camera plane
+  
+  double time = 0; //time of current frame
+  double oldTime = 0; //time of previous frame
+  
+  <b>Uint32 buffer[screenWidth][screenHeight];
+  std::vector<Uint32> texture[8];
+  for(int i = 0; i &lt; 8; i++) texture[i].resize(texWidth * texHeight);</b></span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The main function now begins with generating the textures. We have
+a double loop that goes through every pixel of the textures, and
+then the corresponding pixel of each texture gets a certain value
+calculated out of x and y. Some textures get a XOR pattern, some a
+simple gradient, others a sort of brick pattern, basicly it are all
+quite simple patterns, it's not going to look all that beautiful,
+for better textures see the next chapter.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">  screen(<b>screenWidth,screenHeight</b>, 0, "Raycaster");
+   
+  <b>//generate some textures
+  for(int x = 0; x &lt; texWidth; x++)
+  for(int y = 0; y &lt; texHeight; y++)
+  {
+    int xorcolor = (x * 256 / texWidth) ^ (y * 256 / texHeight);
+    //int xcolor = x * 256 / texWidth;
+    int ycolor = y * 256 / texHeight;
+    int xycolor = y * 128 / texHeight + x * 128 / texWidth;
+    texture[0][texWidth * y + x] = 65536 * 254 * (x != y &amp;&amp; x != texWidth - y); //flat red texture with black cross
+    texture[1][texWidth * y + x] = xycolor + 256 * xycolor + 65536 * xycolor; //sloped greyscale
+    texture[2][texWidth * y + x] = 256 * xycolor + 65536 * xycolor; //sloped yellow gradient
+    texture[3][texWidth * y + x] = xorcolor + 256 * xorcolor + 65536 * xorcolor; //xor greyscale
+    texture[4][texWidth * y + x] = 256 * xorcolor; //xor green
+    texture[5][texWidth * y + x] = 65536 * 192 * (x % 16 &amp;&amp; y % 16); //red bricks
+    texture[6][texWidth * y + x] = 65536 * ycolor; //red gradient
+    texture[7][texWidth * y + x] = 128 + 256 * 128 + 65536 * 128; //flat grey texture
+  }</b></span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This is again the start of the gameloop and initial declarations
+and calculations before the DDA algorithm. Nothing has changed
+here.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">  //start the main loop
+  while(!done())
+  {
+    for(int x = 0; x &lt; w; x++)
+    {
+      //calculate ray position and direction 
+      double cameraX = 2*x/double(w)-1; //x-coordinate in camera space     
+      double rayPosX = posX;
+      double rayPosY = posY;
+      double rayDirX = dirX + planeX*cameraX;
+      double rayDirY = dirY + planeY*cameraX;
+     
+      //which box of the map we're in  
+      int mapX = int(rayPosX);
+      int mapY = int(rayPosY);
+       
+      //length of ray from current position to next x or y-side
+      double sideDistX;
+      double sideDistY;
+       
+      //length of ray from one x or y-side to next x or y-side
+      double deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+      double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+      double perpWallDist;
+       
+      //what direction to step in x or y-direction (either +1 or -1)
+      int stepX;
+      int stepY;
+            
+      int hit = 0; //was there a wall hit?
+      int side; //was a NS or a EW wall hit?
+
+      //calculate step and initial sideDist
+      if (rayDirX &lt; 0)
+      {
+        stepX = -1;
+        sideDistX = (rayPosX - mapX) * deltaDistX;
+      }
+      else
+      {
+        stepX = 1;
+        sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
+      }      
+      if (rayDirY &lt; 0)
+      {
+        stepY = -1;
+        sideDistY = (rayPosY - mapY) * deltaDistY;
+      }
+      else
+      {
+        stepY = 1;
+        sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
+      }</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This is again the DDA loop, and the calculations of the distance
+and height, nothing has changed here either.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">      //perform DDA
+      while (hit == 0)
+      {
+        //jump to next map square, OR in x-direction, OR in y-direction
+        if (sideDistX &lt; sideDistY)
+        {
+          sideDistX += deltaDistX;
+          mapX += stepX;
+          side = 0;
+        }
+        else
+        {
+          sideDistY += deltaDistY;
+          mapY += stepY;
+          side = 1;
+        }
+        //Check if ray has hit a wall
+        if (worldMap[mapX][mapY] &gt; 0) hit = 1;
+      } 
+        
+      //Calculate distance of perpendicular ray (oblique distance will give fisheye effect!)
+      if (side == 0) perpWallDist = fabs((mapX - rayPosX + (1 - stepX) / 2) / rayDirX);
+      else       perpWallDist = fabs((mapY - rayPosY + (1 - stepY) / 2) / rayDirY);
+        
+      //Calculate height of line to draw on screen
+      int lineHeight = abs(int(h / perpWallDist));
+       
+      //calculate lowest and highest pixel to fill in current stripe
+      int drawStart = -lineHeight / 2 + h / 2;
+      if(drawStart &lt; 0) drawStart = 0;
+      int drawEnd = lineHeight / 2 + h / 2;
+      if(drawEnd &gt;= h) drawEnd = h - 1;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The following calculations are new however, and replace the color
+chooser of the untextured raycaster.<br />
+The variable texNum is the value of the current map square minus 1,
+the reason is that there exists a texture 0, but map tile 0 has no
+texture since it represents an empty space. To be able to use
+texture 0 anyway, substract 1 so that map tiles with value 1 will
+give texture 0, etc...<br />
+<br />
+The value wallX represents the exact value where the wall was hit,
+not just the integer coordinates of the wall. This is required to
+know which x-coordinate of the texture we have to use. This is
+calculated by first calculating the exact x or y coordinate in the
+world, and then substracting the integer value of the wall off it.
+Note that even if it's called wallX, it's actually an y-coordinate
+of the wall if side==1, but it's always the x-coordinate of the
+texture.<br />
+<br />
+Finally, texX is the x-coordinate of the texture, and this is
+calculated out of wallX.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><b>      //texturing calculations
+      int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
+       
+      //calculate value of wallX
+      double wallX; //where exactly the wall was hit
+      if (side == 1) wallX = rayPosX + ((mapY - rayPosY + (1 - stepY) / 2) / rayDirY) * rayDirX;
+      else       wallX = rayPosY + ((mapX - rayPosX + (1 - stepX) / 2) / rayDirX) * rayDirY;
+      wallX -= floor((wallX));
+       
+      //x coordinate on the texture
+      int texX = int(wallX * double(texWidth));
+      if(side == 0 &amp;&amp; rayDirX &gt; 0) texX = texWidth - texX - 1;
+      if(side == 1 &amp;&amp; rayDirY &lt; 0) texX = texWidth - texX - 1;</b></span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Now that we know the x-coordinate of the texture, we know that this
+coordinate will remain the same, because we stay in the same
+vertical stripe of the screen. Now we need a loop in the
+y-direction to give each pixel of the vertical stripe the correct
+y-coordinate of the texture, called texY.<br />
+<br />
+The value of texY is calculated with integer math for more speed,
+but all the values that will be divided through a value are
+multiplied by 256 first, and afterwards it's divided through 256
+again, for more precision. Otherwise some pretty ugly effects show
+up.<br />
+<br />
+The color of the pixel to be drawn is then simply gotten from
+texture[texNum][texX][texY], which is the correct texel of the
+correct texture.<br />
+<br />
+Like the untextured raycaster, here too we'll make the color value
+darker if an y-side of the wall was hit, because that looks a
+little bit better (like there is a sort of lighting). However,
+because the color value doesn't exist out of a separate R, G and B
+value, but these 3 bytes sticked together in a single integer, a
+not so intuitive calculation is used.<br />
+<br />
+The color is made darker by dividing R, G and B through 2. Dividing
+a decimal number through 10, can be done by removing the last digit
+(e.g. 300/10 is 30: the last zero is removed). Similarly, dividing
+a binary number through 2, which is what is done here, is the same
+as removing the last bit. This can be done by bitshifting it to the
+right with &gt;&gt;1. But, here we're bitshifting a 24-bit integer
+(actually 32-bit, but the first 8 bits aren't used). Because of
+this, the last bit of one byte will become the first bit of the
+next byte, and that screws up the color values! So after the
+bitshift, the first bit of every byte has to be set to zero, and
+that can be done by binary "AND-ing" the value with the binary
+value 011111110111111101111111, which is 8355711 in decimal. So the
+result of this is indeed a darker color.<br />
+<br />
+Finally, the current buffer pixel is set to this color, and we move
+on to the next y.<br />
+<br />
+
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><b><span class="code">      for(int y = drawStart; y&lt;drawEnd; y++)
+      {
+        int d = y * 256 - h * 128 + lineHeight * 128;  //256 and 128 factors to avoid floats
+        int texY = ((d * texHeight) / lineHeight) / 256;
+        Uint32 color = texture[texNum][texHeight * texY + texX];
+        //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+        if(side == 1) color = (color >> 1) &amp; 8355711;
+        buffer[x][y] = color;
+      } 
+    }</span></b></pre>
+</td></tr></table></center>
+
+<br />
+Now the buffer still has to be drawn, and after that it has to be
+cleared (where in the untextured version we simply had to use
+"cls"). The rest of this code is again the same.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    <b>drawBuffer(buffer[0]);
+    for(int x = 0; x &lt; w; x++) for(int y = 0; y &lt; h; y++) buffer[x][y] = 0; //clear the buffer instead of cls()</b>
+    //timing for input and FPS counter
+    oldTime = time;
+    time = getTicks();
+    double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds     
+    print(1.0 / frameTime); //FPS counter
+    redraw();
+         
+    //speed modifiers
+    double moveSpeed = frameTime * 5.0; //the constant value is in squares/second
+    double rotSpeed = frameTime * 3.0; //the constant value is in radians/second</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+And here's again the keys, nothing has changed here either. If you
+like you can try to add strafe keys (to strafe to the left and
+right). These have to be made the same way as the up and down keys,
+but use planeX and planeY instead of dirX and dirY.<br />
+<br />
+
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">    readKeys();
+    //move forward if no wall in front of you
+    if (keyDown(SDLK_UP))
+    {
+      if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
+      if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
+    }
+    //move backwards if no wall behind you
+    if (keyDown(SDLK_DOWN))
+    {
+      if(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
+      if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
+    }   
+    //rotate to the right
+    if (keyDown(SDLK_RIGHT))
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = dirX;
+      dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
+      dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
+      double oldPlaneX = planeX;
+      planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
+      planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+    }
+    //rotate to the left
+    if (keyDown(SDLK_LEFT))
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = dirX;
+      dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
+      dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
+      double oldPlaneX = planeX;
+      planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
+      planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
+    }
+  }
+}</span></pre>
+</td></tr></table></center>
+
+<br />
+Here's a few screenshots of the result:<br />
+<br />
+<img alt="" src="images/raycasttexture1.gif" style="width: 319px; height: 239px;" /> <img alt="" src="images/raycasttexture2.gif" style="width: 320px; height: 239px;" /> <img alt="" src="images/raycasttexture3.gif" style="width: 319px; height: 239px;" />
+<br /><br />
+Note: Usually images are stored by horizontal scanlines, but for a raycaster the textures are drawn as vertical stripes. Therefore, to optimally use the cache of the CPU and avoid page misses, it might be more efficient to store the textures in memory vertical stripe by vertical stripe, instead of per horizontal scanline. To do this, after generating the textures, swap their X and Y by (this code only works if texWidth and texHeight are the same):
+<br /><br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">  //swap texture X/Y since they'll be used as vertical stripes
+  for(size_t i = 0; i &lt; 8; i++)
+  for(size_t x = 0; x &lt; texSize; x++)
+  for(size_t y = 0; y &lt; x; y++)
+  std::swap(texture[i][texSize * y + x], texture[i][texSize * x + y]);</span></pre>
+</td></tr></table></center>
+<br /><br />
+Or just swap X and Y where the textures are generated, but in many cases after loading an image or getting a texture from other formats you'll have it in scanlines anyway and have to swap it this way.
+<br /><br />
+When getting the pixel from the texture then, use the following code instead:
+<br /><br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">Uint32 color = texture[texNum][texSize * texX + texY];</span></pre>
+</td></tr></table></center>
+
+<h2><a name="Wolfenstein_3D_Textures_" id="Wolfenstein_3D_Textures_"></a>Wolfenstein 3D Textures</h2>
+Instead of just generating some textures, let's load a few from
+bmp's instead! For example the following 8 textures, which come
+from Wolfenstein 3D and are copyright by ID Software.<br />
+<br />
+<img alt="" src="images/wolftextures.png" style="width: 512px; height: 64px;" /><br />
+<br />
+Just replace the part of the code that generates the texture
+patterns with the following (and make sure those textures are in
+the correct path). You can download the textures <a href="files/wolftex.zip">here</a>.<br />
+<br />
+<center><table class="codetable"><tr><td style="vertical-align: top;">
+<pre><span class="code">  //generate some textures
+  unsigned long tw, th;
+  loadImage(texture[0], tw, th, "pics/eagle.png");
+  loadImage(texture[1], tw, th, "pics/redbrick.png");
+  loadImage(texture[2], tw, th, "pics/purplestone.png");
+  loadImage(texture[3], tw, th, "pics/greystone.png");
+  loadImage(texture[4], tw, th, "pics/bluestone.png");
+  loadImage(texture[5], tw, th, "pics/mossy.png");
+  loadImage(texture[6], tw, th, "pics/wood.png");
+  loadImage(texture[7], tw, th, "pics/colorstone.png");</span></pre>
+</td></tr></table></center>
+<br />
+Note that this loadBMP function is a new and improved version of
+the original one, now it also supports loading BMP's into 32-bit
+integer arrays where the RGB color is a single integer value.
+<br /><br />
+<img alt="" src="images/wolftex1.gif" style="width: 399px; height: 299px;" /> <img alt="" src="images/wolftex2.gif" style="width: 400px; height: 300px;" /><br />
+<br />
+In the original Wolfenstein 3D, the colors of one side was also
+made darker than the color of the other side of a wall to create
+the shadow effect, but they used a seperate texture everytime, a
+dark and a light one. Here however, only one texture is used for
+each wall and the line of code that divided R, G and B through 2 is
+what makes the y-sides darker.<br />
+<br />
+<br />
+<hr />
+Last edited: 12 August 2007
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+</body>
+</html>

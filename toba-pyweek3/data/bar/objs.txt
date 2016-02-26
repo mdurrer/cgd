@@ -1,0 +1,10 @@
+patron1_pos	point	281	225	100
+fire	barfire	468	158	100
+sales	barsales	814	306	100
+player	player	130	264	85
+patron2_pos	point	596	216	100
+exit_pos	point	105	264	100
+patron2	patron2	676	214	100
+patron1	patron1	255	210	100
+sales_pos	point	727	349	100
+fire_pos	point	435	190	100

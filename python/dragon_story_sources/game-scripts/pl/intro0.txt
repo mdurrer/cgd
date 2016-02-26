@@ -1,0 +1,12 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+   Vypravec: "Dawno, dawno temu była sobie Bajkowa Kraina."
+    load intr_ptak "FLI-animace"
+    startplay intr_ptak "FLI-animace"
+   Vypravec: "Przynajmniej my uważamy ją za krainę z baśni..."
+   Vypravec: "...lecz jej mieszkańcy tylko do pewnego stopnia..."
+
+   Vypravec: "...lub wcale."
+
+gplend

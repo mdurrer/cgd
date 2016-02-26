@@ -1,0 +1,50 @@
+block _0 ( beg(1)
+title
+{disablespeedtext
+disablequickhero
+stayon -24 170 vpravo
+
+start hulka "kamen_mluvi"
+   EvIn: "Bedę rządzić światem. Lecz jak to się robi?"
+walkon 75 175 vpravo
+   EvIn: "Kto to?"
+start hulka "na kameni"
+   EvIn: "Mam go. Moim sługą będzie właśnie on,
+          młody, naiwny, niedoświadczony smok!"
+   EvIn: "Hej, stój!"
+startplay hulka "premet"
+start hulka "mluvi"
+justtalk
+   D: "Czekam na ciebie..."
+juststay
+   EvIn: "Zadam ci kilka pytań."
+   EvIn: "Czy chcesz sprawować władzę nad Światem?"
+justtalk
+   D: "A czy wiesz jak tego dokonać?"
+juststay
+start hulka "mluvi"
+
+   EvIn: "Jasne, że wiem.
+          Patrz, mam berło."
+startplay hulka "placka_vznik"
+start hulka "placka_mlci"
+
+justtalk
+   D: "Je-stem już (prawie) władcą Świata.
+       Spytaj mnie, jak te-go do-konałam!"
+   D: "Hmm, to brzmi interesująco.
+       Dziś po południu nie mam nic do roboty."
+   D: "Zacznijmy od zaraz."
+juststay
+
+start hulka "placka_mluvi"
+   EvIn: "Nie zaszkodzi nabyć nieco wprawy
+          w rządzeniu Światem."
+   EvIn: "Co ty na to, by podziałać komuś na nerwy?"
+start hulka "placka_mlci"
+justtalk
+   D: "Dobry pomysł, można by to zrobić już dziś
+       po południu."
+juststay
+
+gplend

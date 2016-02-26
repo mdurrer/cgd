@@ -1,0 +1,36 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+   Vypravec: "Była też sobie pewna wytworna
+              smocza rodzinka -"
+   Vypravec: "- ojciec Herbert, matka Berta i ich syn Bert."
+   Vypravec: "Nie były to takie smoki..."
+   Vypravec: "...jakie znamy ze strasznych,
+              bajkowych opowieści..."
+   Vypravec: "...te smoki doceniały wartość tradycji
+              i życia rodzinnego..."
+   Vypravec: "Były bardzo zrównoważone i w dodatku..."
+   Vypravec: "...nawet zapomniały o dawnych
+              smoczych skarbach."
+{jako fotograf, vyleti ptacek:}
+   Vypravec: "Proszę, usmiechnijcie się..."
+load foto_cel "syr"
+startplay foto_cel "syr"
+start foto_cel "z2"
+loadpalette "..\in1\ft_BACK3.pcx"
+setpalette
+loadpalette "..\in1\IN1BACK.pcx"
+setpalette
+loadpalette "..\in1\ft_BACK.pcx"
+fadepalette 0 255 100
+load intr_nap1 "draci2"
+load intr_nap2 "historie2"
+start intr_nap1 "draci2"
+start intr_nap2 "historie2"
+loadpalette "..\in1\ft_BACK.pcx"
+fadepaletteplay 0 255 120
+loadpalette "..\in1\ft_BACK2.pcx"
+fadepaletteplay 0 255 120
+
+gplend

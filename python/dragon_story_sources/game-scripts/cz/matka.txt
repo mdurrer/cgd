@@ -1,0 +1,176 @@
+{s matkou v dracim dome:}
+
+block _00 ( maxline(1) and beg(1) and not been(_6) )
+title
+  justtalk
+  D: "Mami...
+      Rozhodl jsem se, že budu sekat dobrotu!"
+  juststay
+  start mutti "mluvi"
+  B: "Ty si nekladeš žádné podmínky?"
+  start mutti "mlci"
+gplend
+
+block _1 ( beg(0) and last(_00) and not been(_1) )
+title No jasně, že kladu. Chceš je slyšet?
+  load mutti "mlci2sec"
+  justtalk
+  D: "No jasně, že kladu.
+      Chceš je slyšet?"
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+
+  justtalk
+  D: "Hm? Nevadí, přesto ti je řeknu.
+      Dovolíš mi zůstávat venku
+      pozdě do večera..."
+  D: "...chodit domů oknem, stoupat si na stůl,
+      dloubat se v nose pravítkem,
+      strkat si nůž do pusy..."
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+
+  justtalk
+  D: "Ty mě neposloucháš!"
+  juststay
+{Berta ho neposlouchá}
+  {k obecenstvu}
+  justtalk
+  D: "Je to hrůza, když člověka ignoruje
+      i vlastní matka."
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+  {po chvíli:}
+  start mutti "cili se"
+  B: "Pravítkem se rozhodně v nose dloubat nebudeš!"
+  B: "Pokaždé se rozteče!"
+  B: "V nose se můžeš dloubat jedině pohrabáčem.
+      A to ti zakazuju!"
+  B: "Víš sám dobře, že když se
+      ty tvoje sople připalujou,
+      děsně to zapáchá!"
+  B: "A na to další taky zapomeň!"
+  start mutti "mlci"
+  justtalk
+  D: "Vypadá to, že matka domluvila."
+  juststay
+  exitdialogue
+gplend
+
+block _2 ( beg(0) and last(_00) )
+title Ne, budu prostě jenom tak hodnej...
+  justtalk
+  D: "Ne, budu prostě jenom tak hodnej..."
+  juststay
+  start mutti "mluvi"
+  B: "Zajímalo by mě odkdy!"
+  start mutti "mlci"
+gplend
+
+block _5 ( beg(0) and last(_2) or last(_4) and not been(_5) )
+title Ještě si to rozmyslím...
+  justtalk
+  D: "Ještě si to rozmyslím..."
+  juststay
+  exitdialogue
+gplend
+
+
+block _6 ( beg(0) and last(_2) or last(_4) and not been(_6) )
+title Začínám hned odteď!
+  justtalk
+  D: "Začínám hned odteď!"
+  juststay
+  start mutti "mluvi"
+  B: "Když odteď, tak si teď hned
+      vezmi tenhle báječně ostře nabroušený nůž..."
+  B: "...a jdi si s ním pěkně hrát."
+  start mutti "mlci"
+  justtalk
+  D: "Ale... Cože mami?!"
+  juststay
+  start mutti "mluvi"
+  B: "No jakpak si hrají všechny ostatní hodné děti?"
+  start mutti "mlci"
+  justtalk
+  D: "Už jdu, mami!"
+  juststay
+  start mutti "mluvi"
+  B: "Ale pamatuj, ten výprask na tebe pořád čeká!"
+  start mutti "mlci"
+  justtalk
+  D: "(Rodiče mívají divné vrtochy.)"
+  juststay
+
+  icostat on i_nuz
+  exitdialogue
+gplend
+
+block _3 ( beg(0) and last(_2) or last(_4) and not been(_3) )
+title Začínám už zítra.
+  justtalk
+  D: "Začínám už zítra."
+  juststay
+  start mutti "mluvi"
+  B: "Tomu nerozumím.
+      To jako budeš už od zítřka
+      normálně hodný?"
+  juststay
+  justtalk
+  D: "No, jenom dneska si ještě trochu zazlobím."
+  juststay
+  start mutti "mluvi"
+  B: "Zkus si to dobře rozmyslet.
+      Nechceš raději zlobit ještě
+      celý příští týden?"
+  juststay
+  justtalk
+  D: "Mmmh, dobrá, rozmyslím si to."
+  juststay
+  exitdialogue
+gplend
+
+block _4 ( beg(0) and last(_2) and not been(_4) )
+title Je to moje novoroční předsevzetí na příští rok.
+  justtalk
+  D: "Je to moje novoroční předsevzetí
+      na příští rok."
+  juststay
+  start mutti "mluvi"
+  B: "To je příliš pozdě!"
+  juststay
+gplend
+
+block _01 ( maxline(1) and beg(1) and random(3) )
+title
+  justtalk
+  D: "Mami, nevidělas tady někde poblíž tátu?"
+  juststay
+  start mutti "mluvi"
+  B: "Děláš si legraci?
+      Tátu jsem neviděla aspoň měsíc!"
+  juststay
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(1) )
+title
+  justtalk
+  D: "Mami, kdy bude oběd?"
+  juststay
+  start mutti "mluvi"
+  B: "Ještě to chvíli potrvá.
+      Ale ty stejně budeš za trest hladem!"
+  juststay
+  justtalk
+  D: "Při tvém kuchařském umění
+      se tomu stěží dá říkat trest..."
+  juststay
+  exitdialogue
+gplend

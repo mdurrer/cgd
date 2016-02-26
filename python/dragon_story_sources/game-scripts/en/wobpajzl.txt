@@ -1,0 +1,125 @@
+{s pajzlem u obra:}
+
+block _00a ( atbegin(1) and not hasbeen(_00a) )
+title
+     justtalk
+D: "Ehm, Mr. Dwarf..."
+D: "I need to ask you a few questions.
+    I won't keep you long,
+    I can see you are busy."
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Hmptf, go on!"
+     start obr_pajzl2 "mlci"
+gplend
+
+block _00b ( atbegin(1) and hasbeen(_00a) )
+title
+     justtalk
+D: "I have lost all my notes.
+    Can we go through it again?"
+     juststay
+
+     start obr_pajzl2 "mluvi"
+Pajzl: "Urgh!"
+     start obr_pajzl2 "mlci"
+
+     justtalk
+D: "No!?"
+D: "Just between the two of us,
+    the notes were crap anyway."
+D: "Try to concentrate again ..."
+     juststay
+D: "..."
+     justtalk
+D: "Ready?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "OK then."
+     start obr_pajzl2 "mlci"
+gplend
+
+block _01 ( atbegin(0) )
+TITLE How do you feel?
+     justtalk
+D: "How do you feel?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "I'm really fine."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "How much did you practice?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Hmptf!"
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Do you believe in yourself?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Absolutely!"
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Do you think you are fit?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "This is good timing ..."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Have you overextended yourself?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Nonsense."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Do you sweat?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Normally."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Are you nervous?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "I am fine."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Does that rope hurt very much?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "Thanks, it's fine."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "It really does not hurt?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "It's fine, really."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "What do you think about
+    being on the menu?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "I hope he won't put too much spice on it.
+        You see, I have hay fever."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Oh, so there is a little hiccup ..."
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "That's what you say. I am absolutely fine."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "So, how do you feel right before your death?"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "It's a completely new experience for me."
+     start obr_pajzl2 "mlci"
+     justtalk
+D: "Thanks for the interview!"
+     juststay
+     start obr_pajzl2 "mluvi"
+Pajzl: "It's nothing."
+Pajzl: "The publicity is really important."
+     start obr_pajzl2 "mlci"
+gplend

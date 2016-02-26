@@ -1,0 +1,122 @@
+{drak čte skřetům pohádku:}
+
+block _ (1)
+title
+  {knihu pak uz nebudeme potrebovat:}
+  icostat off i_pohadka
+  load bert "kniha_cte"
+  load bert "kniha_otevir"
+  load bert "kniha_vytahu"
+  load bert "kniha_mlci2s"
+  load bert "kniha_mlupre"
+  load bert "kniha_mlupo"
+  load bert "kniha_divase"
+  load bert "kniha_listuj"
+
+  load blby "usina"
+  load blby_hl "usina"
+  load blbejsi "usina"
+
+  startplay bert "kniha_otevir"
+
+  start bert "kniha_cte"
+
+D: "Es ist ein Märchen wie kein anderes."
+D: "Ein Drache kam
+    und wollte die Prinzessin fressen.
+    Glücklicherweise erschien ein tapferer Prinz."
+D: "Er tötete den Drachen
+    und heiratete die Prinzessin
+    und erhielt die Hälfte des Königreichs.
+    Und sie lebten glücklich und zufrieden
+    bis an ihr Lebensende."
+
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+D: "Der dämliche alte König
+    hatte schon all seine Zähne verloren
+    und konnte nur noch Shakes verdrücken."
+D: "Seine Haut trocknete komplett aus,
+    und er wurde dünn wie Pergament."
+D: "Kein Wunder, daß der König weg flog,
+    als sein Diener vergaß, das Fenster zu schließen.
+    Es zieht unheimlich in alten Schlössern, weißt du."
+D: "Der König wehte eine Weile lang durch den Wind,
+    aber es dauerte nicht lange,
+    bis er von einem Regenschauer durchnässt wurde."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+  start blby "usina"
+  start blby_hl "usina"
+
+D: "Der Drache wurde von Würmern gefressen.
+    Der Prinz wurde zum König
+    der zweiten Hälfte des Königreichs ernannt."
+D: "Die Prinzessin wurde zur Königin...
+    Leider hatten sie keine Kinder."
+D: "Wir nennen sie Prinz und Prinzessin,
+    um sie nicht zu verwechseln."
+D: "Die Prinzessin verlor bald
+    ihre junge Erscheinung und ihr Gesicht
+    war übersät von Falten."
+D: "Eines Tages, als sie in den Spiegel sah,
+    haßte sie, was sie sah
+    und warf ihn voller Wut durch den Raum.
+    Der Spiegel zerbrach in zahlreiche Scherben."
+  start blby "spi"
+  start blby_hl "spi"
+  objstat_on bota skreti
+  start bota "zakladni"
+D: "Ein Auge des Prinzen war kurzsichtig,
+    eund das andere war sogar aus Glas.
+    Er sah nicht gut und trat deshalb
+    barfuß in die Scherben."
+  start blbejsi "usina"
+  objstat away blbejsi_hl
+D: "Er bekam eine Blutvergiftung
+    und starb an furchtbarem Fieber."
+D: "Er litt auch unter Rheuma,
+    weil er so oft mit nackten Beinen umherlief."
+D: "In alten Schlössern ist es oft frostig."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+D: "Ein neuer Drache kam
+    und wollte sich was zu fressen genehmigen."
+D: "Die Prinzessin war nun alt und hässlich,
+    und keine jungen Freier kamen,
+    um sie zu beschützen."
+D: "Der Drache war gierig
+    und stopfte sich die ganze Prinzessin in den Mund.
+    Daraufhin würgte er sich zu Tode,
+    weil sie zu zäh war."
+  start blbejsi "spi"
+D: "Kein Wunder, altes Fleisch sollte man
+    vorher auch erst kochen und braten."
+D: "Jeder andere Drache wäre eher
+    vor Hunger gestorben,
+    als so einen Bissen zu schlucken."
+D: "Sobald die Drachen davon hörten,
+    kam nie mehr einer von ihnen dort hin."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+D: "Das war die ganze Geschichte."
+
+
+  startplay bert "kniha_mlci2s"
+  start bert "kniha_cte"
+{chvíli pauza}
+D: "Ruhe!"
+
+  startplay bert "kniha_divase"
+  start bert "kniha_mlupre"
+{najdeme scenar v knize...
+D: "Oh, da ist ein Zettel hinten im Buch."
+  startplay bert "kniha_vytahu"
+  start bert "kniha_mlupo"
+D: "Nun, den werf ich nicht weg."
+  juststay
+  icostat on i_scenar
+gplend

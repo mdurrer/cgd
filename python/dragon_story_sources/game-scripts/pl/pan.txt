@@ -1,0 +1,25 @@
+{situacka  s pojidanim gulase:}
+
+block _00 ( beg(1) )
+title
+labels skip1 skip2
+
+   Vypravec: "W międzyczasie..."
+
+   Pan: "Mmmmh....
+         Pyszne..."
+   Pan: "Mmmmh..."
+goto skip1
+   Pan: "Wspaniale pachnie - ooch!"
+   Pan: "Ugh..."
+label skip1
+   Pan: "Przystawka skończona, czas na gulasz."
+   Pan: "Co ja czuję?"
+   Pan: "Przypalony czy co..."
+goto skip2
+   Pan: "Fe, Co za smród!"
+   Pan: "Nigdy już tego nie tknę!"
+label skip2
+   Pan: "TO NIE DO ZJEDZENIA!"
+
+gplend

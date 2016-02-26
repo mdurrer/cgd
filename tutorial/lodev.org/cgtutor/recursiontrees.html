@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Recursion Trees</title>
+<meta content="text/html; charset=us-ascii" http-equiv=
+"content-type" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Recursion Trees</h1>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#Recursion_Tree_with_Two_Branches">Recursion Tree with
+Two Branches</a></li>
+<li><a href="#Recursion_Tree_with_More_Branches">Recursion Tree
+with More Branches</a></li>
+</ul>
+<a href="index.html">Back to Index</a><br />
+<h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+Fractals have the property of self-similarity. One type of figure
+that fulfills this requirement, are Recursion Trees. The idea is as
+follows: you draw the stem of the tree, then the stem splits into
+two smaller branches, each of these two branches again splits into
+two smaller branches, etc... until infinity.<br />
+<h2><a name="Recursion_Tree_with_Two_Branches" id=
+"Recursion_Tree_with_Two_Branches"></a>Recursion Tree with Two
+Branches</h2>
+To code such a recursion tree, we need of course a recursive
+function. This function will draw one branch, and call itself again
+to draw two new branches, and since it has called itself again,
+these two called versions will again call itself again, etc... The
+parameters are changed each time to draw the branch at the correct
+position, with the correct angle and size. There's also a stop
+condition, it'll stop after n recursions, otherwise the calculation
+would never be finished and it'd end up in an infinite loop. In the
+nth step of recursion, 2^n branches have to be drawn.<br />
+<br />
+First, some variables and the recursive function are declared. "pi"
+can be used to give your favorite angle in radians more easily.
+"maxRecursions" is for the stop condition of the recursive
+functions. "angle" is a constant, it's the angle each new branch
+will have compared to it's parent branch. "shrink" is how much
+smaller each new branch is compared to it's parent branch. You can
+change their values, the values here have been chosen to give one
+of the many possible nice results.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">double pi = 3.1415926535897932384626433832795;
+
+int maxRecursions = 8; <span class="comment">//never make this too big or it'll take forever</span>
+double angle = 0.2 * pi; <span class="comment">//angle in radians</span>
+double shrink = 1.8; <span class="comment">//relative size of new branches</span>
+
+void recursion(double posX, double posY, double dirX, double dirY, double size, int n);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The main function doesn't do much more than setting up the screen,
+and then calling the recursive function. The value "h/2.3" in the
+parameters of the recursion function is the initial length of the
+first branch (the stem). The coordinates are the begin point and
+direction vector of the first branch.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int argc, char *argv[])
+{
+    screen(320, 240, 0, <span class="string">"Recursion Tree"</span>);
+    cls(RGB_White); <span class="comment">//make background white</span>
+
+    <span class="comment">//Now the recursion function takes care of the rest</span>
+    recursion(w / 2, h - 1, 0, -1, h / 2.3, 0);
+    
+    redraw();
+    sleep();
+    return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Now follows the recursion function, a function that only draws a
+single line and calls itself a few times, but results in a huge
+tree!<br />
+<br />
+Here's the part that draws the line. First the line is clipped to
+the screen, then drawn. The line is drawn from (posX, posY) to
+(posX+dirX, posY+dirY). So the position and direction of the line
+is given as a vector, instead of a begin point, an angle and a
+size, because direction vectors are much easier to work with. The
+size parameter itself isn't used to draw the line directly, it's
+only needed later to calculate the direction vector of the next
+branches. If the maximum number of recursions is needed, the
+function returns immediately after drawing the line, without
+calling itself again.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">void recursion(double posX, double posY, double dirX, double dirY, double size, int n)
+{
+    int x1, x2, y1, y2;
+    int x3, x4, y3, y4;
+    x1 = int(posX);
+    y1 = int(posY);
+    x2 = int(posX + size * dirX);
+    y2 = int(posY + size * dirY);
+    if(clipLine(x1, y1, x2, y2, x3, y3, x4, y4))
+    drawLine(x3, y3, x4, y4, ColorRGB(128, 96, 64));
+
+    if(n &gt;= maxRecursions) return;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+And in the second part of the function, the new position of the new
+branches is calculated as the endpoint of the previous branch, and
+the new direction vector for the new branches is calculated out of
+the size and current direction of the current branch. The new
+branches are rotated with the angle, the sine and cosine formulas
+are actually the calculation of the rotation matrix. Then the
+recursion function is called again with the new branch in it's
+parameters. This is done twice: once for a branch rotated to the
+right, and then for a branch rotated to the left.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    double posX2, posY2, dirX2, dirY2, size2;
+    int n2;
+    posX2 = posX + size * dirX;
+    posY2 = posY + size * dirY;
+    size2 = size / shrink;
+    n2 = n + 1;
+    dirX2 = cos(angle) * dirX + sin(angle) * dirY;
+    dirY2 = -sin(angle) * dirX + cos(angle) * dirY;
+    recursion(posX2, posY2, dirX2, dirY2, size2, n2);
+    dirX2 = cos(-angle) * dirX + sin(-angle) * dirY;
+    dirY2 = -sin(-angle) * dirX + cos(-angle) * dirY;
+    recursion(posX2, posY2, dirX2, dirY2, size2, n2);
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The result looks like this:<br />
+<br />
+<img alt="" src="images/recursiontree1.gif" style=
+"width: 324px; height: 263px;" /><br />
+<br />
+It's very easy to make the screen bigger, just change the
+parameters in the screen function, all the rest of the code is made
+relative to the size of the screen.<br />
+<br />
+Here's an alternative main function, that will redraw the tree all
+the time with a different angle.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int argc, char *argv[])
+{
+    screen(320, 240, 0, <span class="string">"Recursion Tree"</span>);
+    while(!done())
+    {
+        angle = getTicks() / 2000.0;
+        cls(RGB_White);
+        recursion(w / 2, h - 1, 0, -1, h / 2.3, 0);
+        redraw();
+    }
+    return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The angle is set to the time divided through some factor
+determining the speed of the animation. Here are a few of the
+results you get for different angles:<br />
+<br />
+<img alt="" src="images/recursiontree2.gif" style="width: 75px; height: 237px;" />
+<img alt="" src="images/recursiontree3.gif" style="width: 240px; height: 208px;" /> <img alt="" src="images/recursiontree4.gif" style="width: 204px; height: 167px;" />
+<img alt="" src="images/recursiontree5.gif" style="width: 142px; height: 126px;" /><br />
+<h2><a name="Recursion_Tree_with_More_Branches" id="Recursion_Tree_with_More_Branches"></a>Recursion Tree with MoreBranches</h2>
+Instead of only 2 branches, you can also give it more branches of
+course. For example, to give it 3 branches, let the recursive
+function call itself 3 times instead of only 2. This gives a huge
+increase in complexity however: now, if n is the max number of
+recursions, the number of branches to draw will be 3^n only in the
+last step, so if n=8, that's 6561 branches!<br />
+<br />
+It isn't difficult to extend to 3 or more branches, you just have
+to choose a nice angle for the new branches. The following code
+also has something extra: at the end of each branch, a green circle
+will be painted, making it look like leaves. It also allows to turn
+on or off&nbsp; up to 4 branches separately, and give each branch a
+fixed or time varying angle. In the main function are different
+input keys that create different angles and settings.<br />
+<br />
+Everything is declared again, the explanation of each variable is
+in the comments. The angle of branch i will be angle*ai+ci, where
+angle varies with the time.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">double pi = 3.1415926535897932384626433832795;
+
+int maxRecursions = 6; <span class="comment">//max number of recursions</span>
+double angle; <span class="comment">//angle in radians, this parameter changes with time</span>
+bool enable1, enable2, enable3, enable4; <span class="comment">//enable or disable up to 4 branches</span>
+double a1, a2, a3, a4, c1, c2, c3, c4; <span class="comment">//angle multipliers and adders for those 4 branches</span>
+double size, shrink; <span class="comment">//the size of the first branch, and the relative size of the next ones</span>
+
+bool releaseSpace; <span class="comment">//for input</span>
+int drawLeaves = 4; <span class="comment">//what type of leaves to draw, if any</span>
+
+void recursionTree(double posX, double posY, double dirX, double dirY, double size, int n);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+In the main function, some initial parameters are set, and then the
+while loop starts. This while loop will draw the tree each time and
+change the angle a with the time.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int argc, char *argv[])
+{
+    screen(512, 384, 0, <span class="string">"Recursion Tree"</span>);
+
+    <span class="comment">//Initial settings</span>
+    enable1 = 1; enable2 = 1; enable3 = 1; enable4 = 0; <span class="comment">//1 enables, 0 disables branch</span>
+    a1 = 1.0; a2 = -1.0; a3 = 0.0; a4 = 0.0; <span class="comment">//how fast the angles rotate</span>
+    c1 = 0.0; c2 = 0.0; c3 = 0.2; c4 = 0.0; <span class="comment">//absolute angle</span>
+    size = h / 3; <span class="comment">//size of the first branch (the stem)</span>
+    shrink = 1.5; <span class="comment">//relative size of the new branch</span>
+
+    while(!done())
+    {
+        angle = getTicks() / 3000.0;
+        cls(RGB_White);
+        recursionTree(w / 2, h - 1, 0, -1, size, 0); <span class="comment">//This function will draw a single line and call itself a few times, creating a tree</span>
+        redraw();
+
+	<span class="comment">//Presets of settings</span>
+        readKeys();</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The second part of the loop changes the settings like the angles,
+the number of recursions, ... according to some presets. It's easy
+to change them or add more if you like. The releaseSpace variable
+is used for the space key: it's there so that if you press the
+space key, it'll only change the setting again after you released
+the space key again.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        if(inkeys[SDLK_a]) {enable1 = enable2 = enable3 = 1; enable4 = 0;a1 =1;a2 = -1; a3 = 0;c1 = c2 = 0; c3 = 0.2; size = h / 3; shrink = 1.5; maxRecursions = 6;} <span class="comment">//default one with rotating branches</span>
+        if(inkeys[SDLK_b]) {enable1 = enable2 = enable3 = 1; enable4 = 0;a1 = a2 =a3 = 0; c1 = 0;c2 = 2 * pi / 3; c3 = -2 * pi / 3; size = h / 2; shrink = 2; maxRecursions = 8;} <span class="comment">//sierpinski triangle</span>
+        if(inkeys[SDLK_c]) {enable1 = enable2 = enable3 = enable4=1; a1 = a2 = a3 = a4 = 0; c1 = 0; c2 = pi / 2; c3 = pi; c4 = -pi / 2; size = h / 2; shrink = 2; maxRecursions = 6;}  <span class="comment">//square</span>
+        if(inkeys[SDLK_d]) {enable1 = enable2 = enable3 = 1; enable4 = 0;a1 = a2 = a3 = 0; c1 = 0; c2 = pi / 2; c3 = -pi / 2; size = h / 2; shrink = 2; maxRecursions = 8;} <span class="comment">//90°</span>
+        if(inkeys[SDLK_e]) {enable1 = enable2 = enable3 = 1; enable4 = 0;a1 = a2 = a3 = 0; c1 = 0.5; c2 = 0.1; c3 = -0.7; size = h / 3; shrink = 1.5; maxRecursions = 8;} <span class="comment">//a random tree with 3 branches</span>
+        if(inkeys[SDLK_f]) {enable1 = enable2 = enable3 = enable4 = 1; a1 = a2 = a3 = a4 = 0; c1 = 0.1 * pi; c2 = -0.1 * pi; c3 = 0.2 * pi; c4 = -0.2 * pi; size = h / 4; shrink = 1.25; maxRecursions = 6;} <span class="comment">//a random tree with 4 branches</span>
+        if(inkeys[SDLK_g]) {enable1 = enable2 = enable3 = 1; enable4 = 0; a1 = 1; a2 = -1; a3 = 2.0; c1 = c2 = c3 = c4 = 0; size = h / 2; shrink = 2; maxRecursions = 6;} <span class="comment">//some animating tree</span>
+        if(inkeys[SDLK_h]) {enable1 = enable2 = enable3 = 1; enable4 = 0; a1 = 1; a2 = -1; a3 = 2.5; c1 = c2 = c3 = c4 = 0; size = h / 2; shrink = 2; maxRecursions = 6;} <span class="comment">//some animating tree</span>
+        if(inkeys[SDLK_i]) {enable1 = enable2 = enable3 = 1; enable4 = 0; a1 = 1; a2 = -1; a3 = 3.0; c1 = c2 = c3 = c4 = 0; size = h / 2; shrink = 2; maxRecursions = 6;} <span class="comment">//some animating tree</span>
+        if(inkeys[SDLK_SPACE] &amp;&amp; releaseSpace) {drawLeaves++; drawLeaves %= 5; releaseSpace = 0;}
+        if(!inkeys[SDLK_SPACE]) releaseSpace = 1;
+
+    }
+    return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The recursion function is extended a bit too now:<br />
+<br />
+First it'll clip and draw the line of the branch, and then, if the
+last recursion is reached, it'll draw a leave. Which type of leave
+it draws depends on the drawLeaves setting, that can be changed
+with the space key. If the max number of recursions is reached, the
+function returns so that it doesn't call itself anymore.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">void recursionTree(double posX, double posY, double dirX, double dirY, double size, int n)
+{
+    int x1, x2, y1, y2;
+    int x3, x4, y3, y4;
+    x1 = int(posX);
+    y1 = int(posY);
+    x2 = int(posX + size * dirX);
+    y2 = int(posY + size * dirY);
+    if(clipLine(x1, y1, x2, y2, x3, y3, x4, y4))
+    drawLine(x3, y3, x4, y4, ColorRGB(128, 96, 64));
+    if(n == maxRecursions &amp;&amp; drawLeaves == 1) drawCircle(x4, y4, 5, ColorRGB(128, 255, 128));
+    if(n == maxRecursions &amp;&amp; drawLeaves == 2) drawDisk(x4, y4, 5, ColorRGB(128, 255, 128));
+    if(n == maxRecursions &amp;&amp; drawLeaves == 3) drawCircle(x4, y4, 10, ColorRGB(128, 255, 128));
+    if(n == maxRecursions &amp;&amp; drawLeaves == 4) drawDisk(x4, y4, 10, ColorRGB(128, 255, 128));
+
+    if(n>=maxRecursions) return;</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Finally, the function calculates new angles and vectors for the
+next branches and calls itself again, if that branch is enabled at
+least.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    double posX2, posY2, dirX2, dirY2, size2;
+    int n2;
+    posX2 = posX + size * dirX;
+    posY2 = posY + size * dirY;
+    size2 = size / shrink;
+    n2 = n + 1;
+    if(enable1)
+    {
+        dirX2 = cos(a1 * angle + c1) * dirX + sin(a1 * angle + c1) * dirY; <span class="comment">//Rotation</span>
+        dirY2 = -sin(a1 * angle + c1) * dirX + cos(a1 * angle + c1) * dirY;
+        recursionTree(posX2, posY2, dirX2, dirY2, size2, n2);
+    }
+    if(enable2)
+    {
+        dirX2 = cos(a2 * angle + c2) * dirX + sin(a2 * angle + c2) * dirY;
+        dirY2 = -sin(a2 * angle + c2) * dirX + cos(a2 * angle + c2) * dirY;
+        recursionTree(posX2, posY2, dirX2, dirY2, size2, n2);
+    }
+    if(enable3)
+    {
+        dirX2 = cos(a3 * angle + c3) * dirX + sin(a3 * angle + c3) * dirY;
+        dirY2 = -sin(a3 * angle + c3) * dirX + cos(a3 * angle + c3) * dirY;
+        recursionTree(posX2, posY2, dirX2, dirY2, size2, n2);
+    }
+    if(enable4)
+    {
+        dirX2 = cos(a4 * angle + c4) * dirX + sin(a4 * angle + c4) * dirY;
+        dirY2 = -sin(a4 * angle + c4) * dirX + cos(a4 * angle + c4) * dirY;
+        recursionTree(posX2, posY2, dirX2, dirY2, size2, n2);
+    }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here are just a few of the trees that can be generated this
+way:<br />
+<br />
+<br />
+<img alt="" src="images/recursiontree6.gif" style=
+"width: 429px; height: 381px;" /> <img alt="" src=
+"images/recursiontree7.gif" style=
+"width: 509px; height: 381px;" /><br />
+<br />
+You can do much more with this to create very natural trees, for
+example you can randomize the angle each recursion, or randomize
+whether or not a next branch will be drawn. You can draw thicker
+stems, with a texture, and nicer leaves instead, or even extend
+this to 3D and make some nice OpenGL demo! Use your fantasy
+:)<br />
+<hr />
+Last edited: 2004
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.<br />
+</body>
+</html>

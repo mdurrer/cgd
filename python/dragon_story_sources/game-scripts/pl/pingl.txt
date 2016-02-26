@@ -1,0 +1,216 @@
+{rozhovor s pinglem v hospodě:}
+
+block _05 ( beg(1) and isactico(i_doutnik) and (chci_plakat=1) )
+title
+  justtalk
+   D: "Co powiesz na cygaro?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "To brzmi kusząco..."
+  start pingl "mlci"
+  justtalk
+   D: "Oryginalne cygaro ze Smoczej Historii."
+  juststay
+  start pingl "mluvi"
+   Vrch: "Daj mi je!"
+  start pingl "mlci"
+  justtalk
+   D: "Wypal teraz."
+  juststay
+  start pingl "mluvi"
+   Vrch: "Czy nie wiesz, że
+          palenie szkodzi?!"
+   Vrch: "Ale chodzi mi tylko o to,
+          że cygaro jest drogie."
+   Vrch: "Może pooglądam sobie też inne rzeczy..."
+   Vrch: "...a ten plakat jest oczywiście twój!"
+  start pingl "mlci"
+
+  objstat away hosp_plakat
+  icostat off i_doutnik
+  icostat on i_plakat
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and maxline(1) )
+title
+  justtalk
+   D: "Kelner..."
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+   TITLE ...a co z plakatem?
+  justtalk
+   D: "...a co z plakatem?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Podoba ci się?"
+  start pingl "mlci"
+  justtalk
+   D: "Chciałbym go mieć u siebie w pokoju."
+  juststay
+  start pingl "mluvi"
+   Vrch: "A co jeszcze chciałbyś mieć?"
+  start pingl "mlci"
+  justtalk
+   D: "Chorągiewki, naklejki, proporoczyki..."
+  juststay
+  justtalk
+   D: "... podstawki do piwa, może masz?"
+  juststay
+  justtalk
+   D: "...oprócz tego kask do baseballu..."
+  juststay
+  justtalk
+   D: "...i koszulkę z godłem drużyny!"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Nic z tego!"
+  start pingl "mlci"
+  justtalk
+   D: "A co z plakatem?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Mógłbym ci go dać,
+          ale nie za darmo."
+  start pingl "mlci"
+
+  let chci_plakat (1)
+gplend
+
+block _02 ( beg(0) and not been(_02) )
+   TITLE ...czy pożyczysz mi przyssawki?
+  justtalk
+   D: "...czy pożyczysz mi przyssawki?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "MY nie pożyczamy przyssawek."
+  start pingl "mlci"
+  justtalk
+   D: "Czemu?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Nie ma przyssawek."
+  start pingl "mlci"
+  justtalk
+   D: "Nie rozumiem!"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Po prostu, nie ma przyssawek."
+   Vrch: "Gdyby były
+          bar byłby pełen gości..."
+   Vrch: "Jeden z naszych najlepszych klientów
+          chciał nawet
+          powiesić się z tego powodu."
+  start pingl "mlci"
+  justtalk
+   D: "Gdzie?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Nie wiem, poszedł szukać gałęzi..."
+  start pingl "mlci"
+
+{a objevime sipkare v lese:}
+  objstat_on leskriz_sipkar leskriz
+gplend
+
+block _03 ( beg(0) and not been(_03) )
+   TITLE ...dokąd prowadzą te drzwi?
+  justtalk
+   D: "...dokąd prowadzą te drzwi?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Na zewnątrz baru. Lecz nie są
+          używane z powodu przyssawek."
+  start pingl "mlci"
+  justtalk
+   D: "To ciekawe..."
+  juststay
+  start pingl "mluvi"
+   Vrch: "Początkowo były używane,
+          lecz zdarzało się zbyt wiele wypadków."
+   Vrch: "Gdy ktoś nagle wchodził
+          co zdarzało się często
+          lądował z przyssawką na twarzy."
+  start pingl "mlci"
+  justtalk
+   D: "Jak wówczas liczyliście punkty?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Oko dziesięć punktów, a nos pięć."
+   Vrch: "Jeśli rzut był bardzo mocny,
+          przyznawano po dwa punkty za każdy wybity ząb."
+   Vrch: "Zaś gdy przyssawka leciała tak szybko,
+          że porywała fceta ze sobą..."
+   Vrch: "... i przgważdżała go do drzewa na
+          zewnątrz baru
+          przyznawano sto punktów."
+  start pingl "mlci"
+  justtalk
+   D: "Czy tak mówią reguły gry?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Tak było, sprzeczaliśmy się o to."
+   Vrch: "I dlatego drzwi zostały na zawsze zamknięte,
+          a klucz zaginął."
+  start pingl "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+   TITLE ... czy macie hamburgery?
+  justtalk
+   D: "... czy macie hamburgery?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Nie gotujemy!"
+  start pingl "mlci"
+  justtalk
+   D: "Nie trzeba ich gotować!"
+  juststay
+  start pingl "mluvi"
+   Vrch: "Nie mamy kuchni."
+  start pingl "mlci"
+  justtalk
+   D: "To co znaczy tez szyld na zewnątrz?"
+  juststay
+  start pingl "mluvi"
+   Vrch: "To tylko reklama."
+  start pingl "mlci"
+  justtalk
+   D: "Rozumiem."
+  juststay
+gplend
+
+
+
+block _06 ( beg(0) and been(_04) and not been(_05) and last(_00) and maxline(1) )
+title
+  justtalk
+   D: "...plakat..."
+  juststay
+  start pingl "mluvi"
+   Vrch: "Myślałem, że się rozumiemy.
+          Może być twój, ale nie za darmo!"
+  start pingl "mlci"
+  exitdialogue
+gplend
+
+block _08 ( beg(0) and last(_00) and maxline(1) )
+title
+  justtalk
+   D: "...już nic."
+  juststay
+  exitdialogue
+gplend
+
+block _07 ( beg(0) and not last(_00) )
+   TITLE ... no to cześć.
+  justtalk
+   D: "... no to cześć."
+  juststay
+  start pingl "mluvi"
+   Vrch: "No, tak..."
+  start pingl "mlci"
+  exitdialogue
+gplend

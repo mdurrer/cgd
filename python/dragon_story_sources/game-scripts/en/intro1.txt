@@ -1,0 +1,34 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "There was, however, a civilized dragon family -"
+Vypravec: "- father Herbert, mother Berta and
+           their son Bert."
+Vypravec: "They were not the kind of dragons..."
+Vypravec: "...we know from the dreadful fairy tales..."
+Vypravec: "...these dragons adored traditional family values."
+Vypravec: "They were hygiene-minded, well mannered, and ..."
+Vypravec: "... they had even forgotten about the old
+           dragon treasures."
+{jako fotograf, vyleti ptacek:}
+Vypravec: "Say cheese, please..."
+load foto_cel "syr"
+startplay foto_cel "syr"
+start foto_cel "z2"
+loadpalette "..\in1\ft_BACK3.pcx"
+setpalette
+loadpalette "..\in1\IN1BACK.pcx"
+setpalette
+loadpalette "..\in1\ft_BACK.pcx"
+fadepalette 0 255 100
+load intr_nap1 "draci2"
+load intr_nap2 "historie2"
+start intr_nap1 "draci2"
+start intr_nap2 "historie2"
+loadpalette "..\in1\ft_BACK.pcx"
+fadepaletteplay 0 255 120
+loadpalette "..\in1\ft_BACK2.pcx"
+fadepaletteplay 0 255 120
+
+gplend

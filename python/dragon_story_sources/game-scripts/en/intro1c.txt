@@ -1,0 +1,166 @@
+block _00 ( beg(1) )
+title
+ labels preskocime
+{  disablespeedtext
+  disablequickhero
+  walkon 176 156 vlevo
+Vypravec: "But this is not the end of our story,
+           merely the beginning."
+  walkonplay 176 156 vlevo
+  load intromutti "mluvi"
+
+  start intromutti "mluvi"
+B: "It can't go on like this, Bert!"
+B: "The fact that your father is roaming somewhere
+    doesn't mean you can get
+    naughtier and naughtier!"
+  start intromutti "mlci"
+  justtalk
+D: "What?"
+  juststay
+  start intromutti "mluvi"
+B: "Who drew the big ear on granma's bottom?"
+  start intromutti "mlci"
+  justtalk
+D: "Shush, what if she heard us?"
+  juststay
+  start intromutti "mluvi"
+B: "Poor granma, now she is ashamed to show
+    herself."
+  start intromutti "mlci"
+  justtalk
+D: "She will get used to it..."
+  juststay
+Vypravec: "Anyway, this story isn't about granma!"
+  goto preskocime
+Vypravec: "[xx]"
+Vypravec: "[xx]"
+ label preskocime
+  {bert i matka se chápavě podívají někam nahoru, nebo na
+  {sebe, pak jako herci začnou zase zostra:}
+  mark
+  load intromutti "mluvinormal"
+  start intromutti "mluvinormal"
+B: "Let's try this again."
+  release
+  start intromutti "mlci"
+  justtalk
+D: "Fine."
+  juststay
+
+  start intromutti "mluvi"
+B: "Who turned the comedian's puppets to stone?"
+  start intromutti "mlci"
+
+  justtalk
+D: "You thought it was me all this time?"
+  juststay
+
+  justtalk
+D: "It was Evelyn!"
+  juststay
+
+  start intromutti "mluvi"
+B: "Evelyn?"
+  start intromutti "mlci"
+
+  justtalk
+D: "She is my new best friend!"
+  juststay
+  start intromutti "mluvi"
+B: "You will quit seeing her!"
+B: "She has led you astray!"
+  start intromutti "mlci"
+
+  justtalk
+D: "What have I learned from this?"
+  juststay
+  walkonplay 224 166 vpravo
+  justtalk
+D: "To be a nicer dragon?"
+D: "No way!"
+D: "I had good intentions..."
+  juststay
+gplend
+
+block _01 ( last(_00) )
+title
+  disablequickhero
+  load intromutti "mluvi"
+
+  start intromutti "mluvi"
+B: "Bert, give me the wooden spoon!"
+{# in this fairy-tale land the children are not beaten
+{# with canes but with wooden spoons
+  start intromutti "mlci"
+  justtalk
+D: "You don't want to beat me, do you?
+    There is not supposed to be any violence
+    in this game!"
+  juststay
+  walkon 184 156 vlevo
+  start intromutti "mluvi"
+B: "Originally it was not supposed to be!"
+  start intromutti "mlci"
+  walkonplay 184 156 vlevo
+  justtalk
+D: "Please, no spankings!"
+  juststay
+  start intromutti "mluvi"
+B: "I can't promise, perhaps my hand will slip..."
+  start intromutti "mlci"
+  justtalk
+D: "You have no practice in beating me!"
+  juststay
+  start intromutti "mluvi"
+B: "Do not worry, I learn quickly!"
+  start intromutti "mlci"
+
+  justtalk
+D: "I am worried now ...
+    I'd better wait for my father."
+  juststay
+  start intromutti "mluvi"
+B: "I would not hold my breath."
+  start intromutti "mlci"
+
+  walkonplay 200 156 vpravo
+  justtalk
+D: "We could wait for a while."
+  juststay
+  start intromutti "mluvi"
+B: "Fine, but only for a while."
+  start intromutti "mlci"
+  load intromutti "mlci5sec"
+{čekají asi 5 sekund}
+  startplay intromutti "mlci5sec"
+  start intromutti "mlci"
+  justtalk
+D: "I think we've waited long enough."
+  juststay
+  walkon 176 156 vlevo
+  start intromutti "mluvi"
+B: "Where the heck is Herbert?
+    I'm getting scared,
+    he's been gone for a month already!"
+  start intromutti "mlci"
+
+  walkonplay 176 156 vlevo
+  justtalk
+D: "Don't be afraid.
+    You'll see, I'll bring him back!"
+D: "Yes, we can wait for him
+    to administer the beating."
+D: "(I hope I will manage to steal
+    the wooden spoon before then)"
+  juststay
+  walkon 240 144 vlevo
+  start intromutti "mluvi"
+B: "I hope I won't see you together with Evelyn!"
+  start intromutti "mlci"
+  walkonplay 240 144 vlevo
+  justtalk
+D: "Don't worry. I will deal with her."
+  juststay
+  walkonplay 268 144 vpravo
+gplend

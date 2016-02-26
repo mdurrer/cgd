@@ -1,0 +1,116 @@
+{drak čte skřetům pohádku:}
+
+block _ (1)
+title
+  {knihu pak uz nebudeme potrebovat:}
+  icostat off i_pohadka
+  load bert "kniha_cte"
+  load bert "kniha_otevir"
+  load bert "kniha_vytahu"
+  load bert "kniha_mlci2s"
+  load bert "kniha_mlupre"
+  load bert "kniha_mlupo"
+  load bert "kniha_divase"
+  load bert "kniha_listuj"
+
+  load blby "usina"
+  load blby_hl "usina"
+  load blbejsi "usina"
+
+  startplay bert "kniha_otevir"
+
+  start bert "kniha_cte"
+
+   D: "To tylko bajka,jak każda inna."
+   D: "Przybył smok i chciał pożreć księżniczkę.
+       Na szczęście, zjawił się dzielny książe."
+   D: "Zabił smoka, poślubił księżniczkę
+       i otrzymał pół królestwa.
+       Żyli długo i szczęśliwie."
+
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+   D: "Stary, zdzieciniały król stracił już
+       wszystkie zęby
+       i mógł spożywać tylko płynne potrawy."
+   D: "Skóra mu całkiem wyschła
+       i był lekki jak kawałek papieru."
+   D: "Nic więc dziwnego, że gdy służący
+       zapomniał zamnknąć oko,
+       król wyfrunął na zewątrz.
+       W starych zamkach panują przeciągi."
+   D: "Król przez chwilę szybował na wietrze
+       lecz nie trwało to długo.
+       W końcu nasiąknął wodą i rozmiękł na deszczu."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+  start blby "usina"
+  start blby_hl "usina"
+
+   D: "Smoka zjadły robaki.
+       Książe został ogłoszony królem
+       i otrzymał drugie pół królestwa."
+   D: "Księżniczka została królową..
+       Nie mieli dzieci."
+   D: "Będziemy ich nadal nazywać księciem
+       i księżniczką, żeby się nam nie pomyliło."
+   D: "Księżniczka wkrótce się zestarzała
+       i jej twarz pokryły zmarszczki."
+   D: "Kiedy musiała spojrzeć w lustro
+       wyrzuciła je zirytowana.
+       Lustro rozbiło się na wiele ostrych kawałków."
+  start blby "spi"
+  start blby_hl "spi"
+  objstat_on bota skreti
+  start bota "zakladni"
+   D: "Jedno oko księcia było krótkowzroczne
+       a drugie szklane.
+       Nie spostrzegł, że staje
+       bosą nogą na odłamki szkła."
+  start blbejsi "usina"
+  objstat away blbejsi_hl
+   D: "Dostał zakażenia
+       i umarł od strasznej gorączki."
+   D: "Zresztą, cierpiał również na reumatyzm
+       wskutek chodzenia boso."
+   D: "W starych zamkach zazwyczaj bywa zimno."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+   D: "Przybył nowy smok i chciał coś zjeść."
+   D: "Księżniczka była stara i brzydka
+       Nie zjawił się żaden młody książe."
+   D: "Smok był głodny
+       i wsadził sobie księżniczkę
+       w całości do pyska.
+       Zadławił się na śmierć, bo była żylasta."
+  start blbejsi "spi"
+   D: "Nic dziwnego, stare mięso trzeba
+       wpierw ugotować."
+   D: "Każdy inny smok wolałby raczej
+       umrzeć z głodu niż
+       połykać taki taki kąsek."
+   D: "O ile nam wiadomo,
+       żaden smok nigdy więcej już tam nie zawitał."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+   D: "I to już cała opowieść."
+
+
+  startplay bert "kniha_mlci2s"
+  start bert "kniha_cte"
+{chvíli pauza}
+   D: "Cisza!"
+
+  startplay bert "kniha_divase"
+  start bert "kniha_mlupre"
+{najdeme scenar v knize...
+   D: "Och, w tej książce jest jakiś papierek."
+  startplay bert "kniha_vytahu"
+  start bert "kniha_mlupo"
+   D: "No dobra. Nie będę go wyrzucał."
+  juststay
+  icostat on i_scenar
+gplend

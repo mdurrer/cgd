@@ -1,0 +1,62 @@
+--- /Users/robert/projects/dh/src/retezce-pl.orig.txt	2012-05-29 22:48:20.000000000 -0700
++++ ../dist/strings/utf-8/retezce-pl.txt	2012-05-29 21:28:44.000000000 -0700
+@@ -508,10 +508,13 @@
+  Jest dokładnie w moim typie.
+  Czy krzesło może przeżywać nirwanę?
+  Odkąd opuściłem łono mej matki|poszukiwałem odpowiedzi na to pytanie.
+  W dodatku to krzesło zaprzecza|wszelkim prawom optyki!
+  Tak...
++Huh...
++Eh...
++Joj...
+  To typowe krzesło ogrodowe.
+  Może połamać trawę.
+ A jednak na prawo!
+ A jednak na lewo!
+  Nie żartuj sobie ze mnie!
+@@ -796,10 +799,12 @@
+ Dobra,|gdzie tu jest ubikacja?
+  ...te wszystkie straszne doświadczenia,|które się w tobie gromadziły!
+ Piwo!
+ Nie próbuj zatopić swoich problemów w alkoholu!
+ Co?
++Znacznie lepiej jest topić problemy|w narkotykach!!
++Naprawdę?|Muszę spróbować.
+ Teraz zacząłem rozumieć.|Otworzyłeś mi oczy.
+ A czy teraz mi to wyznasz?
+ Tak.|Może  lepiej|gdy ci to wyznam.
+ Uniknąłem pewnej śmierci!
+ O mały włos nie zostałem pożarty.
+@@ -1965,10 +1970,12 @@
+ Co wytrzyma materiał, z którego|jesteś zrobiona?
+ Jest odporny na mróz, gorąco, wodoszczelny|przetrwa upływ czasu i jest niejadalny.
+ Czy ktoś próbuje zjadać stare kroniki?|Fe!
+ W bajkach wszystko jest możliwe...
+ Cieszę się, zę mogę bez obaw|zostawić cię tu na pastwę tych idiotów.
++Narazie.
++Być moźe spotkamy się póżniej ...
+ Cześć, jestem Bert.
+ A ja jestem Hornaine Czterorogi.|Jak z pewnością się zorientowałęś,|jestem trolem.
+ Dziwny trol.
+ Wydaje mi się, że trole narodziły się po to|by pilnować mostów!
+ To nonsens!
+@@ -2478,10 +2485,12 @@
+ Nie musisz!
+ Miałem dobre zamiary...
+ Bert, podaj mi drewnianą łyżkę!
+ Nie chcesz mnie zbić, prawda?|W tej grze miało nie być scen przemocy!
+ Początkowo miało nie być!
++Tylko bez żadnych wylewających się|flaków proszę!
++Nie mogę tego zagwarantować, być|moźe ręka mi się omsknie...
+ Nie masz wprawy w biciu!
+ Nie martw sie, szybko się uczę!
+ Martwi mnie to...|Lepiej poczekam na ojca.
+ Wolę nie czekać.
+ Można trochę poczekać.
+@@ -2539,5 +2548,6 @@
+ Ouch!
+ .
+ .
+ .
+ .
++.

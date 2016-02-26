@@ -1,0 +1,42 @@
+system:
+-------
+extended	(simple utility)
+graform		(parsing and saving graphical formats; only used for saving
+		screenshots)
+graph256	(graphic primitives)
+graphasm.asm
+put.asm
+dma		(DMA access for playing dubbing from CD)
+midi01		(MIDI music)
+sblaster	(playing samples with sound effects)
+
+animace4	(the only game-related library, low-level handling of
+		animations, such as double-buffering, handling mouse, drawing
+		of registered objects)
+
+gpl2:
+-----
+play3.asm	(simple interpretter of the language, calling Pascal call-backs)
+
+bar:
+----
+barchiv		(body of the archiver)
+bar_huf		(concrete compression routines)
+bar_lzw
+bar_tog		(library with constants)
+bardfw		(this is the legacy external interface used by the player)
+
+dfw		(linked in, but never called and should be removed)
+
+player:
+-------
+vars		(all data structures of the game)
+anmplay4	(high-level library for animations, parsing our formats,
+		loading maps and mask, and walking with the hero)
+rungpl2		(actual call-backs called from the game interpretter, loading
+		and saving the game, switching locations, main loop)
+
+player/en:
+----------
+error		(list of all error messages, and credits)
+p		(main program, initializing the engine)

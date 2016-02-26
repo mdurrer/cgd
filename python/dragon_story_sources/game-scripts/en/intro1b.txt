@@ -1,0 +1,12 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "Then the other day Herbert
+           disappeared, and nobody
+           knew where to"
+Vypravec: "... some think that he went to look for
+           the old dragon treasure."
+Vypravec: "Berta and Bert were left alone."
+
+gplend

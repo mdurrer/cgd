@@ -1,0 +1,421 @@
+How to compile the game scripts
+===============================
+
+0. New way, entirely on Unix, using make
+----------------------------------------
+
+Developed and tested on Mac OS X, but should work on any Linux, with possible
+problems with case-sensitive file-names (which I don't use on Mac OS X).  I
+tried to make the procedure robust.
+
+- Make an empty directory somewhere, say $DIR
+- Download new-gfx.zip, extract it to $DIR, and rename $DIR/gfx to
+  $DIR/orig-gfx (this will be the source copy, never touched, and $DIR will
+  contain patched sources)
+- (optionally) Download dubbing.zip, and extract it to $DIR (obtaining just 1
+  file CD.SAM)
+- Create directories $DIR/orig-exe/{cz,de,en,pl} and extract there the
+  original compiled game archives dh-*.zip (because some files are needed from
+  them, those which the game compiler doesn't produce; you can also download
+  just a subset of languages)
+- Download new-sources.zip and extract it somewhere, say $SRC
+- Edit $SRC/Makefile, setting:
+    o LANGS: to the subset of languages you care about
+    o AUDIO: to the subset of compressed-dubbing formats you wanna produce
+      (optional)
+    o DIR: to your directory $DIR
+- Install Free Pascal compiler (version 2.4 works) and make sure fpc is in the
+  path
+- Run `make` from $SRC.  This produces:
+    o $DIR/new-sources.zip (a copy of $SRC with your possible modifications
+      taken into account, and the original strings from player/utf-8/ recoded
+      into player/recoded/)
+    o $DIR/gfx/ and $DIR/new-gfx.zip (a copy of $DIR/orig-gfx, with the newest
+      game scripts recoded into their charset and then copied there)
+    o $DIR/exe/{cz,de,en,pl} and $DIR/dh-*.zip (the newly compiled game with
+      some files copied from $DIR/orig-exe/)
+- The previous step doesn't recompile p.exe, because that cannot be done by
+  Free Pascal (due to usage of inline-assembler and other BP7-specific
+  features).  If you wanna do that, then:
+    o Run DosBox on top of your $SRC directory, mapped as C:.
+    o Map D: such that it contains an installation of Borland Pascal 7.
+    o Edit C:\scripts\bp7-comp.bat to set the path to BP7 (by default
+      D:\bp7\bin).
+    o Run bp7-comp.bat from C:\scripts\.  This produces P-{CZ,DE,EN,PL}.EXE in
+      $SRC/player/.
+    o Run `make update_exe` from $SRC.  This copies the compiled P-*.EXE to
+      $DIR/exe/*.  You can also run just `make` and that will both copy the
+      binaries and update the compiled game archives.
+- (optionally) If you have modified the game scripts in $DIR/game-scripts/ and
+  wanna reformat them, run fix-width.py from $DIR/scripts/.
+- (optionally) If you wanna compress the dubbing, run `make dubbing_all`.
+  This does the following:
+    o Extracts all samples from $DIR/CD.SAM to $DIR/buf/.
+    o Compresses them to all enabled audio formats to $DIR/dubbing-*/.
+    o Creates ZIP archives with all compressed samples $DIR/dub-*.zzz (I chose
+      the extension .zzz instead of .zip so that nobody accidentally extracts
+      the archives, because ScummVM expects a ZIP archive).
+
+If you don't want/cannot use the above procedure, you can fall-back to the
+historic manual procedure described below.
+
+1. Prepare the environment
+--------------------------
+
+The game scripts used to use absolute paths when referring to other scripts,
+and it used to be essential to expand the old-gfx.zip archive to the directory
+\dh on some disk.  This is no longer true: the current game scripts use
+relative paths and the compiler fully supports them, so you can work anywhere
+in the directory hierarchy now.
+
+- expand http://www.ucw.cz/draci-historie/source/new-gfx.zip somewhere, say
+  $DIR\
+  (Optionally, you can download old-gfx.zip, which is mostly a super-set of
+  new-gfx.zip, including many auxiliary files not needed for the game
+  compiler, but this package is 8x larger, except for missing MIDI files,
+  which you have to download separately from old-midi.zip.)
+- create empty destination directory somewhere, say $DIR\exe\
+
+
+The directory $DIR\gfx\ contains many subdirectories with graphics,
+animations, and sound samples for all locations.  The game scripts are
+concentrated in the directories $DIR\gfx\{cz,en,pl}\.
+
+1.1
+
+If you wanna just compile existing scripts, choose one of the directories.
+Since the game scripts in new-gfx.zip are stored in the proper charset, you
+don't have to do any adjustments.
+
+1.2
+
+If you wanna compile the scripts from the cleaned-up archive, say,
+http://www.ucw.cz/draci-historie/source/new-sources.zip in directory
+game-scripts/cz/, then you need to recode the scripts first, because they
+are stored in UTF-8 but required to be in x-kam-cs by the compiler.
+
+Run scripts/prune-sources.py, which is a program that reads the contents of
+old-gfx.zip (an archive with complete game graphics et al.) and game scripts,
+constructs new-gfx.zip (a much small archive with only the files needed for
+the compiler), and recodes all game scripts into their corresponding charsets.
+If you only want to run the last part, comment the rest out, and run
+prune-sources.py on the game scripts stored in UTF-8.  Copy the transcoded
+files into $DIR\gfx\cz2\ (to not overwrite the original cz\).
+
+You may wander why to run prune-sources.py instead of using some generic
+charset converter; the answer is that the charsets we used in the 1990's were
+completely obscure and proprietary, and a random converter probably won't know
+them.  You may also wonder why you would possibly want to start with the UTF-8
+files if properly encoded files are available: this more complicated path
+gives you flexibility to edit the game scripts in modern editors without
+worrying about charsets!
+
+1.3
+
+If you wanna create a new language version, just copy $DIR\gfx\en\ into
+$DIR\gfx\de\ (for German), and translate all English text into German
+there.  You can compile the game using standard way described below.  No
+updates to the paths are needed, because all paths in the game scripts are
+relative.
+
+2.1. Compile the game compiler
+------------------------------
+
+First of all, you don't need to compile the essential utilities, because the
+executable files mentioned in this document are already enclosed in the
+archive new-sources.zip.  Compilation might be useful if you wanna change
+something or debug some problems.
+
+You need Borland Pascal 7.0 or Free Pascal (version 2.4 is known to work).
+Expand the cleaned-up source codes from
+http://www.ucw.cz/draci-historie/source/new-sources.zip
+
+(a) Borland Pascal 7.0
+
+Go to the directory compiler/ and run bp.  Enable the 286 instruction set.
+Set Options/Directories as follows to make sure that Borland Pascal can find
+all libraries, as follows:
+
+Unit directories: ..\units\gpl2;..\units\bar;..\units\system
+
+Open k3.pas and run Compile/Build.  It should succeed and produce k3.exe.
+
+(b) Free Pascal
+
+Go to the directory compiler/ and run:
+
+  fpc -g -Cr -Co -Fu../units/gpl2 -Fu../units/bar -Fu../units/system k3
+
+This should produce binary k3 with debugging information and range and
+overflow checking enabled.  This executable runs well in Unix environment
+(tested on Mac OS X) on case-insensitive file-systems (because the original
+scripts are sloppy and often mix the cases).  Once the scripts are unified,
+case-sensitive file-systems will work, too.
+
+I have verified that its output matches the output of the original game
+compiler except for a slight difference in the serialization of the 6-byte
+real numbers, which is insignificant.  In particular, the structres are
+serialized correctly with the original 1-byte alignment.
+
+2.2. Compiling the original game player
+---------------------------------------
+
+You need Borland Pascal 7.0 with Turbo Assembler 3.0.  Free Pascal isn't
+supported due to heavy usage of assembler and MS-DOS internals.
+
+First, compile manually some assembler files.  Go to the following directories
+and call `tasm FILE.asm` on each of them:
+
+- units/gpl2/play3.asm
+- units/system/graphasm.asm
+- units/system/put.asm
+
+Go to the directory player/, set the compiler options like above, and set
+also the object directories, as follows:
+
+Object directories: ..\units\system;..\units\gpl2
+
+Define exactly one conditional compilation symbol for the language of your
+choice: CZECH, GERMAN, ENGISH, or POLISH.  Open p.pas and run Compile/Build.
+
+3. Run the game compiler
+------------------------
+
+Go to the directory with k3.exe, but it will work even if you copy k3.exe
+somewhere else, say the directory with the edited game.
+
+Run
+
+  k3.exe $DIR\gfx\en $DIR\exe
+  
+where the first parameter is the source directory and the second parameter is
+the destination directory.  You can omit both parameters and they default to
+the current directory.  If you only enter one path, then it is taken as the
+input path; if you wanna specify just the output path, use '.' for the input
+path.  The compiler should take less than 1 minute to compile everything.
+
+The contents of $DIR\exe\ will not be a complete game archive yet, because it
+lacks the executables, font files, and other immutable files.  The best way to
+produce a playable archive is to copy all files from $DIR\exe\ and paste them
+into a directory with an existing playable game.  The immutable files will be
+preserved, and the recompiled files will be overwritten.
+
+3.1. Generated files vs. files needed for the game :
+----------------------------------------------------
+
+The compiler produces the following files:
+
+- *.DFW: compiled game archives (in the BAR format, but named *.DFW for
+  historic reasons), used by the game player, with two expections:
+  = SAM_AN.DFW: intermediate file with the sound samples of animations, not
+    needed for the game and should be removed
+  = HRA.DFW: contains mouse and navigation icons, and the backpack image.  It
+    is NOT produced by the compiler and needs to be copied from an existing
+    copy.  The script which initially generated it was lost, but that's OK,
+    since it's just a collection of images.  The original file was stored in
+    the legacy DFW format, usign RLE compression (as the only such file,
+    because all other ones are in the BAR format); if you want to upgrade it
+    to the newer format, use units/bar/upgrade.exe.
+- *.MID: the input MIDI files are just copied here
+- CD2.SAM: final file with sound samples of animations
+- RETEZCE.EMS: similar to RETEZCE.DFW (list of dubbed strings) but stored in a
+  different format (see file-formats.txt).  Used by MSAM.EXE, a tool for
+  assigning dubbing to the game strings and producing CD.SAM, the file with
+  the dubbing samples, from a directory with (thousands of) raw sound files,
+  see section 7.
+- *.$$$ and *.$$1: temporary files of the compiler, not needed for the game
+  and should be removed
+
+3.2. Notes on random "CRC" in the game header INIT.DFW :
+--------------------------------------------------------
+
+We wanted to be able to distinguish between different compilations of the
+game, so we added an 8-byte field called CRC into TGameHd.  Unfortunately,
+this bit-field doesn't contain any real checksum, but just a bunch of random
+numbers.  This means that different compilations of the same game scripts
+differ on exactly those 8 bytes in INIT.DFW and 1 more byte of BAR-archive
+checksum, which is unfortunate.  Everything else is deterministic, as I
+have verified.  Just use the original INIT.DFW instead of the newly compiled
+one so that ScummVM's stored MD5 check-sums match your new compilation.
+
+TODO: replace this randomization by computing a proper CRC (which is a good
+idea in principle, because one may want to distinguish the saved games of
+different versions), and add these updated checksums to ScummVM for
+auto-detection of properly compiled games.  Also, add there the checksum of
+the official CD-game sold in 1995, because ScummVM only recognizes the
+"checksums" from my compilations made in 2006.
+
+4. Play the recompiled game
+---------------------------
+
+The old MS-DOS player should work as is, but the ScummVM player needs to know
+the MD5 checksum of the new files to be able to detect the game.  Run `md5
+INIT.DFW`, copy the outputted check-sum, and paste it into the ScummVM file
+engines/draci/detection.cpp , section gameDescriptions[].  The recompile
+ScummVM, and it should recognize your new game.
+
+Another option is to verify in a hexdump that INIT.DFW only differs from the
+production one in exactly 9 bytes (a signature wihh 8 random characters and a
+1-byte checksum of the BAR archive).  If this is true (and it should if you
+have just reformulated/translated the dialogs but otherwise keep the game
+logic intact), then you can just use the production one instead of the newly
+compiled one and pretend that the game is the same.
+
+5. Fonts
+--------
+
+When editing a new language variant, if you need non-ASCII characters, you
+must prepare a font for them.  Use editors/fontedit/fontedit.exe, or
+fontedit1.exe or fontedit2.exe (not sure which version is the newest and they
+all look similar).  It's an old small MS-DOS utility for editing the very
+obscure font files we are using, of an unknown origin/license.  You can take
+an existing font and just add the characters you need.
+
+A little problem is that the font files don't contain 256 characters as would
+be logical, but only 138 characters from space (#32) to #169; I don't know
+why.  The format of the font files is described here in file-formats.txt.  So
+it not only matters that you don't have too many distinct characters, but also
+that their codes are less than 170.  You may be forced to use some atypical
+charset instead of your favorite one when writing the text scripts; for
+example we used a completely obscure proprietary encoding in Polish, see again
+file-formats.txt.  The best way to go is to use UTF-8 for editing, and the
+convert it to the final charset matching the font files for compilation, using
+scripts/prune-sources.py, after you update it to handle your charset.
+
+6. Tips for changing the scripts
+--------------------------------
+
+IMPORTANT!  If you want to use the existing Czech dubbing together with your
+translated scripts, don't change in any way the structure of the dialogs.  You
+must not insert/delete/shuffle any sentence, otherwise the numbering of the
+sentences won't match!  It's OK to change the number of rows in a sentence,
+because sentences can span multiple lines.
+
+The format of the scripts is simple and obscure.  Basically, you touch the
+part with the format
+
+character1: "text"
+character2: "multiple
+             line text"
+character1: "another|multiple|line text"
+
+The indentation in the second case doesn't matter and left spaces are ignores.
+Do not use TABs, beacuse the k3.exe compiler handles them incorrectly.  You
+can use the vertical "|" instead of new line, or when you want the subsequent
+spaces not being ignored, e.g. "first row|   indented second row".
+
+Lines starting wiht { are comments, which are (counterintuitively) terminated
+not by a matching }, but by the end of line.  Sometimes we, however, put a
+matching } at the end of the line to look nice, but sometimes we didn't.  Oh,
+sigh.
+
+Most English-looking text that is not quoted are commands of the game, except
+for lines that look like
+
+  title Some title
+  title multi-row|title
+
+These lines describe the title of an object/location/character/whatever.  I
+don't know why we didn't encode the title in quotes.  So what follows the
+keyword title is the actual title.
+
+Most files are *.txt describing the dialogs, and then there are some more
+special files without an extension:
+
+- gpl2: don't touch, defines the game programming language
+- ident: don't touch, defines some enum types
+- init: don't touch, defines the game variables and their initial values
+
+- ikony: describes game items that can be put into the itinerary
+- mist: defines all locations
+- mluveni: defines all speaking characters
+- objekty: defines all objects in all locations that you can interact with
+
+You may want to localize the titles in the last 4 files.
+
+7. Avoiding long lines in the scripts
+-------------------------------------
+
+The original game player cannot cope with lines of text longer then 320 pixels
+and displayes some graphic artefacts.  It is therefore desirable to ensure
+that all sentences are broken into short-enough lines.  After you have done
+the editing of the scripts, as the last step, you should make sure that all
+line are short enough.
+
+(a) MS-DOS
+
+The utility editors/width/width.exe reads game scripts and dumps them into new
+files with lone lines highlighted by inserted |'s.  The utility is absolutely
+horrible for several reasons:
+
+1. it doesn't understand |'s on its input and considers them normal
+   characters, so you wanna make sure that all long sentences are split into
+   lines by newlines and not just by |'s, otherwise the utility will insert
+   some more line breaks apart from the already existing ones even though it
+   isn't necessary
+2. until a recent patch, it only checked the first line of each sentence,
+   ignoring the subsequent ones
+3. it doesn't find the most elegant line-break, but just the first one that
+   works.  You may wanna break long lines on aesthetically pleasing spaces.
+4. it doesn't handle the grammar of the scripts properly, but it somehow seems
+   to work anyway
+
+I don't trust its output, but use it to just bring my attention to the
+problems.  I run it on the whole directory, generate a context diff, manually
+edit the line breaks, apply the modified diff, and iterate to see if I've
+solved all problems.
+
+You can run it as follows:
+
+  width.exe TXT AAA
+  ren *. *.111
+  width.exe 111 BBB
+  ren *.111 *.
+
+The double invocation is necessary due to its insane interface that it expects
+a file extension that must be exactly 3 characters long, and converts all
+matching files in the current directory.  Now, we store the dialogs in *.TXT
+and some more scripts in *., so we need to invoke it twice.  The results are
+stored in *.AAA and *.BBB.
+
+You can compile width.exe from width.pas using the same procedure as for the
+other old sources.
+
+(b) Unix
+
+The utility scripts/fix-width.py is a re-implementation of the ancient
+width.pas to be run in the Unix world.  Just run it.  It will detect long
+lines in all scripts in ../game-scripts/{cz,de,en,pl}/, using big.fon and
+small.fon in their respective directories, log information about the long
+lines, and replace them in-place.  The output script is reformatted using
+new lines instead of |'s.
+
+8. Synchronization with the Czech dubbing
+-----------------------------------------
+
+A very old MS-Word document editors/msam/dok2.doc describes a bit of general
+usage of MSAM.EXE and also includes some instructions concerning the Polish
+translation, which are by now completely obsolete.
+
+TODO: write new instructions
+
+Final notes
+===========
+
+On June 8, 2010, I have verified that with the translated/pruned/cleaned-up
+sources, all of the following work: compiler k3.exe, game player p.exe, and
+cleaned-up English scripts.  I took the preliminary v2 of cleaned-up English
+scripts by Tom, compiled it with the new k3.exe and verified that the result
+is bit-by-bit equal to the official English version from 2006, except for
+RETEZCE.DFW and the random 8-byte CRC in INIT.DFW, which are expected to be
+different.  I disassembled RETEZCE.DFW by the Python script and it's equal to
+the list of strings provided by Tom.  I converted SAM_AN.DFW into CD2.SAM and
+it's also equal.
+
+I compiled all assembler and Pascal modules (with many data types, enums, and
+veriables translated into English) into p.exe and verified that it works on
+these compiled game scripts as expected.  It works flawlessly, both directly
+in WindowsXP and in DosBox, including MIDI, sound samples, and dubbing,
+provided that setup.exe was run first.  When I updated ScummVM sources to
+recognize the MD5 checksum of INIT.DFW, then also ScummVM was able to play the
+compiled game scripts as expected.

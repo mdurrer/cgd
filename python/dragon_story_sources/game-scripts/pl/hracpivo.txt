@@ -1,0 +1,17 @@
+{když beru pivo:}
+
+block _00 (ciste_zrcadlo=0)
+title
+   H1: "Przestań pić!"
+gplend
+
+block _01 (ciste_zrcadlo>0)
+title
+   H1: "Jeszcze jednego!"
+   H1: "Teraz jesteś dla mnie
+        czymś w rodzaju talizmanu..."
+
+  objstat away hospuvn_krygl
+  icostat on i_pivo
+gplend
+

@@ -1,0 +1,210 @@
+{s hráči karet v hospodě:}
+block _08 ( maxline(1) and beg(1) and (ciste_zrcadlo=1) )
+title
+  {prave sem vylestil zrcadlo, dostanu karty}
+  justtalk
+D: "How is it going?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "Better not ask."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "My fortune has changed a little."
+  justtalk
+D: "It has to be because of my good advice!"
+  juststay
+H1: "You do bring me luck, little dragon.
+     Perhaps I should reward you for that..."
+H1: "What would you say to a deck of 32 Aces?"
+  justtalk
+D: "Aces?! And thirty two of them?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "There's nothing strange about it.
+     I've got the ten's."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+
+  icostat on i_karty
+  let ciste_zrcadlo (2)
+gplend
+
+block _00 ( beg(1) and not been(_00) and maxline(1) )
+title
+  justtalk
+D: "What are you playing."
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "Get down, fool."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Black cat."
+  justtalk
+D: "I can play bridge. Can I join you?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "How much money do you have?"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  justtalk
+D: "None!"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "We are sorry, boy."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _01 ( beg(1) and not been(_01) and maxline(1) )
+title
+  justtalk
+D: "I'd play the queen of clubs..."
+  juststay
+H1: "Don't look at my cards, boy!"
+  justtalk
+D: "And now the Joker of thrumps!"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "It won't be necessary. I'll take it all."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Again?"
+H1: "I missed out on the Black Jack
+     for the Royal Flush."
+H1: "I'm gonna be broke soon."
+  justtalk
+D: "Do you want to slip me something?"
+  juststay
+H1: "Stop joking."
+gplend
+
+block _02 ( beg(1) and not been(_02) and maxline(1) )
+title
+  justtalk
+D: "Now take the Jack of Hearts."
+  juststay
+H1: "Fine, let's cut it."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "And a Seven at the end."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "Geee, I got two a canasta."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Look, a pair of thrumps."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "One more game and I'm gonna be a beggar."
+gplend
+
+block _03 ( beg(1) and not been(_03) and maxline(1) )
+title
+  justtalk
+D: "I would raise."
+  juststay
+H1: "Shut up!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Look, two more quartets!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "I have a wife and two children!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Ha ha ha."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _04 ( beg(1) and not been(_04) and maxline(1) )
+title
+  justtalk
+D: "It looks bad."
+  juststay
+H1: "Too bad."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "That's a gas!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "You're cheating!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "I ain't cheating..."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "You are!"
+H1: "That extra Ace under the table was mine!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Maybe, but it helped me."
+H2: "This round is mine.
+     I have won!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _05 ( beg(1) and not been(_05) and maxline(1) )
+title
+  justtalk
+D: "See, I would..."
+  juststay
+H1: "Not again?"
+  justtalk
+D: "I'd only..."
+  juststay
+H1: "Shut up!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Get down, fool."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "What?"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "You didn't get it."
+H2: "That's not my fault
+     you ended up as a loser again."
+H2: "All you need is quicker
+     reflexes."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "But I have lost all my suits."
+gplend
+
+block _06 ( beg(1) and not been(_06) and maxline(1) )
+title
+H1: "You're cheating!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Look, how did you come to that, Mr. Smart?"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+H1: "That eleven of clubs has its tip nicked!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+H2: "Bologna. The tip is O.K."
+H2: "Everything is mine!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _07 ( maxline(1) and beg(1) and (ciste_zrcadlo=0) )
+title
+  {standardni pokec, az se vykecam a nedostanu karty}
+  justtalk
+D: "Men ..."
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+H2: "Look kibitzer, this is none of your business."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend

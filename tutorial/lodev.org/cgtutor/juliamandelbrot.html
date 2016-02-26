@@ -1,0 +1,586 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>The Julia and Mandelbrot Set</title>
+<meta content="text/html; charset=us-ascii" http-equiv=
+"content-type" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Julia and Mandelbrot Sets</h1>
+<h2>Table of Contents<br /></h2>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#Julia_Set">Julia Set</a></li>
+<li><a href="#Julia_Explorer">Julia Set Explorer</a></li>
+<li><a href="#Mandelbrot_Set_">Mandelbrot Set</a></li>
+<li><a href="#Mandelbrot_Explorer">Mandelbrot Set Explorer</a></li>
+</ul>
+<a href="index.html">Back to Index</a>
+<h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+The Julia Set and Mandelbrot Set are those quite well known sets on
+the complex plane that create those pretty infinitely detailed
+images. They're so pretty, that there is even art created with
+them. The Mandelbrot Set isn't a real fractals by definition, but
+it's semi self similar and still shows infinite detail, so it's
+usually called a fractal as well.<br />
+<br />
+Research on Julia Sets was done in 1917 by Gaston Julia himself,
+but he didn't have a computer available to actually draw it. The
+topic didn't gain much interest, until in the 1970s, Benout
+Mandelbrot drew Julia Sets on a computer, and discovered the
+Mandelbrot set.<br />
+<br />
+This tutorial will only cover the basics of the theory (there's
+much more to tell about the Julia and Mandelbrot sets), and the
+code to draw them. Apart from that, more code is included of some
+pretty handy fractal viewers where you can zoom and move around on
+the fly.<br />
+<h2><a name="Julia_Set" id="Julia_Set"></a>Julia Set</h2>
+This chapter first tries to explain a bit of the mathematical
+formulas behind Julia Sets, more specifically, Quadratic Julia
+Sets. Knowledge about complex numbers is required, so if you need
+it you can read the appendix about complex numbers.
+<p>So how to generate such a beautiful fractal? In short:
+<span style="font-style: italic;">for every pixel, iterate znew =
+zold&sup2; + c on the complex plane until it leaves the circle
+around the origin with radius 2. The number of iterations it the
+color of the pixel.</span><br /></p>
+<p>The screen will be representing a part of the complex plane,
+inside the circle with radius 2 around the origin. For a pixel, the
+x coordinate will represent the real part of it's complex
+coordinates, and the y coordinate will be the imaginary part.</p>
+<p>For a julia set, for each pixel apply an iterated complex
+function. This function is newz = oldz&sup2; + c, with z and c both
+being complex numbers. Z is initially the coordinates of the pixel,
+and will then constantly be updated through every iteration: each
+iteration, the "newz" of the previous iteration is now used as
+"oldz".<br /></p>
+<p>If you keep iterating this function, depending on the initial
+condition (the pixel), z will either go to infinity, or remain in
+the circle with radius 2 around the origin of the complex plane
+forever. The points that remain in the circle forever, are the ones
+that belong to the Julia Set. So keep iterating the function until
+the distance of z to the origin (0,0) is greater than 2. Also give
+a maximum number of iterations, for example 256, or the computer
+would be stuck in an endless loop.<br /></p>
+<p>The color value of the pixel will then become the number of
+times we had to iterate the function before the distance of z to
+the origin got larger than 2. The constant c in the formula can be
+anything really, as long as it's also inside the circle with radius
+2. Different values of c give different Julia Sets. Some Julia Sets
+are connected, others aren't. The Mandelbrot Set is the collection
+of all&nbsp; points c that generate a connected Julia
+Set.<br /></p>
+Here's an example of the calculations:
+<p>First, you can choose a constant c for the function, which one
+you choose will determinate the shape of the fractal. Let's take c
+= (-0.5,0.5) in this example, so -0.5 is the real part and 0.5 the
+imaginary part.<br /></p>
+<p>Imagine we're currently calculating the color of pixel (256,192)
+on a 256*256 screen. First, we transform the coordinates so it lies
+between -1 and 1 (if you zoom or move around in the fractal a
+different transformation is required): the coordinates become
+(1,0.5) so p = 1 + 0.5i.</p>
+<p>Now we apply the function for the first time:</p>
+<tt>z = p&sup2; +
+c</tt><br />
+<tt>&nbsp; = (1 + 0.5i)&sup2; -
+0.5 + 0.5i</tt><br />
+<tt>&nbsp; = 1 + 2*0.5i +
+0.25*i&sup2; - 0.5 + 0.5i</tt><br />
+<tt>&nbsp; = 0.5 + 1.5i -
+0.25</tt><br />
+<tt>&nbsp; = 0.25 +
+1.5i</tt><br />
+<p>So z = (0.25,1.5), and the distance of z to the origin =
+sqrt(0.25*0.25 + 1.5*1.5) = 1.52069... is still smaller than
+2.<br /></p>
+<p>Now you take this calculated z and put it in the function again
+to calculate the next z, so now we get<br /></p>
+<tt>z = (0.25 + 1.5i)&sup2; - 0.5
++ 0.5i</tt><br />
+<tt>&nbsp; = 0.0625 + 2*0.375i -
+2.25 - 0.5 + 0.5i</tt><br />
+<tt>&nbsp; = -2.6875 +
+1.25i</tt><br />
+<br />
+The distance is now 8.78515625, so we're outside the circle with
+radius 2, and we now know the point is outside the julia set. The
+number of iterations was now only 2, so the pixel gets color value
+2 and we're done.&nbsp; Some start values give more than 256
+iterations, and depending on how much maximal iterations you've
+set, you can then stop or keep continuing.<br />
+<p>The more iterations, the more detailed the Julia set will look
+when zooming in deeply, but the more calculations are needed. The
+higher the precision of the numbers, the longer you can zoom in
+without encountering blocky pixels.<br /></p>
+Here's the source code of a program that'll draw a Julia Set. Put
+this in the main.cpp file, inside the "<span style=
+"font-family: monospace;">int main(int argc, char *argv[])</span>"
+function. The comments in it are made blue and explain most of the
+code. The code doesn't use complex numbers but normal floating
+point numbers, the real and imaginary part are simply calculated
+separately, like you'd do by hand.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int argc, char *argv[]) 
+{
+    screen(400, 300, 0, <span class="string">"Julia Set"</span>); <span class="comment">//make larger to see more detail!</span>
+
+    <span class="comment">//each iteration, it calculates: new = old*old + c, where c is a constant and old starts at current pixel</span>
+    double cRe, cIm;                   <span class="comment">//real and imaginary part of the constant c, determinate shape of the Julia Set</span>
+    double newRe, newIm, oldRe, oldIm;   <span class="comment">//real and imaginary parts of new and old</span>
+    double zoom = 1, moveX = 0, moveY = 0; <span class="comment">//you can change these to zoom and change position</span>
+    ColorRGB color; <span class="comment">//the RGB color value for the pixel</span>
+    int maxIterations = 300; <span class="comment">//after how much iterations the function should stop</span>
+
+    <span class="comment">//pick some values for the constant c, this determines the shape of the Julia Set</span>
+    cRe = -0.7;
+    cIm = 0.27015;
+
+    <span class="comment">//loop through every pixel</span>
+    for(int x = 0; x &lt; w; x++)
+    for(int y = 0; y &lt; h; y++)
+    {
+        <span class="comment">//calculate the initial real and imaginary part of z, based on the pixel location and zoom and position values</span>
+        newRe = 1.5 * (x - w / 2) / (0.5 * zoom * w) + moveX;
+        newIm = (y - h / 2) / (0.5 * zoom * h) + moveY;
+        <span class="comment">//i will represent the number of iterations</span>
+        int i;
+        <span class="comment">//start the iteration process</span>
+        for(i = 0; i &lt; maxIterations; i++)
+        {
+            <span class="comment">//remember value of previous iteration</span>
+            oldRe = newRe;
+            oldIm = newIm;
+            <span class="comment">//the actual iteration, the real and imaginary part are calculated</span>
+            newRe = oldRe * oldRe - oldIm * oldIm + cRe;
+            newIm = 2 * oldRe * oldIm + cIm;
+            <span class="comment">//if the point is outside the circle with radius 2: stop</span>
+            if((newRe * newRe + newIm * newIm) &gt; 4) break;
+        }
+        <span class="comment">//use color model conversion to get rainbow palette, make brightness black if maxIterations reached</span>
+        color = HSVtoRGB(ColorHSV(i % 256, 255, 255 * (i &lt; maxIterations)));
+        <span class="comment">//draw the pixel</span>
+        pset(x, y, color);
+    }
+    <span class="comment">//make the Julia Set visible and wait to exit</span>
+    redraw();
+    sleep();
+    return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The parameter of the number of iterations is used for the "Hue" of
+the HSV color model. The advantage of Hue is that it's circular, so
+no matter how many maximum iterations there are, the Hue based
+color palette will always keep generating nice continuous
+values.<br />
+<br />
+The result looks like this:<br />
+<br />
+<img alt="" src="images/juliaset.gif" style=
+"width: 405px; height: 323px;" /><br />
+<h2><a name="Julia_Explorer" id="Julia_Explorer"></a>Julia
+Explorer</h2>
+You can change the values "zoom", "moveX" and "moveY" in the above
+code to zoom in at certain positions, but much better would be if
+you could do this in realtime while the program is running, for
+example by pressing the arrow keys to move, and the keypad + and -
+keys to zoom in/out. Even better would be if you could use the
+keypad arrow keys to change the values of cRe and cIm to change the
+shape of the Julia Set in realtime.<br />
+<br />
+Programming something that can do that is pretty simple, just use
+the SDL keys to change the values of those variables and draw the
+Julia Set every time again in a loop! The following code does all
+that and&nbsp; also shows the values of all those variables on
+screen, so that you know exactly at what coordinates of the Julia
+Set the nice things are. It'll also let you change the value
+"maxIterations" etc... The comments in the code should explain it
+all again. There isn't any new computer graphics code, just input
+keys that change parameters:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int argc, char *argv[])
+{
+    screen(320, 240, 0, <span class="string">"Julia  Explorer"</span>);
+   
+    <span class="comment">//each iteration, it calculates: new = old*old + c, where c is a constant and old starts at current pixel</span>
+    double cRe, cIm;                   <span class="comment">//real and imaginary part of the constant c, determines shape of the Julia Set</span>
+    double newRe, newIm, oldRe, oldIm;   <span class="comment">//real and imaginary parts of new and old</span>
+    double zoom=1, moveX=0, moveY=0; <span class="comment">//you can change these to zoom and change position</span>
+    ColorRGB color; <span class="comment">//the RGB color value for the pixel</span>
+    int maxIterations=128; <span class="comment">//after how much iterations the function should stop</span>
+   
+    double time, oldTime, frameTime; <span class="comment">//current and old time, and their difference (for input)</span>
+    bool keyReleased, keyPressed; <span class="comment">//two bools for keys</span>
+    int showText=0;
+   
+    <span class="comment">//pick some values for the constant c, this determines the shape of the Julia Set</span>
+    cRe = -0.7;
+    cIm = 0.27015;
+   
+    <span class="comment">//begin the program loop</span>
+    while(!done())
+    {
+        <span class="comment">//draw the fractal</span>
+        for(int x = 0; x &lt; w; x++)
+        for(int y = 0; y &lt; h; y++)
+        {
+            <span class="comment">//calculate the initial real and imaginary part of z, based on the pixel location and zoom and position values</span>
+            newRe = 1.5 * (x - w / 2) / (0.5 * zoom * w) + moveX;
+            newIm = (y - h / 2) / (0.5 * zoom * h) + moveY;
+            <span class="comment">//i will represent the number of iterations</span>
+            int i;
+            <span class="comment">//start the iteration process</span>
+            for(i = 0; i &lt; maxIterations; i++)
+            {
+                <span class="comment">//remember value of previous iteration</span>
+                oldRe = newRe;
+                oldIm = newIm;
+                <span class="comment">//the actual iteration, the real and imaginary part are calculated</span>
+                newRe = oldRe * oldRe - oldIm * oldIm + cRe;
+                newIm = 2 * oldRe * oldIm + cIm;
+                <span class="comment">//if the point is outside the circle with radius 2: stop</span>
+                if((newRe * newRe + newIm * newIm) &gt; 4) break;
+            }
+            <span class="comment">//use color model conversion to get rainbow palette, make brightness black if maxIterations reached</span>
+            color = HSVtoRGB(ColorHSV(i % 256, 255, 255 * (i &lt; maxIterations)));
+            <span class="comment">//draw the pixel</span>
+            pset(x, y, color);
+        }
+      
+        <span class="comment">//print the values of all variables on screen if that option is enabled</span>
+        if(showText &lt;= 1)
+        {
+            print(<span class="string">"X:"</span>, 1, 1, RGB_White, 1); print(moveX, 0, 17, 1, RGB_White, 1);
+            print(<span class="string">"Y:"</span>, 1, 9, RGB_White, 1); print(moveY, 0, 17, 9, RGB_White, 1);
+            print(<span class="string">"Z:"</span>, 1, 17, RGB_White, 1); print(zoom, 0, 17, 17, RGB_White, 1);
+            print(<span class="string">"R:"</span>, 1, 25, RGB_White, 1); print(cRe, 0, 17, 25, RGB_White, 1);
+            print(<span class="string">"I:"</span>, 1, 33, RGB_White, 1); print(cIm, 0, 17, 33, RGB_White, 1);
+            print(<span class="string">"N:"</span>, 1, 41, RGB_White, 1); print(maxIterations, 0, 17, 41, RGB_White, 1);
+        }
+        <span class="comment">//print the help text on screen if that option is enabled</span>
+        if(showText == 0)
+        {
+            print(<span class="string">"Arrows move (X,Y), Keypad +,- zooms (Z)"</span>, 1, h - 33, RGB_White, 1);
+            print(<span class="string">"Keypad arrows change shape (R,I)       "</span>, 1, h - 25, RGB_White, 1);
+            print(<span class="string">"Keypad *,/ changes iterations (N)      "</span>, 1, h - 17, RGB_White, 1);
+            print(<span class="string">"a to z=presets (qwerty), F1=cycle texts"</span>, 1, h - 9, RGB_White, 1);
+        }
+        redraw();
+   
+        <span class="comment">//get the time and old time for time dependent input</span>
+        oldTime = time;
+        time = getTicks();
+        frameTime = time - oldTime;
+        <span class="comment">//no key was pressed yet</span>
+        keyPressed = 0;
+        readKeys();
+        <span class="comment">//ZOOM keys</span>
+        if(inkeys[SDLK_KP_PLUS])  {zoom *= pow(1.001, frameTime); keyPressed = 1;}
+        if(inkeys[SDLK_KP_MINUS]) {zoom /= pow(1.001, frameTime); keyPressed = 1;}
+        <span class="comment">//MOVE keys</span>
+        if(inkeys[SDLK_DOWN])  {moveY += 0.0003 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_UP])    {moveY -= 0.0003 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_RIGHT]) {moveX += 0.0003 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_LEFT])  {moveX -= 0.0003 * frameTime / zoom; keyPressed = 1;}
+        <span class="comment">//CHANGE SHAPE keys</span>
+        if(inkeys[SDLK_KP2]) {cIm += 0.0002 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_KP8]) {cIm -= 0.0002 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_KP6]) {cRe += 0.0002 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_KP4]) {cRe -= 0.0002 * frameTime / zoom; keyPressed = 1;}
+        <span class="comment">//keys to change number of iterations</span>
+        if(inkeys[SDLK_KP_MULTIPLY] &amp;&amp; keyReleased) {maxIterations *= 2; keyReleased = 0;}
+        if(inkeys[SDLK_KP_DIVIDE] &amp;&amp; keyReleased)   {if(maxIterations &gt; 2) maxIterations /= 2; keyReleased = 0;}
+        <span class="comment">//key to change the text options</span>
+        if(inkeys[SDLK_F1] &amp;&amp; keyReleased) {showText++; showText %= 3; keyReleased = 0;}
+        <span class="comment">//enable keyReleased again if the keys above are released</span>
+        if(!inkeys[SDLK_KP_MULTIPLY] &amp;&amp; !inkeys[SDLK_KP_DIVIDE] &amp;&amp; !inkeys[SDLK_F1]) keyReleased = 1;
+    }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Now you can explore all the details of every possible Julia Set!
+Find a nice shape with the keypad numbers, then move with the arrow
+keys to a border or interesting spot of the julia set, and start
+zooming in to see more detail. If you've zoomed in, you may want to
+press the numpad "*" button to see more detail.<br />
+<br />
+Note: in the current version of gcc, the pow function doesn't work
+if you mix floats and doubles, so make sure either everything is
+double, or everything is float.<br />
+<br />
+Here are some screenshots:<br />
+<br />
+A few different shapes:<br />
+<img alt="" src="images/julia1.jpg" style=
+"width: 319px; height: 239px;" /> <img alt="" src=
+"images/julia2.jpg" style="width: 319px; height: 239px;" /><br />
+<br />
+Zooming in:<br />
+<img alt="" src="images/julia3.jpg" style=
+"width: 318px; height: 238px;" /><br />
+<br />
+Increasing the number of iterations:<br />
+<img alt="" src="images/julia4.jpg" style=
+"width: 317px; height: 238px;" /><br />
+<br />
+<h2><a name="Mandelbrot_Set_" id="Mandelbrot_Set_"></a>Mandelbrot
+Set<br /></h2>
+When zooming in, you'll keep seeing the same details over and over
+in a Julia Set - it's a fractal after all. The Mandelbrot set isn't
+completely self similar, it's only semi self similar, so in a
+Mandelbrot set much more surprises can turn up when zooming
+in.<br />
+<br />
+The mandelbrot set represents every complex point c for which the
+Julia Set will be connected, or every Julia Set that contains the
+origin. To generate a mandelbrot set you use the same iterative
+function as the Julia Set, only this time c will represent the
+position of the pixel, and z will start at (0,0)<br />
+<br />
+The following code is very similar to the Julia Set drawer, only
+it'll output a Mandelbrot Set with rainbow palette instead. The
+changed parts are indicated in bold.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int argc, char *argv[])
+{
+    screen(400, 300, 0, <b><span class="string">"Mandelbrot Set"</span></b>); <span class="comment">//make larger to see more detail!</span>
+
+    <span class="comment">//each iteration, it calculates: newz = oldz*oldz + p, where p is the current pixel, and oldz stars at the origin</span>
+    <b>double pr, pi;</b>                   <span class="comment">//real and imaginary part of the pixel p</span>
+    double newRe, newIm, oldRe, oldIm;   <span class="comment">//real and imaginary parts of new and old z</span>
+    double zoom = 1, moveX = -0.5, moveY = 0; <span class="comment">//you can change these to zoom and change position</span>
+    ColorRGB color; <span class="comment">//the RGB color value for the pixel</span>
+    int maxIterations = 300;<span class="comment">//after how much iterations the function should stop</span>
+
+    <span class="comment">//loop through every pixel</span>
+    for(int x = 0; x &lt; w; x++)
+    for(int y = 0; y &lt; h; y++)
+    {
+        <span class="comment">//calculate the initial real and imaginary part of z, based on the pixel location and zoom and position values</span>
+	<b>pr</b> = 1.5 * (x - w / 2) / (0.5 * zoom * w) + moveX;
+        <b>pi</b> = (y - h / 2) / (0.5 * zoom * h) + moveY;
+        <b>newRe = newIm = oldRe = oldIm = 0;</b> <span class="comment">//these should start at 0,0</span>
+        <span class="comment">//"i" will represent the number of iterations</span>
+        int i;
+        <span class="comment">//start the iteration process</span>
+        for(i = 0; i &lt; maxIterations; i++)
+        {
+            <span class="comment">//remember value of previous iteration</span>
+            oldRe = newRe;
+            oldIm = newIm;
+            <span class="comment">//the actual iteration, the real and imaginary part are calculated</span>
+            newRe = oldRe * oldRe - oldIm * oldIm + <b>pr</b>;
+            newIm = 2 * oldRe * oldIm + <b>pi</b>;
+            <span class="comment">//if the point is outside the circle with radius 2: stop</span>
+            if((newRe * newRe + newIm * newIm) &gt; 4) break;
+        }
+        <span class="comment">//use color model conversion to get rainbow palette, make brightness black if maxIterations reached</span>
+        color = HSVtoRGB(ColorHSV(i % 256, 255, 255 * (i &lt; maxIterations)));
+         <span class="comment">//draw the pixel</span>
+         pset(x, y, color);
+    }
+    <span class="comment">//make the Mandelbrot Set visible and wait to exit</span>
+    redraw();
+    sleep();
+    return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Isn't that pretty:<br />
+<br />
+<img alt="" src="images/mandelbrotset.jpg" style=
+"width: 405px; height: 323px;" /><br />
+<h2><a name="Mandelbrot_Explorer" id=
+"Mandelbrot_Explorer"></a>Mandelbrot Explorer</h2>
+Here's again the full code of a program that allows you to move
+around and zoom in the Mandelbrot Set.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int argc, char *argv[])
+{
+    screen(320, 240, 0, <span class="string">"Mandelbrot Explorer"</span>);
+   
+    <span class="comment">//each iteration, it calculates: new = old*old + c, where c is a constant and old starts at current pixel</span>
+    double pr, pi;                   <span class="comment">//real and imaginary part of the pixel p</span>
+    double newRe, newIm, oldRe, oldIm;   <span class="comment">//real and imaginary parts of new and old</span>
+    double zoom = 1, moveX = -0.5, moveY = 0; <span class="comment">//you can change these to zoom and change position</span>
+    ColorRGB color; <span class="comment">//the RGB color value for the pixel</span>
+    int maxIterations = 128; <span class="comment">//after how much iterations the function should stop</span>
+   
+    double time, oldTime, frameTime; <span class="comment">//current and old time, and their difference (for input)</span>
+    bool keyReleased, keyPressed; <span class="comment">//two bools for keys</span>
+    int showText = 0;
+   
+    <span class="comment">//begin main program loop</span>
+    while(!done())
+    {
+        <span class="comment">//draw the fractal</span>
+        for(int x = 0; x &lt; w; x++)
+        for(int y = 0; y &lt; h; y++)
+        {
+            <span class="comment">//calculate the initial real and imaginary part of z, based on the pixel location and zoom and position values</span>
+            pr = 1.5 * (x - w / 2) / (0.5 * zoom * w) + moveX;
+            pi = (y - h / 2) / (0.5 * zoom * h) + moveY;
+            newRe = newIm = oldRe = oldIm = 0; <span class="comment">//these should start at 0,0</span>
+            <span class="comment">//i will represent the number of iterations</span>
+            int i;
+            <span class="comment">//start the iteration process</span>
+            for(i = 0; i &lt; maxIterations; i++)
+            {
+                <span class="comment">//remember value of previous iteration</span>
+                oldRe = newRe;
+                oldIm = newIm;
+                <span class="comment">//the actual iteration, the real and imaginary part are calculated</span>
+                newRe = oldRe * oldRe - oldIm * oldIm + pr;
+                newIm = 2 * oldRe * oldIm + pi;
+                <span class="comment">//if the point is outside the circle with radius 2: stop</span>
+                if((newRe * newRe + newIm * newIm) &gt; 4) break;
+            }
+            <span class="comment">//use color model conversion to get rainbow palette, make brightness black if maxIterations reached</span>
+            color = HSVtoRGB(ColorHSV(i % 256, 255, 255 * (i &lt; maxIterations)));
+            <span class="comment">//draw the pixel</span>
+            pset(x, y, color);
+        }
+      
+        <span class="comment">//print the values of all variables on screen if that option is enabled</span>
+        if(showText &lt;= 1)
+        {
+            print(<span class="string">"X:"</span>, 1, 1, RGB_White, 1); print(moveX, 0, 17, 1, RGB_White, 1);
+            print(<span class="string">"Y:"</span>, 1, 9, RGB_White, 1); print(moveY, 0, 17, 9, RGB_White, 1);
+            print(<span class="string">"Z:"</span>, 1, 17, RGB_White, 1); print(zoom, 0, 17, 17, RGB_White, 1);
+            print(<span class="string">"N:"</span>, 1, 25, RGB_White, 1); print(maxIterations, 0, 17, 25, RGB_White, 1);
+        }
+        <span class="comment">//print the help text on screen if that option is enabled</span>
+        if(showText == 0)
+        {
+            print(<span class="string">"Arrows move (X,Y), Keypad +,- zooms (Z)"</span>, 1, h - 25, RGB_White, 1);
+            print(<span class="string">"Keypad *,/ changes iterations (N)      "</span>, 1, h - 17, RGB_White, 1);
+            print(<span class="string">"a to z=presets (qwerty), F1=cycle texts"</span>, 1, h - 9, RGB_White, 1);
+        }
+        redraw();
+   
+        <span class="comment">//get the time and old time for time dependent input</span>
+        oldTime = time;
+        time = getTicks();
+        frameTime = time - oldTime;
+        <span class="comment">//no key was pressed yet</span>
+        keyPressed = 0;
+        readKeys();
+        <span class="comment">//ZOOM keys</span>
+        if(inkeys[SDLK_KP_PLUS])  {zoom *= pow(1.001, frameTime); keyPressed = 1;}
+        if(inkeys[SDLK_KP_MINUS]) {zoom /= pow(1.001, frameTime); keyPressed = 1;}
+        <span class="comment">//MOVE keys</span>
+        if(inkeys[SDLK_DOWN])  {moveY += 0.0003 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_UP])    {moveY -= 0.0003 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_RIGHT]) {moveX += 0.0003 * frameTime / zoom; keyPressed = 1;}
+        if(inkeys[SDLK_LEFT])  {moveX -= 0.0003 * frameTime / zoom; keyPressed = 1;}
+        <span class="comment">//keys to change number of iterations</span>
+        if(inkeys[SDLK_KP_MULTIPLY] &amp;&amp; keyReleased) {maxIterations *= 2; keyReleased = 0;}
+        if(inkeys[SDLK_KP_DIVIDE] &amp;&amp; keyReleased)   {if(maxIterations &gt; 2) maxIterations /= 2; keyReleased = 0;}
+        <span class="comment">//key to change the text options</span>
+        if(inkeys[SDLK_F1] &amp;&amp; keyReleased) {showText++; showText %= 3; keyReleased = 0;}
+        <span class="comment">//enable keyReleased again if the keys above are released</span>
+        if(!inkeys[SDLK_KP_MULTIPLY] &amp;&amp; !inkeys[SDLK_KP_DIVIDE] &amp;&amp; !inkeys[SDLK_F1]) keyReleased = 1;
+    }
+    return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+By moving around and zooming you can get very pretty pictures here.
+The parameter values were left on the pictures so you can see the
+coordinates, the zoom level and number of maximum iterations to
+generate those pictures:<br />
+<br />
+This part of the Mandelbrot Set is called the Seahorse
+Valley:<br />
+<img alt="" src="images/mandelbrotseahorse.jpg" style=
+"width: 319px; height: 238px;" /> <img alt="" src=
+"images/mandelbrot1.jpg" style=
+"width: 319px; height: 238px;" /><br />
+<br />
+A deeper zoom to the size of the Seahorse Valley (zoomed in 1779
+times):<br />
+<img alt="" src="images/mandelbrot2.jpg" style=
+"width: 319px; height: 240px;" /><br />
+<br />
+A detail on the other side of the set:<br />
+<img alt="" src="images/mandelbrot3.jpg" style=
+"width: 319px; height: 239px;" /><br />
+<br />
+A few "minibrots", the first zoomed in only 8463 times, the second
+zoomed in 419622325484 times! Such minibrots only become visible if
+you allow enough iterations.<br />
+<img alt="" src="images/mandelbrot4.jpg" style=
+"width: 319px; height: 240px;" /> <img alt="" src=
+"images/mandelbrot5.jpg" style=
+"width: 319px; height: 239px;" /><br />
+<br />
+This is the effect of using more iterations: on the right is the
+same picture on the left, but with twice as much maximum
+iterations:<br />
+<img alt="" src="images/mandelbrot6.jpg" style=
+"width: 320px; height: 239px;" /> <img alt="" src=
+"images/mandelbrot7.jpg" style=
+"width: 319px; height: 240px;" /><br />
+<br />
+This is a deep zoom with a very high number of iterations in the
+side of the elephant valley. The elephant valley is the pointy
+shape on the X-axis, on right side of the mandelbrot.<br />
+<img alt="" src="images/mandelbrot9.jpg" style=
+"width: 319px; height: 240px;" /><br />
+<br />
+This picture is added more recently, because it's pretty
+pretty:<br />
+<br />
+<img alt="" src="images/mandelbrotpretty.png" style=
+"width: 320px; height: 240px;" /><br />
+<br />
+And here's a picture that's zoomed in so much, that the numerical
+limit of 64-bit floating point numbers was reached. It starts
+looking blocky. It's zoomed in more than 10^18 times though, for
+deeper detail, processors with higher precision, or emulation of
+infinite precision numbers is required:<br />
+<img alt="" src="images/mandelbrot8.jpg" style=
+"width: 319px; height: 239px;" /><br />
+<br />
+If you like, <a href="images/highresmandel.png">here's</a> the link
+to a Mandelbrot Set of 1280*1024 pixels.<br />
+<br />
+<hr />
+Last edited: 2004
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+<br />
+</body>
+</html>

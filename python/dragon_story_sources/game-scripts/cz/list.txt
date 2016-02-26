@@ -1,0 +1,31 @@
+{s větrem v horách- teď vlasně s listem:}
+
+block _00 ( beg(1) )
+title
+  justtalk
+  D: "Pane vítr!
+      Jak si to představujete,
+      jenom tak zmizet?"
+  juststay
+  V: "Vychutnááával jsem volnost...."
+  justtalk
+  D: "Mám pocit, že jsme se na něčem dohodli!"
+  juststay
+  V: "Ach táááák, a co bys ode mě chtěl?"
+  justtalk
+  D: "Dost by mě šiklo,
+      kdybyste kvůli mě odfouknul
+      tak ze dva, ze tři obláčky."
+  juststay
+  V: "To pro mě nic neníííí...
+      Ale kde?"
+  justtalk
+  D: "Když povyletíte trochu výš,
+      určitě to místo bude vidět."
+  juststay
+  V: "Dobrá, už letíííím...."
+{gejtkou k sipku, odfouknuti mraku, pak zpátky}
+
+  let odfoukli_jsme (1)
+  newroom sipek 2
+gplend

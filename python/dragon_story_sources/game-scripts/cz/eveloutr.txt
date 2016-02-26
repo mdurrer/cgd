@@ -1,0 +1,234 @@
+{kecani s Evelynou pred koncem hry:}
+
+block _0 ( beg(1) )
+title
+  disablequickhero
+{  disablespeedtext
+  walkonplay 224 144 vlevo
+  justtalk
+   D: "Evelýno!"
+  juststay
+  start EvelOut "skace"
+  Ev: "Nazdar, dračí kluku!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Musíme si vážně promluvit!"
+  juststay
+  walkon 196 160 vlevo
+  start EvelOut "skace"
+  Ev: "No jenom povídej,
+       co se tady dělo?!
+       Zlobils?"
+  start EvelOut "neskace"
+  walkonplay 196 160 vlevo
+   justtalk
+   D: "Zlobil!"
+  juststay
+  start EvelOut "skace"
+  Ev: "A to je dobře. Jsi hodnej kluk!"
+  start EvelOut "neskace"
+   justtalk
+   D: "A co ty?"
+  juststay
+  start EvelOut "skace"
+  Ev: "Ále, moc jsem si to neužila."
+  start EvelOut "neskace"
+   justtalk
+   D: "To je mi líto. Eh...
+       (Nepříjemné věci se mají vyřídit hned na začátku.)"
+  juststay
+   justtalk
+   D: "Co takhle zrekapitulovat tvůj život?"
+  juststay
+  start EvelOut "skace"
+  Ev: "Celý můj život? Na to je brzo!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Aspoň pár okamžiků..."
+  juststay
+  start EvelOut "skace"
+  Ev: "Nesmysl."
+  start EvelOut "neskace"
+   justtalk
+   D: "Naše první setkání..."
+  juststay
+  start EvelOut "skace"
+  Ev: "Na to jsem už dávno zapomněla!
+       Nepotřebuju vzpomínat, jsem zdravá jako řípa!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Nikdy nevíš, co se ti může stát."
+  juststay
+  start EvelOut "skace"
+  Ev: "Máš nějakou předtuchu?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Mám o tebe strach, to je všechno.
+       A navíc si rád připomenu
+       všechny tvoje hrdinské činy."
+  juststay
+gplend
+
+block _1 ( last(_0) )
+title
+  disablequickhero
+{  disablespeedtext
+  walkon 92 160 vpravo
+  start EvelOut "skace"
+  Ev: "O těch i já ráda slýchávám.
+       Tak začni, ale ber to stručně, prosím."
+  Ev: "Hlavně stručně! Nerada bych usnula na
+       vavřínech."
+  start EvelOut "neskace"
+  walkonplay 92 160 vpravo
+   justtalk
+   D: "Začínám."
+  juststay
+  start EvelOut "skace"
+  Ev: "Poslouchám!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Málem jsi přivedla na scestí jednoho draka."
+  juststay
+  start EvelOut "skace"
+  Ev: "Ale no..."
+  start EvelOut "neskace"
+   justtalk
+   D: "Způsobilas' vážný psychický problém jedné
+       kronice!"
+  juststay
+  start EvelOut "skace"
+  Ev: "He he."
+  start EvelOut "neskace"
+   justtalk
+   D: "Jednomu chudákovi jsi přivodila
+       takové halucinace, až z nich dostal hlad!"
+  juststay
+  start EvelOut "skace"
+  Ev: "A co ještě? Je od tebe pěkné,
+       že mi ty světlé okamžiky mého života
+       připomínáš. Co dál?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Dál? To je otázka!"
+  juststay
+  start EvelOut "skace"
+  Ev: "Já vím co dál.
+       Teď nás čeká to hlavní.
+       Dobydeme svět!"
+  start EvelOut "neskace"
+   justtalk
+   D: "Ale rodiče mi s tebou zakázali kamarádit!"
+  juststay
+  start EvelOut "skace"
+  Ev: "To půjde zařídit."
+  start EvelOut "neskace"
+   justtalk
+   D: "Ne tak snadno."
+  juststay
+  start EvelOut "skace"
+  Ev: "Ale, ale, přiděláváš mi jenom starosti!"
+  walkon 192 176 vlevo
+  Ev: "Ty snad chceš,
+       abych měla na čele vrásky."
+  start EvelOut "neskace"
+  walkonplay 196 172 vlevo
+   justtalk
+   D: "Vrásky?
+       A to právě nechci."
+  juststay
+   justtalk
+   D: "A proto jsem pro tebe připravil
+       léčivou ozdravnou koupel."
+  juststay
+  start EvelOut "skace"
+  Ev: "Vážně?"
+  start EvelOut "neskace"
+   justtalk
+   D: "Smrtelně vážně!
+       Na důkaz našeho věčného kamarádství!"
+  juststay
+  start EvelOut "skace"
+  Ev: "No... dobrá,
+       vyzkouším ji.
+       Ta vůně mě celkem láká."
+gplend
+
+block _2 ( last(_1) )
+title
+  disablequickhero
+{  disablespeedtext
+  roommap
+  walkon 140 160 vlevo
+  startplay EvelOut "sipka"
+  start EvelOut "topi se"
+
+  {hůlka skočí šipku do polívky:}
+  Yve: "Au, trošku to pálí!"
+  walkonplay 140 160 vlevo
+   justtalk
+   D: "To vydržíš!"
+  juststay
+  Yve: "A je to opravdu léčivá koupel?"
+   justtalk
+   D: "Opravdu,
+       jenom se do ní musíš ponořit
+       pěkně celá."
+  juststay
+  Yve: "Tak jo."
+
+  Yve: "Krásním?"
+   justtalk
+   D: "Zatím nic není poznat."
+  juststay
+  Yve: "Teď?"
+   justtalk
+   D: "Ale jo, připadá mi,
+       jako kdybys teď byla
+       o něco míň šerednější."
+  juststay
+  Yve: "Zkusím se potopit."
+   justtalk
+   D: "Ty mrzká proradná bytosti, teď trp!"
+  juststay
+  Yve: "Cos to říkal?"
+   justtalk
+   D: "Říkal jsem,
+       že jedině tak bude koupel
+       pořádně účinná!"
+  juststay
+  Yve: "... glo... glo..."
+   justtalk
+   D: "Asi jí budu muset trochu pomoct."
+  juststay
+  walkonplay  116 140 vlevo
+   justtalk
+   D: "Nechceš vydrbat záda?"
+  juststay
+  Yve: "Ale jenom jemně."
+  {drak strčí ruku do polívky:}
+
+  load bert "drbe_mluvi"
+  load bert "drbe"
+  load bert "drbe_nahoru"
+  load bert "drbe_dolu"
+  startplay bert "drbe_nahoru"
+  start bert "drbe_mluvi"
+  D: "Takhle?"
+  start bert "drbe"
+  Yve: "...glo..."
+  Yve: "Decentně!"
+  objstat away EvelOut
+  Yve: "...glo...glo..."
+  startplay bert "drbe_dolu"
+  start bert "kour-vlevo"
+  walkonplay  144 156 vpravo
+   justtalk
+   D: "A je po ní..."
+   D: "Teď už nevyplave."
+  juststay
+
+
+{a jdeme na titulky....}
+gplend
+

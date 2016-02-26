@@ -1,0 +1,176 @@
+{s matkou v dracim dome:}
+
+block _00 ( maxline(1) and beg(1) and not been(_6) )
+title
+  justtalk
+D: "Mother, I've decided to be a good Dragon!"
+  juststay
+  start mutti "mluvi"
+B: "And you do not have any conditions?"
+  start mutti "mlci"
+gplend
+
+block _1 ( beg(0) and last(_00) and not been(_1) )
+TITLE Of course I have. Do you want to hear them?
+  load mutti "mlci2sec"
+  justtalk
+D: "Of course I have.
+    Do you want to hear them?"
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+
+  justtalk
+D: "Hmm? Nevermind, I will tell you anyway.
+    I want to stay out late at night ...
+    I want an ant farm ..."
+D: "... to come home through the window
+    ... to jump on my bed
+    ... to pick my boogers with a ruler
+    ... to stick a knife in my mouth"
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+
+  justtalk
+D: "You are not listening, mum!"
+  juststay
+{Berta ho neposlouchá}
+  {k obecenstvu}
+  justtalk
+D: "It's terrible, when a dragon is ignored
+    by his own mother."
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+  {po chvíli:}
+  start mutti "cili se"
+B: "You won't pick your boogers with a ruler!"
+B: "It burns up every time!"
+B: "You can pick your boogers with a poker,
+    but I won't allow that in here."
+B: "You know, when those boogers
+    of yours are burning,
+    they sure stink a lot."
+B: "And forget about all the other things too!"
+  start mutti "mlci"
+  justtalk
+D: "It looks like my mother is through with me."
+  juststay
+  exitdialogue
+gplend
+
+block _2 ( beg(0) and last(_00) )
+TITLE No, I just want to be good, that's all ...
+  justtalk
+D: "No, I just want to be good, that's all ..."
+  juststay
+  start mutti "mluvi"
+B: "Hah, since when?"
+  start mutti "mlci"
+gplend
+
+block _5 ( beg(0) and last(_2) or last(_4) and not been(_5) )
+TITLE I have to think about it ...
+  justtalk
+D: "I have to think about it ..."
+  juststay
+  exitdialogue
+gplend
+
+
+block _6 ( beg(0) and last(_2) or last(_4) and not been(_6) )
+TITLE I am starting right now!
+  justtalk
+D: "I am starting right now!"
+  juststay
+  start mutti "mluvi"
+B: "Right now? If that is so
+    you can take this exquisitely sharp knife"
+B: "and go out and run around."
+  start mutti "mlci"
+  justtalk
+D: "But ... What? ... Mother?"
+  juststay
+  start mutti "mluvi"
+B: "How do the other good children play?"
+  start mutti "mlci"
+  justtalk
+D: "I'm off, Mother!?"
+  juststay
+  start mutti "mluvi"
+B: "But remember that a beating still awaits you!"
+  start mutti "mlci"
+  justtalk
+D: "(Parents are very peculiar,
+    aren't they?)"
+  juststay
+
+  icostat on i_nuz
+  exitdialogue
+gplend
+
+block _3 ( beg(0) and last(_2) or last(_4) and not been(_3) )
+TITLE I am starting tomorrow.
+  justtalk
+D: "I am starting tomorrow."
+  juststay
+  start mutti "mluvi"
+B: "I can't understand that.
+    You mean, you will be
+    good from tomorrow on?"
+  juststay
+  justtalk
+D: "Yep. Today, I'll still be a little naughty."
+  juststay
+  start mutti "mluvi"
+B: "Don't you want to change your mind?
+    What about being a little naughty
+    next week?"
+  juststay
+  justtalk
+D: "Mmmmh, fine, I'll think about it."
+  juststay
+  exitdialogue
+gplend
+
+block _4 ( beg(0) and last(_2) and not been(_4) )
+TITLE It's my new new-years resolution.
+  justtalk
+D: "It's my new new-years resolution."
+  juststay
+  start mutti "mluvi"
+B: "It's too late for that!"
+  juststay
+gplend
+
+block _01 ( maxline(1) and beg(1) and random(3) )
+title
+  justtalk
+D: "Mother, have you seen my father around?"
+  juststay
+  start mutti "mluvi"
+B: "Are you joking?
+    I haven't seen him for a month!"
+  juststay
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(1) )
+title
+  justtalk
+D: "When will lunch be ready?"
+  juststay
+  start mutti "mluvi"
+B: "It will take a little while.
+    But you won't starve."
+  juststay
+  justtalk
+D: "Considering your cooking skills
+    I guess I'd rather ..."
+  juststay
+  exitdialogue
+gplend

@@ -1,0 +1,48 @@
+block _0 ( beg(1)
+title
+{disablespeedtext
+disablequickhero
+stayon -24 170 vpravo
+
+start hulka "kamen_mluvi"
+EvIn: "Ovládnu svět, jenže jak?"
+walkon 75 175 vpravo
+EvIn: "Kdo to tady jde..."
+start hulka "na kameni"
+EvIn: "Už to mám, mým nástrojem bude
+       toto mladé naivní dračí stvoření!"
+EvIn: "Hej, stůj!"
+startplay hulka "premet"
+start hulka "mluvi"
+justtalk
+   D: "Čekám tady na tebe..."
+juststay
+EvIn: "Položím ti pár otázek."
+EvIn: "Chtěl bys se mnou ovládnout svět?"
+justtalk
+   D: "A ty víš jak na to?"
+juststay
+start hulka "mluvi"
+
+EvIn: "No jasně že jo.
+       Hele, mám placku, podívej."
+startplay hulka "placka_vznik"
+start hulka "placka_mlci"
+
+justtalk
+   D: "'Ovládla jsem svět (skoro). Zeptej se mě jak.'"
+   D: "Hmm, no zní to lákavě.
+       A dnes odpoledne nemám zrovna co na práci."
+   D: "Jdem na to!"
+juststay
+
+start hulka "placka_mluvi"
+EvIn: "Ovšem nějaký menší trénink
+       na ovládnutí světa by rozhodně neuškodil."
+EvIn: "Co takhle napřed někoho pořádně naštvat?"
+start hulka "placka_mlci"
+justtalk
+   D: "Dobrej nápad, to by šlo za to odpoledne stihnout."
+juststay
+
+gplend

@@ -1,0 +1,6 @@
+#f00	swamp
+#0ff	arcade
+#0f0	magic
+#00f	lair
+#f0f	bar
+#ff0	bar

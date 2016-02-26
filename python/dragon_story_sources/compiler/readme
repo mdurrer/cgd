@@ -1,0 +1,6 @@
+bacha na soubory typu rozhovor, protože na ně se nevztahují cesty --->
+musí být absolutní cesty, jinak to nebude fungovat všude!
+
+bacha na '\' na konci v úplně každé proceduře, co to dělá!
+
+setarchivecapacity, aby nedělal malé nebo velké soubory!

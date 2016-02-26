@@ -1,0 +1,365 @@
+block _17 ( maxline(1) and beg(1) and (upeceny_trol=2) )
+title I'll try to telepathize his mind.
+  justtalk
+D: "I'll try to telepathize his mind."
+  juststay
+  walkonplay 156 116 vpravo
+  objstat away bert
+  load most_drak "telepatie"
+  start most_drak "telepatie"
+
+  {po chvíli mlčení:}
+  start most_trol_huba "mluvi"
+R: "You were right, I'm really hot on my back.
+    You can have the shirt."
+  start most_trol_huba "mlci"
+
+  load most_trol "svlekani2"
+  load most_drak "beretriko"
+  start most_trol "svlekani2"
+  startplay most_drak "beretriko"
+  start most_trol "nahaty"
+  stayon 156 116 vpravo
+  play
+  walkonplay 148 120 vlevo
+
+  justtalk
+D: "Wow, I just thought about him being hot
+    and it really happened."
+D: "Maybe I should have tried this
+    at the beginning ..."
+  juststay
+  {trol svleče triko a dá nám ho}
+
+  icostat on i_tricko
+  let upeceny_trol (3)
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(1) and not been(_17) and not been(_02) and (vim_o_rytiri=1) )
+title
+  justtalk
+D: "Sorry to trouble you,
+    but I need your T-shirt."
+  juststay
+  start most_trol_huba "mluvi"
+R: "What?!"
+  start most_trol_huba "mlci"
+  justtalk
+D: "I need your T-shirt.
+    I hope that's not the
+    only thing you are wearing."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Yes ..."
+  start most_trol_huba "mlci"
+  justtalk
+D: "Don't worry, naked trolls don't shock me."
+D: "I think that Trolls should
+    always be naked."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Always naked? I've never had such an idea.
+    But it is entirely revolutionary."
+R: "I will think about it..."
+  start most_trol_huba "mlci"
+  justtalk
+D: "Will you give me your T-shirt now?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "No!
+    This T-shirt was worn by my great grand-father."
+R: "I won't give it to you."
+  start most_trol_huba "mlci"
+  justtalk
+D: "So much for being rebellious.
+    You ought to say goodbye to
+    all these old and stupid traditions!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "It's impossible.
+    [Every time he starts talking about the T-shirt,
+    I get depressed.]"
+  start most_trol_huba "mlci"
+  justtalk
+D: "But I need the T-shirt urgently!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Why do you need my T-shirt?"
+  start most_trol_huba "mlci"
+
+{ let upeceny_trol (1)
+gplend
+
+block _03 ( beg(0) and been(_02) and not been(_03) )
+title I love the stripes on your T-shirt!
+  justtalk
+D: "I love the stripes on your T-shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "It's tasteful, isn't it?"
+  start most_trol_huba "mlci"
+  justtalk
+D: "No, no, actually, it's
+    terribly tasteless."
+D: "I can't understand how you can wear something
+    that doesn't suit you at all."
+D: "Vertical stripes are in fashion nowadays."
+  juststay
+  start most_trol_huba "mluvi"
+R: "I sure hope
+    horizontal stripes will become
+    modern again."
+  start most_trol_huba "mlci"
+  justtalk
+D: "I am certain
+    that will NEVER be the case."
+D: "You could donate the T-shirt to me."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Forget it."
+  start most_trol_huba "mlci"
+gplend
+
+block _04 ( beg(0) and been(_02) and not been(_04) )
+title I am going to make a collage out of it...
+  justtalk
+D: "I am going to make a collage out of it..."
+D: "... no, actually an assemblage ..."
+D: "... maybe a patchwork."
+  juststay
+  start most_trol_huba "mluvi"
+R: "I find that interesting, why not.
+    But are you going to give it back to me?"
+  start most_trol_huba "mlci"
+  justtalk
+D: "I don't think so, it will be cut into pieces."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Hah, then I think I will never
+    give my T-shirt to you."
+R: "Even if you have the best intentions!"
+  start most_trol_huba "mlci"
+  justtalk
+D: "You don't appreciate art at all!"
+  juststay
+gplend
+
+block _06 ( beg(0) and been(_02) and not been(_06) )
+title The destiny of the country depends on this T-shirt!
+  justtalk
+D: "Maybe the destiny
+    of the whole country
+    depends on this T-shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "You are relying on my patriotism, aren't you?"
+  start most_trol_huba "mlci"
+gplend
+
+block _07 ( beg(0) and been(_02) and not been(_07) )
+title The destiny of the whole universe depends on ...
+  justtalk
+D: "The destiny of the whole universe
+    depends on this T-shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "I think the universe should
+    find another shirt
+    to depend on quickly!"
+  start most_trol_huba "mlci"
+gplend
+
+block _08 ( beg(0) and been(_02) and not been(_08) )
+title But I need the T-shirt very urgently!
+  justtalk
+D: "But I need the T-shirt very urgently!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "What are you going to do with my T-shirt?!
+    It's the only outfit I have!"
+  start most_trol_huba "mlci"
+  justtalk
+D: "I didn't know
+    that trolls were so poor."
+  juststay
+  justtalk
+D: "Somehow I thought
+    that the sign was enough."
+  juststay
+gplend
+
+block _09 ( beg(0) and been(_02) and not been(_09) )
+title I'll try an assertive way...
+  justtalk
+D: "I'll try an assertive way..."
+  juststay
+  justtalk
+D: "What amazing muscles!
+    Do you work out?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "What are you saying?
+    My muscles are quite invisible!"
+  start most_trol_huba "mlci"
+  justtalk
+D: "That is true, they're quite
+    invisible because of the T-shirt.
+    What a pity!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "I don't think so."
+  start most_trol_huba "mlci"
+gplend
+
+block _10 ( beg(0) and been(_02) and not been(_10) )
+title You must feel very hot!
+  justtalk
+D: "You must feel very hot!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Oh no, I'm quite O.K."
+  start most_trol_huba "mlci"
+gplend
+
+block _11 ( beg(0) and been(_02) and not been(_11) )
+title You look pale, you should get a tan.
+  justtalk
+D: "You look pale,
+    you should get a tan."
+  juststay
+  start most_trol_huba "mluvi"
+R: "I don't like sunbathing."
+  start most_trol_huba "mlci"
+gplend
+
+block _12 ( beg(0) and been(_02) and not been(_12) )
+title Give me your T-shirt!
+  justtalk
+D: "Give me your T-shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Never!"
+  start most_trol_huba "mlci"
+gplend
+
+block _13 ( beg(0) and been(_02) and not been(_13) )
+title I want your T-shirt!
+  justtalk
+D: "I want your T-shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "You're out of luck!"
+  start most_trol_huba "mlci"
+gplend
+
+block _14 ( beg(0) and been(_02) and not been(_14) )
+title T-shirt, T-shirt, T-shirt!
+  justtalk
+D: "T-shirt, T-shirt, T-shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "NO! NO! NO!"
+  start most_trol_huba "mlci"
+gplend
+
+block _15 ( beg(0) and been(_02) and not been(_15) and been(_09) )
+title Maybe I am too assertive...
+  justtalk
+D: "Maybe I am too assertive..."
+D: "You better give me your foul T-shirt,
+    it doesn't fit you at all!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "What did you say?
+    It's impossible!"
+  start most_trol_huba "mlci"
+gplend
+
+
+
+block _19 ( maxline(1) and not been (_19) and beg(1) and (probehl_incident=1) )
+title
+  justtalk
+D: "How are you?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "It's quite O.K., thanks, I just have a swollen nose."
+  start most_trol_huba "mlci"
+  start most_trol_huba "mluvi"
+R: "Some idiot
+    tried to assassinate me!
+    So I pounded his nose."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend
+
+block _18 ( maxline(1) and beg(1) and (upeceny_trol=3) )
+title
+  justtalk
+D: "How are you?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Fine, thanks."
+  start most_trol_huba "mlci"
+  start most_trol_huba "mluvi"
+R: "Am I already tanned enough?
+    Nicely dark green?"
+  start most_trol_huba "mlci"
+  justtalk
+D: "I think you're a nice shade of brown!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "If that is so then I am not tanned at all.
+    Brown is my natural color."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend
+
+block _16 ( maxline(1) and beg(1) and been(_02) and (upeceny_trol!=3) )
+title The Teeeeeeee-shirt!
+  justtalk
+D: "The Teeeeeeee-shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Nnnnoooo!"
+  start most_trol_huba "mlci"
+gplend
+
+block _20 ( maxline(1) and last(_16) )
+title
+  justtalk
+D: "Ugh ..."
+  juststay
+  exitdialogue
+gplend
+
+block _21 ( beg(0) and not last(_16) )
+title I don't think there's anything left to say ...
+  justtalk
+D: "I don't think there's anything left
+    to say to each other ..."
+  juststay
+  start most_trol_huba "mluvi"
+R: "We can talk about
+    my beautiful T-shirt."
+  start most_trol_huba "mlci"
+  justtalk
+D: "I'm wasting my time!"
+  juststay
+  exitdialogue
+gplend
+
+block _01 ( maxline(1) and beg(1) )
+title
+  justtalk
+D: "What are you doing on the bridge?"
+D: "I thought Trolls were supposed
+    to rest under trees?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "I have changed
+    my way of life!"
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend

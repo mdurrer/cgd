@@ -1,0 +1,3 @@
+#00f	fire
+#f00	suit
+#f0f	exit

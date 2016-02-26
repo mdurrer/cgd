@@ -1,0 +1,51 @@
++ cracked claw case
++ smoke from trash
++ fire in bar
+
+* show only one dialog line at a time (newer one, resets older ones)
+* sudden jumping of the screen on entrance, must fix
++ play music
+- blah blah blah
+
+= not sure what this file is for ===================
+
+- extra mace appears when smashing machine
+- 5 nibbles per level
+- nibbles game screen should fill screen
+- cards should be on a wood background or something...- give grog to patron1 doesn't work
+
+= beta 4 (Thursday) ==============================
+
+- can't give lady cloak
+- got cloak kept skull
+- got chicken kept coins
+- cards and mace disappear before you *actually* get them
+- you can lose items if you walk out of a room while you have an item in hand
+- nibbles might be too long (3)
+
+= beta 3 (Wednesday) ==============================
+
+- have text clear when you play a game...
+- winning at cards .. does nothing
+- redundant text in magic shop nag
+- added card game, nibbles
+* you can, if you try, get more than 9 items
+- after asking for a cloak in magic, it sends you to :top, not the topic..
+- text a bit slower
+
+= beta 2 (Tuesday evening) =========================
+
++ proof read text for high humor/quality factor
++ mean while back with lord tarbukas .. after each element
++ make getting fire puzzle more obvious -- another item should be burnable
+    like a stick in the swamp that you burn.
++ add in lots of mace-abuse responses.
++ grog on arcade guy response.. maybe 
+
+* swamp = s/at least/at last
+* text in magic (2nd nag too long)
+* look fire 
+* walk to x is junk fix it :)
+* skull re-appears in the swamp
+
+= beta 1 (Tuesday afternoon) =====================

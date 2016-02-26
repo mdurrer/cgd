@@ -1,0 +1,386 @@
+{s házečem šipek:(je dost zasmušilý)}
+
+block _00 ( beg(1) and not been(_00) and isactico(0) )
+title
+ labels skip
+  justtalk
+   D: "Á, vy se prý chcete věšet, že pane?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Je to pravda."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Řekněte mi místo a čas a já to přijdu vomrknout.
+       Opravdovýho oběšence jsem ještě neviděl!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Místo náhrobku bych chtěl mít terč na šipky..."
+  start leskriz_sipkar "mlci"
+  justtalk
+   goto skip
+   D: "Terč na šipky?
+       To mi připadá celkem nekonvenční..."
+  label skip
+   D: "Já mám už taky dost těch
+       nudných šedých náhrobních kamenů."
+   D: "Pokud bych snad měl tragicky zahynout
+       při plnění svého nebezpečného poslání,
+       taky chci mít jako náhrobek terč na šipky!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Šipky jsou pro mě jediným smyslem života.
+       Bez nich nemá vůbec cenu žít!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Trochu silná slova, ne?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Příliš slabá na to,
+       co pro mě šipky doopravdy znamenaly."
+  S1: "Už měla dávno začít šipkařská liga,
+       ale zatím jsem bez šipek i bez tréninku!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Jakto?!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Přestal rodit šipkovník obecný."
+{#it has something to do with darts, it is common, it is tree - Darttree Common
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Šipkovník?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Ano, strom, na kterém rostou šipky
+       pro celý kraj široko daleko.
+       Oficiální strom šipkařské ligy."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Jak se to mohlo stát?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "To nikdo netuší."
+  S1: "Šipky na šipkovníku dozrávají těsně předtím,
+       než začíná šipkařská liga."
+  S1: "Během jednoho dne vyraší,
+       dozrají a zralé spadnou na zem."
+  S1: "Letos ale ještě ani nevypučely výhonky!"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and isactico(0) )
+title
+  justtalk
+   D: "Nevěšte hlavu, pane..."
+{#in czech it sounds like:don't hang your head
+{#it has a lot of things to do with hanging
+   D: "...chci se vás na něco zeptat."
+  juststay
+gplend
+
+block _1 ( beg(0) and not been(_1) )
+title Netušil jsem, že šipky rostou na stromech!
+  justtalk
+   D: "Netušil jsem, že šipky rostou na stromech."
+   D: "Myslel jsem, že se prodávají v krámě!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "K smíchu.
+       Ale to časem každému dojde."
+  S1: "Pobav mě,
+       co si ještě myslíš?"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Že děti nosí čáp!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "No samozřejmě, jak by to jinak mělo být?!"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _2 ( beg(0) and not been(_2) )
+title To nemáte žádné šipky uskladněné do zásoby?
+  justtalk
+   D: "To nemáte žádné šipky uskladněné do zásoby?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Nejde dost dobře ukládat je do zásoby."
+  S1: "Přes zimu vždycky shnijou,
+       takže je lepší zkompostovat je
+       rovnou na podzim."
+  S1: "Jsou výtečným hnojivem!"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _9 ( beg(0) and not been(_9) )
+title Vy jste na šipky opravdu nějak založen!
+ labels skip
+  justtalk
+   D: "Vy jste na šipky opravdu nějak založen!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "No, máš pravdu.
+       Skromně bych podotknul,
+       že jsem šipkový šampión..."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Nepředstírejte skromnost.
+       To je fantastické!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Doma mám dokonce malou výstavku
+       všech svých trofejí..."
+  S1: "Ale lidé jsou nenechaví, však víš.
+       Tu nejcennější věc nosím stále u sebe."
+  start leskriz_sipkar "mlci"
+  {vytáhne z kapsy zlatý zvoneček:}
+  mark
+  load leskriz_sipkar "zvonek"
+  startplay leskriz_sipkar "zvonek"
+  release
+
+  start leskriz_sipkar "mluvi"
+  S1: "Raději ho hned schovám."
+  S1: "Řekl bys - obyčejný zvonek.
+       Získal jsem ho za druhé místo v jediné soutěži,
+       kterou jsem nevyhrál!"
+  goto skip
+  S1: "Nevím ale,
+       proč by ve mně kvůli tomu měla být zášť."
+  S1: "Naopak.
+       Ten zvonek je pro mě skutečná rarita..."
+ label skip
+  start leskriz_sipkar "mlci"
+gplend
+
+block _7 ( beg(0) and not been(_7) )
+title Kde přesně roste Šipkovník obecný?
+  justtalk
+   D: "Kde přesně roste Šipkovník obecný?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Na velikém kopci. Tak velikém, že ho určitě
+       najdeš."
+  start leskriz_sipkar "mlci"
+  {nová lokace: šípek}
+  justtalk
+   D: "No, myslím,
+       že si tuto odpověď můžu odškrtnout..."
+  juststay
+  let new_sipek (1)
+gplend
+
+block _8 ( beg(0) and not been(_8) )
+title Proč jste se Šipkovníkem nezkusili něco udělat sami?
+ labels skip
+  justtalk
+   D: "Proč jste se Šipkovníkem nezkusili něco
+       udělat sami?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Samozřejmě, že jsme zkusili!"
+  S1: "Naprosto bez výsledku."
+  goto skip
+  S1: "Ukázalo se,
+       že jsme jenom banda neschopných debilků."
+ label skip
+  S1: "Je to zkrátka úkol pro superhrdinu."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Kde vaše snažení ztroskotalo?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Zkoušeli jsme najít odkazy ve starých kronikách,
+       jestli se podobný úkaz
+       nevyskytl již někdy v minulosti."
+  S1: "Jediná kronika, která by o tom mohla něco vědět,
+       však už padesát let odmítá s kýmkoliv komunikovat."
+  S1: "Urazila se, protože se jí posmívali, že šišlá."
+  S1: "A nikdo s ní nic nezmůže."
+  S1: "Promlouval jsem na ni aspoň týden."
+  S1: "Nejdřív něžně, polehoučku."
+  S1: "Potom jsem trochu přitvrdil,
+       na konci týdne jsem už jenom chraptěl."
+  S1: "A ona se na mě jenom flegmaticky koukala!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Možná by to chtělo odborníka přes vady řeči.
+       Kdes říkal, že ta kronika je?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Je u mě doma.
+       Tady máš klíč."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "A kde vůbec bydlíš?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Vlastně hned vedle vašeho dračího domku."
+  S1: "Nemusíš mě ale vůbec znát,
+       jsem pořád někde na šipkařských turnajích..."
+  start leskriz_sipkar "mlci"
+
+  icostat on i_klic_sipdum
+  exitdialogue
+gplend
+
+block _3 ( beg(0) and not been(_3) and been(_2) )
+title Měli jste šipky nějak zakonzervovat na příští sezónu!
+  justtalk
+   D: "Měli jste šipky nějak zakonzervovat na
+       příští sezónu!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Zkoušelo se dělat z nich zavařeninu."
+  S1: "Byla ale většinou tak lahodné chuti,
+       že do jara nikdo nevydžel..."
+  S1: "...a než začala další sezóna,
+       zavařenina byla dávno snězená."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Co tedy se šipkama obyčejně provádíte?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Půlkou šipek se vždycky pohnojí šipkovník,
+       aby dobře nesl i příští rok a půlka se zavaří."
+  S1: "Podle tradice se zavařenina snědla vždy
+       v předvečer zahájení šipkařské ligy
+       na slavnostním zahajovacím večírku."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Takže loňská úroda je nenávratně pryč!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Přesně tak."
+  S1: "Na loňských šipkách jsme si všichni pochutnali.
+       Byly opravdu výtečné!"
+  S1: "Ještě v opojení jsme vyrazili
+       čekat pod šipkovník."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "V opojení?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "To nevíš, že šipkový kompot má,
+       ehm, velice zajímavé účinky?
+       Hm, ..."
+  S1: "Čekali jsme kolem týdne,
+       ale nedočkali jsme se."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Hlídali jste až začnou rašit a nic?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Po pravdě řečeno,
+       celou tu dobu jsme prospali."
+  S1: "Když se první šipkaři po týdnu
+       probrali z opojení, zjistili,
+       že žádné šipky nevyrostly..."
+  S1: "...ani neopadaly na zem,
+       zato pod šipkovníkem leží spousta
+       jejich dosud neprobraných soupeřů."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Třeba jste tento rok špatně zvolili
+       poměr ke zkompostování - ke zkompotování..."
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "O tom vážně pochybuju!
+       Všechno proběhlo stejně jako každým rokem."
+  start leskriz_sipkar "mlci"
+gplend
+
+block _6 ( beg(0) and not been(_6) and been(_3) )
+title Čím jste ten kompot při vaření míchali?
+  justtalk
+   D: "Čím jste ten kompot při vaření míchali?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "No, vařečka nebyla zrovna po ruce,
+       a tak jsme to zamíchali nějakou hůlkou."
+  S1: "Byla dost ukecaná a remcala,
+       ale nabídla se sama!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "A vida, co když je to tím?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Pochybuju."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Čím jste kydali ten kompost?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Vidlema."
+  S1: "Obyčejnýma vidlema."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Byly ty vidle taky ukecaný?"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Nebyly!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "A kruci, ztratil jsem stopu!"
+   D: "Tak teď jsem v koncích..."
+  juststay
+gplend
+
+block _03 ( beg(0) and not last(_01) and not last(_00) )
+title Prozatím nashledanou.
+  justtalk
+   D: "Prozatím nashledanou."
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Nashle."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Doufám, že se ještě OPRAVDU shledáme!"
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Věř tomu, chlapče..."
+  start leskriz_sipkar "mlci"
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(0) and last(_01) )
+title
+  justtalk
+   D: "Kdybych tak ale věděl na co!"
+  juststay
+   exitdialogue
+gplend
+
+block _91 ( maxline(1) and beg(1) and isactico(i_sipky) )
+title
+  icostat off i_sipky
+  justtalk
+   D: "Mám pro vás dobrou zprávu,
+       sehnal jsem šipky."
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Šipkovník už zase rodí?"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Jo."
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Jakpak se to mohlo stát, že se umoudřil?"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Nevím, takový strom si prostě něco umane..."
+  juststay
+  start leskriz_sipkar "mluvi"
+  S1: "Skvělé, teď musím honem dohnat formu."
+  S1: "Díky, a doufám, že se někdy
+       uvidíme na šipkařských závodech!"
+  start leskriz_sipkar "mlci"
+  load leskriz_sipkar "odchazi"
+  startplay leskriz_sipkar "odchazi"
+  {odejde...}
+  {měl by odejít!!!}
+
+  let predal_sipky (1)
+  objstat away leskriz_sipkar
+  exitdialogue
+gplend

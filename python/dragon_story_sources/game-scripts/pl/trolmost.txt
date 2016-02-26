@@ -1,0 +1,367 @@
+block _17 ( maxline(1) and beg(1) and (upeceny_trol=2) )
+   title Spróbuję teraz wpłynąć na niego za pomocą...
+  justtalk
+   D: "Spróbuję teraz wpłynąć na niego za
+       pomocą moich myśli."
+  juststay
+  walkonplay 156 116 vpravo
+  objstat away bert
+  load most_drak "telepatie"
+  start most_drak "telepatie"
+
+  {po chvíli mlčení:}
+  start most_trol_huba "mluvi"
+   R: "Masz słuszność, zgrzałem się.
+       Ta koszulka może być twoja."
+  start most_trol_huba "mlci"
+
+  load most_trol "svlekani2"
+  load most_drak "beretriko"
+  start most_trol "svlekani2"
+  startplay most_drak "beretriko"
+  start most_trol "nahaty"
+  stayon 156 116 vpravo
+  play
+  walkonplay 148 120 vlevo
+
+  justtalk
+   D: "Pomyślałem sobie, że mu gorąco
+       i to podziałało."
+   D: "Może najpierw powinienem ją przymierzyć..."
+  juststay
+  {trol svleče triko a dá nám ho}
+
+  icostat on i_tricko
+  let upeceny_trol (3)
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(1) and not been(_17) and not been(_02) and (vim_o_rytiri=1) )
+title
+  justtalk
+   D: "Przepraszam, że sprawiam ci kłopot,
+       ale potrzebna mi twoja koszulka."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Co?!"
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Potrzebna mi twoja koszulka.
+       Mam nadzieję, że nie jest to jedyna
+       rzecz, jaką masz na sobie."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Nie, to jest wszystko co mam..."
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Nie szkodzi, nie szokują mnie nagie trole."
+   D: "Uważam, że trole zawsze powinny
+       chodzić na golasa."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Zawsze na golasa? Nigdy nie wpadłem na
+       taki pomysł.
+       Lecz jest on prawdziwie rewolucyjny."
+   R: "Zastanowię się nad tym..."
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Czy dasz mi teraz swoją koszulkę?"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Nie!
+       Tą koszulkę nosił mój pradziadek."
+   R: "Nie dam ci jej."
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Powinieneś być bardziej nowoczesny.
+       Musisz porzucić
+       wszystkie stare, głupie tradycje!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "To niemożliwe.
+       Za każdym razem gdy jest mowa o
+       koszulkach
+       odczuwam głęboki smutek."
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Ale ja potrzebuję twojej koszulki od zaraz!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Dlaczego jej potrzebujesz?"
+  start most_trol_huba "mlci"
+
+{ let upeceny_trol (1)
+gplend
+
+block _03 ( beg(0) and been(_02) and not been(_03) )
+   title Zachwycają mnie paski na twej koszulce!
+  justtalk
+   D: "Zachwycają mnie paski na twej koszulce!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Jest gustowna, prawda?"
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Nie, wcale nie,
+       jest strasznie kiczowata."
+   D: "Nie mogę pojąć, jak możesz nosić coś,
+       co wcale ci nie pasuje."
+   D: "Teraz nosi się pionowe paski."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Mam nadzieję,
+       że poziome paski znów kiedyś
+       wejdą w modę."
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Jestem pewien, że poziome paski
+       już NIGDY nie będą modne."
+   D: "Możesz poświęcić tą koszulkę dla mnie."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Daj sobie z tym spokój."
+  start most_trol_huba "mlci"
+gplend
+
+block _04 ( beg(0) and been(_02) and not been(_04) )
+   title Chcę ją wykorzystać do kolażu...
+  justtalk
+   D: "Chcę ją wykorzystać do kolażu..."
+   D: "...nie będzie to kompozycja trójwymiarowa..."
+   D: "...raczej na płaszczyźnie..."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Czemu nie, uważam, że to ciekawe.
+       Ale czy zamierzasz oddać mi moją koszulkę?"
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Nie sądzę, zostanie pocięta na małe kawałki."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Myślę, że nigdy
+       nie dam ci mojej koszulki."
+   R: "Nawet jeśli masz jak najlepsze intencje!"
+  start most_trol_huba "mlci"
+  justtalk
+   D: "W ogóle nie masz zrozumienia dla sztuki!"
+  juststay
+gplend
+
+block _06 ( beg(0) and been(_02) and not been(_06) )
+   title Od tej koszulki zależą losy całego kraju!
+  justtalk
+   D: "A może od tej koszulki
+       zależą losy
+       całego kraju!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Liczysz na moje uczucia patriotyczne, prawda?"
+  start most_trol_huba "mlci"
+gplend
+
+block _07 ( beg(0) and been(_02) and not been(_07) )
+   title Losy całego wszechświata zależą od tej koszulki!
+  justtalk
+   D: "Losy całego wszechświata
+       zależą od tej koszulki!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Sądzę, że wszechświat powinien
+       szybko znaleźć sobie inną koszulkę,
+       od której ma zależeć jego los!"
+  start most_trol_huba "mlci"
+gplend
+
+block _08 ( beg(0) and been(_02) and not been(_08) )
+   title Ale ja natychmiast potrzebuję tej koszulki!
+  justtalk
+   D: "Ale ja natychmiast potrzebuję tej koszulki!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Co chcesz zrobić z moją koszulką?
+       To moje jedyne ubranie!"
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Nie wiedziałem,
+       że trole są aż tak biedne."
+  juststay
+  justtalk
+   D: "Mimo wszystko znak, który ci dam powinien
+       wystarczyć!"
+  juststay
+gplend
+
+block _09 ( beg(0) and been(_02) and not been(_09) )
+   title Spróbuję grzecznie...
+  justtalk
+   D: "Spróbuję grzecznie..."
+  juststay
+  justtalk
+   D: "Jakie imponujące mięśnie!
+       Czy jesteś kulturystą?"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Co ty powiesz?
+       Moje mięśnie są prawie niewidoczne!"
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Prawda, że są niewidoczne
+       z powodu tej koszulki.
+       Jaka szkoda!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Nie sądzę."
+  start most_trol_huba "mlci"
+gplend
+
+block _10 ( beg(0) and been(_02) and not been(_10) )
+   title Musi ci być bardzo gorąco!
+  justtalk
+   D: "Musi ci być bardzo gorąco!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Och nie, czuję się całkiem dobrze."
+  start most_trol_huba "mlci"
+gplend
+
+block _11 ( beg(0) and been(_02) and not been(_11) )
+   title Jesteś blady, powinieneś się opalić.
+  justtalk
+   D: "Jesteś blady,
+       powinieneś się opalić."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Nie lubię kąpieli słonecznych."
+  start most_trol_huba "mlci"
+gplend
+
+block _12 ( beg(0) and been(_02) and not been(_12) )
+   title Daj mi swoją koszulkę!
+  justtalk
+   D: "Daj mi swoją koszulkę!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Nigdy!"
+  start most_trol_huba "mlci"
+gplend
+
+block _13 ( beg(0) and been(_02) and not been(_13) )
+   title Chcę twoją koszulkę!
+  justtalk
+   D: "Chcę twoją koszulkę!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Nie masz szczęścia!"
+  start most_trol_huba "mlci"
+gplend
+
+block _14 ( beg(0) and been(_02) and not been(_14) )
+   title Koszulka, koszulka, koszulka!
+  justtalk
+   D: "Koszulka, koszulka, koszulka!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "NIE!"
+  start most_trol_huba "mlci"
+gplend
+
+block _15 ( beg(0) and been(_02) and not been(_15) and been(_09) )
+   title Może jestem zbyt grzeczny...
+  justtalk
+   D: "Może jestem zbyt grzeczny..."
+   D: "Dawaj swoją koszulkę,
+       wcale ci w niej nie do twarzy!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Co powiedziałeś?
+       To niemożliwe!"
+  start most_trol_huba "mlci"
+gplend
+
+
+
+block _19 ( maxline(1) and not been (_19) and beg(1) and (probehl_incident=1) )
+title
+  justtalk
+   D: "Jak się masz?"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Dziękuję, w porządku. Tylko nos mam spuchnięty."
+  start most_trol_huba "mlci"
+  start most_trol_huba "mluvi"
+   R: "Jakiś idiota
+       próbował mnie zamordować!
+       Więc utarłem mu nosa."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend
+
+block _18 ( maxline(1) and beg(1) and (upeceny_trol=3) )
+title
+  justtalk
+   D: "Jak się masz?"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Dziękuję, w porządku."
+  start most_trol_huba "mlci"
+  start most_trol_huba "mluvi"
+   R: "Czy już dość się opaliłem
+       na ciemno zielono?"
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Sądzę, że raczej na brązowo."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Skoro tak, to wcale nie jestem opalony.
+       Brąz to mój naturalny kolor."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend
+
+block _16 ( maxline(1) and beg(1) and been(_02) and (upeceny_trol!=3) )
+   title Koszuuulka!
+  justtalk
+   D: "Koszuuulka!"
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Nieee!"
+  start most_trol_huba "mlci"
+gplend
+
+block _20 ( maxline(1) and last(_16) )
+title
+  justtalk
+   D: "Ugh..."
+  juststay
+  exitdialogue
+gplend
+
+block _21 ( beg(0) and not last(_16) )
+   title Nie sądzę byśmy jeszcze mieli sobie coś do...
+  justtalk
+   D: "Nie sądzę byśmy jeszcze mieli sobie coś do
+       powiedzenia..."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Możemy porozmawiać o
+       mojej pięknej koszulce."
+  start most_trol_huba "mlci"
+  justtalk
+   D: "Tracę czas!"
+  juststay
+  exitdialogue
+gplend
+
+block _01 ( maxline(1) and beg(1) )
+title
+  justtalk
+   D: "Co tu robisz na moście?"
+   D: "Myślałem, że trole są stworzone
+       by wypoczywały pod drzewami."
+  juststay
+  start most_trol_huba "mluvi"
+   R: "Trochę zmieniłem mój
+       dotychczasowy styl życia."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend

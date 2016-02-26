@@ -1,0 +1,47 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+Vypravec: "But there also existed a magic wand."
+Vypravec: "It was evil and was called Evelyn."
+Vypravec: "Because it was really boring
+           to be a magic wand..."
+Vypravec: "...she thought about
+           how she could entertain herself."
+
+load hulka "priskace"
+startplay hulka "priskace"
+load hulka "na kameni"
+load hulka "kamen_mluvi"
+start hulka "kamen_mluvi"
+EvIn: "I - am - going - to - die - of - boredom!"
+EvIn: "I - am - really - going - to - die - of - boredom!"
+EvIn: "What - shall - I - do?"
+start hulka "na kameni"
+EvIn: "... ... ..."
+EvIn: "I've got it!"
+start hulka "kamen_mluvi"
+EvIn: "I will be GOOD magic wand."
+start hulka "na kameni"
+EvIn: "... ... ..."
+EvIn: "No, that isn't a - good - idea!"
+start hulka "na kameni"
+EvIn: "... ... ..."
+EvIn: "I will bite my twigs!"
+start hulka "kamen_mluvi"
+EvIn: "... ... ..."
+EvIn: "No, that isn't a - good - idea - either."
+start hulka "na kameni"
+EvIn: "... ... ..."
+EvIn: "I will rule the world!"
+start hulka "kamen_mluvi"
+EvIn: "I will rule the world, that's it!"
+start hulka "na kameni"
+
+Vypravec: "It's strange she hadn't thought of that before ..."
+Vypravec: "... during the last thousand years
+           of her existence."
+Vypravec: "But we are fortunate
+           that she has had this idea right now."
+
+gplend

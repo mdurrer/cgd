@@ -1,0 +1,386 @@
+{dva staré letité pařezy- Strombuk a Stromdub:
+
+block _08 ( maxline(1) and beg(1) and not been(_08) and been(_07) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "What about Oak-tree's migraine?"
+  juststay
+  start par6 "mluvi"
+  dub: "No relief! Do you know a proper therapy?"
+  start par6 "mlci"
+  justtalk
+    D: "Wait a second, I will go get a saw..."
+  juststay
+  start par6 "mluvi"
+  dub: "I refuse to take part in such therapy!"
+  start par6 "mlci"
+  exitdialogue
+gplend
+
+block _09 ( maxline(1) and beg(1) and isobjon(tajnyvchod) )
+title
+  justtalk
+    D: "What about your chapped roots?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Yeah, I thought
+        that it might not hurt
+        to pull them up a little once in a while!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  exitdialogue
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) )
+title
+  justtalk
+    D: "Good afternoon, Mr. Stump."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "If you are interested, my name is Beech-tree."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "And I am Oak-tree. Don't neglect me."
+  start par6 "mlci"
+  justtalk
+    D: "So you are really a pair..."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Who ...?"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "We ...?"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "No ...!"
+  buk: "If you heard anything else, it was an echo."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "You spoiled it, you fool. It was my turn!"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Ho ho, you are wrong my brother!
+        We have been saying it exactly the same
+        for ten years..."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "Stop it!
+        This joke of yours is not witty at all!"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "We are sorry.
+        Besides, it's wicked
+        to be a stump!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "I'm sure it is. My name is Bert."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "It pleases me."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Ignore him, it pleases me!"
+  start par6 "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and been(_00) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "Dear stumps..."
+  juststay
+gplend
+
+block _02 ( beg(0) and not been(_02) and isobjoff(tajnyvchod) )
+title Could you tell me something about yourselves?
+  justtalk
+    D: "Could you tell me something about yourselves?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Well..."
+  buk: "I was a small seed in my first year
+        and I was flying through the air."
+  buk: "I actually do not know for how long I flew,
+        but the instant when I saw this place
+        for the first time
+        it was fixed in my mind."
+  buk: "I immediately knew that I would set my
+        roots here.
+        I whirled around and got down to the ground."
+  buk: "I smoothly fell into the moss
+        next to Oak-tree, who had
+        landed here a while before me."
+  buk: "There was a big blizzard that day.
+        It seemed that it would rain
+        and he wanted to take cover here."
+  buk: "Eventually we both decided
+        to stay here."
+  buk: "In the second year I became
+        a small seedling and Oak-tree
+        was a bit smaller."
+  buk: "Although he had landed here before me,
+        I succeeded to root
+        a bit faster."
+  buk: "Since then I have explained to Oak-tree
+        to no end
+        that I am older and hence also wiser."
+  buk: "He tries to convince me
+        that he had been here before me.
+        Maybe he had, but he is not wiser."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "He is lying."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "He is lying.
+        Not much had changed in the third year."
+  buk: "In the fourth year, I suddenly
+        grew up and completely overshadowed Oak-tree."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "That can happen when a tree is in his puberty."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Don't listen to him,
+        he was always a bit late."
+  buk: "In the fifth year..."
+
+  {stále otvírá hubou; objeví se titulek "Později..."}
+  {obrazovka může setmět a zase se rozsvítit
+
+  blackpalette
+  fadepaletteplay 0 255 50
+  loadpalette "..\PAREZY\PL8.PCX"
+  disablespeedtext
+  fadepalette 0 255 50
+  Vypravec: "A few days later..."
+  Vypravec: "A few days later..."
+  Vypravec: "A few days later..."
+  enablespeedtext
+
+  buk: "...and in the 538th year,
+        I mouldered even more."
+  buk: "Now you heard all about my life
+        and I hope you are not weary."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  {drak měl mezitím zavřené oči, najednou se probudí
+  justtalk
+    D: "Not at all!
+        If I only had another week,
+        I would like to hear Oak-tree's story too."
+  juststay
+  start par6 "mluvi"
+  dub: "That was in the first year, when I was..."
+  start par6 "mlci"
+  justtalk
+    D: "I am sorry, but..."
+  juststay
+  start par6 "mluvi"
+  dub: "...a seed and flew in the air.
+        I am not sure for how long..."
+  start par6 "mlci"
+  justtalk
+    D: "I don't have time now!"
+  juststay
+  {chvíli oba mlčí}
+  start par6 "mluvi"
+  dub: "Are you not interested in
+        how it really happened?"
+  start par6 "mlci"
+  justtalk
+    D: "I'll come back here in another 538 years
+        to see what's up."
+  juststay
+  start par6 "mluvi"
+  dub: "Will you really come?"
+  start par6 "mlci"
+  justtalk
+    D: "I promise."
+  juststay
+gplend
+
+block _03 ( beg(0) and not been(_03) and isobjoff(tajnyvchod) )
+title What kind of trees are you?
+  justtalk
+    D: "What kind of trees are you?"
+  juststay
+  start par6 "mluvi"
+  dub: "I am a poplar."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "He is kidding, he is an ordinary oak.
+        But he's always had an inferiority complex
+        and wanted to be a tall poplar..."
+  buk: "...until he finally started to believe it."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "And who are you?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "I am a tall poplar."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+gplend
+
+
+block _06 ( beg(0) and not been(_06) )
+title You are hiding something from me!
+  justtalk
+    D: "You are hiding something from me!"
+  juststay
+  start par6 "mluvi"
+  dub: "Me? I don't tell what I don't know."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Or perhaps
+        me? Ho ho!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  justtalk
+    D: "You are disguising a secret entrance!"
+  juststay
+  start par6 "mluvi"
+  dub: "That is why it is secret, you wiseguy."
+  start par6 "mlci"
+gplend
+
+block _07 ( beg(0) and not been(_07) and been(_06) )
+title Could you reveal the secret entrance a bit?
+  justtalk
+    D: "Could you reveal the secret entrance a bit?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Hardly.
+        We are covering it with our roots,
+        and they are stiff after all these years."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "I am not suicidal.
+        In all probability, all my roots
+        would break and crack."
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "We won't let you violate our roots!
+        We have already been having trouble
+        being rooted over this secret entrance!"
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "I already feel brittle in my roots
+        how they slowly but surely crackle."
+  dub: "Ouch !!!"
+  start par6 "mlci"
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Moreover, a lichen itches me badly.
+        Uhhh, what a terror!"
+  buk: "Speak nothing of the roots."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "Yeah, I forgot about the lichen.
+        And recently,
+        someone decided to cleave wood on me.
+        I've suffered a migraine since then."
+  start par6 "mlci"
+  justtalk
+    D: "I have never seen such hypochondriac stumps!"
+  juststay
+
+  let budu_drbat (1)
+gplend
+
+block _04 ( beg(0) and maxline(1) and last(_01) and isobjoff(tajnyvchod) )
+title
+  justtalk
+    D: "...I have nothing to say to you."
+    D: "Have you?"
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "No."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  start par6 "mluvi"
+  dub: "That was in the first year when I was..."
+  start par6 "mlci"
+  justtalk
+    D: "This is not what I want to hear!"
+  juststay
+  exitdialogue
+gplend
+
+block _05 ( beg(0) and not last(_01) )
+title Good bye by then.
+  justtalk
+    D: "Good bye by then."
+  juststay
+  start par7 "mluvi"
+  start par4 "mluvi"
+  start par5 "mluvi"
+  buk: "Bye."
+  start par7 "mlci"
+  start par4 "mlci"
+  start par5 "mlci"
+  exitdialogue
+gplend
+

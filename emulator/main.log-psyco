@@ -1,0 +1,5 @@
+12:22:16.68  Logging started, 06/07/08                  %%%%%%%%%%%%%%%%%%%%
+12:22:16.69  FullCompiler: starting                                    %%%%%
+12:22:24.72  unsupported opcode 90 at <module>:3                         % %
+12:22:25.03  memory usage: 124+ kb                                         %
+12:22:25.03  program exit, 06/07/08                     %%%%%%%%%%%%%%%%%%%%

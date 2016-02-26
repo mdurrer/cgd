@@ -1,0 +1,5 @@
+# pack-refs with: peeled fully-peeled 
+56a19ad9b056332ef07e508f1bdb6f03c6cb2590 refs/heads/master
+a9ff044d90725521c73ce2e5aa350984beb88251 refs/heads/wip/bubblebutton
+9e5fb8526e8fd3fec70a0a6d4f49da7d51c4e443 refs/heads/wip/show-progress
+9b43d5dd45f41546d00b698a3630b586c5fc51e5 refs/heads/wip/taggedentry

@@ -1,0 +1,366 @@
+block _17 ( maxline(1) and beg(1) and (upeceny_trol=2) )
+title Ich versuche es mit Telepathie.
+  justtalk
+D: "Ich versuche es mit Telepathie."
+  juststay
+  walkonplay 156 116 vpravo
+  objstat away bert
+  load most_drak "telepatie"
+  start most_drak "telepatie"
+
+  {po chvíli mlčení:}
+  start most_trol_huba "mluvi"
+R: "Du hattest recht, mir ist es echt heiß am Rücken.
+    Du kannst das Shirt haben."
+  start most_trol_huba "mlci"
+
+  load most_trol "svlekani2"
+  load most_drak "beretriko"
+  start most_trol "svlekani2"
+  startplay most_drak "beretriko"
+  start most_trol "nahaty"
+  stayon 156 116 vpravo
+  play
+  walkonplay 148 120 vlevo
+
+  justtalk
+D: "Wow, ich hab nur daran gedacht,
+    daß ihm heiß wird und es ist passiert."
+D: "Vielleicht hätte ich das von Anfang an
+    versuchen sollen..."
+  juststay
+  {trol svleče triko a dá nám ho}
+
+  icostat on i_tricko
+  let upeceny_trol (3)
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(1) and not been(_17) and not been(_02) and (vim_o_rytiri=1) )
+title
+  justtalk
+D: "Tut mir leid, wenn ich dich störe,
+    aber ich brauche dein T-Shirt."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Was?!"
+  start most_trol_huba "mlci"
+  justtalk
+D: "Ich brauche dein T-Shirt.
+    Ich hoffe, es ist nicht das einzige,
+    was du anhast."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Doch..."
+  start most_trol_huba "mlci"
+  justtalk
+D: "Keine Sorge, nackte Trolle
+    können mich nicht schocken."
+D: "Ich finde,
+    Trolle sollten immer nackt sein."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Immer Nackt? DIe Idee hatte ich noch nicht.
+    Aber sie ist absolut revolutionär."
+R: "Darüber werd ich mal nachdenken..."
+  start most_trol_huba "mlci"
+  justtalk
+D: "Gibst du mir jetzt dein T-Shirt?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Nein!
+    Dieses T-Shirt hat schon
+    mein Urgroßvater getragen."
+R: "Das geb ich dir nicht."
+  start most_trol_huba "mlci"
+  justtalk
+D: "So viel zu deiner rebellischen Ader.
+    Du solltest dich von diesen dummen,
+    alten Traditionen verabschieden!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Das ist unmöglich.
+    [Jedesmal wenn er anfängt
+    von dem T-Shirt zu sprechen,
+    werde ich deprimiert.]"
+  start most_trol_huba "mlci"
+  justtalk
+D: "Aber ich brauche das T-Shirt dringend!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Wofür brauchst du es denn so dringend?"
+  start most_trol_huba "mlci"
+
+{ let upeceny_trol (1)
+gplend
+
+block _03 ( beg(0) and been(_02) and not been(_03) )
+title Ich liebe die Streifen auf deinem T-Shirt!
+  justtalk
+D: "Ich liebe die Streifen auf deinem T-Shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Geschmackvoll, oder?"
+  start most_trol_huba "mlci"
+  justtalk
+D: "Nein, eigentlich ist es sogar
+    fürchterlich geschmacklos."
+D: "Ich versteh nicht,
+    wie du etwas tragen kannst,
+    das dir überhaupt nicht steht."
+D: "Vertikale Streifen sind heutzutage in Mode."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Dann hoffe ich,
+    daß horizontale Streifen
+    wieder in Mode kommen werden."
+  start most_trol_huba "mlci"
+  justtalk
+D: "Ich bin sicher,
+    dieser FAll wird NIEMALS eintreten."
+D: "Du könntest mir das T-Shirt stiften."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Vergiss es."
+  start most_trol_huba "mlci"
+gplend
+
+block _04 ( beg(0) and been(_02) and not been(_04) )
+title Ich werde eine Kollage daraus machen...
+  justtalk
+D: "Ich werde eine Kollage daraus machen..."
+D: "...nein, vielmehr eine Montage..."
+D: "...vielleicht ein Flickwerk."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Finde ich interessant, warum nicht.
+    Aber gibst du es mir auch zurück?"
+  start most_trol_huba "mlci"
+  justtalk
+D: "Ich denke nicht, es wird in Stücke geschnitten."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Hah, dann werd ich dir mein T-Shirt
+    niemals geben."
+R: "Auch wenn du die besten Absichten hast!"
+  start most_trol_huba "mlci"
+  justtalk
+D: "Du bist ein Kunstbanause!"
+  juststay
+gplend
+
+block _06 ( beg(0) and been(_02) and not been(_06) )
+title Das Schicksal des Landes hängt von dem T-Shirt ab!
+  justtalk
+D: "Vielleicht hängt das Schicksal des ganzen Landes
+    von dem T-Shirt ab!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Du appellierst an meinen Patriotismus, was?"
+  start most_trol_huba "mlci"
+gplend
+
+block _07 ( beg(0) and been(_02) and not been(_07) )
+title Das Schicksal des ganzen Universums hängt...
+  justtalk
+D: "Das Schicksal des ganzen Universums
+    hängt von dem T-Shirt ab!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Dann sollte das Universum
+    schnellstens ein anderes T-Shirt finden,
+    auf daß es sich verlässt!"
+  start most_trol_huba "mlci"
+gplend
+
+block _08 ( beg(0) and been(_02) and not been(_08) )
+title Aber ich brauche das T-Shirt dringend!
+  justtalk
+D: "Aber ich brauche das T-Shirt dringend!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Was willst du denn mit meinem T-Shirt?!
+    Das ist das einzige Outfit, daß ich habe!"
+  start most_trol_huba "mlci"
+  justtalk
+D: "Ich wusste nicht,
+    daß Trolle so arm sind."
+  juststay
+  justtalk
+D: "Ich dachte, das Schild würde ausreichen."
+  juststay
+gplend
+
+block _09 ( beg(0) and been(_02) and not been(_09) )
+title Ich versuch es mal mit Nachdruck...
+  justtalk
+D: "Ich versuch es mal mit Nachdruck..."
+  juststay
+  justtalk
+D: "Was für erstaunliche Muskeln!
+    Trainierst du?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Was sagst du da?
+    Meine Muskeln sind fast unsichtbar!"
+  start most_trol_huba "mlci"
+  justtalk
+D: "Das stimmt,
+    sie sind fast unsichtbar wegen dem T-Shirt.
+    So ein Pech!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Finde ich nicht."
+  start most_trol_huba "mlci"
+gplend
+
+block _10 ( beg(0) and been(_02) and not been(_10) )
+title Dir muss sehr heiß sein!
+  justtalk
+D: "Dir muss sehr heiß sein!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Och nö, mir geht's gut."
+  start most_trol_huba "mlci"
+gplend
+
+block _11 ( beg(0) and been(_02) and not been(_11) )
+title Du siehst blaß aus, du solltest dich bräunen.
+  justtalk
+D: "Du siehst blaß aus,
+    du solltest dich bräunen."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Ich mag keine Sonnenbäder."
+  start most_trol_huba "mlci"
+gplend
+
+block _12 ( beg(0) and been(_02) and not been(_12) )
+title Gib mir dein T-Shirt!
+  justtalk
+D: "Gib mir dein T-Shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Niemals!"
+  start most_trol_huba "mlci"
+gplend
+
+block _13 ( beg(0) and been(_02) and not been(_13) )
+title Ich will dein T-Shirt!
+  justtalk
+D: "Ich will dein T-Shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Da hast du Pech!"
+  start most_trol_huba "mlci"
+gplend
+
+block _14 ( beg(0) and been(_02) and not been(_14) )
+title T-Shirt, T-Shirt, T-Shirt!
+  justtalk
+D: "T-shirt, T-shirt, T-shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Nein! Nein! Nein!"
+  start most_trol_huba "mlci"
+gplend
+
+block _15 ( beg(0) and been(_02) and not been(_15) and been(_09) )
+title Vielleicht bin ich zu nachdrücklich...
+  justtalk
+D: "Vielleicht bin ich zu nachdrücklich..."
+D: "Du gibst mir besser dein stinkendes T-Shirt,
+    es passt dir gar nicht!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Was hast du gesagt?
+    Da ist unmöglich!"
+  start most_trol_huba "mlci"
+gplend
+
+
+
+block _19 ( maxline(1) and not been (_19) and beg(1) and (probehl_incident=1) )
+title
+  justtalk
+D: "Wie geht's dir?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Mir geht's gut, danke!
+    Ich habe nur eine geschwollene Nase."
+  start most_trol_huba "mlci"
+  start most_trol_huba "mluvi"
+R: "Irgendein Idiot hat versucht mich umzubringen!
+    Also hab ich ihm die Nase eingehauen."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend
+
+block _18 ( maxline(1) and beg(1) and (upeceny_trol=3) )
+title
+  justtalk
+D: "Wie geht's dir?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Gut, danke."
+  start most_trol_huba "mlci"
+  start most_trol_huba "mluvi"
+R: "Bin ich schon braun genug?"
+  start most_trol_huba "mlci"
+  justtalk
+D: "Ich finde, du hast nen schönen Braunton!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Wenn das so ist,
+    dann hab ich noch gar keine Bräune.
+    Braun ist nämlich meine natürliche Farbe."
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend
+
+block _16 ( maxline(1) and beg(1) and been(_02) and (upeceny_trol!=3) )
+title Das Tieeeeeeeeeee-Shirt!
+  justtalk
+D: "Das Tieeeeeeeeeee-Shirt!"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Neeeeeeiiiinn!"
+  start most_trol_huba "mlci"
+gplend
+
+block _20 ( maxline(1) and last(_16) )
+title
+  justtalk
+D: "Uff..."
+  juststay
+  exitdialogue
+gplend
+
+block _21 ( beg(0) and not last(_16) )
+title Ich glaube es gibt nichts mehr zu sagen...
+  justtalk
+D: "Ich glaube,
+    es gibt nichts mehr zu sagen..."
+  juststay
+  start most_trol_huba "mluvi"
+R: "Wir können über mein wunderschönes
+    T-Shirt sprechen."
+  start most_trol_huba "mlci"
+  justtalk
+D: "Ich verschwende meine Zeit!"
+  juststay
+  exitdialogue
+gplend
+
+block _01 ( maxline(1) and beg(1) )
+title
+  justtalk
+D: "Was machst du auf der Brücke?"
+D: "Ich dachte,
+    Trolle würde unter Bäumen dösen?"
+  juststay
+  start most_trol_huba "mluvi"
+R: "Ich hatte einen Lebenswandel!"
+  start most_trol_huba "mlci"
+  exitdialogue
+gplend

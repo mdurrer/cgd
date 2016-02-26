@@ -1,0 +1,220 @@
+{s pajzlem v hospodě:}
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+D: "Herr Zwerg..."
+D: "Würdest du mir ein Bier ausgeben?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Verschwinde."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Ich lass mich nicht so leicht einschüchtern!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Das Bier ist warm!"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Um Gottes Willen, wieviel hast du denn gehabt?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Verschwinde, Junge!"
+  start hpajzl_hlava "pije"
+  justtalk
+D: "Du bist nicht sehr gesprächig...
+    Du siehst erschöpft aus."
+D: "Hast du ein schreckliches Trauma erlebt?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Geht dich nichts an!"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Du mußt alles rauslassen..."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Na schön,
+    wo ist hier das Klo?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "...all die fürchterlichen Erlebnisse,
+    die sich in dir auftürmen!"
+  juststay
+gplend
+
+block _00b ( last(_00) )
+title
+ labels skip
+  start hpajzl_hlava "mluvi"
+P: "Bier!"
+  start hpajzl_hlava "pije"
+  justtalk
+D: "Versuch doch nicht all deine Probleme
+    in Alkohol zu ertränken!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Was? Warum denn nicht?"
+  goto skip
+start hpajzl_hlava "mlci"
+justtalk
+D: "Dafür gibt's doch Medikamente,
+    die man missbrauchen kann."
+juststay
+start hpajzl_hlava "mluvi"
+P: "Wirklich?
+    Das sollte ich mal versuchen."
+ label skip
+P: "Nun verstehe ich.
+    Du hast mir die Augen geöffnet."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Vertraust du dich mir jetzt an?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Ja,
+    Vielleicht wäre es wirklich besser,
+    wenn ich mich dir anvertraue."
+P: "Ich bin nur knapp
+    dem Rachen des Todes entkommen!"
+P: "Ich wurde fast verspeist."
+P: "Das war's."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Na also!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Das ist ja schrecklich,
+    wie kann es sich jemand heutzutage leisten,
+    Zwerge zu essen."
+P: "Ja, es gibt Länder,
+    in denen es bereits seit vielen Jahren
+    verboten ist, Zwerge zu essen."
+  start hpajzl_hlava "mlci"
+gplend
+
+block _00c ( last(_00b) )
+title
+ labels skip
+  start hpajzl_hlava "mluvi"
+P: "Sind wir etwa nicht zivilisiert genug, Junge?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Ähm, das ist ein weltweiter Skandal."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Wenigstens stimmst du mir zu."
+P: "Aber was soll ich nur tun,
+    um meine armen Brüder davor zu bewahren,
+    was sie erwartet."
+  goto skip
+P: "Ja, was soll ich tun."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Erwartet sie ein sehr traumatisches Erlebnis?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Ja, das tut es,
+    und erst dieser Geruch."
+  label skip
+P: "Zuerst wird er sie pfeffern."
+P: "Dann durchklopfen."
+P: "Dann kochen."
+P: "Vielleicht frittiert er sie sogar."
+P: "...uff!..."
+P: "Das wäre nichts für mich,
+    ich vertrag nicht soviel Cholesterin!"
+P: "Oder Brotkrümel in den Augen."
+P: "Dann gießt er etwas Zitronensaft über sie..."
+  start hpajzl_hlava "pije"
+  justtalk
+D: "[Mir läuft das Wasser im Mund zusammen.
+    Wo könnte ich wohl
+    so ein exotisches Gericht bekommen?]"
+D: "Laden sie mich zu einer Feier ein?"
+  juststay
+  {pajzl odpovídá velice smutně a zklamaně:}
+  start hpajzl_hlava "mluvi"
+P: "Ich lade dich nicht ein. Ich bin deprimiert."
+  start hpajzl_hlava "pije"
+gplend
+
+block _00d ( last(_00c) )
+title
+  justtalk
+D: "Tut mir leid,
+    ich wollte nicht teilnahmslos erscheinen.
+    Wo sind deine Brüder?"
+D: "Ich werde sie befreien!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Das würdest du tun?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Na klar."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Meine Brüder warten darauf
+    verspeist zu werden..."
+P: "...in der furchtbaren Höhle
+    eines noch furchtbareren Riesen."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Wo genau?"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Richtung Nord-Nord-Ost."
+P: "Wenn du's genau wissen willst,
+    es sind 515 Grad und 75 Winkelstunden
+    ...ich meine, Minuten."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Das werd ich kaum finden!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Und dazu 60 Winkelsekunden."
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Das hilft mir schon eher!
+    Jetzt weiß ich genau, wo sie ist."
+D: "Ich mach mich auf!"
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Viel Glück.
+    Sag meinen Brüdern,
+    daß ich hier auf sie warten werde."
+P: "Wenn sie mich nicht finden,
+    sollen sie unterm Tisch nachsehen."
+  start hpajzl_hlava "mlci"
+{hodime semka newroom do mapy- objeveni se lokace s obrem}
+{a z mapy opet gejt semka...}
+  let new_obr (1)
+gplend
+
+block _01 ( beg(1) and been(_00) )
+title
+ labels skip
+  justtalk
+D: "Herr Zwerg..."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Was ist mit meinen Brüdern?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Denen geht's gut."
+  goto skip
+D: "Sie vergnügen sich."
+ label skip
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Warum hast du sie nicht hierher gebracht?"
+  start hpajzl_hlava "mlci"
+  justtalk
+D: "Sie sind gerade etwas eingespannt.
+    Hätte ich ihnen den Sommerurlaub ruiniert,
+    dann würd ich mich für den Rest meines Lebens
+    schämen."
+D: "Das kannst du nicht von mir verlangen."
+  juststay
+  start hpajzl_hlava "mluvi"
+P: "Ach, verschwinde."
+  start hpajzl_hlava "mlci"
+gplend

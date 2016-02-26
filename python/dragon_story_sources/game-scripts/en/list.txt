@@ -1,0 +1,31 @@
+{s větrem v horách- teď vlasně s listem:}
+
+block _00 ( beg(1) )
+title
+  justtalk
+D: "Mr. Wind!
+    That was not nice
+    to disappear on me."
+  juststay
+V: "I enjoooooyed the feeeeeling of freedom..."
+  justtalk
+D: "I thought we had an agreement."
+  juststay
+V: "Sooooo, and what would yooooou like?"
+  justtalk
+D: "Just wondering if you would
+    blow a cloud or two away for me."
+  juststay
+V: "That's eeeeasy ...
+    But where?"
+  justtalk
+D: "If you get a little bit higher,
+    by the knoll,
+    you'll see them."
+  juststay
+V: "Deal, im ooooff...."
+{gejtkou k sipku, odfouknuti mraku, pak zpátky}
+
+  let odfoukli_jsme (1)
+  newroom sipek 2
+gplend

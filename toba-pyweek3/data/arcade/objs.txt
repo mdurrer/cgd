@@ -1,0 +1,12 @@
+player	player	441	365	70
+trash_pos	point	375	329	100
+sales	jerk	589	303	70
+chicken_pos	point	649	303	100
+glass	glass	445	169	100
+exit_pos	point	445	391	100
+game_pos	point	251	302	100
+smoke	smoke	316	249	100
+sales_pos	point	509	321	100
+trash	blank	324	313	100
+chicken	chicken	717	255	100
+claw_pos	point	453	289	100

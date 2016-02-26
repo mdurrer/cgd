@@ -1,0 +1,25 @@
+{situacka  s pojidanim gulase:}
+
+block _00 ( beg(1) )
+title
+labels skip1 skip2
+
+Vypravec: "Währenddessen..."
+
+Pan: "Mmmmh...
+      Lecker..."
+Pan: "Mmmmh..."
+goto skip1
+Pan: "Voller Geschmack - ooh!"
+Pan: "Uff..."
+label skip1
+Pan: "Die Vorspeise wär erledigt, jetzt etwas Gulasch."
+Pan: "Was riecht denn da so?"
+Pan: "Das ist ja vollkommen verkohlt..."
+goto skip2
+Pan: "Bäh, was für ein Gestank!"
+Pan: "Das esse ich nie wieder!"
+label skip2
+Pan: "DAS IST UNKONSUMIERBAR!"
+
+gplend

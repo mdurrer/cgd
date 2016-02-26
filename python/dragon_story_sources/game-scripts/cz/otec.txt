@@ -1,0 +1,513 @@
+{Bert s Herbertem:}
+
+block _10 ( maxline(1) and beg(1) and not been(_10) and isactico(i_zvonek) )
+title
+  icostat off i_zvonek
+{zazvonime:}
+  objstat away jesuvn_kap
+  mark
+  load bert "zvoni"
+  startplay bert "zvoni"
+  release
+  objstat_on jesuvn_kap jesuvn
+  start jesuvn_kap "kapani"
+  start bert "kour-vlevo"
+  objstat_on herb_oko jesuvn
+  start herb_oko "zakladni"
+
+  start herbert "mluvi"
+  H: "Berte, proč mě budíš,
+      chce se mi ještě strašně spáááát."
+  start herbert "mlci"
+  justtalk
+  D: "Tati, teď není čas na spaní."
+  juststay
+  start herbert "mluvi"
+  H: "Zdál se mi hodně dobrodružný sen.
+      Objevil jsem v něm starý dračí poklad a..."
+  start herbert "mlci"
+  justtalk
+  D: "Tati..."
+  juststay
+  start herbert "mluvi"
+  H: "Je mi jasné, synu,
+      co mi chceš říct."
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Každý normální civilizovaný drak ví,
+      že dračí poklady jsou v našem kraji
+      už po staletí zapomenuty."
+  start herbert "mlci"
+  justtalk
+  D: "No... vlastně v tom máš pravdu.
+      Musíme se ale teď vrátit domů,
+      Berta na tebe čeká s obědem!"
+  juststay
+  start herbert "mluvi"
+  H: "Domů?
+      Copak nejsme doma?"
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Ho, my opravdu nejsme doma..."
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Můžeš mi Berte vysvětlit,
+      kdepak to vůbec jsme?!"
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "A co tady dělá
+      ta hromada příšerného haraburdí?"
+  start herbert "mlci"
+  justtalk
+  D: "Zkusím ti to vysvětlit cestou DOMŮ..."
+  juststay
+
+{vyskocime do draci chalupy, situacka s vareckou
+{newroom chauvn ...
+  newroom chauvn 3
+{vypneme aji draci matku v chalupe, zapneme listek na stole
+  objstat away mutti
+  objstat away mutti_noh
+  objstat away mutti_ruk
+
+  exitdialogue
+gplend
+
+block _11 ( maxline(1) and beg(1) and not been(_11) and isactico(i_trubka) )
+title
+  icostat off i_trubka
+
+  justtalk
+  D: "Tati, zamuzicírujeme si spolu."
+  juststay
+  start herbert "mluvi"
+  H: "Co to po mě zase chceš?
+      Jdi otravovat domů Bertu!"
+  start herbert "mlci"
+  justtalk
+  D: "Chci, abys pro mě zatroubil na trubku."
+  juststay
+  justtalk
+  D: "Připomene mi to moje mládí,
+      trubku jsem přímo miloval!"
+  juststay
+  justtalk
+  D: "A vím otče, že ty taky!"
+  juststay
+  justtalk
+  D: "Hráli jsme na ni každou chvíli..."
+  juststay
+  start herbert "mluvi"
+  H: "Právě proto se mi trubka úplně znelíbila!"
+  start herbert "mlci"
+  justtalk
+  D: "Ty jsi snad přestal být muzikální!"
+  juststay
+  justtalk
+  D: "Kam se z tebe vytratil hudební cit?!"
+  juststay
+  start herbert "mluvi"
+  H: "Po tom nepátrám, ale asi to už tak bude."
+  start herbert "mlci"
+  justtalk
+  D: "Prosím, otče,
+      jenom pár falešných tónů zkus vyloudit
+      z toho královského nástroje!"
+  juststay
+  start herbert "mluvi"
+  H: "Ty snad nedáš pokoj!"
+  start herbert "mlci"
+  justtalk
+  D: "Nedám, protože si chci připomenout
+      světlé okamžiky mého dětství prožité s TEBOU!"
+  juststay
+  justtalk
+  D: "To bys snad měl pochopit!"
+  juststay
+  start herbert "mluvi"
+  H: "Nejenom, že mi cinká v uších,
+      ale už mě i z těch tvých řečí
+      začíná brnět hlava."
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Dej sem tu trubku, ať mám od tebe pokoj!"
+  start herbert "mlci"
+
+{akční situačka s troubením...}
+  walkonplay 84 176 vlevo
+  objstat away bert
+  mark
+  load draktrum "zastrkuje"
+  startplay draktrum "zastrkuje"
+  stayon 84 176 vlevo
+  objstat away jesuvn_kap
+  release
+    let otec_troubil (1)
+    load herbert "troubi"
+    objstat off herb_oko
+    startplay herbert "troubi"
+    start herbert "mlci"
+    objstat_on herb_oko jesuvn
+    start herb_oko "zakladni"
+  mark
+  objstat_on jesuvn_kap jesuvn
+  start jesuvn_kap "kapani"
+  load draktrum "vyndava"
+  startplay draktrum "vyndava"
+  release
+  walkonplay 80 156 vlevo
+
+  justtalk
+  D: "Díky. Úplně mi to pohladilo duši, vážně."
+  juststay
+  start herbert "mluvi"
+  H: "Doufám, že toho po mě víc chtít nebudeš!"
+  start herbert "mlci"
+  justtalk
+  D: "Kdepak, otče, tenhle zážitek mi vydrží
+      na celý příští rok."
+  juststay
+  start herbert "mluvi"
+  H: "Chci, abys věděl, že tě mám opravdu rád.
+      Byla to maličkost, co jsem pro tebe udělal."
+  start herbert "mlci"
+  justtalk
+  D: "Já tě mám taky rád, tati..."
+  juststay
+  start herbert "mluvi"
+  H: "Já vím..."
+  start herbert "mlci"
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and maxline(1) and not been(_00) )
+title
+  justtalk
+  D: "Tati..."
+  juststay
+  start herbert "mluvi"
+  H: "Kdo jsi?
+      Nepoznávám tě!"
+  start herbert "mlci"
+  justtalk
+  D: "Jsem přece Bert..."
+  juststay
+  start herbert "mluvi"
+  H: "Jednoho Berta znám.
+      Je to můj syn."
+  start herbert "mlci"
+  justtalk
+  D: "Já jsem tvůj syn!"
+  juststay
+  start herbert "mluvi"
+  H: "Tak potom mazej domů,
+      tady nemáš co dělat!"
+  start herbert "mlci"
+  justtalk
+  D: "Ale tati..."
+  juststay
+  start herbert "mluvi"
+  H: "Promiň, synu,
+      trochu jsem se unáhlil."
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Jsi to skutečně ty, Berte?"
+  start herbert "mlci"
+  justtalk
+  D: "Ne, jsem jenom tvůj přelud, nezodpovědný
+      hamižníku
+      a rozvraceči pokojného rodinného života!"
+  juststay
+  start herbert "mluvi"
+  H: "Tak už i přeludy?!
+      Jako by nestačilo,
+      že mi zvoní v uších!"
+  start herbert "mlci"
+  exitdialogue
+gplend
+
+block _00a ( beg(1) and maxline(1) and not been(_00a) )
+title
+  justtalk
+  D: "Tati..., jsem to já, Bert..."
+  juststay
+  start herbert "mluvi"
+  H: "...takže žádný přelud?
+      Málem bych tě nepoznal."
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Hodně ses za ta léta změnil, synu."
+  start herbert "mlci"
+  justtalk
+  D: "Otče, to nejsou léta, je to sotva měsíc!"
+  juststay
+  start herbert "mluvi"
+  H: "Úplně jsem ztratil představu o čase."
+  start herbert "mlci"
+gplend
+
+block _00c ( beg(1) and (varblock(_00b)=3) and maxline(1) )
+title
+  justtalk
+  D: "Tati... Hrozně mi scházíš!"
+  juststay
+  start herbert "mluvi"
+{řekne to tónem, jako "Polib mi..."}
+  H: "Ty mě taky!"
+  start herbert "mlci"
+  resetblock _00b
+  exitdialogue
+gplend
+
+block _00b ( beg(1) and maxline(1) )
+title
+  justtalk
+  D: "Tati..."
+  juststay
+  start herbert "mluvi"
+  H: "Co je, synu?"
+  start herbert "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+title Myslím, že by ses měl vrátit domů.
+  justtalk
+  D: "Myslím, že by ses měl vrátit domů."
+  juststay
+  start herbert "mluvi"
+  H: "A poklad nechat tady? Nikdy."
+  start herbert "mlci"
+  justtalk
+  D: "Můžeš si vzít poklad s sebou..."
+  juststay
+  start herbert "mluvi"
+  H: "To těžko půjde!"
+  start herbert "mlci"
+  justtalk
+  D: "Taková trocha?"
+  juststay
+  start herbert "mluvi"
+  H: "Co kdyby se nám něco po cestě poztrácelo?
+      Nenechám tady jedinou zlatou minci!"
+  start herbert "mlci"
+  justtalk
+  D: "Copak ti nestačí, že já jsem tvůj poklad?"
+  juststay
+  start herbert "mluvi"
+  H: "No vidíš to, zůstaň tady raději se mnou!"
+  start herbert "mlci"
+gplend
+
+block _02 ( beg(0) and not been(_02) )
+title Rodičovské povinnosti volají!
+  justtalk
+  D: "Rodičovské povinnosti volají!"
+  juststay
+  justtalk
+  D: "Berta po tobě chce, abys mě potrestal -
+      ani sama neví, kvůli čemu!"
+  juststay
+  start herbert "mluvi"
+  H: "Jistě uznáš, že když jsem našel tento poklad,
+      nemám teď čas na takové nedůležité věci,
+      jako je výchova syna."
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Je mi jedno, co jsi vyvedl,
+      možná si výprask zasloužíš, a možná ne,
+      ale já jsem teď opravdu zaneprázdněn!"
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Je mi to moc líto,
+      ale pokud na výprasku trváš,
+      budeš muset říct Bertě."
+  start herbert "mlci"
+gplend
+
+block _03 ( beg(0) and not been(_03) )
+title Věřil bys, že se nám po tobě doma stýská?
+  justtalk
+  D: "Věřil bys, že se nám po tobě doma stýská?"
+  juststay
+  start herbert "mluvi"
+  H: "Ále co, to nebude tak hrozné.
+      Můžete za mnou jezdit na prázdniny!"
+  start herbert "mlci"
+  justtalk
+  D: "Na prázdniny jezdíme k dědovi..."
+  juststay
+  start herbert "mluvi"
+  H: "Můžete sem vzít i dědu!"
+  start herbert "mlci"
+  justtalk
+  D: "Vždyť sotva chodí,
+      to po tak starém drakovi nemůžeš chtít."
+  juststay
+  justtalk
+  D: "Navíc by tady určitě chytil revma!"
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+title Co vlastně celé dny a noci děláš, táto?
+  justtalk
+  D: "Co vlastně celé dny a noci děláš, táto?"
+  juststay
+  start herbert "mluvi"
+  H: "No hlídám přece poklad, že se ptáš!"
+  start herbert "mlci"
+  justtalk
+  D: "To musí být šílená nuda!"
+  juststay
+  start herbert "mluvi"
+  H: "Jak si něco takového můžeš myslet!
+      Neznám lepší zábavu, než hlídání pokladů!"
+  start herbert "mlci"
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_04) )
+title To si při hlídání vůbec neodpočneš?
+  justtalk
+  D: "To si při hlídání vůbec neodpočneš?"
+  juststay
+  start herbert "mluvi"
+  H: "Ne. Nikdy."
+  start herbert "mlci"
+gplend
+
+block _06 ( beg(0) and not been(_06) and been(_05) )
+title Nemáš chuť si ani na chvíli zdřímnout?
+  justtalk
+  D: "Nemáš chuť si ani na chvíli zdřímnout?"
+  juststay
+  start herbert "mluvi"
+  H: "Mezi námi - zdřímnul bych si hrozně rád,
+      už měsíc jsem ani nezamhouřil oko."
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Ale něco mi pořád cinká v uších
+      a já pak nemůžu usnout!"
+  start herbert "mlci"
+gplend
+
+block _07 ( beg(0) and not been(_07) and been(_06) )
+title Dělají se ti taky mžitky před očima?
+  justtalk
+  D: "Dělají se ti taky mžitky před očima?"
+  juststay
+  start herbert "mluvi"
+  H: "Vidím akorát tebe, Berte."
+  start herbert "mlci"
+  justtalk
+  D: "No dobře.
+      A nehučí ti tak nějak v celé hlavě?"
+  juststay
+  start herbert "mluvi"
+  H: "Řekl bych, že mi v uších
+      prostě normálně a obyčejně cinká."
+  start herbert "mlci"
+  justtalk
+  D: "Kdyby ti hučelo, tak bych věděl, o co jde."
+  juststay
+  justtalk
+  D: "Podobný pocit mívám skoro pokaždé,
+      když se vracím od 'Špinavé skřetí pracky'."
+  juststay
+  start herbert "mluvi"
+  H: "Tys' někdy vkročil do toho hrozného doupěte?!"
+  start herbert "mlci"
+  justtalk
+  D: "Vždyť je to celkem milá a útulná hospůdka..."
+  juststay
+  start herbert "mluvi"
+  H: "Na takové věci má drak jako ty ještě
+      spoustu času!"
+  start herbert "mlci"
+  justtalk
+  D: "No dobrá otče, vymýšlel jsem si.
+      Mám prostě jenom trochu bujnější fantazii."
+  juststay
+  justtalk
+  D: "V hlavě mi opravdu nikdy nehučí."
+  juststay
+  justtalk
+  D: "Celý svět se se mnou prostě přímo houpá!"
+  juststay
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_06) )
+title V kterým uchu ti cinká?
+  justtalk
+  D: "V kterým uchu ti cinká?"
+  juststay
+  start herbert "mluvi"
+  H: "To je různé."
+  start herbert "mlci"
+  start herbert "mluvi"
+  H: "Někdy mívám pocit, že v obou!"
+  start herbert "mlci"
+  justtalk
+  D: "Máš ten pocit teď?"
+  juststay
+  start herbert "mluvi"
+  H: "Teď zrovna ne,
+      ale můžu si počkat..."
+  start herbert "mlci"
+  justtalk
+  D: "Slyšíš něco?"
+  juststay
+  start herbert "mluvi"
+  H: "Nic."
+  start herbert "mlci"
+  justtalk
+  D: "Já taky nic."
+  juststay
+  load herbert "cinka"
+  startplay herbert "cinka"
+  start herbert "mluvi"
+  H: "Teď mi zacinkalo!"
+  start herbert "mlci"
+  justtalk
+  D: "To snad ne, mě taky!"
+  juststay
+  start herbert "mluvi"
+  H: "Snad to není dědičné."
+  start herbert "mlci"
+  justtalk
+  D: "Doufejme, že ne."
+  juststay
+gplend
+
+block _09 ( beg(0) and not been(_09) )
+title Tati, jaktože nemáme křídla, jsme pak vůbec draci?!
+  justtalk
+  D: "Tati, jaktože nemáme křídla,
+      jsme pak vůbec draci?!"
+  juststay
+  start herbert "mluvi"
+  H: "To je všechno pouze otázkou evoluce, synu..."
+  start herbert "mlci"
+
+  let otec_me_poucil (1)
+gplend
+
+
+block _99 ( beg(0) and last(_00b) and maxline(1) )
+title
+  justtalk
+  D: "Ále, nic..."
+  juststay
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and not last(_00b) )
+title Hodně jsme se odcizili otče. Nemám ti víc co říct.
+  justtalk
+  D: "Hodně jsme se navzájem odcizili otče.
+      Nemám ti víc co říct."
+  juststay
+  start herbert "mluvi"
+  H: "Jak myslíš, synu..."
+  start herbert "mlci"
+  exitdialogue
+gplend

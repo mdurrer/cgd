@@ -1,0 +1,1589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Light and Color</title>
+<meta content="text/html; charset=us-ascii" http-equiv="content-type" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Light and Color<br /></h1>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#Light">Light</a></li>
+<li><a href="#The_Eye_">The Eye and Color Perception<br /></a></li>
+<li><a href="#The_RGB_Color_Model_">The RGB Color Model</a></li>
+<li><a href="#RGB_Arithmetic_">RGB Arithmetic</a></li>
+<li style="list-style: none">
+<ul>
+<li><a href="#Negative_Image">Negative Image</a></li>
+<li><a href="#Change_the_Brightness_">Change the
+Brightness</a><br /></li>
+<li><a href="#Greyscale">Greyscale</a></li>
+<li><a href="#Swapping_and_Removing_Channels">Swapping and Removing Channels</a><br /></li>
+</ul>
+</li>
+<li><a href="#The_HSL_Color_Model_">The HSL Color Model</a></li>
+<li><a href="#The_HSV_Color_Model">The HSV Color Model</a></li>
+<li><a href="#Color_Model_Conversions_">Color Model Conversions</a></li>
+<li style="list-style: none">
+<ul>
+<li><a href="#RGB_to_HSL_">RGB to HSL</a></li>
+<li><a href="#HSL_to_RGB_">HSL to RGB</a></li>
+<li><a href="#RGB_to_HSV">RGB to HSV</a></li>
+<li><a href="#HSV_to_RGB_">HSV to RGB</a><br /></li>
+</ul>
+</li>
+<li><a href="#HSL_and_HSV_Arithmetic_">HSL and HSV
+Arithmetic</a></li>
+<li style="list-style: none">
+<ul>
+<li><a href="#Changing_Hue_">Change Hue</a></li>
+<li><a href="#Changing_Saturation">Change Saturation</a></li>
+<li><a href="#Changing_Brightness">Change Brightness</a></li>
+</ul>
+</li>
+</ul>
+<a href="index.html">Back to Index</a>
+<h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+This tutorial is about color, which is no doubt a very important
+aspect of computer graphics.<br />
+<br />
+First is explained how light is built up and why we actually see
+different colors.<br />
+<br />
+Then a some color models are explained: first the RGB color model
+used by computers, and examples showing how to do color arithmetics
+in RGB, and then the more intuitive HSL/HSV models are
+explained.<br />
+<br />
+Then code is given that allows you to convert between color models,
+for example to allow a user to pick a color using the HSV color
+model and then convert it to RGB so the computer can use it, or to
+create rainbow gradients, or to change the color of images.<br />
+<br />
+<h2><a name="Light" id="Light"></a>Light<br /></h2>
+Before starting about color models, it's important to know how the
+human eye and brain turn light into color.<br />
+<br />
+Light itself is an electromagnetic wave. Electromagnetic waves are
+similar to sound waves in that they contain different frequencies,
+but are electromagnetic and can propagate in vacuum. EM waves are
+thus a signal that's made out of one or more frequencies, for
+example the EM waves used by a microwave oven are very high
+frequency, while radio waves are very low frequency. The eye is
+only sensitive to a very narrow band of frequencies, namely the
+frequencies between 429 THz and 750 THz (1 THz = 1 TeraHertz =
+10^12 Hz). All other EM waves can't be seen.<br />
+<br />
+Monochromatic light is light made up of one single pure frequency
+(this is certainly not the general case, most light you see is
+multichromatic). Monochromatic light looks to the eye as a pure
+color, and can never be white or magenta. Since it contains only
+one frequency, the wave of monochromatic light can be represented
+as a sine:<br />
+<br />
+<img alt="" src="images/lightsine.gif" style=
+"width: 639px; height: 72px;" /><br />
+<br />
+The height of the sine is the amplitude or how bright the light is.
+The width of one period (called lambda) is the wavelength of the
+light, and is inversely related to the frequency: since the light
+travels at 300000000 m/s, it's wavelength is 300000000/f where f is
+the frequency. So the visible spectrum of light has wavelengths
+from around 400 to 700 nm.(1 nm = 10^-9 meter).<br />
+<br />
+<img alt="" src="images/visiblespectrum.jpg" style=
+"width: 570px; height: 97px;" /><br />
+<br />
+This visible spectrum shows all the possible colors that can be
+made out of monochromatic light. Some light sources, such as lasers
+and Natrium lights, send out monochromatic light, but in general,
+light is multichromatic. For example, the sun sends out white
+light, which is light that contains ALL frequencies! That means the
+sum of red, yellow, green, blue and violet light looks like white!
+Physically speaking, it's not white at all, it's the sum of a lot
+of sine curves, but the human brain makes it look white. Color is
+thus something psychologically, and not something physical.<br />
+<br />
+Lightwaves are a sum of many different frequencies, or the sum of
+many sine curves. Each of these sine curves has it's own frequency,
+and can have it's own amplitude. A <b>spectrum</b> shows for each
+frequency the amplitude. For more information about spectra in
+general, see the beginnings of the chapter about Fourier
+Transforms.<br />
+<br />
+Here's an example of such a spectrum:<br />
+<br />
+<img alt="" src="images/ledspectrum.jpg" style=
+"width: 339px; height: 228px;" /><br />
+<br />
+It is the spectrum of a yellow LED I found. The top of the spectrum
+is the Dominant Frequency, and that is the color our eyes will
+usually see if light with this spectrum shines on it. If this
+yellow LED would have been monochromatic, the spectrum would have
+looked like this instead:<br />
+<br />
+<img alt="" src="images/ledspectrum2.jpg" style=
+"width: 339px; height: 228px;" /><br />
+<br />
+And to the eyes, the color would look the same. So here an
+interesting fact shows up: light with different spectra, can still
+look the same to the eye! If the human eyes would be able to
+distinguish every single spectrum as a different color, we would've
+been able to see gazillions of different colors, but the human eye
+works differently and turns a whole spectrum into only 3 signals:
+the amount of detected red, green and blue, and combinations of
+those make the colors we can see.<br />
+<br />
+The spectrum of white light is as follows (the height of the curve
+doesn't really matter):<br />
+<br />
+<img alt="" src="images/whitespectrum.jpg" style=
+"width: 339px; height: 228px;" /><br />
+<br />
+All frequencies are equally much in the light, only then it looks
+purely white to the brain. In all other cases, a certain frequency
+will be dominant and then that frequency will be the color the
+brain sees.<br />
+<br />
+The spectrum of black light looks like this:<br />
+<br />
+<img alt="" src="images/blackspectrum.jpg" style=
+"width: 339px; height: 228px;" /><br />
+<br />
+Indeed, there's no light at all, the amplitude of every frequency
+is zero. Black is the color the brain gives to the absence of
+light.<br />
+<br />
+The spectrum of magenta, a color that can't be made with
+monochromatic light, could look like this:<br />
+<br />
+<img alt="" src="images/magentaspectrum.jpg" style=
+"width: 339px; height: 228px;" /><br />
+<br />
+Both blue and red have a high amplitude, and the mix of blue and
+red frequencies looks like magenta or purple to the brain.<br />
+<h2><a name="The_Eye_" id="The_Eye_"></a>The Eye and Color
+Perception</h2>
+This section isn't about how the physical structure of the eye and
+the lens work, but about how the eye and the brain distinguish
+different colors.<br />
+<br />
+So light falls on the retina, and on the retina are 2 types of
+cells with photosensitive chemicals, photoreceptors: rods and
+cones. The rods only detect whether or not light is present, and
+are important at night. So rods are sensitive to the whole spectrum
+at once and can't tell what frequency the light has, and thus can't
+provide any color information. To detect color, you'd need
+photoreceptors that are sensitive to only a certain frequency.
+That's exactly what the cones do:<br />
+<br />
+There are 3 types of cones, those that are sensitive to red, those
+sensitive to green, and those sensitive to blue. Such a rod isn't
+sensitive to a single frequency, they overlap a bit, it's just
+sensitive mostly to a certain frequency.<br />
+<br />
+For example, yellow has a frequency between red and green. This
+yellow frequency will excite both the red and green cones a bit,
+and the human brain converts the signal "both red and green cones
+are excited" to "yellow". Even the blue cones are still a bit
+excited by yellow light, but neglectable.<br />
+<br />
+If light falls on the eye that has two frequencies: red and green,
+it'll also excite both the red and green cones, so this light will
+show up as yellow as well, even though it doesn't contain any
+yellow frequency at all.<br />
+<br />
+If blue light falls on the retina, the blue cones are excited very
+strongly, while the green and red ones will give only a neglectable
+signal. And the brain turns the signal "mainly the blue cone is
+excited" to "blue".<br />
+<br />
+White light contains <b>all</b> frequencies, so if white light
+falls on the retina, all 3 types of cones are excited, and the
+brain turns the signal "green, red and blue cones all excited" into
+"white".<br />
+<br />
+The above explains how the brain creates different "hues" of colors
+out of the incoming signal, but it also gives a certain brightness
+to the light, based on how strong the incoming signal is: if it's
+very strong, the brain indicates it as a very bright red, white,
+..., but if it's very weak, it'll be almost black. And then there's
+also the "saturation" of the color, this is based on the relative
+difference in strength each color type gives: if the red signal is
+very strong, but blue and green are also pretty strong, the color
+will have a low saturation, it's red-grayish or red-whitish. If
+however the red signal would be very strong, and the blue and green
+signal very weak, a very red color shows up.<br />
+<br />
+Since different spectra can look exactly the same for us, and some
+animals have different types of color receptors, it's possible that
+two colors that look the same to us, look like two different colors
+for some animal.<br />
+<br />
+The above process happens on every location of the retina
+separately, so that a complex 2-dimensional image is formed where
+each location on the image can have it's own color.<br />
+<br />
+Thanks to the 3 types of cones, there are 8 (2^3) main colors one
+can distinguish:<br />
+<br />
+<ul>
+<li>No cones excited: <b>Black</b><br /></li>
+<li>Red cones excited, but not the Blue and Green ones:
+<b>Red</b></li>
+<li>Green cones excited, but not the Blue and Red ones:
+<b>Green</b></li>
+<li>Blue cones excited, but not the Red and Green ones:
+<b>Blue</b></li>
+<li>Red and Green cones excited, but no the Blue ones:
+<b>Yellow</b></li>
+<li>Blue and Green cones excited, but no the Red ones:
+<b>Cyan</b></li>
+<li>Red and Blue cones excited, but no the Green ones:
+<b>Magenta</b></li>
+<li>All three the cone types excited: <b>White</b></li>
+</ul>
+You can of course distinguish much more colors than these 8 because
+each receptor type can have different levels of excitement.<br />
+<br />
+Color blindness means one or more of the color types of cones are
+missing or less sensitive, for example if you miss the red one, you
+can only see the difference between light that has mainly green and
+light that has mainly blue. Light with mainly red, will show up as
+green for such a person, because the green receptors are still more
+sensitive to red than the blue ones. People who have 2 types of
+cones missing, and have thus only one type left, see in black and
+white, because only two main types of signals now exist: "the cone
+is excited" and "the cone is not excited". Imagine how much more
+colors a human would be able to see if he had 4 types of color
+receptors instead of only 3.<br />
+<br />
+One final question remains: violet is on one side of the spectrum,
+while red is totally on the other side. Violet is much closer to
+the blue receptors of the eye than the red ones, so you'd think
+violet light would look like pure blue to the eye. But violet looks
+a bit more like purple, hinting that it has some red in it, why
+could that be?<br />
+<br />
+<img alt="" src="images/visiblespectrum.jpg" style=
+"width: 570px; height: 97px;" /><br />
+<br />
+The reason is that violet has such a high frequency, too high for
+the blue receptor as well, that the signal is very weak for both
+the blue and the red receptor. Relatively speaking, the red and
+blue signal will thus be pretty close to each other, and the color
+will show up more like purple than like blue for the brain!<br />
+<h2><a name="The_RGB_Color_Model_" id=
+"The_RGB_Color_Model_"></a>The RGB Color Model</h2>
+The RGB color model works exactly like those color receptors of the
+human eye work: the RGB color model describes a color by using 3
+variables, Red, Green and Blue. These variables can be compared to
+the strength of the signals from the 3 types of color receptors in
+the nerves. A computer or TV screen works this way too: it has 3
+types of cells, Red, Green and Blue, and can make each type
+brighter or darker independently, exciting the correct receptors of
+the eye to create the desired color. If you look with a magnifying
+glass to a white area of your computer screen, you can see that the
+color white is actually made out of the 3 colors red, green and
+blue. This means the white emitted by a computer screen is
+different from white sunlight: while white sunlight contains
+photons of <u>all</u> frequencies (except a few), the computer
+screen only has 3 frequencies. The human eye can't see the
+difference between these two kinds of white.<br />
+<br />
+The RGB color model is the one you'll mostly be dealing with in
+computer graphics. It's also called the additive color model,
+because you add 3 color components together to form any color. In
+24-bit color, each of the 3 components R, G and B is an 8-bit
+variable that can be an integer number between 0 and 255. 0 means
+the color component is off (black), while 255 means it's at it's
+full intensity. 127 is half intensity. This means color 0,0,0 is
+the darkest black, color 255,0,0 is the brightest red, color
+0,255,0 is the brightest green and color 0,0,255 is the brightest
+blue. 255,255,255 is the brightest white and 127,127,127 is gray.
+32-bit color is the same but with an extra 8-bit alpha channel
+added that can be used for transparency of textures, ...<br />
+<br />
+The RGB color model isn't very intuitive, so here's a table
+containing some common RGB values:<br />
+<br />
+<p>Here is a table with common RGB color values:</p>
+<table style="width: 95%;" border="1" cellspacing="0">
+<tr>
+<td width="4%"><b><font color="#FF0000">R</font></b></td>
+<td width="5%"><b><font color="#00FF00">G</font></b></td>
+<td width="6%"><b><font color="#0000FF">B</font></b></td>
+<td width="15%"><b>Hex Value<br /></b></td>
+<td width="70%"><b>Color</b></td>
+</tr>
+<tr>
+<td width="4%">0</td>
+<td width="5%">0</td>
+<td width="6%">0</td>
+<td width="15%">000000</td>
+<td style="font-weight: bold;" width="70%">Black</td>
+</tr>
+<tr>
+<td width="4%">255</td>
+<td width="5%">0</td>
+<td width="6%">0</td>
+<td width="15%">FF0000</td>
+<td style="font-weight: bold;" width="70%"><font color=
+"#FF0000">Red</font></td>
+</tr>
+<tr>
+<td width="4%">0</td>
+<td width="5%">255</td>
+<td width="6%">0</td>
+<td width="15%">00FF00</td>
+<td style="font-weight: bold;" width="70%"><font color=
+"#00FF00">Green</font></td>
+</tr>
+<tr>
+<td width="4%">0</td>
+<td width="5%">0</td>
+<td width="6%">255</td>
+<td width="15%">0000FF</td>
+<td style="font-weight: bold;" width="70%"><font color=
+"#0000FF">Blue</font></td>
+</tr>
+<tr>
+<td width="4%">255</td>
+<td width="5%">255</td>
+<td width="6%">0</td>
+<td width="15%">FFFF00</td>
+<td style=
+"width: 70%; background-color: rgb(0, 0, 0); font-weight: bold;">
+<font color="#FFFF00">Yellow</font></td>
+</tr>
+<tr>
+<td width="4%">255</td>
+<td width="5%">0</td>
+<td width="6%">255</td>
+<td width="15%">FF00FF</td>
+<td style="font-weight: bold;" width="70%"><font color=
+"#FF00FF">Magenta</font></td>
+</tr>
+<tr>
+<td width="4%">0</td>
+<td width="5%">255</td>
+<td width="6%">255</td>
+<td width="15%">00FFFF</td>
+<td style="font-weight: bold;" width="70%"><font color=
+"#00FFFF">Cyan</font></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">255<br /></td>
+<td style="vertical-align: top;">128<br /></td>
+<td style="vertical-align: top;">128<br /></td>
+<td style="vertical-align: top;">FF8080<br /></td>
+<td style="vertical-align: top;"><span style=
+"font-weight: bold; color: rgb(255, 128, 128);">Bright
+Red</span><br /></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">128<br /></td>
+<td style="vertical-align: top;">255<br /></td>
+<td style="vertical-align: top;">128<br /></td>
+<td style="vertical-align: top;">80FF80<br /></td>
+<td style="vertical-align: top;"><span style=
+"font-weight: bold; color: rgb(128, 255, 128);">Bright
+Green</span><br /></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">128<br /></td>
+<td style="vertical-align: top;">128<br /></td>
+<td style="vertical-align: top;">255<br /></td>
+<td style="vertical-align: top;">8080FF<br /></td>
+<td style="vertical-align: top;"><span style=
+"font-weight: bold; color: rgb(128, 128, 255);">Bright
+Blue</span><br /></td>
+</tr>
+<tr>
+<td width="4%">64</td>
+<td width="5%">64</td>
+<td width="6%">64</td>
+<td width="15%">404040</td>
+<td style="font-weight: bold;" width="70%"><font color=
+"#404040">Dark Grey</font></td>
+</tr>
+<tr>
+<td width="4%">128</td>
+<td width="5%">128</td>
+<td width="6%">128</td>
+<td width="15%">808080</td>
+<td style="font-weight: bold;" width="70%"><font color=
+"#808080">Intermediate Grey</font></td>
+</tr>
+<tr>
+<td width="4%">192</td>
+<td width="5%">192</td>
+<td width="6%">192</td>
+<td width="15%">C0C0C0</td>
+<td style="font-weight: bold;" width="70%"><font color=
+"#C0C0C0">Bright Grey</font></td>
+</tr>
+<tr>
+<td width="4%">255</td>
+<td width="5%">255</td>
+<td width="6%">255</td>
+<td width="15%">FFFFFF</td>
+<td style=
+"background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); font-weight: bold;"
+width="70%">White</td>
+</tr>
+</table>
+<br />
+This way, you should be able to guess that 128,0,0 is dark red,
+255,128,192 is pink and 16,16,16 is very dark gray. The Hex value
+is the hexadecimal code of the color, used for example in
+HTML.<br />
+<br />
+The R, G and B values are the ones to fill in as parameters for
+functions of QuickCG like pset, drawLine, drawCircle to give the
+color.<br />
+<br />
+In RGB color, the higher the values of R, G and B, the brighter the
+color will be, and if R=G=B, the color will be a shade of
+gray.<br />
+<br />
+If you set R=x, G=y, B=z, you can represent RGB color on a cube,
+where the origin is black and the corner at R=255,G=255,B=255 is
+white:<br />
+<br />
+<img alt="" src="images/colorcube.jpg" style=
+"width: 235px; height: 230px;" />
+<h2><a name="RGB_Arithmetic_" id="RGB_Arithmetic_"></a>RGB
+Arithmetic</h2>
+By doing calculations on the RGB values of the pixels of an image
+you can perform various color effects.<br />
+<br />
+Here's a table of the operations you can do with RGB color,
+screenshots and code will follow in the next sections. These
+operations are given for the 24-bit color model with 8 bit per
+channel, so 255 is the maximum value of a color. Colors channels
+can also be represented as floating point numbers between 0.0 and
+1.0, then you have to replace the value "255" by "1.0". C
+represents the channel together or the total color, while R, G and
+B represent the Red, Green and Blue channel separately.<br />
+<br />
+<table style="width: 100%; text-align: left;" border="1"
+cellpadding="1" cellspacing="0">
+<tr>
+<td style="vertical-align: top;"><b>Operation</b><br /></td>
+<td style="vertical-align: top;"><b>Formula</b><br /></td>
+<td style="vertical-align: top;"><b>Effect</b><br /></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Negative<br /></td>
+<td style="vertical-align: top;">255-C<br /></td>
+<td style="vertical-align: top;">Returns the opposite color, for
+example white becomes black, red becomes cyan, ...<br /></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Darken<br /></td>
+<td style="vertical-align: top;">C/p or C-p<br /></td>
+<td style="vertical-align: top;">Divide the color though some
+constant (larger than 1), or subtract a constant from it, to make
+it darker.<br /></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Brighten<br /></td>
+<td style="vertical-align: top;">C*p or C+p<br /></td>
+<td style="vertical-align: top;">Multiply the color by some
+constant (larger than 1), or add a constant to it, to make it
+brighter.<br /></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Greyscale<br /></td>
+<td style="vertical-align: top;">(R+G+B)/3<br /></td>
+<td style="vertical-align: top;">Calculate the average of the 3
+channels to get a gray color with the same brightness.<br /></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Remove Channel<br /></td>
+<td style="vertical-align: top;">R=0, G=0 and/or B=0<br /></td>
+<td style="vertical-align: top;">By setting one or more channels to
+0, you completely remove that color component from the
+picture.<br /></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Swap Channels<br /></td>
+<td style="vertical-align: top;">R=G, G=R, ...<br /></td>
+<td style="vertical-align: top;">Swap the values of two color
+channels to get an image with a completely different
+color.<br /></td>
+</tr>
+</table>
+<br />
+We'll try all these formulas on the following BMP image of a
+flower:<br />
+<br />
+<img alt="" src="images/flower.jpg" style=
+"width: 200px; height: 133px;" /><br />
+<h3><a name="Negative_Image" id=
+"Negative_Image"></a>NegativeImage</h3>
+The following code will load a BMP image of 200*133 pixels,
+calculate it's negative, and display the result. ColorRGB is the
+struct containing 3 integers r, g and b, to describe the rgb
+color.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">ColorRGB image[200][133]; 
+int main(int argc, char *argv[])    
+{ 
+    screen(200, 133, 0, <span class="string">"RGB Color"</span>); 
+    loadBMP(<span class=
+"string">"pics/flower.bmp"</span>,image[0], 200, 133); 
+     
+    ColorRGB color; <span class=
+"comment">//the color for the pixels</span> 
+     
+    for(int x = 0; x &lt; w; x++) 
+    for(int y = 0; y &lt; h; y++) 
+    { 
+        <span class=
+"comment">//here the negative color is calculated!</span> 
+        color.r = 255 - image[x][y].r; 
+        color.g = 255 - image[x][y].g; 
+        color.b = 255 - image[x][y].b; 
+        pset(x, y, color); 
+    }    
+     
+    redraw(); 
+    sleep(); 
+    return 0; 
+}
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+image[x][y].r is the red component of pixel x, y of the image, so
+255 - image[x][y][0] is the negative of it. This is done for each
+color channel. Here's the result:<br />
+<br />
+<img alt="" src="images/rgbnegative.jpg" style=
+"width: 200px; height: 133px;" /><br />
+<br />
+You could as well have typed "<span class="code">color = RGB_White
+- image[x][y]</span>" instead of the 3 lines of code, because the
+ColorRGB struct supports a few operators.<br />
+<h3><a name="Change_the_Brightness_" id=
+"Change_the_Brightness_"></a>Change the Brightness<br /></h3>
+To change the brightness, divide R, G and B through a number larger
+than 1 to make it darker, or multiply them with that number to make
+it brighter. If the color component becomes higher than 255,
+truncate it to 255.<br />
+<br />
+For example, to make the image double as dark, change the 3 lines
+of code that made the image negative in the previous example,
+to:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        color.r = image[x][y].r / 2;
+        color.g = image[x][y].g / 2;
+        color.b = image[x][y].b / 2;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbdark1.jpg" style=
+"width: 199px; height: 131px;" /><br />
+<br />
+Or to make it 1.5 times as dark, use:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        color.r = int(image[x][y].r / 1.5);
+        color.g = int(image[x][y].g / 1.5);
+        color.b = int(image[x][y].b / 1.5);
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbdark2.jpg" style=
+"width: 197px; height: 131px;" /><br />
+<br />
+To make it twice as bright, use:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        color.r = image[x][y].r * 2;
+        color.g = image[x][y].g * 2;
+        color.b = image[x][y].b * 2;
+
+        if(color.r &gt; 255) color.r = 255;
+        if(color.g &gt; 255) color.g = 255;
+        if(color.b &gt; 255) color.b = 255;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbbright2.jpg" style=
+"width: 200px; height: 132px;" /><br />
+<br />
+Instead of dividing or multiplying, you can also add or subtract a
+number instead, this even gives better results when making it
+brighter:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        color.r = image[x][y].r + 50;
+        color.g = image[x][y].g + 50;
+        color.b = image[x][y].b + 50;
+
+        if(color.r &gt; 255) color.r = 255;
+        if(color.g &gt; 255) color.g = 255;
+        if(color.b &gt; 255) color.b = 255;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbbright1.jpg" style=
+"width: 199px; height: 131px;" /><br />
+<br />
+Or darker:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        ccolor.r = image[x][y].r - 50;
+        color.g = image[x][y].g - 50;
+        color.b = image[x][y].b - 50;
+
+        if(color.r &lt; 0) color.r = 0;
+        if(color.g &lt; 0) color.g = 0;
+        if(color.b &lt; 0) color.b = 0;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbdark3.jpg" style=
+"width: 199px; height: 132px;" /><br />
+<br />
+<h3><a name="Greyscale" id="Greyscale"></a>Greyscale<br /></h3>
+One way to grayscale an image is to calculate the average of the 3
+color components and use this average as the value for the shade of
+gray:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        color.r = image[x][y].r - 50;
+        color.g = image[x][y].g - 50;
+        color.b = image[x][y].b - 50;
+        color.r = color.g = color.b = (color.r + color.g + color.b) / 3;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbgreyscale.jpg" style=
+"width: 200px; height: 133px;" /><br />
+<br />
+<h3><a name="Swapping_and_Removing_Channels" id=
+"Swapping_and_Removing_Channels"></a>Swapping and Removing
+Channels</h3>
+By removing channels, you completely remove a color of the image,
+for example if you remove the red of the flower you get this:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        color.r = 0; <span class=
+"comment">//red component set to zero</span>
+        color.g = image[x][y].g;
+        color.b = image[x][y].b;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbred0.jpg" style=
+"width: 198px; height: 130px;" /><br />
+<br />
+If you remove green instead, you get:<br />
+<br />
+<img alt="" src="images/rgbgreen0.jpg" style=
+"width: 198px; height: 131px;" /><br />
+<br />
+And if you remove blue, you get:<br />
+<br />
+<img alt="" src="images/rgbblue0.jpg" style=
+"width: 198px; height: 130px;" /><br />
+<br />
+The last image looks quite similar to the original because there
+wasn't much blue in the image, though white areas now look green or
+yellow, and everything has become a bit darker.<br />
+<br />
+Swapping two channels can give results with a totally different
+color, for example if we swap the red and green channel the flower
+becomes green while the background becomes reddish:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        color.r = image[x][y].g; <span class=
+"comment">//the green component of the image</span>
+        color.g = image[x][y].r; <span class=
+"comment">//the red component of the image</span>
+        color.b = image[x][y].b; <span class=
+"comment">//the blue component of the image</span>
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbswapredgreen.jpg" style=
+"width: 198px; height: 131px;" /><br />
+<br />
+And if red and blue are swapped instead, the flower becomes of
+course blue:<br />
+<br />
+<img alt="" src="images/rgbswapredblue.jpg" style=
+"width: 197px; height: 130px;" /><br />
+<br />
+To make the flower yellow, set both R and G to the red channel of
+the image:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">        color.r = image[x][y].r; <span class=
+"comment">//the red component of the image</span>
+        color.g = image[x][y].r; <span class=
+"comment">//the red component of the image</span>
+        color.b = image[x][y].b; <span class=
+"comment">//the blue component of the image</span>
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<img alt="" src="images/rgbyellow.jpg" style=
+"width: 197px; height: 131px;" /><br />
+<br />
+<h2><a name="The_HSL_Color_Model_" id=
+"The_HSL_Color_Model_"></a>The HSL Color Model<br /></h2>
+HSL is another way to describe color with 3 parameters. RGB is the
+way computer screens work, but not very intuitive. HSL is more
+intuitive, but you need to convert it to RGB before you can draw a
+pixel with it. The nicest application of this color model is that
+you can easily create rainbow gradients or change the color,
+lightness or saturation of an image with this color model.<br />
+<br />
+HSL color obviously has the parameters H, S and L, or Hue,
+Saturation and Lightness.<br />
+<br />
+<b>Hue</b> indicates the color sensation of the light, in other
+words if the color is red, yellow, green, cyan, blue, magenta, ...
+This representation looks almost the same as the visible spectrum
+of light, except on the right is now the color magenta (the
+combination of red and blue), instead of violet (light with a
+frequency higher than blue):<br />
+<br />
+<img alt="" src="images/hslhue.jpg" style=
+"width: 255px; height: 16px;" /><br />
+<br />
+Hue works circular, so it can be represented on a circle instead. A
+hue of 360&deg; looks the same again as a hue of 0&deg;.<br />
+<br />
+<img alt="" src="images/hslhuecircle.jpg" style=
+"width: 260px; height: 248px;" /><br />
+<br />
+<b>Saturation</b> indicates the degree to which the hue differs
+from a neutral gray. The values run from 0%, which is no color, to
+100%, which is the fullest saturation of a given hue at a given
+percentage of illumination. The more the spectrum of the light is
+concentrated around one wavelength, the more saturated the color
+will be.<br />
+<br />
+<img alt="" src="images/hslsaturation.jpg" style=
+"width: 255px; height: 16px;" /><br />
+<br />
+<b>Lightness</b> indicates the illumination of the color, at 0% the
+color is completely black, at 50% the color is pure, and at 100% it
+becomes white. In HSL color, a color with maximum lightness (L=255)
+is always white, no matter what the hue or saturation components
+are. Lightness is defined as (maxColor+minColor)/2 where maxColoris
+the R, G or B component with the maximum value, and minColor the
+one with the minimum value.<br />
+<br />
+<img alt="" src="images/hsllightness.jpg" style=
+"width: 256px; height: 16px;" /><br />
+<br />
+In this tutorial, Hue, Saturation and Lightness will be presented
+as numbers between 0-255 instead, so that the HSL model has the
+same 24 bits as the RGB model.<br />
+<br />
+The HSL color model is for example used in Paint Shop Pro's color
+picker.<br />
+<h2><a name="The_HSV_Color_Model" id="The_HSV_Color_Model"></a>The
+HSV Color Model</h2>
+The HSV color model (sometimes also called HSB), uses the parameter
+<b>Value</b> instead of Lightness. Value works different than
+Lightness, in that the color with maximum value (V=255) can be any
+color like red, green, yellow, white, etc..., at it'smaximum
+brightness. Value is defined as maxColor, where maxColor is the R,
+G or B component with the maximum value. So the colors red
+(255,0,0) and white (255,255,255) both have a Value of 255
+indeed.<br />
+<br />
+In HSL, the Lightness showed the following behavior when
+increased:<br />
+<br />
+<img alt="" src="images/hsllightness.jpg" style=
+"width: 256px; height: 16px;" /><br />
+<br />
+In HSV, Value does the following:<br />
+<br />
+<img alt="" src="images/hsvvalue.jpg" style=
+"width: 255px; height: 16px;" /><br />
+<br />
+The Hue and Saturation parameters work very similar to the ones in
+HSL. HSV is generally better at representing the saturation, while
+HSL is better at representing the brightness. However, HSV is again
+better to decrease the brightness of very bright images.<br />
+<br />
+We can compare the HSL and HSV model a bit better by comparing
+their plots:<br />
+<br />
+Here is the plot of HSL (left) and HSV (right) with S=255, Hue on
+the horizontal axis, and Lightness/Value on the vertical axis
+(maximum lightness at the top):<br />
+<br />
+<img alt="" src="images/HSLS255.jpg" style=
+"width: 256px; height: 256px;" /> <img alt="" src=
+"images/HSVS255.jpg" style="width: 256px; height: 256px;" /><br />
+<br />
+While the top of the HSL curve is white because white is the color
+with maximum brightness, the top of the HSV curve contains all
+colors, because the saturation is 255 and in HSV, saturation 255
+has to be a color while white should have 0 saturation. The top of
+the HSV curve is the same as the center horizontal line of the HSL
+curve, and the complete HSV curve is exactly the same as the bottom
+half of the HSL picture.<br />
+<br />
+Here is the plot of HSL (left) and HSV (right) with L=255 and V=255
+respectively, Hue on the horizontal axis, and Saturation on the
+vertical axis (maximum saturation at the bottom):<br />
+<br />
+<img alt="" src="images/HSLL255.jpg" style=
+"width: 256px; height: 256px;" /> <img alt="" src=
+"images/HSVV255.jpg" style="width: 256px; height: 256px;" /><br />
+<br />
+The HSL curve is completely white, because white is the only color
+with L=255 in the HSL model. The HSV curve, now shows all colors
+that have one or more of their color components equal to 255. The
+HSV picture here, is exactly the same as the top half of the
+previous HSL picture where S=255.<br />
+<br />
+And here's the plot of HSL (left) and HSV (right) with L=128 and
+V=128 respectively, and again Hue on the horizontal axis, and
+Saturation on the vertical axis (maximum saturation at the
+bottom):<br />
+<br />
+<img alt="" src="images/HSLL128.jpg" style=
+"width: 256px; height: 256px;" /> <img alt="" src=
+"images/HSVV128.jpg" style="width: 256px; height: 256px;" /><br />
+<br />
+<h2><a name="Color_Model_Conversions_" id=
+"Color_Model_Conversions_"></a>Color Model Conversions<br /></h2>
+To draw the plots given above, color model conversion functions
+have to be used: first you describe the color as HSL or HSV, but to
+plot it on screen, it has to be converted to RGB first.
+Transformations from RGB to HSL/HSV are handy as well, for example
+if you load an RGB image and want to change it hue, you have to
+convert it to HSL or HSV first, then change the hue, and then
+change it back to RGB.<br />
+<br />
+The color model conversion formulas are already in QuickCG, in the
+QuickCG.cpp file.<br />
+<br />
+<h3><a name="RGB_to_HSL_" id="RGB_to_HSL_"></a>RGB to
+HSL<br /></h3>
+The following function converts from RGB color to HSL color. You
+give it a ColorRGB and it returns a ColorHSL. Both ColorRGB and
+ColorHSL are simple structs with 3 integers, the only difference is
+their names. The RGBtoHSL function calculates the values for
+ColorHSL.<br />
+<br />
+First the variables r, g, b, h, s, l are declared as floating point
+numbers. Internally, the function works with floating point numbers
+between 0.0 and 1.0, for better precision. At the end of the
+function, the results can very easily be converted back to integers
+from 0-255. The function can also easily be modified to work with
+other ranges, e.g. if you'd want to use 16 bit per color channel,
+or represent Hue as a value between 0&deg; and 360&deg;.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">ColorHSL RGBtoHSL(ColorRGB colorRGB) 
+{ 
+    float r, g, b, h, s, l; <span class=
+"comment">//this function works with floats between 0 and 1</span> 
+    r = colorRGB.r / 256.0; 
+    g = colorRGB.g / 256.0; 
+    b = colorRGB.b / 256.0;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Then, minColor and maxColor are defined. Mincolor is the value of
+the color component with the smallest value, while maxColor is the
+value of the color component with the largest value. These two
+variables are needed because the Lightness is defined as (minColor
++ maxColor) / 2.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    float maxColor = max(r, max(g, b)); 
+    float minColor = min(r, min(g, b));
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+If minColor equals maxColor, we know that R=G=B and thus the color
+is a shade of gray. This is a trivial case, hue can be set to
+anything, saturation has to be set to 0 because only then it's a
+shade of gray, and lightness is set to R=G=B, the shade of the
+gray.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><span class="comment">    //R == G == B, so it's a shade of gray</span>
+    {   
+        h = 0.0; <span class="comment">//it doesn't matter what value it has</span>       
+        s = 0.0;       
+        l = r; <span class="comment">//doesn't matter if you pick r, g, or b</span>   
+    }
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+If minColor is not equal to maxColor, we have a real color instead
+of a shade of gray, so more calculations are needed:<br />
+<ul>
+<li>Lightness (l) is now set to it's definition of (minColor +
+maxColor)/2.</li>
+<li>Saturation (s) is then calculated with a different formula
+depending if light is in the first half of the second half. This is
+because the HSL model can be represented as a double cone, the
+first cone has a black tip and corresponds to the first half of
+lightness values, the second cone has a white tip and contains the
+second half of lightness values.</li>
+<li>Hue (h) is calculated with a different formula depending on
+which of the 3 color components is the dominating one, and then
+normalized to a number between 0 and 1.</li>
+</ul>
+<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    else
+    {   
+        l = (minColor + maxColor) / 2;     
+        
+        if(l &lt; 0.5) s = (maxColor - minColor) / (maxColor + minColor);
+        else s = (maxColor - minColor) / (2.0 - maxColor - minColor);
+        
+        if(r == maxColor) h = (g - b) / (maxColor - minColor);
+        else if(g == maxColor) h = 2.0 + (b - r) / (maxColor - minColor);
+        else h = 4.0 + (r - g) / (maxColor - minColor);
+        
+        h /= 6; <span class="comment">//to bring it to a number between 0 and 1</span>
+        if(h &lt; 0) h ++;
+    }
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Finally, H, S and L are calculated out of h,s and l as integers
+between 0 and 255 and "returned" as the result. Returned, because
+H, S and L were passed by reference to the function.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    ColorHSL colorHSL;
+    colorHSL.h = int(h * 255.0);
+    colorHSL.s = int(s * 255.0);
+    colorHSL.l = int(l * 255.0);
+    return colorHSL;
+}
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<h3><a name="HSL_to_RGB_" id="HSL_to_RGB_"></a>HSL to
+RGB<br /></h3>
+This is the opposite conversion, so this function will calculate
+the inverse of the RGBtoHSL function.<br />
+<br />
+First, internally the variables with small letters are defined as
+floating point numbers between 0 and 1 again. Some temporary values
+for the calculations are also declared.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">ColorRGB HSLtoRGB(ColorHSL colorHSL)
+{
+    float r, g, b, h, s, l; <span class="comment">//this function works with floats between 0 and 1</span>
+    float temp1, temp2, tempr, tempg, tempb;
+    h = colorHSL.h / 256.0;
+    s = colorHSL.s / 256.0;
+    l = colorHSL.l / 256.0;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Then follows a trivial case: if the saturation is 0, the color will
+be a grayscale color, and the calculation is then very simple: r, g
+and b are all set to the lightness.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><span class="comment">    //If saturation is 0, the color is a shade of gray</span>
+    if(s == 0) r = g = b = l;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+If the saturation is higher than 0, more calculations are needed
+again. red, green and blue are calculated with the formulas defined
+in the code.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><span class=
+"comment">    //If saturation &gt; 0, more complex calculations are needed</span>
+    else
+    {
+        <span class=
+"comment">//Set the temporary values</span>      
+        if(l &lt; 0.5) temp2 = l * (1 + s);      
+        else temp2 = (l + s) - (l * s);     
+        temp1 = 2 * l - temp2;    
+        tempr = h + 1.0 / 3.0;    
+        if(tempr &gt; 1) tempr--;
+        tempg = h;     
+        tempb = h - 1.0 / 3.0;
+        if(tempb &lt; 0) tempb++; 
+        
+        <span class="comment">//Red</span>     
+        if(tempr &lt; 1.0 / 6.0) r = temp1 + (temp2 - temp1) * 6.0 * tempr;      
+        else if(tempr &lt; 0.5) r = temp2;   
+        else if(tempr &lt; 2.0 / 3.0) r = temp1 + (temp2 - temp1) * ((2.0 / 3.0) - tempr) * 6.0;
+        else r = temp1; 
+        
+        <span class="comment">//Green</span>       
+        if(tempg &lt; 1.0 / 6.0) g = temp1 + (temp2 - temp1) * 6.0 * tempg;    
+        else if(tempg &lt; 0.5) g = temp2;
+        else if(tempg &lt; 2.0 / 3.0) g = temp1 + (temp2 - temp1) * ((2.0 / 3.0) - tempg) * 6.0;
+        else g = temp1; <span class="comment">
+        
+        //Blue</span>    
+        if(tempb &lt; 1.0 / 6.0) b = temp1 + (temp2 - temp1) * 6.0 * tempb;   
+        else if(tempb &lt; 0.5) b = temp2; 
+        else if(tempb &lt; 2.0 / 3.0) b = temp1 + (temp2 - temp1) * ((2.0 / 3.0) - tempb) * 6.0;    
+        else b = temp1;
+    }
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+And finally, the results are returned as integers between 0 and
+255.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    ColorRGB colorRGB;
+    colorRGB.r = int(r * 255.0);
+    colorRGB.g = int(g * 255.0);
+    colorRGB.b = int(b * 255.0);
+    return colorRGB;
+}
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<h3><a name="RGB_to_HSV" id="RGB_to_HSV"></a>RGB to HSV</h3>
+The function RGBtoHSV works very similar as the RGBtoHSL function,
+the only difference is that now the variable V (Value) instead of L
+(Lightness) is used, and Value is defined as maxColor. This can
+immediately be calculated at the beginning of the function:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">ColorHSV RGBtoHSV(ColorRGB colorRGB) 
+{ 
+    float r, g, b, h, s, v; <span class=
+"comment">//this function works with floats between 0 and 1</span> 
+    r = colorRGB.r / 256.0; 
+    g = colorRGB.g / 256.0; 
+    b = colorRGB.b / 256.0;
+    float maxColor = max(r, max(g, b));
+    float minColor = min(r, min(g, b));
+    v = maxColor;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Then, the saturation is calculated. If the color is black, the
+value of saturation doesn't matter so it can be set to 0. This has
+to be done to avoid a division by zero.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(maxColor == 0)<span class=
+"comment">//avoid division by zero when the color is black</span>
+    {  
+        s = 0;
+    }
+    else  
+    {      
+        s = (maxColor - minColor) / maxColor;
+    }
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Finally, the hue is calculated. If saturation is 0, the color is
+gray so hue doesn't matter. Again this case is handled separately
+to avoid divisions by zero.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(s == 0)
+    {
+        h = 0; <span class=
+"comment">//it doesn't matter what value it has</span>
+    }   
+    else
+    { 
+        if(r == maxColor) h = (g - b) / (maxColor-minColor); 
+        else if(g == maxColor) h = 2.0 + (b - r) / (maxColor - minColor);
+        else h = 4.0 + (r - g) / (maxColor - minColor);       
+        h /= 6.0; <span class=
+"comment">//to bring it to a number between 0 and 1</span>
+        if (h &lt; 0) h++;
+    }
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+And finally, the results are returned as integers between 0 and
+255.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    ColorHSV colorHSV;
+    colorHSV.h = int(h * 255.0);
+    colorHSV.s = int(s * 255.0);
+    colorHSV.v = int(v * 255.0);
+    return colorHSV;
+}
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<h3><a name="HSV_to_RGB_" id="HSV_to_RGB_"></a>HSV to
+RGB<br /></h3>
+First the floating point numbers between 0 and 1 are declared
+again:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">ColorRGB HSVtoRGB(ColorHSV colorHSV) 
+{ 
+    float r, g, b, h, s, v; <span class=
+"comment">//this function works with floats between 0 and 1</span> 
+    h = colorHSV.h / 256.0; 
+    s = colorHSV.s / 256.0; 
+    v = colorHSV.v / 256.0;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The trivial case for saturation = zero is handled:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><span class=
+"comment">    //If saturation is 0, the color is a shade of gray</span>
+    if(s == 0) r = g = b = v;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The HSV model can be presented on a cone with hexagonal shape. For
+each of the sides of the hexagon, a separate case is
+calculated:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><span class=
+"comment">    //If saturation &gt; 0, more complex calculations are needed</span>
+    else
+    {
+        float f, p, q, t;
+        int i;
+        h *= 6; <span class=
+"comment">//to bring hue to a number between 0 and 6, better for the calculations</span>
+        i = int(floor(h)); <span class=
+"comment"> //e.g. 2.7 becomes 2 and 3.01 becomes 3 or 4.9999 becomes 4</span>
+        f = h - i; <span class=
+"comment"> //the fractional part of h</span>
+        p = v * (1 - s);   
+        q = v * (1 - (s * f));     
+        t = v * (1 - (s * (1 - f)));   
+        switch(i)       
+        {         
+            case 0: r = v; g = t; b = p; break;
+            case 1: r = q; g = v; b = p; break;
+            case 2: r = p; g = v; b = t; break;
+            case 3: r = p; g = q; b = v; break;
+            case 4: r = t; g = p; b = v; break;
+            case 5: r = v; g = p; b = q; break;  
+        }
+    }
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+And again, the results are "returned" as integers between 0 and
+255.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    ColorRGB colorRGB;
+    colorRGB.r = int(r * 255.0);
+    colorRGB.g = int(g * 255.0);
+    colorRGB.b = int(b * 255.0);
+    return colorRGB;
+}
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<h2><a name="HSL_and_HSV_Arithmetic_" id=
+"HSL_and_HSV_Arithmetic_"></a>HSL and HSV Arithmetic<br /></h2>
+The functions given above are already in the QuickCG, and thanks to
+them we can do HSL and HSV arithmetic on images.<br />
+<br />
+The examples will be performed on the flower image again:<br />
+<br />
+<img alt="" src="images/flower.jpg" style=
+"width: 200px; height: 133px;" /><br />
+<br />
+<h3><a name="Changing_Hue_" id="Changing_Hue_"></a>Changing
+Hue<br /></h3>
+It doesn't matter if you change hue with the HSL or HSV model, the
+results are the same, so for no particular reason at all let's do
+it with HSL here.<br />
+<br />
+The following code will load the BMP image, convert it to HSL,
+change the Hue by adding a certain value to it, and convert it back
+to RGB to display it (put this code in the main function in the
+main.cpp file):<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">ColorRGB image[200][133]; 
+       
+int main(int argc, char *argv[])  
+{ 
+    ColorRGB colorRGB; 
+    ColorHSL colorHSL; 
+     
+    screen(200, 133, 0, <span class=
+"string">"HSL and HSV Color"</span>); 
+    loadBMP(<span class=
+"string">"pics/flower.bmp"</span>, image[0], 200, 133); 
+     
+    for(int x = 0; x &lt; w; x++) 
+    for(int y = 0; y &lt; h; y++) 
+    { 
+        <span class=
+"comment">//store the color of the image in variables R, G and B</span> 
+        colorRGB = image[x][y]; 
+        <span class=
+"comment">//calculate H, S and L out of R, G and B</span> 
+        colorHSL = RGBtoHSL(colorRGB); 
+        <span class="comment">//change Hue</span> 
+        colorHSL.h += int(42.5 * 1); 
+        colorHSL.h %= 255; 
+        <span class="comment">//convert back to RGB</span> 
+        colorRGB = HSLtoRGB(colorHSL); 
+        <span class="comment">//plot the pixel</span> 
+        pset(x, y, colorRGB); 
+    }   
+    redraw(); 
+    sleep(); 
+    return 0; 
+}
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The Hue is modulo divided through 255, because it has to be between
+0 and 255, and it's circular, so a hue of 260 is the same as a hue
+of 5. The value 42.5 was chosen to be 255/6, representing a hue
+shift of 60&deg;. Here are screenshots of the result for a hue
+shift of 0&deg;, 60&deg;, 120&deg;, 180&deg;, 240&deg; and 300&deg;
+(360&deg; gives the same result as 0&deg; again):<br />
+<br />
+<img alt="" src="images/flower.jpg" style=
+"width: 200px; height: 133px;" /> <img alt="" src=
+"images/hslhue1.jpg" style="width: 200px; height: 133px;" />
+<img alt="" src="images/hslhue2.jpg" style=
+"width: 201px; height: 133px;" /><br />
+<br />
+<img alt="" src="images/hslhue3.jpg" style=
+"width: 200px; height: 133px;" /> <img alt="" src=
+"images/hslhue4.jpg" style="width: 200px; height: 133px;" />
+<img alt="" src="images/hslhue5.jpg" style=
+"width: 200px; height: 133px;" /><br />
+<br />
+You can also set Hue to a constant, to give the whole image the
+same color. For example, here hue is set to 25, which is
+orange:<br />
+<br />
+<img alt="" src="images/hslhueorange.jpg" style=
+"width: 199px; height: 132px;" /><br />
+<br />
+<h3><a name="Changing_Saturation" id=
+"Changing_Saturation"></a>Changing Saturation</h3>
+You can change the saturation to make the image more colorful, or
+more like pastel, or grayscale. This time, the results are slightly
+different if you use the HSL or HSV color model.<br />
+<br />
+For example, to increase the saturation by multiplying it with 2.5,
+change the lines of the code that changed the hue to:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    colorHSV.s = int(colorHSV.s * 2.5);  
+    if(colorHSV.s &gt; 255) colorHSV.s = 255;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+If Saturation is higher than 255, it's truncated. On the left is
+the result if you use HSL, on the right if you use HSV. The result
+is pretty similar to the original image because the saturation in
+it was quite high already. Only the background became a bit more
+green.<br />
+<br />
+<img alt="" src="images/hslsat25.jpg" style=
+"width: 198px; height: 131px;" /> <img alt="" src=
+"images/hsvsat25.jpg" style="width: 199px; height: 132px;" /><br />
+<br />
+If you multiply it with 0.5 instead, you'll decrease the saturation
+by halving it:<br />
+<br />
+<img alt="" src="images/hslhalfsat.jpg" style=
+"width: 199px; height: 132px;" /> <img alt="" src=
+"images/hsvhalfsat.jpg" style=
+"width: 199px; height: 132px;" /><br />
+<br />
+You can also decrease the saturation by substracting a value from
+it instead:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    colorHSV.s = colorHSV.s - 100;
+    if(colorHSV.s &lt; 0) colorHSV.s = 0;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The background will be grayscale now, while the flower with it's
+high saturation still has some color:<br />
+<br />
+<img alt="" src="images/hslsatsub.jpg" style=
+"width: 197px; height: 132px;" /> <img alt="" src=
+"images/hsvsatsub.jpg" style=
+"width: 199px; height: 130px;" /><br />
+<br />
+If saturation is set to 0, the image will be grayscale, in a
+different way if you use HSL or HSV, and both are also different
+from the "average" formula to grayscale an image:<br />
+<br />
+<img alt="" src="images/hslgreyscale.jpg" style=
+"width: 199px; height: 131px;" /> <img alt="" src=
+"images/hsvgreyscale.jpg" style=
+"width: 199px; height: 132px;" /><br />
+<br />
+And this is what you get if you set saturation equal to 128 for all
+pixels. The flower and background look equally colorful now:<br />
+<br />
+<img alt="" src="images/hslsat128.jpg" style=
+"width: 199px; height: 132px;" /> <img alt="" src=
+"images/hsvsat128.jpg" style=
+"width: 198px; height: 130px;" /><br />
+<br />
+<h3><a name="Changing_Brightness" id=
+"Changing_Brightness"></a>Changing Brightness</h3>
+Finally, HSL and HSV can also be used to change the brightness of
+an image. Again, the HSL and HSV model will work differently. HSL
+gives bad result when making an image with white or near white
+pixels darker.<br />
+<br />
+<img alt="" src="images/hslhalfsat.jpg" style=
+"width: 199px; height: 132px;" /> <img alt="" src=
+"images/hsvhalfsat.jpg" style=
+"width: 199px; height: 132px;" /><br />
+<br />
+You can also decrease the saturation by substracting a value from
+it instead:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    colorHSV.l -= 50;
+    if(colorHSV.l &lt; 0) colorHSV.l = 0;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here's the result for HSL on the left and HSV on the right:<br />
+<br />
+<img alt="" src="images/hslbrightsub.jpg" style=
+"width: 199px; height: 131px;" /> <img alt="" src=
+"images/hsvbrightsub.jpg" style=
+"width: 200px; height: 132px;" /><br />
+<br />
+And setting brightness equal to 192 for all pixels gives:<br />
+<br />
+<img alt="" src="images/hslbright192.jpg" style=
+"width: 200px; height: 133px;" /> <img alt="" src=
+"images/hsvbright192.jpg" style=
+"width: 200px; height: 133px;" /><br />
+<br />
+<hr />
+Last edited: 2004
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+<br />
+</body>
+</html>

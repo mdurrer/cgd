@@ -1,0 +1,67 @@
+{vyhlášení zákazu pojídání trpaslíků:}
+
+block _00 ( beg(1) )
+title
+ labels skip
+  load trub "troubi"
+  load trub "papir dol"
+  load trub "papir nah"
+  load hradven_trump "leti"
+  startplay trub "troubi"
+  startplay trub "troubi"
+  start trub "papir dol"
+
+   Trubac: "Ta!"
+
+   Trubac: "Deklaracja głosi!"
+
+   Trubac: "Iż od tej chwili!"
+
+   Trubac: "Na zawsze zakazane jest!"
+
+   Trubac: "Tak prymitywne i prostackie zachowanie!"
+
+   Trubac: "Jak pożeranie krasnoludków!"
+
+   Trubac: "Z dumą oznajmiamy!"
+
+   Trubac: "Że dorównujemy!"
+
+   Trubac: "Innym cywilizowanym!"
+
+   Trubac: "Krajom!"
+
+   Trubac: "Z uwagi na ten!"
+
+   Trubac: "Szlachetny i wspaniały!"
+
+   Trubac: "Czyn!"
+
+  goto skip
+   Trubac: "Niech będzie chwała naszemu
+            Panu i Władcy, Piątalusowi!"
+ label skip
+
+{zazní hromové Urá jako na Rudém náměstí v Moskvě}
+  startplay trub "papir nah"
+  startplay trub "troubi"
+  startplay trub "troubi"
+  startplay hradven_trump "leti"
+
+  let je_tam_trumpeta (1)
+
+{zmizime pajzly u obra, sklenici s utopenci
+  objstat away obr_pajzl1
+  objstat away obr_pajzl2
+  objstat away akvarko
+
+  objstat_on wob_provaz obruvnitr
+  objstat_on wob_kolo obruvnitr
+
+{zmizime hrnec a ohen v kuchyni
+  objstat away uhliky_hori
+  objstat away hrnec
+
+  objstat_on uhliky_chlad kuch
+
+gplend

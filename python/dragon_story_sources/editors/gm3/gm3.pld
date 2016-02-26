@@ -1,0 +1,137 @@
+;nesmi byt komentar mezi jmenem a parametry!!!!! a na konci taky ne!
+;typ konstant:
+;1=font
+;2=animace 1. slozka
+;3=animace 2. slozka (nic, nebere se)
+;4=rozhovor
+;5=mistnost
+;6=prikaz
+;7=objekt
+
+ZTMAVPALETU
+1   2 2 2
+NASTAVPALETU
+1   0
+;default pro mistnost
+ZESVETLIPALETU
+1   2 2 2
+;!!!smazat, uz bude podruhe
+CERNAPALETA
+1   0
+ROTUJPALETU
+1   4 2 2 2 2
+;jinaci paleta se nacitat nebude
+ZATREP
+1   2 2 2
+;cas, jakmoc
+JDINAPOZICI
+4   2 2 2  2 2 5  2 5 2  2 5 5
+KONECHRY
+1   0
+ULOZHRU
+1   0
+NACTIHRU
+1   0
+LET
+6   2 6 5  2 6 2  4 6 2 7 2  4 6 5 7 2  4 6 2 7 5  4 6 5 7 5
+RANDOM
+1   2 6 2
+IF
+4   4 2 8 2 1  4 5 8 2 1  4 2 8 5 1  4 5 8 5 1
+GOTO
+1   1 1
+KONEC
+1   0
+
+
+
+PRINT
+2   4 2 2 3 4 1  4 5 5 3 4 1
+;!!!!udelat prikaz, ktery to rekne na dane POSTAVE
+;dodelat tisknuti zadanymi barvami
+REKNI
+1   1 3
+;hrdina, zmizi po kliku ci uplunutem casu
+;udelat nastaveni fontu, barvy, postavy (vice verzi)
+
+
+
+;pouze verze cislo-cislo/promenna-promenna; nema cenu neco mezi tim delat,
+;kdyz existuje prikaz let...
+NACTIANIMACI
+3   4 2 2 4 2 4 3  4 5 5 4 2 4 3  2 4 2 4 3
+UVOLNIANIMACI
+3   4 2 2 4 2 4 3  4 5 5 4 2 4 3  2 4 2 4 3
+SPUSTANIMACI
+3   4 2 2 4 2 4 3  4 5 5 4 2 4 3  2 4 2 4 3
+;!mozna tady dat moznost to zapsat i jako retezec, aby sla zapsat cesta...
+;mozna odpadnou souradnice, nebot je to bud dano, nebo se to spusti u
+;AKTUALNIHO objektu, nebo (mozna nechat) na danych souradnicich...
+;tohle je proc. ktera to zaregistruje, mozna udelat i ten Lukasuv BODY-cyklus,
+;kde bude hrat animace a cekat, az skonci...
+
+
+
+ROZHOVOR
+1   2 4 4 4 7
+;jmeno rozhovoru, jmeno objektu, ktery bude mluvit
+
+
+
+JDIDOMISTNOSTI
+1   1 4 5
+
+
+
+VYVOLEJPRIKAZ
+1   1 4 6
+
+
+
+;zjisteni velikosti a obsahu batohu!
+DEJDOBATOHU
+1   1 4 7
+;ktery
+VYNDEJZBATOHU
+5   4 4 7 4 5 2 2  4 4 7 5 5 5  1 4 7  3 4 7 2 2  3 4 7 5 5
+;obecne: co, mist, x, y
+;1) objekt, mistnost, cislo, cislo
+;2) objekt, promenna, promenna, promenna
+;3) objekt (da se tam, kde je panacek)
+;4) objekt, cislo, cislo (default mistnost)
+;5) objekt, promenna, promenna (default mistnost)
+;!mozna udelat polozeni objektu zadaneho promennou!
+;mozna udelat polozeni do mistnosti a na pozici, ktera je v objektu (polozenim
+;do batohu se ona neztraci)
+
+;!to bych ale musel zavest pole neviditelnosti!
+;a to pujde asi jen u dyn. obj., protoze myslim, ze za makeobjovskymi
+;neexistuje pozadi a za statickymi sice jo, ale neni duvod tohle umoznit
+zneviditelniobjekt
+1   1 4 7
+;ZATIM v akt. mist.
+zviditelniobjekt
+1   1 4 7
+vratxobjektu
+1   2 6 4 7
+vratyobjektu
+1   2 6 4 7
+
+;cislo animacniho okenka objektu, ktere se prave hraje
+;pokud se neanimuje, vrati 0
+vratanimaciobjektu
+1   2 6 4 7
+
+;nyni procedury pro zjisteni cisla nejakeho objektu:
+letfont
+1   2 6 4 1
+letanimace
+1   3 6 4 2 4 3
+letrozhovor
+1   2 6 4 4
+letmistnost
+1   2 6 4 5
+letprikaz
+1   2 6 4 6
+letobjekt
+1   2 6 4 7

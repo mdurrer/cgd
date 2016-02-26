@@ -1,0 +1,99 @@
+{nový herní jazyk použitý pro programy i rozhovory (je to to stejné):
+
+na počátku může, ale nemusí být příkaz LABELS <jméno>,..., který deklaruje
+všechna návěští; je to proto, aby byly všechny použité identifikátory
+jednoznačně specifikovatelné
+každý příkaz začíná na začátku řádku svým jménem (identifikátor příkazu)
+a končí koncem řádku (je povolený string na více řádků, ale to se pozná)
++existuje speciální příkaz LABEL <jméno> definující už deklarované návěští
++je-li příkaz <jméno>: "<řetězec>", vyvolá se speciální příkaz
+ <příkaz> <jméno> "<řetězec>" označený direktivou TALK
+!toto je snad jediná zprzněnina tohota jazyka; gpl1 jich ale měl mnohem víc
+*končí-li řádek znakem \, znamená to pokračování na dalším řádku, ale
+ toto rozpůlení platí i jako oddělovač parametrů ---> nelze ho použít
+ uprostřed mat. výrazu!
+
+následuje seznam parametrů oddělených podle kontextu, jež mohou být:
+1) čísla integer
+2) řetězce uzavřený do ()
+3) identifikátor daného typu či návěští
+4) matematický výraz uzavřený do ()
+
+ad 1) číslo je vždy typu integer
+
+ad 2) řetězec začíná a končí uvozovkami a je v něm povolen konec řádku
+  - překompiluje se jako index, řetězce jsou připojovány do daného
+    seznamu
+  - odřádkování je povoleno pouze v něm
+  - jsou buď typu 1 --- jsou určené pro hru (TALK...)
+    nebo typu 2 --- pouze pro kompilaci (cesta)
+
+ad 3) identifikátory mohou být jména proměnných, ON/OFF,...
+ - identifikátory mají společný prostor jmen, aby bylo možno jednoznačně
+   odvodit, co je co; v každém prostoru jsou očíslovány 1..N
+ - identifikátory jsou předány do procedury jako několik seznamů, podle
+   kterých se pak ident. vyhledá a najde se odpovídající příkaz
+ - není dovoleno tvořit nové identifikátory (už kvůli rozeznání typu),
+   tedy např. proměnné musí být předem deklarovány někde jinde
+ - neznámý identifikátor je chyba
+ad 3 návěští) překompiluje se jako relativní odkaz do binárního kódu
+  - je to něco jako identifikátor (má s nimi společný jmenný prostor)
+  - ale je lokální, nikde jinde se nesdílí
+  - dopředná návěští (a tedy ani neznámé identifikátory) neexistují, protože
+    se definují na poč. programu inic. příkazem LABEL
+  - relativní odkaz je vzhledem ke konci tohoto a tedy začátku následujícího
+    příkazu, protože pak se to lehce přičte k SI po přečtení všech
+    parametrů
+*podrobné určení, co je co, spočívá v dalším inf. bajtu:
+ (0=návěští, 1..X=třída)
+
+ad 4) matematický výraz se skládá z operátorů +-*/% &|^! a závorek
+  - jako operátory jsou v něm povoleny čísla a identifikátory
+  - je tak možno testovat hodnoty proměnných, stav ON/OFF/AWAY...
+  - musí se vlézt na 1 řádek (odřádkování je povoleno pouze u řetězce
+
+
+kompilátor načte z definice seznam všech identifikátorů s jejich třídami:
+CLASS <číslo>
+  <identifikátor> <hodnota>
+  ...
+CLASS...
+kompilátor zkontroluje případné duplicity a zda jsou obsazeny skutečně
+jen třídy 1..N; identifikátory ukládá v setříděné formě; ke každému
+identifikátoru musí být přiřazena jeho hodnota (OFF=1, ON=2...), na rozdíl
+od ostatních indexů toto není index a nemusí být tvaru 1..N
+
+a seznam všech příkazů:
+<jméno> [TALK] <číslo> <podčíslo> <parametr1> <parametr2>...,
+kde <parametrX> může být 1..5 podle daného typu
+a pokud je to 3 (identifikátor), musí se uvést ještě pomlčka další číslo
+--- požadovaný typ identifikátoru
+*jména příkazů se mohou shodovat, pak se při třídění zařadí před
+ostatní svého druhu --- kompilátor totiž ukládá spojový seznam setříděný
+*kompilátor kontroluje, zda jsou čísla i podčísla jen 1..N a zda existují
+odkazované identifikátory; kontroluje také, zda nebyly nadefinovány
+duplicitní příkazy (stejná jména i parametry); za shodný parametr se při
+testování duplicit uvažují i lib. 2 indetifikátory či návěští
+*čísla a podčísla se mohou i více příkazů shodovat, to můj kompilátor
+nezajímá, takže je možno pojmenovat 1 příkaz více názvy, ale zkontroluje,
+zda má vždy příkaz stejné parametry; číslo i počíslo jsou obě typu bajt
+*je zvykem, že příkaz číslo 0 je exit (programu), takže je záhodno
+nadefinovat i nějaký takový příkaz a pro nic jiného ho nepoužít
+*právě jeden příkaz ve vstupním souboru musí být označen jako TALK
+
+zkompilovaný kód pak sestává z posloupnosti <integerů>
+1. integer jsou 2 bajty (číslo a podčíslo),
+následuje tolik integerů, kolik je parametrů,
+načež následuje další příkaz
+*matematický výraz se zkompiluje do postfixového tvaru jako seznam
+2*<integerů>:
+1. integer je typ (operátor nebo který identifikátor)
+2. integer je samotný obsah
+vyhodnocení výrazu končí v okamžiku, kdy je ve frontě 0 položek (to udělá
+mat. výraz), pak končí i sám zkompilovaný mat. výraz; toto pouhé vybrání
+posledního mezivýsledku ze zásobníku provede příkaz 0 (znamená tedy konec
+výrazu)
+*kompilátor hledá odpovídající příkaz, dokud jej nenalezne, duplicitní se
+už nemůže objevit
+
+pozn. díky relativním skokům je možno kódy libovolně linkovat za sebe}

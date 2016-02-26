@@ -1,0 +1,472 @@
+{ikonky}
+
+ICON i_nit
+title Spinnenfaden
+  STATUS off
+  PICTURE ..\ikony\def\01.gcf
+look
+D: "Das wirkt nur instabil.
+    Es ist aber vergleichbar mit einem Stahlseil."
+gplend
+
+ICON i_lzicka
+title Löffel
+  STATUS off
+  PICTURE ..\ikony\def\02.gcf
+look
+D: "Wo ist der nur mit der
+    Mahlzeit hin?"
+gplend
+
+ICON i_nocnik
+title Nachttopf
+  STATUS off
+  PICTURE ..\ikony\def\03.gcf
+look
+D: "Nun, der ist jedenfalls nicht leer."
+D: "Da scheint eine Fliege am Boden zu kleben....?!"
+gplend
+
+ICON i_ponozka
+title Socke
+  STATUS off
+  PICTURE ..\ikony\def\04.gcf
+look
+D: "Die Socke des Goblins"
+gplend
+
+ICON i_plisen
+title Hühnerbrühe
+  STATUS off
+  PICTURE ..\ikony\def\05.gcf
+look
+D: "Schmeckt gekocht besser."
+gplend
+
+ICON i_klika
+title Kurbel
+  STATUS off
+  PICTURE ..\ikony\def\06.gcf
+look
+D: "So ein Glück aber auch, dass ich die
+    gefunden hab!"
+gplend
+
+ICON i_provaz
+title Faden
+  STATUS off
+  PICTURE ..\ikony\def\07.gcf
+  look
+D: "Der ist reißfest und dünn."
+  gplend
+  canuse (isactico(i_varecka_zlomena))
+  use
+D: "Wir können mit dem Faden den Holzlöffel
+    reparieren..."
+    icostat off i_varecka_zlomena
+    icostat off i_provaz
+    icostat on i_varecka
+  gplend
+
+ICON i_varecka_zlomena
+title Zerbrochener Holzlöffel
+  STATUS off
+  PICTURE ..\ikony\def\08.gcf
+  look
+D: "Die zwei Holzstücke sind für mich nutzlos."
+  gplend
+  canuse (isactico(i_provaz))
+  use
+D: "Der Holzlöffel könnte mit dem Faden
+    repariert werden..."
+    icostat off i_varecka_zlomena
+    icostat off i_provaz
+    icostat on i_varecka
+  gplend
+
+ICON i_varecka
+title Holzlöffel
+  STATUS off
+  PICTURE ..\ikony\def\09.gcf
+look
+D: "Ich platze vor Stolz, dass ich das
+    mit meinen eigenen Händen vollbracht habe...!"
+gplend
+
+ICON i_prak
+  status off
+title Schleuder
+  PICTURE ..\ikony\def\10.gcf
+look
+D: "Ich hoffe der Gummi ist nicht ausgeleiert."
+gplend
+
+ICON i_doutnik
+  status off
+title Zigarre
+  PICTURE ..\ikony\def\11.gcf
+look
+D: "Eine originale Zigarre aus Dračí Historie."
+gplend
+
+ICON i_cihla
+title Ziegel
+  STATUS off
+  PICTURE ..\ikony\def\12.gcf
+look
+D: "Ich wollte immer meine eigene Hütte im Wald
+    haben.
+    Schon bin ich meinem Traum etwas näher."
+D: "Dieser Ziegelstein ist ein guter Anfang!"
+gplend
+
+ICON i_plakat
+title Poster
+  STATUS off
+  PICTURE ..\ikony\def\13.gcf
+look
+D: "Ich hoffe meine Eltern bringen mich nicht um."
+gplend
+
+ICON i_pohadka
+title Märchenbuch
+  STATUS off
+  PICTURE ..\ikony\def\14.gcf
+look
+D: "Wer könnte das geschrieben haben?"
+gplend
+
+ICON i_rakev
+title Donut
+  STATUS off
+  PICTURE ..\ikony\def\15.gcf
+look
+D: "Besser nicht,
+    ich glaube die Füllung ist bereits lebendig."
+gplend
+
+ICON i_rad
+title Verleihtermine
+  STATUS off
+  PICTURE ..\ikony\def\16.gcf
+look
+D: "Eine Liste - eine Papierliste - eindeutig genug?"
+gplend
+
+ICON i_jehla
+title Stachel vom Igel
+  STATUS off
+  PICTURE ..\ikony\def\17.gcf
+look
+D: "Den könnte man als Nadel gebrauchen."
+D: "Der hat sogar ein Nadelöhr!"
+gplend
+
+ICON i_zaplata
+title Klamotten
+  STATUS off
+  PICTURE ..\ikony\def\18.gcf
+look
+D: "Ich wusste nicht, dass der Riese einen
+    Second-Hand Laden aufgemacht hat.
+    Schade, dass sie mir nicht passen."
+gplend
+
+ICON i_bylina
+  STATUS off
+title Blütenblatt
+  PICTURE ..\ikony\def\19.gcf
+look
+D: "Eine rotes, duftendes Blütenblatt."
+gplend
+
+ICON i_list
+  STATUS off
+title Blatt
+  PICTURE ..\ikony\def\20.gcf
+look
+D: "Keine Ahnung wofür dieses Blatt
+    gut sein soll."
+gplend
+
+ICON i_karty
+title Kartensatz
+  STATUS off
+  PICTURE ..\ikony\def\21.gcf
+look
+D: "Ein Mogelkartensatz mit 32 Assen."
+D: "Die scheinen alle markiert zu sein!"
+gplend
+
+ICON i_hadra
+title Lumpen
+  STATUS off
+  PICTURE ..\ikony\def\22.gcf
+look
+D: "Nützlich, aber schmutzig.
+    Die Farben sind absolut undefinierbar."
+gplend
+
+ICON i_pivo
+title Krug voll Bier
+  STATUS off
+  PICTURE ..\ikony\def\23.gcf
+look
+D: "Die Kohlensäure ist schon verflogen."
+gplend
+
+ICON i_prsten
+  status off
+title Ring
+  PICTURE ..\ikony\def\24.gcf
+  look
+D: "Könnte der magisch sein?"
+gplend
+
+ICON i_saze
+  status off
+title Rußfasern
+  PICTURE ..\ikony\def\25.gcf
+look
+D: "Ich hoffe, ich sammle auf meinem Weg nicht
+    jeden Dreck auf."
+gplend
+
+ICON i_zvonek
+  status off
+title Handglocke
+  PICTURE ..\ikony\def\26.gcf
+look
+D: "Ringel-lingel-ling!"
+gplend
+
+ICON i_trubka
+  status off
+title Trompete
+  PICTURE ..\ikony\def\27.gcf
+look
+D: "Ich verrate dir ein Geheimnis..."
+D: "Nein, lieber doch nicht."
+gplend
+
+ICON i_tricko
+title Shirt
+  STATUS off
+  PICTURE ..\ikony\def\28.gcf
+look
+D: "Das ist ganz mit Harz verklebt."
+gplend
+
+ICON i_nyt
+title Dingsbums
+  STATUS off
+  PICTURE ..\ikony\def\29.gcf
+look
+D: "Das glänzt ... und reflektiert."
+gplend
+
+ICON i_kameny_1
+  status off
+title Stein
+  PICTURE ..\ikony\def\30.gcf
+look
+D: "Noch ein paar davon und ich habe genug
+    Munition für meine Schleuder."
+gplend
+
+ICON i_kameny_2
+  status off
+title Zwei Steine
+  PICTURE ..\ikony\def\31.gcf
+look
+D: "Jetzt bin ich noch besser gerüstet,
+    als mit nur einem Stein!"
+gplend
+
+ICON i_kameny_3
+  status off
+title Drei Steine
+  PICTURE ..\ikony\def\32.gcf
+look
+D: "Drei Steine sollten reichen,
+    selbst wenn ich blind wäre."
+gplend
+
+
+ICON i_pistala
+  status off
+title Flöte
+  PICTURE ..\ikony\def\33.gcf
+look
+D: "Wie wär's mit einer Melodie?"
+gplend
+
+
+ICON i_klic_truhla
+  status off
+title Truhenschlüssel
+  PICTURE ..\ikony\def\34.gcf
+look
+D: "Ich sollte ihn so schnell wie möglich benutzen
+    und nicht sinnlos rumschleppen."
+D: "Außerdem könnte ich ihn irgendwo verlieren!"
+gplend
+
+
+ICON i_loutka_kamenna
+  status off
+title Steinpuppe
+  PICTURE ..\ikony\def\35.gcf
+look
+D: "Das war mal eine Holzpuppe."
+gplend
+
+ICON i_loutka_drevena
+  status off
+title Holzpuppe
+  PICTURE ..\ikony\def\36.gcf
+look
+D: "Die geb ich besser ihrem Besitzer zurück."
+gplend
+
+ICON i_scenar
+  status off
+title Etwas Papier
+  PICTURE ..\ikony\def\37.gcf
+  look
+D: "Ein Teil des Skripts von 'Picknick am Fluss'.."
+D: "Dostoyevskyi?"
+D: "Shakespeare?"
+D: "Pushkin?"
+gplend
+
+ICON i_jablko
+  status off
+title Apfel
+  PICTURE ..\ikony\def\38.gcf
+look
+D: "Sieht zum Anbeißen aus..."
+gplend
+
+
+ICON i_drozdi
+  STATUS off
+title Hefe
+  PICTURE ..\ikony\def\39.gcf
+look
+D: "Ich weiß nur, dass man die für Teig
+    verwenden kann.
+    Vielleicht weißt du ja mehr?"
+gplend
+
+ICON i_trychtyr
+  STATUS off
+title Trichter
+  PICTURE ..\ikony\def\40.gcf
+look
+D: "Den haben sie in der Schule benutzt,
+    um uns Wissen in die Köpfe einzutrichtern."
+D: "Du hast dich sicher schon gefragst,
+    warum ich so schlau bin, stimmts?"
+gplend
+
+ICON i_cukr
+  STATUS off
+title Löffel mit Zucker
+  PICTURE ..\ikony\def\41.gcf
+look
+D: "Tut mir leid, ich mag keine Süßigkeiten."
+gplend
+
+ICON i_pohrabac
+  STATUS off
+title Schürhaken
+  PICTURE ..\ikony\def\42.gcf
+look
+D: "Vielleicht gibt es für Schürhaken auch noch
+    andere, sinnvolle Anwendungsgebiete..."
+D: "...aber für mich sind sie vor allem
+    Popelwerkzeuge!"
+gplend
+
+ICON i_souska
+  STATUS off
+title Zweig
+  PICTURE ..\ikony\def\43.gcf
+look
+D: "Ein eher kleiner Zweig."
+gplend
+
+ICON i_kolo
+title Zahnrad
+  STATUS off
+  PICTURE ..\ikony\def\44.gcf
+look
+D: "Ich sag dir,
+    das ist kein gewönliches Zahnrad,
+    das ist ein Ersatzteil!"
+gplend
+
+ICON i_lenost
+title Faulheit
+  STATUS off
+  PICTURE ..\ikony\def\45.gcf
+look
+D: "Flüssiges Konzentrat, das muss sehr mächtig
+    sein."
+gplend
+
+ICON i_jezek
+title Igel
+  status off
+  PICTURE ..\ikony\def\46.gcf
+look
+D: "Den hab ich nur für den Moment,
+    ich muss ihn später wieder freilassen."
+gplend
+
+ICON i_sipky
+title Dartpfeile
+  status off
+  PICTURE ..\ikony\def\47.gcf
+look
+D: "Die sind zu einer hübschen, drallen Form
+    herangereift."
+gplend
+
+
+ICON i_klic_sipdum
+title Schlüssel des Dartspielers
+  status off
+  PICTURE ..\ikony\def\48.gcf
+look
+D: "Das ist der Schlüssel zu seinem Haus."
+gplend
+
+ICON i_mravenec
+title Ameise
+  STATUS off
+  PICTURE ..\ikony\def\49.gcf
+look
+D: "Sie zwickt mich nicht und kann auch nicht
+    entkommen."
+D: "Keine Sorge."
+D: "Da bin ich sicher."
+gplend
+
+ICON i_fousy
+  STATUS off
+title Bart des Goblins
+  PICTURE ..\ikony\def\50.gcf
+look
+D: "Das nenn' ich mal eine Trophäe!"
+gplend
+
+ICON i_nuz
+  STATUS off
+title Messer
+  PICTURE ..\ikony\def\51.gcf
+look
+D: "Damit soll ich herumrennern, sieht aber
+    sehr scharf aus."
+gplend

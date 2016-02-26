@@ -1,0 +1,422 @@
+block _00 ( beg(1) and not been (_00) )
+title
+  justtalk
+  D: "Ahoj, já jsem Bert."
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Já jsem Rohovín Čtverrohý.
+      A jsem trol,
+      jak sis jistě všimnul."
+{#quite unbelievable name, isn't it?
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Dost divnej trol."
+  juststay
+
+  justtalk
+  D: "Myslel jsem, že trolové byli stvořeni k tomu,
+      aby hlídali mosty!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Kde's takový nesmysl slyšel?"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Co já vím,
+      trolové byli stvořeni k tomu,
+      aby leželi pod stromem."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "A já to přece musím vědět přesně,
+      když trol jsem!"
+  start trol_huba "mlci"
+gplend
+
+block _00a ( beg(1) and been (_00) )
+title
+  justtalk
+  D: "Ehm, ahoj..."
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Nazdar."
+  start trol_huba "mlci"
+
+  resetblock _98
+gplend
+
+block _98 ( beg(0) and last(_00a) and been(_09) and been(_10) )
+title Rád bych si ujasnil několik zásadních faktů.
+  justtalk
+  D: "Rád bych si znovu ujasnil
+      několik zcela zásadních faktů."
+  juststay
+
+  start trol_huba "mluvi"
+  T: "No prosím."
+  start trol_huba "mlci"
+  resetblock _09
+  resetblock _10
+  resetblock _12
+gplend
+
+block _09 ( been(_01) and beg(0) and ((not been(_09) and been(_08)) or been(_98)) )
+title Nehodláš se někdy vrátit zpátky na most?
+  justtalk
+  D: "Nehodláš se někdy vrátit zpátky na most?"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Tak tohle mě ještě nenapadlo!
+      Jak's to říkal?"
+  T: "Hahahaha, hah..."
+  start trol_huba "mlci"
+
+  resetblock _98
+gplend
+
+block _10 ( beg(0) and not been(_10) )
+title Jaktože máš jenom dva rohy, když jsi Čtverrohý?
+  justtalk
+  D: "Jaktože máš jenom dva rohy,
+      když jsi Čtverrohý?"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Tomu se diví každý.
+      A víš, proč to je?"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Na zimu totiž
+      vždycky dva růžky shodím!"
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Ne!"
+  juststay
+  start trol_huba "mluvi"
+  T: "Jo, v zimě mi vyčuhovaly
+      zpod kulicha a mrzly..."
+  T: "...a tak jsem je kvůli tomu
+      začal shazovat!"
+  start trol_huba "mlci"
+gplend
+
+block _11 ( last(_10) )
+title Vždyť do zimy je ještě dost daleko!
+  justtalk
+  D: "Vždyť do zimy je ještě dost daleko!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Přízemní mrazíky, to víš..."
+  start trol_huba "mlci"
+gplend
+
+block _12 ( beg(0) and not been(_12) and been(_10) )
+title Až dodneška jsem netušil, že trolové shazují rohy!
+  justtalk
+  D: "Až dodneška jsem netušil,
+      že trolové shazují rohy!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Však také nikdo z mých předků
+      rohy neshazoval."
+  T: "Lituji svého otce,
+      děda a praděda."
+  T: "Ti rohy neshazovali
+      a každou zimu jim
+      půlka hlavy zmrzla."
+  T: "Na jaře roztála."
+  T: "A další zimu zmrzla."
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Nepokračuj v tom líčení, je to hrůza!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Promiň,
+      ale ještě ti musím říct,
+      že se také často stávalo,"
+  T: "...že neroztála vůbec!"
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Co se pak s takovou hlavou dělalo?"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Záleželo na tom."
+  T: "Kamna ani krb,
+      to nebylo řešení."
+  T: "Celá půlka hlavy,
+      jak byla obalená ledem a rampouchy,
+      se tam často vůbec nevešla!"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Muselo se počkat,
+      až do kraje přiletí ohnivý drak
+      a říct jemu."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Ale ochotných draků
+      je čím dál míň..."
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Stačilo by říct mě!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Díky, ale naštěstí už není třeba."
+  T: "Řešení, které jsem vymyslel já,
+      je naprosto revoluční."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Mezi námi, ani se otci nedivím,
+      že na to nepřišel."
+  T: "Byl strašně konzervativní!"
+  start trol_huba "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) and (dreveny_trol_prozkouman=1) )
+title Opodál jsem jednoho trola viděl, a ten most hlídal!
+  justtalk
+  D: "Opodál jsem jednoho trola viděl,
+      a ten most hlídal!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Tomu absolutně nevěřím!"
+  start trol_huba "mlci"
+
+  justtalk
+  D: "A byl ti dost podobnej..."
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Ha ha ha,
+      snad mi nechceš tvrdit,
+      že jsem to byl já!"
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Ty těžko;
+      ten co hlídal, byl úplně hluchej."
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Chudák."
+  start trol_huba "mlci"
+
+  justtalk
+  D: "A byl celej ze dřeva!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "To je deformace z povolání."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Těm hloupým trolům,
+      kteří ještě zkoprněle
+      postávají na mostech,"
+  T: "...se přihodí,
+      že občas zdřevění."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "To je také odpověď na otázku,
+      proč já žádný most nehlídám."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Moje nedřevěná konzistence
+      mi zatím vyhovuje."
+  start trol_huba "mlci"
+gplend
+
+block _02 ( last(_01) )
+title Zdřevěnět se dá jistě celkem snadno i vleže.
+  justtalk
+  D: "Zdřevěnět se dá jistě celkem snadno i vleže."
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Dobrá, dobrá, máš pravdu.
+      Ale jak's na to přišel,
+      že je ze dřeva?"
+  T: "Myslel jsem,
+      že to nikdo nepozná!"
+  start trol_huba "mlci"
+
+  justtalk
+  D: "A vidíš to, poznal!"
+  D: "Mezi dřevěným trolem
+      a živým trolem, jako jsi ty,
+      jsou přece jenom rozdíly..."
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Například?"
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Z tebe se neodlupuje barva!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "No, dostal jsi mě..."
+  start trol_huba "mlci"
+gplend
+
+block _03 ( been(_01) and beg(0) and not been(_03) )
+title Hlídat mosty je určitě příšerný...
+  justtalk
+  D: "Hlídat mosty je určitě příšerný..."
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Vždyť."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Přestalo mě bavit
+      stát na mostě jako trdlo..."
+  T: "...a zaskuhrat
+      'Zaplaťte trolovi' pokaždé,
+      když jde někdo kolem."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "A škemrat o drobné.
+      To bylo ze všeho nejhorší!"
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Jako nějakej žebrák!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "No právě.
+      Spoustu lidí to mátlo
+      a nosili mi zbytky od oběda!"
+  start trol_huba "mlci"
+gplend
+
+block _04 ( beg(0) and not been(_04) and been(_03) )
+title Měl jsi bojovat ideově!
+  justtalk
+  D: "Měl jsi bojovat ideově!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "To mě za chvíli přešlo."
+  T: "Sepsal jsem petici
+      'Za práva trola Rohovína Čtverrohého',
+      ale k ničemu nebyla."
+  T: "Nesehnal jsem dost podpisů."
+  start trol_huba "mlci"
+gplend
+
+block _05 ( beg(0) and not been (_05) and been(_04) )
+title Proč nebojuješ rovnou za práva všech trolů?
+  justtalk
+  D: "Proč nebojuješ rovnou za práva všech trolů?"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Ho hó,
+      ať si ostatní trolové bojují
+      za svá práva každý sám."
+  T: "Nevím, proč bych měl něco dělat za ně!"
+  start trol_huba "mlci"
+gplend
+
+block _06 ( beg(0) and not been (_06) and been(_04) )
+title Co jsi v té petici požadoval?
+  justtalk
+  D: "Co jsi v té petici požadoval?"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Strážní domek, stálou rentu,
+      obědy a večeře zdarma..."
+  T: "...a pomocnou sílu,
+      která by stála na mostě
+      místo mě!"
+  start trol_huba "mlci"
+gplend
+
+block _07 ( last(_06) )
+title Nedivím se, že s tím ten omezenec nesouhlasil!
+  justtalk
+  D: "Nedivím se, že s tím ten omezenec
+      Pánnapět nesouhlasil!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "A to prrr!
+      On by možná souhlasil,
+      ale celé to ztroskotalo na..."
+  start trol_huba "mlci"
+
+  justtalk
+  D: "Na čem?"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Na hradě nemají
+      poštovní schránku!"
+  start trol_huba "mlci"
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_03) )
+title Měl's přijímat šeky!
+  justtalk
+  D: "Měl's přijímat šeky!"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "To jsem zkoušel."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+  T: "Ale polovina jich byla nekrytých!"
+  start trol_huba "mlci"
+
+  justtalk
+  D: "A co platební karty?"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Tak tahle novinka sem
+      ještě nedorazila."
+  T: "Raději jsem si za sebe
+      vyrobil náhradu..."
+  start trol_huba "mlci"
+gplend
+
+block _99 ( beg(0) )
+title Taky se ti občas stává, že nevíš co bys měl říct?
+  justtalk
+  D: "Taky se ti občas stává,
+      že nevíš co bys měl říct?"
+  juststay
+
+  start trol_huba "mluvi"
+  T: "Hm."
+  start trol_huba "mlci"
+
+  exitdialogue
+gplend

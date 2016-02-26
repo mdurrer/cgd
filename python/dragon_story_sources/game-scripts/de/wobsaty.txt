@@ -1,0 +1,18 @@
+{kdyz jsem nasel saty:}
+
+block _00 ( beg(1) )
+title
+  let prozkoumal_akvarko (2)
+  icostat on i_zaplata
+
+  justtalk
+D: "Irgendwas wurde hier herumgeschleudert."
+D: "Sieht aus wie zerfledderte Zwergenkleidung.
+    Ich hoffe sie passt mir..."
+  juststay
+  start obr_hlava "mluvi"
+O: "Nein, das sind meine Sachen.
+    Die laufen jedesmal ein, wenn ich sie wasche."
+  start obr_hlava "mlci"
+
+gplend

@@ -1,0 +1,31 @@
+A compiled program is a sequence of 16-bit integers.
+
+The first integer of a command consists of 2 bytes (a number and sub-number of
+a called command) followed by a sequence of parameter values.  The number of
+the parameters and their types are determined by the command number and
+sub-number, using a lookup in the command pattern table.  Each parameter is
+either a simple 16-bit integer or a mathematical expression.  The pattern
+table is defined in play3.asm; the interpretter searches for the read command
+number.
+
+Some commands are callback of actual game routines, and some are control
+statements, such as conditional and unconditional jumps and exit of the
+program.  All jumps are relative and therefore the programs from different
+modules can be arbitrarily placed behind each other.
+
+A mathematical expression is stored in a postfix form as a list of
+instructions, stored as pairs of integers.  The first integer in an
+instruction is a type the instruction (whether to apply an operator on the
+last few parameters on the stack, to push a constant on the stack, or whether
+to push the value of a variable to the stack and which namespace to take the
+variable from).  The second integer is the actual value (denoting the constant
+or variable).  We have several namespaces, where variables are numbered from
+1, for example one for game items, one for locations, one for characters, one
+for strings (which are stored in an array elsewhere and are indexed in the
+GPL2 program by their indices), etc.
+
+Evaluation of a mathematical expression ends (and the GPL2 program continues)
+at the moment when the stack contains 0 items.  When the stack contains
+exactly 1 value, picking this as the result is done by command number 0, which
+thus denotes the end of the mathematical expression.
+

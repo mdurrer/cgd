@@ -1,0 +1,540 @@
+{dialog draka s rytířem:}
+
+
+block _05 ( maxline(1) and beg(1) and hasbeen(_04) and not hasbeen(_05) )
+TITLE Was ist mit deiner Angst?
+
+  justtalk
+D: "Was ist mit deiner Angst?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Es i-i-ist noch k-kein b-b-bißchen
+      b-besser g-g-geworden."
+  start rytir "mlci"
+
+  justtalk
+D: "Hat sie eine konkrete Form gehabt?"
+  juststay
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  start rytir "mluvi"
+Ryt: "E-es ist jedesm-mal das s-s-selbe
+      unb-b-berschreibliche E-Etwas."
+  start rytir "mlci"
+
+  justtalk
+D: "Schade aber auch.
+    Wenn du es irgendwie beschreiben könntest,
+    könnte ich dir vielleicht helfen..."
+  juststay
+  exitdialogue
+gplend
+
+block _06 ( maxline(1) and beg(1) and hasbeen(_05) and not hasbeen(_06) )
+TITLE Wir müssen was gegen dein Angstgefühl tun!
+  justtalk
+D: "Wir müssen was gegen dein Angstgefühl tun!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ab-ber w-w-was?"
+  start rytir "mlci"
+
+  justtalk
+D: "Wir müssen den Auslöser finden.
+    Ich stell dir ein paar Fragen
+    und du beantwortest sie, in Ordnung?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Na sch-sch-schön."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Denkst du, daß der Drache dir weh tun will?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ich w-weiß nicht, warum er m-mir wehtun sollte
+      d-das ist nichts P-Persönliches."
+  start rytir "mlci"
+
+  justtalk
+D: "Oh-oh!"
+D: "Du willst dem Drachen den Kopf abschneiden,
+    oder nicht?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "J-ja."
+  start rytir "mlci"
+
+  justtalk
+D: "Meinst du, ihm macht das nichts aus?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ich g-glaub, es sollte ihm nichts ausm-machen,
+      wenn er z-zw-zwei oder d-drei Köpfe hat."
+  start rytir "mlci"
+
+  justtalk
+D: "Und wenn er nur einen hat?!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ich g-glaube an seine na-natürlichen
+      R-Re-Regenerationsfähigkeiten."
+  start rytir "mlci"
+
+  exitdialogue
+
+gplend
+
+block _07 ( maxline(1) and beg(1) and hasbeen(_06) and not hasbeen(_07) )
+TITLE Denkst du, dass der Drache dich fressen möchte?
+  justtalk
+D: "Denkst du,
+    daß der Drache dich fressen möchte?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "N-nein. Ich g-glaube n-nicht.
+      Ich sch-schätze,
+      er würde meine R-Rüstung nicht mögen."
+  start rytir "mlci"
+
+  justtalk
+D: "Der Drache wird die am liebsten mögen."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ist das w-wahr?
+      Ich d-dachte immer Drachen würden keine
+      B-Blechrüstungen fressen?!"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Doch, er wird dich in Nullkommanix
+    mitsamt Rüstung verspeist haben."
+D: "Blechrüstungen sind eine beliebte
+    Delikatesse derzeit."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Das g-glaub ich n-nicht!"
+  start rytir "mlci"
+
+  justtalk
+D: "Dann glaub es halt nicht.
+    Ich dachte, du würdest den Köder schlucken."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ich b-bin nicht na-naiv."
+  start rytir "mlci"
+
+  justtalk
+D: "Sicher? Ich hoffe du wirst nicht überrascht sein!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Warum s-sollte ich überrascht s-sein?
+      Dr-Drachen mögen kein B-Blech. Finito!"
+  start rytir "mlci"
+
+  justtalk
+D: "Dein Fehler!"
+D: "Wenn er keinen Büchsenöffner zur Hand hat
+    und er richtig Hunger hat,
+    dann wird er dich
+    mitsamt deiner Rüstung fressen."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Und w-was ist mit s-seiner schlechten
+      Verd-dauung."
+  start rytir "mlci"
+
+  exitdialogue
+gplend
+
+
+block _12 ( maxline(1) and beg(1) and not been(_12) and isactico(0) and been(_07) and (otec_troubil=1) )
+TITLE Hast du von Drachen gehört die Feuer spucken?
+  justtalk
+D: "Hast du von Drachen gehört,
+    die Feuer und Schwefel spucken?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "J-Ja."
+  start rytir "mlci"
+
+  justtalk
+D: "Nun, es gibt Mutationen im Drachenreich
+    die sogar Schwefelsäure spucken können."
+D: "So ein Drache hat Schwefelsäure im Magen,
+    die dich leicht verdauen wird."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "D-das sind ja echt st-starke M-Magensäfte."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Hast du dieses Geräusch aus der Höhle gehört?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "I ha-hab wirklich was g-g-gehört."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Und das war nur sein Magen, der grummelt!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ich fange an,
+      ein äußerst gut zu beschreibendes
+      Angstgefühl zu bekommen!"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+
+{vytrepani soucastky:}
+  start rytir_nohy "hodne"
+  load nyt_pada "padani"
+  startplay nyt_pada "padani"
+  objstat away nyt_pada
+  objstat_on nyt jesven
+  start nyt "zakladni"
+  let tras_nohou (1)
+
+  exitdialogue
+gplend
+
+
+block _13 ( maxline(1) and beg(1) and isactico(i_tricko))
+title
+  let slepene_nohy (1)
+  icostat off i_tricko
+  objstat_on rytir_nohy_slep jesven
+  start rytir_nohy_slep "zakladni"
+  objstat away rytir_nohy
+
+  justtalk
+D: "Schon besser.
+    Das Geschepper ging mir auf die Nerven."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Danke, daß du mir die Beine
+      zusammengeklebt hast,
+      meine Knie waren ganz schön zerbeult.
+      Ich st-stottere sogar nicht mehr!"
+  start rytir "mlci"
+
+  justtalk
+D: "Aber du wirst für immer hier bleiben müssen."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Das macht nichts, das ist ein ganz schöner Ort."
+Ryt: "Ich wollte immer an einem solchen Ort sterben."
+  start rytir "mlci"
+
+  justtalk
+D: "Du wirst wohl zu Tode rosten."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Wer weiß..."
+  start rytir "mlci"
+
+  justtalk
+D: "Und was ist jetzt mit den Drachen?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Weißt du was,
+      du könntest die Drachen für mich
+      hierher bringen."
+  start rytir "mlci"
+
+  justtalk
+D: "Ich denk darüber nach."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Wenn du darauf bestehst,
+      kannst du ihm auch selbst
+      den Kopf abschneiden."
+Ryt: "Wenn du kein Schwert hast,
+      kannst du meins haben.
+      Aber sei vorsichtig damit. Abgemacht?"
+  start rytir "mlci"
+
+  justtalk
+D: "Das wird wohl nichts,
+    ich schwinge Schwerter wie ein Hooligan!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "In diesem Fall mußt du woanders
+      ein Schwert herbekommen."
+Ryt: "Wenn du einen Drachenkopf abschneiden willst
+      brauchst du definitiv ein Schwert."
+  start rytir "mlci"
+
+  exitdialogue
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) and isactico(0) )
+title
+  justtalk
+D: "Hallo. Ich bin Bert!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "W-Wer bist du? Ein Dra-Drache?"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Nee, ich bin nicht wirklich ein Drache.
+    Ich komme gerade vom Karneval..."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Das K-Kostüm ist echt kl-klasse.
+      Mein Name ist T-Terrorschreck St-Stichfest."
+Ryt: "Du hast Glück, dass du k-kein Drache b-bist,
+      sonst müßte ich d-dir den Kopf abschneiden."
+  start rytir "mlci"
+gplend
+
+block _00a ( maxline(1) and beg(1) and been(_00) and isactico(0) and (slepene_nohy=0) )
+title
+  justtalk
+D: "Wie wär's, wenn wir uns unterhalten?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Warum nicht."
+  start rytir "mlci"
+gplend
+
+block _14 ( atbegin(0) and not hasbeen(_14) )
+TITLE Was ist mit der Höhle hinter uns...
+  justtalk
+D: "Was ist mit der Höhle hinter uns..."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ist d-dort ein Dr-Drache d-drin?"
+  start rytir "mlci"
+
+  justtalk
+D: "Das müßtest du doch wissen!
+    Du stehst doch genau davor."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Aber ich w-weiß es n-noch nicht."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Ich würde sagen, da ist ein Drache drin.
+    Ich hab was mit ihm zu regeln..."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Wenn das s-so ist, dann hoffe ich,
+      daß du ihm nicht den K-Kopf abschneidest.
+      Das ist mmm-mein Job!"
+  start rytir "mlci"
+
+  justtalk
+D: "Den Kopf abschneiden? Niemals!
+    Das ist doch mein Vater!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "W-Wie k-kommt es, daß dein Va-vater
+      ein Dr-Drache ist und du n-nicht?!"
+  start rytir "mlci"
+
+  justtalk
+D: "Äh...ich bin eine Laune der Natur..."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "O-oh!"
+  start rytir "mlci"
+gplend
+
+block _20 ( atbegin(0) and not hasbeen(_20) )
+TITLE Wie fühlst du dich in deiner Rüstung?
+  justtalk
+D: "Wie fühlst du dich in deiner Rüstung?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Es ist ganz schön merkwürdig."
+Ryt: "Ich leide n-nämlich unter
+      Kl-Klau-Klaustrophobie!"
+  start rytir "mlci"
+
+  justtalk
+D: "Dann versuch dein Visier zu öffnen."
+  juststay
+
+  start rytir "mluvi"
+Ryt: "D-das ist mit einer Sch-schraube
+      zug-g-geschraubt."
+  start rytir "mlci"
+gplend
+
+block _02 ( atbegin(0) and not hasbeen(_02) )
+TITLE Warum schlottern dir so die Knie?
+  justtalk
+D: "Warum schlottern dir so die Knie?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Es pa-passiert jedes m-mal,
+      wenn ich einem Dr-Drachen
+      den K-Kopf abschneiden soll."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+D: "Was sagt dein Psychiater?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ich w-w-weiß nicht, w-was er sagt.
+      Aber ich ha-habe ein B-Buch mit dem T-Titel
+      'S-sei dein eigener Psy-Psychiater'."
+  start rytir "mlci"
+
+  justtalk
+D: "Und was steht in dem Buch?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Da st-steht ich soll sie überw-winden,
+      m-meine A-a-a-"
+  start rytir "mlci"
+
+  justtalk
+D: "Angst?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "G-genau.
+      Ich w-will es hier v-v-versuchen."
+  start rytir "mlci"
+
+  justtalk
+D: "Du hast nicht viel Erfolg gehabt, oder?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ich weiß nicht, was der Grund ist,
+      aber i-i-ich kann mich heute nicht b-b-bewegen!"
+  start rytir "mlci"
+gplend
+
+block _04 ( atbegin(0) and hasbeen(_02) and not hasbeen(_04) )
+title Was ist der Grund für deine Angst?
+  justtalk
+D: "Was ist der Grund für deine Angst?
+    Soweit ich weiß, sind Drachen freundlich!"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "Ich w-w-weiß nicht. Ich ha-habe einfach
+      ein unb-b-beschreibliches Gefühl von A-Angst!"
+  start rytir "mlci"
+
+  justtalk
+D: "Wenn deine Angst eine definierbare Form hätte,
+    könnten wir etwas dagegen tun."
+  juststay
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+gplend
+
+
+block _15 ( beg(0) and last(_00a) and maxline(1) and (slepene_nohy=0) )
+title
+  justtalk
+D: "Aber was könnte das sein?"
+  juststay
+
+  start rytir "mluvi"
+Ryt: "St-st-stimmt.
+      B-b-bis später."
+  start rytir "mlci"
+gplend
+
+block _00b ( maxline(1) and beg(1) )
+title
+ {kdyby žádný přdchozí začátek rozhovoru nezabral...
+  justtalk
+D: "Wie wär's mit einem Gespräch?"
+{rytir chvilku mlci}
+Ryt: "---"
+D: "Wie du willst."
+  juststay
+  exitdialogue
+gplend
+
+block _99 ( not maxline(1) and beg(0) and not last(_00a) )
+TITLE Ich geh dann mal...
+  justtalk
+D: "Ich geh dann mal..."
+  juststay
+  start rytir "mluvi"
+Ryt: "N-na Sch-schön."
+Ryt: "B-bis später d-dann."
+  start rytir "mlci"
+  exitdialogue
+gplend
+

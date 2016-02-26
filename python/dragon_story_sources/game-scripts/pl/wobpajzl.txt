@@ -1,0 +1,126 @@
+{s pajzlem u obra:}
+
+block _00a ( atbegin(1) and not hasbeen(_00a) )
+title
+     justtalk
+   D: "Ehm, panie Krasnalu..."
+   D: "Zadam ci tylko kilka pytań.
+       Nie zabiorę ci dużo czasu.
+       Widzę, że jesteś zajęty."
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Hmptf, no to już!"
+     start obr_pajzl2 "mlci"
+gplend
+
+block _00b ( atbegin(1) and hasbeen(_00a) )
+title
+     justtalk
+   D: "Zjadłem wszystkie swoje notatki,
+       Czy mogłibyśmy je odtworzyć?"
+     juststay
+
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Urgh!"
+     start obr_pajzl2 "mlci"
+
+     justtalk
+   D: "Nie?"
+   D: "Tak między nami mówiąc, te notatki były
+       raczej bez sensu."
+   D: "Spróbuj znów się skupić..."
+     juststay
+   D: "..."
+     justtalk
+   D: "Jesteś gotów?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "A więc."
+     start obr_pajzl2 "mlci"
+gplend
+
+block _01 ( atbegin(0) )
+   TITLE Jak się czujesz?
+     justtalk
+   D: "Jak się czujesz?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Doprawdy, wyśmienicie."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Jak dużo trenowałeś?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Hmptf!"
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Czy wierzysz w siebie?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Zdecydowanie!"
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Czy sądzisz, że masz dobrą formę?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Dbałem o kondycję."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Czy nie czujesz się przetrenowany?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Bzdura."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Czy pocisz się?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "W granicach normy."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Czy się nie denerwujesz?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Czuję się dobrze."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Czy ten sznur za bardzo ci nie przeszkadza?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Dziękuję. W porządku."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Naprawdę nie przeszkadza."
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Wszystko w porządku."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Co sądzisz o tym, że prawdopodobnie
+       możesz zostać pożarty?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Mam nadzieję. że ten co mnie zje, nie
+           doda zbyt wielu przypraw.
+           Rozumiesz, jestem uczulony na zioła."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Rozumiem, drobna niedogodność..."
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "To ty tak mówisz. Ja czuję się wyśmienicie."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "A więc, jak czujesz się w chwilę przed śmiercią?"
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "To jest dla mnie zupełnie nowe doświadczenie."
+     start obr_pajzl2 "mlci"
+     justtalk
+   D: "Dziękuję za wywiad."
+     juststay
+     start obr_pajzl2 "mluvi"
+   Pajzl: "Nie ma sprawy."
+   Pajzl: "Reklama jest rzeczą niezwykle istotną."
+     start obr_pajzl2 "mlci"
+gplend

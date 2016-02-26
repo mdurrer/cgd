@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <id type="desktop">gitg.desktop</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <project_group>GNOME</project_group>
+  <description>
+    <p>
+      gitg is a graphical user interface for git. It aims at being a small,
+      fast and convenient tool to visualize the history of git repositories.
+      Besides visualization, gitg also provides several utilities to manage your
+      repository and commit your work.
+    </p>
+    <p>Goals</p>
+    <ul>
+      <li>Browse local git repositories</li>
+      <li>Clone local and remote git repositories</li>
+      <li>Commit files</li>
+      <li>Retrieve patch from a commit</li>
+    </ul>
+  </description>
+  <kudos>
+    <kudo>AppMenu</kudo>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
+  <screenshots>
+    <screenshot type="default" width="1200" height="675">https://wiki.gnome.org/Apps/Gitg?action=AttachFile&amp;do=get&amp;target=history.png</screenshot>
+    <screenshot width="1200" height="675">https://wiki.gnome.org/Apps/Gitg?action=AttachFile&amp;do=get&amp;target=stage.png</screenshot>
+    <screenshot width="1200" height="675">https://wiki.gnome.org/Apps/Gitg?action=AttachFile&amp;do=get&amp;target=commit.png</screenshot>
+    <screenshot width="1200" height="675">https://wiki.gnome.org/Apps/Gitg?action=AttachFile&amp;do=get&amp;target=projects.png</screenshot>
+  </screenshots>
+  <url type="homepage">https://wiki.gnome.org/Apps/Gitg</url>
+  <updatecontact>icq@gnome.org</updatecontact>
+  <translation type="gettext">gitg</translation>
+</application>

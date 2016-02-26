@@ -1,0 +1,417 @@
+block _00 ( beg(1) and not been (_00) )
+title
+  justtalk
+   D: "Cześć, jestem Bert."
+  juststay
+
+  start trol_huba "mluvi"
+   T: "A ja jestem Hornaine Czterorogi.
+       Jak z pewnością się zorientowałęś,
+       jestem trolem."
+{#quite unbelievable name, isn't it?
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Dziwny trol."
+  juststay
+
+  justtalk
+   D: "Wydaje mi się, że trole narodziły się po to
+       by pilnować mostów!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "To nonsens!"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "O ile wiem,
+       trole żyją po to
+       by wylegiwać się pod drzewem."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Wiem to na pewno,
+       bo sam jestem trolem!"
+  start trol_huba "mlci"
+gplend
+
+block _00a ( beg(1) and been (_00) )
+title
+  justtalk
+   D: "Ahem, cześć..."
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Cześć."
+  start trol_huba "mlci"
+
+  resetblock _98
+gplend
+
+block _98 ( beg(0) and last(_00a) and been(_09) and been(_10) )
+   title Chciałbym wyjaśnić pewne podstawowe fakty.
+  justtalk
+   D: "Chciałbym wyjaśnić pewne podstawowe fakty."
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Jak sobie życzysz."
+  start trol_huba "mlci"
+  resetblock _09
+  resetblock _10
+  resetblock _12
+gplend
+
+block _09 ( been(_01) and beg(0) and ((not been(_09) and been(_08)) or been(_98)) )
+   title Czy wracasz z powrotem na most?
+  justtalk
+   D: "Czy wracasz z powrotem na most?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Chłopcze, nawet mi to na myśl nie przyszło!
+       Co ty wygadujesz?"
+   T: "Ha,ha,ha,ha,ha..."
+  start trol_huba "mlci"
+
+  resetblock _98
+gplend
+
+block _10 ( beg(0) and not been(_10) )
+   title Dlaczego masz tylko dwa rogi, skoro jesteś...
+  justtalk
+   D: "Dlaczego masz tylko dwa rogi,
+       skoro jesteś Czterorogi?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Każdy się temu dziwi.
+       Czy wiesz czemu mam tylko dwa rogi?"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Zawsze zrzucam rogi
+       na zimę!"
+  start trol_huba "mlci"
+
+  justtalk
+   D: "To niemożliwe!"
+  juststay
+  start trol_huba "mluvi"
+   T: "Możliwe. Każdej zimy głowa mi marzla
+       przez te dwa rogi..."
+   T: "...i dlatego zacząłem je zrzucać!"
+  start trol_huba "mlci"
+gplend
+
+block _11 ( last(_10) )
+   title Ale jeszcze nie ma zimy!
+  justtalk
+   D: "Ale jeszcze nie ma zimy!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Wiesz, są przymrozki..."
+  start trol_huba "mlci"
+gplend
+
+block _12 ( beg(0) and not been(_12) and been(_10) )
+   title Nie przypuszczałem, że trole zrzucają rogi!
+  justtalk
+   D: "Nie przypuszczałem,
+       że trole zrzucają rogi!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "To zrozumiałe. Żaden z moich przodków
+       tak nie robił."
+   T: "Wstydzę się za mego ojca,
+       dziadka i pradziadka."
+   T: "Oni nie zrzucali rogów
+       i każdej zimy,
+       zamarzało im pół głowy."
+   T: "Topniała na wiosnę."
+   T: "A następnej zimy, znów zamarzała."
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Przestań, to straszne!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Muszę też
+       z przykrością powiedzieć,
+       że czasami..."
+   T: "...nie topniała wcale."
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Co wtedy robili?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "To zależało."
+   T: "Kominek albo piec
+       nie pomagał."
+   T: "Pół głowy pokrywał im
+       lód i sople
+       wyglądało to często okropnie!"
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Musieli czekać
+       aż do kraju zawita ognisty smok
+       i prosić go..."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Lecz smoki wcale nie były
+       chętne do pomocy..."
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Ja jestem smokiem!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Dziękuję, lecz na szczęście nie ma potrzeby."
+   T: "Rozpuszczalnik, który sporządziłem
+       jest rzeczywiście rewelacyjny."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Zresztą, nie dziwię się
+       że mój ojciec go nie wynalazł."
+   T: "Był on zatwardziałym fanatykiem tradycji!"
+  start trol_huba "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) and (dreveny_trol_prozkouman=1) )
+   title Niedaleko stąd widziałem trola, który pilnował mostu!
+  justtalk
+   D: "Niedaleko stąd widziałem trola,
+       który pilnował mostu!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Nie wierzę!"
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Wyglądał tak jak ty..."
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Ha,ha,ha,
+       nie mów,
+       że to byłem ja!"
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Nie, to nie byłeś ty,
+       ten, co pilnował był całkiem głuchy."
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Biedactwo."
+  start trol_huba "mlci"
+
+  justtalk
+   D: "I w dodatku był drewniany!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "To choroba zawodowa."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Zdarza się to czasem
+       tym głupim trolom
+       co pilnują mostów,"
+   T: "...czasem zmieniają się w drewno."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Teraz już rozumiesz czemu
+       nie pilnuję żadnego mostu."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Jak dotąd lubię moją nie-drewnianą
+       postać."
+  start trol_huba "mlci"
+gplend
+
+block _02 ( last(_01) )
+   title Lecz łatwo możesz zmienić się w drewno gdy leżysz.
+  justtalk
+   D: "Lecz łatwo możesz zmienić się w drewno
+       gdy leżysz."
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Tak,tak, OK, masz rację.
+       Lecz jak odkryłeś,
+       że jest on drewniany?"
+   T: "Myślałem,
+       że nikt nie może tego spostrzec!"
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Jak widzisz, ktoś to zauważył!"
+   D: "Jest pewna różnica między tobą,
+       a drewnianym trolem..."
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Na przyklad?"
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Nie odpada z ciebie farba!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Zgoda, przechytrzyłeś mnie..."
+  start trol_huba "mlci"
+gplend
+
+block _03 ( been(_01) and beg(0) and not been(_03) )
+   title To straszne pilnować mostów, prawda?
+  justtalk
+   D: "To straszne pilnować mostów, prawda?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Tak, istotnie."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Nie lubiłem stać bez końca
+       na moście..."
+   T: "... i mówić do każdego,
+       kto przechodził przez most:
+       'Proszę zapłacić trolowi'."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "I żebrać o pieniądze.
+       To było najgorsze!"
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Czułeś się jak żebrak!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Właśnie.
+       Wielu ludzi czuło się zakłopotanych
+       i przynosili mi resztki z obiadu!"
+  start trol_huba "mlci"
+gplend
+
+block _04 ( beg(0) and not been(_04) and been(_03) )
+   title Powinieneś walczyć o swoje prawa!
+  justtalk
+   D: "Powinieneś walczyć o swoje prawa!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Wkrótce całkiem mi to obrzydło."
+   T: "Napisałem petycję
+       'W obronie trola Hornaina Czterorogiego'
+       lecz nie odniosło to skutku."
+   T: "Nie zdołałem zebrać zbyt wielu podpisów."
+  start trol_huba "mlci"
+gplend
+
+block _05 ( beg(0) and not been (_05) and been(_04) )
+   title Dlaczego nie walczysz w obronie praw...
+  justtalk
+   D: "Dlaczego nie walczysz w obronie praw
+       wszystkich trolów?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "O, nie,
+       niech same walczą
+       o swoje prawa."
+   T: "Nie wiem czemu to ja miałbym coś robić dla nich?"
+  start trol_huba "mlci"
+gplend
+
+block _06 ( beg(0) and not been (_06) and been(_04) )
+   title Czego domagałeś się w tej petycji?
+  justtalk
+   D: "Czego domagałeś się w tej petycji?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Zegarka, domu, stałej pensji,
+       bezpłatnego obiadu i kolacji..."
+   T: "...i ochotnika, który
+       wyręczyłby mnie w pilnowaniu mostu!"
+  start trol_huba "mlci"
+gplend
+
+block _07 ( last(_06) )
+   title Nie dziwię się, że ten głupi Piątalus nie...
+  justtalk
+   D: "Nie dziwię się, że ten głupi Piątalus
+       nie zgodził się na to!"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Przestań!
+       Pewnie by się zgodził,
+       ale był jeszcze inny problem..."
+  start trol_huba "mlci"
+
+  justtalk
+   D: "Jaki?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "W zamku nie mają
+       skrzynki pocztowej!"
+  start trol_huba "mlci"
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_03) )
+   title Powinni płacić ci w czekach.
+  justtalk
+   D: "Powinni płacić ci w czekach."
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Próbowałem tego."
+  start trol_huba "mlci"
+
+  start trol_huba "mluvi"
+   T: "Lecz połowa była bez pokrycia!"
+  start trol_huba "mlci"
+
+  justtalk
+   D: "A co z kartami kredytowymi?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Ten wynalazek jest u nas dotychczas nieznany."
+   T: "Więc przezornie sporządzałem kopie..."
+  start trol_huba "mlci"
+gplend
+
+block _99 ( beg(0) )
+   title Czy znasz to uczucie, gdy nie wiesz co...
+  justtalk
+   D: "Czy znasz to uczucie,
+       gdy nie wiesz co należy powiedzieć?"
+  juststay
+
+  start trol_huba "mluvi"
+   T: "Hmm."
+  start trol_huba "mlci"
+
+  exitdialogue
+gplend

@@ -1,0 +1,521 @@
+{Bert s Herbertem:}
+
+block _10 ( maxline(1) and beg(1) and not been(_10) and isactico(i_zvonek) )
+title
+  icostat off i_zvonek
+{zazvonime:}
+  objstat away jesuvn_kap
+  mark
+  load bert "zvoni"
+  startplay bert "zvoni"
+  release
+  objstat_on jesuvn_kap jesuvn
+  start jesuvn_kap "kapani"
+  start bert "kour-vlevo"
+  objstat_on herb_oko jesuvn
+  start herb_oko "zakladni"
+
+  start herbert "mluvi"
+   H: "Bercie, dlaczego mnie budzisz?
+       Chcę spaaać."
+  start herbert "mlci"
+  justtalk
+   D: "Ojcze, nie czas na spanie."
+  juststay
+  start herbert "mluvi"
+   H: "Miałem sen pełen przygód.
+       Odkryłem starodawny smoczy skarb..."
+  start herbert "mlci"
+  justtalk
+   D: "Ojcze..."
+  juststay
+  start herbert "mluvi"
+   H: "Wiem, co chcesz mi powiedzieć, synu."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Każdy normalny, cywilizowany smok wie,
+       że w naszym kraju od stuleci zapomniano
+       o smoczych skarbach."
+  start herbert "mlci"
+  justtalk
+   D: "Hmm.. Masz rację.
+       Ale teraz musimy iść do domu,
+       Berta czeka na ciebie z obiadem."
+  juststay
+  start herbert "mluvi"
+   H: "Do domu?
+       Czyż nie jesteśmy w domu?"
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Ha, rzeczywiście nie jesteśmy w domu..."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Bercie, czy możesz mi wyjaśnić
+       gdzie dokładnie się teraz znajdujemy?!"
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "I co tu robi ta okropna
+       sterta śmieci?"
+  start herbert "mlci"
+  justtalk
+   D: "Spróbuję ci to wyjaśnić po drodze DO DOMU..."
+  juststay
+
+{vyskocime do draci chalupy, situacka s vareckou
+{newroom chauvn ...
+  newroom chauvn 3
+{vypneme aji draci matku v chalupe, zapneme listek na stole
+  objstat away mutti
+  objstat away mutti_noh
+  objstat away mutti_ruk
+
+  exitdialogue
+gplend
+
+block _11 ( maxline(1) and beg(1) and not been(_11) and isactico(i_trubka) )
+title
+  icostat off i_trubka
+
+  justtalk
+   D: "Ojcze, co ty na to, jakbyśmy razem trochę
+       pograli?"
+  juststay
+  start herbert "mluvi"
+   H: "Czego teraz chcesz?
+       Idź do domu, pomarudzić Bercie!"
+  start herbert "mlci"
+  justtalk
+   D: "Chcę żebyś mi coś zagrał na tej trąbce."
+  juststay
+  justtalk
+   D: "To przypomni mi moje dzieciństwo,
+       Uwielbiałem grać na trąbce."
+  juststay
+  justtalk
+   D: "I wiem, ojcze, że tobie też sprawiało to
+       dużo radości."
+  juststay
+  justtalk
+   D: "Graliśmy RAZEM w każdej wolnej chwili..."
+  juststay
+  start herbert "mluvi"
+   H: "Dlatego teraz tego nie znoszę."
+  start herbert "mlci"
+  justtalk
+   D: "Przestałeś lubić muzykę?"
+  juststay
+  justtalk
+   D: "Gdzie się podziało twe zamiłowanie do muzyki?"
+  juststay
+  start herbert "mluvi"
+   H: "Nie wiem. Po prostu tak teraz jest."
+  start herbert "mlci"
+  justtalk
+   D: "Proszę, ojcze,
+       Spróbuj tylko wydobyć jeden lub dwa dźwięki
+       z tego królewskiego instrumentu."
+  juststay
+  start herbert "mluvi"
+   H: "Przestań."
+  start herbert "mlci"
+  justtalk
+   D: "Nie, nie przestanę.
+       Chcę przypomnieć sobie szczęśliwe
+       chwile mego dzieciństwa
+       spędzone z TOBĄ."
+  juststay
+  justtalk
+   D: "Zrozum!"
+  juststay
+  start herbert "mluvi"
+   H: "Teraz już nie tylko dzwoni mi w uszach,
+       lecz też zaczyna mnie boleć głowa
+       przez to twoje gadanie."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Daj mi tą trąbkę dla świętego spokoju."
+  start herbert "mlci"
+
+{akční situačka s troubením...}
+  walkonplay 84 176 vlevo
+  objstat away bert
+  mark
+  load draktrum "zastrkuje"
+  startplay draktrum "zastrkuje"
+  stayon 84 176 vlevo
+  objstat away jesuvn_kap
+  release
+    let otec_troubil (1)
+    load herbert "troubi"
+    objstat off herb_oko
+    startplay herbert "troubi"
+    start herbert "mlci"
+    objstat_on herb_oko jesuvn
+    start herb_oko "zakladni"
+  mark
+  objstat_on jesuvn_kap jesuvn
+  start jesuvn_kap "kapani"
+  load draktrum "vyndava"
+  startplay draktrum "vyndava"
+  release
+  walkonplay 80 156 vlevo
+
+  justtalk
+   D: "Dziękuję Tato. Naprawdę to
+       podtrzymało mnie na duchu."
+  juststay
+  start herbert "mluvi"
+   H: "Mam nadzieję, że już nic więcej
+       ode mnie nie chcesz!"
+  start herbert "mlci"
+  justtalk
+   D: "Nie ojcze, to przeżycie pozostanie
+       w mej pamięci przez cały następny rok."
+  juststay
+  start herbert "mluvi"
+   H: "Chcę byś wiedział, że naprawdę cię kocham.
+       zrobiłem to dla ciebie."
+  start herbert "mlci"
+  justtalk
+   D: "Ja też cię kocham, tato..."
+  juststay
+  start herbert "mluvi"
+   H: "Wiem..."
+  start herbert "mlci"
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and maxline(1) and not been(_00) )
+title
+  justtalk
+   D: "Ojcze?"
+  juststay
+  start herbert "mluvi"
+   H: "Kim ty jesteś?
+       Nie poznaję cię!"
+  start herbert "mlci"
+  justtalk
+   D: "To ja, Bert.."
+  juststay
+  start herbert "mluvi"
+   H: "Znam kogoś, kto ma na imię Bert,
+       to mój syn."
+  start herbert "mlci"
+  justtalk
+   D: "Ja jestem twoim synem!"
+  juststay
+  start herbert "mluvi"
+   H: "Więc idź do domu.
+       To nie twoja sprawa!"
+  start herbert "mlci"
+  justtalk
+   D: "Ale ojcze..."
+  juststay
+  start herbert "mluvi"
+   H: "Przepraszam, synu,
+       Czasem robię się taki.."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "To naprawdę ty, Bert?"
+  start herbert "mlci"
+  justtalk
+   D: "Nie, jestem tylko twoją halucynacją,
+       ty bezmyślny egoisto,
+       niszczący szczęście swej rodziny."
+  juststay
+  start herbert "mluvi"
+   H: "Więc halucynacje?!
+       Czyż nie wystarczy,
+       że przez cały czas dzwoni mi w uszach."
+  start herbert "mlci"
+  exitdialogue
+gplend
+
+block _00a ( beg(1) and maxline(1) and not been(_00a) )
+title
+  justtalk
+   D: "Ojcze..., to ja, Bert..."
+  juststay
+  start herbert "mluvi"
+   H: "... więc to nie złudzenie?
+       Omal cię nie poznałem."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Bardzo zmieniłeś się przez te lata, synu."
+  start herbert "mlci"
+  justtalk
+   D: "Ojcze, to nie były lata, to tylko miesiąc!"
+  juststay
+  start herbert "mluvi"
+   H: "Zupełnie straciłem poczucie czasu."
+  start herbert "mlci"
+gplend
+
+block _00c ( beg(1) and (varblock(_00b)=3) and maxline(1) )
+title
+  justtalk
+   D: "Ojcze... okropnie mi ciebie brak."
+  juststay
+  start herbert "mluvi"
+{řekne to tónem, jako "Polib mi..."}
+   H: "Mnie też ciebie brak!"
+  start herbert "mlci"
+  resetblock _00b
+  exitdialogue
+gplend
+
+block _00b ( beg(1) and maxline(1) )
+title
+  justtalk
+   D: "Ojcze..."
+  juststay
+  start herbert "mluvi"
+   H: "Co, synu?"
+  start herbert "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+   TITLE Myślę, że powinieneś wrócić do domu.
+  justtalk
+   D: "Myślę, że powinieneś wrócić do domu."
+  juststay
+  start herbert "mluvi"
+   H: "I zostawić tu skarb? Nigdy!"
+  start herbert "mlci"
+  justtalk
+   D: "Możesz zabrać skarb ze sobą."
+  juststay
+  start herbert "mluvi"
+   H: "To niemożliwe!"
+  start herbert "mlci"
+  justtalk
+   D: "Taki mały skarb?"
+  juststay
+  start herbert "mluvi"
+   H: "A co, jeśli zgubię coś po drodze?
+       Nie zostawię nawet jednej złotej monety."
+  start herbert "mlci"
+  justtalk
+   D: "Czyż nie wystarczy, że ja jestem twym skarbem?"
+  juststay
+  start herbert "mluvi"
+   H: "Widzisz, lepiej żebyś został tu ze mną!"
+  start herbert "mlci"
+gplend
+
+block _02 ( beg(0) and not been(_02) )
+   TITLE Należy wypełnić rodzicielskie obowiązki!
+  justtalk
+   D: "Należy wypełnić rodzicielskie obowiązki!"
+  juststay
+  justtalk
+   D: "Berta chce, żebyś mnie ukarał -
+       sama nie wie za co."
+  juststay
+  start herbert "mluvi"
+   H: "Musisz przyznać, że skoro znalazłem ten skarb
+       nie mam już czasu na takie głupstwa,
+       jak wychowywanie syna."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Nie obchodzi mnie co zrobiłeś,
+       Może zasługujesz na karę, może nie.
+       Lecz teraz jestem naprawdę zajęty."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Bardzo mi przykro,
+       Ale jeśli upierasz się przy tej karze,
+       musiałbym spytać Berty."
+  start herbert "mlci"
+gplend
+
+block _03 ( beg(0) and not been(_03) )
+   TITLE Czy zdajesz sobie sprawę jak bardzo brak...
+  justtalk
+   D: "Czy zdajesz sobie sprawę jak bardzo
+       nam ciebie brak w domu?"
+  juststay
+  start herbert "mluvi"
+   H: "To byłoby całkiem nieźle,
+       gdybyśie mogli przyjechać tu na wakacje!"
+  start herbert "mlci"
+  justtalk
+   D: "Zamierzamy pojechać na wakacje do dziadka..."
+  juststay
+  start herbert "mluvi"
+   H: "Możecie wziąć dziadka tutaj."
+  start herbert "mlci"
+  justtalk
+   D: "Chodzenie sprawia mu trudności.
+       Nie możesz tego wymagać od smoka w jego wieku."
+  juststay
+  justtalk
+   D: "Poza tym... Z pewnością dostałby reumatyzmu!"
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+   TITLE Co robisz po całych dniach?
+  justtalk
+   D: "Co robisz po całych dniach?"
+  juststay
+  start herbert "mluvi"
+   H: "Wciąż pilnuję tego skarbu. Czemu pytasz?"
+  start herbert "mlci"
+  justtalk
+   D: "To musi być naprawdę nudne!"
+  juststay
+  start herbert "mluvi"
+   H: "Jak możesz tak mówić?
+       Nie znam lepszej rozrywki,
+       niż pilnowanie skarbów."
+  start herbert "mlci"
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_04) )
+   TITLE Czy nigdy nie odpoczywasz?
+  justtalk
+   D: "Czy nigdy nie odpoczywasz?"
+  juststay
+  start herbert "mluvi"
+   H: "Nie. Nigdy."
+  start herbert "mlci"
+gplend
+
+block _06 ( beg(0) and not been(_06) and been(_05) )
+   TITLE Czy nigdy czujesz się senny?
+  justtalk
+   D: "Czy nigdy czujesz się senny?"
+  juststay
+  start herbert "mluvi"
+   H: "Tak między nami mówiąc -
+       chciałbym się trochę przespać,
+       już od miesiąca nie zmrużyłem oka."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Lecz cały czas coś brzęczy mi w głowie
+       i nie mogę zasnąć."
+  start herbert "mlci"
+gplend
+
+block _07 ( beg(0) and not been(_07) and been(_06) )
+   TITLE Czy widzisz mroczki przed oczami?
+  justtalk
+   D: "Czy widzisz mroczki przed oczami?"
+  juststay
+  start herbert "mluvi"
+   H: "Widzę tylko ciebie, Bercie."
+  start herbert "mlci"
+  justtalk
+   D: "W porządku.
+       A czy głowa cię nie boli?"
+  juststay
+  start herbert "mluvi"
+   H: "Mogę rzec, że naprawdę dzwoni mi w uszach."
+  start herbert "mlci"
+  justtalk
+   D: "Jeśli w dodatku boli cię głowa,
+       to wiem co ci jest."
+  juststay
+  justtalk
+   D: "Odczuwam to samo, gdy wracam
+       z gospody 'Pod łapą Goblina'."
+  juststay
+  start herbert "mluvi"
+   H: "Czy kiedykolwiek przekraczałeś próg
+       tej przeklętej spelunki?"
+  start herbert "mlci"
+  justtalk
+   D: "Ależ to taki wygodny i przytulny bar..."
+  juststay
+  start herbert "mluvi"
+   H: "Masz jeszcze dużo czasu na takie rzeczy."
+  start herbert "mlci"
+  justtalk
+   D: "Ojcze, ja tylko żartowałem.
+       Mam po prostu zbyt bujną wyobraźnię."
+  juststay
+  justtalk
+   D: "Mnie nigdy nie boli głowa."
+  juststay
+  justtalk
+   D: "Tylko cały świat wiruje wokół mnie."
+  juststay
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_06) )
+   TITLE W ktorym uchu ci dzwoni?
+  justtalk
+   D: "W ktorym uchu ci dzwoni?"
+  juststay
+  start herbert "mluvi"
+   H: "To zależy."
+  start herbert "mlci"
+  start herbert "mluvi"
+   H: "Czasem mam wrażenie, że w obu!"
+  start herbert "mlci"
+  justtalk
+   D: "Czy teraz też?"
+  juststay
+  start herbert "mluvi"
+   H: "Nie, teraz nie.
+       Ale mogę poczekac..."
+  start herbert "mlci"
+  justtalk
+   D: "Czy słyszysz coś?"
+  juststay
+  start herbert "mluvi"
+   H: "Nic"
+  start herbert "mlci"
+  justtalk
+   D: "Ja też nic nie słyszę."
+  juststay
+  load herbert "cinka"
+  startplay herbert "cinka"
+  start herbert "mluvi"
+   H: "Teraz zabrzęczało!"
+  start herbert "mlci"
+  justtalk
+   D: "No nie! Ja też to słyszałem."
+  juststay
+  start herbert "mluvi"
+   H: "Mam nadzieję, że nie jest to dziedziczne."
+  start herbert "mlci"
+  justtalk
+   D: "Miejmy nadzieję, że nie"
+  juststay
+gplend
+
+block _09 ( beg(0) and not been(_09) )
+   TITLE Ojcze, czemu nie mamy skrzydeł?!
+  justtalk
+   D: "Ojcze, czemu nie mamy skrzydeł,
+       co z nas za smoki?!"
+  juststay
+  start herbert "mluvi"
+   H: "To wszystko przez ewolucję, synu..."
+  start herbert "mlci"
+
+  let otec_me_poucil (1)
+gplend
+
+
+block _99 ( beg(0) and last(_00b) and maxline(1) )
+title
+  justtalk
+   D: "To nic nie szkodzi..."
+  juststay
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and not last(_00b) )
+   TITLE Ojcze, staliśmy się sobie obcy.
+  justtalk
+   D: "Ojcze, staliśmy się sobie obcy.
+       Nie mam ci nic do powiedzenia"
+  juststay
+  start herbert "mluvi"
+   H: "Jak uważasz, synu..."
+  start herbert "mlci"
+  exitdialogue
+gplend

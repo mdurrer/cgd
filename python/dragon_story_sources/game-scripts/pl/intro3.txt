@@ -1,0 +1,59 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+load intr_lout1 "kameni"
+load intr_lout1 "mluvi"
+
+load intr_lout2 "kameni"
+load intr_lout2 "mluvi"
+load intr_lout2 "mlci"
+load intr_lout2 "vyleza"
+
+{[jsme u komedianta:]
+{komediant mění hlas pro následující dvě postavy:}
+{má to být pimprlové divadýlko, no...
+{kdyžtak si to upravte dle vaší libovůle!
+
+{jedna:}
+start intr_lout1 "mluvi"
+   KoIn: "Wyłaź z tej skrzyni, jesteś
+          zdemaskowany, ty zdrajco!"
+start intr_lout1 "mlci"
+{dva:}
+startplay intr_lout2 "vyleza"
+start intr_lout2 "mluvi"
+   KoIn: "Nie mam powodu by chować się w skrzyni."
+   KoIn: "Ponieważ to nie ja mam coś do ukrycia, lecz
+          ty, czarodzieju!"
+   KoIn: "Musisz odsłonić swe prawdziwe oblicze!"
+start intr_lout2 "mlci"
+{jedna:}
+start intr_lout1 "mluvi"
+   KoIn: "Pleciesz bzdury!
+          Bo to jesteś właśnie ty, zdradziecki królu!"
+start intr_lout1 "mlci"
+{dva:}
+start intr_lout2 "mluvi"
+   KoIn: "W tym jest jakiś podstęp. Zamienię to w kamień..."
+
+start intr_lout1 "kameni"
+startplay intr_lout2 "kameni"
+
+start intr_lout1 "kamennej"
+
+{uprostřed věty přetrženo, loutky zkamení, jedna spadne {komediantovi na nohu,
+
+{komediant už svým hlasem:}
+   KoIn: "Ouch!"
+
+gplend
+
+block _1 ( (1=2) )
+title
+   KoIn: "."
+   KoIn: "."
+   KoIn: "."
+   KoIn: "."
+   KoIn: "."
+gplend

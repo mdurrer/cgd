@@ -1,0 +1,47 @@
+{domluva otce s drakem v draci chalupe:}
+
+block _00 ( beg(1) )
+title
+  icostat on i_varecka_zlomena
+  load oteckaze "mluvi"
+  load oteckaze "zlomluvi"
+  load oteckaze "lame"
+  load drakkaze "mluvi"
+
+  start oteckaze "mluvi"
+  start drakkaze "mlci"
+Herb: "... you know, son, I am ashamed of myself."
+Herb: "What an old fool!
+       How did I only come
+       to think about an old dragon treasure?"
+Herb: "You are the one who avoided our family
+       disruption
+       and saved us before we broke apart."
+Herb: "Now I see how you've grown up."
+Herb: "You may now drink two beers a day
+       and go out with babes."
+  start oteckaze "mlci"
+  start drakkaze "mluvi"
+D: "That will have to wait, I've got to finish my quest."
+D: "What do we do with my punishment?"
+  start drakkaze "mlci"
+  start oteckaze "mluvi"
+Herb: "That's a good question."
+Herb: "What to do with your punishment ..."
+Herb: "I won't punish you. You've shown that
+       you are more sane than I."
+Herb: "I won't ever thrash you again."
+Herb: "And to emphasize my words ..."
+  startplay oteckaze "lame"
+  start oteckaze "zlomil"
+
+  start drakkaze "mluvi"
+D: "Do not throw it away. I want to have a memory
+    of my sprightly childhood ..."
+  start drakkaze "mlci"
+  start oteckaze "zlomluvi"
+Herb: "It's yours."
+  start oteckaze "zlomil"
+  start drakkaze "mlci"
+{zmizí z dračí chalupy}
+gplend

@@ -1,0 +1,2218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Fourier Transform</title>
+  <meta content="text/html; charset=us-ascii" http-equiv="content-type" />
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Fourier Transform</h1>
+
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#signals">Signals and Spectra</a></li>
+  <li><a href="#fourier">The Fourier Transform</a></li>
+  <li><a href="#properties">Properties of the Fourier Transform</a></li>
+  <li><a href="#coding1d">Programming the 1D Fourier Transform</a></li>
+  <li><a href="#fft">The Fast Fourier Transform</a></li>
+  <li><a href="#filters1d">Filters</a></li>
+  <li><a href="#dft2d">The 2D Fourier Transform on Images</a></li>
+  <li><a href="#spectra2d">The Spectra of Images</a></li>
+  <li><a href="#filters2d">2D Filters</a></li>
+  <li><a href="#dc">The DC Component</a></li>
+  <li><a href="#lowpass">Low Pass Filters: Blurring</a></li>
+  <li><a href="#highpass">High Pass Filters</a></li>
+  <li><a href="#bandpass">Band Pass Filters</a></li>
+  <li><a href="#dqft">The Discrete Quaternion Fourier Transformation</a></li>
+</ul>
+<a href="index.html">Back to Index</a>
+
+
+<h2 style="font-weight: bold;"><a name="introduction" id="introduction"></a>Introduction</h2>
+The Fourier Transform is an important tool in Image Processing, and
+is directly related to filter theory, since a filter, which is a
+convolution in the spatial domain (=the image), is a simple
+multiplication in the spectral domain (= the FT of the
+image)!<br />
+<br />
+Most other tutorials about Fourier Transforms of images are in
+boring greyscale. Even, many programs and plugins available that
+can calculate the FT on images only support greyscale. In times
+where 24 and 32 bit color are getting old, we cannot accept this
+any longer! This tutorial is in 24-bit <span style="color: rgb(255, 0, 0);">c</span><span style="color: rgb(51, 255, 51);">o</span><span style="color: rgb(51, 51, 255);">l</span><span style="color: rgb(204, 51, 204);">o</span><span style="color: rgb(153, 102, 51);">r</span>, by doing the FT on each colorchannel separately. Here's an example where the FT of an image is used to make a tillable grass texture look better:<br />
+<br />
+<img alt="" src="images/fixthegrass.jpg" style="width: 198px; height: 281px;" /><br />
+<br />
+There is also another way to calculate the FT of color images however, by using quaternions instead of complex numbers, which can convert an image of 4 channels to another image with 4 channels.<br />
+<br />
+Before beginning with the Fourier Transform on images, which is the 2D version of the FT, we'll start with the easier 1D FT, which is often used for audio and electromagnetical signals.<br />
+<br />
+To fully understand this tutorial, it'd be interesting to know about complex numbers, their magnitude (amplitude), and argument (phase). If you'd like to learn more about these, there's an appendix about complex numbers (one of the other html files), or find a tutorial with google.<br />
+<br />
+The following two source files can be downloaded to have all the code described:<br />
+<br />
+<a href="files/fourier2d.cpp">fourier2d.cpp</a><br />
+<a href="files/fourier1d.cpp">fourier1d.cpp</a><br style="font-weight: bold;" />
+
+
+<h2><a name="signals" id="signals"></a>Signals and Spectra<br /></h2>
+
+Before starting with the Fourier Transform, an introduction about
+Signals and Spectra is in place. As signals, for now consider
+signals in the time, like audio and electromagnetic signals. If you
+plot such a signal in function of time, a simple signal could look
+like this:<br />
+<br />
+<img alt="" src="images/signal1.gif" style="width: 639px; height: 62px;" /><br />
+<br />
+This is a sine wave, so if this'd be an audio signal, you'd hear a
+pure tone with only 1 frequency (like the beep of a PC speaker, or
+a very pure flute). The grey curve behind the red curve represents
+the amplitude of the signal, which is always positive.<br />
+<br />
+The spectrum of a signal contains for every frequency, how much of
+this frequency is in the signal. Since the signal above is a sine,
+it has only one frequency, so the spectrum would be very simple:
+only one value will be positive (= the frequency of the sine
+curve), and all others are zero. So the spectrum would have a
+single peak. A spectrum has two sides however: the negative side on
+the left, and the positive side on the right. The negative side
+contains negative frequencies. For real signals (with no imaginary
+part), like audio signals are, the negative side of the spectrum is
+always a mirrored version of the positive side. So for the sine
+signal above, the positive side will have a single peak, and this
+peak will be mirrored in the negative side. This is what it's
+spectrum looks like:<br />
+<br />
+<img alt="" src="images/spectrum1.gif" style="width: 639px; height: 181px;" /><br />
+<br />
+The white curve represents the amplitude of the signal. The red and
+green curve represent the real and imaginary part of the spectrum,
+respectively, but a spectrum is raraly represented that way.
+Normally, both the amplitude and <span style="font-style: italic;">phase</span> of a spectrum are given, but
+since there's not that much interesting info for us in it now, the
+phase isn't included.<br />
+<br />
+Let's study another example now: the same sine, but with a DC
+component added: sin(x)+C. The name DC component comes from
+electronics, where it stands for Direct Current (as opposed to
+Alternating Current). The DC component in any signal, is the time
+average of it. A sine signal has time average 0, but if however,
+you add a constant to the sine, the signals time average will
+become that constant. This adding of the constant, results in the
+sine signal being raised higher above the horizontal axis:<br />
+<br />
+<img alt="" src="images/signal2.gif" style="width: 638px; height: 83px;" /><br />
+<br />
+Such a constant, or DC component, has frequency 0. So we can expect
+that the spectrum will get an extra peak at the origin, and indeed,
+it has:<br />
+<br />
+<img alt="" src="images/spectrum2.gif" style="width: 630px; height: 191px;" /><br />
+<br />
+So, if the spectrum of a signal is non-zero at the origin, you know
+that it's time average isn't zero and it has a DC component! The
+further away from the origin to the left or right a peak is, the
+higher the frequency it represents, so a peak far to the right (and
+left) means that the signal contains a high frequency component.
+Note that an audio signal never has a DC component, since nobody
+can produce or hear it. Electrical signals can have it
+however.<br />
+<br />
+Now let's look at a signal which is the sum of two sine functions:
+the second sine function has the double frequency of the first, so
+the curve has the shape sin(x)+sin(2*x):<br />
+<br />
+<img alt="" src="images/signal3.gif" style="width: 634px; height: 71px;" /><br />
+<br />
+Since there are now two sines with two different frequencies, we
+can expect two peaks on the positive side of the spectrum (and two
+more on the negative side since it's the mirrored version):<br />
+<br />
+<img alt="" src="images/spectrum3.gif" style="width: 634px; height: 111px;" /><br />
+<br />
+If the two sines both have a different phase (i.e. one of the two
+sines is shifted horizontally), the amplitude of the spectum will
+still be the same, only the phase will be different, but the phase
+isn't shown here.<br />
+<br />
+Arbitrary sound signals, such as a spoken word, consist of an
+infinite sum (or integral) of infinitely much sine functions, all
+with a different frequency, and all with their own amplitude and
+phase, and the spectrum is the perfect plot to view how much of
+each frequency is in the signal. Such a spectrum won't just have a
+few peaks, but will be a continuous function.<br />
+<br />
+There are a few special functions with a special spectrum:<br />
+<br />
+The Dirac impuls is a signal that is zero everywhere, except at the
+origin, where it's infinite. That is the ideal version for
+continuous functions, for a discrete function on a computer it can
+as well be represented as a single peak with finite height at the
+origin.<br />
+<br />
+<img alt="" src="images/signal4.gif" style="width: 636px; height: 89px;" /><br />
+<br />
+Such a peak sounds like a popping sound in an audio signal, and
+contains ALL frequencies. That's why it's spectrum looks like this
+(the horizontal black line):<br />
+<br />
+<img alt="" src="images/spectrum4.gif" style="width: 636px; height: 72px;" /><br />
+<br />
+The spectrum is positive everywhere, so every frequency is
+contained in the signal. This also means that, to get such a peak
+as a sum of sine functions, you have to add infinitely much
+elementary sine functions all with the same amplitude, and all
+shifted with a certain phase, they'll cancel each other out, except
+at the origin, hence the peak.<br />
+<br />
+Note that it's possible to intepret the spectrum as a time signal
+(a constant DC signal), and that then the red function can be seen
+as it's spectrum (a peak at zero, since a DC signal has frequency
+0). This duality is one of the interesting properties of the
+Fourier Transform as we'll see later.<br />
+<br />
+Finally, another special signal is the sinc(x) function; sinc(x) =
+sin(x)/x:<br />
+<br />
+<img alt="" src="images/signal5.gif" style="width: 634px; height: 133px;" /><br />
+<br />
+It's spectrum is a rectangular pulse (here only an approximation of
+it because the spectrum was calculated using only 128
+points):<br />
+<br />
+<img alt="" src="images/spectrum5.gif" style="width: 636px; height: 95px;" /><br />
+<br />
+Again because of the duality between a signal and it's spectrum, a
+rectangular time signal will have a sinc function as it's
+spectrum.<br />
+<br />
+Spectra are also used to study the color of light. These are
+exactly the same thing, since light too is a 1-dimensional signal
+containing different frequencies, some of which the eye happens to
+be sensitive to. The spectrum shows for every frequency, how much
+of it is in the light, just the same as the audio spectrum does for
+audio signals.<br />
+<br />
+An MP3 player like Winamp also shows the spectrum of the audio
+signal it's playing (but it varies with time because they calculate
+the spectrum each time again for the last few milliseconds), and
+spectra of audio signals can be used to detect bass, treble and
+vocals in music, for speach recognition, audio filters, etc...
+Since this is a tutorial about computer graphics, I won't go any
+deeper in this however.<br />
+<br />
+Often, the spectrum is drawn on a logarithmical scale instead of a
+linear one like here, then the amplitude is expressed in decibels
+(dB).<br style="font-weight: bold;" />
+
+
+<h2><a name="fourier" id="fourier"></a>The Fourier Transform</h2>
+
+So how do you calculate the spectrum of a given signal? With the
+Fourier Transform!<br />
+<br />
+The Continuous Fourier Transform, for use on continuous signals, is
+defined as follows:<br />
+<br />
+<img alt="" src="images/CFT.gif" style="width: 233px; height: 77px;" /><br />
+<br />
+And the Inverse Continuous Fourier Transform, which allows you to
+go from the spectrum back to the signal, is defined as:<br />
+<br />
+<img alt="" src="images/ICFT.gif" style="width: 223px; height: 71px;" /><br />
+<br />
+F(w) is the spectrum, where w represents the frequency, and f(x) is
+the signal in the time where x represents the time. i is sqrt(-1),
+see complex number theory.<br />
+<br />
+Note the similarity between both transforms, which explains the
+duality between a signal and it's spectrum.<br />
+<br />
+A computer can't work with continuous signals, only with finite
+discrete signals. Those are finite in time, and have only a
+discrete set of points (i.e. the signal is sampled). One of the
+properties of the Fourier Transform and it's inverse is, that the
+FT of a discrete signal is periodic. Since for a computer both the
+signal and the specrum must be discrete, both the signal and
+spectrum will be periodic. But by taking only one period of it, we
+get our finite signal. So if you're taking the DFT of a signal or
+an image on the computer, mathematicaly speaking, that signal is
+infinitely repeated, or the image infinitely tiled, and so is the
+spectrum. A nice property is that both the signal and the spectrum
+will have the same number of discrete points, so the DFT of an
+image of 128*128 pixels will also have 128*128 pixels.<br />
+<br />
+Since the signal is finite in time, the infinite borders of the
+integrals can be replaced by finite ones, and the integral symbol
+can be replaced by a sum. So the DFT is defined as:<br />
+<br />
+<img alt="" src="images/DFT.gif" style="width: 169px; height: 73px;" /><br />
+<br />
+And the inverse as:<br />
+<br />
+<img alt="" src="images/IDFT.gif" style="width: 171px; height: 66px;" /><br />
+<br />
+This looks already much more programmable on a computer, to program
+the FT, you have to do the calculation for every n, so you get a
+double for loop (one for every n, and one for every k, which is the
+sum). The exponential of the imaginary number can be replaced by a
+cos and a sin by using the famous formuma e^ix = cosx + isinx. More
+on programming it follows further in this tutorial.<br />
+<br />
+There are multiple definitions of the DFT, for example you can also
+do the division through N in the forward DFT instead of the inverse
+one, or divide through sqrt(N) in both. To plot it on a computer,
+the best result is gotten by dividing through N in the forward
+DFT.
+
+
+<h2><a name="properties" id="properties"></a>Properties of The Fourier Transform</h2>
+
+A signal is often denoted with a small letter, and it's fourier
+transform or spectrum with a capital letter. The relatoin between a
+signal and it's spectrum is often denoted with <span style="font-family: monospace;">f(x) &lt;--&gt; F(w)</span>, with the
+signal on the left and it's spectrum on the right.<br />
+<br />
+The Fourier Transform has some interesting properties, some of
+which make it easier to understand why spectra of certain signals
+have a certain shape.<br />
+<br />
+Don't take this as a proper list however, some scaling factors like
+2*pi are left away, they're not that important and can be left away
+or depending if you use frequency or pulsation. Handbooks of Sigal
+Processing and sites like Wikipedia and Mathworld contain much more
+complete and mathematically correct tables of FT properties. We're
+most interested in the shape of the functions and not the
+scale.<br />
+<br />
+<b>Linearity</b><br />
+<br />
+<tt>f(x)+g(x) &lt;--&gt; F(w)+G(w)</tt><br />
+<br />
+<tt>a*f(x) &lt;--&gt; a*F(w)</tt><br />
+<br />
+This means that if you add/substract two signals, their spectra are
+added/substracted as wall, and if you increase/decrease the
+amplitude of the signal, the amplitude of it's spectrum will be
+increased/decreased with the same factor.<br />
+<br />
+<b>Scaling</b><br />
+<br />
+<tt>f(a*x) &lt;--&gt; (1/a) * F(w/a)</tt><br />
+<br />
+This means that if you make the function wider in the x-direction,
+it's spectrum will become smaller in the x-direction, and vica
+versa. The amplitude will also be changed.<br />
+<br />
+<b>Time Shifting</b><br />
+<br />
+<tt>f(x-x0) &lt;--&gt; (exp(-i*w*x0)) * F(w)</tt><br />
+<br />
+Since the only thing that happens if you shift the time, is a
+multiplication of the Fourier Transform with the exponential of an
+imaginary number, you won't see the difference of a time shift in
+the amplitude of the spectrum, only in the phase.<br />
+<br />
+<b>Frequency Shifting</b><br />
+<br />
+<tt>(exp(-i*w0*x))*f(x)&lt;--&gt;F(w-w0)</tt><br />
+<br />
+This is the dual of the time shifting.<br />
+<br />
+<b>Duality or Symmetry</b><br />
+<br />
+<tt>if f(x) &lt;--&gt; F(w)<br />
+then F(x) &lt;--&gt; f(-w)</tt><br />
+<br />
+Apart from some scaling factors at least. Because of this property,
+for example, the spectrum of a rectangular pulse is a sinc function
+and at the same time the spectrum of a sinc function is a
+rectangular pulse.<br />
+<br />
+<b>Symmetry Rules</b><br />
+<br />
+These are only a few of the symmetry rules:<br />
+<br />
+<ul>
+<li>The Fourier Transform of a real even signal is real and even
+(i.e. it's symmetrical, mirrored around the y-axis)</li>
+<li>The Fourier Transform of a real odd signal is imaginary and odd
+(odd means it's assymetrical, mirrored around the origin
+point)</li>
+<li>Since arbitrary real signals are always a sum of an even and an
+odd function, the Fourier Transform of a real signal has an even
+real part and an odd imaginary part, and the Amplitude is thus
+always symmetrical.</li>
+<li>In the same way, the amplitude of FT's of pure imaginary
+signals are symmetrical, but the FT of complex signals isn't always
+symmetrical.</li>
+</ul>
+<b>Convolution Theorem</b><br />
+<br />
+Convolution is an operation between two functions that is defined
+as an integral, but can also be explained as follows:<br />
+<br />
+Take 2 functions, for example two rectangle functions f1(x) and
+f2(x). Keep one of the rectangles at a fixed position. Mirror the
+second one around the y axis (this doesn't have a lot of effect on
+a rectangle). Then shift this second function over a value u, where
+u goes from -infinity to +infinity.<br />
+<br />
+The resulting function g(u), the convolution of f1(x) and f2(x),
+takes u as a parameter. For a certain u, multiply f1 and the
+shifted and mirrored f2 with each other, and take area under the
+result (by integrating it). This area is the value of g(u) for that
+u! This has to be done for every u to know the complete result. For
+example, for the two rectangle functions, as we start at
+u=-infinity, g(u) is 0 because the two rectangles don't overlap,
+and multiplication of the two functions will thus result in the
+zero function, which has zero area. As u moves to the right, g(u)
+will remain 0 all the time, until finally the two rectangles start
+overlapping. Now the more we go to the right, the larger the area
+will become, until it reaches it's maximum, so g(u) is rising.
+Then, the rectangles are overlapping less and less again as the
+second one moves more to the right, and the value of g(u) decreases
+again. Finally g(u) reaches zero again and remains so until
++infinity. The resulting g(u) is thus a triangle function.<br />
+<br />
+This is what filters of painting programs that don't use the FT do
+in 2D. The image is then the function that remains at fixed
+position, while the filter matrix moves around the whole image, and
+you calculate the value of every pixel by multiplying every element
+of the matrix with every corresponding pixel of the image the
+matrix overlaps. For large filter matrices this is a lot of work.
+You can create your own filter matrices in painting programs like
+Paint Shop Pro and Photoshop by using the "User Defined"
+filter.<br />
+<br />
+Correlation is almost the same as convolution, except you don't
+have to mirror the second function.<br />
+<br />
+The convolution theorem sais that, convolving two functions in the
+time domain corresponds to multiplying their spectra in the fourier
+domain, and vica versa. This multiplication is a much easier
+operation than convolution.<br />
+<br />
+Since filters, too, can be described in the time and the fourier
+domain (called the impulse response and transfer function of the
+filter respectively), and linear filters do a convolutoin in the
+time domain, in the frequency domain this corresponds to
+multiplying the transfer function of the filter with the spectrum
+of the signal. The impulse response of the filter in the time
+domain is the response of the filter to a dirac impuls (see
+earlier), and the transfer function of the filter is the Fourier
+Transform of the impulse response.<br />
+<br />
+For us, the Convolution Theorem will come in handy when we
+experiment with the Fourier Transformations of signals and
+images.<br />
+
+
+<h2 style="font-weight: normal;"><a name="coding1d" id="coding1d"></a>Programming The 1D Fourier Transform</h2>
+
+Here's the code of a simple program that'll calculate the FT of a
+given signal, and will plot both the signal and the FT. Put it in
+the main.cpp file.<br />
+<br />
+First the variables and functions are declared. N will be the
+number of discrete points in the signal. For the signal and it's
+spectrum, respectively a small f or g and capital F or G are used,
+as it's also done in mathematics.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">const int N = 128; //yeah ok, we use old fashioned fixed size arrays here
+
+double fRe[N]; //the function's real part, imaginary part, and amplitude
+double fIm[N];
+double fAmp[N];
+double FRe[N]; //the FT's real part, imaginary part and amplitude
+double FIm[N];
+double FAmp[N];
+const double pi = 3.1415926535897932384626433832795;
+
+void DFT(int n, bool inverse, double *gRe, double *gIm, double *GRe, double *GIm); //Calculates the DFT
+void plot(int yPos, double *g, double scale, bool trans, ColorRGB color); //plots a function
+void calculateAmp(int n, double *ga, double *gRe, double *gIm); //calculates the amplitude of a complex function</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The main function creates a sine signal, and will then use the
+other functions to calculate the FT and plot it.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int /*argc*/, char */*argv*/[])
+{
+  screen(640, 480, 0, "1D DFT");
+  cls(RGB_White);
+  
+  for(int x = 0; x &lt; N; x++)
+  {
+    fRe[x] = 25 * sin(x / 2.0); //generate a sine signal.  Put anything else you like here.
+    fIm[x] = 0;
+  }
+
+  //Plot the signal
+  calculateAmp(N, fAmp, fRe, fIm);    
+  plot(100, fAmp, 1.0, 0, ColorRGB(160, 160, 160));
+  plot(100, fIm, 1.0, 0, ColorRGB(128, 255, 128));
+  plot(100, fRe, 1.0, 0, ColorRGB(255, 0, 0));
+
+  DFT(N, 0, fRe, fIm, FRe, FIm);
+  
+  //Plot the FT of the signal
+  calculateAmp(N, FAmp, FRe, FIm);
+  plot(350, FRe, 12.0, 1, ColorRGB(255, 128, 128));
+  plot(350, FIm, 12.0, 1, ColorRGB(128, 255, 128));
+  plot(350, FAmp, 12.0, 1, ColorRGB(0, 0, 0));
+
+  drawLine(w / 2, 0, w / 2, h - 1, ColorRGB(128, 128, 255)); 
+  redraw();
+  sleep();
+
+  return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Then comes the function that does the actual work (albeit with a very suboptimal algorithm here): the DFT function<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">void DFT(int n, bool inverse, double *gRe, double *gIm, double *GRe, double *GIm)
+{
+  for(int w = 0; w &lt; n; w++)
+  {
+    GRe[w] = GIm[w] = 0;
+    for(int x = 0; x &lt; n; x++)
+    {
+      double a = -2 * pi * w * x / float(n);
+      if(inverse) a = -a;
+      double ca = cos(a);
+      double sa = sin(a);
+      GRe[w] += gRe[x] * ca - gIm[x] * sa;
+      GIm[w] += gRe[x] * sa + gIm[x] * ca;
+    }
+    if(!inverse)
+    {
+      GRe[w] /= n;
+      GIm[w] /= n;
+    }
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+It takes 4 arrays as parameters: *gRe and *gIm to read from (these
+are the real and imaginary part of the signal), and *GRe and *GIm
+to write the results to (these are the FT of the signal). Both the
+input and output are complex numbers, which is why two arrays (a
+real and an imaginary one) are needed. n is the size of the signal
+(and the arrays), so it's the number of discrete points in the
+signal.<br />
+<br />
+The first for loop with w going from 0 to n-1 means that a
+calculation is needed for every single point of the result. The
+second for loop, with x going from 0 to n, means that every point
+of the input signal needs to be taken in account, it's the sum from
+the mathematical definition of the DFT. The exponential function is
+changed by the formula e^ix = cosx + isinx, and the real and
+imaginary part are calculated seperatly. Afterwards the values are
+divided through n, so that the values are reasonably small enough
+to plot them on the screen.<br />
+<br />
+By setting "inverse" to true, it can also calculate the IDFT
+(Inverse Discrete Fourier Transform), but this isn't used in this
+example. The only differences are a different sign in the
+exponential function and no division through n.<br />
+<br />
+Next, the plot function takes a single array as parameter, and will
+draw the signal or spectrum contained in this array on screen with
+a color you want using lines and filled circles. You can also use a
+parameter "shift" to bring the edges to the center and vica versa.
+This is useful for a better representation of the Fourier
+Transform: normally the result of the DFT has the low frequency
+components on the sides, and the highest frequency in the center.
+Since the result is in fact periodic, bringing the sides to the
+center is the same as moving the plot half a period.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">void plot(int yPos, double *g, double scale, bool shift, ColorRGB color)
+{
+  drawLine(0, yPos, w - 1, yPos, ColorRGB(128, 128, 255));
+  for(int x = 1; x &lt; N; x++)
+  {
+    int x1, x2, y1, y2;
+    int x3, x4, y3, y4;
+    x1 = (x - 1) * 5;
+    //Get first endpoint, use the one half a period away if shift is used
+    if(!shift) y1 = -int(scale * g[x - 1]) + yPos;
+    else y1 = -int(scale * g[(x - 1 + N / 2) % N]) + yPos;
+    x2 = x * 5;
+    //Get next endpoint, use the one half a period away if shift is used
+    if(!shift) y2 = -int(scale * g[x]) + yPos;
+    else y2 = -int(scale * g[(x + N / 2) % N]) + yPos;
+    //Clip the line to the screen so we won't be drawing outside the screen
+    clipLine(x1, y1, x2, y2, x3, y3, x4, y4);
+    drawLine(x3, y3, x4, y4, color);
+    //Draw circles to show that our function is made out of discrete points
+    drawDisk(x4, y4, 2, color);
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+And finally, the function calculateAmp calculates the amplitude
+given the real and imaginary part, so you can plot the amplitude
+too.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">//Calculates the amplitude of *gRe and *gIm and puts the result in *gAmp
+void calculateAmp(int n, double *gAmp, double *gRe, double *gIm)
+{
+  for(int x = 0; x &lt; n; x++)
+  {
+    gAmp[x] = sqrt(gRe[x] * gRe[x] + gIm[x] * gIm[x]);
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The output of this program is as follows:<br />
+<br />
+<img alt="" src="images/1ddft.gif" style="width: 644px; height: 505px;" /><br />
+<br />
+The red function is the input function, which is a sine, and the
+black funtion at the bottom is the amplitude of it's spectrum,
+which is calculated by the DFT function. The green curves are the
+imaginary parts.<br />
+<br />
+
+
+<h2 style="font-weight: normal;"><a name="fft" id="fft"></a>The Fast Fourier Transform</h2>
+
+The above DFT function correctly calculates the Discrete Fourier
+Transform, but uses two for loops of n times, so it takes
+O(n&sup2;) arithmetical operations. A faster algorithm is the Fast
+Fourier Transform or FFT, which uses only O(n*logn) operations.
+This makes a big difference for very large n: if n would be 1024,
+the DFT function would take 1048576 (about 1 million) loops,
+while the FFT would use only 10240.<br />
+<br />
+The FFT works by splitting the signal into two halves: one halve
+contains all the values with even index, the other all the ones
+with odd index. Then, it splits up these two halves again, etc...,
+recursivily. Due to this, a requirement is that the size of the
+signal, n, must be a power of 2. There exist other FFT versions
+that can work on signals that can have length n*m where both n and
+m are primes, but that goes beyond the scope of this
+tutorial.<br />
+<br />
+Here's a new version of the DFT function, called FFT, which uses
+the Fast Fourier Transform instead. The FFT algorithm used here is
+called the Radix-2 algorithm, by Cooley-Tukey, developed 1965. You
+can add it to the previous program and change the function call of
+it to FFT to test it out.<br />
+<br />
+First, this function will calculate the logarithm of n, needed for
+the algorithm.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">void FFT(int n, bool inverse, double *gRe, double *gIm, double *GRe, double *GIm)
+{
+  //Calculate m=log_2(n)
+  int m = 0;
+  int p = 1;
+  while(p &lt; n)
+  {
+    p *= 2;
+    m++;
+  }</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Next, Bit Reversal is performed. Because of the way the FFT works,
+by splitting the signal in it's even and odd components every time,
+the algorithm requires that the input signal is already in the form
+where all odd components come first, then the even ones, and so on
+in each of the halves. This is the same as reversing the bits of
+the index of each value (for example the second value, with index
+0001 will now get index 1000 and this go to the center), hence the
+name.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    <span class="comment">  //Bit reversal
+  GRe[n - 1] = gRe[n - 1];
+  GIm[n - 1] = gIm[n - 1];
+  int j = 0;
+  for(int i = 0; i &lt; n - 1; i++)
+  {
+    GRe[i] = gRe[j];
+    GIm[i] = gIm[j];
+    int k = n / 2;
+    while(k &lt;= j)
+    {
+      j -= k;
+      k /= 2;
+    }
+    j += k;
+  }</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Next the actual FFT is performed. Mathematically speaking it's a
+recursive function, but this is a modified version to work
+non-recursively, it'd be way too hard to pass complete arrays to a
+recursive function every time. ca and sa still represent the cosine
+and sine, but are calculated with the half-angle formulas and
+initual values -1.0 and 0.0 (cos and sin of pi): each loop, ca and
+sa represent the cosine and sine of half the angle as the previous
+loop.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">  //Calculate the FFT
+  double ca = -1.0;
+  double sa = 0.0;
+  int l1 = 1, l2 = 1;
+  for(int l = 0; l &lt; m; l++)
+  {
+    l1 = l2;
+    l2 *= 2;
+    double u1 = 1.0;
+    double u2 = 0.0;
+    for(int j = 0; j &lt; l1; j++)
+    {
+      for(int i = j; i &lt; n; i += l2)
+      {
+        int i1 = i + l1;
+        double t1 = u1 * GRe[i1] - u2 * GIm[i1];
+        double t2 = u1 * GIm[i1] + u2 * GRe[i1];
+        GRe[i1] = GRe[i] - t1;
+        GIm[i1] = GIm[i] - t2;
+        GRe[i] += t1;
+        GIm[i] += t2;
+      }
+      double z =  u1 * ca - u2 * sa;
+      u2 = u1 * sa + u2 * ca;
+      u1 = z;
+    }
+    sa = sqrt((1.0 - ca) / 2.0);
+    if(!inverse) sa =- sa;
+    ca = sqrt((1.0 + ca) / 2.0);
+  }</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Finally, the values are divided through n if it isn't the inverse
+DFT.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    <span class=
+"comment">  //Divide through n if it isn't the IDFT
+  if(!inverse)
+  for(int i = 0; i &lt; n; i++)
+  {
+    GRe[i] /= n;
+    GIm[i] /= n;
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The function reads from *gRe and *gIm again and stores the result
+in *GRe and *GIm.<br />
+<br />
+There are 3 nested loops now in the FFT part, but only the first
+one goes from 0 to n-1, the other two together only loop log_2(n)
+times. For this small signal of only 128 values you probably won't
+notice any increase in speed because both DFT and FFT are
+calculated instantly (unless you're working on some computer from
+the '40s), but on bigger signals, on 2D signals, and in
+applications where the FT has be be calculated over and over in
+real time, it'll make an important difference.<br />
+
+
+<h2 style="font-weight: normal;"><a name="filters1d" id="filters1d"></a>Filters</h2>
+
+In the Fourier Domain, it's easy to apply some filters. All you
+have to do is multiply the spectrum with the transfer function of
+the filter.<br />
+<br />
+Low pass filters only let through components with low frequencies
+(for example the bass from music), while High Pass filters let only
+components with high frequencies through. You can also make Band
+Pass and Band Stop filters, which let through or block components
+with a certain frequency. Amplifiers multiply the whole spectrum
+with a constant value, and you can of course make filters that
+amplify certain frequencies, or triangular filters that weaken
+higher frequencies more and more, etc...<br />
+<br />
+So to make for example a Low Pass filter, multiply the spectrum
+with a rectangular function with the rectangle around the origin.
+All the low frequency components will then be kept, while the high
+ones are multiplied by zero and are thus filtered away.<br />
+<br />
+Here's a part of code for a program that'll first allow you to
+select different signals and watch their FT, and after pressing the
+space key, will allow you to choose different filters on the
+spectrum, and it'll calculate the inverse FT to see how the
+original signal is affected by the filter.<br />
+<br />
+The full code can be downloaded here: <a href="files/fourier1d.cpp">fourier1d.cpp</a>.<br />
+<br />
+First all variables and functions are declared.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">const int N = 128; //yeah ok, we use old fashioned fixed size arrays here
+
+double fRe[N]; //the function's real part, imaginary part, and amplitude
+double fIm[N];
+double fAmp[N];
+double FRe[N]; //the FT's real part, imaginary part and amplitude
+double FIm[N];
+double FAmp[N];
+const double pi = 3.1415926535897932384626433832795;
+
+void FFT(int n, bool inverse, double *gRe, double *gIm, double *GRe, double *GIm); //Calculates the DFT
+void plot(int yPos, double *g, double scale, bool trans, ColorRGB color); //plots a function
+void calculateAmp(int n, double *ga, double *gRe, double *gIm); //calculates the amplitude of a complex function</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The main function starts here. It enters the first loop, this loop
+will allow you to choose a function. The parameters p1 and p2 can
+be changed to modify the amplitude and/or width of some of the
+functions.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int /*argc*/, char */*argv*/[])
+{
+  screen(640, 480, 0, "Fourier Transform and Filters");
+  for(int x = 0; x &LT; N; x++) fRe[x] = fIm[x] = 0;
+  bool endloop = 0, changed = 1;
+  int n = N;
+  double p1 = 25.0, p2 = 2.0;
+  while(!endloop)
+  {
+    if(done()) end();
+    readKeys();</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This is inside the loop after it has read the keys. Every key has
+another action assiciated to it to create a certain function, for
+example if you press the g key (SDLK_g) it'll put a sum of two
+sines in fRe[x]. The arrow keys also have some actions to set the
+imaginary part to 0, equal to the real part, or a modified version
+of the real part. Finally, the space keys sets "endloop" to true so
+that the first loop will end.<br />
+<br />
+Not all keys are included here, because it's very messy and big
+code. Only a few are shown as an example, the rest is in the
+downloadable source file.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(keyPressed(SDLK_a)) {for(int x = 0; x &lt; n; x++) fRe[x] = 0; changed = 1;} //zero
+    if(keyPressed(SDLK_b)) {for(int x = 0; x &lt; n; x++) fRe[x] = p1; changed = 1;} //constant
+    if(keyPressed(SDLK_c)) {for(int x = 0; x &lt; n; x++) fRe[x] = p1 * sin(x / p2); changed = 1;} //sine
+
+
+    //ETCETERA... *snip*
+
+    if(keyPressed(SDLK_SPACE)) endloop = 1;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This is the last part of the first loop, where it draws the chosen
+function, calculates it's FT, and draws that one too.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(changed)
+    {
+      cls(RGB_White);
+      calculateAmp(N, fAmp, fRe, fIm);
+      plot(100, fAmp, 1.0, 0, ColorRGB(160, 160, 160));
+      plot(100, fIm, 1.0, 0, ColorRGB(128, 255, 128));
+      plot(100, fRe, 1.0, 0, ColorRGB(255, 0, 0));
+
+      FFT(N, 0, fRe, fIm, FRe, FIm);
+      calculateAmp(N, FAmp, FRe, FIm);
+      plot(350, FRe, 12.0, 1, ColorRGB(255, 128, 128));
+      plot(350, FIm, 12.0, 1, ColorRGB(128, 255, 128));
+      plot(350, FAmp, 12.0, 1, ColorRGB(0, 0, 0));
+      
+      drawLine(w / 2, 0, w / 2, h - 1, ColorRGB(128, 128, 255));
+      print("Press a-z to choose a function, press the arrows to change the imaginary part, press space to accept.", 0, 0, RGB_Black);
+      redraw();
+    }
+    changed = 0;
+  }</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+After the first loop has ended, the second part of the main
+function starts. First, an extra spectrum buffer is created, so
+that both the original spectrum and it's filtered version can be
+remembered. Then the second loop starts.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">  //The original FRe2, FIm2 and FAmp2 will become multiplied by the filter
+  double FRe2[N];
+  double FIm2[N];
+  double FAmp2[N];
+  for(int x = 0; x &lt; N; x++)
+  {
+    FRe2[x] = FRe[x];
+    FIm2[x] = FIm[x];
+  }
+  cls();
+  changed = 1; endloop = 0;
+  while(!endloop)
+  {
+    if(done()) end();
+    readKeys();</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Now the keys all change the spectrum in a certain way: they'll
+aplly a filter. Low Pass filters (LP) set the spectrum to 0, except
+around the origin. High Pass filters (HP) do the oposite.<br />
+<br />
+Not all keys are shown here, because it's very messy and big code.
+Only a few are shown as an example, the rest is in the downloadable
+source file in a more closely packed form.<br />
+<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(keyPressed(SDLK_a))
+    {
+      for(int x = 0; x &lt; n; x++)
+      {
+        FRe2[x] = FRe[x];
+        FIm2[x] = FIm[x];
+      }
+      changed = 1;
+    } //no filter
+    if(keyPressed(SDLK_b))
+    {
+      for(int x = 0; x &lt; n; x++)
+      {
+        if(x &lt; 44 || x > N - 44)
+        {
+          FRe2[x] = FRe[x];
+          FIm2[x] = FIm[x];
+        }
+        else FRe2[x] = FIm2[x] = 0;
+      }
+      changed = 1;
+    } //LP
+
+    //ETCETERA... *snip*</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Again, if a key was pressed, the new spectrum is drawn, and the
+inverse FFT is performed to draw the filtered version of the
+original function. If you press escape the program will end.<br />
+<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(changed)
+    {
+      cls(RGB_White); 
+      FFT(N, 1, FRe2, FIm2, fRe, fIm);
+      calculateAmp(N, fAmp, fRe, fIm);
+      plot(100, fAmp, 1.0, 0, ColorRGB(160, 160, 160));
+      plot(100, fIm, 1.0, 0, ColorRGB(128, 255, 128));
+      plot(100, fRe, 1.0, 0, ColorRGB(255, 0, 0));
+
+      calculateAmp(N, FAmp2, FRe2, FIm2);
+      
+      plot(350, FRe2, 12.0, 1, ColorRGB(255, 128, 128));
+      plot(350, FIm2, 12.0, 1, ColorRGB(128, 255, 128));
+      plot(350, FAmp2, 12.0, 1, ColorRGB(0, 0, 0));
+      
+      drawLine(w/2, 0,w/2,h-1, ColorRGB(128, 128, 255));
+      print("Press a-z to choose a filter. Press esc to quit.", 0, 0, RGB_Black);
+      redraw();
+    }
+    changed=0;
+  }
+
+  return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The functions FFT, plot and calculateAmp are identical to the ones
+explained earlier and aren't included here anymore.<br />
+<br />
+There's not much new in this code, the functions FFT, plot and
+calculateAmp are still the same, but by playing with this program
+you can see the effects of Low Pass (LP), High Pass (HP) and a few
+other filters. Just follow the instructions on screen.<br />
+<br />
+For example, here, a signal which is the sum of 5 sines and a DC
+component (gotten by pressing the "p" key) is shown together with
+it's spectrum, and then, respectively, a LP and a HP are applied to
+it:<br />
+<br />
+The original signal:<br />
+<img alt="" src="images/filter1.gif" style="width: 638px; height: 278px;" /><br />
+<br />
+An LP Filter:<br />
+<img alt="" src="images/filter2.gif" style="width: 639px; height: 238px;" /><br />
+<br />
+A HP Filter<br />
+<img alt="" src="images/filter3.gif" style="width: 637px; height: 145px;" /><br />
+Here, the same is done with a step function (gotten by pressing the "e" key):<br />
+<br />
+<img alt="" src="images/filter4.gif" style="width: 639px; height: 304px;" /><br />
+An LP filter on it:<br />
+<br />
+<img alt="" src="images/filter5.gif" style="width: 638px; height: 323px;" /><br />
+<br />
+A HP filter on it. This filter filters out almost only the DC component, so two almost-flat lines remain in the signal:<br />
+<br />
+<img alt="" src="images/filter6.gif" style="width: 639px; height: 119px;" /><br />
+<br />
+
+
+<h2 style="font-weight: normal;"><a name="dft2d" id="dft2d"></a>2D Fourier Transform on Images</h2>
+
+The extension of the Fourier Transform to 2D is actually pretty
+simple. First you take the 1D FT of every row of the image, and
+then on this result you take the 1D FT of every column.<br />
+<br />
+Here follows the code of a program that does exactly that, and two
+alternative functions that do the same are given in it: one will
+use the 2D version of the slow DFT, and the other the 2D version of
+the Fast Fourier Transform (FFT). The program will first calculate
+the FT of the image, and then calculate the Inverse FT of the
+result, to check if the formula is working correctly: if it gives
+back the original it works. You can freely change between calls to
+<tt>DFT2D()</tt> and <tt>FFT2D()</tt> in the main function, and
+you'll notice that the <tt>DFT2D()</tt> function is very slow now,
+while the <tt>FFT2D()</tt> function works very fast.<br />
+<br />
+Because an RGB image has 3 color channels, the FT is calculated for
+each color channel separately, so in fact 3 greyscale FT's are
+calculated.<br />
+<br />
+The program requires that there's a 24-bit color, 128*128 bitmap
+image pics/test.png (path relative to the program).<br />
+<br />
+First again all the variables and functions are declared.<br />
+N and M are the width and height of the image in pixels.<br />
+The arrays for the signal and it's spectrum are now 3-dimensional:
+2 dimensions for the size, and 1 dimension for the RGB color
+components. The class ColorRGB can't be used here because more
+precision is required for FT, that's why the color components are
+put in a double array instead; index 0 represents red, index 1
+green, and index 2 is blue.<br />
+<br />
+There are two versions of the FT functions here, the slow DFT2D and
+the fast FFT2D.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">//yeah, we're working with fixed sizes again...
+const int N = 128; //the width of the image
+const int M = 128; //the height of the image
+
+double fRe[N][M][3], fIm[N][M][3], fAmp[N][M][3]; //the signal's real part, imaginary part, and amplitude
+double FRe[N][M][3], FIm[N][M][3], FAmp[N][M][3]; //the FT's real part, imaginary part and amplitude
+double fRe2[N][M][3], fIm2[N][M][3], fAmp2[N][M][3]; //will become the signal again after IDFT of the spectrum
+double FRe2[N][M][3], FIm2[N][M][3], FAmp2[N][M][3]; //filtered spectrum
+
+double pi = 3.1415926535897932384626433832795;
+
+void draw(int xpos, int yPos, int n, int m, double *g, bool shift, bool neg128);
+void DFT2D(int n, int m, bool inverse, double *gRe, double *gIm, double *GRe, double *GIm);
+void calculateAmp(int n, int m, double *ga, double *gRe, double *gIm);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The main function first loads an image, and then sets the signal to
+that image.<br />
+<br />
+Next, it draws the image. It draws the real part, the imaginary
+part (which is 0!), and the amplitude, which looks the same as the
+real part.<br />
+<br />
+Then it calculates the FT of the image, by using the DFT2D
+function, but you can as well change this to FFT2D instead: it'll
+go faster then. Then it draws the just calculated spectrum.<br />
+<br />
+Finally, it calculates the inverse FT of that spectrum again and
+draws the result, this is only to check if the functions are
+working correctly: if you get the original image back, they
+are.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int /*argc*/, char */*argv*/[])
+{
+  screen(N * 3, M * 3, 0, "2D DFT and FFT");
+
+  std::vector&lt;ColorRGB&gt; img;
+  unsigned long dummyw, dummyh;
+  if(loadImage(img, dummyw, dummyh, "pics/test.png"))
+  {
+    print("image pics/test.png not found");
+    redraw();
+    sleep();
+    cls();
+  }
+  
+  //set signal to the image
+  for(int x = 0; x &lt; N; x++) 
+  for(int y = 0; y &lt; M; y++) 
+  {
+    fRe[x][y][0] = img[N * y + x].r;
+    fRe[x][y][1] = img[N * y + x].g;
+    fRe[x][y][2] = img[N * y + x].b;
+  }
+   
+  //draw the image (real, imaginary and amplitude)
+  calculateAmp(N, M, fAmp[0][0], fRe[0][0], fIm[0][0]);
+  draw(0, 0, N, M, fRe[0][0], 0, 0);
+  draw(N, 0, N, M, fIm[0][0], 0, 0);
+  draw(2 * N, 0, N, M, fAmp[0][0], 0, 0);
+   
+  //calculate and draw the FT of the image
+  DFT2D(N, M, 0, fRe[0][0], fIm[0][0], FRe[0][0], FIm[0][0]); //Feel free to change this to FFT2D
+  calculateAmp(N, M, FAmp[0][0], FRe[0][0], FIm[0][0]);
+  draw(0, M, N, M, FRe[0][0], 1, 1);
+  draw(N, M, N, M, FIm[0][0], 1, 1);
+  draw(2 * N, M, N, M, FAmp[0][0], 1, 0);
+
+  //calculate and draw the image again
+  DFT2D(N, M, 1, FRe[0][0], FIm[0][0], fRe2[0][0], fIm2[0][0]); //Feel free to change this to FFT2D
+  calculateAmp(N, M, fAmp2[0][0], fRe2[0][0], fIm2[0][0]);
+  draw(0, 2 * M, N, M, fRe2[0][0], 0, 0);
+  draw(N, 2 * M, N, M, fIm2[0][0], 0, 0);
+  draw(2 * N, 2 * M, N, M, fAmp2[0][0], 0, 0);
+
+  redraw();
+  sleep();
+  return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This is the DFT2D function, it's really just the same as the 1D
+versions of DFT which was explained in an earlier section, only
+with an extra loop to do the calculation for every row or column,
+and repeated twice (for the columns, and for the rows), and this
+separately for every color component. The function take now two
+parameters for the dimensions: m and n, because an image is 2D. The
+parameter inverse can be set to true to do the inverse calculations
+instead. Again *gRe and *gIm are the input arrays, and *GRe and
+*GIm the output arrays. In this 2D version, the values are divided
+through m for the normal DFT and through n for the inverse DFT.
+There are also definitions where you should divide through m*n in
+one direction and through 1 in the other, or though sqrt(m*n) in
+both, but it doesn't really matter which one you pick, as long as
+the forward FT and the inverse together give the original image
+back. The version here gives the nicest results to draw.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">void DFT2D(int n, int m, bool inverse, double *gRe, double *gIm, double *GRe, double *GIm)
+{
+  std::vector&lt;double&gt; Gr2(m * n * 3);
+  std::vector&lt;double&gt; Gi2(m * n * 3); //temporary buffers
+   
+  //calculate the fourier transform of the columns
+  for(int x = 0; x &lt; n; x++)
+  for(int c = 0; c &lt; 3; c++)
+  {
+    print(" % done",8, 0, RGB_White, 1);
+    print(50 * x / n, 0, 0, RGB_White, 1);
+    if(done()) end();
+    redraw();
+    //This is the 1D DFT:
+    for(int w = 0; w &lt; m; w++)
+    {
+      Gr2[m * 3 * x + 3 * w + c] = Gi2[m * 3 * x + 3 * w + c] = 0;
+      for(int y = 0; y &lt; m; y++)
+      {
+        double a= 2 * pi * w * y / float(m);
+        if(!inverse)a = -a;
+        double ca = cos(a);
+        double sa = sin(a);
+        Gr2[m * 3 * x + 3 * w + c] += gRe[m * 3 * x + 3 * y + c] * ca - gIm[m * 3 * x + 3 * y + c] * sa;
+        Gi2[m * 3 * x + 3 * w + c] += gRe[m * 3 * x + 3 * y + c] * sa + gIm[m * 3 * x + 3 * y + c] * ca;    
+      }
+   
+    }
+  }
+  //calculate the fourier transform of the rows
+  for(int y = 0; y &lt; m; y++)
+  for(int c = 0; c &lt; 3; c++)
+  {
+    print(" % done",8, 0, RGB_White, 1);
+    print(50 + 50 * y / m, 0, 0, RGB_White, 1);
+    if(done()) end();
+    redraw();
+    //This is the 1D DFT:
+    for(int w = 0; w &lt; n; w++)
+    {
+      GRe[m * 3 * w + 3 * y + c] = GIm[m * 3 * w + 3 * y + c] = 0;
+      for(int x = 0; x &lt; n; x++)
+      {
+        double a = 2 * pi * w * x / float(n);
+        if(!inverse)a = -a;
+        double ca = cos(a);
+        double sa = sin(a);
+        GRe[m * 3 * w + 3 * y + c] += Gr2[m * 3 * x + 3 * y + c] * ca - Gi2[m * 3 * x + 3 * y + c] * sa;
+        GIm[m * 3 * w + 3 * y + c] += Gr2[m * 3 * x + 3 * y + c] * sa + Gi2[m * 3 * x + 3 * y + c] * ca;
+      }
+      if(inverse)
+      {
+        GRe[m * 3 * w + 3 * y + c] /= n;
+        GIm[m * 3 * w + 3 * y + c] /= n;
+      }
+      else
+      {
+        GRe[m * 3 * w + 3 * y + c] /= m;
+        GIm[m * 3 * w + 3 * y + c] /= m;
+      }
+    }
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+And here's the Fast Fourier Transform again, in 2D this time. The
+same can be said about this function as for the DFT2D function. The
+explanation of the FFT was already done in an earlier
+section.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">void FFT2D(int n, int m, bool inverse, double *gRe, double *gIm, double *GRe, double *GIm)
+{
+  int l2n = 0, p = 1; //l2n will become log_2(n)
+  while(p &lt; n) {p *= 2; l2n++;}
+  int l2m = 0; p = 1; //l2m will become log_2(m)
+  while(p &lt; m) {p *= 2; l2m++;}
+  
+  m = 1 &lt;&lt; l2m; n = 1 &lt;&lt; l2n; //Make sure m and n will be powers of 2, otherwise you'll get in an infinite loop
+   
+  //Erase all history of this array
+  for(int x = 0; x &lt; m; x++) //for each column
+  for(int y = 0; y &lt; m; y++) //for each row
+  for(int c = 0; c &lt; 3; c++) //for each color component
+  {
+    GRe[3 * m * x + 3 * y + c] = gRe[3 * m * x + 3 * y + c];
+    GIm[3 * m * x + 3 * y + c] = gIm[3 * m * x + 3 * y + c];
+  }
+   
+  //Bit reversal of each row
+  int j;
+  for(int y = 0; y &lt; m; y++) //for each row
+  for(int c = 0; c &lt; 3; c++) //for each color component
+  {
+    j = 0;
+    for(int i = 0; i &lt; n - 1; i++)
+    {
+      GRe[3 * m * i + 3 * y + c] = gRe[3 * m * j + 3 * y + c];
+      GIm[3 * m * i + 3 * y + c] = gIm[3 * m * j + 3 * y + c];
+      int k = n / 2;
+      while (k &lt;= j) {j -= k; k/= 2;}
+      j += k;
+    }
+  }
+  //Bit reversal of each column
+  double tx = 0, ty = 0;  
+  for(int x = 0; x &lt; n; x++) //for each column
+  for(int c = 0; c &lt; 3; c++) //for each color component
+  {
+    j = 0;
+    for(int i = 0; i &lt; m - 1; i++)
+    {
+      if(i &lt; j)
+      {
+        tx = GRe[3 * m * x + 3 * i + c];
+        ty = GIm[3 * m * x + 3 * i + c];
+        GRe[3 * m * x + 3 * i + c] = GRe[3 * m * x + 3 * j + c];
+        GIm[3 * m * x + 3 * i + c] = GIm[3 * m * x + 3 * j + c];
+        GRe[3 * m * x + 3 * j + c] = tx;
+        GIm[3 * m * x + 3 * j + c] = ty;
+      }
+      int k = m / 2;
+      while (k &lt;= j) {j -= k; k/= 2;}
+      j += k;
+    }
+  }
+
+  //Calculate the FFT of the columns
+  for(int x = 0; x &lt; n; x++) //for each column
+  for(int c = 0; c &lt; 3; c++) //for each color component
+  {
+    //This is the 1D FFT:
+    double ca = -1.0;
+    double sa = 0.0;
+    int l1 = 1, l2 = 1;
+    for(int l=0;l &lt; l2n;l++)
+    {
+      l1 = l2;
+      l2 *= 2;
+      double u1 = 1.0;
+      double u2 = 0.0;
+      for(int j = 0; j &lt; l1; j++)
+      {
+        for(int i = j; i &lt; n; i += l2)
+        {
+          int i1 = i + l1;
+          double t1 = u1 * GRe[3 * m * x + 3 * i1 + c] - u2 * GIm[3 * m * x + 3 * i1 + c];
+          double t2 = u1 * GIm[3 * m * x + 3 * i1 + c] + u2 * GRe[3 * m * x + 3 * i1 + c];
+          GRe[3 * m * x + 3 * i1 + c] = GRe[3 * m * x + 3 * i + c] - t1;
+          GIm[3 * m * x + 3 * i1 + c] = GIm[3 * m * x + 3 * i + c] - t2;
+          GRe[3 * m * x + 3 * i + c] += t1;
+          GIm[3 * m * x + 3 * i + c] += t2;
+        }
+        double z =  u1 * ca - u2 * sa;
+        u2 = u1 * sa + u2 * ca;
+        u1 = z;
+      }
+      sa = sqrt((1.0 - ca) / 2.0);
+      if(!inverse) sa = -sa;
+      ca = sqrt((1.0 + ca) / 2.0);
+    }
+  }
+  //Calculate the FFT of the rows
+  for(int y = 0; y &lt; m; y++) //for each row
+  for(int c = 0; c &lt; 3; c++) //for each color component
+  {
+    //This is the 1D FFT:
+    double ca = -1.0;
+    double sa = 0.0;
+    int l1= 1, l2 = 1;
+    for(int l = 0; l &lt; l2m; l++)
+    {
+      l1 = l2;
+      l2 *= 2;
+      double u1 = 1.0;
+      double u2 = 0.0;
+      for(int j = 0; j &lt; l1; j++)
+      {
+        for(int i = j; i &lt; n; i += l2)
+        {
+          int i1 = i + l1;
+          double t1 = u1 * GRe[3 * m * i1 + 3 * y + c] - u2 * GIm[3 * m * i1 + 3 * y + c];
+          double t2 = u1 * GIm[3 * m * i1 + 3 * y + c] + u2 * GRe[3 * m * i1 + 3 * y + c];
+          GRe[3 * m * i1 + 3 * y + c] = GRe[3 * m * i + 3 * y + c] - t1;
+          GIm[3 * m * i1 + 3 * y + c] = GIm[3 * m * i + 3 * y + c] - t2;
+          GRe[3 * m * i + 3 * y + c] += t1;
+          GIm[3 * m * i + 3 * y + c] += t2;
+        }
+        double z =  u1 * ca - u2 * sa;
+        u2 = u1 * sa + u2 * ca;
+        u1 = z;
+      }
+      sa = sqrt((1.0 - ca) / 2.0);
+      if(!inverse) sa = -sa;
+      ca = sqrt((1.0 + ca) / 2.0);
+    }
+  }
+ 
+  int d;
+  if(inverse) d = n; else d = m;
+  for(int x = 0; x &lt; n; x++) for(int y = 0; y &lt; m; y++) for(int c = 0; c &lt; 3; c++) //for every value of the buffers
+  {
+    GRe[3 * m * x + 3 * y + c] /= d;
+    GIm[3 * m * x + 3 * y + c] /= d;
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The draw function does what the plot function did in the 1D
+version: show the signal on screen. Now this function will draw the
+signal or spectrum arrays you feed it as a 24-bit RGB image with
+the upper left corner at xpos,yPos. The shift parameter can be used
+to bring the corners to the center and the center to the corners,
+useful for FT's to bring the DC component to the center. The neg128
+parameter can be used to draw images that can have negative pixel
+values: now gray (RGB color 128, 128, 128) is used as 0, darker
+colors are negative, and brighter ones are positive.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">//Draws an image
+void draw(int xPos, int yPos, int n, int m, double *g, bool shift, bool neg128) //g is the image to be drawn
+{
+  for(int x = 0; x &lt; n; x++)
+  for(int y = 0; y &lt; m; y++)
+  {
+    int x2 = x, y2 = y;
+    if(shift) {x2 = (x + n / 2) % n; y2 = (y + m / 2) % m;} //Shift corners to center
+    ColorRGB color;
+    //calculate color values out of the floating point buffer
+    color.r = int(g[3 * m * x2 + 3 * y2 + 0]); 
+    color.g = int(g[3 * m * x2 + 3 * y2 + 1]); 
+    color.b = int(g[3 * m * x2 + 3 * y2 + 2]); 
+
+    if(neg128) color = color + RGB_Gray;
+    //negative colors give confusing effects so set them to 0
+    if(color.r &lt; 0) color.r = 0;
+    if(color.g &lt; 0) color.g = 0;
+    if(color.b &lt; 0) color.b = 0;
+    //set color components higher than 255 to 255
+    if(color.r > 255) color.r = 255;
+    if(color.g > 255) color.g = 255;
+    if(color.b > 255) color.b = 255;
+    //plot the pixel
+    pset(x + xPos, y + yPos, color);
+  }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The calculateAmp function is also again the same as the 1D version,
+only with an extra loop for the 2nd dimension, and another one for
+the color components. This function is used to generate the
+amplitudes of the signals and spectra so that you can draw
+those.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">//Calculates the amplitude of *gRe and *gIm and puts the result in *gAmp
+void calculateAmp(int n, int m, double *gAmp, double *gRe, double *gIm)
+{
+  for(int x = 0; x &lt; n; x++)
+  for(int y = 0; y &lt; m; y++)
+  for(int c = 0; c &lt; 3; c++)
+  {
+    gAmp[m * 3 * x + 3 * y + c] = sqrt(gRe[m * 3 * x + 3 * y + c] * gRe[m * 3 * x + 3 * y + c] + gIm[m * 3 * x + 3 * y + c] * gIm[m * 3 * x + 3 * y + c]);
+  }
+}
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Note that, because of the way C++ works, the arrays are passed to
+the functions in a special way, and inside the functions they have
+to be treated as 1-dimensional.<br />
+<br />
+The output of the program is as follows:<br />
+<br />
+<img alt="2D DFT" src="images/DFT2D.jpg" style="width: 388px; height: 406px;" /><br />
+<br />
+On the top row are the real part, imaginary part and amplitude of
+the image. The imaginary part of the image is 0.<br />
+<br />
+On the center row are the real part, imaginary part and amplitude
+of the spectrum from the image. The real and imaginary part can
+have negative values, so they have the "neg128" option enabled to
+draw them and grey represents 0. Since the amplitude is always
+positive, black is 0 there.<br />
+<br />
+The bottom row is again the image, calculated by using the Inverse
+DFT of the spectrum. It looks almost the same as the original, a
+few pixels might slightly differ in color due to rounding
+errors.<br />
+<br />
+The text "99% done" only appears if you use the DFT2D function,
+since it's so slow (30 seconds on an Athlon 1700+ processor for an
+128x128 image) a progress counter is handy. The FFT2D does the same
+calculation immediatly, so such a counter isn't needed.<br />
+<br />
+If you study the spectra of the images, you'll see horizontal and
+vertical lines through the center. They're caused by the sides of
+the image: since mathematically speaking, the FT is calculated of
+the image tiled infinite times, there's an abrupt change when going
+from one side of the image to the other, causing the lines in the
+spectrum.<br />
+<br />
+<b>Some remarks:</b><br />
+<ul>
+<li>If you'd calculate the forward FT instead of the inverse FT to
+go back from the spectrum to the image, you get the image upside
+down.</li>
+<li>Both the real and imaginary part of the spectrum are needed to
+reconstruct the image out of it, even though the image itself has
+no imaginary part.</li>
+<li>The FT functions also work on images that have an imaginary
+part, for example if a color image would have only 2 color
+channels, one color channel could be used as real part and the
+other as imaginary part.</li>
+<li>Even though the image itself is in 24-bit color, which means
+that each pixel has 8 bit per color channel, or 256 discrete color
+values per channel, the FT of it requires much more precision: both
+the real and imaginary component require floating point numbers
+that can go from -infinity to +infinity. Otherwise you'll lose
+information and the image you get back after doing the inverse FT
+on it again will look very crappy. The spectra displayed on the
+computer screen don't contain all information, since they're
+converted back to integers with 256 discrete values.</li>
+<li>By taking the DFT of the amplitude of the spectrum of an image,
+you will NOT get the original image back at all, since it requires
+a high precision real and an imaginary part of the spectrum, not
+the amplitude.</li>
+</ul>
+
+
+<h2 style="font-weight: normal;"><a name="spectra2d" id="spectra2d"></a>The Spectra of Images</h2>
+
+You can replace test.png by any 24-bit 128*128 color bitmap you
+want. You can even use another size, but then you'll have to change
+the parameters N and M in the code (on top). Note that the FFT2D
+function only works on images with a size that is a power of two
+(64x64, 128x256, 256x256... all work), otherwise you'll have to use
+the slower DFT2D function.<br />
+<br />
+The spectrum of an image isn't immediatly the most interesting
+thing (applying filters on it and then taking the inverse FT again
+is much more interesting), but you can still learn a bit about an
+image by looking at it's spectrum: here are a few examples, each
+picture shows the real part of the image, and the amplitude of the
+spectrum. To see the real and imaginary part of the spectrum, run
+the images through the program yourself.<br />
+<br />
+This image is a sine function with a DC component added (because
+images can only have positive pixel values): the color of each
+pixel is 128 + 128 * sin(pi*y/16.0). If you remember the spectra of
+1D signals, you'll remember that a sine function gave a peak on the
+negative and positive side, and that the DC component gave a peak
+at zero. Here you can see the same in the spectrum: the center dot
+is the DC component, and the two others represent the frequency of
+the sine function, the one dot is just a mirrored version of the
+other one. There are no pixels in the x-direction, because the
+image is the same everywhere in that direction.<br />
+<br />
+<img alt="" src="images/spectrum2d1.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+Here a sine function with a higher frequency is used to generate
+the image, so the two dots are further away from the origin to
+represent the higher frequency. Remember the scale property of the
+Fourier Transform? Here it's illustrated very well: the image
+contracts, and it's spectrum becomes wider.<br />
+<br />
+<img alt="" src="images/spectrum2d2.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+In the next image, the sine function doesn't tile: if you'd put the
+same image twice on top of each other, you wouldn't see a sine
+anymore in the y-direction (while in the previous two examples you
+would). This isn't considered a real sine anymore by the spectrum
+either, and it doesn't contain just two dots, but a line.<br />
+<br />
+<img alt="" src="images/spectrum2d3.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+One of the properties of the 2D FT is that if you rotate the image,
+the spectrum will rotate in the same direction:<br />
+<br />
+<img alt="" src="images/spectrum2d4.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+The following image shows the sum of 2 sine functions, each in
+another direction (Plasma effects are often made this way):<br />
+<br />
+<img alt="" src="images/spectrum2d5.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+The following image shows how lines in an image often generate
+perpendicular lines in the spectrum:<br />
+<br />
+<img alt="" src="images/spectrum2d6.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+The sloped lines in the spectrum here are obviously due to the
+sharp transition from the sky to the mountain.<br />
+<br />
+<img alt="" src="images/spectrum2d7.jpg" style="width: 255px; height: 127px;" /><br />
+<br />
+The FT of a rectangular function is a 2D sinc function:<br />
+<br />
+<img alt="" src="images/spectrum2d8.jpg" style="width: 265px; height: 127px;" /><br />
+<br />
+And here's the FT of a tillable texture, since it's tillable there
+are no abrupt changes on the horizontal and vertical sides, so
+there are no horizontal and vertical lines in the spectrum:<br />
+<br />
+<img alt="" src="images/spectrum2d9.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+
+
+<h2 style="font-weight: normal;"><a name="filters2d" id="filters2d"></a>2D Filters</h2>
+
+Now comes the most interesting application of the FT on images: you
+can easily apply all sorts of filters to the spectrum, again by
+multiplying them with a 2D transfer function, or by making some
+parts of the spectrum zero, or just applying some whacko formula to
+the spectrum. After doing that, take the inverse FT of the modified
+spectrum to get the filtered image.<br />
+<br />
+Here's part of the code for a program that'll allow you to select
+different images (a bitmap, modified versions of it, and some
+generated functions), and then after pressing space, allows you to
+apply different filters and see their effect. The full code can be
+downloaded <a href="files/fourier2d.cpp">here</a>: <a href=
+"files/fourier2d.cpp">fourier2d.cpp</a>.<br />
+<br />
+This code doesn't contain much new, it's much more interesting to
+run it and study the results of the filters.<br />
+<br />
+Once again, first come all the declarations of functions and
+variables. f2 and F2 will become the buffers for the filtered
+versions of the original image and spectrum.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">//yeah, we're working with fixed sizes again...
+const int N = 128; //the width of the image
+const int M = 128; //the height of the image
+
+double fRe[N][M][3], fIm[N][M][3], fAmp[N][M][3]; //the signal's real part, imaginary part, and amplitude
+double FRe[N][M][3], FIm[N][M][3], FAmp[N][M][3]; //the FT's real part, imaginary part and amplitude
+double fRe2[N][M][3], fIm2[N][M][3], fAmp2[N][M][3]; //will become the signal again after IDFT of the spectrum
+double FRe2[N][M][3], FIm2[N][M][3], FAmp2[N][M][3]; //filtered spectrum
+
+double pi = 3.1415926535897932384626433832795;
+
+void draw(int xpos, int yPos, int n, int m, double *g, bool shift, bool neg128);
+void FFT2D(int n, int m, bool inverse, double *gRe, double *gIm, double *GRe, double *GIm);
+void calculateAmp(int n, int m, double *ga, double *gRe, double *gIm);</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The main function loads a PNG image first, and will then start the
+first loop, the loop that lets you try out different modified
+versions of the PNG image and some other generated signals:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">int main(int /*argc*/, char */*argv*/[])
+{
+  screen(3 * N,4 * M + 8, 0,"2D FFT and Filters");
+  std::vector<ColorRGB> img;
+  unsigned long dummyw, dummyh;
+  if(loadImage(img, dummyw, dummyh, "pics/test.png"))
+  {
+    print("image pics/test.png not found");
+    redraw();
+    sleep();
+    cls();
+  }
+  //set signal to the image
+  for(int x = 0; x &lt; N; x++)
+  for(int y = 0; y &lt; M; y++)
+  {
+    fRe[x][y][0] = img[N * y + x].r;
+    fRe[x][y][1] = img[N * y + x].g;
+    fRe[x][y][2] = img[N * y + x].b;
+  }
+
+  int ytrans=8; //translate everything a bit down to put the text on top
+
+  //set new FT buffers   
+  for(int x = 0; x &lt; N; x++)
+  for(int y = 0; y &lt; M; y++)
+  for(int c = 0; c &lt; 3; c++)
+  {
+    FRe2[x][y][c] = FRe[x][y][c];
+    FIm2[x][y][c] = FIm[x][y][c];
+  }
+ 
+  bool changed = 1, endloop = 0;
+  while(!endloop)
+  {
+    if(done()) end();
+    readKeys();</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here's a small part of the input part of the first loop, it looks
+pretty messy here, only a few keys are shown here, the code for all
+keys is included in the downloadable file.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(keyPressed(SDLK_a) || changed)
+    {
+      for(int x = 0; x &lt; N; x++)
+      for(int y = 0; y &lt; M; y++)
+      for(int c = 0; c &lt; 3; c++)
+      {
+        fRe2[x][y][c] = fRe[x][y][c];
+      } changed = 1;
+    } //no effect
+    if(keyPressed(SDLK_b))
+    {
+      for(int x = 0; x &lt; N; x++)
+      for(int y = 0; y &lt; M; y++)
+      for(int c = 0; c &lt; 3; c++)
+      {
+        fRe2[x][y][c] = 255 - fRe[x][y][c];
+      }
+    changed = 1;} //negative
+    if(keyPressed(SDLK_c))
+    {
+      for(int x = 0; x &lt; N; x++)
+      for(int y = 0; y &lt; M; y++)
+      for(int c = 0; c &lt; 3; c++)
+      {
+        fRe2[x][y][c] = fRe[x][y][c]/2;
+      }
+      changed = 1;
+    } //half amplitude
+
+
+    //ETCETERA... *snip*
+
+    if(keyPressed(SDLK_SPACE)) endloop = 1;
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+If a key was pressed, the new version of the image and it's
+spectrum will be drawn. If the first loop was done (by pressing
+space), the second loop is initialized:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(changed)
+    {
+      //Draw the image and it's FT
+      calculateAmp(N, M, fAmp2[0][0], fRe2[0][0], fIm2[0][0]);
+      draw(0, ytrans, N, M, fRe2[0][0], 0, 0);  draw(N, 0+ytrans, N, M, fIm2[0][0], 0, 0);  draw(2 * N, 0+ytrans, N, M, fAmp2[0][0], 0, 0); //draw real, imag and amplitude
+      FFT2D(N, M, 0, fRe2[0][0], fIm2[0][0], FRe[0][0], FIm[0][0]);
+      calculateAmp(N, M, FAmp[0][0], FRe[0][0], FIm[0][0]);
+      draw(0,M + ytrans, N, M, FRe[0][0], 1, 1);  draw(N, M + ytrans, N, M, FIm[0][0], 1, 1);  draw(2 * N, M + ytrans, N, M, FAmp[0][0], 1, 0); //draw real, imag and amplitude   
+      print("Press a-z for effects and space to accept", 0, 0, RGB_White, 1, ColorRGB(128, 0, 0));
+      redraw();
+    }
+    changed = 0;
+  }
+  changed = 1;
+  while(!done())
+  {
+    readKeys();</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here's a small part of the input code to apply filters: a Low Pass,
+High Pass and Band Pass filter are given. The rest of the keys is
+in the downloadable file.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(keyPressed(SDLK_f))
+    {
+      for(int x = 0; x &lt; N; x++)
+      for(int y = 0; y &lt; M; y++)
+      for(int c = 0; c &lt; 3; c++)
+      {
+        if(x * x + y * y &lt; 64 || (N - x) * (N - x) + (M - y) * (M - y) &lt; 64 || x * x + (M - y) * (M - y) &lt; 64 || (N - x) * (N - x) + y * y &lt; 64)
+        {
+          FRe2[x][y][c] = FRe[x][y][c];
+          FIm2[x][y][c] = FIm[x][y][c];
+        }
+        else
+        {
+          FRe2[x][y][c] = 0;
+          FIm2[x][y][c] = 0;
+        }
+      }
+      changed = 1;
+    } //LP filter
+
+    if(keyPressed(SDLK_i))
+    {
+      for(int x = 0; x &lt; N; x++)
+      for(int y = 0; y &lt; M; y++)
+      for(int c = 0; c &lt; 3; c++)
+      {
+        if(x * x + y * y > 16 &amp;&amp; (N - x) * (N - x) + (M - y) * (M - y) > 16 &amp;&amp; x * x + (M - y) * (M - y) > 16 &amp;&amp; (N - x) * (N - x) + y * y > 16)
+        {
+          FRe2[x][y][c] = FRe[x][y][c];
+          FIm2[x][y][c] = FIm[x][y][c];
+        }
+        else
+        {
+          FRe2[x][y][c] = 0;
+          FIm2[x][y][c] = 0;
+        }
+      }
+      changed = 1;
+    } //HP filter
+
+    if(keyPressed(SDLK_s))
+    {
+      for(int x = 0; x &lt; N; x++)
+      for(int y = 0; y &lt; M; y++)
+      for(int c = 0; c &lt; 3; c++)
+      {
+        if((x * x + y * y &lt; 256 || (N - x) * (N - x) + (M - y) * (M - y) &lt; 256 || x * x + (M - y) * (M - y) &lt; 256 || (N - x) * (N - x) + y * y &lt; 256) &amp;&amp; (x * x + y * y > 128 &amp;&amp; (N - x) * (N - x) + (M - y) * (M - y) > 128 &amp;&amp; x * x + (M - y) * (M - y) > 128 &amp;&amp; (N - x) * (N - x) + y * y > 128))
+        {
+          FRe2[x][y][c] = FRe[x][y][c];
+          FIm2[x][y][c] = FIm[x][y][c];
+        }
+        else
+        {
+          FRe2[x][y][c] = 0;
+          FIm2[x][y][c] = 0;
+        }
+      }
+      changed = 1;
+    } //BP filter
+
+    //ETCETERA... *snip*
+</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This is the part of the second loop that draws the filtered
+spectrum and signal, and the final part of the main function:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code">    if(changed)
+    {
+      //after pressing a key: calculate the inverse!  
+      FFT2D(N, M, 1, FRe2[0][0], FIm2[0][0], fRe[0][0], fIm[0][0]);
+      calculateAmp(N, M, fAmp[0][0], fRe[0][0], fIm[0][0]);
+      draw(0, 3 * M + ytrans, N, M, fRe[0][0], 0, 0);  draw(N, 3 * M + ytrans, N, M, fIm[0][0], 0, 0);  draw(2 * N, 3 * M + ytrans, N, M, fAmp[0][0], 0, 0);
+      calculateAmp(N, M, FAmp2[0][0], FRe2[0][0], FIm2[0][0]);
+      draw(0, 2 * M + ytrans, N, M, FRe2[0][0], 1, 1);  draw(N, 2 * M + ytrans, N, M, FIm2[0][0], 1, 1);  draw(2 * N, 2 * M + ytrans, N, M, FAmp2[0][0], 1, 0);
+      print("Press a-z for filters and arrows to change DC", 0, 0, RGB_White, 1, ColorRGB(128, 0, 0));
+      redraw();
+    }
+    changed=0;
+  }
+  return 0;
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The functions FFT2D, draw and calculateAmp are the same as before
+again and not shown here. They're also in the downloadable
+file.<br />
+<br />
+Here's a possible output of the program:<br />
+<br />
+<img alt="" src="images/2dfilters.jpg" style="width: 387px; height: 543px;" /><br />
+<br />
+The top row shows the original image, below that is it's spectrum
+(the amplitude on the right), the third row shows the spectrum with
+a low pass filter applied to it: only the low frequency components
+remain. The bottom row shows the result of the Inverse FT on the
+new spectrum: all high frequency components of the image are
+removed, and the image becomes blurred.<br />
+<br />
+Here's another example, which shows what happens if you set the
+imaginary part of the spectrum to 0. To get this, first press space
+and then press the b key in the program.<br />
+<br />
+<img alt="" src="images/2dfilters2.jpg" style="width: 390px; height: 545px;" /><br />
+<br />
+More on different types of filters follows in the next
+sections.<span style="font-weight: bold;"><br /></span>
+
+
+<h2 style="font-weight: normal;"><a name="dc" id="dc"></a>The DC Component<br /></h2>
+
+The center of the spectrum is the DC component of the picture, and
+represents the average color of the picture: if you calculate the
+IDFT of a spectrum with only the DC component left, you get a flat
+image with only one color: the average of the original image. In
+the program for which the code was given above, first accept the
+image by pressing space, and then you can add or remove the DC
+component by using the arrow keys, get the full spectrum again by
+pressing the a key (or the q key on azerty keyboards), and make the
+spectrum zero by pressing the m key (the , key on azerty
+keyboards). To get only the DC component, first press m to remove
+the spectrum, then the up arrow to get only the DC component
+back.<br />
+<br />
+This is the original image (the bright blue line in the spectrum
+probably comes from the sharp edges from the cooling fin):<br />
+<br />
+<img alt="" src="images/theoriginal.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+Here's the same image with the DC component removed (note the black
+dot in the center of the spectrum). You can't see the whole story
+in fact, all the parts of the image that look black are actually
+negative, since this picture represents the original image with the
+average color substracted from it. On the right is the amplitude of
+the image instead, which reveals the negative parts.<br />
+<br />
+<img alt="Image with it's DC component removed" src=
+"images/DCremoved.jpg" style="width: 256px; height: 128px;" /><img alt=
+"The amplitude of the image with it's DC component removed" src=
+"images/DCremovedamplitude.jpg" style="width: 128px; height: 128px;" /><br />
+<br />
+And here below only the DC component is left. Only a single dot
+remains in the spectrum. It looks white on the computer screen, but
+in reality it are 3 large floating point numbers that contain the
+DC color information. The DC component of an image's spectrum is
+usually very large, it contains the most "energy": as you could see
+on the previous image, removing this single dot from the spectrum
+makes the image a whole lot darker. Energy has to be understood in
+terms of Information here.<br />
+<br />
+<img alt="Only the DC component of the image remains" src=
+"images/DConly.gif" style="width: 256px; height: 128px;" /><br />
+<br />
+This is the average color of the image, you can call it the
+ultimate blur, what you'd see if you were standing very far away
+from the image, or what you'd get if you took the sum of the color
+of all pixels, and divided the result though the total number of
+pixels.<br />
+
+
+<h2 style="font-weight: normal;"><a name="lowpass" id="lowpass"></a>Low Pass Filters: Blurring<br /></h2>
+
+Low frequencies in an audio represent the bass of the music, but in
+pictures, it represents the blurriest parts and gradients. Sharp
+edges and lines have high frequencies.<br />
+<br />
+An image can be blurred by, for each pixel, calculating the weighed
+average of that pixel and it's neighbours, using a convolution
+matrix: that's the way Photoshop and Paint Shop Pro do it, for
+example, you can create such a convolution matrix with the "User
+Defined" filter in these programs. But, since the convolution in
+the spatial domain is the same as a multiplication in the frequency
+domain, we can also blur an image, by multiplying the spectrum with
+the transfer function of a low pass filter. The transfer function
+of a low pass filter makes all high frequency components zero or at
+least weakens them, while keeping or amplifying the low frequency
+ones.<br />
+<br />
+For very blurry blurs, a very large convolution matrix is required,
+and this would require a lot of calculations. Taking the Fast
+Fourier Transform, then multiplying the spectrum, and then taking
+the Inverse FFT, goes much faster for heavy blurs. You can also
+create much nicers blurs easier and more intuitively by using the
+spectrum.<br />
+<br />
+The more high frequencies you remove of the spectrum, the blurrier
+the image, and the more calculations would be needed in the spatial
+domain:<br />
+<br />
+<img alt="" src="images/theoriginal.jpg" style="width: 256px; height: 128px;" /><br />
+<img alt="" src="images/ftblur1.jpg" style="width: 256px; height: 128px;" /><br />
+<img alt="" src="images/ftblur2.jpg" style="width: 256px; height: 128px;" /><br />
+<img alt="" src="images/ftblur4.jpg" style="width: 256px; height: 128px;" /><br />
+<img alt="" src="images/ftblur5.jpg" style="width: 256px; height: 128px;" /><br />
+<img alt="" src="images/DConly.gif" style="width: 256px; height: 128px;" /><br />
+<br />
+In the above images, a circular section of the spectrum is left.
+You can also, for example, keep a square one, but round ones should
+give nicer blurs:<br />
+<br />
+<img alt="" src="images/ftblursquare.jpg" style="width: 256px; height: 128px;" /><br />
+
+
+<h2 style="font-weight: normal;"><a name="highpass" id="highpass"></a>High Pass Filters<br /></h2>
+
+A high pass filter on an image keeps only the high frequency
+components. Since, by applying a high pass filter, the DC component
+of the spectrum is removed too, the resulting image can have
+negative pixel values that can't get drawn. To overcome this, the
+high pass filter of Photoshop adds 128 (half of the maximum value
+255) to each color component the resulting pixels, so grey
+represents zero. Here, we'll look at the positive part of the
+image, the amplitude (revealing the negative values), and the image
+with the DC component added again instead.<br />
+<br />
+A high pass filter is exactly the opposite of the low pass filters,
+so now a circular section in the center of the spectrum is removed.
+On the left is the resulting positive real part of the image, in
+the center the spectrum with the circle removed, and on the right
+the amplitude of the image:<br />
+<br />
+<img alt="" src="images/fthighpass.jpg" style="width: 384px; height: 128px;" /><br />
+<br />
+To see much better what's going on, add the DC component to it
+again:<br />
+<br />
+<img alt="" src="images/fthighpasswithDC.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+It can be seen that only the high frequency parts of the image are
+left: subtle gradients and color changes are gone, only the edges
+of objects and especially the cooling fin are still
+recognisable.<br />
+<br />
+Photoshop, instead of adding the DC component, adds grey to the
+image to make all pixels positive, so the result of the High Pass
+filter in Photoshop is something like this:<br />
+<br />
+<img alt="" src="images/photoshophighpass.jpg" style="width: 137px; height: 155px;" /><br />
+<br />
+If we use a higher radius for the removed circle, only the very
+highest frequencies remain, only the cooling fin still looks pretty
+nice:<br />
+<br />
+<img alt="" src="images/fthighpasswithDC2.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+A high pass filter can also be done by first blurring the image,
+and then substracting the blurred image from the original.<br />
+<br />
+After seeing those pictures you might wonder if there is actually
+something useful that can be done with a High Pass Filter? Well, it
+can for example be used to make better tillable textures, take for
+example this grass texture:<br />
+<br />
+<img alt="" src="images/grasstexture.jpg" style="width: 64px; height: 64px;" /><br />
+<br />
+If you tile it, it looks like this:<br />
+<br />
+<img alt="" src="images/grasstexturetiledugly.jpg" style="width: 256px; height: 256px;" /><br />
+<br />
+It looks pretty ugly, because there are obvious bright and dark
+spots in the image, and these look very repetitive. These large
+areas of bright and darker color are very low frequency components,
+so they can be removed with a subtle High Pass Filter!<br />
+<br />
+Let's process the image to our program, apply a High Pass filter
+with a very small radius to it, and bring the DC component back:
+the DC component is the lowest frequency of all, just a flat color,
+so it can't look repetitive, and is very important because it
+contains the green color of the grass. As you can see on the third
+row on the right in the screenshot, a very small circular section
+of the spectrum is removed, and in the centre of the circle is a
+single white point which is the DC component.<br />
+<br />
+<img alt="" src="images/fixthegrass.jpg" style="width: 198px; height: 281px;" /><br />
+<br />
+At the bottom row a new version of the grass texture appeared, that
+looks already much better when tiled if you take a certain distance
+from it:<br />
+<br />
+<img alt="" src="images/grasstexturetiledbetter.jpg" style="width: 256px; height: 256px;" /><br />
+<br />
+You can still recognise where the sides are, because the source
+image actually wasn't a perfectly tillable one. If the source image
+would've been perfectly tillable, the result would've been so as
+well. On a beautiful photorealistic texture of a rocky wall, with
+however a large dark spot in it that makes the rocky wall
+repetitive when tiled, the result of this high pass filter would've
+been very useful.<br />
+<br />
+The source code of the program was a little bit modified to get a
+high pass filter with a smaller radius under the "SDLK_j"
+button.<br />
+
+
+<h2 style="font-weight: normal;"><a name="bandpass" id="bandpass"></a>Band Pass Filters</h2>
+
+Band Pass filters leave though only frequencies that are between a
+certain lowest and a highest frequency. Your radio uses the 1D
+version of this to listen to a station with a certain frequency.
+Again the DC component is removed by such a filter, so we add it
+again, because without it the image is too dark to see it. Here's
+the original image again, and an example of such a BP filter with
+DC component:<br />
+<br />
+<img alt="" src="images/theoriginal.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+<img alt="" src="images/ftbandpass.jpg" style="width: 256px; height: 127px;" /><br />
+<br />
+The sum of many images like this one together (but with the DC
+component added only once of course) forms the original image
+again. Here's are a few more BP filters, that leave through higher
+frequencies:<br />
+<br />
+<img alt="" src="images/ftbandpass2.jpg" style="width: 255px; height: 127px;" /><br />
+<br />
+<img alt="" src="images/ftbandpass3.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+<img alt="" src="images/ftbandpass4.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+And here's the result of a much thinner BP filter, the thinner the
+BP filter, the more it can be seen how the image is a sum of sine
+functions:<br />
+<br />
+<img alt="" src="images/ftbandpass5.jpg" style="width: 256px; height: 128px;" /><br />
+<br />
+Note: not all bandpass examples are included in the program by
+default, but you can easily get them by changing numbers of the BP
+filters in the code (under SDLK_s and SDLK_t in the second input
+loop).<br />
+
+
+<h2 style="font-weight: normal;"><a name="dqft" id="dqft"></a>The Discrete Quaternion Fourier Transform<br /></h2>
+
+There also exists another way of calculating the FT on colored
+images:<br />
+<br />
+up to this point, we always calculated the FT of each channel
+separately, and left the imaginary part black. This is a big loss
+of resources, since there are 3 unused imaginary channels. It would
+be nice if we could put one color channel in the real part, and
+another color channel in the imaginary part. An image has 3 color
+components however, while a complex number has only two
+parts.<br />
+<br />
+That's where quaternions pop up: those have 4 parts! If you don't
+know about quaternions, there will come an appendix about
+quaternions with this tutorial, and you can find good tutorials
+about them with google. You can leave one of the 4 channels zero,
+and use the other 3 each for one color channel. The 4th can also be
+used for an alpha channel, like the transparency of the image, or
+IR or UV light info.<br />
+<br />
+The formulas for the 2D DQFT are:<br />
+<br />
+Forward:<br />
+<br />
+<img alt="" src="images/DQFT.jpg" style="width: 308px; height: 64px;" /><br />
+<br />
+Inverse:<br />
+<br />
+<img alt="" src="images/IDQFT.jpg" style="width: 308px; height: 64px;" /><br />
+<br />
+There are again multiple definitions where you divide through 1/N
+or 1/M or 1/sqrt(M*N) or 1/M*N depending on which you prefer, as
+long as the product of those factors of the forward and inverse
+version together gives 1/M*N.<br />
+<br />
+e^i and e^j can again be converted to cos and sin with the formula
+of the exponential of imaginary numbers, and i*j=k. Note that
+quaternions aren't commutative, so the order of multiplication is
+important! With this information you should be able to code a 2D
+DQFT or DQFFT function, an example might follow later.<br />
+<br />
+For images with more than 4 channels, you can of course define a
+Discrete Octonion Fourier Transform, etc... :)<br />
+<br />
+<hr />
+Last edited: 12 August 2007
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+<br />
+</body>
+</html>

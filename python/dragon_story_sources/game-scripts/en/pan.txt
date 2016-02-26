@@ -1,0 +1,25 @@
+{situacka  s pojidanim gulase:}
+
+block _00 ( beg(1) )
+title
+labels skip1 skip2
+
+Vypravec: "Meanwhile ..."
+
+Pan: "Mmmmh ...
+      Delicious ..."
+Pan: "Mmmmh ..."
+goto skip1
+Pan: "It's full of flavor - ooh!"
+Pan: "Ugh ..."
+label skip1
+Pan: "The appetizer is done, let's eat some goulash."
+Pan: "What is that smell?"
+Pan: "It's charred to a crisp ..."
+goto skip2
+Pan: "Yuck, what a stench!"
+Pan: "I will never eat this again!"
+label skip2
+Pan: "IT IS INCONSUMABLE!"
+
+gplend

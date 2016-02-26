@@ -1,0 +1,223 @@
+{s žebrákem:(žebrák mluví velice nevrle)
+
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+  D: "Pane, je vám něco?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Umírám hlady."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Můžu vám nějak pomoct?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Chci jíst!"
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Dobrá, řeknu matce o trochu jídla."
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Tvé matce radši ne, vaří dost hrozně."
+  start zebrak_ziv "mlci"
+gplend
+
+block _07 ( maxline(1) and beg(1) and been(_00b) and been(_04) and been(_05) and been(_02) )
+title Pořád umíráte?
+  justtalk
+  D: "Pořád umíráte?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Jo, pořád. Máš pro mě rakvičku?"
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Bohužel zatím ne..."
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Já si počkám."
+  start zebrak_ziv "mlci"
+  exitdialogue
+gplend
+
+block _00b ( maxline(1) and beg(1) and been(_00) )
+title
+  justtalk
+  D: "Pane..."
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+title Zkusím pro vás někde vyhrabat nějakou plesnivou kůrku.
+  justtalk
+  D: "Zkusím pro vás někde vyhrabat
+      nějakou plesnivou kůrku."
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Takovej hnus bych nevzal do huby."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "A kdyby to byl plesnivej sejra?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Já chci rakvičku se šlehačkou!"
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Co takhle indiánka?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Indiánky nesnáším!"
+  start zebrak_ziv "mlci"
+gplend
+
+block _05 ( beg(0) and been(_04) and not been(_05) )
+title Může být ta rakvička bez šlehačky?
+  justtalk
+  D: "Může být ta rakvička bez šlehačky?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Rakvičky bez šlehačky nežeru."
+  start zebrak_ziv "mlci"
+gplend
+
+block _06 (0)
+title Chtěl byste spíš černou, nebo bílou rakvičku?
+  justtalk
+  D: "Chtěl byste spíš černou, nebo bílou rakvičku?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Chci vobyčejnou rakvičku se šlehačkou
+      ze zázvorovýho těsta."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+  Z: "Barva je mi úplně fuk!"
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "No já jenom..."
+  juststay
+gplend
+
+block _01 ( beg(0) and not been(_01) and been(_00) )
+title Vy znáte moji matku?!
+  justtalk
+  D: "Vy znáte moji matku!?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Neviděl jsem nikoho z vaší
+      rodiny už aspoň deset let."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+  Z: "Tebe znám taky,
+      jako malý dračí batole."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+  Z: "Nejspíš jste ale na mě
+      dávno zapomněli."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Já určitě."
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Chodil jsem k vám obden
+      dojíždět zbytky."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+  Z: "Tvoje matka měla celkem dobrý srdce."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Proč se nezastavíte zase u nás doma?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Chtěl jsem se stavit,
+      ale pak jsem si vzpomněl,
+      jak tvoje matka vaří."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+  Z: "To radši zdechnu hladem!"
+  start zebrak_ziv "mlci"
+gplend
+
+block _02 ( beg(0) and been(_01) and been(_04) and not been(_02) )
+title Jak se z vás najednou stal takový mlsoun?
+  justtalk
+  D: "Jak se z vás najednou stal takový mlsoun?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Mlsoun - to není
+      to pravý slovo."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+  Z: "Řekl bych radši - gurmán."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Tak teda gurmán..."
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Pět let sem dojížděl
+      zbytky v hradním příkopu."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+  Z: "Na dalších pět let mě to nasytilo.
+      Až teď jsem zase dostal hlad."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Vždyť tady žádnej hradní příkop není!"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Zasypali ho."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "A já myslel, že jste měl celá ta dlouhá léta
+      jednu velikou halucinaci z hladu!"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Trpím hladem už od narození,
+      ale za tu dobu mě halucinace
+      potkala teprve nedávno."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "To mě zajímá!"
+  juststay
+  start zebrak_ziv "mluvi"
+  start zebrak_ziv "mluvi"
+  Z: "Zdálo se mi,
+      že sem potkal čokoládovou tyčinku."
+  Z: "Znáš to,
+      chvíli sme spolu pokecali."
+  Z: "Mě už se začaly sbíhat sliny,
+      ale pak mi zdrhla!"
+  Z: "To sem taky dostal chuť na sladký."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "To možná nebyla halucinace!"
+  juststay
+  justtalk
+  D: "Neposkakovala ta tyč z čokolády tak nějak?"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Jo, poskakovala."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "Pak se ale jmenovala Evelýna
+      a kromě toho byla ze dřeva!"
+  juststay
+  start zebrak_ziv "mluvi"
+  Z: "Stoprocentně byla z čokolády!"
+  Z: "Mrcha, dokonce s voříškama!"
+  Z: "Až ji uvidím, tak ji sežeru!"
+  Z: "Ale nejdřív bych si dal tu rakvičku..."
+  start zebrak_ziv "mlci"
+  justtalk
+  D: "(Už má nejspíš zase halucinaci.)"
+  juststay
+gplend
+
+block _09 ( beg(0) and not last(_00b) and not maxline(1) )
+title Právě jsem dostal hlad, musím se jít domů najíst.
+  justtalk
+  D: "Právě jsem dostal hlad, musím se jít domů najíst."
+  D: "Stejně by rodiče určitě nebyli rádi,
+      že se tady vybavuju s takovejma otrapama..."
+  juststay
+  exitdialogue
+gplend
+

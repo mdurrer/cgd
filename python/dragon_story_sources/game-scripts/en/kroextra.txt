@@ -1,0 +1,126 @@
+block _22 ( atbegin(1)  and not been(_22) )
+title I am sorry I can't take you away from here.
+  {extra pokecat muzeme jenom jednou, takze to hned tady znemoznime:}
+  let kronika_extra_pokec (0)
+
+  justtalk
+D: "Have a nice day here, chronicle."
+D: "I am sorry I can't take you away from here."
+  juststay
+
+  start kronika "mluvi"
+K: "Just go, I will be fine."
+  start kronika "mlci"
+
+  justtalk
+D: "Will you?
+    The goblins will wake up and then ..."
+  juststay
+
+  start kronika "mluvi"
+K: "I look forward to that,
+    I am going to tell them off awfully!"
+  start kronika "mlci"
+
+  justtalk
+D: "It's a good idea. I suppose they
+    are shivering in fear
+    of what awaits them."
+  juststay
+
+  start kronika "mluvi"
+K: "Do you?"
+  start kronika "mlci"
+
+  justtalk
+D: "Yes, I really do."
+  juststay
+
+  start kronika "mluvi"
+K: "Tell me,
+    are you terrified of me?"
+  start kronika "mlci"
+
+  justtalk
+D: "Yes, I have already wet my pants."
+  juststay
+
+{  Vypravec:"[Obstarožní kronika balí pubertálního draka:]"
+  start kronika "mluvi"
+K: "Oh!"
+K: "That was just a compliment
+    from a handsome young dragon, wasn't it?"
+  start kronika "mlci"
+
+  justtalk
+D: "Of course it was, I haven't peed my pants
+    for nearly six months now ..."
+  juststay
+
+  start kronika "mluvi"
+K: "Oh, you're such a big boy!
+    So can you go standing up?"
+  start kronika "mlci"
+
+  justtalk
+D: "Hey, slow down.
+    We're getting into PG-13 territory here."
+  juststay
+
+  justtalk
+D: "My mistake. I hope I
+    won't give you a complex."
+  juststay
+
+  start kronika "mluvi"
+K: "All right, I suppose it's OK for us
+    to trifle together."
+  start kronika "mlci"
+
+Vypravec: "[Harsh fellow]"
+  justtalk
+D: "There's no time for this!"
+  juststay
+
+  justtalk
+D: "Listen, I am afraid for you
+    from a scientific and historical point of view!"
+  juststay
+
+  justtalk
+D: "When I remember what they did to you ..."
+  juststay
+
+  start kronika "mluvi"
+K: "Don't worry, I am made of
+    a non-flammable material!"
+  start kronika "mlci"
+
+  justtalk
+D: "O.K., but if they ..."
+D: "Hmm, what are you resistant to?"
+  juststay
+
+  start kronika "mluvi"
+K: "I am frost-proof, heat-proof, water-proof,
+    I resist the ravages of time and I'm inedible."
+  start kronika "mlci"
+
+  justtalk
+D: "Yuck. Has anybody ever tried to eat
+    an old chronicle?
+    Outrageous!"
+  juststay
+
+  start kronika "mluvi"
+K: "Everything is possible in fairy tales ..."
+  start kronika "mlci"
+
+  justtalk
+D: "I am now content to leave you here
+    with those idiots."
+D: "See you."
+D: "MAYBE we will see each other again ..."
+  juststay
+
+gplend

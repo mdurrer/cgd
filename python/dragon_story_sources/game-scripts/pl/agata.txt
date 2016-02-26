@@ -1,0 +1,373 @@
+block _08 ( beg(1) and (hradni_dvere=2) )
+title
+{vylili jsme na zem pivo a ona si vzpomene na heslo:}
+  justtalk
+   D: "Agato, czy już o czymś myślałaś?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Nie, jeszcze nie."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Hm."
+  juststay
+  exitdialogue
+gplend
+
+block _07 ( beg(1) and not been(_07) and (hradni_dvere=3) )
+title
+{vylili jsme na zem pivo a ona si vzpomene na heslo:}
+  justtalk
+   D: "Agato, czy już o czymś myślałaś?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Zdaje mi się, że usłyszałam sygnał."
+   Z1: "Słuchaj i zapamiętaj:"
+   Z1: "Memoriter - Menander - Mendacium"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Memoriter, Menander, Mendacium"
+   D: "OK, zapamiętałem."
+   D: "Wielkie dzięki!"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Drobiazg..."
+  start zid_leva_huba "mlci"
+
+  let hradni_dvere (4)
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and not been(_00) and (hradni_dvere=1) )
+title
+{vrati se z hradu a zjisti, ze nejdou otevrit dvere do hodovny:}
+  justtalk
+   D: "Agato!"
+  juststay
+  justtalk
+   D: "Mamy problemy
+       z twoją szefową - Karmelą..."
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Słucham?"
+   Z1: "Co powiedziałeś?"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Nie odnalazłem jej."
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Czy szukałeś dokładnie?"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Jakby zapadła się pod ziemię!"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "To źle, naprawdę źle.
+        Czy masz jakiś pomysł?"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Coś mi przyszło do głowy
+       - to doprawdy głupi pomysł -
+       w tym zamku odkryłem zamknięte drzwi."
+  juststay
+  justtalk
+   D: "A jeśli ona ukrywa się za nimi?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Bzdura."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "OK, ale co jeśli ona...?!"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Chociaż twój pomysł wydaje się szalony,
+        spróbuję ci pomóc."
+   Z1: "Czy masz jakieś pytania?"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Co ty na to, żeby posłużyć się hasłem?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Jesteś genialny!"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Czy znasz to hasło?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "No, nie znam...
+        lecz mogę je rozszyfrować!"
+   Z1: "Jak z pewnością zdążyłeś się zorientować,
+        jestem zrobiona z drewna."
+   Z1: "Wszystkie drewaniane stworzenia
+        mają specjalny sposób
+        przekazywania sobie informacji"
+   Z1: "Lecz..."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Nie macie odpowiednich środków łączności?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Nie w tym rzecz."
+   Z1: "Informacje zazwyczaj przedostają się
+        z podłoża do moich nóg,
+        przechodzą przez kończyny i docierają do oparcia..."
+   Z1: "...a stąd, są pobierane i badane przez mózg."
+   Z1: "Tysiące tysięcy neuronów uczestniczy
+        w tej przedziwnej wymianie myśli."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "To brzmi interesująco, lecz co ja
+       mam z tym począć?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Moje neurony są w porządku,
+        przynajmniej mam taką nadzieję."
+   Z1: "Problem polega na tym,
+        że do moich nóg nie dociera żadna informacja."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Jak to możliwe?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Być może informacja gdzieś wycieka
+        lub też ta gleba stanowi zły przewodnik.
+        Naprawdę nie wiem..."
+  start zid_leva_huba "mlci"
+
+  {ted uz muzeme tusit, ze mame vylit na travnik pullitr:}
+  let hradni_dvere (2)
+  exitdialogue
+gplend
+
+block _01 ( beg(1) and not been(_01) and (tereza_levituje=5) )
+title
+  {az levituje vzhuru nohamapak pokec s Agátou:}
+  justtalk
+   D: "To sprawka Teresy!"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Spryciula."
+  start zid_leva_huba "mlci"
+  let tereza_levituje (0)
+  exitdialogue
+gplend
+
+block _02 ( beg(1) and maxline(1) and not been(_02) )
+title
+  justtalk
+   D: "Szanowne Krzesła!"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "O co chodzi?"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Czy możecie mi coś wyjaśnić?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Naturalnie."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Coż na Boga tu robicie?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Jak widzisz, pasiemy się."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Lecz czemu właśnie tu?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Ze względu na trawę. To jest najbardziej
+        soczysta trawa na świecie."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Och!"
+  juststay
+gplend
+
+block _03 ( beg(0) and been(_02) and not been(_03) )
+   title Myślałem, że będzie tu więcej słońca...
+  justtalk
+   D: "Myślałem, że będzie tu więcej słońca..."
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Masz słuszność,
+        początkowo paśłyśmy się na łące przed zamkiem."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "I co?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Pan zamku Piątalus wyrzucił nas!"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Nie uczynił tego przez złośliwość,
+       po prostu zależy mu na utrzymaniu
+       trawy w dobrym stanie!"
+   D: "Nie życzył sobie brzydkich zapachów,
+       ani odchodów!"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Nie znosił naszego ciągłego skrzypienia."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Przystąpcie do rozstrzygającej walki
+       niczego nie zaniedbując!"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "On jest okrutny!"
+   Z1: "Protestowałyśmy, a on porwał
+        i z pewnością uwięził
+        naszą władczynię - Karmelę Piątą."
+   Z1: "Jesteśmy w rozsypce,
+        wśród nas panuje totalna anarchia!"
+  start zid_leva_huba "mlci"
+gplend
+
+block _04 ( beg(0) and been(_03) and not been(_04) )
+   title Czy macie jakieś wiadomości o Karmeli?
+  justtalk
+   D: "Czy macie jakieś wiadomości o Karmeli?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Nie. Nic nie wiemy."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Gdy widzę taką niesprawiedliwość
+       wpadam we wściekłość!"
+   D: "I zawsze jestem gotów przywrócić porządek!"
+  juststay
+  {obdivně, naivně, jako Melicharová Jonášovi:}
+  start zid_leva_huba "mluvi"
+   Z1: "Bohater!"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Jestem harcerzem."
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Musisz natychmiast udać się do zamku!"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Jestem gotów."
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Lecz nie możesz dostać się tam przez bramę
+        jest zamknięta,
+        żeby Karmela nie mogła uciec."
+  start zid_leva_huba "mlci"
+  {nešťastně, bezradně:}
+  justtalk
+   D: "Więc co mam czynić?!"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Do każdego zamku
+        jest tajne wejście
+        i tu też jest."
+   Z1: "Zaczyna się ono w tym lesie
+        pod dwoma starymi pniakami."
+   Z1: "Jest ono trochę niewygodne dla krzeseł,
+        lecz ty z pewnością przedostaniesz się."
+   Z1: "Przekaż Karmeli pozdrowienia ode mnie."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Od ciebie?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Na imię mi Agata.
+        I możesz też wspomnieć o moich przyjaciółkach."
+  start zid_leva_huba "mlci"
+
+  {pribude na mape nova lokace:}
+  let new_parezy (1)
+gplend
+
+block _05 ( beg(0) and been(_02) and not been(_05) )
+   title Kim są twoje przyjaciołki?
+  justtalk
+   D: "Kim są twoje przyjaciołki?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Mogę powiedzieć, że to całkiem miłe damy."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Co powiesz o tym zapłakanym krześle
+       obok ciebie?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Mówisz o Eulanie?"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Właśnie."
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Wiesz, ona jest taka..."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Co jeszcze?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Tam koło tego drzewa to Melania.
+        Krystyna pasie się, a Teresa lewituje."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Teresa ma takie dziwne hobby."
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Lecz mimo to jest całkiem miła."
+   Z1: "Próbuję też wznieść się w powietrze,
+        lecz jak dotąd nigdy mi się to nie udało."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Czy sądzisz, że Teresa potrafi
+       lewitować do góry nogami?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Do góry nogami? Chyba nie."
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Jak myślisz, czy mógłbym z nią porozmawiać?"
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Raczej nie,
+        rozmowa podczas lewitacji
+        może być niebezpieczna."
+  start zid_leva_huba "mlci"
+
+  {az se prijde po x-te do mistnosti, nechat Terezu vzhůru nohama!}
+  let tereza_levituje (1)
+gplend
+
+block _06 ( beg(1) and maxline(1)) )
+title
+{vrati se z hradu a zjisti, ze nejdou otevrit dvere do hodovny:}
+ labels anonym
+  if(not been(_04)) anonym
+  justtalk
+   D: "Agato!"
+  juststay
+  exit
+ label anonym
+  justtalk
+   D: "Szanowne krzesła..."
+  juststay
+gplend
+
+block _09 ( beg(0) and last(_06) and maxline(1) )
+title
+  start zid_leva_huba "mluvi"
+   Z1: "Co się dzieje?"
+  start zid_leva_huba "mlci"
+  justtalk
+   D: "Nie, nic."
+  juststay
+  exitdialogue
+gplend
+
+block _10 ( beg(0) and not ((last(_02) or(last(_06))) and not maxline(1) )
+   title A więc, do widzenia...
+  justtalk
+   D: "A więc, do widzenia..."
+  juststay
+  start zid_leva_huba "mluvi"
+   Z1: "Do widzenia"
+  start zid_leva_huba "mlci"
+  exitdialogue
+gplend

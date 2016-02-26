@@ -1,0 +1,531 @@
+{dialog draka s rytířem:}
+
+
+block _05 ( maxline(1) and beg(1) and hasbeen(_04) and not hasbeen(_05) )
+   TITLE I co z twoim strachem?
+
+  justtalk
+   D: "I co z twoim strachem?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "N-n-nic s-się n-nie p-p-popr-r-rawiło."
+  start rytir "mlci"
+
+  justtalk
+   D: "Czy przyjął on jakąś określoną postać?"
+  juststay
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  start rytir "mluvi"
+   Ryt: "W-wc-ciąż j-jest cz-czy-mś
+         n-n-nieokr-reślonym."
+  start rytir "mlci"
+
+  justtalk
+   D: "Szkoda.
+       Jeśli mógłbyś go jakoś określić,
+       byłbym w stanie ci pomóc..."
+  juststay
+  exitdialogue
+gplend
+
+block _06 ( maxline(1) and beg(1) and hasbeen(_05) and not hasbeen(_06) )
+   TITLE Musimy coś zrobić z tym lękiem!
+  justtalk
+   D: "Musimy coś zrobić z tym lękiem!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Ale c-c-co?"
+  start rytir "mlci"
+
+  justtalk
+   D: "Musimy znaleźć jego przyczynę.
+       Będę zadawał ci pytania,
+       a ty będziesz odpowiadał, zgoda?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "D-d-dobrze."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+   D: "Czy masz wrażenie,
+       że smok chce zrobić ci krzywdę?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "N-nie w-wiem cz-cz-czemu miałby
+         m-mnie ss-skrzywdzić,
+         nie ma w tym nic co d-dotyczy m-mojej osoby."
+  start rytir "mlci"
+
+  justtalk
+   D: "Uch-och!"
+   D: "Chcesz ściąć głowę smoka, nieprawdaż?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "T-t-ak."
+  start rytir "mlci"
+
+  justtalk
+   D: "Czy sądzisz, że on się tym przejmie?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "M-myślę, że s-skoro ma dwie lub t-trzy głowy
+         to nie ma to dla niego w-w-większego znaczenia."
+  start rytir "mlci"
+
+  justtalk
+   D: "A co, jeśli ma tylko jedną?!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "W-w-wierzę w jego nn-na-naturalne
+         zdolności re-regeneracji."
+  start rytir "mlci"
+
+  exitdialogue
+
+gplend
+
+block _07 ( maxline(1) and beg(1) and hasbeen(_06) and not hasbeen(_07) )
+   TITLE Czy masz wrażenie, że smok chce cię zjeść?
+  justtalk
+   D: "Czy masz wrażenie, że smok chce cię zjeść?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "N-nie, n-nie s-sądzę.
+         My-myślę, że raczej wo-wolałby
+         moją zb-b-broję."
+  start rytir "mlci"
+
+  justtalk
+   D: "To mu będzie najbardziej smakowało."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Na-nap-prrrawdę?
+         M-myślałem, że ss-smoki nie zja-jadały
+         m-m-metalowego p-panc-cerza?!"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+   D: "Nic nie szkodzi, w jednej chwili zje cię
+       wraz ze zbroją."
+   D: "Pancerz stał się ostatnio przysmakiem smoków."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Nn-nie ww-ierzę w to!"
+  start rytir "mlci"
+
+  justtalk
+   D: "Nie wierz.
+       Myślałem, że uwierzysz w te bzdury."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Nn-nie j-jestem nn-naiwny."
+  start rytir "mlci"
+
+  justtalk
+   D: "Na pewno? Mam nadzieję,
+       że nie będziesz zaskoczony!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Cze-czemu mm-mam być zz-zaskoczony?
+         Smoki nie jj-jedzą p-pancerzy. Basta!"
+  start rytir "mlci"
+
+  justtalk
+   D: "Nie masz racji!"
+   D: "Jeśli nie ma pod ręką otwieracza do puszek,
+       a smok jest naprawdę głodny
+       zje cię nawet wraz zbroją."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "A jeśli do-dos-stanie nn-niestrawności?"
+  start rytir "mlci"
+
+  exitdialogue
+gplend
+
+
+block _12 ( maxline(1) and beg(1) and not been(_12) and isactico(0) and been(_07) and (otec_troubil=1) )
+   TITLE Czy słyszałeś kiedyś o smokach ziejących...
+  justtalk
+   D: "Czy słyszałeś kiedyś o smokach
+       ziejących ogniem i siarką?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Tt-tak."
+  start rytir "mlci"
+
+  justtalk
+   D: "A teraz powstała nowa, zmutowana odmiana
+       ziejąca kwasem siarkowym."
+   D: "Taki smok wpuści sobie trochę kwasu do żołądka
+       i wtedy bez trudu cię skonsumuje."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Tt-to nn-naprawdę mocne soki żołądkowe."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+   D: "Czy słyszałeś te hałasy dochodzące z jaskini?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Rze-rzeczywiście cc-coś ss-słyszałem."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+   D: "A to właśnie jego żołądek tak burczy!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Mój strach zaczyna przybierać określoną postać!"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+
+{vytrepani soucastky:}
+  start rytir_nohy "hodne"
+  load nyt_pada "padani"
+  startplay nyt_pada "padani"
+  objstat away nyt_pada
+  objstat_on nyt jesven
+  start nyt "zakladni"
+  let tras_nohou (1)
+
+  exitdialogue
+gplend
+
+
+block _13 ( maxline(1) and beg(1) and isactico(i_tricko))
+title
+  let slepene_nohy (1)
+  icostat off i_tricko
+  objstat_on rytir_nohy_slep jesven
+  start rytir_nohy_slep "zakladni"
+  objstat away rytir_nohy
+
+  justtalk
+   D: "To już lepiej.
+       To burczenie zaczęło działać mi na nerwy"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Dziękuję, nogi przestały mi się
+         trząść jak galareta,
+         kolana jakby trochę mniej się uginają.
+         Nawet przestałem się j-jąkać!"
+  start rytir "mlci"
+
+  justtalk
+   D: "Ale już będziesz musiał pozostać tu na zawsze."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Nie szkodzi, to całkiem przyjemne miejsce."
+   Ryt: "Zawsze pragnąłem by umrzeć
+         w podobnym miejscu."
+  start rytir "mlci"
+
+  justtalk
+   D: "Obawiam się, że zardzewiejesz na śmierć."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Kto wie..."
+  start rytir "mlci"
+
+  justtalk
+   D: "A teraz, co ze smokami?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Wiesz co,
+         mógłbyś sprowadzić mi tu smoki."
+  start rytir "mlci"
+
+  justtalk
+   D: "Pomyślę o tym."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Jeśli bardzo chcesz
+         możesz w moim zastęptwie
+         ścinać im głowy."
+   Ryt: "Jak nie masz miecza,
+         to możesz wziąć mój.
+         Ale musisz się z nim ostrożnie obchodzić.
+         Zgoda?"
+  start rytir "mlci"
+
+  justtalk
+   D: "Skoro tak, to niemożliwe. Wywijam mieczem
+       jak szalony!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "W takim razie musisz
+         zdobyć miecz gdzieś indziej."
+   Ryt: "Jeśli chcesz ścinać smokom głowy
+         stanowczo potrzebny ci będzie jakiś miecz."
+  start rytir "mlci"
+
+  exitdialogue
+gplend
+
+block _00 ( maxline(1) and beg(1) and not been(_00) and isactico(0) )
+title
+  justtalk
+   D: "Miło mi cię poznać. Jestem Bert!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Kim j-jjesteś? Ss-smokiem?"
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+   D: "Nie, tak naprawdę to nie jestem smokiem.
+       Wracam z Balu Przebierańców."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Tt-ten kostium jest naprawdę ładny.
+         Nazywam się Ter-rordre-read S-solid."
+   Ryt: "Masz szczęście, że nie jesteś smokiem,
+         w przeciwnym razie sciąłbym ci głowę."
+  start rytir "mlci"
+gplend
+
+block _00a ( maxline(1) and beg(1) and been(_00) and isactico(0) and (slepene_nohy=0) )
+title
+  justtalk
+   D: "Co powiesz na małą pogawędkę?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Czemu nie."
+  start rytir "mlci"
+gplend
+
+block _14 ( atbegin(0) and not hasbeen(_14) )
+   TITLE Co powiesz o tej jaskini za nami...
+  justtalk
+   D: "Co powiesz o tej jaskini za nami..."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Cz-czy jj-jest tt-am jakiś smok?"
+  start rytir "mlci"
+
+  justtalk
+   D: "Sam powinienieś to wiedzieć!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Ale jj-jeszcze nn-nie wiem."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+   D: "Powiedziałbym, że jest tam jakiś smok.
+       Mam do niego pewną sprawę..."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Skoro tak, to mam nadzieję, że nie zamierzasz
+         ściąć mu głowy. To należy do mnie!"
+  start rytir "mlci"
+
+  justtalk
+   D: "Ściąć mu głowę? Nigdy!
+       To z pewnością mój ojciec!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "J-jak to mm-możliwe, że twój ojciec jest
+         ss-smmokiem a ty nie!"
+  start rytir "mlci"
+
+  justtalk
+   D: "Jestem wybrykiem ewolucji..."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "O-oh!"
+  start rytir "mlci"
+gplend
+
+block _20 ( atbegin(0) and not hasbeen(_20) )
+   TITLE Jak się czujesz w tym swoim pancerzu?
+  justtalk
+   D: "Jak się czujesz w tym swoim pancerzu?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Okropnie."
+   Ryt: "To dla-dlatego, że ci-cierpię na kl-klaustrofobię!"
+  start rytir "mlci"
+
+  justtalk
+   D: "Spróbuj otworzyć przyłbicę."
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Śrr-rubka się w niej zacięła."
+  start rytir "mlci"
+gplend
+
+block _02 ( atbegin(0) and not hasbeen(_02) )
+   TITLE Czemu tak ci drżą kolana?
+  justtalk
+   D: "Czemu tak ci drżą kolana?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Zz-zawsze tt-tak się dzieje ilekroć zamierzam
+         ściąć głowę jakiegoś ss-smoka."
+  start rytir "mlci"
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+  justtalk
+   D: "Co na to twój psychoanalityk?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Nn-nie wiem cc-co on na to.
+         Lecz dd-dostałem książkę pod ty-tytułem
+         'Zostań swoim psy-psychoanalitykiem'."
+  start rytir "mlci"
+
+  justtalk
+   D: "I co pisze w tej książce?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Pp-pisze, że pp-powinienem
+         pp-przezwyciężyć swój strrr-"
+  start rytir "mlci"
+
+  justtalk
+   D: "Strach?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Tt-tak jest.
+         Chciałem t-ttu tt-tego sp-prrróbować."
+  start rytir "mlci"
+
+  justtalk
+   D: "Nie udało ci się to zbytnio, prawda?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Nie wiem jaka jest tego przczyna,
+         ale jestem kompletnie ss-sparaliżowany!"
+  start rytir "mlci"
+gplend
+
+block _04 ( atbegin(0) and hasbeen(_02) and not hasbeen(_04) )
+   title Co jest źródłem twojego lęku?
+  justtalk
+   D: "Co jest źródłem twojego lęku?
+       O ile wiem, wszystkie smoki są okrutne!"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "Nie ww-wiem. Po prostu ogarnia mnie
+         nn-nieokreślone uczucie lęku!"
+  start rytir "mlci"
+
+  justtalk
+   D: "Gdyby twój strach miał jakąś określoną
+       postać można by coś na to poradzić..."
+  juststay
+
+  load rytir_nohy "cinka"
+  startplay rytir_nohy "cinka"
+  start rytir_nohy "malo"
+
+gplend
+
+
+block _15 ( beg(0) and last(_00a) and maxline(1) and (slepene_nohy=0) )
+title
+  justtalk
+   D: "Ale co?"
+  juststay
+
+  start rytir "mluvi"
+   Ryt: "To pr-prawda.
+         Zo-zobaczymy się pp-póżniej."
+  start rytir "mlci"
+gplend
+
+block _00b ( maxline(1) and beg(1) )
+title
+ {kdyby žádný přdchozí začátek rozhovoru nezabral...
+  justtalk
+   D: "Co powiesz na małą pogawędkę?"
+{rytir chvilku mlci}
+   Ryt: "---"
+   D: "Jak sobie życzysz."
+  juststay
+  exitdialogue
+gplend
+
+block _99 ( not maxline(1) and beg(0) and not last(_00a) )
+   TITLE Na razie cię zostawię...
+  justtalk
+   D: "Na razie cię zostawię..."
+  juststay
+  start rytir "mluvi"
+   Ryt: "Dd-dobrze."
+   Ryt: "A więc, dd-do zobaczenia."
+  start rytir "mlci"
+  exitdialogue
+gplend
+

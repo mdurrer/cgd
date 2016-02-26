@@ -1,0 +1,196 @@
+{!!= VELEdulezita poznamka}
+{programkovaci jazyk:}
+{1=cislo}
+{2=retezec v "": 2-0 retezec, ktery se dava do hry,
+{                 2-1 retezec --- cesta, napr. paleta
+{                     k3 pak tohle nahradi 1 cislem (napr. cislo palety)
+{ 3=identifikator (obecne):
+{   3-0 relativni navesti
+{   3-1 promenne
+{   3-X dalsi identifikatory, viz. soubor `ident.'
+{       napr. 3-2 je jmeno objektu
+{       k3 to prekompiluje, ze misto toho bude cislo objektu
+{ 4=matematicky vyraz: (), operatory, cisla, identifikatory..., random
+{   MUSI byt uzavren v ()}
+
+EXIT           0 1
+{skonci provadeni programku}
+{!!automaticky prikompilovat na konec kazdeho programku!!}
+
+{LABEL nazev_navesti}
+
+GOTO   1 1           3-0
+{  ## diference_o_kolik_skocit(byte?/word?)}
+
+LET    2 1           3-1 4
+{nazev_promenne konstanta_integer}
+{  ## cislo_promenne(word) konstanta(integer)}
+
+IF     3 1           4 3-0
+{podminka...... nazev_navesti}
+{na navesti se skoci, jen je-li podminka True}
+
+
+
+LOAD   5 1           3-2 2-2
+{nazev_objektu "nazev_animace"}
+{!!nezapomen, ze AOMAKER ve svych skladech uklada vsechno dulezite}
+{az od polozky 2(dva)!!! -->cisla v tabulkach, pocet animaci objektu}
+{-->ode vseho odecitat jednotku!!}
+{nahraje k prislusnemu objektu danou animaci.}
+{kompilator ji bere z implicitni cesty dane v definici toho objektu}
+{kazdemu objektu spocita pocet jeho animaci, kazde jeho animaci priradi}
+{cislo (poradi) v tabulce, kterou potom podle poctu animaci dimenzuju}
+{pro kazdy objekt}
+{  ## globalni_cislo_objektu(word) cislo_jeho_animace(byte) cislo_animace_ze_skladu(word)}
+
+
+START  4 1            3-2 2-2
+{nazev_objektu "nazev_animace"}
+{odstartuje danou animaci}
+{  ## globalni_cislo_objektu(word) cislo_jeho_animace(byte)}
+
+STARTPLAY 5 2         3-2 2-2
+{nazev_objektu nazev_animace}
+{odstartuje danou animaci, skoci do sveho vlastniho "BODY" a pocka na}
+{jeji konec a skoci zpatky}
+{  ## globalni_cislo_objektu(word) cislo_jeho_animace(byte)}
+
+JUSTTALK  5 3
+JUSTSTAY  5 4
+
+
+talk talk 6 1         3-8 2-1
+{nazev_postavy "text, co rika}
+{               kjkkj}
+{               ;klklk}
+{               lklkl"}
+{nazev postavy z definice postav v initu hry.}
+{!!vsechny texty uvozovat z obou stran uvozovkami!!}
+{  ## cislo_postavy(byte) globalni_cislo_vety(word)}
+
+
+
+OBJSTAT 7 1           3-5 3-2
+{AWAY nazev_objektu}
+{OFF nazev_objektu}
+{nastavi status u objektu= jestli je/neni v mistnosti...tak nejak}
+
+
+OBJSTAT_ON 7 2           3-2 3-4
+{nazev_objektu nazev_mistnosti}
+{!!! nazev mistnosti NENI v uvozovkach!!!}
+
+
+ICOSTAT 8 1           3-5 3-3
+{OFF nazev_ikony}
+{ICOSTAT ON nazev_ikony}
+{zmizi/objevi a zaroven zaktualni(?) ikonu}
+{  ## ## globalni_cislo_ikony(word)}
+{  ## ## globalni_cislo_ikony(word)}
+
+
+
+DIALOGUE 9 1           2-2
+{"nazev_rozhovoru"}
+{nacte do pameti a spusti prislusny rozhovor}
+{  ## cislo_rozhovoru}
+EXITDIALOGUE 9 2
+{vyskoci z rohovoru ven}
+RESETDIALOGUE 9 3
+{vynuluje vsechny interni promenne aktualniho dialogu}
+RESETDIALOGUEFROM 9 4
+{vynuluje vsechny interni promenne aktualniho dialogu}
+RESETBLOCK 9 5        3-9
+
+
+
+WALKON 10 1           1 1 3-6
+{souradnice_x souradnice_y kam_se_kouka}
+{posle postavicku na prislusne souradnice a necha ji koukat zadanym smerem}
+{  ## souradnice_x(integer) souradnice_y(integer) kam_se_kouka(byte)}
+
+STAYON 10 2           1 1 3-6
+{souradnice_x souradnice_y kam_se_kouka}
+{primo postavi postavicku na prislusne souradnice a necha ji koukat zadanym smerem}
+{  ## souradnice_x(integer) souradnice_y(integer) kam_se_kouka(byte)}
+
+WALKONPLAY 10 3           1 1 3-6
+
+
+LOADPALETTE 11 1            2-2
+{cesta_k_obrazku_ze_ktereho_paletu_vezmu}
+{nacte do pracovniho mista paletu}
+{>>budou dve mista na paletu, jedno aktualni, druhe pracovni}
+{  ## cislo_palety_ze_skladu_palet}
+
+SETPALETTE 12 1
+{nastavi pracovni paletu jako aktualni}
+{  ##}
+
+BLACKPALETTE 12 2
+{nastavi cernou pracovni paletu}
+{  ##}
+
+FADEPALETTE 13 1    1 1 1
+{od_barvy po_barvu pocet_fazi}
+{udela prechod od aktualni k pracovni palete v nastavenem useku}
+{  ## od_barvy(byte) po_barvu(byte) pocet_fazi(byte)}
+FADEPALETTEPLAY 13 2    1 1 1
+{od_barvy po_barvu pocet_fazi}
+{udela prechod od aktualni k pracovni palete v nastavenem useku}
+{  ## od_barvy(byte) po_barvu(byte) pocet_fazi(byte)}
+
+
+NEWROOM 14 1      3-4 1
+{nazev_mistnosti cislo_brany}
+{skok do nove mistnosti}
+{  ## nazev_mistnosti(byte) cislo_brany(byte)}
+
+
+EXECINIT 15 1       3-2
+{vykonej program INIT od jisteho objektu}
+EXECLOOK 15 2       3-2
+EXECUSE 15 3       3-2
+
+
+REPAINTINVENTORY 16 1
+{znovu prekresli inventorar}
+EXITINVENTORY 16 2
+
+EXITMAP 17 1
+
+LOADMUSIC 18 1          2-2
+STARTMUSIC 18 2
+STOPMUSIC 18 3
+FADEOUTMUSIC 18 4       1
+{pocet sekund}
+FADEINMUSIC 18 5       1
+{pocet sekund}
+
+
+MARK 19 1
+{odinstalovavani animci}
+RELEASE 19 2
+{odinstalovavani animci}
+
+PLAY 20 1
+{jednkrat odehraje smycku Loop}
+
+LOADMAP 21 1        2-2
+ROOMMAP 21 2
+
+DISABLEQUICKHERO 22 1
+ENABLEQUICKHERO 22 2
+
+DISABLESPEEDTEXT 23 1
+ENABLESPEEDTEXT 23 2
+
+QUITGAME 24 1
+
+PUSHNEWROOM 25 1
+POPNEWROOM 25 2
+
+
+
+

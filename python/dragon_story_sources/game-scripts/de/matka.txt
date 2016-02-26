@@ -1,0 +1,177 @@
+{s matkou v dracim dome:}
+
+block _00 ( maxline(1) and beg(1) and not been(_6) )
+title
+  justtalk
+D: "Mama, ich hab mich entschlossen,
+    ein lieber Drache zu sein!"
+  juststay
+  start mutti "mluvi"
+B: "Und du stellst keine Bedingungen?"
+  start mutti "mlci"
+gplend
+
+block _1 ( beg(0) and last(_00) and not been(_1) )
+TITLE Natürlich. Willst du sie hören?
+  load mutti "mlci2sec"
+  justtalk
+D: "Natürlich.
+    Willst du sie hören?"
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+
+  justtalk
+D: "Hmm? Egal, ich sag sie dir trotzdem.
+    Ich will bis spät nachts draußen bleiben...
+    Ich will eine Ameisenfarm..."
+D: "...durch das Fenster reinkommen
+    ...auf dem Bett springen
+    ...mit nem Lineal popeln
+    ...und mir ein Messer in den Mund stecken."
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+
+  justtalk
+D: "Du hörst nicht zu, Mama!"
+  juststay
+{Berta ho neposlouchá}
+  {k obecenstvu}
+  justtalk
+D: "Es ist schrecklich, wenn ein Drache
+    von seiner eigenen Mutter ignoriert wird."
+  juststay
+{Berta ho neposlouchá}
+  startplay mutti "mlci2sec"
+  start mutti "mlci"
+  {po chvíli:}
+  start mutti "cili se"
+B: "Du popelst nicht mit einem Lineal!"
+B: "Das verkokelt doch jedes Mal!"
+B: "Du kannst mit einem Schürhaken popeln,
+    aber das erlaube ich hier drin nicht."
+B: "Weißt du,
+    wenn deine Popel brennen,
+    dann stinken sie wie Sau."
+B: "Und alles andere kannst du auch vergessen!"
+  start mutti "mlci"
+  justtalk
+D: "Sieht aus als wär meine Mutter fertig mit mir."
+  juststay
+  exitdialogue
+gplend
+
+block _2 ( beg(0) and last(_00) )
+TITLE Nein, ich will einfach lieb sein, das ist alles...
+  justtalk
+D: "Nein, ich will einfach lieb sein, das ist alles..."
+  juststay
+  start mutti "mluvi"
+B: "Hah, seit wann?"
+  start mutti "mlci"
+gplend
+
+block _5 ( beg(0) and last(_2) or last(_4) and not been(_5) )
+TITLE Ich muss darüber nachdenken...
+  justtalk
+D: "Ich muss darüber nachdenken..."
+  juststay
+  exitdialogue
+gplend
+
+
+block _6 ( beg(0) and last(_2) or last(_4) and not been(_6) )
+TITLE Ich fang gleich damit an!
+  justtalk
+D: "Ich fang gleich damit an!"
+  juststay
+  start mutti "mluvi"
+B: "Sofort? Wenn das so ist,
+    dann nimm doch dieses äußerst scharfe Messer..."
+B: "...und geh damit draußen herum rennen."
+  start mutti "mlci"
+  justtalk
+D: "Aber...was? ...Mama?"
+  juststay
+  start mutti "mluvi"
+B: "Wie spielen denn andere liebe Kinder?"
+  start mutti "mlci"
+  justtalk
+D: "Ich verschwinde Mama!?"
+  juststay
+  start mutti "mluvi"
+B: "Denk dran, dich erwartet noch
+    eine Tracht Prügel!"
+  start mutti "mlci"
+  justtalk
+D: "(Eltern sind ziemlich sonderbar, oder?)"
+  juststay
+
+  icostat on i_nuz
+  exitdialogue
+gplend
+
+block _3 ( beg(0) and last(_2) or last(_4) and not been(_3) )
+TITLE Ich fange morgen damit an.
+  justtalk
+D: "Ich fange morgen damit an."
+  juststay
+  start mutti "mluvi"
+B: "Das versteh ich nicht.
+    Meinst du, du willst von morgen an
+    lieb sein?"
+  juststay
+  justtalk
+D: "Ja. Heute werd ich noch etwas frech sein."
+  juststay
+  start mutti "mluvi"
+B: "Willst du dir das nicht nochmal überlegen?
+    Wie wäre es, wenn du nächste Woche
+    ungezogen bist?"
+  juststay
+  justtalk
+D: "Hmm, na gut, ich denk drüber nach."
+  juststay
+  exitdialogue
+gplend
+
+block _4 ( beg(0) and last(_2) and not been(_4) )
+TITLE Das ist mein Vorsatz für das neue Jahr.
+  justtalk
+D: "Das ist mein Vorsatz für das neue Jahr."
+  juststay
+  start mutti "mluvi"
+B: "Dafür ist es zu spät!"
+  juststay
+gplend
+
+block _01 ( maxline(1) and beg(1) and random(3) )
+title
+  justtalk
+D: "Mama, hast du Papa irgendwo gesehen?"
+  juststay
+  start mutti "mluvi"
+B: "Machst du Witze?
+    Ich hab ihn seit einem Monat nicht gesehen!"
+  juststay
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(1) )
+title
+  justtalk
+D: "Wann ist das Mittagessen fertig?"
+  juststay
+  start mutti "mluvi"
+B: "Es dauert noch etwas.
+    Aber du wirst schon nicht verhungern."
+  juststay
+  justtalk
+D: "Wenn ich an deine Kochkünste denke
+    würde ich das lieber ..."
+  juststay
+  exitdialogue
+gplend

@@ -1,0 +1,683 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.0.33 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER>
+<DT>
+<B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</DT></CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+<CENTER>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris
+1996,1997,1998</CENTER>
+
+<CENTER>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- Over 150k of pure sh...er, 3d coding power!</CENTER>
+
+<HR WIDTH="100%">
+
+<P><A NAME="chap0"></A>
+<H2>
+0 General Things</H2>
+
+<UL><A NAME="chap00"></A>
+<H3>
+0.0 LICENSE AGREEMENT</H3>
+
+<UL><A NAME="chap001"></A>
+<H4>
+0.0.1 DISCLAIMER</H4>
+3DICA PROGRAMMING TUTORIAL IS SUPPLIED AS-IS. THE AUTHOR DISCLAIMS ALL
+WARRANTIES, EXPRESSED OR IMPLIED, INCLUDING, WITHOUT LIMITATION, THE WARRANTIES
+OF MERCHANTABILITY AND OF FITNESS FOR ANY PURPOSE. THE AUTHOR ASSUMES NO
+LIABILITY FOR DAMAGE TO ANY LIVING / DEAD CREATURE OR EQUIPMENT, DIRECT
+OR CONSEQUENTIAL, WHICH MAY RESULT FROM THE USE OF THE 3DICA PROGRAMMING
+TUTORIAL.
+
+<P><A NAME="chap002"></A>
+<H4>
+0.0.2 LIMITED WARRANTY</H4>
+SATISFACTION GUARANTEE. If you are dissatisfied with this product you downloaded
+from some F..ine BBS or the Internet, you may delete it at any time up
+to 30 days after download and you will get your hard disk space (that was
+occupied by the product) back. The space will be based on the space that
+was occupied during the installation, with the cost of some bad sectors,
+viruses and neat hidden files excluded. You must contact the author before
+deleting the product.
+
+<P>(Used the readme.txt of Action Supercross as a basis)
+
+<P><A NAME="chap003"></A>
+<H4>
+0.0.3 Seriously</H4>
+The 3DICA Programming Tutorial is FREEWARE. This means, it can freely be
+used and distributed as long as it is NOT CHANGED in any way. Of 3DICA,
+one is not allowed to charge any fee without a written permission of the
+author. The author is not liable of any damage caused by the source code
+included in the package.
+
+<P><A NAME="chap004"></A>
+<H4>
+0.0.4 3dica careware - what does that mean?</H4>
+If you have noticed how much work I have had making this tutorial and are
+thinking about how to repay my efforts, I would appreciate any cash / other
+nice things you could send. The people who send at least USD 5 (20FIM in
+Finland), will get their names and some comment of their own published
+in the next versions of 3dica. I reserve myself the right of not to publishing
+sick, offensive or in some other way tasteless 'comments'.
+
+<P>Just to mention, Chem (Kaj Bjorklund) will get a third of all contributions.
+Since version 2.1, Chem has been an active supporter of 3dica in three
+ways: by proofreading every new version of the doc, by writing many chapters
+of text, and by asking now and then unbelievably stupid questions ;D
+
+<P>Here's the address to which you can send your wallets / daddy's wallet
+/ its contents:
+<BR>&nbsp;
+<UL>
+<ADDRESS>
+Ilkka Pelkonen</ADDRESS>
+
+<ADDRESS>
+Kynnysmaentie 10</ADDRESS>
+
+<ADDRESS>
+FIN-01860 Perttula</ADDRESS>
+
+<ADDRESS>
+FINLAND.</ADDRESS>
+</UL>
+</UL>
+<A NAME="chap01"></A>
+<H3>
+0.1 The Authors, Greets, etc</H3>
+
+<UL><A NAME="chap011"></A>
+<H4>
+0.1.1 Ica</H4>
+My real name is Ilkka Pelkonen and I'm a 19-year-old c, (pascal), and
+assembly
+coder. I live in Finland, near the capital city of Helsinki (30km to the
+north). My hobbies include 3D coding, some cool games (Paybacktime2, Steel
+Panthers, C&amp;C, Warcraft 2, Screamer 2), writing 3dica, and jogging.
+I'm studying computer science in the <A HREF="http://www.hut.fi">Helsinki
+University of Technology</A>, and I'll probably concentrate on digital
+media. I'll join the Finnish Army in july 1998, and my 'job' there being
+"a special duty for mathematically oriented men" 8-) I belong to the group
+Hubris, see a short overview below.
+
+<P>The best way to contact me is emailing to the address <B><A HREF="mailto:ipelkone@cc.hut.fi">ipelkone@cc.hut.fi</A></B>,
+so any comments or other discussion there. Please report any errors you
+might find in the text.
+
+<P><A NAME="chap012"></A>
+<H4>
+0.1.2 Chem</H4>
+My real name is Kaj Mikael Bjorklund, and I'm a 18-year-old
+c, pascal, and assembly coder. I live in Finland, Helsinki, 'Roihuvuori'
+if it says something. Nice place. I'm mainly into programming (a real surprise
+I can guess), but I have also tried to keep my physical condition up by
+lifting weights. I'm joining Ica and (other ;) gurus (Tremor/Trauma,
+Abyss/FC, Beta/5C, ...) in HUT this fall. I'll join the Finnish Army in
+January 1999.
+
+<P>I've released a couple of players which no one (understandably) is using,
+and made with my pals a game <B><A HREF="http://www.pcuf.fi/~chem/rc.html">Rocket
+Chase</A></B> (which some ppl even play).
+
+<P>The best way to contact me is emailing to the address <A HREF="mailto:kaj.bjorklund@mbnet.fi">kaj.bjorklund@mbnet.fi</A>.
+You may check out <A HREF="http://www.pcuf.fi/~chem/">http://www.pcuf.fi/~chem/</A>,
+too. Especially females are encouraged to email immediately ;)
+
+<P><A NAME="chap013"></A>
+<H4>
+0.1.3 Hubris Productions</H4>
+First, you may want to check the <A HREF="http://www.hut.fi/~ipelkone/hubris/">Hubris
+Productions Homepage</A> (although it's quite nothing; built up in a couple
+of hours just as a practice :)
+
+<P>The history of Hubris Productions:
+
+<P><B>1995</B>
+<BR>&nbsp;
+<UL>
+<DT>
+<B>February</B> <I>Bull (Tapio Vuorinen) and Slimey (Petri Tuohimaa) found
+the group Dozer, Bull as an organizer/coder</I></DT>
+
+<DT>
+<B>March</B> <I>Override (Jouni Airaksinen) joins Dozer as a musician</I></DT>
+
+<DT>
+<B>October</B> <I>Zass (Jesse Lantinen) joins Dozer</I></DT>
+</UL>
+<B>1996</B>
+<BR>&nbsp;
+<UL>
+<DT>
+<I>Planning a demo 'Totally Oldish' (nothing was ever released, though
+:)</I></DT>
+
+<DT>
+<I>Zass and Slimey leave Dozer</I></DT>
+</UL>
+<B>1997</B>
+<BR>&nbsp;
+<UL>
+<DT>
+<B>February</B><I> Bull and Override start coding a demo 'Rain'</I></DT>
+
+<DT>
+<B>April</B><I> Override releases a tune "Deep Dreams"</I></DT>
+
+<DT>
+<B>May</B><I> Ica (Ilkka Pelkonen) and Chem (Kaj Bjorklund) join in, Ica
+as a 3D coder and secondary organizer, Chem as a music system coder</I></DT>
+
+<DT>
+<I>Dozer changes its name to Hubris (yeah!)</I></DT>
+
+<DT>
+<I>Ica releases v2.1 of his 3D coding tutorial 3DICA</I></DT>
+
+<DT>
+<B>June</B><I> Acute (Aleksi Kallio) and Tweeker (Timo Makimattila) join
+Hubris, Acute as a general stuff coder, Tweeker as a musician/graphician</I></DT>
+
+<DT>
+<B>July</B><I> Ica releases v2.11 of 3DICA</I></DT>
+
+<DT>
+<B>September</B><I> Chem releases first public version <A HREF="http://www.hut.fi/~ipelkone/hubris/hmp10.zip">v1.0
+of Hubris Module Player</A> supporting SB2/Pro/16/GUS and MOD/S3M (DJGPP)</I></DT>
+
+<DT>
+<B>October</B><I> Codger (Juha Leinonen) joins Hubris as a 3D modeller</I></DT>
+
+<DT>
+<I>Chem releases HMP v1.01</I></DT>
+
+<DT>
+<B>November</B><I> Ica releases v2.2 of 3DICA this version describing widely
+3D coding stuff from basic vector math to lighting effects, phong shading,
+and BSP tree. The document is a great success</I></DT>
+
+<DT>
+<B>December</B><I> Rondo (Lauri Tuovinen) joins Hubris as a musician</I></DT>
+
+<DT>
+<I>Chem releases HMP v1.06 with XM support. Many speed-requiring loops
+have been translated into assembly and the player is now a tad bit faster</I></DT>
+</UL>
+<B>1998</B>
+<BR>&nbsp;
+<UL><B>January</B> <I>Ica converts 3DICA into HTML and translates the whole
+shit into English. Plenty of bugs have been fixed and some enhancements
+have been done. The English and Finnish versions are now developed separately</I>
+<BR><B>March</B><I> Ica releases 3DICA v2.21 (the first complete English
+version). New subjects include inverse transformations, rotation about
+an arbitrary vector, and B-Splines</I></UL>
+<A NAME="chap014"></A>
+<H4>
+0.1.4 Thanks for help</H4>
+I list here the people who have somehow helped me with my own engine or
+written themselves a chapter to 3dica. <B><I>Thank you</I></B> guys.
+<BR>&nbsp;
+<UL>
+<LI>
+<I><A HREF="http://www.pcuf.fi/~chem/">Kaj Bjorklund</A> (Chem/Hubris)</I>
+Kaj is the official proofreader of 3dica. In addition, he has written about
+linear interpolation, phong illumination, frameskip, texture mapping tricks,
+gouraud, mip-mapping, convex polygons, bilinear filtering, and "real" phong.
+He has also written the c source code included in the package.</LI>
+</UL>
+
+<UL>
+<LI>
+<I>Jonathan Castellanes (Loonix)</I> Correcting grammatical and other errors
+in the English version of the document (so blame him not me ;) ; general
+debugging.</LI>
+
+<LI>
+<I><A HREF="http://www.sci.fi/~exec/">Tapio Vuorinen</A> (Bull/Hubris)</I>
+Proofreading, Z-buffer; the Finnish version after v2.21.</LI>
+
+<LI>
+<I>Henri Tuhkanen</I> <I>(Rodex/Static)</I> Asm optimizing course, some
+texture mapping tricks.</LI>
+
+<LI>
+<I>Jere Sanisalo</I> Portals. You'll always find the newest version of
+3dica at the <A HREF="http://www.sicom.fi/~cooldude/">homepage of Jere</A>,
+if hut.fi is down.</LI>
+
+<LI>
+<I>Timo Saarinen</I> Perspective correction.</LI>
+
+<LI>
+<I>Sampsa Lehtonen</I> <I>(TexMex/Gigamess)</I> Palette quantisizing.</LI>
+
+<LI>
+<I>Jukka Liimatta (Wog/Orange)</I> Bilinear filtering.</LI>
+
+<LI>
+<I>Jari Komppa (Sol/Trauma)</I> Median cut.</LI>
+
+<LI>
+<I>Altair</I> Mental support ;D</LI>
+
+<LI>
+<I>The readers</I> Informing about bugs that can always be found everywhere</LI>
+
+<LI>
+<I>Ilkka Pelkonen (Ica/Hubris</I>) Everything else. :)</LI>
+</UL>
+<A NAME="chap015"></A>
+<H4>
+0.1.5 Greets</H4>
+Ica (in no special order):
+<BR>&nbsp;
+<UL><I>Beta /5C, TheJoker /Crusaders, Ripple /Inside, Tonic /Trauma, !Cube
+/Trauma, Sol /Trauma, Spector /Trauma, Wog /Orange, Case /Fuse, Friction
+/Morel Arts, Memon /m0ppi prods, Jokke
+/Bad Karma, GREco /Oblivion, Submissive /Cubic Team, Sagacity /Acme, Mrz
+/Astroidea, Reptile /Astroidea, Zox /Storm, Proton
+/Tehdas (4ever!!), Texmex /Gigamess, Goblin /Quad, Fobic /Cycla, Howler
+/Fobia Design, 
+Hude /RE, Cyberfish /TLS, Zapmies, Venomix, RaS, Mako, dAS, Whizzzzter, MiGbear,
+Sqrt(-1), JayLettu, Raster, Harmless, Midnight, Altair, Kalms,
+Malc, Praetor, Absent, Adept, Gaffer, 3D-Zed :), Loonix, RH, Vulc, Duet, Vulture,
+Elflord, Janne Gronthal, Antti Haapakoski, Jussi Vainionpaa, Jukka Keski-Oja,
+Otto Chrons, ..., *.Hubris, everyone at #coders, everyone who think they
+ought to have been greeted :)</I>
+<BR>&nbsp;</UL>
+Chem:
+<BR>&nbsp;
+<UL>
+<DT>
+<I>Haanpera bros &amp; other RC people, Markku Ekblom, Antti Qvickstrom,
+Sampsa Lehtonen, Antti Karjalainen, Ilkka Pelkonen, Tapio Vuorinen, Jere
+Sanisalo, Joonas Pihlajamaa, Pekka Nurminen, Aki Puustinen, tAAt members,
+Hubris members, mailing pals, other friends.</I></DT>
+</UL>
+<A NAME="chap016"></A>
+<H4>
+0.1.6 Thanks for support</H4>
+Our heartfelt thanks to these people who have supported the development
+of 3dica monetarily. Special thanks to the people whose names are marked
+<B>bold</B>. Registered persons' own comments in <I>italic</I>.
+<BR>&nbsp;
+<UL>
+<LI>
+<A HREF="http://www.mbnet.fi/~jokke/">Joonas Pihlajamaa</A>:<I> Imuroi
+lamertutti, imuroi lamertutti! BAD KARMA rulettaa!</I></LI>
+
+<LI>
+Tommi Pisto</LI>
+
+<LI>
+JiMM:<I> jeejee paasin greetzeihin ..</I></LI>
+
+<LI>
+<B>Erik Seesjarvi</B></LI>
+
+<LI>
+<B>Juhana Venalainen</B>:<I> Ei millaan pahalla mutta hyvaa paivaa.</I></LI>
+
+<LI>
+<B>Ville Ruusutie</B>:<I> Some day I will conquer the world.</I></LI>
+
+<LI>
+<B>Samuli Kajantola</B>:<I> Information wants to be free.</I></LI>
+
+</UL>
+</UL>
+<A NAME="chap02"></A>
+<H3>
+0.2 About the Document</H3>
+
+<UL><A NAME="chap021"></A>
+<H4>
+0.2.1 Where can I get the newest version of 3dica?</H4>
+The Official home page and distribution site of 3dica can be found at
+<B><A HREF="http://3dica.foxfiber.net/">http://3dica.foxfiber.net/</A></B>.
+The newest version can also always be found at Jere Sanisalo's home page
+<B><A HREF="http://www.sicom.fi/~cooldude">http://www.sicom.fi/~cooldude/</A></B>.
+<BR><A NAME="chap022"></A>
+<H4>
+0.2.2 What has happened since the last version?</H4>
+
+<UL>
+<LI>
+Fixed some minor errors in typing etc</LI>
+
+<LI>
+Optimized bfc and vertex normal calculation pseudos</LI>
+
+<LI>
+In the BSP-Tree / Required Formulas chapter there was a minus sign missing
+in the formula of t. This didn't matter, though, if you used the formula
+only in BSP-Tree. Fixed.</LI>
+
+<LI>
+The vertex transformation pseudo was surprisingly buggy: two of the
+coefficients were wrong (the XYZ rotation matrix was correct though).
+Fixed.</LI>
+
+<LI>
+4x4 matrices!</LI>
+
+<LI>
+For the convenience of unix users, the picture filenames were changed to
+lower case in both document and the files themselves.</LI>
+</UL>
+
+<A NAME="chap023"></A>
+<H4>
+0.2.3 Features to be added</H4>
+Some topics, which will probably be described in some way in future versions:
+<BR>&nbsp;
+<UL>
+<LI>
+Complex numbers (needed with fractals)</LI>
+
+<LI>
+Quaternions</LI>
+
+<LI>
+3D shadows</LI>
+
+<LI>
+Bresenham line algorithm (for tmapping optimization)</LI>
+
+<LI>
+Subpixel accurary</LI>
+
+<LI>
+Optimization tricks for 3D geometry</LI>
+
+<LI>
+Suggest yorself new topics!</LI>
+</UL>
+</UL>
+<A NAME="chap03"></A>
+<H3>
+0.3 3D Terms etc.</H3>
+At first, the co-ordinate system I'm using is as follows: x-axis from left
+to right, y-axis from up to down, and z-axis points directly into the screen.
+The coordinate system is so a <I>right-handed</I> one, which means two
+things:
+<BR>&nbsp;
+<UL>1) The direction of the z-axis can be found with the first three fingers
+of the right hand, by sticking thumb to the right and the following finger
+downwards. The third finger shows now the direction of the z-axis (when
+all fingers are perpendicular to each other).
+<BR>&nbsp;
+<DT>
+2) Rotation about the axes is determined like this: when the thumb of the
+right hand is pointing to the direction of an axis, the other fingers bend
+to the positive rotating direction (that is, when you're rotating an object
+about the z-axis to the positive direction, it rotates clockwise).</DT>
+</UL>
+And then 3D related terms.
+<BR>&nbsp;
+<UL>
+<LI>
+<B><I>Additive rotation.</I></B> Object matrices are reset every frame
+and the rotation angles must be changed constantly to the objects rotate
+constantly. (Brr.. don't use this way -- see <I>cumulative rotation</I>
+below.)</LI>
+
+<LI>
+<I><B>Bilinear filtering.</B> </I>A technique that smoothens close-zoomed
+bitmaps.</LI>
+
+<LI>
+<I><B>Clipping.</B> </I>Cutting a polygon against another.</LI>
+
+<LI>
+<I><B>Complex polygon.</B> </I>A polygon that can cut itself.</LI>
+
+<LI>
+<I><B>Concave polygon.</B> </I>A polygon that has angles greater than 180
+degrees, but is still solid.</LI>
+
+<LI>
+<I><B>Convex polygon.</B> </I>A polygon whose all angles are less than
+180 degrees. Drawing one is as easy as drawing a triangle.</LI>
+
+<LI>
+<B><I>Cumulative rotation.</I></B> Rotating in a way that object matrices
+are reset only in the init part of the program. This means that if the
+rotation angles stay constant, the object keeps rotating at a constant
+speed. This is the Real Way of rotating; it ensures that objects rotate
+about their own axes instead of the whole world's ones.</LI>
+
+<LI>
+<I><B>Face.</B> </I>A polygon on an object's surface. The corners of a
+face are called <I>vertices</I>.</LI>
+
+<LI>
+<B><I>Keyframing.</I></B> Having some <I>key values</I> and interpolating
+between them to obtain a smooth movement between colors, rotation angles,
+positions, etc. In 3D movement, this practically means having some orientations
+of objects and/or camera saved and interpolating between them with <I>quaternions</I>
+(below) and <I>splines</I> (below too :)</LI>
+
+<LI>
+<I><B>Matrix.</B> </I>Kind of a table of numbers, with help of which certain
+complex mathematical operations are easier to perform. Matrices are used
+in 3D transformations.</LI>
+
+<LI>
+<I><B>Mip-mapping.</B> </I>Of a texture, differently-sized and pre-filtered
+bitmaps are kept in the memory. When drawing a polygon, a suitably-sized
+mipmap is chosen depending on the size of the polygon. Like this, we get
+a neat and good-looking filtering effect to texture mapping for free.</LI>
+
+<LI>
+<I><B>Origin.</B> </I>The center of a space; coordinates (0,0,0).</LI>
+
+<LI>
+<I><B>Palette quantisizing.</B> </I>Reducing the number of colors to fit
+a palette as optimally as possible.</LI>
+
+<LI>
+<B><I>Quaternion interpolation.</I></B> Using 4D space to interpolate object
+orientations smoothly from one to another.</LI>
+
+<LI>
+<B><I>Scanline subdivision. </I></B>Perspective correction is performed
+only every 8th or 16th pixel and linear interpolation is used in the middle.</LI>
+
+<LI>
+<I><B>S-buffer.</B> </I>Segmented buffer or span-buffer or scanline Z-buffer.
+Improved Z-buffer, where calculations are performed for scanlines instead
+of points.</LI>
+
+<LI>
+<I><B>Sorting.</B> </I>Determining the drawing order of polygons so that
+the farthest ones are drawn first and the closest ones last.</LI>
+
+<LI>
+<B><I>Spline. </I></B>Given a desired amount of arbitrary points, a spline
+is formed using certain formulas to go through or near all these points
+keeping the spline as smooth as possible. Neat for camera location interpolation,
+for example.</LI>
+
+<LI>
+<I><B>Subpixel.</B> </I>The position inside a pixel.</LI>
+
+<LI>
+<I><B>Subtexel.</B> </I>The position inside a texel (see bilinear filtering).</LI>
+
+<LI>
+<I><B>Texel.</B> </I>Texture element; the color of a point in a bitmap
+(cf. pixel = picture element).</LI>
+
+<LI>
+<I><B>Vector.</B> </I>A line which has a constant length and direction,
+but no determined location.</LI>
+
+<LI>
+<I><B>Vertex.</B> </I>A corner point of an object, to which one or more
+faces are attached.</LI>
+
+<LI>
+<I><B>Vertex normal.</B> </I>The normal of a vertex :) the approximation
+of which can be calculated by taking the average of the normals of every
+face attached to the vertex.</LI>
+
+<LI>
+<I><B>Z-buffer.</B> </I>A sorting technique where points are sorted into
+a screen-sized array to an order determined by the values of the points'
+Z coordinates. Only the closest pixel is drawn.</LI>
+</UL>
+<A NAME="chap04"></A>
+<H3>
+0.4 FAQ</H3>
+A very general but still worth-to-know piece of advice to all questions:
+<I>USE YOUR WIT!</I> <I>Sure</I> your code won't work, if not even the
+<I>SYNTAX</I> is right!
+
+<P><I>Q: My 3D rotations which have been grabbed straight from the text
+don't work.</I>
+
+<P><I>A: </I>Are all the variables of right type? Glanced at the C source
+code? ;)
+
+<P><I>Q: My texturemapper messes the screen up. I can't find any problems
+anywhere.</I>
+
+<P><I>A: </I>Could be a rounding problem. Fixed:
+<UL>
+<PRE><TT>putpixel( x, y, tmap[ u/65536+v/256) ] )</TT></PRE>
+</UL>
+
+<DT>
+You've cleverly thought to optimize a bit: when v should be divided by
+2^16 and multiplied by 2^8, you've just divided it by 2^8. The result is
+wrong. Why? Now the upper 8 bits of the decimal part of your 16.16 fixed
+point won't be cleared, and tmap regards them as u coordinates, so the
+result is wrong. The right way is as follows:</DT>
+
+<UL>
+<PRE><TT>putpixel( x, y, tmap[ u/65536+(v/65536)*256) ] )</TT></PRE>
+</UL>
+
+<DT>
+Float:</DT>
+
+<UL>
+<PRE><TT>putpixel( x, y, tmap[ word(u+v*256) ] )</TT></PRE>
+</UL>
+
+<DT>
+The decimal parts of u and v mess each other up so misrepresenting the
+result. The right way:</DT>
+
+<UL>
+<PRE><TT>putpixel( x, y, tmap[ word(u)+word(v)*256) ] )</TT></PRE>
+</UL>
+
+<DT>
+I myself had btw this problem and wondered for a <B>long</B> time why using
+floats totally messed the routines up :I</DT>
+
+
+<P><I>Q: My flat polygon routine doesn't work.</I>
+
+<P>A: Are the variables of right type? Do you use integer divide with floats
+or vice versa? Can you really use fixed point? Do you remember to divide
+by it at the end? Does your vertex sorting work?
+
+<P><I>Q: What are the terms AB, BC, and CA in the face listing of 3D-Studio's
+asc format? (duh :)</I>
+
+<P><I>A: </I>They tell if a line is drawn or not in a wireframe figure.
+
+<P><I>Q: When should I use vertex normals, when face normals?</I>
+
+<P><I>A: </I>Use vertex normals with gouraud and phong shading, and face
+normals with lambert flat shading.
+
+<P><A NAME="chap05"></A>
+<H3>
+0.5 Recommended References</H3>
+As a great help and the Bible of graphics coding I use the glamorous book
+<B>Computer Graphics: Principles &amp; Practice, 2nd Ed</B> by Foley, Van
+Dam, Feiner and Hughes, Addison-Wesley 1993. Other books and documents
+are listed below.
+<BR>&nbsp;
+<UL>
+<LI>
+<I>Advanced Animation and Rendering Techniques, Watt brothers, Addison-Wesley
+1996 - <B>every</B></I> kind of<B><I> </I></B>3D related stuff :)</LI>
+
+<LI>
+<I>Algebra ja Geometria, Kivela, Simo, Otatieto 1997 </I>- matrices, 3D
+rotations, projections</LI>
+
+<LI>
+<I>OTMMATX.DOC</I> - matrices, hierarchical systems</LI>
+
+<LI>
+<I>OTMPHONG.DOC </I>- phong illuminating</LI>
+
+<LI>
+<I>VGOPHONG.DOC </I>- real phong</LI>
+
+<LI>
+<I>FATMAP2.TXT </I>- texturing stuff</LI>
+
+<LI>
+<I>The S-buffer FAQ</I> - S-buffer :)</LI>
+
+<LI>
+<I>PC Game Programmer's Encyclopedia 1.0 </I>- BSP-tree</LI>
+
+<LI>
+<I>PENTOPT.TXT</I> - pentium optimizing tricks</LI>
+
+
+<P>[numerous other documents the names of whose I really can't remember]</UL>
+
+<H3>
+<A NAME="chap06"></A></H3>
+
+<H3>
+0.6 A Quick Introduction to Radians</H3>
+<I>Radians</I> are called the mystical angles all trigonometric functions
+(sine, cosine, tangent, cotangent, ...) in mathematical code libraries
+take as their parameters. What are they? Where did they come? <I>Why</I>
+did they come? I'll not answer the two latter questions :) but I'll tell
+how to use them in your apps.
+
+<P><B>Radian angles can be treated like any other angle by only remembering
+that the degrees of a full circle (360 degrees) are 2*PI radians</B>:
+<UL><TT>360 degrees = 2*PI = 6.28.. radians</TT></UL>
+Using this information, we derive a formula how to convert degrees to radians
+and vice versa:
+<UL>
+<DT>
+<TT>x radians = (360 * x degrees)/2*PI = (180 * x degrees)/PI.</TT></DT>
+
+<DT>
+<TT>x degrees = (2*PI * x radians)/360 = (PI * x radians)/180.</TT></DT>
+</UL>
+We can now calculate how many degrees is one radian:
+<BR>&nbsp;
+<UL><TT>1 radian = (1 degree)*180/PI = 57.295... degrees.</TT>
+<BR>&nbsp;</UL>
+Now it should be quite clear. And remember: don't be afraid of using radians
+-- they're as good an alternative as degrees, and at least as simple to
+use.</UL>
+<A HREF="3dica.htm">Back to the index</A>
+</BODY>
+</HTML>

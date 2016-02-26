@@ -1,0 +1,219 @@
+{rozhovor s pinglem v hospodě:}
+
+block _05 ( beg(1) and isactico(i_doutnik) and (chci_plakat=1) )
+title
+  justtalk
+D: "Wie wär's mit ner Zigarre?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Verlockend..."
+  start pingl "mlci"
+  justtalk
+D: "Es ist eine original Zigarre aus
+    Dračí Historie."
+  juststay
+  start pingl "mluvi"
+Vrch: "In Ordnung, die nehm ich!"
+  start pingl "mlci"
+  justtalk
+D: "Rauchst du sie jetzt?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Hey, weißt du nicht,
+       daß Rauchen tödlich ist?!"
+Vrch: "Nein, mir geht's nur
+       um ihre Kostbarkeit."
+Vrch: "Vielleicht schnüffel ich mal
+       von Zeit zu Zeit daran."
+Vrch: "...und das Poster gehört dir, natürlich!"
+  start pingl "mlci"
+
+  objstat away hosp_plakat
+  icostat off i_doutnik
+  icostat on i_plakat
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and maxline(1) )
+title
+  justtalk
+D: "Kellner..."
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+TITLE ...was ist mit dem Poster?
+  justtalk
+D: "...was ist mit dem Poster?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Magst du es?"
+  start pingl "mlci"
+  justtalk
+D: "Ich hätte es gern in meinem Zimmer."
+  juststay
+  start pingl "mluvi"
+Vrch: "Und was hättest du lieber?"
+  start pingl "mlci"
+  justtalk
+D: "Fahnen, Aufkleber, Schilder..."
+  juststay
+  justtalk
+D: "...Untersetzer, hast du welche?..."
+  juststay
+  justtalk
+D: "...auch eine Baseballkappe..."
+  juststay
+  justtalk
+D: "...und ein T-Shirt mit Logo!"
+  juststay
+  start pingl "mluvi"
+Vrch: "Nichts davon!"
+  start pingl "mlci"
+  justtalk
+D: "Und was ist mit dem Poster?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Ich könnte es dir geben,
+       aber nicht umsonst."
+  start pingl "mlci"
+
+  let chci_plakat (1)
+gplend
+
+block _02 ( beg(0) and not been(_02) )
+TITLE ...würdest du mir Dartpfeile leihen?
+  justtalk
+D: "...würdest du mir Dartpfeile leihen?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Wir verleihen keine Dartpfeile."
+  start pingl "mlci"
+  justtalk
+D: "Warum?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Es gibt keine Dartpfeile."
+  start pingl "mlci"
+  justtalk
+D: "Versteh ich nicht!"
+  juststay
+  start pingl "mluvi"
+Vrch: "Ganz einfach, es gibt keine Dartpfeile."
+Vrch: "Wenn es welche gäbe,
+       dann wäre die Bar wohl voll..."
+Vrch: "Sogar einer unserer feinsten Gäste
+       hat sich deshalb in den Wald begeben,
+       um sich zu erhängen."
+  start pingl "mlci"
+  justtalk
+D: "Wo genau ist er hin gegangen?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Keine Ahnung, er hat nach einem Ast gesucht..."
+  start pingl "mlci"
+
+{a objevime sipkare v lese:}
+  objstat_on leskriz_sipkar leskriz
+gplend
+
+block _03 ( beg(0) and not been(_03) )
+TITLE ...wo führt diese Tür hin?
+  justtalk
+D: "...wo führt diese Tür hin?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Nach draußen.
+       Aber sie wird nicht mehr benutzt,
+       wegen der Dartpfeile."
+  start pingl "mlci"
+  justtalk
+D: "Das klingt nach einer interessanten Geschichte..."
+  juststay
+  start pingl "mluvi"
+Vrch: "Sie wurde ursprünglich mal genutzt,
+       aber es sind zuviele Unfälle passiert."
+Vrch: "Wenn jemand unerwartet hereinkam,
+       wie es oft vorkam,
+       hatte er einen Dartpfeil im Kopf stecken."
+  start pingl "mlci"
+  justtalk
+D: "Wie habt ihr dann die Punkte berechnet?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Zehn für ein Auge und fünf für eine Nase."
+Vrch: "Wenn der Wurf kräftig genug war,
+       gab es zwei Punkte für jeden fehlenden Zahn."
+Vrch: "Und wenn der Pfeil so schnell flog,
+       daß er den Mann mit sich riss..."
+Vrch: "...und vor der Kneipe an einen Baum nagelte,
+       gab das 100 Punkte."
+  start pingl "mlci"
+  justtalk
+D: "Sind so die Regeln?"
+  juststay
+  start pingl "mluvi"
+Vrch: "So waren sie, aber es gab Streit deshalb."
+Vrch: "Und deshalb bleibt die Tür
+       für immer verschlossen
+       und der Schlüssel ist sicher versteckt."
+  start pingl "mlci"
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+TITLE ...habt ihr Hamburger?
+  justtalk
+D: "...habt ihr Hamburger?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Wir kochen nichts!"
+  start pingl "mlci"
+  justtalk
+D: "Der braucht nicht gekocht werden..."
+  juststay
+  start pingl "mluvi"
+Vrch: "Wir haben keine Küche."
+  start pingl "mlci"
+  justtalk
+D: "Was ist mit dem Schild draußen?"
+  juststay
+  start pingl "mluvi"
+Vrch: "Nur ein Werbegag."
+  start pingl "mlci"
+  justtalk
+D: "Ich verstehe."
+  juststay
+gplend
+
+
+
+block _06 ( beg(0) and been(_04) and not been(_05) and last(_00) and maxline(1) )
+title
+  justtalk
+D: "...das Poster..."
+  juststay
+  start pingl "mluvi"
+Vrch: "Ich dachte, wir hätten uns verstanden.
+       Du kannst es haben, aber nicht für umsonst."
+  start pingl "mlci"
+  exitdialogue
+gplend
+
+block _08 ( beg(0) and last(_00) and maxline(1) )
+title
+  justtalk
+D: "...nichts."
+  juststay
+  exitdialogue
+gplend
+
+block _07 ( beg(0) and not last(_00) )
+TITLE ...also tschüss.
+  justtalk
+D: "...also tschüss."
+  juststay
+  start pingl "mluvi"
+Vrch: "Ja..."
+  start pingl "mlci"
+  exitdialogue
+gplend

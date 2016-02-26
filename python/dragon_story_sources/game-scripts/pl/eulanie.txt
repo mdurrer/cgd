@@ -1,0 +1,136 @@
+{dialog s Eulanii- ufnukanou zidli:}
+
+block _00 ( beg(1) )
+title
+  justtalk
+   D: "Pani Podnóżko..."
+   D: "Drogie krzesełko kuchenne...."
+   D: "Szanowny stołku!"
+   D: "Jaśnie wielmożny foteliku..."
+  juststay
+  start zid_prava_huba "mluvi"
+{#this part is based on the large variety of words
+{#for a very little (arm-)chair in Czech
+   Z2: "Och, czym mogę służyć?"
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Szukam kogoś
+       by móc rozkoszować się
+       własną wspaniałomyślnością."
+  juststay
+  justtalk
+   D: "Chcę z tobą porozmawiać!"
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Jestem nieśmiała..."
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Nie szkodzi, to ja będę najwięcej gadał."
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Denerwujesz mnie."
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Czemu masz takie opory?
+       Nie chcę cię drażnić..."
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Mam nadzieję, że nie będziesz..."
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Wyglądasz tak ślicznie i uroczo!"
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Naprawdę?"
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Naprawdę.
+       Słowo honoru."
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Okłamujesz mnie."
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Wcale nie
+       Mówię szczerą prawdę."
+{#this is based on the the phrase "to tell downright lies"
+{#the sentence "to tell downright the truth" is imposiible
+{#and it sounds ridiculous in Czech
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Okłamujesz mnie i chcesz żeby się ze
+        mnie śmiano.
+        Wcale mnie nie lubisz."
+  start zid_prava_huba "mlci"
+gplend
+
+block _01 ( last(_00) )
+title
+  justtalk
+   D: "Co ty powiesz?"
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Nikt mnie nie lubi."
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Jak mogły ci przyjść do głowy takie bzdury?"
+   D: "Lubię cię.
+       Chciałbym cię mieć u siebie na strychu."
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Mam lęk wysokości..."
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Możesz zatrzymać się u mnie w rupieciarni!"
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Nie cierpię kurzu!"
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Jeśli tak, to nie wiem gdzie cię umieścić.
+       Nie chcę żebyś zagracała mi salon."
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "To dowodzi, że mnie nie lubisz."
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Ja tylko żartowałem."
+   D: "Chciałem ci pokazać
+       bezsens twoich słów.
+       Wyglądasz naprawdę ślicznie."
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Ale to nieprawda.
+        Czy widzisz małą kropeczkę na mojej prawej
+        przedniej nodze?"
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Gdzie?"
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "To ta mała kropeczka na samym środku."
+  {přímo plačtivě:}
+   Z2: "Jest BARDZO widoczna!"
+  start zid_prava_huba "mlci"
+  {drak zabrejlí:}
+  justtalk
+   D: "Nic nie widzę..."
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "To ślad kornika!"
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Och, ta tutaj!"
+   D: "Ależ prawie jej nie widać..."
+  juststay
+  start zid_prava_huba "mluvi"
+   Z2: "Widzisz, nikt mnie nie lubi,
+        każdy chce bym wyglądała śmiesznie,
+        nic dziwnego, że jestem tak powściągliwa."
+  start zid_prava_huba "mlci"
+  justtalk
+   D: "Masz rację, nic dziwnego."
+   D: "(Nie wydaje się być zbyt rozmowna,
+       lepiej poszukam sobie kogoś innego)."
+  juststay
+gplend

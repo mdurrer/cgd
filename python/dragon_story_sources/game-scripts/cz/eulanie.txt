@@ -1,0 +1,134 @@
+{dialog s Eulanii- ufnukanou zidli:}
+
+block _00 ( beg(1) )
+title
+  justtalk
+  D: "Paní stoličko..."
+  D: "Milé kuchyňské štokrlátko..."
+  D: "Vznešená židličko!"
+  D: "Urozené křesílko..."
+  juststay
+  start zid_prava_huba "mluvi"
+{#this part is based on the large variety of words
+{#for a very little (arm-)chair in Czech
+  Z2: "Ach, přeješ si snad něco?"
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Hledám někoho,
+      s kým bych si mohl trochu užít
+      své extrovertní povahy."
+  juststay
+  justtalk
+  D: "Chci si s vámi povídat!"
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Ale já jsem introvertní židle..."
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Nevadí, budu povídat hlavně já."
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Obtěžuješ mě."
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Copak že jsi taková do sebe uzavřená?
+      Nechci tě rozzlobit..."
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Ne, rozzlobit, to snad ne..."
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Vypadáš tak pěkně a sympaticky!"
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Myslíš?"
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Vážně.
+      Čestný slovo."
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Lžeš mi."
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Kdepak by se vzalo.
+      Mluvím pravdu jako když tiskne."
+{#this is based on the the phrase "to tell downright lies"
+{#the sentence "to tell downright the truth" is imposiible
+{#and it sounds ridiculous in Czech
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Lžeš a chceš mě zesměšnit.
+       Vůbec se ti nelíbím."
+  start zid_prava_huba "mlci"
+gplend
+
+block _01 ( last(_00) )
+title
+  justtalk
+  D: "Co to povídáš?"
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Nelíbím se totiž nikomu!"
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Jak jsi mohla na takový nesmysl přijít?"
+  D: "Mě se líbíš,
+      hned bych tě chtěl mít doma na půdě!"
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Mám strach z výšek..."
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Tak v komoře!"
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Nesnáším špínu."
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Tak potom nevím, kam s tebou.
+      Obývák si od tebe hyzdit nenechám."
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Vidíš, teď ses projevil."
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Jenom jsem žertoval."
+  D: "Chtěl jsem ti ukázat,
+      jaké velké nesmysly povídáš.
+      Jsi vážně šik."
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Jenomže to není pravda.
+       Vidíš tu malou tečku na mé pravé přední noze?"
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Kterou?"
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "Je to taková malá ťučka přímo uprostřed."
+  {přímo plačtivě:}
+  Z2: "A je HROZNĚ vidět!"
+  start zid_prava_huba "mlci"
+  {drak zabrejlí:}
+  justtalk
+  D: "Nic nevidím..."
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "...od červotoče!"
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "Jo tahle!"
+  D: "Ale je docela malá..."
+  juststay
+  start zid_prava_huba "mluvi"
+  Z2: "No vidíš, nikomu se nelíbím,
+       všichni mě chtějí jenom zesměšnit,
+       tak se nediv, že jsem potom introvertní."
+  start zid_prava_huba "mlci"
+  justtalk
+  D: "To potom opravdu není divu."
+  D: "(S ní asi moc řečí nebude,
+      raději se poohlédnu ještě někde jinde.)"
+  juststay
+gplend

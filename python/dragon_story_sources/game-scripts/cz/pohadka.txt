@@ -1,0 +1,112 @@
+{drak čte skřetům pohádku:}
+
+block _ (1)
+title
+  {knihu pak uz nebudeme potrebovat:}
+  icostat off i_pohadka
+  load bert "kniha_cte"
+  load bert "kniha_otevir"
+  load bert "kniha_vytahu"
+  load bert "kniha_mlci2s"
+  load bert "kniha_mlupre"
+  load bert "kniha_mlupo"
+  load bert "kniha_divase"
+  load bert "kniha_listuj"
+
+  load blby "usina"
+  load blby_hl "usina"
+  load blbejsi "usina"
+
+  startplay bert "kniha_otevir"
+
+  start bert "kniha_cte"
+
+  D: "Byla to pohádka jako tisíce jiných."
+  D: "Přiletěl drak a chtěl sežrat princeznu.
+      Naštěstí se objevil udatný princ."
+  D: "Draka zamordoval, dostal princeznu za ženu
+      a půl království k tomu.
+      Všichni žili šťastně až do smrti."
+
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+  D: "Starému dementnímu králi vypadaly
+      dávno všechny zuby
+      a přijímal pouze tekutou potravu."
+  D: "Měl kůži seschlou až na kost
+      a byl lehký jako kus papíru."
+  D: "Není divu, že když komorník
+      zapomněl zavřít okno, uletěl.
+      Na starých hradech bývá docela průvan."
+  D: "Král chvíli plachtil vzduchem,
+      ale netrvalo to dlouho.
+      Nakonec ho rozmočil déšť."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+  start blby "usina"
+  start blby_hl "usina"
+
+  D: "Draka rozežrali červi.
+      Prince korunovali za krále
+      a zdědil druhou půlku království."
+  D: "Princeznu korunovali za královnu.
+      Neměli děti."
+  D: "Pro pořádek budeme oběma říkat pořád stejně."
+  D: "Princezna brzy ztratila svůj mladistvý půvab
+      a tvář měla zhyzděnou vrásky."
+  D: "Když se podívala do zrcadla,
+      zlobně jím třískla o zem.
+      Zrcadlo se rozpadlo na spoustu ostrých střepů."
+  start blby "spi"
+  start blby_hl "spi"
+  objstat_on bota skreti
+  start bota "zakladni"
+  D: "Princ trpěl krátkozrakostí na jedno oko,
+      protože to druhé bylo skleněné.
+      Neviděl, že šlape bosou nohou do střepů."
+  start blbejsi "usina"
+  objstat away blbejsi_hl
+  D: "Dostal otravu krve
+      a ve strašných horečkách zemřel."
+  D: "Stejně ho trápilo revma,
+      od toho, jak chodil bosý."
+  D: "Na starých hradech bývá opravdu chladno."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+  D: "Přiletěl nový drak a chtěl si dát něco k snědku."
+  D: "Princezna byla stará a ošklivá,
+      žádný mladý udatný princ se nenašel."
+  D: "Drak byl nenasytný a princeznu
+      vzal do huby tak, jak byla.
+      Udávil se, protože šla špatně rozžvýkat."
+  start blbejsi "spi"
+  D: "Není divu, staré maso
+      se musí nejdřív trochu podusit."
+  D: "Každý jiný drak by raději
+      chcípnul hlady, než by měl
+      polykat takové tuhé sousto."
+  D: "Mezi draky se to rozkřiklo
+      a příště už sem žádný nezavítal."
+  startplay bert "kniha_listuj"
+  start bert "kniha_cte"
+
+  D: "Tak takhle to celé bylo!"
+
+
+  startplay bert "kniha_mlci2s"
+  start bert "kniha_cte"
+{chvíli pauza}
+  D: "Pššššt!"
+
+  startplay bert "kniha_divase"
+  start bert "kniha_mlupre"
+{najdeme scenar v knize...
+  D: "Jé, hele, v knize je vložený nějaký papír."
+  startplay bert "kniha_vytahu"
+  start bert "kniha_mlupo"
+  D: "No co, zahazovat ho nebudu."
+  juststay
+  icostat on i_scenar
+gplend

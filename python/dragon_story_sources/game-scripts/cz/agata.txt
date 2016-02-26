@@ -1,0 +1,367 @@
+block _08 ( beg(1) and (hradni_dvere=2) )
+title
+{vylili jsme na zem pivo a ona si vzpomene na heslo:}
+  justtalk
+  D: "Agáto, už ti přišla nějaká myšlenka?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Pořád nic."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Hm."
+  juststay
+  exitdialogue
+gplend
+
+block _07 ( beg(1) and not been(_07) and (hradni_dvere=3) )
+title
+{vylili jsme na zem pivo a ona si vzpomene na heslo:}
+  justtalk
+  D: "Agáto, už ti přišla nějaká myšlenka?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Myslím, že jsem zachytila nějaké signály."
+  Z1: "Dobře si to zapamatuj:"
+  Z1: "Memoriter - Menander - Mendacium"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Memoriter, Menander, Mendacium."
+  D: "Dobrá, mám to v hlavě."
+  D: "Fakt dík!"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Nebylo za co..."
+  start zid_leva_huba "mlci"
+
+  let hradni_dvere (4)
+  exitdialogue
+gplend
+
+block _00 ( beg(1) and not been(_00) and (hradni_dvere=1) )
+title
+{vrati se z hradu a zjisti, ze nejdou otevrit dvere do hodovny:}
+  justtalk
+  D: "Agáto!"
+  juststay
+  justtalk
+  D: "S vaší vůdkyní Karmelou
+      se to celé nějak zkomplikovalo..."
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Jakže?"
+  Z1: "Cože?"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Nikde jsem ji nenašel."
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Díval ses pozorně kolem sebe?"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Jakoby se po ní zem slehla!"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "To je zlé, to je zlé.
+       Nenapadá tě něco?"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Něco mě náhodou napadlo
+      - je to pošetilá myšlenka -
+      na hradě jsem objevil jedny uzamčené dveře."
+  juststay
+  justtalk
+  D: "Co kdyby se skrývala za nimi?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Nesmysl."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "No dobrá, ale co kdyby?!"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "No zní to sice dost nepravděpodobně,
+       ale budu se ti snažit být nápomocna."
+  Z1: "Máš na mě nějakou otázku?"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Nepomohlo by na ty dveře heslo?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Ty jsi hlava!"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Znáš to heslo?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Neznám...
+       ale mohla bych se ho dozvědět!"
+  Z1: "Jistě sis všimnul,
+       že jsem ze dřeva."
+  Z1: "Všechny bytosti ze dřeva
+       mají zvláštní schopnost
+       předávat si zprávy."
+  Z1: "Ale..."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Chybí ti vhodné médium?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Tak to není."
+  Z1: "Zprávy obyčejně sálají
+       do mých nohou ze země,
+       přes šprušle mi naproudí do opěradla..."
+  Z1: "...a tam je zpracuje mozkové centrum."
+  Z1: "Tisíce a tisíce neuronů se účastní
+       této podivuhodné transakce myšlenek."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Fajn, ale co já s tím?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Moje neurony jsou v pořádku,
+       alespoň doufám."
+  Z1: "Potíž je v tom, že v tuto chvíli
+       do mých nohou žádné informace nesálají."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Jak je to možné?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Asi někam unikají po cestě,
+       třeba je zdejší půda špatný vodič,
+       opravdu nevím..."
+  start zid_leva_huba "mlci"
+
+  {ted uz muzeme tusit, ze mame vylit na travnik pullitr:}
+  let hradni_dvere (2)
+  exitdialogue
+gplend
+
+block _01 ( beg(1) and not been(_01) and (tereza_levituje=5) )
+title
+  {az levituje vzhuru nohamapak pokec s Agátou:}
+  justtalk
+  D: "Tak přece to Tereza dokázala!"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Je to fakt holka šikovná."
+  start zid_leva_huba "mlci"
+  let tereza_levituje (0)
+  exitdialogue
+gplend
+
+block _02 ( beg(1) and maxline(1) and not been(_02) )
+title
+  justtalk
+  D: "Paní židle!"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Přeješ si?"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Můžete mi něco vysvětlit?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Ano?"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Co tady probůh děláte?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Jak vidíš, paseme se."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Proč zrovna tady?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Je tady nejšťavnatější pažit."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Och!"
+  juststay
+gplend
+
+block _03 ( beg(0) and been(_02) and not been(_03) )
+title Očekával bych nějaké prosluněnější místo...
+  justtalk
+  D: "Očekával bych nějaké prosluněnější místo..."
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Máš pravdu,
+       původně jsme spásaly louku před hradem."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "A?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Hradní pán Pánnapět nás vyhnal!"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Neví co dělá,
+      takový nezávadný způsob péče o trávník!"
+  D: "Žádné zapáchající plyny, žádné bobky!"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Nesnesl to věčné vrzání."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Zorganizujte se do rozhodného šiku
+      a nenechejte si nic líbit!"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Je to kruťas!"
+  Z1: "Protestovaly jsme a on zajal
+       a zcela jistě také uvrhl do temného žaláře
+       naši vůdkyni Karmelu pátou!"
+  Z1: "V našich řadách vládne
+       dezorganizace a totální zmatek!"
+  start zid_leva_huba "mlci"
+gplend
+
+block _04 ( beg(0) and been(_03) and not been(_04) )
+title Máte o Karmele nějaké zprávy?
+  justtalk
+  D: "Máte o Karmele nějaké zprávy?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Nevíme o ní vůbec nic!"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Jsem pobouřen každou nespravedlností,
+      kterou kolem sebe spatřím!"
+  D: "Jsem ale také vždy připraven
+      pohnout svět tím správným směrem!"
+  juststay
+  {obdivně, naivně, jako Melicharová Jonášovi:}
+  start zid_leva_huba "mluvi"
+  Z1: "Hrdino!"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Jsem skaut."
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Pak se musíš honem vypravit do hradu!"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Jsem připraven."
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Do hradu se ovšem nedostaneš jenom tak,
+       bránu nechali uzamčít na několik západů,
+       aby Karmela nemohla uniknout."
+  start zid_leva_huba "mlci"
+  {nešťastně, bezradně:}
+  justtalk
+  D: "Ale co mám teda dělat?!"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Do každého pořádného hradu
+       vede tajná chodba,
+       a přirozeně i do toho našeho."
+  Z1: "Ústí tady poblíž v lese,
+       pod dvěma starými pařezy."
+  Z1: "Pro židli je chodba trochu nepohodlná,
+       ale ty se protáhneš."
+  Z1: "Vyřiď Karmele pozdrav ode mě."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Od vás?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Jmenuju se Agáta.
+       A můžeš se zmínit i o mých přítelkyních."
+  start zid_leva_huba "mlci"
+
+  {pribude na mape nova lokace:}
+  let new_parezy (1)
+gplend
+
+block _05 ( beg(0) and been(_02) and not been(_05) )
+title Co jsou to vlastně zač, ty vaše přítelkyně?
+  justtalk
+  D: "Co jsou to vlastně zač, ty vaše přítelkyně?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Ále, můžu říct, že celkem příjemné dámy."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Co ta ufňukaná židle vedle vás?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Ach ty myslíš Eulánii?"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Přesně tu."
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "No to víš, ona je taková..."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "A jinak?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Ta u toho stromu je Melánie.
+       Pase se Kristýna a levituje Tereza."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Tereza má zvláštní zálibu."
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Ale jinak je milá."
+  Z1: "Já levitaci taky zkouším,
+       ovšem zatím nemám ten cvik."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Dokázala by Tereza levitovat i vzhůru nohama?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Opěradlem dolů? Pochybuju."
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Myslíš, že si s ní můžu promluvit?"
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Raději ne,
+       při levitaci to není moc vhodné."
+  start zid_leva_huba "mlci"
+
+  {az se prijde po x-te do mistnosti, nechat Terezu vzhůru nohama!}
+  let tereza_levituje (1)
+gplend
+
+block _06 ( beg(1) and maxline(1)) )
+title
+{vrati se z hradu a zjisti, ze nejdou otevrit dvere do hodovny:}
+ labels anonym
+  if(not been(_04)) anonym
+  justtalk
+  D: "Agáto!"
+  juststay
+  exit
+ label anonym
+  justtalk
+  D: "Paní židle..."
+  juststay
+gplend
+
+block _09 ( beg(0) and last(_06) and maxline(1) )
+title
+  start zid_leva_huba "mluvi"
+  Z1: "Děje se něco?"
+  start zid_leva_huba "mlci"
+  justtalk
+  D: "Právě že ne..."
+  juststay
+  exitdialogue
+gplend
+
+block _10 ( beg(0) and not ((last(_02) or(last(_06))) and not maxline(1) )
+title Zatím nashledanou...
+  justtalk
+  D: "Zatím nashledanou..."
+  juststay
+  start zid_leva_huba "mluvi"
+  Z1: "Nashledanou."
+  start zid_leva_huba "mlci"
+  exitdialogue
+gplend

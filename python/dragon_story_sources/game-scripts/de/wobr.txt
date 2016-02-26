@@ -1,0 +1,396 @@
+{drak s obrem:}
+
+block _00a ( beg(1) and not been(_00a)) )
+title
+  justtalk
+D: "Hey!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Wer bist du? Ein Zwerg?
+    Nicht? So eine Schande.
+    Ich mag Zwerge."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Ich bin Bert und ich bin ein Drache!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Hmm..."
+O: "Du siehst in etwa so aus
+    wie die anderen Drachen,
+    die ich bisher sah...
+    Aber du hast keine Flügel!"
+  start obr_hlava "mlci"
+  justtalk
+D: "Eines Tages werde ich welche haben ..."
+  juststay
+  start obr_hlava "mluvi"
+O: "Ich weiß ja nicht.
+    Denk lieber nochmal darüber nach!"
+  start obr_hlava "mlci"
+  justtalk
+D: "Verdammt, nun werd ich
+    wohl einen Flügelkomplex bekommen."
+  juststay
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _00b ( atbegin(1) and been(_00a) )
+title
+ labels jsemchytry
+  justtalk
+D: "Hi, ich hab noch ein paar Fragen an dich..."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Hmm..."
+  start obr_hlava "mlci"
+  if(otec_me_poucil=1) jsemchytry
+  exit
+ label jsemchytry
+  let otec_me_poucil (2)
+  start obr_hlava "mluvi"
+O: "Weißt du noch
+    was ich dich zuvor gefragt habe?"
+  start obr_hlava "mlci"
+  justtalk
+D: "Ich denke schon."
+  juststay
+  start obr_hlava "mluvi"
+O: "Also warum hast du keine Flügel?
+    Bist du ein Drache oder nicht?"
+  start obr_hlava "mlci"
+  justtalk
+D: "Nun, das ist nur eine Frage der Evolution..."
+D: "Aber jetzt bin ich mit Fragen dran."
+  juststay
+  start obr_hlava "mluvi"
+O: "Wie du willst."
+  start obr_hlava "mlci"
+
+gplend
+
+block _01 ( atbegin(0)) and not been(_01) and isobjon(obr_pajzl1) )
+TITLE Was mahlst du in der Mühle?
+  justtalk
+D: "Was mahlst du in der Mühle??"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Ähhh, frag lieber nicht."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Du mahlst Zwerge in dieser Mühle!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Na also, du hast es erraten!"
+  start obr_hlava "mlci"
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _02 ( atbegin(0) and not been(_02) and been(_01) and isobjon(obr_pajzl1) )
+TITLE Du wirfst die Zwerge einfach so rein, wie sie sind?
+  justtalk
+D: "Du wirfst die Zwerge einfach so rein,
+    wie sie sind??"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Warum nicht?
+    Die Zwerge sind ziemlich sauber."
+O: "Ich nehme ihnen nur die Mützen ab,
+    die blockieren mir die Mühle."
+  start obr_hlava "mlci"
+
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _03 ( atbegin(0) and not been(_03) and been(_01) and isobjon(obr_pajzl1) )
+TITLE Du ißt wirklich Zwerge?
+  justtalk
+D: "Du ißt wirklich Zwerge?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Wofür ist das Ungeziefer sonst da?
+    Nur zum Fressen, sag ich..."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Und du magst sie."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Ich liebe sie!"
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_03) and isobjon(obr_pajzl1) )
+TITLE Kannst du mir gute Rezepte verraten?
+  justtalk
+D: "Kannst du mir gute Rezepte verraten?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Ich kenne viele Rezepte!"
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Kannst du mir ein wirklich gutes verraten?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Da fällt die Auswahl schwer..."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _04 ( beg(0) and not been(_04) and been(_01) and isobjon(obr_pajzl1) )
+TITLE Zwerge zu zermahlen ist unmenschlich!
+  justtalk
+D: "Zwerge zu zermahlen ist unmenschlich!!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Mag sein.
+    Aber so ist die grausame Märchenrealität."
+O: "Ich werd am Sonntag einen Hackbraten essen."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _06 ( atbegin(0) and not been(_06) and been(_03) and isobjon(obr_pajzl1) )
+TITLE Aber so werden alle Zwerge aussterben!
+  justtalk
+D: "Aber alle Zwerge werden aussterben,
+    wenn du so weitermachst!!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Keine Sorge,
+    ich verhungere schon nicht.
+    Ich hab noch ne Menge in Dosen konserviert!"
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Mit viel Zwiebeln?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Das wichtigste ist viel Pfeffer.
+    Und reifen lassen, für mindestens ein Jahr."
+O: "Dann sind sie richtig köstlich."
+  start obr_hlava "mlci"
+  let pokec_s_obrem (pokec_s_obrem+1)
+gplend
+
+block _07 ( beg(0) and not been(_07) and isobjaway(obr_pajzl1) )
+TITLE Wo sind die gefesselten Zwerge hin?
+  justtalk
+D: "Wo sind die gefesselten Zwerge hin?
+    Du musst dich richtig schlecht gefühlt haben,
+    als du sie frei gelassen hast."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Ich weiß nicht, wovon du redest.
+    Ich hab sie gegessen."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Gegessen?!
+    Aber ich mochte sie doch so sehr..."
+D: "...wir teilten dieselben Interessen,
+    und haben unsere Sorgen ausgetauscht.
+    Wir haben aus dem selbem Becher getrunken..."
+D: "...die Gelbsucht gemeinsam durch gestanden,
+    und uns sogar Bleistifte geliehen!"
+D: "Sie waren solch sympathische Zwerge,
+    sie hatten hübsche Bärte!"
+D: "Kannst du das nicht wieder ausbügeln?
+    oder rückgängig machen?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Sie zurück holen, meinst du?
+    Das würde nichts bringen."
+O: "Ich hab sie ausgezeichnet zermahlen."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Warum hast du das gemacht, du Mörder?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Naja, große Bissen runter zu schlucken
+    ist ungesund."
+O: "Davon bekomm ich Blähungen.
+    Du willst doch nicht,
+    daß mir schlecht wird, oder?"
+  start obr_hlava "mlci"
+gplend
+
+block _13 ( beg(0) and not been(_13) and isobjaway(obr_pajzl1) )
+TITLE Was wirst du nun essen?
+  justtalk
+D: "Was wirst du essen, nun da es verboten ist,
+    Zwerge zu essen?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Trotzdem Zwerge.
+    Jedoch eingemacht und gekocht."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Soweit ich weiß,
+    solltest du ALLE Zwerge frei lassen!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Ich weiß,
+    wie sehr du dich um diese Zwerge sorgst,
+    mein Drachenfreund.
+    Aber ein paar kleinere Unfälle sind passiert."
+O: "Ich weiß nicht wie,
+    aber alle Zwerge sind in der Suppe gestorben."
+O: "Sogar erste Hilfe war zwecklos."
+O: "Es tut mir leid dir zu sagen,
+    daß deine Freunde nicht schwimmen konnten."
+  start obr_hlava "mlci"
+gplend
+
+
+block _10 ( beg(0) and (mam_zjistit_recept=1) and not been(_10) )
+TITLE Ich suche nach einem bestimmten Rezept...
+  justtalk
+D: "Ich suche nach einem bestimmten Rezept..."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Das werde ich sicher nicht kennen."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "...um bösartige Zauberstäbe zu kochen!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Du hast Glück. Das kenne ich zufällig!"
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Dann sag es mir!"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Einen Liter Wasser und einen
+    geschnittenen schimmeligen Pilz
+    aufkochen. Schnittlauch und eine
+    Goblinsocke dazu geben und
+    gut umrühren."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Ist das alles?
+    Das klingt genau wie die Suppe,
+    die meine Mutter immer kocht."
+D: "Ohne die Goblinsocke natürlich!
+    (Das sollte ich ihr nächstes Mal vorschlagen.)"
+  juststay
+gplend
+
+block _11 ( beg(0) and been(_10) and not been(_11) )
+TITLE Muß der Pilz unbedingt schimmelig sein?
+  justtalk
+D: "Muß der Pilz unbedingt schimmelig sein?
+    Reicht nicht die Goblinsocke?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Niemals, der ist absolut essentiell.
+    Zur Not kannst du auch Schimmel beifügen.
+    Das wird helfen."
+O: "Warte mal,
+    ich kann dir schimmeliges Bouillon geben."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Ich weiß nicht ob ich das annehmen kann..."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Nimm es, es ist total gesund,
+    ohne Chemikalien!"
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Gesund?
+    Genau das habe ich befürchtet.
+    Aber wenn du drauf bestehst, danke..."
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Ich weiß nicht, wie ich dir noch helfen könnte."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Das wird nicht nötig sein.
+    Wegen der Goblinsocke,
+    ich kenne zufällig ein paar Goblins."
+  juststay
+{obr dá drakovi plíseň do polévky}
+
+  icostat on i_plisen
+  exitdialogue
+gplend
+
+block _12 ( beg(0) and not been(_12) and been(_10) )
+TITLE Wie schmecken Goblins?
+  justtalk
+D: "Wie schmecken Goblins??"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Ich esse keine Goblins wegen ihrer Socken."
+  start obr_hlava "mlci"
+
+  justtalk
+D: "Zu würzig?"
+  juststay
+
+  start obr_hlava "mluvi"
+O: "Ja, irgendwie schon."
+  start obr_hlava "mlci"
+gplend
+
+block _99 ( beg(0) and not (last(_00a) or last(_00b)) )
+TITLE Tschüss dann.
+  justtalk
+D: "Tschüss dann."
+  juststay
+  start obr_hlava "mluvi"
+O: "Bis später..."
+  start obr_hlava "mlci"
+  exitdialogue
+gplend
+
+block _98 ( beg(0) and (last(_00a) or last(_00b)) and maxline(1) )
+title
+  justtalk
+D: "Ich hab gerade vergessen,
+    was meine Fragen waren."
+  juststay
+  start obr_hlava "mluvi"
+O: "Schon gut,
+    vielleicht erinnerst du dich nächstes Mal."
+  start obr_hlava "mlci"
+  exitdialogue
+gplend

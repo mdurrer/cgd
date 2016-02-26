@@ -1,0 +1,53 @@
+{s červem:}
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+D: "Hey, wait a minute!
+    Can you listen to me for a while."
+  juststay
+
+C: "Hardly. I'm working!"
+  justtalk
+D: "Be ashamed of yourself.
+    To eat a cultural monument."
+  juststay
+
+  justtalk
+D: "Find yourself some other work!"
+  juststay
+
+C: "One man does this and the other one that."
+  justtalk
+D: "Don't you ever have a rest?"
+  juststay
+
+C: "No, the work is the main thing."
+  justtalk
+D: "How can you call this work!?
+    You're only eating all the time!"
+  juststay
+
+C: "I'm eating because I have
+    a big output of energy."
+C: "I have to regain it somehow."
+  justtalk
+D: "That's what I call perpetual motion..."
+  juststay
+
+gplend
+
+block _01 ( beg(1) and been(_00) )
+title
+  justtalk
+D: "Hi. How is it going?"
+  juststay
+
+C: "Thanks, fine."
+C: "But do not disturb me now,
+    there's work to be done."
+  justtalk
+D: "No rest for the wicked?"
+  juststay
+
+gplend
+

@@ -1,0 +1,12 @@
+{kdyz trol utika:}
+block _00 ( beg(1) )
+title
+  load trol_huba "mluvi"
+  load trol_huba "mlci"
+
+  start trol_huba "mluvi"
+T: "I have been laying here for half a year..."
+T: "...but I never realized
+    that I am laying on an anthill!"
+  start trol_huba "mlci"
+gplend

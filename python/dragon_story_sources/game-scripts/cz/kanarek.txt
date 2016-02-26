@@ -1,0 +1,13 @@
+{kanarek odpovida:}
+
+block _ (1)
+title
+  justtalk
+  D: "Mluvící?"
+  juststay
+  Kanarek: "  Mluvící!|"
+  Kanarek: "   Mluvící!"
+  justtalk
+  D: "Mluvící..."
+  juststay
+gplend

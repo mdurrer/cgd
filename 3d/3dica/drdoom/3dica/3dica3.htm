@@ -1,0 +1,1079 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.0.27 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER><B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+<CENTER>
+<DT>
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris 1996,1997,1998</DT></CENTER>
+
+<CENTER>
+<DT>
+- Over 150k of pure sh...er, 3d coding power!</DT></CENTER>
+
+<H4>
+
+<HR WIDTH="100%"></H4>
+<A NAME="chap3"></A>
+<H2>
+3. Polygon Fillers</H2>
+A point is now rotating wildly on the screen, but doesn't look too fascinating;
+something a bit cooler would be nice to add to the engine. How about some
+polygons? Ok. Here I describe mainly triangle fillers but there's also
+the idea of convex polygons in the last chapter. Fasten your seatbelts!
+<UL><A NAME="chap31"></A>
+<H3>
+3.1 Flat Triangle</H3>
+</UL>
+
+<UL><B>Note: This is a <I>very </I>important chapter. I'm clarifying the
+idea of linear interpolation here. Once you understand it, you can code
+not only a flat filler but also gouraud and texture fillers and many other
+things. So please read carefully through it if you're not familiar with
+linear interpolation.</B>
+
+<P>We are willing to draw the following triangle:
+<UL>
+<UL><script pagespeed_no_defer="" type="text/javascript">//<![CDATA[
+(function(){var g=this,h=function(b,d){var a=b.split("."),c=g;a[0]in c||!c.execScript||c.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===d?c[e]?c=c[e]:c=c[e]={}:c[e]=d};var l=function(b){var d=b.length;if(0<d){for(var a=Array(d),c=0;c<d;c++)a[c]=b[c];return a}return[]};var m=function(b){var d=window;if(d.addEventListener)d.addEventListener("load",b,!1);else if(d.attachEvent)d.attachEvent("onload",b);else{var a=d.onload;d.onload=function(){b.call(this);a&&a.call(this)}}};var n,p=function(b,d,a,c,e){this.f=b;this.h=d;this.i=a;this.c=e;this.e={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.g=c;this.b={};this.a=[];this.d={}},q=function(b,d){var a,c,e=d.getAttribute("pagespeed_url_hash");if(a=e&&!(e in b.d))if(0>=d.offsetWidth&&0>=d.offsetHeight)a=!1;else{c=d.getBoundingClientRect();var f=document.body;a=c.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);c=c.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+c;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.e.height&&c<=b.e.width)}a&&(b.a.push(e),b.d[e]=!0)};p.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&q(this,b)};h("pagespeed.CriticalImages.checkImageForCriticality",function(b){n.checkImageForCriticality(b)});h("pagespeed.CriticalImages.checkCriticalImages",function(){r(n)});var r=function(b){b.b={};for(var d=["IMG","INPUT"],a=[],c=0;c<d.length;++c)a=a.concat(l(document.getElementsByTagName(d[c])));if(0!=a.length&&a[0].getBoundingClientRect){for(c=0;d=a[c];++c)q(b,d);a="oh="+b.i;b.c&&(a+="&n="+b.c);if(d=0!=b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),c=1;c<b.a.length;++c){var e=","+encodeURIComponent(b.a[c]);131072>=a.length+e.length&&(a+=e)}b.g&&(e="&rd="+encodeURIComponent(JSON.stringify(s())),131072>=a.length+e.length&&(a+=e),d=!0);t=a;if(d){c=b.f;b=b.h;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(k){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(u){}}f&&(f.open("POST",c+(-1==c.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}},s=function(){var b={},d=document.getElementsByTagName("IMG");if(0==d.length)return{};var a=d[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var c=0;a=d[c];++c){var e=a.getAttribute("pagespeed_url_hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].k&&a.height>=b[e].j)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b},t="";h("pagespeed.CriticalImages.getBeaconData",function(){return t});h("pagespeed.CriticalImages.Run",function(b,d,a,c,e,f){var k=new p(b,d,a,e,f);n=k;c&&m(function(){window.setTimeout(function(){r(k)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','https://www.modeemi.fi/drdoom/3dica/3dica3.htm','l8PuqRhht8',true,false,'0CBOSFkfjKk');
+//]]></script><IMG SRC="poly1.gif" HEIGHT=120 WIDTH=118 pagespeed_url_hash="2203186508" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+</UL>
+The idea is the following: interpolate a.x so that it slides to b.x in
+b.y-a.y steps. Interpolate a.x also so that it slides to c.x in c.y-a.y
+steps. Now move from a.y to b.y incrementing the y coordinate each step
+by one, interpolating the values mentioned, and drawing horizontal lines
+between the interpolated x values. And you've drawn the upper part of the
+triangle! Now the same thing with the lower part, and the triangle is ready.
+
+<P>A pseudo flat triangle filler:
+<DT>
+<TT>** begin triangle **</TT></DT>
+
+<UL>
+<DT>
+<TT>- the coordinates are (x[0],y[0]), (x[1],y[1]), (x[2],y[2])</TT></DT>
+
+<DT>
+<TT>- x, y are tables of three elements (of the same type as coordinates)</TT></DT>
+
+<DT>
+<TT>- a is a loop variable</TT></DT>
+
+<DT>
+<TT>- delta_x, delta_y are tables of three elements (of the same type as
+coordinates)</TT></DT>
+
+<DT>
+<TT>- d is a three-element table of a real type</TT></DT>
+
+<DT>
+<TT>; sort the vertices</TT></DT>
+
+<DT>
+<TT>if(y[1]&lt;y[0])</TT></DT>
+
+<UL>
+<DT>
+<TT>xchg(y[0],y[1])</TT></DT>
+</UL>
+
+<DT>
+<TT>if(y[2]&lt;y[1])</TT></DT>
+
+<UL>
+<DT>
+<TT>xchg(y[1],y[2])</TT></DT>
+</UL>
+
+<DT>
+<TT>if(y[2]&lt;y[0])</TT></DT>
+
+<UL>
+<DT>
+<TT>xchg(y[0],y[2])</TT></DT>
+</UL>
+
+<DT>
+<TT>delta_x[0] = x[1]-x[0]</TT></DT>
+
+<DT>
+<TT>delta_y[0] = y[1]-y[0]</TT></DT>
+
+<DT>
+<TT>delta_x[1] = x[2]-x[1]</TT></DT>
+
+<DT>
+<TT>delta_y[1] = y[2]-y[1]</TT></DT>
+
+<DT>
+<TT>delta_x[2] = x[0]-x[2]</TT></DT>
+
+<DT>
+<TT>delta_y[2] = y[0]-y[2]</TT></DT>
+
+<DT>
+<TT>for (a=0 -> 2)</TT></DT>
+
+<UL>
+<DT>
+<TT>if (delta_y[a] not zero)</TT></DT>
+
+<UL>
+<DT>
+<TT>d[a] = delta_x[a] / delta_y[a]</TT></DT>
+</UL>
+
+<DT>
+<TT>else</TT></DT>
+
+<UL>
+<DT>
+<TT>d[a] = 0</TT></DT>
+</UL>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+
+<DT>
+<TT>for (a=y[0] -> y[1])</TT></DT>
+
+<UL>
+<DT>
+<TT>horizline( x[0] + (a-y[0]) * d[0], x[0] + (a-y[0]) * d[2], a, color
+)</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+
+<DT>
+<TT>for (a=y[1] -> y[2])</TT></DT>
+
+<UL>
+<DT>
+<TT>horizline( x[1] + (a-y[1]) * d[1], x[0] + (a-y[0]) * d[2], a, color
+)</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+
+<DT>
+<TT>** end triangle **</TT></DT>
+
+<DT>
+<TT>** begin horizline **</TT></DT>
+
+<UL>
+<DT>
+<TT>- a is a loop variable</TT></DT>
+
+<DT>
+<TT>for (a=x1 -> x2)</TT></DT>
+
+<UL>
+<DT>
+<TT>putpixel(a, y, color)</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+
+<DT>
+<TT>** end horizline **</TT></DT>
+
+
+<P>Interpolation example: Let's interpolate the value 0 to the value 4
+in seven steps:
+<PRE>&nbsp;&nbsp; Step&nbsp;&nbsp; Value</PRE>
+
+<UL>
+<PRE>0&nbsp;&nbsp;&nbsp;&nbsp; 0.00</PRE>
+
+<PRE>1&nbsp;&nbsp;&nbsp;&nbsp; 0.57</PRE>
+
+<PRE>2&nbsp;&nbsp;&nbsp;&nbsp; 1.14</PRE>
+
+<PRE>3&nbsp;&nbsp;&nbsp;&nbsp; 1.71</PRE>
+
+<PRE>4&nbsp;&nbsp;&nbsp;&nbsp; 2.29</PRE>
+
+<PRE>5&nbsp;&nbsp;&nbsp;&nbsp; 2.86</PRE>
+
+<PRE>6&nbsp;&nbsp;&nbsp;&nbsp; 3.43</PRE>
+
+<PRE>7&nbsp;&nbsp;&nbsp;&nbsp; 4.00</PRE>
+</UL>
+As you have probably noticed, the value is incremented by 4/7 each step,
+so the value is the function
+<UL>
+<PRE>f(X) = X0 + X*(4/7).</PRE>
+</UL>
+The general function for linear interpolation is thus
+<UL>
+<PRE>f(X) = A + X*((B-A)/steps),</PRE>
+</UL>
+where we slide from <TT>A</TT> to <TT>B</TT> in <TT>steps</TT> steps and
+f'(X) (the derivative of f(X)), the growing speed of f(X) that is, is (<TT>B</TT>-<TT>A</TT>)/<TT>steps</TT>.
+So if we've got a loop
+<UL>
+<DT>
+<TT>for (y=10 -> 20)</TT></DT>
+
+<UL>
+<DT>
+<TT>x=f(y)</TT></DT>
+
+<DT>
+<TT>plot(x,y)</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+or
+<UL>
+<DT>
+<TT>for (y=10 -> 20)</TT></DT>
+
+<UL>
+<DT>
+<TT>x=a+x((b-a)/steps)</TT></DT>
+
+<DT>
+<TT>plot(x,y)</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor,</TT></DT>
+</UL>
+it can also be displayed in the form
+<UL>
+<DT>
+<TT>x=a</TT></DT>
+
+<DT>
+<TT>for (y=10 -> 20)</TT></DT>
+
+<UL>
+<DT>
+<TT>plot(x,y)</TT></DT>
+
+<DT>
+<TT>x=x+f'</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+or
+<UL>
+<DT>
+<TT>x=a</TT></DT>
+
+<DT>
+<TT>for (y=10 -> 20)</TT></DT>
+
+<UL>
+<DT>
+<TT>plot(x,y)</TT></DT>
+
+<DT>
+<TT>x=x+(b-a)/steps</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor.</TT></DT>
+</UL>
+Now we've neatly optimized one add, one mul, one div, and one sub into
+only one add ((b-a)/steps is a constant, so it can be precalculated).
+
+<P>The filler pseudocode above doesn't take into account the fact that
+the polygon could be partly or fully outside the screen. Neither does <TT>horizline</TT>
+have a clue that the first of the x values it gets as parameters can be
+greater than the second one, the fact resulting in a <I>very</I> long loop.
+No panic! We've got a few tricks left: clipping and xchg.
+
+<P>Clipping is easy to perform in the horizline routine (notice that if
+you use clipping in a gouraud or texture filler, you should remember to
+upgrade the gouraud color value or the values of u and v in the right places):
+<DT>
+<TT>** begin horizline **</TT></DT>
+
+<UL>
+<DT>
+<TT>- a is a loop variable</TT></DT>
+
+<DT>
+<TT>- max_x is the maximum x value of the screen</TT></DT>
+
+<DT>
+<TT>if y>max_y or y&lt;0</TT></DT>
+
+<UL>
+<DT>
+<TT>dont_plot_anything</TT></DT>
+</UL>
+
+<DT>
+<TT>if x1>x2</TT></DT>
+
+<UL>
+<DT>
+<TT>eXCHanGe(x1,x2)</TT></DT>
+</UL>
+
+<DT>
+<TT>if x1&lt;0</TT></DT>
+
+<UL>
+<DT>
+<TT>x1 = 0</TT></DT>
+</UL>
+
+<DT>
+<TT>else if x1>max_x</TT></DT>
+
+<UL>
+<DT>
+<TT>adios_amigos</TT></DT>
+</UL>
+
+<DT>
+<TT>if x2&lt;0</TT></DT>
+
+<UL>
+<DT>
+<TT>im_outta_here</TT></DT>
+</UL>
+
+<DT>
+<TT>else if x2>max_x</TT></DT>
+
+<UL>
+<DT>
+<TT>x2 = max_x</TT></DT>
+</UL>
+
+<DT>
+<TT>for (a=x1 -> x2)</TT></DT>
+
+<UL>
+<DT>
+<TT>putpixel(a, y, color)</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+
+<DT>
+<TT>** end horizline **</TT></DT>
+
+
+<P>Note: If you're using 3D clipping, you can of course forget these graphical
+clippings (clippings inside the filler), and save a lot of calculating.
+I recommend using that method.
+
+<P>Kewlkuul. That's the idea of drawing a triangle, but there's of course
+still a lot to optimize. I wish you a good time with optimization, because
+this is the most time-consuming part of the whole 3D engine.
+<UL><A NAME="chap311"></A>
+<H4>
+3.1.1 Fixed point</H4>
+It's not always a good idea to use floating point numbers. In these kinds
+of situations, it's sometimes useful to be familiar with <I>fixed point,</I>
+which means that for example a 32bit number is treated as the lower 16
+bits were the decimal part and only the upper 16 bits the integer part
+of the number.
+
+<P>But how to do that? Easy: We only multiply the desired number by 2^16,
+perform the desired operations, and finally divide it by the same number
+2^16. What use is that? The operations between the multiplication and the
+divide happen to be a tad bit more exact than with 'traditional' integer
+numbers. Try it out and see the difference!
+
+<P>A piece of pseudo code can be found below in the gouraud chapter.</UL>
+<A NAME="chap32"></A>
+<H3>
+3.2 Gouraud Triangle</H3>
+The idea of gouraud and flat triangle is nearly the same. Gouraud takes
+only three parameters more (the color value of each of the vertices), and
+the routine just interpolates between them drawing a beautiful shaded triangle.
+Flat triangle interpolated only one value (x in connection with y), gouraud
+needs three (x related to y, color related to y, and color related to x).
+Drawing a gouraud triangle, we add only two parts to the flat triangle
+routine. The horizline routine gets a bit more complicated due to the interpolation
+of the color value related to x but the main routine itself remains nearly
+the same.
+
+<P>I'm not giving you a full pseudo gouraud routine, you have to code it
+yourself with the help of some hints. However, I'll show the critical parts
+of the routine. The first outer loop of the remixed main routine:
+<OL>
+<DT>
+<TT>- c[0] is the color value of (x[0],y[0])</TT></DT>
+
+<DT>
+<TT>- the dc's are calculated in the same way as d but interpolating c
+related to y instead of x related to y</TT></DT>
+
+<DT>
+<TT>for (a=y[0] -> y[1])</TT></DT>
+
+<UL>
+<DT>
+<TT>gouraud_horizline( x[0] + (a-y[0])*d[0], x[0] + (a-y[0])*d[2], c[0]
++ (a-y[0])*dc[0], c[0] + (a-y[0])*dc[2], a )</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</OL>
+Gouraud horizline with fixed point and without clipping:
+<UL>
+<DT>
+<TT>- dc is of a 32bit integer type</TT></DT>
+
+<DT>
+<TT>&lt; a compare: is x1 greater than x2? if yes, xchg both x1 and x2,
+and c1 and c2 ></TT></DT>
+
+<DT>
+<TT>dc = ((c2-c1)*65536)/(x2-x1)</TT></DT>
+
+<DT>
+<TT>for (a=x1 -> x2)</TT></DT>
+
+<UL>
+<DT>
+<TT>putpixel(a,y,c1+((a-x1)*dc)/65536)</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+I'm using so many parentheses to ensure that the calculations are performed
+in the right order (some interpreters start calculating from the right
+depending on the calculation).
+
+<P>Maybe I'd better write a bit about optimizing. First, we can use derivates
+here, too: the derivative (growing speed) of c1+((a-x1)*dc) is dc. Using
+this piece of information, we get rid of all the multiplications and need
+only one add in the interpolation part of gouraud:
+<UL>
+<DT>
+<TT>c1=c1*65536 ; Note!</TT></DT>
+
+<DT>
+<TT>for (a=x1 -> x2)</TT></DT>
+
+<UL>
+<DT>
+<TT>putpixel(a,y,c1/65536) ; Note!</TT></DT>
+
+<DT>
+<TT>c1=c1+dc</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+Actually it's more complicated to even think about that c1+((a-x1)*dc);
+the loop above is very clear and we remember it from the last interpolating
+example where we interpolated the value 0 to the value 4 in seven steps.
+The loop above interpolates the value c1 to c2 in (x2-x1) steps. How in
+the world you could put it clearler? :)
+
+<P>Now some quick words about further optimization. You can use assembly
+of course, how could you else code fast vector graphics?-) As you see,
+we have to divide by 65536 (2^16) in the example above. It's widely known
+that divide is a very slow operation if it's performed often (well, many
+compilers optimize divides by the powers of two to sars). The fastest method
+is to use the carry flag: We have two 16bit variables, registers if you
+wish. (Another possibility is to use one 8bit and one 16bit variable if
+we want to save registers and accept 8bit decimal part.)
+<UL>
+<DT>
+<TT>&lt; dx = c1's decimal part, bx = c1's integer part ></TT></DT>
+
+<DT>
+<TT>in the loop:</TT></DT>
+
+<UL>
+<DT>
+<TT>add dx,[adder's_decimal_part]</TT></DT>
+
+<DT>
+<TT>adc bx,[adder's_integer_part]</TT></DT>
+</UL>
+</UL>
+Why adc? When the upper command rolls dx around, carry flag is set and
+the value of dx is set the lower 16 bits of the addition. In the adc command,
+the adder's integer part is added to bx. It's also incremented by one if
+the decimal part in the preceding command grew over 2^16-1 (if the carry
+flag is set that is). Now we have the integer part in bx and needen't to
+shift or divide anything. Another possibility would be using .8 fixed point:
+<UL>
+<DT>
+<TT>&lt; ax=16bit fixed point number (=original c1 * 256) ></TT></DT>
+
+<DT>
+<TT>in the loop:</TT></DT>
+
+<UL>
+<DT>
+<TT>mov [screen+screenpos],ah ;ah = integer part</TT></DT>
+
+<DT>
+<TT>add ax,[fixed_incrementer]</TT></DT>
+</UL>
+</UL>
+Thus we get the divide by 256 for free.
+
+<P>This idea can be extended very, very much, for example so that we interpolate
+more than one value in a single register etc.
+
+<P><A NAME="chap33"></A>
+<H3>
+3.3 Texture Triangle</H3>
+First, the idea of linear or 'classical' texture mapping (without perspective
+correction). Linear mapping works pretty well in some scenes, but perspective
+correction is in some way needed in most 3D systems.
+
+<P>Anyway: Again we're using the idea of interpolation: now we'll code
+a texture triangle filler. And again the idea is perfectly the same, only
+two more values to interpolate, that is five values total. In texture mapping,
+we interpolate x, u, and v related to y, and u and v related to x (u and
+v are coordinates in the 2D bitmap space). The situation is maybe easiest
+to understand by looking at the following picture:
+<UL><IMG SRC="poly2.gif" HEIGHT=136 WIDTH=298 pagespeed_url_hash="2497686429" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+The left triangle is the triangle which is drawn onto the screen. There's
+a single scanline (one call to the horizline routine) pointed out as an
+example. The triangle on the right is the same triangle in the bitmap space,
+and there's the same scanline drawn from another point of view into it,
+too. So we need just to interpolate, interpolate, and once more interpolate
+in a texture filler -- an easy job if you've understood the idea of a gouraud
+filler (I myself coded a linear texture mapper in one day after coding
+a gouraud routine)!
+
+<P>You would like some pseudo code you say? No way, and here's why:
+<UL>
+<DT>
+a) the code is so much like in gouraud and flat I would feel stupid writing
+it once again,</DT>
+
+<DT>
+b) you should do something by yourself, too, don't you think? :)</DT>
+</UL>
+But as I said, e-mail works if you're having insurmountable problems :I
+<DT>
+An optimization trick: the color deltas in gouraud and (u,v) coordinate
+deltas in texture remain constant, so we need to calculate them only once
+/ polygon.</DT>
+
+<DT>
+Let's take the u delta in linear texturing as an example. As we know, we
+need to interpolate u1 to u2 in the horizline routine in (x2-x1) steps.
+We are in the need of a u delta (ku) which would be the same for the whole
+polygon. So instead of calculating in each scanline this:</DT>
+
+<UL>
+<PRE><TT>h_ku = (h_u2 - h_u1) / (h_x2 - h_x1),</TT></PRE>
+</UL>
+we do like this in the setup part of the polygon routine: We know that
+<UL>
+<DT>
+<TT>h_u2 = u2 = u1 + (y2 - y1) * ku2,</TT></DT>
+
+<DT>
+<TT>h_u1 = u1 + (y2 - y1) * ku1,</TT></DT>
+
+<DT>
+<TT>h_x2 = x2 = x1 + (y2 - y1) * kx2,</TT></DT>
+
+<DT>
+<TT>h_x1 = x1 + (y2 - y1) * kx1,</TT></DT>
+</UL>
+WHEN y=y2 (when y is the y of the second vertex).
+
+<P>This can be easily seen (for instance) from the setup part of the second
+part of the triangle. When we place the values of the variables h_u2, h_u1,
+h_x1, and h_x1 (above) to the u delta statement,
+<UL>
+<DT>
+<TT>h_ku = (h_u2 - h_u1) / (h_x2 - h_x1),</TT></DT>
+</UL>
+we get the following statement as a result:
+<UL>
+<UL>
+<DT>
+<TT>[u1 + (y2 - y1) * ku2] - [u1 + (y2 - y1) * ku1]</TT></DT>
+</UL>
+
+<DT>
+<TT>h_ku=-----------------------------------------------</TT></DT>
+
+<UL>
+<DT>
+<TT>[x1 + (y2 - y1) * kx2] - [x1 + (y2 - y1) * kx1]</TT></DT>
+
+
+<P><TT>&lt;=></TT>
+<DT>
+<TT>(y2 - y1) * (u1 - u1 + ku2 - ku1)</TT></DT>
+</UL>
+
+<DT>
+<TT>h_ku=---------------------------------</TT></DT>
+
+<UL>
+<DT>
+<TT>(y2 - y1) * (x1 - x1 + kx2 - kx1)</TT></DT>
+
+
+<P><TT>&lt;=></TT>
+<DT>
+<TT>ku2 - ku1</TT></DT>
+</UL>
+
+<DT>
+<TT>h_ku=---------</TT></DT>
+
+<UL>
+<DT>
+<TT>kx2 - kx1</TT></DT>
+
+
+<P><TT>&lt;=></TT></UL>
+</UL>
+
+<UL>
+<UL>
+<UL>
+<UL>
+<DT>
+<TT>outerUdelta2-outerUdelta1</TT></DT>
+</UL>
+</UL>
+</UL>
+
+<DT>
+<TT>innerUdelta = ---------------------------.</TT></DT>
+
+<UL>
+<UL>
+<UL>
+<DT>
+<TT>outerXdelta2-outerXdelta1</TT></DT>
+</UL>
+</UL>
+</UL>
+</UL>
+Nice! But what if kx2 = kx1? This of course means that the polygon is just
+one line, so ku doesn't need any specific value; zero does the job very
+well. <B><I>Note! </I></B>If we're using integers, a fixed point is required
+to ensure adequate precision!
+
+<P>Optimization trick #2: In the horizline routine, we don't need to compare
+the x's (x1 is always less than or equal to x2) if in the main routine
+we examine the values of d and do as follows: interpolating from y1 to
+y2, give the value with the greater d as the first one, and from y2 to
+y3, the value with the smaller d as the first parameter.
+<UL><A NAME="chap331"></A>
+<H4>
+3.3.1 The idea of perspective correction</H4>
+Let's start with an example: the idea of a 3D starfield. We take a point,
+say (1,1,3000), from which we go to the point (1,1,1) plotting dots every
+10 units. This can of course be done by interpolating the z coordinate
+linearly: a nice straight line of dots is drawn into the 3-space. But what
+if we transform it into the 2D computer screen? The distances between the
+dots aren't equal anymore! How to interpolate it in a way that it would
+look on the screen same as in the 3-space?&nbsp; We should of course use
+the linear interpolation of 2D coordinates.
+
+<P>As we remember, the 3D->2D transformation formula is the following:
+<UL>
+<DT>
+<TT>x_2D = x/z,</TT></DT>
+
+<DT>
+<TT>y_2D = y/z.</TT></DT>
+</UL>
+In our example, both x and y are one, so we can substitute:
+<UL>
+<DT>
+<TT>x_2D = 1/z,</TT></DT>
+
+<DT>
+<TT>y_2D = 1/z.</TT></DT>
+</UL>
+We've thus found out that if we want a 3D curve to look like a straight
+line on the screen, we need to interpolate 1/z instead of z itself. Also
+we notice that if z is a constant, we aren't in the need of 'perspective
+correction'.
+
+<P>But what does this have to do with texture mapping&nbsp; -- the fact
+is that we're drawing the texture triangle between already 2D transformated
+coordinates? Yes, the coordinates of the <I>3-space</I> have been transformated
+into the screen, but how about the <I>texture space</I> (bitmap)? Yes,
+it's a 2D plane and it doesn't seem to be rational to bend (or <I>straighten</I>
+:) into 2D, but try yourself linear texturemapping and come then saying
+it looks all good -- and tell me the trick you used ;)
+
+<P>We'd maybe better do something. What about doing it like this:
+<UL>
+<DT>
+<TT>u_2D = u/z,</TT></DT>
+
+<DT>
+<TT>v_2D = v/z.</TT></DT>
+</UL>
+No, it's really not allright yet. Now linear interpolation looks like linear
+interpolation on the screen, too, but those aren't the coordinates we would
+like to present the bitmap coordinates; (u,v) would be a more suitable
+pair. So how about this: we interpolate also 1/z (z_2D) linearly, and perform
+the following operation for every pixel:
+<UL>
+<DT>
+<TT>u_bitmap = u_2D / z_2D,</TT></DT>
+
+<DT>
+<TT>v_bitmap = v_2D / z_2D,</TT></DT>
+</UL>
+or
+<OL>
+<DT>
+<TT>u_bitmap = (u/z) / (1/z),</TT></DT>
+
+<DT>
+<TT>v_bitmap = (v/z) / (1/z),</TT></DT>
+</OL>
+or
+<UL>
+<DT>
+<TT>u_bitmap = u,</TT></DT>
+
+<DT>
+<TT>v_bitmap = v!</TT></DT>
+</UL>
+So we have the right coordinates and -- even better -- they're interpolated
+right (note: calculate u_2D and v_2D in the init part of the filler, interpolate
+them (and z_2D of course), and then calculate u_bitmap and v_bitmap in
+the inner loop)! A neat technique, I'd say. But slow. <I>SSLLOOWW</I>.
+Mere two divides per PIXEL X) But phew, we've some tricks to make the thing
+to go a bit faster:
+
+<P>1) Let's not perform this slow operation for every single pixel, but
+let's follow the example of Quake and use it only every 8th or 16th pixel.
+We can use linear interpolation between them, and the difference can't
+be noticed anywhere else than speed ;)
+
+<P>2) One of the multiplies can be thrown off by using this trick (can
+also be used in texture mapping etc):
+<UL>
+<DT>
+<TT>z = 1/z_2D ; z = 1/(1/z) = z</TT></DT>
+
+<DT>
+<TT>u_bitmap = u_2D*z</TT></DT>
+
+<DT>
+<TT>v_bitmap = v_2D*z.</TT></DT>
+</UL>
+<A NAME="chap332"></A>
+<H4>
+3.3.2 Fitting a texture onto an object</H4>
+What? You can't fit a texture onto an object? It <I>can't</I> be that hard...
+
+<P>Argh, alrighty: perform env-mapping with original vertex normals, save
+these texture coordinates and use them all the time. In practice:
+<UL>
+<DT>
+<I>- au = vertex a's u coord</I></DT>
+
+<DT>
+<I>- av = vertex a's v coord</I></DT>
+
+<DT>
+<I>etc...</I></DT>
+
+<DT>
+<TT>for (a=0 -> number_of_faces)</TT></DT>
+
+<UL>
+<DT>
+<TT>face[a].au = normal[ face[a].a ].x / 2 + 127</TT></DT>
+
+<DT>
+<TT>face[a].av = normal[ face[a].a ].y / 2 + 127</TT></DT>
+
+<DT>
+<TT>face[a].bu = normal[ face[a].b ].x / 2 + 127</TT></DT>
+
+<DT>
+<TT>face[a].bv = normal[ face[a].b ].y / 2 + 127</TT></DT>
+
+<DT>
+<TT>face[a].cu = normal[ face[a].c ].x / 2 + 127</TT></DT>
+
+<DT>
+<TT>face[a].cv = normal[ face[a].c ].y / 2 + 127</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+And use like this:
+<UL>
+<DT>
+<TT>texture_filler (</TT></DT>
+
+<UL>
+<DT>
+<TT>x1,y1,z1,face[].au,face[].av,</TT></DT>
+
+<DT>
+<TT>x2,y2,z2,face[].bu,face[].bv,</TT></DT>
+
+<DT>
+<TT>x3,y3,z3,face[].cu,face[].cv )</TT></DT>
+</UL>
+</UL>
+This is called <I>planar</I> mapping. The technique sucks in one way: polygons
+whose normal is nearly x- or y-axis get bad texture coordinates. If the
+problem is too bad for your object (as it is for certain types of them),
+try so-called <I>spherical mapping</I> or <I>cylindrical mapping</I>. I
+haven't tried them out but <I>Advanced Animation and Rendering Techniques</I>&nbsp;
+has something concerning the subject.&nbsp; The main idea is to play with
+spherical or cylindrical co-ordinates instead of good ol' xyz.
+
+<P><A NAME="chap333"></A>
+<H4>
+3.3.3 Bilinear filtering</H4>
+Using bilinear filtering smoothens textures and reduces pixelation -- but
+on the other hand practically <I>jams</I> a 3D engine. 3D cards usually
+perform bilinear filtering automatically, but I'm sure you won't kill me
+for describing the subject anyway ;)
+
+<P>[Wog/Orange] An example: Take a piece of graph paper and plot a point
+there randomly. It probably won't hit the center of a square. Now draw
+a square using this point as the center point. A part of the square hits
+other squares than the square in which the plotted point is, in other words
+a certain percentage hits the total of four squares. Using these percentages,
+we blend the right-colored pixel from the texels and draw it into the screen.
+
+<P>[Chem] C pseudo example:
+<UL>
+<DT>
+<TT>typedef struct { float r, g, b; } pixel;</TT></DT>
+
+<DT>
+<TT>float xf = frac x ; fractional part</TT></DT>
+
+<DT>
+<TT>float yf = frac y</TT></DT>
+
+<DT>
+<TT>int xd = trunc x ; integer part</TT></DT>
+
+<DT>
+<TT>int yd = trunc y</TT></DT>
+
+<DT>
+<TT>float w1 = (1.0 - xf) * (1.0 - yf) ; weight</TT></DT>
+
+<DT>
+<TT>float w2 = (xf) * (1.0 - yf)</TT></DT>
+
+<DT>
+<TT>float w3 = (1.0 - xf) * (yf)</TT></DT>
+
+<DT>
+<TT>float w4 = (xf) * (yf)</TT></DT>
+
+<DT>
+<TT>pixel p1 = GetBitmapPixel(xd, yd) ; pixel rgb</TT></DT>
+
+<DT>
+<TT>pixel p2 = GetBitmapPixel(xd + 1, yd)</TT></DT>
+
+<DT>
+<TT>pixel p3 = GetBitmapPixel(xd,yd + 1)</TT></DT>
+
+<DT>
+<TT>pixel p4 = GetBitmapPixel(xd + 1,yd + 1)</TT></DT>
+
+<DT>
+<TT>float red = p1.r*w1 + p2.r*w2 + p3.r*w3 + p4.r*w4</TT></DT>
+
+<DT>
+<TT>float green = p1.g*w1 + p2.g*w2 + p3.g*w3 + p4.g*w4</TT></DT>
+
+<DT>
+<TT>float blue = p1.b*w1 + p2.b*w2 + p3.b*w3 + p4.b*w4</TT></DT>
+</UL>
+(w1234 are the weights of the four texels the pixel hits)
+
+<P>It's worth mentioning that if the filler skips some texels, the routine
+above gives them no weight at all. Taking them into account is quite an
+interesting operation if we're talking from the code's point of view. Mip-maps
+eliminate the problem very well.</UL>
+<A NAME="chap34"></A>
+<H3>
+3.4 Texturing + Shading</H3>
+Using texturing and shading at the same time is quite straightforward to
+implement the basic idea being that we just interpolate the values of both
+texture and shade and blend them in a suitable ratio. An example inner
+loop:
+<UL>
+<DT>
+<TT>- 16bit fixed point</TT></DT>
+
+<DT>
+<TT>- tab = precalculated table in which are located the values of texture
+and angular-interpolated phong</TT></DT>
+
+<DT>
+<TT>- putpixel parameters: x,y,red,green,blue.</TT></DT>
+
+<DT>
+<TT>for (a=y1 -> y2)</TT></DT>
+
+<UL>
+<DT>
+<TT>texel = tmap[ u/65536 + v/65536*256 ]</TT></DT>
+
+<DT>
+<TT>putpixel( x/65536,a,</TT></DT>
+
+<UL>
+<DT>
+<TT>tab[texel,c/65536].r,</TT></DT>
+
+<DT>
+<TT>tab[texel,c/65536].g,</TT></DT>
+
+<DT>
+<TT>tab[texel,c/65536].b )</TT></DT>
+</UL>
+
+<DT>
+<TT>x += kx</TT></DT>
+
+<DT>
+<TT>u += ku</TT></DT>
+
+<DT>
+<TT>v += kv</TT></DT>
+
+<DT>
+<TT>c += kc</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+An precalculation example of the Tab-table (without a hilight):
+<UL>
+<DT>
+<TT>for (a=0 -> 255)</TT></DT>
+
+<UL>
+<DT>
+<TT>for (b=0 -> 255)</TT></DT>
+
+<UL>
+<DT>
+<TT>tab[a,b].r = pal[a].r * phong[b].r / 256</TT></DT>
+
+<DT>
+<TT>tab[a,b].g = pal[a].g * phong[b].g / 256</TT></DT>
+
+<DT>
+<TT>tab[a,b].b = pal[a].b * phong[b].b / 256</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+
+<DT>
+<TT>endfor</TT></DT>
+</UL>
+<A NAME="chap35"></A>
+<H3>
+3.5 The Idea of Convex Polygons</H3>
+[Chem] We are willing to draw the following pentagon:
+<UL>
+<UL><IMG SRC="poly3.gif" HEIGHT=131 WIDTH=117 pagespeed_url_hash="2792186350" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></UL>
+</UL>
+I'm starting with the assumption that you've read and <I>understood</I>
+how to draw a triangle. The main idea is that we follow the sides 1 and
+2 from the highest vertex down to the lowest, and draw horizontal lines
+between them.
+<UL>1. Find the highest vertex from which we start drawing. The highest
+vertex is the same for both sides, so it's both "start1" and "start2".
+
+<P>2. Take the <I>preceding</I> vertex from the vertex list and call it
+"stop1". Take the following vertex and call it "stop2".
+
+<P>3. It should be clear now that we're following the lines start1-stop1
+and start2-stop2. Now we just interpolate start1.x to stop1.x and start2.x
+to stop2.x, and draw each step a horizontal line between the interpolated
+x coordinates. We begin interpolating from the y of a start and stop it
+to the <I>higher</I> stop's y. Start is start1 at the beginning. The higher-up
+stop is just "stop" to the end.
+
+<P>4. We've reached stop, in other words we've successfully drawn a part
+of the polygon. Now depending on which stop was the higher-up one (stop1
+or stop2), we do as follows:
+<UL>
+<DT>
+<TT>stop1 was higher:</TT></DT>
+
+<UL>
+<DT>
+<TT>start1 = stop1</TT></DT>
+
+<DT>
+<TT>stop1 = stop1 <I>preceding</I> vertex</TT></DT>
+
+<DT>
+<TT>start = start1 = stop1</TT></DT>
+</UL>
+
+<DT>
+<TT>stop2 was higher:</TT></DT>
+
+<UL>
+<DT>
+<TT>start2 = stop2</TT></DT>
+
+<DT>
+<TT>stop2 = stop2 following vertex</TT></DT>
+
+<DT>
+<TT>start = start2</TT></DT>
+</UL>
+</UL>
+5. Go to the point 3 until the whole polygon's been drawn.</UL>
+I'm not saying that this would be the best way to draw convex polygons.
+This is only the technique which first popped into my mind. Note also that
+this works only for convex polygons, concave and complex polygons don't
+work this straightforwardly! [I'd say that this is the best technique.
+Comments? -ica]</UL>
+<A HREF="3dica.htm">Back to the index</A>
+</BODY>
+</HTML>

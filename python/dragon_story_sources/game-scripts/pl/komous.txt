@@ -1,0 +1,295 @@
+{loutkář}
+
+block _03 ( beg(1) and not been(_03) and isactico(0) )
+title
+  {dokud nepředal dřevěné loutky:}
+  justtalk
+   D: "Panie Artysto!"
+  juststay
+  start kom "mluvi"
+   U: "Co to za maniery! Co ty tu robisz?"
+  start kom "mlci"
+  justtalk
+   D: "Przyszedłem tu, by wypróbować
+       czarodziejskie zaklęcia."
+   D: "Czy przypadkiem nie życzysz sobie,
+       abym zamienił coś w kamień?"
+  juststay
+  start kom "mluvi"
+   U: "Idź sobie!"
+  start kom "mlci"
+  justtalk
+   D: "(Nie znam jeszcze tego zaklęcia,
+       muszę się dużo nauczyć)"
+  juststay
+  exitdialogue
+gplend
+
+block _05 ( isactico(0) and maxline(1) and beg(1) and not been(_05) and been(_03) )
+title
+  justtalk
+   D: "Panie Artysto!"
+   D: "Przyszedłem, by odczarować
+       twoje marionetki,
+       żeby znów były drewniane."
+  juststay
+  start kom "mluvi"
+   U: "Co? Co powiedziałeś na końcu?"
+  start kom "mlci"
+  justtalk
+   D: "Żeby twoje marionetki znów były drewniane!"
+  juststay
+  start kom "mluvi"
+   U: "Jeśli chcesz moje kamienne laleczki
+       to możesz je sobie wziąć!"
+   U: "Na przyciski do papierów. Nie są mi potrzebne.
+       A teraz, idź precz!"
+  start kom "mlci"
+  justtalk
+   D: "Jako przyciski do papieru
+       nie wyglądałyby zbyt gustownie.
+       Nadawały by się raczej
+       do skalnego ogródka mojej matki."
+  juststay
+  start kom "mluvi"
+   U: "Cicho, nie denerwuj mnie!"
+  start kom "mlci"
+  {dostane loutky}
+  icostat on i_loutka_kamenna
+gplend
+
+block _00 ( maxline(1) and beg(1) and (vim_o_kronice=1) and not been(_00) and been(_04) and isactico(0) )
+title
+  {až mi říkal jazykolamy a zkoušel jsem mluvit s kronikou
+  justtalk
+   D: "Co robisz, że masz tak doskonałą dykcję?"
+  juststay
+  start kom "mluvi"
+   U: "To nic trudnego.
+       Trzeba dużo ćwiczyć."
+  start kom "mlci"
+  justtalk
+   D: "Ale same ćwiczenia nie wystarczą, prawda?"
+  juststay
+  start kom "mluvi"
+   U: "Masz rację. Już się nie gniewam,
+       więc mogę ci to zdradzić.
+       Korzystam z mocy z/ioł."
+  start kom "mlci"
+  justtalk
+   D: "Czy parzysz z nich herbatkę?"
+  juststay
+  start kom "mluvi"
+   U: "Żuję kwiaty."
+  load kom "zvyka"
+  startplay kom "zvyka"
+  start kom "mlci"
+
+  justtalk
+   D: "Gdzie możesz znaleźć takie ziele?"
+  juststay
+  start kom "mluvi"
+   U: "Wysoko, wysoko w górach."
+  start kom "mlci"
+
+  {udela se nova lokace na mape:}
+  let new_hory (1)
+gplend
+
+block _01 ( maxline(1) and beg(1) and not been(_01) and isicoon(i_scenar) )
+title
+ labels skip
+  {až dočte pohádku- hele, v knížce byly vložené nějaké listy,
+  {prozkoumám listy- 'siesta u řeky, hra o třech....
+  {můžu zaást hovor o divadle:
+  justtalk
+   D: "Mam pytanie związane ze sztuką dramatyczną."
+  juststay
+  start kom "mluvi"
+   U: "Proszę bardzo, jestem ekspertem
+       w tej dziedzinie."
+  start kom "mlci"
+  justtalk
+   D: "Czy znasz sztukę 'Sjesta nad brzegiem rzeki'?"
+  juststay
+  start kom "mluvi"
+   U: "'Sjesta nad brzegiem rzeki'
+       Sztuka w trzech aktach z epilogiem."
+  start kom "mlci"
+  justtalk
+   D: "A więc znasz ją!"
+  juststay
+  start kom "mluvi"
+   U: "Znam tylko kawałek tej sztuki, nigdy nie
+       miałem w ręku całego tekstu."
+   U: "Ale te fragmenty, które pamiętam
+       urzekły mnie na zawsze."
+  start kom "mlci"
+  justtalk
+   D: "Możesz je wyrecytować?"
+  juststay
+  start kom "mluvi"
+   U: "Łajdaku, bez wstydu złamałeś serce
+       niewinnej dziewczyny."
+  goto skip
+   U: "Ona śpiewała słodką pieśń o miłości,
+       w którą wierzyła..."
+   U: "...a ty ją wykorzystałeś
+       i nawet nie zapłaciłeś!"
+   U: "Zasługiwała tylko na monety ze złota
+       lecz ty byłeś przewrotny i zły..."
+   U: "...gdy się uśmiechała, powinieneś był płakać
+       dlatego też w końcu zwróciła
+       swe serce ku mnie."
+ label skip
+  start kom "mlci"
+  justtalk
+   D: "Dalej!"
+  juststay
+  start kom "mluvi"
+   U: "To koniec. W następnym akcie znam
+       tylko moją kwestię.
+       To nie brzmi dobrze, recytowane| bez partnera..."
+  start kom "mlci"
+
+gplend
+
+block _02 ( isactico(i_scenar) and not been(_02) and ( ((maxline(1) and beg(1))or last(_01)) )
+title
+ labels skip
+  {kliknu na něj scénářem:}
+  load bert "scenar_mluvi"
+  load bert "scenar_mlci"
+  load bert "scenar_diva"
+  load bert "scenar_vytah"
+  load bert "scenar_schov"
+  startplay bert "scenar_vytah"
+  startplay bert "scenar_diva"
+  start bert "scenar_mluvi"
+   D: "Stało się nieszczęście,
+       pozostał mi tylko szal,
+       którym mnie okrywała dziewica,
+       gdy wzywała mnie ku sobie"
+  start bert "scenar_mlci"
+  start kom "mluvi"
+   U: "Czyż nie omdlewała?"
+  start kom "mlci"
+  startplay bert "scenar_diva"
+  goto skip
+  start bert "scenar_mluvi"
+   D: "Trudno oprzeć się pokusie
+       by ujrzeć ją pogrążoną w smutku!"
+  start bert "scenar_mlci"
+  start kom "mluvi"
+   U: "Tylko jej usta mówiły bez słów!"
+  start kom "mlci"
+  startplay bert "scenar_diva"
+  start bert "scenar_mluvi"
+   D: "Czyżby ona tylko udawała?"
+  start bert "scenar_mlci"
+  start kom "mluvi"
+   U: "Kłamała! Oszukiwała!"
+  start kom "mlci"
+ label skip
+  start bert "scenar_mluvi"
+   D: "Oklaski."
+  start bert "scenar_mlci"
+  start kom "mluvi"
+   U: "O tak. Byłeś doskonały.
+       Masz talent.
+       Co sądzisz o sztuce akrobatów?"
+  start kom "mlci"
+  startplay bert "scenar_schov"
+  start bert "kour-vlevo"
+  justtalk
+   D: "W cyrku albo w teatrze..."
+  juststay
+  start kom "mluvi"
+   U: "A może chciałbyś być zaklinaczem węży?"
+  start kom "mlci"
+  justtalk
+   D: "O, właśnie!"
+  juststay
+  start kom "mluvi"
+   U: "Sądzę, że byłbyś w tym dobry."
+   U: "To jest klucz do mojej skrzyni.
+       Wewnątrz znajdziesz gwizdek.
+       Jest niezbędny."
+  start kom "mlci"
+
+  icostat on i_klic_truhla
+  icostat off i_scenar
+gplend
+
+block _04 ( maxline(1) and beg(1) and not been(_04) and isactico(i_loutka_drevena) )
+title
+  {když vrací loutky:)
+  start kom "mluvi"
+   U: "Hm, wtedy miałem o tobie gorsze zdanie,
+       a teraz widzę, że z powrotem
+       możesz zmienić
+       marionetki w drewniane."
+  start kom "mlci"
+  justtalk
+   D: "Zaczarowałem je niechcący!"
+  juststay
+  start kom "mluvi"
+   U: "Król wzleciał na skrzydłach.
+       Jack skakał z radości."
+  start kom "mlci"
+  justtalk
+   D: "Co robisz?"
+  juststay
+  start kom "mluvi"
+   U: "To na rozgrzewkę."
+  start kom "mlci"
+  justtalk
+   D: "Coś bardziej tradycyjnego..."
+  juststay
+  start kom "mluvi"
+   U: "Wpłynąłem na suchego przestwór oceanu!"
+  start kom "mlci"
+  justtalk
+   D: "Świetne!"
+  juststay
+  start kom "mluvi"
+   U: "Dobranoc, pchły na noc."
+  start kom "mlci"
+  justtalk
+   D: "Jak ugryzą weź buta..."
+  juststay
+  start kom "mluvi"
+   U: "I ubij je na czarno..."
+  start kom "mlci"
+  justtalk
+   D: "To nie tak było!"
+  juststay
+  start kom "mluvi"
+   U: "I ubij na niebiesko..."
+  start kom "mlci"
+  justtalk
+   D: "Też żle..."
+  juststay
+  start kom "mluvi"
+   U: "I tłucz je, aż zsinieją."
+  start kom "mlci"
+  justtalk
+   D: "Tak!"
+  juststay
+
+  icostat off i_loutka_drevena
+gplend
+
+block _08 ( maxline(1) and beg(1) )
+title
+  justtalk
+   D: "Panie Artysto..."
+  juststay
+  start kom "mluvi"
+   U: "Hmm?"
+  start kom "mlci"
+  justtalk
+   D: "Ech, nic takiego..."
+  juststay
+  exitdialogue
+gplend

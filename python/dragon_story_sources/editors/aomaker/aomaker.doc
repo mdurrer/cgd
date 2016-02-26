@@ -1,0 +1,187 @@
+            AOMAKER - editor animčních objektů
+                       ver. 1.3 beta
+          (c) 1994, 1995 Pavel Pospíšil, NoSense
+============================================================
+
+                       Stručný manuál:
+                       ===============
+Instalace:
+==========
+  Smaž  AOMAKER.CFG, spusť  z adresáře,  kde je AOMAKER.EXE,
+nastav konfiguraci a ulož ji.
+Program může být spouštěn odkudkoliv.
+
+Úvodní menu:
+============
+
+Konec,O programu:
+-----------------
+  Bez komentáře.
+
+Konfigurace:
+------------
+  Nastavení  všelijakých  cest,  některé  jsou  jen  vám  na
+ulehčení  práce,  z  jiných  tahá  program  data,  o kterých
+předpokládá, že se v  uvedených adresářích nacházejí. (Cesta
+pozadí,  Cesta hudby  -  takže  pokud např.  vyberete pozadí
+z jiného  adresáře,  bude  ho  program  hledat  furt v tomto
+nastaveném, nenajde  ho, a žádné  pozadí nezobrazí. Bohužel,
+je to  tak, chtěl jsem to  napsat tak, aby si  to pamatovalo
+úplnou cestu, ale dělal jsem to asi 3 hodiny, furt to blblo,
+tak napůl  si myslím, že  asi vinou DFW,  i když bych  nerad
+komukoli  křivdil. To  je jasné,  pokud programátorovi  něco
+nejde a nejde, svede to na jiné.)
+  Save  konfigurace, Load  konfigurace- uloží,  načte, *.CFG
+soubor do,  z, adresáře Cesta  k programu, ale  při načítání
+programu to stejně bude hledat v aktuálním adresáři...
+!!!>> Vím o různých nedostatcích, jaké práce s nastavovanými
+!!!>> adresáři má,  ale pokud si to jednou  nastavíte a data
+!!!>> budete  číst odtud a  ne(!) odjinud(!), neměly  by být
+!!!>> problémy.
+
+Založ  objekt
+-------------
+  Pokud  začínáte  pracovat  na  novém  objektu,  musíte  ho
+založit právě touto funkcí. Název max. osmipísmenný.
+
+Načti objekt
+------------
+  Když chcete  pracovat s nějakým objektem,  musíte ho takto
+načíst. Hledá  to v nastavené  cestě, kterou je  velmi dobré
+respektovat!
+
+Aktuální
+--------
+  V případě,  že je aktuální <žádný>,  načte se nový objekt,
+jinak se přejde  do menu, kde je editace  objektu, na kterém
+se již pracuje a je v paměti.
+
+Vymaž objekt
+------------
+  Vymaže soubory aktuálního objektu z disku.
+
+
+Editace animace (dialogový panel)
+=================================
+  Some hints(...):
+
+  Horké klávesy sice nemusí vypadat vždy logicky, ale kdo si
+zvykne, může všecko rychle ovládat, aniž by jezdil myší.
+
+  Vyskakuje se ESC.
+
+  Konfigurace zvuku je dostupná i z dialogu editace animace,
+aby se mohla ověřovat  rychlost animace při různém nastavení
+zvuku.
+
+  Zdržení (všude!) se udává v setinách sekundy.
+
+Report-
+-------
+  rychlost nakreslení  1 fáze -  nehledě na cokoli  skutečná
+rychlost,  kolik setin  sekundy trvá  průměrné vykreslení  1
+fáze.
+
+Kopie-
+------
+  přidá prázdnou fázi na konec popisu animace a zkopíruje do
+ní aktuální fázi, pak zvýší akt. fázi o jedna.
+
+Blok-
+-----
+  do  tohoto  poddialogu  je  shrnuto  hned několik operací,
+některé sem patří jen vzdáleně...
+
+(load)- naplnění hodnot nových
+1: od fáze (včetně), 2: po fázi (včetně)
+3: první hodnota (uložená do 1)
+4: poslední hodnota (uložená do 2)
+Hodnoty mezi 1 a 2 se dopočítají rovnoměrně od 3 do 4.
+
+(mul)- modifikace (vynásobení) hodnot stávajících
+1: od fáze (včetně), 2: po fázi (včetně)
+5: počáteční násobek, kterým se modifikuje stávající hodnota
+v první fázi bloku,
+6: koncový násobek, modifikuje poslední fázi bloku
+Násobky mezi 1 a 2 se rozloží  rovnoměrně od 5 do 6.
+
+(add)- přičtení konstanty ke stávajícím hodnotám
+1: od fáze (včetně), 2: po fázi (včetně)
+3: přičítaná konstanta;  chceme-li odečítat, zadáme zápornou
+hodnotu.
+
+(vymaž)- vymazání bloku
+1: od fáze (včetně), 2: po fázi (včetně)
+
+(kopie)- kopie bloku na konec
+1: od fáze (včetně), 2: po fázi (včetně)
+
+(k.fáze)- kopie aktuální fáze
+1: kolikrát zkopírovat (připojit na konec) aktuální fázi
+
+  Checkem se  zvolí na kterou  položku popisu animace  se má
+bloková  operace  aplikovat.  Pokud  chci  naplnit  blok jen
+jednou hodnotou,  dám do 3 i  4 stejné hodnoty. To  samé pro
+modifikaci.
+  Bloková operace se spouští povelem "P".
+  Snad  je to  natolik  inteligentní,  že to  nikam hodnoty,
+které  by mohly  způsobit zhroucení  programu, nezapíše. Ale
+ruku do ohně bych za to nedal...
+
+souřadnice myší-
+----------------
+  Kurzorem  myši  se  stane  obrázek  aktuální fáze. Rozměry
+převezme  ze ZoomX,Y  ,  případně  bude zrcadlený  tak, jako
+aktuální fáze. Pokud jsou ZoomX a ZoomY příliš velké, kurzor
+bude  mít  jenom  původní  rozměry  obrázku  fáze.    Pravým
+tlačítkem  nebo klávesou  Escape se  operace ruší,  levým se
+umisťuje.
+
+Run-
+----
+  "R" spouští animaci od začátku, "N" od aktuální fáze.
+  Ukončit  lze  stiskem  Escape  nebo  pravého myšítka anebo
+Enter nebo  levého myšítka- v  tom případě se  jako aktuální
+fáze  v editačním  dialogu nastaví  právě naposled animovaná
+fáze.
+  Klávesy  1..9  zapínají  n-násobné  zpomalení  (čili  1 je
+originální rychlost). 0 animaci úplně zastaví, pokračovat se
+může po  stištění klávesy. Levá šipka  na klávesnici v tomto
+případě "převine" animaci o fázi nazpět, když ji tedy držíme
+stisknutou, můžeme animovat pozpátku.  (To ale platí jedině,
+když předtím stiskneme 0!)
+  Stiskem  jakékoli jiné  klávesy animaci  zrychlíme tak, že
+nebude   vůbec  čekat   na  čas.   Pokud  to   bude  klávesa
+s rozšířeným ASCII (např. šipky,  klávesy F1 až F12...) bude
+zrychlení ještě o krapet větší.
+
+
+           Pozóóóóóóóóóóórrrrrrrrrr!!!!!!!!!!!!!
+           =====================================
+  Program si nikde nekontroluje,  jestli má dostatek paměti.
+Problémy s pamětí mohou nastat  všude, kde se do paměti tahá
+větší poočet  dat- při výběru  obrázků a jejich  ukládání do
+skladu snad ne, ale při zadávání souřadnic myší už ano (může
+se  číst  i  obrazovka  s  pozadím)  o spouštění animace ani
+nemluvě (pozadí, hudba).
+  Pokud  má program  pro data  k dispozici  tak 120K, pozadí
+natáhne, ale hudbu už třeba  ne. Anebo krátkou hudbu jo, ale
+je jasný,  že delší zvukový efekty,  nebo větší sprajty zase
+ne.
+  400K je myslím dost i na tu nejroztodivnější animaci; když
+AOMAKER spouštím z holého DOSu,  mívá tak 480K, tedy víc než
+dost.
+
+============================================================
+
+                         Historie:
+                         =========
+1.3 beta (8.4.1995)-
+  snížen  počet   možných  fází  na  254   kvůli  chybě  při
+kopírování poslední fáze; změněno  spouštění od začátku a od
+aktuální  fáze;  přidáno  zpomalování  a  zpátečka  u  hraní
+animace;   přidáno  blokové   vymazávání,  kopírování   fází
+i jediné fáze, relativizování i absolutizování souřadnic.
+
+============================================================
+

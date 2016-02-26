@@ -1,0 +1,333 @@
+{drak s lenochem:}
+
+block _10 ( beg(1) and not been(_10) and (stroj_funguje=1) )
+title Jak teď funguje tvůj přístroj?
+  justtalk
+  D: "Jak teď funguje tvůj přístroj?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Mmmh, trochu se to zlepšilo, ale pořád to
+      není ono.
+      Nevíš, co tomu ještě schází?"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Že by...?!"
+  juststay
+
+  exitdialogue
+gplend
+
+block _11 ( beg(1) and not been(_11) and (stroj_funguje=2) )
+title Jak funguje tvůj přístroj teď?
+{když už přístroj definitivně opravil}
+  justtalk
+  D: "Jak funguje tvůj přístroj teď?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Bez jediné chybičky!
+      Ani ty buchty nestačím polykat."
+  L: "Ale neříkal jsem to vždycky,
+      že je to mistrovský kousek techniky?"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Pokud vím, říkal's,
+      že když ti opravím přístroj na létání buchet,
+      daruješ mi tvou lahvičku s leností."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Cože? No vlastně máš pravdu.
+      Můžeš si tedy vzít svoji zaslouženou odměnu,
+      dobře si jí užij!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "O to bych neměl strach!"
+  juststay
+
+  {abych mohl vzit lahvicku:}
+  let stroj_funguje (3)
+  exitdialogue
+gplend
+
+block _09 ( atbegin(0) and been(_08) and been(_05) and not been(_09) and isobjon(lahvicka) )
+title Když ne stroj, tak co si mám k narozeninám přát?!
+  justtalk
+  D: "Když ne stroj, tak co si mám k narozeninám
+      přát?!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Mohl bys říct rodičům, aby ti koupili
+      moji lenost v lahvičce."
+  L: "Tento rok se mi vůbec nehýbou kšefty."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _00a ( beg(1) and not hasbeen(_00a) and maxline(1) )
+title
+  justtalk
+  D: "Jsem Bert, kdo jsi ty?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Já jsem já.
+      Zapomněl jsem, jak se jmenuju."
+  L: "Jednou jsem měl pocit, že si vzpomínám
+      na svoje jméno, ale ten pocit mi nevydržel dlouho."
+  L: "Jsem moc líný na to, mít nějaké pocity."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Tomu nerozumím!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "To máš potom smůlu."
+  L: "Jsem příliš líný ti to všechno znovu vysvětlovat."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _00b ( maxline(1) and beg(1) and hasbeen(_00a) )
+title
+  justtalk
+  D: "Jo, ještě..."
+  juststay
+gplend
+
+block _06 ( atbegin(0) and been(_05) and not been(_06) and been(_08) )
+title Koupím tvoji lenost!
+  justtalk
+  D: "Koupím tvoji lenost!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Erm, teď najednou nevím, jestli je na prodej..."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Cože?!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Totiž-"
+  L: "-myslím, že není na světě nic,
+      co by dostatečně vyvážilo její hodnotu."
+  L: "Ledaže..."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Ledaže?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Ledaže bys' mi opravil stroj na létání buchet!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Pokud je to jediná šance, jak tu lenost získat,
+      tak bych se snad mohl pokusit..."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Ovšem měl by sis pospíšit,
+      může se stát, že do večera všechnu prodám
+      a další už nebude!"
+  start lenuvnitr_hlava "mlci"
+
+  let vim_o_lenosti (2)
+gplend
+
+block _01 ( beg(0) and not been(_01) )
+title Tos' byl takhle línej odjakživa?
+  justtalk
+  D: "Tos' byl takhle línej odjakživa?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Myslím, že ano."
+  L: "Když jsem byl malý, rodiče o mě měli,
+      pravda, trochu strach."
+  L: "Moje máti
+      - zem jí buď lehká -
+      mi vždycky říkala:"
+  L: "'Pamatuj, že ti nebudou lítat do pusy
+      žádná pečená holoubata!'"
+  L: "A vidíš, měla pravdu."
+  L: "Lítají mi tam buchty!"
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _12 ( beg(0) and not been(_12) )
+title To vůbec nechodíš na záchod?
+  justtalk
+  D: "To vůbec nechodíš na záchod?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Ne, vůbec.
+      Ležím tady kdovíkolik let,
+      ale zatím to na mě nepřišlo."
+  start lenuvnitr_hlava "mlci"
+  justtalk
+  D: "Co nočník?"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Nočník?"
+  L: "Nepamatuju se na žádný nočník."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _02 ( atbegin(0) and not been(_02) )
+title Na jakém principu funguje ten zvláštní stroj?
+  justtalk
+  D: "Na jakém principu funguje ten zvláštní stroj?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Nevím, nikdy jsem se nepokoušel to zjistit.
+      Na to jsem příliš líný."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _03 ( atbegin(0) and been(_02) and not been(_03) )
+title Vím, jak ten stroj funguje!
+  justtalk
+  D: "Vím, jak ten stroj funguje!"
+  D: "Chceš to slyšet?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Jsem příliš líný zajímat se o to.
+      Ne, díky."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _04 ( atbegin(0) and not been(_04) )
+title Odkud se tady ten stroj vzal?
+  justtalk
+  D: "Odkud se tady ten stroj vzal?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "To už si nepamatuju.
+      A jsem příliš líný si na to vzpomínat."
+  L: "Je možné, že jsem ho sestrojil já."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "To bych se dost divil!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Já taky. Opravdu nevím, odkud se vzal.
+      Ale vůbec mi nevadí, že tady je."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _05 ( atbegin(0) and not been(_05) )
+title Nechtěl bych být taková líná kůže jako ty!
+  justtalk
+  D: "Nechtěl bych být taková líná kůže jako ty!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Nevidím na mé lenosti nic špatného.
+      Dokonce mi připadá celkem příjemná."
+  L: "A navíc s ní můžu dělat i výhodné obchody -"
+  L: "- prodávám ji po kouscích zavřenou v lahvičce!"
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Už si ji někdo koupil?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Zatím ne."
+  L: "Ale myslím, že na tom jednou hodně zbohatnu."
+  start lenuvnitr_hlava "mlci"
+
+  let vim_o_lenosti (1)
+gplend
+
+
+block _07 ( atbegin(0) and not been(_07) )
+title Co budeš dělat, až se ten stroj zastaví?
+  justtalk
+  D: "Co budeš dělat, až se ten stroj zastaví?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Myslím, že se nikdy nezastaví.
+      Připadá mi, jako by to byl nějaký druh pertua mobile."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "To by byla tvoje jediná záchrana."
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Hm."
+  start lenuvnitr_hlava "mlci"
+
+gplend
+
+block _08 ( atbegin(0) and not been(_08) )
+title Chci mít doma ten báječnej vynález!
+  justtalk
+  D: "Chci mít doma ten báječnej vynález!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Promiň, ale já se tohoto přístroje
+      prozatím zbavovat nehodlám."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "Neříkám, že chci zrovna ten tvůj."
+  D: "Možná bych mohl přesvědčit rodiče,
+      aby mi podobný stroj pořídili k narozeninám."
+  D: "Nevím ale, jakou si mám vybrat značku -
+      jak jsi s tímto exemplářem spokojený?"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "Dobrá, to je to, o čem s tebou chci mluvit.
+      Slouží mi už bez přestání pěknou řádku let."
+  L: "Ale má taky nějaké mouchy,
+      občas se stává, že buchta letí mimo."
+  start lenuvnitr_hlava "mlci"
+
+  justtalk
+  D: "To je pěkně nepříjemná vada!"
+  juststay
+
+  start lenuvnitr_hlava "mluvi"
+  L: "To bych řekl.
+      Proto ti koupi tohoto přístroje vůbec nedoporučuji."
+  start lenuvnitr_hlava "mlci"
+gplend
+
+block _98 ( beg(0) and not last(_00b) )
+title Tak zatím...
+  justtalk
+  D: "Tak zatím..."
+  D: "...dobré zažívání!"
+  juststay
+  start lenuvnitr_hlava "mluvi"
+  L: "Díky."
+  start lenuvnitr_hlava "mlci"
+  exitdialogue
+gplend
+
+block _99 ( beg(0) and last(_00b) and maxline(1) )
+title
+  justtalk
+  D: "...už nic."
+  juststay
+  exitdialogue
+gplend

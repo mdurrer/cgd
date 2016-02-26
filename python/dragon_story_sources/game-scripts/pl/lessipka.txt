@@ -1,0 +1,404 @@
+{s házečem šipek:(je dost zasmušilý)}
+
+block _00 ( beg(1) and not been(_00) and isactico(0) )
+title
+ labels skip
+  justtalk
+   D: "Ehm, czyżbyś zamierzał się powiesić?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Tak."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Powiedz mi gdzie i kiedy, to przyjdę.
+       Nigdy nie widziałem prawdziwego wisielca."
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Zamiast nagrobka chcę mieć tarczę do
+        przyssawek..."
+  start leskriz_sipkar "mlci"
+  justtalk
+   goto skip
+   D: "Tarczę do przyssawek?
+       To brzmi trochę niekonwencjonalnie..."
+  label skip
+   D: "Mnie też znudziły się te szare nagrobki."
+   D: "Jeśli mam zginąć w czasie
+       tej niebezpiecznej misji,
+       też chcę tarczę do przyssawek zamiast nagrobka!"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Przyssawki nadają sens mej egzystencji.
+        Bez nich nie ma życia!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Czy to nie przesada?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Nie, z uwagi na znaczenie jakie mają dla
+        mnie przyssawki."
+   S1: "Turniej Ligi Gry w Przyssawki powinien
+        się już dawno rozpocząć,
+        ale ja nie mam przyssawek ani możliwości treningu!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Dlaczego?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Drzewo Przyssawkowe przestało wydawać owoce."
+{#it has something to do with darts, it is common, it is tree - Darttree Common
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Drzewo Przyssawkowe?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Tak, drzewo które rodzi przyssawki,
+        jeśli mam cię oświecić w tym względzie,
+        jest to Oficjalne drzewo Ligi Przyssawek"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Jak mogło do tego dojść?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Nikt nie wie."
+   S1: "Przyssawki na drzewie przyssawkowym
+        dojrzewają
+        tuż przed rozpoczęciem rozgrywek Ligi Przyssawek."
+   S1: "Pojawiają się i dojrzewają
+        w jeden dzień."
+   S1: "W tym roku jeszcze się nie pojawiły!"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _01 ( maxline(1) and beg(1) and isactico(0) )
+title
+  justtalk
+   D: "Niech się pan nie martwi..."
+{#in czech it sounds like:don't hang your head
+{#it has a lot of things to do with hanging
+   D: "...Mam jedno pytanie."
+  juststay
+gplend
+
+block _1 ( beg(0) and not been(_1) )
+   title Nie wiedziałem, że przyssawki rosną na drzewie!
+  justtalk
+   D: "Nie wiedziałem, że przyssawki rosną na drzewie!"
+   D: "Myślałem, że sprzedaje się je w sklepach!"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Śmieszny pomysł.
+        Każdy zdaje sobie sprawę, że tak nie jest."
+   S1: "Powiedz coś śmiesznego,
+        co ci przychodzi na myśl?"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Dzieci przynoszone są rodzicom przez bociana!"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Z pewnością, a jak byłoby to możliwe inaczej?"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _2 ( beg(0) and not been(_2) )
+   title Czy nie zostawiłeś sobie paru przyssawek...
+  justtalk
+   D: "Czy nie zostawiłeś sobie paru
+       przyssawek na czarną godzinę?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "To niemożliwe."
+   S1: "Zawsze psują się przez zimę,
+        dlatego lepiej przeznaczyć je jesienią
+        na kompost."
+   S1: "Stanowią doskonały nawóz!"
+  start leskriz_sipkar "mlci"
+gplend
+
+block _9 ( beg(0) and not been(_9) )
+   title Jesteś prawdziwym entuzjastą przyssawek!
+ labels skip
+  justtalk
+   D: "Jesteś prawdziwym entuzjastą przyssawek!"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Ahem, Masz rację.
+        Skromnie mówiąc, chciałbym podkreślić
+        że jestem mistrzem w Rzucaniu Przyssawek..."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Nie udawaj skromności.
+       Wszak to imponujące!"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "W domu mam małą wystawę
+        wszystkich moich trofeów..."
+   S1: "Lecz jak wiesz, ktoś mógłby je ukraść.
+        Dlatego moje najcenniejsze trofeum
+        zawsze noszę przy sobie."
+  start leskriz_sipkar "mlci"
+  {vytáhne z kapsy zlatý zvoneček:}
+  mark
+  load leskriz_sipkar "zvonek"
+  startplay leskriz_sipkar "zvonek"
+  release
+
+  start leskriz_sipkar "mluvi"
+   S1: "Lepiej zaraz je schowam."
+   S1: "Rzekłbyś - zwyczajny dzwonek.
+        Dostałem go za drugie miejsce w jedynych
+        zawodach,
+        których nie wygrałem."
+  goto skip
+   S1: "Nie wiem,
+        dlaczego miałbym być zły z tego powodu."
+   S1: "Wręcz przeciwnie,
+        jestem naprawdę dumny z tego dzwonka..."
+ label skip
+  start leskriz_sipkar "mlci"
+gplend
+
+block _7 ( beg(0) and not been(_7) )
+   title A gdzie rośnie Drzewo Przyssawkowe?
+  justtalk
+   D: "A gdzie rośnie Drzewo Przyssawkowe?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Na wielkiej górze. Tak wielkiej, że nie
+        można jej nie zauważyć."
+  start leskriz_sipkar "mlci"
+  {nová lokace: šípek}
+  justtalk
+   D: "Uważam,
+       że to już właściwa odpowiedz..."
+  juststay
+  let new_sipek (1)
+gplend
+
+block _8 ( beg(0) and not been(_8) )
+   title Dlaczego sami nie próbowałiście zrobić...
+ labels skip
+  justtalk
+   D: "Dlaczego sami nie próbowałiście zrobić
+       czegoś z Przyssawkowym Drzewem?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Oczywiście, próbowaliśmy!"
+   S1: "Bezskutecznie"
+  goto skip
+   S1: "To tylko dowiodło
+        naszego braku kompetencji i głupoty."
+ label skip
+   S1: "To jest zadanie dla bohatera."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "W którym momencie wasze wysiłki
+       skończyły się fiaskiem?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Próbowaliśmy odszukać w starych kronikach
+        czy już kiedyś, w przeszłości
+        zaistniał podobny problem."
+   S1: "Jedyna kronika, która mogłaby coś wiedzieć
+        od pięćdziesięciu lat nie chce z nami rozmawiać."
+   S1: "Obraziła się, bo żartowaliśmy sobie
+        z niej, że sepleni."
+   S1: "I nikt nie może sobie z nią poradzić."
+   S1: "Przemawiałem do niej przez jakiś tydzień."
+   S1: "Najpierw byłem czuły."
+   S1: "Potem bezwzględny!
+        Pod koniec tygodnia ochrypłem."
+   S1: "A ona tylko patrzyła na mnie
+        ze stoickim spokojem!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Może spróbujemy poszukać jakiegoś
+       specjalisty od wad wymowy.
+       Gdzie jest ta kronika?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "U mnie w domu.
+        Masz tu klucz."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "A gdzie ty mieszkasz?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Zaraz na prawo od twojego smoczego domku."
+   S1: "Ale nie musisz mnie znać,
+        cały czas jestem na zawodach
+        w rzucaniu przyssawek..."
+  start leskriz_sipkar "mlci"
+
+  icostat on i_klic_sipdum
+  exitdialogue
+gplend
+
+block _3 ( beg(0) and not been(_3) and been(_2) )
+   title Na następny sezon powinieneś...
+  justtalk
+   D: "Na następny sezon powinieneś
+       zakonserwować trochę przyssawek!"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Próbowaliśmy robić z nich marmoladę."
+   S1: "Lecz były tak pyszne,
+        że każdy musiał ich skosztować
+        przed nadejśiem wiosny..."
+   S1: "...i zanim rozpoczął się nowy sezon,
+        marmolada była już zjedzona."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Co, tak w ogóle, robicie z przyssawkami?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Połowę zużywamy by nawozić
+        drzewo przyssawkowe
+        żeby w następnym roku wydawało
+        dobre przyssawki,
+        a drugą połowę zawsze konserwujemy."
+   S1: "Jest taka tradycja, by w wieczór
+        przed rozpoczęciem rozgrywek
+        Ligi Przyssawek
+        spożywać marmoladę na przyjęciu."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "To dlatego przyssawki zostały zjedzone
+       już w zeszlym roku!"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Tak jest."
+   S1: "Wszyscy naprawdę rozkoszowaliśmy się ostatnimi,
+        zeszłorocznymi przyssawkami.
+        Były naprawdę wyśmienite."
+   S1: "Wciąż będąc w narkotycznym transie pobiegliśmy
+        pod przyssawkowe drzewo."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "W transie?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Nie wiesz, że konserwowane przyssawki dają
+        Hmmm, ciekawe efekty?
+        Hmmm,..."
+   S1: "Czekaliśmy tam przez jakiś tydzień,
+        lecz bez skutku."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Patrzyliście czy przyssawki nie wyrastają, i nic?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Prawdę mówiąc,
+        cały czas spaliśmy."
+   S1: "Po tygodniu, kiedy pierwsi gracze
+        zbudzili się z upojenia,
+        spostrzegli, że na drzewie nie ma wcale
+        przyssawek..."
+   S1: "... i że na ziemi też nie ma,
+        tylko drużyna przeciwników
+        śpi pod przyssawkowym drzewem."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Może źle dobraliście proporcje, ile
+       przyssawek dać na kompost, a ile zakonserwować..."
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Raczej wątpię!
+        Wszystko robiliśmy tak samo jak w zeszłym roku."
+  start leskriz_sipkar "mlci"
+gplend
+
+block _6 ( beg(0) and not been(_6) and been(_3) )
+   title Czym mieszaliście konserwowane przyssawki?
+  justtalk
+   D: "Czym mieszaliście konserwowane przyssawki?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Nie mieliśmy łyżki,
+        więc użyliśmy drewnianego patyczka."
+   S1: "Ciągle gadał i gadał,
+        ale on się sam zgłosił na ochotnika!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "A co, jeśli to ten patyk był powodem problemów?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Wątpię."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Czym mieszaliście kompost?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Widelcem."
+   S1: "Zwykłym widelcem."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Czy widelec mówił?"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "NIE!"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Do diabła, czuję się zbity z tropu!"
+   D: "I już naprawdę nie wiem co począć..."
+  juststay
+gplend
+
+block _03 ( beg(0) and not last(_01) and not last(_00) )
+   title No to do widzenia.
+  justtalk
+   D: "No to do widzenia."
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Do widzenia."
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Mam nadzieję, że NAPRAWDĘ znów się spotkamy!"
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Wierz w to, chłopcze..."
+  start leskriz_sipkar "mlci"
+  exitdialogue
+gplend
+
+block _02 ( maxline(1) and beg(0) and last(_01) )
+title
+  justtalk
+   D: "Chciałbym wiedzieć co by tu począć!"
+  juststay
+   exitdialogue
+gplend
+
+block _91 ( maxline(1) and beg(1) and isactico(i_sipky) )
+title
+  icostat off i_sipky
+  justtalk
+   D: "Mam dla ciebie dobre wieści,
+       Mam przyssawki."
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Czy drzewo znów rodzi owoce?"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Tak."
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "Jak to się stało, że odzyskało zdrowy rozsądek?"
+  start leskriz_sipkar "mlci"
+  justtalk
+   D: "Nie wiem, drzewo coś sobie pomyśli i nagle..."
+  juststay
+  start leskriz_sipkar "mluvi"
+   S1: "To wspaniale, teraz muszę nabrać kondycji."
+   S1: "Dziękuję, i mam nadzieję, że się zobaczymy
+        pewnego dnia na przyssawkowych zawodach!"
+  start leskriz_sipkar "mlci"
+  load leskriz_sipkar "odchazi"
+  startplay leskriz_sipkar "odchazi"
+  {odejde...}
+  {měl by odejít!!!}
+
+  let predal_sipky (1)
+  objstat away leskriz_sipkar
+  exitdialogue
+gplend

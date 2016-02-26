@@ -1,0 +1,130 @@
+block _22 ( atbegin(1)  and not been(_22) )
+title Es tut mir leid, ich kann Sie nicht mitnehmen.
+  {extra pokecat muzeme jenom jednou, takze to hned tady znemoznime:}
+  let kronika_extra_pokec (0)
+
+  justtalk
+D: "Hab noch einen schönen Tag, Chronik."
+D: "Es tut mir leid,
+    aber ich kann dich nicht mitnehmen."
+  juststay
+
+  start kronika "mluvi"
+K: "Geh einfach, ich werde schon zurecht kommen."
+  start kronika "mlci"
+
+  justtalk
+D: "Wirst du das?
+    Die Goblins werden aufwachen und dann..."
+  juststay
+
+  start kronika "mluvi"
+K: "Da freue ich mich drauf,
+    ich werde sie fürchterlich ausschimpfen!"
+  start kronika "mlci"
+
+  justtalk
+D: "Eine gute Idee. Ich schätze,
+    daß sie bereits vor Furcht zittern
+    vor dem, was ihnen blüht."
+  juststay
+
+  start kronika "mluvi"
+K: "Glaubst du?"
+  start kronika "mlci"
+
+  justtalk
+D: "Ja, wirklich."
+  juststay
+
+  start kronika "mluvi"
+K: "Sag mal,
+    hast du Angst vor mir?"
+  start kronika "mlci"
+
+  justtalk
+D: "Oh ja, ich hab mir schon in die Hosen gemacht."
+  juststay
+
+{  Vypravec:"[Obstarožní kronika balí pubertálního draka:]"
+  start kronika "mluvi"
+K: "Oh!"
+K: "Das war wohl nur ein Kompliment
+    von einem hübschen, jungen Drachen, oder?"
+  start kronika "mlci"
+
+  justtalk
+D: "Natürlich, ich hab mir seit fast sechs Monaten
+    nicht in die Hosen gemacht..."
+  juststay
+
+  start kronika "mluvi"
+K: "Oh, du bist aber ein großer Junge!
+    Kannst du schon im Stehen pinkeln?"
+  start kronika "mlci"
+
+  justtalk
+D: "Hey, langsam.
+    Wir geraten langsam in den 'FSK ab 12' Bereich."
+  juststay
+
+  justtalk
+D: "Mein Fehler. Ich hoffe,
+    du bekommst jetzt keine Komplexe."
+  juststay
+
+  start kronika "mluvi"
+K: "Schon gut, ich denke es ist in Ordnung,
+    wenn wir uns veräppeln."
+  start kronika "mlci"
+
+Vypravec: "[eine Schroffe Zeitgenossin]"
+  justtalk
+D: "Dafür haben wir jetzt keine Zeit!"
+  juststay
+
+  justtalk
+D: "Hör zu, ich habe aus wissenschaftlichem
+    und historischem Blickwinkel Angst vor dir!"
+  juststay
+
+  justtalk
+D: "When ich daran denke,
+    was sie dir angetan haben..."
+  juststay
+
+  start kronika "mluvi"
+K: "Keine Sorge, ich bin aus nicht entflammbarem
+    Material!"
+  start kronika "mlci"
+
+  justtalk
+D: "OK, aber wenn sie..."
+D: "Hmm, wogegen bist du denn resistent?"
+  juststay
+
+  start kronika "mluvi"
+K: "Ich bin frostbeständig, hitzebeständig,
+    und wasserbeständig,
+    ich trotze dem Zahn der Zeit
+    und bin ungenießbar."
+  start kronika "mlci"
+
+  justtalk
+D: "Bäh. Hat je jemand versucht
+    eine alte Chronik zu essen?
+    Unfassbar!"
+  juststay
+
+  start kronika "mluvi"
+K: "Alles ist möglich in Märchen..."
+  start kronika "mlci"
+
+  justtalk
+D: "Jetzt bin ich einverstanden,
+    dich mit diesen Idioten allein zu lassen."
+D: "Bis dann."
+D: "VIELLEICHT sehen wir uns mal wieder..."
+  juststay
+
+gplend

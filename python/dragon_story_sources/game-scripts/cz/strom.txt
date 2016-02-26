@@ -1,0 +1,98 @@
+{s větrem v horách:}
+
+block _00 ( beg(1) and isactico(0) and not been(_00) )
+title
+ labels skip
+  justtalk
+  D: "Pane strom."
+  juststay
+  justtalk
+  D: "Pane strom!"
+  juststay
+  justtalk
+  D: "Ten zaostalý strom snad neumí mluvit!"
+  juststay
+  goto skip
+  justtalk
+  D: "Pane strom!!!"
+  juststay
+  V: "Ten zaostalýýý..."
+  V: "...dementnííí..."
+  V: "...degenerovanýýý..."
+  V: "...mongoloidnííí strom..."
+ label skip
+  V: "...vááážně neumííí mluvit,
+      ale možnááá by sis rááád
+      promluvil se mnouuu."
+  justtalk
+  D: "Kdo jsi?"
+  juststay
+  V: "Vííííítr..."
+  justtalk
+  D: "A já myslel, že jsi strom!"
+  juststay
+  V: "Kdepak, vííítr!"
+  justtalk
+  D: "Ach tak!
+      A ty něco proti tomu dřevu máš?"
+  juststay
+  V: "No že se ptáááš,
+      copak nevidíííš, že jsem uvííízl?"
+  justtalk
+  D: "Vidím akorát kymácející se dřevo."
+  juststay
+  V: "Tak tóóó bude ono.
+      Snažííím se vyprostit,
+      ale bez cizííí pomoci to asi nepůůůjde!"
+  justtalk
+  D: "Uvidíme, co se tím dá dělat."
+  juststay
+  V: "Neodpovííídej tak vyhýýýbavě,
+      každýýým okamžikem mi ubýýývááá sil."
+  V: "Odměnííím se ti!"
+  justtalk
+  D: "To by snad šlo,
+      zadarmo byste se mnou těžko pořídil!"
+  juststay
+  justtalk
+  D: "Upozorňuju vás, že pod stopadesát na
+      hodinu nejdu!"
+  juststay
+  V: "Doufááám, že si to ještě rozmyslíííš.
+      Spoléééhááám na tebe!"
+  justtalk
+  D: "Při hraní jedné takovéto hry
+      na mě leží spousta odpovědnosti."
+  juststay
+gplend
+
+block _01 ( beg(1) and isactico(i_prsten) )
+title
+  icostat off i_prsten
+    objstat away stromek_kym
+    objstat_on stromek hory
+    start stromek "zakladni"
+    load hory_jisk "FLI-animace"
+    startplay hory_jisk "FLI-animace"
+    objstat away hory_jisk
+  V: "Díííky!"
+  justtalk
+  D: "A je fuč."
+  juststay
+  justtalk
+  D: "To snad ne!"
+  juststay
+gplend
+
+block _02 ( maxline(1) and beg(1) and isactico(0) )
+title
+  justtalk
+  D: "Pane vítr!"
+  juststay
+  V: "Uvííízl jsem.
+      A ty to vííííš!
+      Co s tím uděláááš?"
+  justtalk
+  D: "No to by mě zajímalo."
+  juststay
+gplend

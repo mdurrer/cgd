@@ -1,0 +1,749 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Flood Fill</title>
+<meta content="text/html; charset=us-ascii" http-equiv=
+"content-type" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>Flood Fill</h1>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#Introduction_">Introduction</a></li>
+<li><a href="#Test_Program_">Test Program</a></li>
+<li><a href="#4-Way_Recursive_Method_floodFill4">4-Way Recursive
+Method (floodFill4)</a></li>
+<li><a href="#8-Way_Recursive_Method_floodFill8">8-Way Recursive
+Method (floodFill8)</a></li>
+<li><a href="#4-Way_Method_With_Stack">4-Way Method With Stack
+(floodFill4Stack)</a></li>
+<li><a href="#8-Way_Method_With_Stack">8-Way Method With Stack
+(floodFill8Stack)</a></li>
+<li><a href="#Recursive_Scanline_Floodfill_Algorithm">Recursive
+Scanline Floodfill Algorithm (floodFillScanline)</a></li>
+<li><a href="#Scanline_Floodfill_Algorithm_With_Stack">Scanline
+Floodfill Algorithm With Stack
+(floodFillScanlineStack)</a><br /></li>
+</ul>
+<a href="index.html">Back to index</a><br />
+<h2><a name="Introduction_" id=
+"Introduction_"></a>Introduction<br /></h2>
+The purpose of Flood Fill is to color an entire area of connected
+pixels with the same color. It's the Bucket Tool in many painting
+programs. Here's an example: the original image is on the left.
+Then a floodfill was started inside the large shape, and the
+algorithm gave all pixels inside the shape the new color, leaving
+it's borders and the pixels outside intact.<br />
+<br />
+<img alt="" src="images/floodfill.gif" style=
+"width: 539px; height: 280px;" /><br />
+<br />
+The Flood Fill algorithm is also sometimes called Seed Fill: you
+plant a seed (the pixel where you start), and, recursively, more
+and more seeds are planted around the original seed if those pixels
+have the correct color. Each new seed is responsible for coloring
+the pixel at it's position, and testing for new pixels around it
+that have to be colored.<br />
+<br />
+There exist many different floodfill algorithm, 3 of them are
+discussed here, and two versions of each: a version with recursion,
+and a version with a stack.<br />
+<br />
+There also exists the so called Boundary Fill, this is very similar
+to Flood Fill, but will color an area with pixels of a certain
+color as boundary. The algorithms for boundary fill are very
+similar apart from the conditions in the tests for planting new
+seeds.<br />
+<br />
+You can download the full source code of this tutorial <a href=
+"files/floodfill.cpp">here</a>.<br />
+<h2><a name="Test_Program_" id="Test_Program_"></a>Test
+Program<br /></h2>
+To test the different flood fill algorithms, we need a test program
+that allows you to create shapes to fill. The test program is a
+small version of the painting program described in the "Painting"
+tutorial. It also includes a benchmark that allows you to compare
+two different floodfill algorithms and shows the time in
+milliseconds it took each of them to fill an area 50 times.<br />
+<br />
+Because floodfilling requires reading pixels, we use a buffer to
+contain the pixels (called screenBuffer[w][h]) instead of reading
+and writing pixels directly to the screen. All colors used here are
+integer values, instead of using the ColorRGB struct.<br />
+<br />
+The code given here includes the full test program except the
+floodfill algorithms (which are explained in the rest of this
+tutorial) and the paint_drawLine function, which is an exact copy
+of the drawLine function from QuickCG.cpp but draws to screenBuffer
+instead of directly to the screen. The full source, including all
+these functions, can be downloaded here: <a href="files/floodfill.cpp">floodfill.cpp</a>.<br />
+<br />
+Here are the initializations of all the floodFill functions we'll
+be making, the stack used by some of the functions, the auxiliary
+functions, and the graphics buffer.<br />
+<br />
+The size of the stack defined here is pretty big (166777216), you
+can easily make it much smaller, the only case where it has to be
+this big is when you want to try the worse of the floodfill
+functions on a very large screen. The best floodfill algorithm
+doesn't require a big stack at all, unless you're working at huge
+resolutions.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre><span class="code"><span class="comment">//the floodfill algorithms</span>
+void floodFill4(int x, int y, int newColor, int oldColor);
+void floodFill8(int x, int y, int newColor, int oldColor);
+void floodFill4Stack(int x, int y, int newColor, int oldColor);
+void floodFill8Stack(int x, int y, int newColor, int oldColor);
+void floodFillScanline(int x, int y, int newColor, int oldColor); 
+void floodFillScanlineStack(int x, int y, int newColor, int oldColor);
+      
+<span class="comment">//the stack</span>
+#define stackSize 16777216
+int stack[stackSize];
+int stackPointer;
+      
+<span class="comment">//the auxiliary functions</span>
+bool paint_drawLine(int x1, int y1, int x2, int y2, ColorRGB
+color);
+void clearScreenBuffer(ColorRGB color);
+
+<span class="comment">//the graphics buffer</span>
+#define screenW 256
+#define screenH 256
+int screenBuffer[screenW][screenH];</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here's the main function of the test program, it can do 3 different
+mouse actions:
+<ul>
+<li>If you press the left mouse button, it draws a line between the
+current and previous position, so that you can draw shapes, as
+explained in the "Painting" tutorial. This allows you to make areas
+to fill.</li>
+<li>If you press the right mouse button, it'll floodFill at that
+position with a color defined by the coordinates of that position.
+This allows you to floodfill with many different colors without
+needing a color selector. You can change the floodfill function
+used to any of the other 5 functions.</li>
+<li>If you press both mouse buttons at the same time, the screen is
+cleared to white again.</li>
+</ul>
+The benchmark code does 2 floodfill algorithms of your choice 50
+times, remembers the time it took them, displays the resulting
+times, and sleeps until you press a key. Start the benchmark by
+pressing space, it'll perform the floodfills at the current mouse
+position.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code">int main(int argc, char *argv[]) 
+{
+    screen(screenW, screenH, 0, <span class=
+"string">"Flood Fill"</span>);
+    clearScreenBuffer(RGB_White);
+    int mouseX, mouseY;
+    int oldMouseX, oldMouseY;
+    bool LMB, RMB; 
+       
+    while(!done()) 
+    {       
+        oldMouseX = mouseX; 
+        oldMouseY = mouseY;        
+        getMouseState(mouseX, mouseY, LMB, RMB); 
+         
+        <span class=
+"comment">//3 different mouse input actions</span> 
+        if(LMB) paint_drawLine(oldMouseX, oldMouseY, mouseX, mouseY, RGB_Black); 
+        if(RMB)  
+        { 
+            int color = RGBtoINT(ColorRGB((mouseX % 3 + 1) * 64, (mouseY % 8) * 32, (mouseX + mouseY) % 256)); 
+            floodFillScanlineStack(mouseX, mouseY, color, screenBuffer[mouseX][mouseY]);  
+        }     
+        if(RMB &amp;&amp; LMB) clearScreenBuffer(RGB_White); 
+         
+        <span class="comment">//benchmark</span> 
+        readKeys(); 
+        if(inkeys[SDLK_SPACE]) 
+        { 
+            float startTime = getTime(); 
+            for(int i = 1; i &lt; 50; i++) floodFill4Stack(mouseX, mouseY, RGBtoINT(ColorRGB(i,255,i)), screenBuffer[mouseX][mouseY]); 
+            float endTime = getTime(); 
+            
+            float startTime2 = getTime(); 
+            for(int i = 1; i &lt; 50; i++) floodFillScanlineStack(mouseX, mouseY, RGBtoINT(ColorRGB(i,255,i)), screenBuffer[mouseX][mouseY]); 
+            float endTime2 = getTime(); 
+            
+            drawBuffer(screenBuffer[0]); 
+            print(endTime - startTime, 0, 0, 0, RGB_Black, 1, RGB_White); 
+            print(endTime2 - startTime2, 0, 0, 8, RGB_Black, 1, RGB_White); 
+            redraw(); 
+            sleep();           
+        }  
+       
+        <span class=
+"comment">//redraw the screen each frame</span> 
+        drawBuffer(screenBuffer[0]); 
+        redraw();  
+    } 
+    return 0;       
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here are the stack functions, only used by 3 of the floodFill
+functions. A stack is a memory structure where you can push new
+values on top, or pop them again off it to read them. You can only
+access the top value of a stack, and to read the top value, you
+have to pop it, thereby removing it.<br />
+<br />
+The stack itself has the integer as data type, but this single
+integer is used to store both the x and y coordinate: store it as p
+= h * x + y, and get the two values again by using x = p / h, y = p
+% h.<br />
+<br />
+The pop function takes x and y passed by reference, so that this
+function can change the x and y given in it's parameters. The pop
+function returns 1 if it successfully got a value from the top of
+the stack, or 0 if the stack was empty. The push function returns 1
+if it could successfully push a value onto the stack, or 0 if the
+stack was full.<br />
+<br />
+The emptyStack function empties the complete stack until 0 values
+are left on it.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code">bool pop(int
+&amp;x, int &amp;y) 
+{ 
+    if(stackPointer &gt; 0) 
+    { 
+        int p = stack[stackPointer]; 
+        x = p / h; 
+        y = p % h; 
+        stackPointer--; 
+        return 1; 
+    }     
+    else 
+    { 
+        return 0; 
+    }    
+}    
+
+bool push(int x, int y) 
+{ 
+    if(stackPointer &lt; stackSize - 1) 
+    { 
+        stackPointer++; 
+        stack[stackPointer] = h * x + y; 
+        return 1; 
+    }     
+    else 
+    { 
+        return 0; 
+    }    
+}     
+
+void emptyStack() 
+{ 
+    int x, y; 
+    while(pop(x, y)); 
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here's one of the auxiliary functions, clearScreenBuffer. It sets
+the whole screenBuffer to the given color. The other function,
+paint_drawLine isn't given here because it's quite big and almost
+the same as the drawLine function in quickCG.cpp, except that it
+sets pixels of screenBuffer to the given color, instead of using
+pset.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code">void clearScreenBuffer(ColorRGB color) 
+{ 
+    for(int x = 0; x &lt; w; x++) 
+    for(int y = 0; y &lt; h; y++) 
+    { 
+        screenBuffer[x][y] = RGBtoINT(color); 
+    }     
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Apart from these functions, the test program of course needs you to
+define the 6 floodFill functions too, but these are given
+below.<br />
+<h2><a name="4-Way_Recursive_Method_floodFill4"></a>4-Way Recursive
+Method (floodFill4)</h2>
+This is the most simple algorithm to make, but also the slowest.
+Also, since it uses a recursive function, the recursion stack may
+overflow making it crash when filling larger areas.<br />
+<br />
+You call the function with in it's parameters: the start position
+(where you clicked for the floodfill to start), the oldColor (the
+color of the area you're overdrawing) and the newColor (the color
+these pixels should get). The recursion works like this: at the
+start position, you "plant a seed". Each seed gives the pixel at
+it's position the new color, and then plants a new seed at it's 4
+neighbors. Each of these new seeds will draw a pixel again and
+plant even more seeds, but only if fulfills the following
+conditions:<br />
+<ul>
+<li>The pixel is inside the screen: edges of the screen also count
+as edges of the area to be filled.<br /></li>
+<li>The pixel has oldColor: if it hasn't, it's either a border of
+the area we're filling, or a pixel that has already been given the
+newColor.</li>
+<li>The pixel doesn't have newColor: this condition is only needed
+if oldColor is the same as oldColor, otherwise it'll keep running
+forever since newly drawn pixels will again have oldColor and thus
+seeds will be planted again and again forever.</li>
+</ul>
+This is very easy to program:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code"><span class=
+"comment">//Recursive 4-way floodfill, crashes if recursion stack is full</span> 
+void floodFill4(int x, int y, int newColor, int oldColor) 
+{ 
+    if(x &gt;= 0 &amp;&amp; x &lt; w &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; h &amp;&amp; screenBuffer[x][y] == oldColor &amp;&amp; screenBuffer[x][y] != newColor) 
+    { 
+        screenBuffer[x][y] = newColor; <span class=
+"comment">//set color before starting recursion</span>
+        
+        floodFill4(x + 1, y,     newColor, oldColor);
+        floodFill4(x - 1, y,     newColor, oldColor);
+        floodFill4(x,     y + 1, newColor, oldColor);
+        floodFill4(x,     y - 1, newColor, oldColor);
+    }     
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+The function will keep calling itself more and more until
+eventually all pixels are filled. The order in which you call the
+floodFill4 functions for the neighbors doesn't really matter. In
+the example above it first tries the neighbor to the right, so the
+algorithm will first draw a line going to the right, until it meets
+an edge. Then the last called floodFill4 function returns to the
+pre-last one, which tests the neighbor to the left. Since that one
+has been drawn alraedy, it tests the one down. That one isn't drawn
+yet, and if it isn't an edge, the algorithm will continue there,
+testing to the right again, and so on...<br />
+<br />
+Note how the color is represented as an integer, instead of using
+the slower ColorRGB struct.<br />
+<br />
+This screenshot shows the floodFill4 algorithm while it's still
+busy:<br />
+<br />
+<img alt="" src="images/floodfill4busy.gif" style=
+"width: 261px; height: 282px;" /><br />
+<h2><a name="8-Way_Recursive_Method_floodFill8"></a>8-Way Recursive
+Method (floodFill8)</h2>
+This algorithm is pretty similar to the previous one, except it
+doesn't test 4 neighbors, but 8. This means, that this version of
+the floodfill algorithm will leak through sloped edges of 1 pixel
+thick:<br />
+<br />
+<img alt="" src="images/floodfill8leak.gif" style=
+"width: 64px; height: 66px;" /><br />
+<br />
+Both red pixels are now a neighbor of each other, so the algorithm
+wil continue behind the sloped black line. The code is very similar
+to the 4-way one:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code"><span class="comment">//Recursive 8-way floodfill, crashes if recursion stack is full</span>
+void floodFill8(int x, int y, int newColor, int oldColor)
+{
+    if(x &gt;= 0 &amp;&amp; x &lt; w &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; h &amp;&amp; screenBuffer[x][y] == oldColor &amp;&amp; screenBuffer[x][y] != newColor)
+    {
+        screenBuffer[x][y] = newColor; <span class=
+"comment">//set color before starting recursion!</span>
+        
+        floodFill8(x + 1, y,     newColor, oldColor);
+        floodFill8(x - 1, y,     newColor, oldColor);
+        floodFill8(x,     y + 1, newColor, oldColor);
+        floodFill8(x,     y - 1, newColor, oldColor);
+        <b>floodFill8(x + 1, y + 1, newColor, oldColor);</b>
+        <b>floodFill8(x - 1, y - 1, newColor, oldColor);</b>
+        <b>floodFill8(x - 1, y + 1, newColor, oldColor);</b>
+        <b>floodFill8(x + 1, y - 1, newColor, oldColor);</b>
+    }    
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Unlike the 4-way version, the 8-way version can fill thin lines,
+for example the edge of a shape:<br />
+<br />
+<img alt="" src="images/floodfill8.gif" style=
+"width: 541px; height: 281px;" /><br />
+<br />
+The floodFill4 algorithm (the way the bucket tool of painting
+programs work) would only have colored a few pixels of the black
+curve, the pixels which only touch a corner aren't considered
+neighbors in that case.<br />
+<br />
+However, you can't use floodFill8 to fill the inside of the shapes
+because it'll leak through the sides.<br />
+<h2><a name="4-Way_Method_With_Stack"></a>4-Way Method With Stack
+(floodFill4Stack)</h2>
+This algorithm does exactly the same as the one with recursion,
+only it uses a while loop that loops until the stack is empty, and
+you push new positions to the stack instead of starting another
+recursion. So the only difference is that we're using our own stack
+routines now, instead of the ones used for recursive functions.
+This means we can control the size of the stack, and properly stop
+the floodfill algorithm if the stack overflows, instead of just
+letting the program crash. There are also a few other minor
+differences in the implementation.<br />
+<br />
+The stack routines were described in the Test Program
+chapter.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code"><span class=
+"comment">//4-way floodfill using our own stack routines</span>
+void floodFill4Stack(int x, int y, int newColor, int oldColor)
+{
+    if(newColor == oldColor) return; <span class=
+"comment">//avoid infinite loop</span>
+    emptyStack();
+      
+    if(!push(x, y)) return; 
+    while(pop(x, y))
+    {
+        screenBuffer[x][y] = newColor;
+        if(x + 1 &lt; w &amp;&amp; screenBuffer[x + 1][y] == oldColor)
+        {          
+            if(!push(x + 1, y)) return;           
+        }    
+        if(x - 1 &gt;= 0 &amp;&amp; screenBuffer[x - 1][y] == oldColor)
+        {
+            if(!push(x - 1, y)) return;           
+        }    
+        if(y + 1 &lt; h &amp;&amp; screenBuffer[x][y + 1] == oldColor)
+        {
+            if(!push(x, y + 1)) return;           
+        }    
+        if(y - 1 &gt;= 0 &amp;&amp; screenBuffer[x][y - 1] == oldColor)
+        {
+            if(!push(x, y - 1)) return;           
+        }    
+    }     
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This algorithm goes a bit faster than the recursive version.<br />
+<h2><a name="8-Way_Method_With_Stack"></a>8-Way Method With Stack
+(floodFill8Stack)</h2>
+This is the 8-way version of the previous function, and only
+differs because it has 4 extra neighbor test conditions:<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code"><span class=
+"comment">//4-way floodfill using our own stack routines</span>
+void floodFill4Stack(int x, int y, int newColor, int oldColor)
+{
+    if(newColor == oldColor) return; <span class=
+"comment">//avoid infinite loop</span>
+    emptyStack();
+      
+    if(!push(x, y)) return; 
+    while(pop(x, y))
+    {
+        screenBuffer[x][y] = newColor;
+        if(x + 1 &lt; w &amp;&amp; screenBuffer[x + 1][y] == oldColor)
+        {          
+            if(!push(x + 1, y)) return;
+        }    
+        if(x - 1 &gt;= 0 &amp;&amp; screenBuffer[x - 1][y] == oldColor)
+        {
+            if(!push(x - 1, y)) return;
+        }    
+        if(y + 1 &lt; h &amp;&amp; screenBuffer[x][y + 1] == oldColor)
+        {
+            if(!push(x, y + 1)) return;
+        }    
+        if(y - 1 &gt;= 0 &amp;&amp; screenBuffer[x][y - 1] == oldColor)
+        {
+            if(!push(x, y - 1)) return;
+        }
+        <b>if(x + 1 &lt; w &amp;&amp; y + 1 &lt; h &amp;&amp; screenBuffer[x + 1][y + 1] == oldColor)
+        {      
+            if(!push(x + 1, y + 1)) return;
+        }        
+        if(x + 1 &lt; w &amp;&amp; y - 1 &gt;= 0 &amp;&amp; screenBuffer[x + 1][y - 1] == oldColor)
+        {  
+            if(!push(x + 1, y - 1)) return;
+        } 
+        if(x - 1 &gt;= 0 &amp;&amp; y + 1 &lt; h &amp;&amp; screenBuffer[x - 1][y + 1] == oldColor)
+        {          
+            if(!push(x - 1, y + 1)) return;
+        }
+        if(x - 1 &gt;= 0 &amp;&amp; y - 1 &gt;= 0 &amp;&amp; screenBuffer[x - 1][y - 1] == oldColor)
+        {
+            if(!push(x - 1, y - 1)) return;
+        }</b>
+    }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+<font color=#DADADA><h2><a name="Recursive_Scanline_Floodfill_Algorithm" id=
+"Recursive_Scanline_Floodfill_Algorithm"></a>Recursive Scanline
+Floodfill Algorithm (floodFillScanline)</h2>
+<font color=#000000><p>There is very likely to be an error in this chapter. I'll investigate this later.</p></font>
+ This algorithm is based on the following steps:<br />
+<ul>
+<li>Start by filling the current vertical line from one end to the
+other</li>
+<li>While filling the current scanline, test for the ends of spans
+left and right</li>
+<li>For each new free span, plant a seed</li>
+<li>Repeat until there are no more seeds<br /></li>
+</ul>
+Like the original floodFill4 and floodFill8 algorithms, this one is
+recursive, but now each recursion will fill a whole vertical line
+instead of a single pixel, so much less recursions and stack depth
+are needed. The implementation given below first draws the current
+vertical line, and then tests for vertical lines left and right and
+plants the new seeds by recursively calling itself again.<br />
+<br />
+This algorithm gives the same result as the floodFill4 algorithm,
+not as the floodFill8 one. If you want, you can modify it to work
+like the floodFill8 one by making it test for spans left and right
+one pixel up and down too.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code"><span class=
+"comment">//stack friendly and fast floodfill algorithm</span>
+void floodFillScanline(int x, int y, int newColor, int oldColor)
+{
+    if(oldColor == newColor) return;
+    if(screenBuffer[x][y] != oldColor) return;
+      
+    int y1;
+    
+    <span class="comment">//draw current scanline from start position to the top</span>
+    y1 = y;
+    while(y1 &lt; h &amp;&amp; screenBuffer[x][y1] == oldColor)
+    {
+        screenBuffer[x][y1] = newColor;
+        y1++;
+    }    
+    
+    <span class="comment">//draw current scanline from start position to the bottom</span>
+    y1 = y - 1;
+    while(y1 &gt;= 0 &amp;&amp; screenBuffer[x][y1] == oldColor)
+    {
+        screenBuffer[x][y1] = newColor;
+        y1--;
+    }
+    
+    <span class="comment">//test for new scanlines to the left</span>
+    y1 = y;
+    while(y1 &lt; h &amp;&amp; screenBuffer[x][y1] == newColor)
+    {
+        if(x &gt; 0 &amp;&amp; screenBuffer[x - 1][y1] == oldColor) 
+        {
+            floodFillScanline(x - 1, y1, newColor, oldColor);
+        } 
+        y1++;
+    }
+    y1 = y - 1;
+    while(y1 &gt;= 0 &amp;&amp; screenBuffer[x][y1] == newColor)
+    {
+        if(x &gt; 0 &amp;&amp; screenBuffer[x - 1][y1] == oldColor) 
+        {
+            floodFillScanline(x - 1, y1, newColor, oldColor);
+        }
+        y1--;
+    } 
+    
+    <span class="comment">//test for new scanlines to the right</span> 
+    y1 = y;
+    while(y1 &lt; h &amp;&amp; screenBuffer[x][y1] == newColor)
+    {
+        if(x &lt; w - 1 &amp;&amp; screenBuffer[x + 1][y1] == oldColor) 
+        {           
+            floodFillScanline(x + 1, y1, newColor, oldColor);
+        } 
+        y1++;
+    }
+    y1 = y - 1;
+    while(y1 &gt;= 0 &amp;&amp; screenBuffer[x][y1] == newColor)
+    {
+        if(x &lt; w - 1 &amp;&amp; screenBuffer[x + 1][y1] == oldColor) 
+        {
+            floodFillScanline(x + 1, y1, newColor, oldColor);
+        }
+        y1--;
+    }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+This screenshot shows the vertical scanline floodfill algorithm
+while it's busy:<br />
+<br />
+<img alt="" src="images/floodfillscanlinebusy.gif" style=
+"width: 261px; height: 280px;" /><br />
+<br />
+Normally, Scanline floodfill algorithms actually work with
+horizontal scanlines instead of vertical ones. However, I found
+with the benchmark that it works much faster with vertical ones,
+and the reason appeared to be the following: the CPU caches parts
+of the 2D screenBuffer array, and when working with vertical lines
+you're only changing the y-coordinate of that array, and the data
+it's working with is then much more closely packed to each other in
+the memory structure, than when you're changing it in the
+x-direction. When the data is further apart, the chance is higher
+that not everything needed is cached, making it slower. This might
+depend on what platform is used though. It's easy to convert the
+function to work with horizontal lines instead, use x1 instead of
+y1 and swap the coordinates in the rest of the code, for example
+"y1 = y - 1" becomes "x1 = x - 1", and "screenBuffer[x - 1][y1]"
+becomes "screenBuffer[x1][y - 1]". The difference in speed is
+especially visible when filling large shapes at high
+resolutions.<br /></font>
+<h2><a name="Scanline_Floodfill_Algorithm_With_Stack" id=
+"Scanline_Floodfill_Algorithm_With_Stack"></a>Scanline Floodfill
+Algorithm With Stack (floodFillScanlineStack)</h2>
+This is very similar to the previous algorithm, except again our
+own stack routines are used instead of recursion. This
+implementation also uses two boolean variables, "spanLeft" and
+"spanRight" to remember if pixels tested on the left or right are
+part of a new span, or one already pushed to the stack. In the
+implementation with recursion this wasn't needed, because there the
+spans to the left and right were drawn first, causing all it's
+pixels to get the newColor already so that other pixels of it
+couldn't be detected anymore.<br />
+<br />
+<center>
+<table class="codetable">
+<tr>
+<td style="vertical-align: top;">
+<pre>
+<span class="code"><span class=
+"comment">//The scanline floodfill algorithm using our own stack routines, faster</span>
+void floodFillScanlineStack(int x, int y, int newColor, int oldColor)
+{
+    if(oldColor == newColor) return;
+    emptyStack();
+    
+    int y1; 
+    bool spanLeft, spanRight;
+    
+    if(!push(x, y)) return;
+    
+    while(pop(x, y))
+    {    
+        y1 = y;
+        while(y1 &gt;= 0 &amp;&amp; screenBuffer[x][y1] == oldColor) y1--;
+        y1++;
+        spanLeft = spanRight = 0;
+        while(y1 &lt; h &amp;&amp; screenBuffer[x][y1] == oldColor )
+        {
+            screenBuffer[x][y1] = newColor;
+            if(!spanLeft &amp;&amp; x &gt; 0 &amp;&amp; screenBuffer[x - 1][y1] == oldColor) 
+            {
+                if(!push(x - 1, y1)) return;
+                spanLeft = 1;
+            }
+            else if(spanLeft &amp;&amp; x &gt; 0 &amp;&amp; screenBuffer[x - 1][y1] != oldColor)
+            {
+                spanLeft = 0;
+            }
+            if(!spanRight &amp;&amp; x &lt; w - 1 &amp;&amp; screenBuffer[x + 1][y1] == oldColor) 
+            {
+                if(!push(x + 1, y1)) return;
+                spanRight = 1;
+            }
+            else if(spanRight &amp;&amp; x &lt; w - 1 &amp;&amp; screenBuffer[x + 1][y1] != oldColor)
+            {
+                spanRight = 0;
+            } 
+            y1++;
+        }
+    }
+}</span></pre>
+</td>
+</tr>
+</table>
+</center>
+<br />
+Here's the result of a benchmark between the floodFill4Stack and
+the floodFillScanlineStack function: it took floodFill4Stack 239
+milliseconds to fill the shape 50 times, while it took
+floodFillScanlineStack only 34 milliseconds.<br />
+<br />
+<img alt="" src="images/floodfillbenchmark.gif" style=
+"width: 260px; height: 279px;" /><br />
+<br />
+<hr />
+Last edited: 2004
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.
+</body>
+</html>

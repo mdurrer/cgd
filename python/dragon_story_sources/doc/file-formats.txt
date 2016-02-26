@@ -1,0 +1,251 @@
+Files in each {cz, en, pl} directory :
+======================================
+
+- gpl2: definition of commands of the game programming language.
+- ident: initial lists of identifiers in some namespaces.  The game compiler
+  then allocates on the fly new available numbers.
+- ikony (3-3): definitions of all game items that can be picked (name,
+  picture, label)
+- init (3-1): definitions of all variables used in the game, and the name of
+  the starting location
+- mist (3-4): definitions of all game locations (name, background image, map,
+  perspective coefficient, programs run when leaving the location one for each
+  gate)
+- mluveni (3-8): definitions of speaking characters (position of the text and
+  font color)
+- objekty (3-2): definitions of interactive game objects which can be clicked
+  on (name, location, z-coordinate, animation, which game items can be used on
+  it, position of the dragon when interacting with it, program run when
+  entering the location, programs run when clicking an looking on it)
+- *.txt: descriptions of the dialogs, linked from files mist and objekty.  Each
+  such file is split into several blocks (3-9) and contain programs to be run
+  as well as texts spoken by the characters.  Instead of calling the TALK
+  command directly, syntax '<character>: "text"' is used.
+
+The following files are independent of the localization: gpl2, ident, init,
+mluveni.  The remaining files contain localized strings.  These strings are
+expected in charset x-kam-cs (Kamenický encoding, for English and Czech
+version) and some very funny encoding (mapping ąćęłńóśźżĄĆĘŁŃÓŚŹŻ into
+characters 128..145, respectively, for Polish version), and they must be in
+the CR+LF format (DOS and Windows text files).  I have recoded them to UTF-8
+charset for easier editing in Unix environment, but kept them in the CR+LF
+format, because the editors can handle them well.  If you use these recoded
+files to compile the game without recoding them back, the compiler will work,
+but the character codes would not match the attached fonts!  Use
+scripts/prune-sources.py to recode the files back.
+
+gpl2 :
+======
+
+Syntax of a command:
+<name of the command> <number> <sub-number> <list of parameters...>
+
+Syntax of a parameter:
+- 1: integer number litarally passed to the program
+- 2-1: string stored in the reservoir of game strings (i.e., something to be
+  displayed) and stored as an index in this list
+- 2-2: string resolved by the compiler (i.e., a path to another file) and
+  replaced by an integer index of this entity in the appropriate namespace
+  (e.g., the index of the palette, location, ...)
+- 3-0: relative jump to a label defined in this code.  Each label must be
+  first declared in the beginning of the program.
+- 3-1 .. 3-9: index of an entity in several namespaces, defined in file ident
+- 4: mathematical expression compiled into a postfix format
+
+In the compiled program, parameters of type 1..3 are represented by a single
+16-bit integer.  The called command knows by its definition what namespace the
+value comes from.
+
+ident :
+=======
+
+3-1: index of a variable defined in file init
+3-2: index of an object defined in file objekty
+3-3: index of a game item defined in file ikony
+3-4: index of a location defined in file mist
+3-5: possible states of an object, defined here
+3-6: possible directions the dragon could be looking to, defined here
+3-7: dialogue related constants, defined here
+3-8: index of a speaking character defined in file mluveni
+3-9: index of a block of the current dialog defined in the dialog file
+
+Compiled files :
+================
+
+- init.dfw (IniGamePath): general data structures of the game
+  1: byte array of all game objects.  Each byte consists of bits 0..6 (the
+     index of the location) and bit 7 (whether to display the object)
+  2: byte array of all game items (if non-zero, the item is in the dragon's
+     bag)
+  3: int16 array of values of all game variables
+  4: TGameHd structure describing the game state (current location, map
+     location, number of objects/items/variables/characters/dialogs, maximal
+     item width * height, length of music, and the number of blocks in all
+     dialogs)
+  5: int16 array of numbers of blocks in each dialog.  The old player reads
+     these numbers, allocates data structures, and resets the structure to
+     instead point at the offset of the dialog in the table of all dialog
+     blocks.
+  6: array of TPersonHd containing the description of how each character
+     speaks
+
+- hra.dfw (AuxGamePath): images of the mouse and menu icons
+  1..8: mouse cursor images (1=normal, 2..5=arrows, 6=dialog, 7=highlighted
+    normal, 8=main menu)
+  9..13: images for items in the main menu
+  14: image of the backpack
+
+- anim.dfw (ANMPath): animation descriptions
+  Each record is of the type TAnimation (loaded as is into a prefix of a
+  longer array).  The old game player reads at most A_MaxSeq==50 sequence into
+  memory and stores them with their ID's in a cache.  A frame of an animation
+  can refer to an image and/or a sound sample.
+
+- obr_an.dfw (PictPath): images used in the animations above
+  Each record is a BLOB of the image data stored in the sprite format.  The old
+  game player caches at most A_MaxSprites==150 images in the memory, but some
+  more may be loaded into different places.
+
+  Sprite format:
+  - offset 0: int16 width
+  - offset 2: int16 height
+  - ofsset 4..N: pixels of the image stored column-wise, one byte per pixel.
+    Color 255 is transparent.
+  We call Gcf format and it's stored in *.GCF.  Another variant of this format
+  is Gcc format stored in *.GCC is the same, except for that the pixels are
+  stored row-wise.
+
+- mist.dfw (IniRoomPath): descriptions of all locations
+  4*loc + 1: TRoomHd describes the location parameters (index of the palette,
+    walking map, and music, number of overlays placed on top of the background,
+    code pointer for GPL2 programs, boolean flags on what can be done and
+    whether the mouse and hero is visible in this location, perspective
+    coefficients, new location number when pressing Escape, and the
+    description of all outgoing gates).
+  4*loc + 2: string containing the title of the location
+  4*loc + 3: array of TMaskHd structures describing all overlays in the location
+    (their position, Z-coordinate, and index of the overlay in obr_mas.dfw).
+    The reason why we have overlays is 3D---we want the hero to be able to
+    walk between them.  Often the overlays are created by taking a single
+    image with the background and another colored image of the layers, and
+    cutting the background according to single-colored areas from the layer
+    map into overlays.
+  4*loc + 4: compiled GPL2 program for this location
+
+- mapy.dfw (MapPath): walking maps
+  Each record is a BLOB of the map image stored in the map format.  Maps are
+  referred to from TRoomHd if the hero is visible in the location.
+
+  Map format (editor/gm4mist/makeobj.pas):
+  - offset 0: int16 width of the map in real screen pixels
+  - offset 2: int16 height of the map in real screen pixels
+  - offset 4: int16 delta_x, the number of screen pixels one map pixel
+    corresponds to, usually delta_x==4
+  - offset 6: int16 delta_y, the number of screen pixels one map pixel
+    corresponds to, usually delta_y==4
+  - offset 8: int16 width of the map in map pixels (rounded up)
+  - offset 10: int16 height of the map in map pixels (rounded up)
+  - offset 12: int16 width of the map in bytes (rounded up)
+  - offset 14..N: bits of the map stored row-wise, one bit per pixel (i.e., 8
+    pixels per byte).  A row is always aligned to bytes, so the number of
+    stored map pixels per row is a multiple of 8.  Map pixels don't correspond
+    directly to pixels on the screen, but one map pixel corresponds to
+    delta_x*delta_y screen pixels.
+
+- palety.dfw (PalPath): palettes for the 256-color graphic mode
+  Each record is a BLOB of the palette stored in the palette format.  Palettes
+  are referred to from TRoomHd.
+
+  Palette format: array of 256*3 bytes
+  - offset 3*clr: red byte
+  - offset 3*clr + 1: green byte
+  - offset 3*clr + 2: blue byte
+
+- obr_mas.dfw (ImgMaskPath): images of the overlays
+  Each record is a BLOB of the overlay image data stored in the sprite format.
+  Overlays are referred to from the location data structure and 1 overlay can be
+  referred to from several locations.
+
+- objekty.dfw (ObjectsPath): descriptions of all objects
+  3*obj + 1: TObjHd describes the object parameters (code pointers for GPL2
+    programs, boolean flags on what can be done, walk/look/use direction when
+    approached by the hero, Z-coordinate, indices of the animations
+    corresponding to this object, position of the object, index of the object
+    in the game)
+  3*obj + 2: string containing the title of the object
+  3*obj + 3: compiled GPL2 program for this object
+
+- obr_ik.dfw (ImgIconPath): images of the game items
+  2*obj + 1: normal image
+  2*obj + 2: highlighted image
+    Each record is a BLOB of the game item image data stored in the sprite
+    format.
+
+- ikony.dfw (IconsPath): descriptions of all game items
+  3*itm + 1: TIcoHd describes the item parameters (code pointers, boolean
+    flags on what can be done with it)
+  3*itm + 2: string containing the title of the item
+  3*itm + 3: compiled GPL2 program for this item
+
+- rozh<number>.dfw (DialoguePath): descriptions of all blocks of the dialog
+  3*blk + 1: mathematical expression evaluating to whether one can start this
+    block of dialogue (for example, a person may be willing to start talking
+    only after we gave him some item)
+  3*blk + 2: title string describing a sentence that the dragon can say to
+    start this block.  Some blocks may not be labeled by any title.
+  3*blk + 3: compiled GPL2 program for this block.  It can set values of some
+    variables (such as we have been told about a new location), or switch to
+    another block.  The spoken sentences are actually not stored here, but
+    only their indices are here.
+
+- retezce.dfw (StringsPath): the actual texts of all spoken sentences in all
+  dialogs.  They are stored apart to save memory.  They are indexed by the
+  same numbers as dubbed sentences in the (optional) dubbing file.  The
+  character "|" inside a string means new line.
+
+- small.fon, big.fon: two fonts used in the game.  Two colors are designated:
+  one is transparent and one is replaced by a given color to make the font
+  color variable.
+
+  Font format (graph256.pas):
+  - offset 0: maximal font width
+  - offset 1: font height
+  - offset 2..139: widths of 138 characters from space (#32) to #169
+  - offset 140..N: 138 characters of width*height bytes each.  One pixel is
+    one byte, the character is stored row-wise over the whole matrix and
+    columns on the right of the actual character width are ignored.  Colors
+    254, 253, 252, 251 are replaced by colors FonColor1, FonColor2, FonColor3,
+    FonColor4 from graph256.pas, respectively.  We only vary FonColor1 (for
+    different speaking characters in the game) and the other 3 colors seem to
+    be fixed to 0, 3, 4.  Color OverFontColor from graph256.pas (which is
+    always set to 255, AFAIK) is transparent.
+
+- *.mid: MIDI music played in locations.  The format is recognized by
+  LoadMidi() in units/system/mini01.pas.  Each file is at most 35000 bytes
+  long.
+
+- cmf.ins: description of MIDI instruments.  The file contains 128 BLOB's of
+  type TInstrument from units/system/sblaster.pas
+
+- cd.sam, cd2.sam: sequence of sound samples for dubbing (cd.sam, 22000 Hz
+  8-bit mono unsigned) and animation effects (cd2.sam, 13000Hz 8-bit mono
+  unsigned).  The former one may be replaced by a dummy version with empty
+  sounds.  They are not stored in the BAR format, but just as a sequence of
+  concatenated BLOB's with a simple header.  They are played using a DMA
+  channel.
+
+  Sample format (editors/sound/extract.c):
+  - offset 0: int32 total length of the file without the header (of length
+    32004)
+  - offset 4*sam: int32 offset of the start of the sample number sam.  Samples
+    are numberd from 1.  The length of the sample is computed as the
+    difference of the two adjacent offsets.  If the difference is negative,
+    take it as 0 (there is a bug in the code producing the file).
+  - offsets 32004..N: 8-bit mono unsigned raw sound data of the frequence
+    given above.
+
+- savegame.map (BeforeMapStatusPath): all saved games
+  This is a temporary file of the old game player where the status of the game
+  is saved before entering the map so that it can be restored after pressing
+  ESCAPE.  It isn't part of the game files and can be ignored in the ScummVM
+  implementation.

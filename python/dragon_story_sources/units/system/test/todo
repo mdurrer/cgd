@@ -1,0 +1,21 @@
+může být:
+
+getpalette (kvůli rez)
+
+mouseint: ať nebliká myš --- hýbání s logikou
+printtext a printchar: proporcionalita je pouze o kolik se posune pozice,
+                       písmeno se tiskne celé
+printtextpart
+případně: printtoimage a s tím se už dá udělat cokoliv
+
+celý graph256 do assembleru
+a celý ho předělat k lepšímu
+
+příp. udělat to stejné i pro 800x600x256 (doc v linuxu)
+
+
+
+getfont a setfont pro konvenční režimy
+ostatní experimenty (512 znaků, 200 scanline pro textmód...)
+ems a xms memory client
+pročíst metafontbook

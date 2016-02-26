@@ -1,0 +1,225 @@
+{s žebrákem:(žebrák mluví velice nevrle)
+
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+   D: "Człowieku, co się z tobą dzieje?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Umieram z głodu?"
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "Czy mogę ci jakoś pomóc?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Chcę jeść!"
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "Dobrze. Poproszę matkę o coś do jedzenia."
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Lepiej żeby nie twoją matkę. Gotuje okropnie."
+  start zebrak_ziv "mlci"
+gplend
+
+block _07 ( maxline(1) and beg(1) and been(_00b) and been(_04) and been(_05) and been(_02) )
+   TITLE Czy nadal umierasz?
+  justtalk
+   D: "Czy nadal umierasz?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Tak nadal. Czy nie masz dla mnie pączka
+       z kremem?"
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "Niestety, teraz nie mam..."
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Poczekam...."
+  start zebrak_ziv "mlci"
+  exitdialogue
+gplend
+
+block _00b ( maxline(1) and beg(1) and been(_00) )
+title
+  justtalk
+   D: "Człowieku..."
+  juststay
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+   TITLE Spróbuję znaleźć dla ciebie kawałek...
+  justtalk
+   D: "Spróbuję znaleźć dla ciebie kawałek
+       spleśniałego chleba."
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Nigdy nie zjadłbym takiego paskudztwa."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "A co powiesz na spleśniały ser?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Chcę pączka z kremem."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "A co powiesz na ciastko francuskie?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Nie cierpię ciastek francuskich!"
+  start zebrak_ziv "mlci"
+gplend
+
+block _05 ( beg(0) and been(_04) and not been(_05) )
+   TITLE Czy pączek może być bez kremu?
+  justtalk
+   D: "Czy pączek może być bez kremu?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Nie jadam pączków bez kremu."
+  start zebrak_ziv "mlci"
+gplend
+
+block _06 (0)
+   TITLE Wolisz pączek ciemny czy jasny?
+  justtalk
+   D: "Wolisz pączek ciemny czy jasny?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Chcę zwykły pączek z kremem
+       z dodatkiem imbiru."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+   Z: "Kolor nie ma znaczenia!"
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "Ja tylko..."
+  juststay
+gplend
+
+block _01 ( beg(0) and not been(_01) and been(_00) )
+   TITLE Znasz moją matkę?!
+  justtalk
+   D: "Znasz moją matkę?!"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Już od dziesięciu lat nie widziałem
+       nikogo z twojej rodziny."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+   Z: "Ciebie też znam
+       jako małego smoczka."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+   Z: "Ale ty dawno już
+       o mnie zapomniałeś."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "Pewnie tak."
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Co drugi dzień przychodziłem do waszego domu
+       by zjadać resztki."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+   Z: "Twoja matka była bardzo hojna."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "Czemu czasem nie poszukasz czegoś u nas?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Chciałem.
+       Lecz później przypomniałem sobie
+       jak okropnie twoja matka gotuje."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+   Z: "Lepiej już umrzeć z głodu."
+  start zebrak_ziv "mlci"
+gplend
+
+block _02 ( beg(0) and been(_01) and been(_04) and not been(_02) )
+   TITLE Jak to się stało, że jesteś teraz tak wybredny?
+  justtalk
+   D: "Jak to się stało, że jesteś teraz tak wybredny?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Wybredny - to nie jest
+       właściwe słowo."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+   Z: "Rzekłbym raczej - jestem smakoszem."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "A więc, jesteś smakoszem..."
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Przez pięć lat żyłem z resztek
+       z zamkowego kanału."
+  start zebrak_ziv "mlci"
+  start zebrak_ziv "mluvi"
+   Z: "Starczyło mi ich na następne pięć lat
+       a teraz znów poczułem głód."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "Lecz tu nie ma kanałów."
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Zakopano je."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "A ja przez wiele lat sądziłem, że tylko ci
+       się zdaje
+       że jesteś głodny!"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Od urodzenia cierpię głód.
+       Ale pierwszych halucynacji doświadczyłem
+       całkiem niedawno."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "To ciekawe!"
+  juststay
+  start zebrak_ziv "mluvi"
+  start zebrak_ziv "mluvi"
+   Z: "Śniło mi się, że spotkałem laseczkę czekoladową."
+   Z: "Wiesz o czym mówie.
+       Chwilę rozmawialiśmy."
+   Z: "I zacząłem mieć na nią chęć,
+       ale odeszła!"
+   Z: "Dlatego mam apetyt na coś słodkiego."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "To mogło nie być złudzenie."
+  juststay
+  justtalk
+   D: "Czy laseczka czekoladowa trochę podskakiwała?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Tak, podskakiwała."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "Ależ to była Ewelina!
+       A czy ona nie była z drewna?"
+  juststay
+  start zebrak_ziv "mluvi"
+   Z: "Naprawdę była z czekolady!"
+   Z: "Nawet z orzechami!"
+   Z: "Gdy ją zobaczę, zjem!"
+   Z: "Ale przedtem chcę zjeść pączka..."
+  start zebrak_ziv "mlci"
+  justtalk
+   D: "( On zapewne znów ma halucynacje.)"
+  juststay
+gplend
+
+block _09 ( beg(0) and not last(_00b) and not maxline(1) )
+   TITLE Poczułem głód. Muszę iść do domu coś zjeść.
+  justtalk
+   D: "Poczułem głód. Muszę iść do domu coś zjeść."
+   D: "Zresztą, moim rodzicom nie podobałoby się
+       to, że rozmawiam
+       z takimi żebrakami..."
+  juststay
+  exitdialogue
+gplend
+

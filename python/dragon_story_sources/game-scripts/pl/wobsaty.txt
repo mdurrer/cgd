@@ -1,0 +1,18 @@
+{kdyz jsem nasel saty:}
+
+block _00 ( beg(1) )
+title
+  let prozkoumal_akvarko (2)
+  icostat on i_zaplata
+
+  justtalk
+   D: "Coś tu leży."
+   D: "Wygląda na złachmaniony strój krasnoludka.
+       Mam nadzieję, że wejdzie na mnie..."
+  juststay
+  start obr_hlava "mluvi"
+   O: "Nie, to moje ubranie.
+       Kurczy się tak po każdym praniu."
+  start obr_hlava "mlci"
+
+gplend

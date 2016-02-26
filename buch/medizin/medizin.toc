@@ -1,0 +1,11 @@
+\select@language {ngerman}
+\contentsline {part}{I\hspace {1em}Einleitung}{5}{part.1}
+\contentsline {chapter}{\numberline {1}Vorwort}{7}{chapter.1}
+\contentsline {section}{\numberline {1.1}Werdegang diese Buchs}{7}{section.1.1}
+\contentsline {section}{\numberline {1.2}Beweggr\IeC {\"u}nde}{8}{section.1.2}
+\contentsline {part}{II\hspace {1em}Opiate und Opioide - Morpheus und seine Verwandtschaft}{9}{part.2}
+\contentsline {chapter}{\numberline {2}Historisches und Terminologie}{11}{chapter.2}
+\contentsline {section}{\numberline {2.1}Was sind Opiate und Opioide?}{11}{section.2.1}
+\contentsline {chapter}{\numberline {3}Pharmakologie von Opioiden}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Die vielseitige Droge}{13}{section.3.1}
+\contentsline {chapter}{\numberline {4}Anwendungszwecke}{15}{chapter.4}

@@ -1,0 +1,11 @@
+block _0 ( beg(1) )
+title
+{disablespeedtext
+
+   Vypravec: "Lecz pewnego dnia Herbert zniknął i nikt
+              nie wie, gdzie on teraz jest;"
+   Vypravec: "... powiadają, że poszukuje
+              starożytnego smoczego skarbu."
+   Vypravec: "Berta i Bert zostali sami."
+
+gplend

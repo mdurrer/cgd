@@ -1,0 +1,210 @@
+{s hráči karet v hospodě:}
+block _08 ( maxline(1) and beg(1) and (ciste_zrcadlo=1) )
+title
+  {prave sem vylestil zrcadlo, dostanu karty}
+  justtalk
+  D: "Tak jak se daří?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+  H2: "Ani se neptej."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Štěstí se nám trochu obrátilo."
+  justtalk
+  D: "To bude díky mým dobrým radám!"
+  juststay
+  H1: "Vážně mi chlapče přinášíš štěstí.
+       Možná bych se s tebou měl nějak vyrovnat..."
+  H1: "Co bys říkal balíčku dvaatřiceti falešných es?"
+  justtalk
+  D: "Es?! A dvaatřicet?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+  H2: "Na tom přece není nic divného,
+       balíček falešných desítek mám zas já."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+
+  icostat on i_karty
+  let ciste_zrcadlo (2)
+gplend
+
+block _00 ( beg(1) and not been(_00) and maxline(1) )
+title
+  justtalk
+  D: "Co to hrajete?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+  H2: "Vole padni."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Černou kočku."
+  justtalk
+  D: "Já hraju mariáš. Vezmete mě?"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+  H2: "Kolik máš u sebe peněz?"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  justtalk
+  D: "Žádný!"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+  H2: "Je nám líto, chlapče."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _01 ( beg(1) and not been(_01) and maxline(1) )
+title
+  justtalk
+  D: "Dal bych tam tu pikovou dámu..."
+  juststay
+  H1: "Nečum mi do karet, mladej!"
+  justtalk
+  D: "Teď toho trumfovýho žolíka!"
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Nebude potřeba. Beru všechno."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Zase?"
+  H1: "Do postupky mi chyběl
+       akorát Černej Petr."
+  H1: "Za chvíli budu na mizině."
+  justtalk
+  D: "Chceš založit?"
+  juststay
+  H1: "Nech si ty fóry."
+gplend
+
+block _02 ( beg(1) and not been(_02) and maxline(1) )
+title
+  justtalk
+  D: "Hoď tam hercovýho kluka."
+  juststay
+  H1: "Tak jo. Namažeme to!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "A sedma na konec."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Tjó, mám kanastu."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Koukni, trumfová hláška!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Ještě chvíli a je ze mě žebrák!"
+gplend
+
+block _03 ( beg(1) and not been(_03) and maxline(1) )
+title
+  justtalk
+  D: "Já bych to flekoval..."
+  juststay
+  H1: "Kušuj."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Heč, zase o dvě kvarteta víc!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Já mám přece ženu a dvě děti!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Che che."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _04 ( beg(1) and not been(_04) and maxline(1) )
+title
+  justtalk
+  D: "Hm, to vypadá bledě."
+  juststay
+  H1: "Blbě."
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Ho, hó!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Ty fixluješ!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Ale nefixluju..."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Fixluješ!"
+  H1: "Tohle voznačený falešný eso
+       jsem měl schovaný pod stolem já!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Vidíš, ale mě teď pěkně pomohlo."
+  H2: "Tahle kupka je moje.
+       Vyhrál jsem!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _05 ( beg(1) and not been(_05) and maxline(1) )
+title
+  justtalk
+  D: "Hele, já bych..."
+  juststay
+  H1: "Už zase?"
+  justtalk
+  D: "Já bych jenom..."
+  juststay
+  H1: "Mlč!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Vole padni."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Co?"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Trochu zaspals."
+  H2: "Já za to nemůžu,
+       že zase pokládáš jako poslední."
+  H2: "Chce to trochu rychlejší reakci."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Vždyť jsem už prohrál celej prádelník!"
+gplend
+
+block _06 ( beg(1) and not been(_06) and maxline(1) )
+title
+  H1: "Švindluješ!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Helemese, pane chytrý, a jaks to poznal?"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+  H1: "Ta křížová jedenáctka má vohnutej rožek!"
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na hrace"
+  H2: "Kecy, ten rožek je úplně vpořádku."
+  H2: "Všechno je moje!"
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend
+
+block _07 ( maxline(1) and beg(1) and (ciste_zrcadlo=0) )
+title
+  {standardni pokec, az se vykecam a nedostanu karty}
+  justtalk
+  D: "Pánové..."
+  juststay
+  start hrac2_huba "mluvi"
+  start hrac2_voci "na draka"
+  H2: "Hele kibic, drž se od nás dál."
+  start hrac2_huba "nic"
+  start hrac2_voci "nic"
+gplend

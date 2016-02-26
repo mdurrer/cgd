@@ -1,0 +1,215 @@
+{s pajzlem v hospodě:}
+block _00 ( beg(1) and not been(_00) )
+title
+  justtalk
+   D: "Panie Krasnalu..."
+   D: "Czy zechce pan kupić mi piwo?"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Wynoś się."
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Nie tak łatwo mnie nastraszyć!"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "To piwo jest ciepłe!"
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Na Boga, ile tego masz!"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Wynoś się chłopcze!"
+  start hpajzl_hlava "pije"
+  justtalk
+   D: "Nie jesteś zbyt rozmowny...
+       Wyglądasz na zmęczonego."
+   D: "Z pewnością miałeś jakieś straszne przeżycia!"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "To nie twoja rzecz!"
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Musisz to z siebie wyrzucić..."
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Dobra,
+       gdzie tu jest ubikacja?"
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "...te wszystkie straszne doświadczenia,
+       które się w tobie gromadziły!"
+  juststay
+gplend
+
+block _00b ( last(_00) )
+title
+ labels skip
+  start hpajzl_hlava "mluvi"
+   P: "Piwo!"
+  start hpajzl_hlava "pije"
+  justtalk
+   D: "Nie próbuj zatopić swoich problemów w alkoholu!"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Co?"
+  goto skip
+  start hpajzl_hlava "mlci"
+  justtalk
+  D: "Znacznie lepiej jest topić problemy
+      w narkotykach!!"
+  juststay
+  start hpajzl_hlava "mluvi"
+  P: "Naprawdę?
+      Muszę spróbować."
+ label skip
+   P: "Teraz zacząłem rozumieć.
+       Otworzyłeś mi oczy."
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "A czy teraz mi to wyznasz?"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Tak.
+       Może lepiej
+       gdy ci to wyznam."
+   P: "Uniknąłem pewnej śmierci!"
+   P: "O mały włos nie zostałem pożarty."
+   P: "I tyle."
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Co ty powiesz!"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "To okropne, jak ktoś może
+       w dzisiejszych czasach
+       dopuszczać się pożerania krasnali."
+   P: "Tak, są kraje gdzie
+       pożeranie krasnoludków jest zakazane
+       już od wielu lat."
+  start hpajzl_hlava "mlci"
+gplend
+
+block _00c ( last(_00b) )
+title
+ labels skip
+  start hpajzl_hlava "mluvi"
+   P: "A czyż my nie jesteśmy
+       krajem cywilizowanym, synu?"
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Ach, to skandal na skalę międzynarodową."
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Chyba zgodzisz się ze mną."
+   P: "Nie chodzi tylko o mnie,
+       lecz też o moich biednych braci,
+       cóż ich czeka?"
+  goto skip
+   P: "A co będzie ze mną?"
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Czy spodziewają się jakiś strasznych rzeczy?"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Tak, co będzie ze mna?
+       I z nimi?"
+  label skip
+   P: "Najpierw posypie ich pieprzem."
+   P: "Potem zbije, utłucze."
+   P: "Potem udusi."
+   P: "Może usmaży."
+   P: "Ugh!"
+   P: "Ja nie mógłbym tego zrobić,
+       cholesterol mi szkodzi!"
+   P: "Albo nasypie im do oczu tartej bułki."
+   P: "Następnie poleje ich sokiem z cytryny..."
+  start hpajzl_hlava "pije"
+  justtalk
+   D: "Burczy mi w brzuchu.
+       Gdzie mógłbym spróbować tej egzotycznej potrawy?"
+   D: "Czy zaprosisz mnie na przyjęcie?"
+  juststay
+  {pajzl odpovídá velice smutně a zklamaně:}
+  start hpajzl_hlava "mluvi"
+   P: "Nie zaproszę. Jestem w rozpaczy."
+  start hpajzl_hlava "pije"
+gplend
+
+block _00d ( last(_00c) )
+title
+  justtalk
+   D: "Przepraszam. Chyba cię nie uraziłem?
+       Gdzie są twoi bracia?"
+   D: "Uwolnię ich!"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Naprawdę chcesz to uczynić?"
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Naturalnie."
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Moi bracia
+       oczekują na pożarcie..."
+   P: "...w strasznym legowisku jeszcze bardziej
+       straszliwego olbrzyma."
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Gdzie, dokładnie?"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Na północny wschód stąd."
+   P: "Jeśli chcesz wiedzieć dokładnie
+       pięćset stopni i siedemdziesiąt pięć
+       godzin... przepraszam, minut."
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Trudno mi będzie znaleźć to miejsce!"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "I sześćdziesiąt sekund."
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Starczy!
+       Wiem gdzie to jest."
+   D: "Idę!"
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Powodzenia.
+       Powiedz moim braciom,
+       że czekam tu na nich."
+   P: "Jeśli nie będą mogli mnie znaleźć,
+       to jestem pod stołem."
+  start hpajzl_hlava "mlci"
+{hodime semka newroom do mapy- objeveni se lokace s obrem}
+{a z mapy opet gejt semka...}
+  let new_obr (1)
+gplend
+
+block _01 ( beg(1) and been(_00) )
+title
+ labels skip
+  justtalk
+   D: "Panie Krasnalu..."
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Co z moimi braćmi?"
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "W porządku."
+  goto skip
+   D: "Dobrze się bawią."
+ label skip
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Czemu ich tu nie przyprowadziłeś?"
+  start hpajzl_hlava "mlci"
+  justtalk
+   D: "Gdybym zepsuł im wakacje
+       do końca życia czułbym się głupio."
+   D: "Nie możesz mnie o to prosić."
+  juststay
+  start hpajzl_hlava "mluvi"
+   P: "Wynoś się."
+  start hpajzl_hlava "mlci"
+gplend

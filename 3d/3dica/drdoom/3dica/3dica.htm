@@ -1,0 +1,415 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Ica of Hubris">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; Linux 2.0.33 i586) [Netscape]">
+   <TITLE>3DICA Programming Tutorial</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER><FONT SIZE=-2>[Note: This document is viewed best with Netscape
+Navigator 4]</FONT></CENTER>
+
+<CENTER><B><FONT SIZE=+3>3DICA</FONT></B> v2.22b</CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+<CENTER>
+<DT>
+- The Ultimate 3D Coding Tutorial (C) Ica /Hubris
+1996,1997,1998</DT></CENTER>
+
+<CENTER>
+<DT>
+- Over 150k of pure sh...er, 3d coding power!</DT></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+
+<H2>
+Table of Contents</H2>
+
+<OL>
+<DT>
+* A C source treating the subject included</DT>
+
+<H3>
+<A HREF="3dica0.htm#chap0">0 General Things</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica0.htm#chap00">0.0 LICENSE AGREEMENT</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica0.htm#chap001">0.0.1 DISCLAIMER</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap002">0.0.2 LIMITED WARRANTY</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap003">0.0.3 Seriously</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap004">0.0.4 3dica careware -- what does that mean?</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica0.htm#chap01">0.1 Authors, Greets, etc.</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica0.htm#chap011">0.1.1 Ica</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap012">0.1.2 Chem</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap013">0.1.3 Hubris Productions</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap014">0.1.4 Thanks for help</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap015">0.1.5 Greets</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap016">0.1.6 Thanks for support</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica0.htm#chap02">0.2 About the Document</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica0.htm#chap021">0.2.1 Where can I get the newest version of
+3dica?</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap022">0.2.2 What has happened since the last version?</A></DT>
+
+<DT>
+<A HREF="3dica0.htm#chap023">0.2.3 Features to be added</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica0.htm#chap03">0.3 3D Terms etc.</A></H4>
+
+<H4>
+<A HREF="3dica0.htm#chap04">0.4 FAQ</A></H4>
+
+<H4>
+<A HREF="3dica0.htm#chap05">0.5 Recommended References</A></H4>
+
+<H4>
+<A HREF="3dica0.htm#chap06">0.6 A Quick Introduction to Radians</A></H4>
+</OL>
+
+<H3>
+<A HREF="3dica1.htm#chap1">1 Vector and Matrix Algebra</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica1.htm#chap11">1.1 Vectors</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica1.htm#chap111">1.1.1 General</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap112">1.1.2 Vector equation</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap113">1.1.3 Vector length *</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap114">1.1.4 Vector addition</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap115">1.1.5 Dot product *</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap116">1.1.6 Vector projection</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap117">1.1.7 Cross product *</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap118">1.1.8 Scalar triple product</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica1.htm#chap12">1.2 Matrices</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica1.htm#chap121">1.2.1 General</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap122">1.2.2 Matrix operations</A></DT>
+
+<OL>
+<DT>
+<A HREF="3dica1.htm#chap1221">1.2.2.1 Addition</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap1222">1.2.2.2 Multiplying by a scalar *</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap1223">1.2.2.3 Multiplication *</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap12231">1.2.2.3.1 Multiplying by a vector *</A></DT>
+
+<DT>
+<A HREF="3dica1.htm#chap1224">1.2.2.4 Transposition</A></DT>
+</OL>
+</OL>
+</OL>
+
+<H3>
+<A HREF="3dica2.htm#chap2">2 3D Geometry</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica2.htm#chap21">2.1 The Relationship Between 2D and 3D Worlds
+*</A></H4>
+
+<H4>
+<A HREF="3dica2.htm#chap22">2.2 The Matrix Technique -- Foreword</A></H4>
+
+<H4>
+<A HREF="3dica2.htm#chap23">2.3 Rotating the Object Matrix*</A></H4>
+
+<OL><A HREF="3dica2.htm#chap231">2.3.1 Rotating about an arbitrary vector</A></OL>
+
+<H4>
+<A HREF="3dica2.htm#chap24">2.4 The Camera *</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica2.htm#chap241">2.4.1 Deriving the camera matrix from a vector</A></DT>
+
+<DT>
+<A HREF="3dica2.htm#chap242">2.4.2 B-Splines</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica2.htm#chap25">2.5 Transforming a Vertex by the Object Matrix*</A></H4>
+
+<H4>
+<A HREF="3dica2.htm#chap26">2.6 Hierarchical Transformations</A></H4>
+
+<H4>
+<A HREF="3dica2.htm#chap27">2.7 Inverse Transformations</A></H4>
+</OL>
+
+<H3>
+<A HREF="3dica3.htm#chap3">3 Polygon Fillers</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica3.htm#chap31">3.1 Flat Triangle *</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica3.htm#chap311">3.1.1 Fixed point *</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica3.htm#chap32">3.2 Gouraud Triangle *</A></H4>
+
+<H4>
+<A HREF="3dica3.htm#chap33">3.3 Texture Triangle *</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica3.htm#chap331">3.3.1 The idea of perspective correction *</A></DT>
+
+<DT>
+<A HREF="3dica3.htm#chap332">3.3.2 Fitting a texture onto an object *</A></DT>
+
+<DT>
+<A HREF="3dica3.htm#chap333">3.3.3 Bilinear filtering</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica3.htm#chap34">3.4 Texturing + Shading *</A></H4>
+
+<H4>
+<A HREF="3dica3.htm#chap35">3.5 The Idea of Convex Polygons</A></H4>
+</OL>
+
+<H3>
+<A HREF="3dica4.htm#chap4">4 Sorting</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica4.htm#chap41">4.1 Z-Sorting *</A></H4>
+
+<H4>
+<A HREF="3dica4.htm#chap42">4.2 Z-Buffer *</A></H4>
+
+<H4>
+<A HREF="3dica4.htm#chap43">4.3 BSP-Tree</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica4.htm#chap431">4.3.1 The main idea</A></DT>
+
+<DT>
+<A HREF="3dica4.htm#chap432">4.3.2 Required formulas</A></DT>
+
+<DT>
+<A HREF="3dica4.htm#chap433">4.3.3 Hints</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica4.htm#chap44">4.4 S-Buffer</A></H4>
+</OL>
+
+<H3>
+<A HREF="3dica5.htm#chap5">5 Shading</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica5.htm#chap51">5.1 Flat Shading</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica5.htm#chap511">5.1.1 Z-Flat</A></DT>
+
+<DT>
+<A HREF="3dica5.htm#chap512">5.1.2 Lambert Flat *</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica5.htm#chap52">5.2 Gouraud Shading</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica5.htm#chap521">5.2.1 Z-Gouraud</A></DT>
+
+<DT>
+<A HREF="3dica5.htm#chap522">5.2.2 "Real" Gouraud *</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica5.htm#chap53">5.3 Phong Shading</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica5.htm#chap531">5.3.1 Phong Illumination *</A></DT>
+
+<DT>
+<A HREF="3dica5.htm#chap532">5.3.2 Environment mapping *</A></DT>
+
+<DT>
+<A HREF="3dica5.htm#chap533">5.3.3 "Real" Phong *</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica5.htm#chap54">5.4 Light Source Handling</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica5.htm#chap541">5.4.1 Freely moving light sources</A></DT>
+
+<DT>
+<A HREF="3dica5.htm#chap542">5.4.2 Spotlights</A></DT>
+
+<DT>
+<A HREF="3dica5.htm#chap543">5.4.3 Light attenuation</A></DT>
+</OL>
+</OL>
+
+<H3>
+<A HREF="3dica6.htm#chap6">6 Hidden Face Removal</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica6.htm#chap61">6.1 Backface Culling *</A></H4>
+
+<H4>
+<A HREF="3dica6.htm#chap62">6.2 View Cone *</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica6.htm#chap621">6.2.1 3D clipping</A></DT>
+</OL>
+
+<H4>
+<A HREF="3dica6.htm#chap63">6.3 Portals</A></H4>
+</OL>
+
+<H3>
+<A HREF="3dica7.htm#chap7">7 Some Other Nice Things</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica7.htm#chap71">7.1 Frame skipping</A></H4>
+
+<H4>
+<A HREF="3dica7.htm#chap72">7.2 Optimizing in Assembly</A></H4>
+
+<H4>
+<A HREF="3dica7.htm#chap73">7.3 Palette Quantisizing</A></H4>
+
+<OL>
+<DT>
+<A HREF="3dica7.htm#chap731">7.3.1 What is it actually?</A></DT>
+
+<DT>
+<A HREF="3dica7.htm#chap732">7.3.2 Local K Mean</A></DT>
+
+<OL>
+<DT>
+7.3.2.1 An abstract approach</DT>
+
+<DT>
+7.3.2.2 A more technical approach</DT>
+</OL>
+
+<DT>
+<A HREF="3dica7.htm#chap733">7.3.3 Median Cut</A></DT>
+
+<OL>
+<DT>
+7.3.3.1 The definition</DT>
+
+<DT>
+7.3.3.2 The algorithm</DT>
+
+<DT>
+7.3.3.3 Implementation hints</DT>
+</OL>
+</OL>
+</OL>
+
+<H3>
+<A HREF="3dica8.htm#chap8">8 Utterly Important Crap</A></H3>
+
+<OL>
+<H4>
+<A HREF="3dica8.htm#chap81">8.1 An Effective Algorithm for Generating Torus
+Objects</A></H4>
+
+<H4>
+<A HREF="3dica8.htm#chap82">8.2 Phong Illumination Model Using Gamma Approximation
+and Evenly Hashed Gaussian Distribution not Forgetting LaRusse Fireclouds</A></H4>
+
+<H4>
+<A HREF="3dica8.htm#chap83">8.3 Coding Tips by our Graphician</A></H4>
+
+<H4>
+<A HREF="3dica8.htm#chap84">8.4 How to code your own Hubris-membah&nbsp;
+-Tamagotchi</A></H4>
+
+<h4>
+<a href="3dica8.htm#chap85">8.5 How to make a demo production</a></h4>
+
+</OL>
+</OL>
+
+</BODY>
+</HTML>

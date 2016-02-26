@@ -1,0 +1,561 @@
+{Potulný kouzelník Apokalypso:}
+
+block _09 ( maxline(1) and beg(1) and isactico(i_karty) and not been(_09) )
+title
+  disablequickhero
+  load bert "karty_mluvi"
+  load bert "karty_mlci"
+  load bert "karty_vytah"
+  load bert "karty_schova"
+  load bert "karty_vejnah"
+  load bert "karty_vejir"
+  load bert "karty_vejdol"
+  load bert "karty_micha"
+  load bert "karty_ukanah"
+  load bert "karty_ukazuj"
+  load bert "karty_ukadol"
+
+  justtalk
+ D: "Ich hab jetzt genug Zauberkraft gesammelt!"
+  juststay
+  start apok "mluvi"
+ A: "Ich auch, wir können unseren Wettkampf beginnen.
+     Was hast du vorbereitet?"
+  start apok "mlci"
+  justtalk
+ D: "Hier ist nur ein kleiner Trick
+     nur ein Vorgeschmack
+     meiner magischen Fähigkeiten."
+ D: "Aber er wurde seit Generationen
+     in unserer Familie weitergereicht..."
+  juststay
+  walkonplay 116 164 vpravo
+{vytáhne balíček karet a rozevře ho do vějíře:}
+  startplay bert "karty_vytah"
+  start bert "karty_mluvi"
+ D: "Wähle eine Karte..."
+  startplay bert "karty_vejnah"
+  start bert "karty_vejir"
+
+{kouzelník ukáže na kartu:}
+  mark
+  load apok "ukaznahoru"
+  startplay apok "ukaznahoru"
+  load apok "ukazmluvi"
+  start apok "ukazmluvi"
+ A: "Ich nehm die da."
+  load apok "ukazdolu"
+  startplay apok "ukazdolu"
+  release
+  start apok "mlci"
+
+  startplay bert "karty_vejdol"
+  start bert "karty_mluvi"
+ D: "Nun mischen wir sie."
+  startplay bert "karty_micha"
+  start bert "karty_mluvi"
+ D: "War es diese?"
+  startplay bert "karty_ukanah"
+  start bert "karty_ukazuj"
+
+  start apok "mluvi"
+ A: "Nein, überhaupt nicht!
+     Es war eine Herz Zehn."
+  start apok "mlci"
+
+  startplay bert "karty_ukadol"
+  start bert "karty_mluvi"
+ D: "Du machst Witze, es gibt nur Asse
+     in diesem Paket.
+     Es muss ein Ass gewesen sein!
+     Hast du genau hingesehen?"
+  start bert "karty_mlci"
+
+  start apok "mluvi"
+ A: "Vielleicht, ich hab sie nicht genau inspiziert."
+  start apok "mlci"
+  start bert "karty_mluvi"
+ D: "Siehst du, es muss ein Ass gewesen sein."
+  start bert "karty_mlci"
+  start apok "mluvi"
+ A: "Du hast recht!
+     Ja wirklich, es war ein Ass,
+     ich hab's selbst verdorben."
+ A: "Du bist zu bescheiden mit deinen
+     Fähigkeiten!"
+  start apok "mlci"
+  startplay bert "karty_schova"
+  start bert "kour-pravo"
+  walkonplay 100 164 vlevo
+  justtalk
+ D: "Ach, so ein Kompliment verdiene ich nicht..."
+  juststay
+  {Drak by mohl zčervenat v ksichtě- a pak zase zezelenat
+  justtalk
+ D: "Du bist dran.
+     Es war der Stein da drüben, oder?"
+  juststay
+  start apok "mluvi"
+ A: "Ich weiß nicht, sah der nicht gerade
+     noch etwas anders aus?"
+  start apok "mlci"
+  justtalk
+ D: "Das macht die Erosion.
+     Hier wehen ziemlich starke Winde."
+  juststay
+  {a zvedne se poryv větru, který může odnést
+  {kouzelníkovi čepici, nebo nadzvednout plášť-vida! mohl by
+  {mít křivé nohy a červené trenýrky! stačily by ty
+  {trenýrky...
+  exitdialogue
+gplend
+
+block _09a ( maxline(1) and beg(1) and isactico(i_karty) and not been(_09a) )
+title
+  disablequickhero
+
+  start apok "mluvi"
+ A: "Also - lass diesen Stein
+     zu Staub werden..."
+{kouzlime:}
+  load apok "kouzli"
+  load apok "mlci1sec"
+  startplay apok "kouzli"
+
+  startplay apok "mlci1sec"
+  {nic se neděje, chvíli pauza, jenom oba civí na kámen
+  start apok "mluvi"
+ A: "Ich will, dass dieser Stein zu Staub wird!"
+
+  startplay apok "kouzli"
+  startplay apok "kouzli"
+  start apok "mlci"
+{zase se nic neděje, drak se podívá tázavě na kouzelníka
+  start apok "mluvi"
+ A: "Ich befehle, dass dieser Stein zu Staub wird!"
+  startplay apok "kouzli"
+  startplay apok "mlci1sec"
+  startplay apok "mlci1sec"
+
+  start apok "mlci"
+  {nic se neděje, chvíli pauza, jenom oba civí na kámen
+  start apok "mluvi"
+ A: "Wenn dieser Stein
+     nicht sofort zu Staub wird
+     dann leg ich die ganze Welt in Schutt und Asche!"
+  startplay apok "kouzli"
+  start apok "mlci"
+{dokouzlili jsme}
+  exitdialogue
+gplend
+
+block _09b ( maxline(1) and beg(1) and isactico(i_karty) and not been(_09b) )
+title
+  {shora udeří blesk do kamene a ten se promění
+    load myt_blesk "FLI-animace"
+    load loutka_kam "promena"
+    objstat_on loutka_dre myt
+    start loutka_dre "zakladni"
+    start loutka_kam "promena"
+    startplay myt_blesk "FLI-animace"
+    objstat away loutka_kam
+  exitdialogue
+gplend
+
+block _09c ( maxline(1) and beg(1) and isactico(i_karty) and not been(_09c) )
+title
+  disablequickhero
+  load apok "mlci1sec"
+  walkonplay 100 168 vpravo
+  justtalk
+ D: "Ich wundere mich, dass es geklappt hat."
+  juststay
+  start apok "mluvi"
+ A: "Diese Drohung bringt's fast immer."
+  startplay apok "mlci1sec"
+  startplay apok "mlci1sec"
+  start apok "mlci"
+  {Chvilka mlčení}
+  justtalk
+ D: "Wer hat gewonnen?
+     Ich stimme für mich."
+  juststay
+  start apok "mluvi"
+ A: "Ich finde, daß ich besser war,
+     ich stimme für mich selbst."
+  start apok "mlci"
+  justtalk
+ D: "Also unentschieden?"
+  juststay
+  start apok "mluvi"
+ A: "Unentschieden."
+ A: "Aber ich mag deinen Zauberspruch.
+     Kannst du ihn mir beibringen?"
+  start apok "mlci"
+  justtalk
+ D: "Vielleicht nächstes Mal..."
+  juststay
+
+  icostat off i_karty
+  exitdialogue
+gplend
+
+block _07 ( beg(1) and isactico(i_rad) and not been(_07) )
+title
+  disablequickhero
+  load bert "rad_vytahuje"
+  load bert "rad_schovava"
+  load bert "rad_mluvi"
+  load bert "rad_mlci"
+  justtalk
+ D: "Hier ist mein Zertifikat
+     von der Zaubererschule.
+     Mit Auszeichnung bestanden."
+ D: "Ich habe sogar ein Zeugnis!"
+  juststay
+  start apok "mluvi"
+ A: "Ist das von einem Fernkurs?
+     Ich kenne diese miesen Tricks."
+ A: "Zeig es mir."
+  start apok "mlci"
+  {ukáže mu výpujční řád z knihovny}
+  walkonplay 116 164 vpravo
+  startplay bert "rad_vytahuje"
+  start bert "rad_mluvi"
+ D: "Das ist aus keinem Fernkurs, aber..."
+ D: "Siehst du?"
+ D: "Glatte Einsen!"
+  start bert "rad_mlci"
+{kouzelnik zabrejli na rad:}
+  load apok "kouka"
+  startplay apok "kouka"
+
+  start apok "mluvi"
+ A: "Und was ist damit,
+     Du hast ne 4 im Lesen magischer Schriftrollen."
+ A: "Das ist echt mies!"
+  start apok "mlci"
+  start bert "rad_mluvi"
+ D: "Das war ein vollkommen unwichtiges Fach.
+     Schau dir lieber den Durchschnitt an!"
+  start bert "rad_mlci"
+{kouzelnik zabrejli na rad:}
+  startplay apok "kouka"
+
+  start apok "mluvi"
+ A: "1 Minus, hm, gar nicht so schlecht.
+     Ich schätze, wir können einen Wettkampf starten."
+  start apok "mlci"
+  startplay bert "rad_schovava"
+  start bert "kour-pravo"
+  walkonplay 112 164 vpravo
+  start apok "mluvi"
+A: "Dann lass uns gleich loslegen,
+    welche Sprüche hast du vorbereitet?"
+  start apok "mlci"
+  justtalk
+D: "Ähh..."
+D: "...Ich hab..."
+D: "...Ich muss noch irgendwo Zauberkraft sammeln."
+D: "Ich schau mich mal nach welcher um."
+  juststay
+  let prokazal_kvalifikaci (2)
+  icostat off i_rad
+  exitdialogue
+gplend
+
+block _00a ( beg(1) and been(_00b) and isactico(0) )
+title
+  justtalk
+D: "Apokalypso..."
+  juststay
+gplend
+
+block _00b ( beg(1) and not been(_00b) and isactico(0) )
+title
+  justtalk
+D: "Hey, mann,
+    brauchst du Hilfe?"
+  juststay
+  start apok "mluvi"
+ A: "Hilfe?
+     Hast du nie jemanden
+     Zauberkraft sammeln sehen?"
+ A: "Hilfe - nein, auf keinen Fall.
+     Sie reicht nur für mich allein."
+ A: "Wenn du auch welche sammeln willst, bitte
+     aber such dir nen anderen Ort."
+  start apok "mlci"
+  justtalk
+D: "Schade, ich dachte wir könnten sie teilen."
+  juststay
+  start apok "mluvi"
+A: "Das dachtest du."
+  start apok "mlci"
+  justtalk
+D: "Schade, aber egal,
+    wenigstens lernen wir uns kennen."
+D: "Man nennt mich Bert."
+D: "Ich bin ein Drache."
+  juststay
+  start apok "mluvi"
+A: "Mein Name ist Apokalypso."
+A: "Ich bin Zauberer."
+  start apok "mlci"
+gplend
+
+block _0011 ( beg(0) and not been(_0011) )
+ TITLE Hast du hier irgendwo einen Zauberstab gesehen?
+  justtalk
+ D: "Hast du hier irgendwo
+     einen Zauberstab gesehen?"
+  juststay
+  start apok "mluvi"
+ A: "Bist du verrückt?
+     Mich kümmern keine Zauberstäbe"
+A: "Ich komme ohne aus."
+  start apok "mlci"
+  justtalk
+D: "Du kannst mit bloßen Händen zaubern?"
+  juststay
+  start apok "mluvi"
+A: "Manchmal sammle ich
+    so viel Zauberkraft an,
+    daß ich mir die Finger verbrenne!"
+A: "Deshalb zittern sie jetzt auch."
+  start apok "mlci"
+gplend
+
+block _02 ( beg(0) and not been(_02) and not been(_09) )
+ TITLE Du bist doch ein Zauberer, oder?
+  justtalk
+D: "Du bist doch ein Zauberer, oder?"
+  juststay
+  start apok "mluvi"
+A: "Bei den Göttern,
+    wie hast du das nur herausbekommen?!"
+  start apok "mlci"
+  justtalk
+D: "Ich hab's an deinem Hut erkannt!"
+  juststay
+  start apok "mluvi"
+A: "Nun, einige Leute bezeichnen mich sogar als
+    begnadeten Zauberer."
+  start apok "mlci"
+  justtalk
+D: "Und wer sind diese Leute?"
+  juststay
+  start apok "mluvi"
+A: "Hm, soweit ich weiß,
+    sind das ich und..."
+A: "...viele andere."
+  start apok "mlci"
+  justtalk
+D: "Wie ich sehe, hast du die besten Empfehlungen."
+D: "Es würde wahrscheinlich den halben Tag dauern
+    sie alle aufzuzählen."
+  juststay
+  start apok "mluvi"
+A: "Würde ich auch so sehen.
+    Und warum sollte ich mich
+    mit Geschwätz verausgaben."
+A: "Das würde bestimmt einiges
+    von meiner Zauberkraft verbrauchen,
+    und das würde mir sicher leid tun."
+A: "Alles, nur das nicht."
+  start apok "mlci"
+gplend
+
+block _03 ( (1=2) and beg(0) and not been(_03) and not been(_07) )
+title
+D: "."
+D: "."
+A: "."
+A: "."
+A: "."
+D: "."
+D: "."
+D: "."
+A: "."
+gplend
+
+block _04 ( beg(0) and not been(_04) )
+TITLE Hast du nicht schon genug von dieser Zauberei?
+  justtalk
+D: "Hast du nicht schon genug von dieser Zauberei?"
+  juststay
+  start apok "mluvi"
+A: "Keineswegs!
+    Ich versuche mich grad
+    an einem vollkommen neuen Spruch."
+A: "Fantastischer und verblüffender als alles,
+    was ich zuvor gemacht habe."
+  start apok "mlci"
+  justtalk
+D: "And was wird das werden?"
+  juststay
+  start apok "mluvi"
+A: "Ich weiß nicht, ob ich's dir sagen kann?"
+  start apok "mlci"
+  justtalk
+D: "Ich denke, das kannst du."
+  juststay
+  start apok "mluvi"
+A: "In Ordnung.
+    Nun pass auf -
+    Ich will einen Stein in Staub verwandeln!"
+  start apok "mlci"
+  justtalk
+D: "Aber jeder Anfänger kann das!"
+  juststay
+  start apok "mluvi"
+A: "Vielleicht kann ein Anfänger das.
+    Aber du hast sicher nicht gedacht,
+    dass ich bloß ein lausiger Anfänger bin?"
+  start apok "mlci"
+  justtalk
+D: "Niemals"
+  juststay
+  start apok "mluvi"
+A: "Nun siehst du's!"
+  start apok "mlci"
+gplend
+
+block _05 ( beg(0) and not been(_05) and been(_04) )
+TITLE Hast du dir schon einen Stein ausgesucht?
+  justtalk
+D: "Hast du dir schon einen Stein ausgesucht?"
+  juststay
+  start apok "mluvi"
+A: "Ich hab mich etwas umgeschaut
+    und ich glaube ich hab da was gefunden.
+    Es ist dieser Stein da drüben."
+  start apok "mlci"
+  {kouzelník ukáže na malinkej kámen opodál, drak otočí hlavu,
+  {podívá se na něj a udělá udivenej ksicht
+  walkonplay 100 164 vlevo
+  justtalk
+D: "Dieser winzige?"
+  juststay
+  start apok "mluvi"
+A: "Es ist ein außergewöhnlich massiver."
+  start apok "mlci"
+  walkonplay 104 164 vpravo
+
+  let vim_o_kaminku (1)
+gplend
+
+block _06 ( beg(0) and not been(_06) and been(_04) )
+TITLE Könnte ich deinen Spruch erlernen?
+  justtalk
+D: "Könnte ich deinen Spruch erlernen?"
+  juststay
+  start apok "mluvi"
+A: "Ich glaub das wird nicht möglich sein.
+    Es sei denn..."
+  start apok "mlci"
+  justtalk
+D: "Es sei denn was?"
+  juststay
+  start apok "mluvi"
+A: "Es sei denn, wir machen einen kleinen
+    Zauberwettkampf.
+    Ich weiß nicht mehr, was du genau gesagt hast,
+    aber ich hoffe, dass du zaubern kannst?!"
+  start apok "mlci"
+  justtalk
+D: "Oh ja, du erinnerst dich richtig.
+    Diese Idee mit dem Wettkampf ist wirklich toll."
+  juststay
+  start apok "mluvi"
+A: "Aber ich will mich nicht mit irgendwem duellieren.
+    Kannst du mir beweisen,
+    dass du qualifiziert bist?"
+  start apok "mlci"
+  justtalk
+D: "Ich bin ein Zauberer, genau wie du.
+    Wie soll ich es dir beweisen?"
+D: "Vielleicht kann ich dir was vorführen..."
+  juststay
+  start apok "mluvi"
+A: "Nein, nein, ich kenne diese miesen Tricks!
+    Ich weiß, was du vorhast, du Schwindler"
+A: "Ich tappe nicht in deine Falle."
+  start apok "mlci"
+
+  let prokazal_kvalifikaci (1)
+gplend
+
+block _08 ( beg(0) and not been(_08) and been(_07) and been(_07) and not been(_09) )
+TITLE Aber wer wird unseren Wettkampf beurteilen?
+  justtalk
+D: "Aber wer wird unseren Wettkampf beurteilen?"
+  juststay
+  start apok "mluvi"
+A: "Ich werde das"
+  start apok "mlci"
+  justtalk
+D: "Was?!
+    Können wir das nicht anders machen?"
+  juststay
+  start apok "mluvi"
+A: "Schön, wir können für den Gewinner stimmen."
+  start apok "mlci"
+  justtalk
+D: "Ja..."
+  juststay
+  start apok "mluvi"
+A: "Ich hab eine Stimme, und du hast eine Stimme."
+  start apok "mlci"
+  justtalk
+D: "Aber ich will zwei Stimmen."
+  juststay
+  start apok "mluvi"
+A: "Dann will ich drei."
+  start apok "mlci"
+  justtalk
+D: "Ich will vier!"
+  juststay
+  start apok "mluvi"
+A: "Fünf!"
+  start apok "mlci"
+  justtalk
+D: "Sechs!"
+  juststay
+  start apok "mluvi"
+A: "Sieben!"
+  start apok "mlci"
+  justtalk
+D: "Acht!"
+  juststay
+  start apok "mluvi"
+A: "Neun!"
+  start apok "mlci"
+  justtalk
+D: "Zehn!"
+  juststay
+  justtalk
+D: "Wir sind durch.
+    Der Gewinner bekommt alles."
+  juststay
+  start apok "mluvi"
+A: "Stimmt,
+    mir fällt keine höhere Zahl mehr ein."
+  start apok "mlci"
+gplend
+
+block _11 ( beg(0) and maxline(1) and last(_00a) )
+title
+  justtalk
+D: "Nichts..."
+  juststay
+  exitdialogue
+gplend
+
+block _10 ( beg(0) and not maxline(1) and not (last(_00b) or last(_00a)))
+TITLE Wiedersehen...
+  justtalk
+D: "Wiedersehen..."
+  juststay
+  exitdialogue
+gplend

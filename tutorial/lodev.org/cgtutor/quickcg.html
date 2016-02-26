@@ -1,0 +1,1659 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>SDL, C++ and QuickCG</title>
+  <meta content="text/html; charset=us-ascii" http-equiv="content-type">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<h1>Lode's Computer Graphics Tutorial</h1>
+<h1>C++, SDL and QuickCG<br />
+</h1>
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#Q">C++, SDL and QuickCG</a></li>
+  <li><a href="#DevCpp">DevC++</a></li>
+  <li><a href="#gpp">g++</a></li>
+  <li><a href="#If_it_wont_work">If it won't work</a></li>
+  <li><a href="#Using_the_Codebase_">Using QuickCG</a></li>
+  <li><a href="#Full_Command_List_">Full Function List</a></li>
+  <li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+    <ul>
+      <li><a href="#The_Codebase_Global_Variables">QuickCG Global Variables</a></li>
+      <li><a href="#QuickCG_Data_Types">QuickCG Data Types</a></li>
+      <li><a href="#Basic_SDL_Data_Types">Basic SDL Data Types</a></li>
+      <li><a href="#The_Codebase_Functions_">QuickCG Functions</a></li>
+      <li><a href="#C_Operators_">C++ Operators</a></li>
+      <li><a href="#C_Functions">C++ Functions</a></li>
+      <li><a href="#C_Arrays_and_Pointers">C++ Arrays and Pointers</a></li>
+      <li><a href="#SDL_Key_List_copied_from_the_SDL">SDL Key List</a></li>
+      <li><a href="q3dmath.html">Q3DMath</a> (currently not used anymore by the tutorials)</li>
+    </ul>
+  </li>
+</ul>
+<a href="index.html">Back to Index</a>
+<br />
+<h2><a name="#Q" id="#Q"></a>C++, SDL and QuickCG</h2>
+An SDL codebase is given with this tutorial, called QuickCG. All the C++ code in the articles uses QuickCG and its functions to draw graphics on the screen.
+<p />
+This page will explain how to use QuickCG to get the examples working. Information is provided to get SDL and QuickCG working in the DevC++ IDE, as well as how to do ith with g++.
+<p />
+Then a few examples of scripts for QuickCG follow.
+<p />
+And finally, tables are given with all the QuickCG functions, some C++ functions and operators, QuickCG and SDL datatypes, and all the SDL names for keyboard keys.
+<p />
+The download link of QuickCG is in the <a href="index.html">index.html</a> file.
+<p />
+SDL is an API that can handle graphics, audio, keyboard, mouse and joystick input on many platforms, including Windows and Linux. SDL can also be used to initialize and use OpenGL for 3D graphics. The codebase of this tutorial uses SDL for it's graphics and input, but the rest of the focus of this tutorial is on the graphics algorithms, and not SDL. In this tutorial SDL's functions are rarely used directly (but through QuickCG instead), though it's always handy to learn a thing or two about SDL if you'd like to make some games with it.
+<p />
+QuickCG was designed specifically for this tutorial, to be as easy to use and as universal as possible and to feel a bit like a scripting language. QuickCG includes functions to set up the screen, draw pixels and 2D primitives on it, handle input, do color model conversions, print texts and numbers on the screen using a built in font, load pictures, etc... QuickCG is less useful for making actual games because it's not really optimized.<br /> A full list of all functions it contains is further on this page.
+
+<h2><a name="#DevCpp" id="#DevCpp"></a>DevC++<br /></h2>
+
+This section is for if you want to use DevC++ in Windows to run the examples.
+<p />
+DevC++ is a free IDE for Windows, that uses the compiler gcc 3.2 or later. For help on using DevC++, I suggest you check out the help files, try to open and compile some of the included examples, check out the bloodshed.net website, or just read on here. DevC++ can be downloaded from <a href="http://www.bloodshed.net/">http://www.bloodshed.net/</a>.
+<p />
+This chapter is only for Windows users who want to be able to compile QuickCG and the examples with the free DevC++ IDE. It's also perfectly possible to use SDL and QuickCG on other platforms, but for now that's not explained here. If you don't know how, use the SDL site or google to find out how to install it with your compiler, and then make a new project in your compiler and add the .cpp and .h files of QuickCG to it.
+<p />
+If you don't have the newest version of DevC++ installed yet, follow these steps to get it up and running with SDL. If you have it installed, but not yet the SDL developer libraries, start at step <b>2)</b>.
+<p />
+It's not very easy to install SDL for DevC++, but it <i>is</i> possible to get the <i>newest</i> version of SDL to work with DevC++, if you follow these steps very carefully:<br />
+<br />
+<b>1)</b> download and install the latest version of DevCpp from <a href="http://www.bloodshed.net/dev/devcpp.html">http://www.bloodshed.net/dev/devcpp.html</a><br />
+<b>2)</b> download the latest version of SDL from <a href="http://www.libsdl.org/">http://www.libsdl.org/</a>: download the Development Libraries for Mingw32 (under Windows) and the runtime libraries for Windows. You may need WinRAR to be able to unpack the .tar.gz files.<br />
+<b>3)</b> The runtime library contains the file SDL.DLL, put it either in your C:\Windows\System32 folder, or put one in the folder of your compiled program, and don't forget that you always have to include SDL.DLL with your program if you want other people who don't have the file to run it. Programs compiled for the newest version of SDL won't work with older versions of the DLL.<br />
+<b>4)</b> Unpack the SDL developer files, but not yet inside the DevC++ folder, put them in another folder.<br />
+<b>5)</b> Copy the SDL folder of the development files, which is inside the folder include, into the include folder of DevC++ (so that all the SDL header files are in DevC++ under include/SDL)<br />
+<b>6)</b> Copy the files in the lib folder of the development files, into the lib folder of DevC++.
+<p />
+Now you have installed DevC++ with SDL! You still need to know how to make a working project that uses SDL though. The other files in the development package include the full SDL documentation, example and tests, and the binaries. Your DevC++ folder structure should now look like this, where the SDL folder is new, and the lib folder contains new files from the SDL development package.
+<p />
+<img alt="" src="images/devcppsdl.gif" style="width: 165px; height: 273px;">
+<p />
+If you use the SDL codebase (QuickCG) provided with the tutorial, unzip it to your code folder (that folder where you store all your DevC++ projects and code in, which is hopefully not in the unreliable My Documents folder of Windows), and just open it's *.dev file with Dev-C++, and it should compile and run correctly. To compile it, use "Execute -&gt; Compile" from the menu. The exe file will appear in the same folder as where your code is located. You can run it with "Execute -&gt; Run". You can also compile&amp;run your projects by pressing F9. If it doesn't work, look a bit further for a list of possible solutions. It's highly recommended that you use QuickCG for this tutorial, because the rest of the tutorial focuses on the commands of it and not on the actual SDL itself.
+<p />
+But if you want to make a new SDL project of your own in DevC++ (not needed for this tutorial):
+<p />
+<b>7)</b> Start up DevC++ and make a new project. Add any .cpp and .h files you need to it.<br />
+<b>8)</b> In the menu Project open Project Options and locate the setting for Linker Commands (in DevC++ 5 Beta 8.10 it's under Parameters) and add:<br />
+-lmingw32<br />
+-mwindows<br />
+-lSDLmain<br />
+-lSDL<br />
+Note that the order IS important! If you put -lSDL first and then -lSDLmain it won't work!<br />
+<br />
+<img alt="" src="images/projectoptionssdl.gif" style="width: 476px; height: 341px;"><br />
+<br />
+<b>9)</b> In your cpp files, #include &lt;SDL/SDL.h&gt;<br />
+<b>10)</b> Under Linker options, turn off the console.<br />
+<b>11)</b> Under Compiler in Project Options, and under the general Compiler Options, turn on all settings for optimizations, because they really make a big difference! You can also add -s to the linker parameters to reduce the size of the *.exe files it generates, if you don't do this, the exe's will be full of debugging information, even if the debugging setting is off (as of DevC++ 5 Beta 8.10)<br />
+<br />
+If you're getting compiler errors when trying to compile your SDL project, here are some things to check:<br />
+<ul>
+  <li>Did you follow steps 1-6 or 1-11 correctly, in the correct order? Read every detail?</li>
+  <li>Did you #include the SDL.h header file in the code?</li>
+  <li>Is the SDL.h file in the correct folder of DevC++? (if it's in the SDL folder inside include, you have to include it with #include "SDL/SDL.h", if it's directly in the include folder, use #include "SDL.h")</li>
+  <li>Are all the other SDL header files in the correct folder of DevC++?</li>
+  <li>Are the SDL library files (libSDL.a and libSDLmain.a) correctly in the lib folder of DevC++?</li>
+  <li>Did you put -lSDLmain and -lSDL in the correct order in the Linker parameters?</li>
+  <li>Are the options -lmingw32 -mwindows -lSDLmain -lSDL correctly in the linker parameters, and not wrongly in the compiler parameters?<br />
+  </li>
+  <li>Did you make a main function?</li>
+  <li>Try if the FAQ on the <a href="http://bloodshed.net/">http://bloodshed.net</a>or<a href="http://www.libsdl.org/">http://www.libsdl.org</a> site answer your problem. There's info about DevC++ in the faq from libsdl.org. These sites also have search functions.  </li>
+  <li>Try searching for some keywords from the compiler or linker error with google. You might find forum posts which describe your problem.</li>
+  <li>If you have a different version of DevC++ than version 5 Beta 8.10, things might be different (I encourage using the newest version, there may be more recent information available than this tutorial). Try to find the correct way to tell the linker to add the files libSDLmain.a and libSDL.a, and give the linker the options -lmingw32 and -mwindows, and the correct folders for include and library files.</li>
+  <li>If you're trying to get your own project to work, try if QuickCG that you can download with this tutorial works correctly (open it's *.dev file, compile and run it). If it does, but your own project doesn't, try giving your project the same settings as the project from QuickCG.</li>
+</ul>
+
+Once you got it to work, you can run example code of the tutorials by opening the quickcg.dev file with DevC++ and going to main.cpp file where you can enter the code. Here's a screenshot of the main.cpp file after opening it.<br />
+<br />
+<img alt="" src="images/opencodebase.gif" style="width: 423px; height: 321px;"><br />
+<br />
+
+<h2><a name="#gpp" id="#gpp"></a>g++<br /></h2>
+This section is for if you want to use g++ to run the examples.
+<p />
+With g++ it's quite easy: place all .cpp and .h files of QuickCG in the same directory, put the example code of tutorials in the main.cpp file, and then you can compile it with the following command:
+<p />
+g++ *.cpp -lSDL -O3
+<p />
+The -O3 is optional if you want compiler optimization. The -lSDL lets it link to SDL. This requires you to have SDL installed on your distro (look for sdl and sdl-devel packages or similar).
+
+<h2><a name="Using_the_Codebase_" id="Using_the_Codebase_"></a>Using QuickCG</h2>
+
+QuickCG currently exists out of the following code files and a .dev file:<br />
+<ul>
+  <li>QuickCG.cpp: this contains all the functions of QuickCG</li>
+  <li>QuickCG.h: #include this header file in all *.cpp files where you want to use QuickCG's functions</li>
+  <li>Q3DMath.cpp: contains 3D functions (currently not used anymore in the tutorial)</li>
+  <li>Q3DMath.h: #include this if you want to use the 3D functions and classes (currently not used anymore in the tutorial)</li>
+  <li>main.cpp: in this file you can type the code of the examples of this tutorial. Leave the #includes at the top of the file intact to be able to run all examples.</li>
+  <li>QuickCG.dev: this is the project file for DevC++ that contains all necessary settings, if you don't use DevC++ you can remove this file and make your own project that uses the .cpp and .h files.<br />
+  </li>
+</ul>
+
+The main.cpp file file is where you can put the code of the examples of this tutorial. If no main function is mentioned in a code example, make one yourself and put the example inside the main function.<br />
+<br />
+There's normally a small example included in the main.cpp file:<br />
+<br />
+<center>
+<table class="codetable">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <pre><span class="code">int main(int argc, char *argv[]) <br />{ <br />    screen(256, 256, 0, <span  class="string">"Small Test Script"</span>); <br />    for(int x = 0; x &lt; w; x++) <br />    for(int y = 0; y &lt; h; y++) <br />    { <br />        pset(x, y, ColorRGB(x, y, 128)); <br />    } <br />    redraw(); <br />    sleep(); <br />}</span>
+      </pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<br />
+Here's what it does:<br />
+<ul>
+  <li>The <tt>screen</tt> function will create the graphical window, with a resolution of 256*256 pixels, windowed, and with the caption "Small Test Script". You always have to use the screen function at the start of any program, or you'd be drawing pixels on a non existing window.</li>
+  <li>Next comes a double for loop, which goes through every pixel of the window: <tt>w</tt> and <tt>h</tt> are global variables that contain the width and the height of the window.</li>
+  <li>Inside the for loops is the function <tt>pset</tt>. This function will plot a pixel at location x, y with RGB color x, y, 128. This means the red color component will depend on the location x of the pixel, the green color component will vary with the location y of the pixel, and blue component will always be 128.</li>
+  <li>After the loop comes the function <tt>redraw</tt>. You always have to use this function before you'll be able to see any new pixels you've drawn. The redraw function is relatively slow, so do NOT call it after every single pixel, but only once after all pixels of the screen have been drawn.</li>
+  <li>Finally, the <tt>sleep</tt> function will let the program pause until you press any key. If the sleep function wouldn't be there, the program would close immediately and you wouldn't be able to see the result.</li>
+</ul>
+If you compile and run this code, the output will be as follows:<br />
+<br />
+<img alt="" src="images/smalltestscript.jpg"
+ style="width: 260px; height: 278px;"><br />
+<br />
+Now try to change the program a bit, for example, copypaste this instead into the main function (use CTRL+SHIFT+i to indent it in DevC++5):<br />
+<br />
+<center>
+<table class="codetable">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <pre><span class="code">int main(int argc, char *argv[]) <br />{<br />    screen(256, 256, 0, <span  class="string">"Small Test Script"</span>); <br />    for(int x = 0; x &lt; w; x++) <br />    for(int y = 0; y &lt; h; y++) <br />    { <br />        pset(x, y, ColorRGB(0, 128 + 128 * sin(x / 8.0), 0)); <br />    } <br />    print(<span class="string">"Hello World!"</span>); <br />    redraw(); <br />    sleep(); <br />}</span>
+      </pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<br />
+What has changed, is that you'll now see a green sine function pattern, and a text "Hello World!", because putting text on the screen is what the <tt>print</tt> function does. The output should look as follows:<br />
+<br />
+<img alt="" src="images/smalltestscript2.jpg" style="width: 262px; height: 281px;"><br />
+<br />
+Now another, easier, example:<br />
+<br />
+<center>
+<table class="codetable">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <pre><span class="code">int main(int argc, char *argv[]) <br />{ <br />    screen(256,256, 0, <span  class="string">"A Face!"</span>); <br />    drawDisk(128, 128, 100, colorRGB(255, 128, 200)); <br />    drawDisk(88, 100, 10, colorRGB(0, 0, 255)); <br />    drawDisk(168, 100, 10, colorRGB(0, 0, 255)); <br />    drawLine(88, 150, 168, 150, colorRGB(255, 0, 0)); <br />    redraw(); <br />    sleep(); <br />}</span>
+      </pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<br />
+The <tt>drawDisk</tt> command will draw a filled circle at the given position, with a certain radius and RGB color. The disk function is called 3 times: to draw a face, and two eyes.<br />
+The <tt>drawDine</tt> command will draw a line.<br />
+The <tt>redraw()</tt> and <tt>sleep()</tt> commands are again needed so that the new pixels will show up, and so that the program won't close immediately.<br />
+The output should look like this:<br />
+<br />
+<img alt="" src="images/smalltestscript3.jpg"  style="width: 262px; height: 281px;"><br />
+<br />
+A full list of all commands is below, and the next chapter is full of easy examples of all functions to learn working with QuickCG.<br />
+
+<h2><a name="Full_Command_List_" id="Full_Command_List_"></a>Full Function List<br /></h2>
+
+This list contains all functions, global variables, etc... from QuickCG. If functions have default parameters, these are given as well.<br />
+
+<h3><a name="The_Codebase_Global_Variables" id="The_Codebase_Global_Variables"></a>QuickCG Global Variables</h3>
+
+Global variables are normally not recommended for big programming projects, but the examples of this tutorial are small and it's easier to have them here.<br />
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>Variable</b></td>
+      <td style="vertical-align: top;"><b>Information</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">w</td>
+      <td style="vertical-align: top;"><span class="codenopre">int w;</span><br />
+The width of the graphical window, after you used the screen function. In the examples of this tutorial, w is most often used in double for loops that go through every pixel on screen.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">h</td>
+      <td style="vertical-align: top;"><span class="codenopre">int h;</span><br />
+The height of the graphical window, after you used the screen function</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">font</td>
+      <td style="vertical-align: top;"><span class="codenopre">bool
+font[256][8][8];</span><br />
+This is the font used for the print function. Even though you can
+access and change the font variable from within the code, it's
+never needed to do so.</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h3><a name="QuickCG_Data_Types" id="QuickCG_Data_Types"></a>QuickCG Data Types</h3>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">ColorRGB</td>
+      <td style="vertical-align: top;">A simple struct containing 3 integers named r, g and b, with constructors:<br />
+      <span class="codenopre">ColorRGB(Uint8 r, Uint8 g, Uint8 b);</span><br />
+      <span class="codenopre">ColorRGB(ColorRGB8bit color);</span><br />
+      <span class="codenopre">ColorRGB();</span><br />There are also some predefined RGB colors:<br />
+      <span class="codenopre">#define RGB_Black ColorRGB(0, 0, 0)</span><br />
+      <span class="codenopre">#define RGB_Red ColorRGB(255, 0, 0)</span><br />
+      <span class="codenopre">#define RGB_Green ColorRGB(0, 255, 0)</span><br />
+      <span class="codenopre">#define RGB_Blue ColorRGB(0 , 0, 255)</span><br />
+      <span class="codenopre">#define RGB_Cyan ColorRGB(0, 255, 255)</span><br />
+      <span class="codenopre">#define RGB_Magenta ColorRGB(255, 0, 255)</span><br />
+      <span class="codenopre">#define RGB_Yellow ColorRGB(255, 255, 0)</span><br />
+      <span class="codenopre">#define RGB_White ColorRGB(255, 255, 255)</span><br />
+      <span class="codenopre">#define RGB_Maroon ColorRGB(128, 0, 0)</span><br />
+      <span class="codenopre">#define RGB_Darkgreen ColorRGB( 0, 128, 0)</span><br />
+      <span class="codenopre">#define RGB_Navy ColorRGB( 0, 0, 128)</span><br />
+      <span class="codenopre">#define RGB_Teal ColorRGB( 0, 128, 128)</span><br />
+      <span class="codenopre">#define RGB_Purple ColorRGB(128, 0, 128)</span><br />
+      <span class="codenopre">#define RGB_Olive ColorRGB(128, 128, 0)</span><br />
+      <span class="codenopre">#define RGB_Gray ColorRGB(128, 128, 128</span><br />
+      <span class="codenopre">#define RGB_Grey ColorRGB(192, 192, 192)</span><br />
+The ColorRGB class has also got the operators "<tt>+</tt>",
+"<tt>-</tt>", "<tt>*</tt>", "<tt>/</tt>", "<tt>==</tt>" and
+"<tt>!=</tt>" defined so that you can add them, multiply with
+integers, ... to do color arithmetic more easily.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ColorRGB8bit</td>
+      <td style="vertical-align: top;">A simple struct containing 3
+Uint8's named r, g and b, with constructors:<br />
+      <span class="codenopre">ColorRGB8bit(Uint8 r, Uint8 g, Uint8 b);</span><br />
+      <span class="codenopre">ColorRGB8bit(ColorRGB color);</span><br />
+      <span class="codenopre">ColorRGB8bit();</span></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ColorHSL</td>
+      <td style="vertical-align: top;">A simple struct containing 3
+integers named h, s and l, with constructors:<br />
+      <span class="codenopre">ColorHSL(Uint8 h, Uint8 s, Uint8 l);</span><br />
+      <span class="codenopre">ColorHSL();</span></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ColorHSV</td>
+      <td style="vertical-align: top;">A simple struct containing 3
+integers named h, s and v, with constructors:<br />
+      <span class="codenopre">ColorHSV(Uint8 h, Uint8 s, Uint8 v);</span><br />
+      <span class="codenopre">ColorHSV();</span></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+Normally, colors used in QuickCG are supposed to have 8 bit components: they're values from 0 to 255. They were however made integer instead of Uint8 so that you can store intermediate results of calculations in the structs without the values wrapping around. So you can write expressions like "<span class="codenopre">ColorRGB color3 = (color * opacity + color2 * (256 - opacity)) / 256;</span>" and get the result you'd expect.<br />
+<br />
+The ColorRGB8bit type was then added because SDL requires Uint8
+variables for color components, and is used only internally by a
+few QuickCG functions with lots of SDL code.<br />
+<br />
+<h3><a name="Basic_SDL_Data_Types" id="Basic_SDL_Data_Types"></a>Basic SDL Data Types</h3>
+<table style="width: 50%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Uint8</td>
+      <td style="vertical-align: top;">Unsigned 8-bit integer, these are used in the tutorial for color components</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Sint8</td>
+      <td style="vertical-align: top;">Signed 8-bit integer</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Uint16</td>
+      <td style="vertical-align: top;">Unsigned 16-bit integer</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Sint16</td>
+      <td style="vertical-align: top;">Signed 16-bit integer</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Uint32</td>
+      <td style="vertical-align: top;">Unsigned 32-bit integer</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Sint32</td>
+      <td style="vertical-align: top;">Signed 32-bit integer</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Uint64</td>
+      <td style="vertical-align: top;">Unsigned 64-bit integer</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Sint64</td>
+      <td style="vertical-align: top;">Signed 64-bit integer</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+The 64-bit type isn't supported on all platforms.<br />
+<br />
+<h3><a name="The_Codebase_Functions_" id="The_Codebase_Functions_"></a>QuickCG Functions<br />
+</h3>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>Function</b></td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <b>Information</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">screen</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void screen(int width, int height, bool fullscreen, char* text=" ");</span><br />
+This is probably the most important function, because it creates
+the graphical screen but also the whole SDL context. Always call this function at the beginning of
+your programs, even if you don't need a screen. The integers width and height determinate the
+resolution of your window. If fullscreen is 0, it'll be a window,
+if it's 1, the graphics will be drawn fullscreen. text can be used
+to give a title to the window. For example to create a window of
+640*480 pixels with the title "Hello", use:
+screen(640,480,0,"Hello");</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">keyDown</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool keyDown(int key);</span><br />
+After using the readKeys() or done() function for the current frame, this function can check
+for every key whether or not it's pressed. For example, to check if the "a" button is pressed, check if keyDown(SDLK_a)
+is true. For a full list of all the keys, see the SDL Key table below.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">keyPressed</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool keyPressed(int key);</span><br />
+The same as keyDown(), but while keyDown will return true as long as the key is pressed, keyPressed will only
+return true the first time you check, and return true again only if the key has been released and pressed again. So while
+keyDown would be useful in a game for a key to walk forward, keyPressed can be used for a key that selects a weapon.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">redraw</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void redraw();</span><br />
+This redraws the screen. If you draw things like pixels, circles
+and lines, you won't see them before you called redraw(); This
+function is relatively slow though, so don't use it after every
+single pixel, but only after you've drawn the whole screen.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">cls</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void cls(int R = 0, int G = 0, int B = 0);</span><br />
+This clears the screen to black again. For example if you're making
+a bouncing ball program you have to draw a circle at a new position
+every time, but if you didn't use cls(), the old circles at old
+positions will still be visible. You can also clear the screen to a
+certain RGB color.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">pset</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void pset(int x, int y, ColorRGB color);</span><br />
+This function draws a pixel on the screen at position x, y (x has
+to be between 0 and w-1, y has to be between 0 and h-1), with given
+RGB color: ColorRGB color has 3 components r, g, b which are values
+between 0 and 255</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">pget</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">ColorRGB pget(int x, int y);</span><br />
+Returns the color value of the pixel at position x, y. This
+requires reading the color from the memory of the video card, and
+is quite slow. When you need this function a lot, for example if
+you're working with transparency or flood fill, it's better to use
+a buffer to hold the colors, read from this buffer, and draw this
+buffer to the screen with drawBuffer.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>drawBuffer</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void drawBuffer(Uint32 *buffer);</span><br />
+Draws a whole buffer at once to the screen. The buffer has to be
+exactly the same size as the screen, and is a 2D array. Color
+values are in 24-bit format in one integer instead of 3 separate
+8-bit variables. If it's possible to use a buffer, it can be much
+faster than drawing each pixel separately.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>onScreen</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">bool onScreen(int x, int y);</span><br />
+Checks if the point with coordinates x, y is on the screen: inside
+the rectangle (0, 0) - ((w - 1), (h - 1)).</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">sleep</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void sleep();</span><br />
+When calling this function, the program will pause until you press
+any key.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>waitFrame</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void waitFrame(double oldTime, double frameDuration);<br />
+      </span> This is made to be handy in cases where you want to limit an effect to a maximum amount of frames per second. The parameter oldTime is the time of the previous frame after calling waitFrame that frame, and frameDuration is the number of seconds per frame (e.g. 0.05 seconds per frame is 20 frames per second). It waits until the minimum time since the previous frame is passed.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">done</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool done();</span><br />
+This function returns whether or not you want to close the program,
+that is, if you press escape, or press the close button of the
+window. Use this function in a while loop as follows:
+"<tt>while(!done()) {code goes here}</tt>". Then the loop will keep
+running, until you press escape or the close button of the
+window.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">end</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void end();</span><br />
+Calling this function immediately ends the program.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">readKeys</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">void readKeys();</span><br />
+This function uses SDL Events to check what keys are pressed, and
+gives the result to the global inkeys[] variable.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>getMouseState</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void getMouseState(int&amp; mouseX, int&amp; mouseY, bool&amp; LMB, bool&amp; RMB);<br />
+      </span> Stores the position and pressed
+buttons of the mouse in the given variables (passed by reference)
+mouseX: the x coordinate of the mouse cursor, mouseY: the y
+coordinate of the mouse cursor, LMB: true if the left mouse button
+is pressed, RMB: true if the right mouse button is
+pressed.<br />
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>getMouseState</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void getMouseState(int&amp; mouseX, int&amp; mouseY);<br />
+      </span>Stores the position of the mouse in the given variables (passed by reference) mouseX: the x coordinate of the mouse cursor, mouseY: the y coordinate of the mouse cursor.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+getTicks</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">long getTicks();</span><br />
+This function returns the time since the program started running in milliseconds.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>max</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">max(x, y)</span><br />
+Returns the maximum of x and y, works with anything: it's defined
+with preprocessor commands.<br />
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>min</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">min(x, y)</span><br />
+Returns the minimum of x and y, works with anything: it's defined
+with preprocessor commands.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+horLine</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool horLine(int y, int x1, int x2, ColorRGB color);</span><br />
+Draw a horizontal line from position x1, y to x2, y with given
+color. It's a bit faster than using drawLine() if you need a
+horizontal line.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+verLine</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool verLine(int x, int y1, int y2, ColorRGB color);</span><br />
+Draw a vertical line from position x1, y to x2, y with given color.
+It's a bit faster than using drawLine() if you need a vertical
+line.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+drawLine</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool drawLine(int x1, int y1, int x2, int y2, ColorRGB color);</span><br />
+Draw a line from x1, y1 to x2, y2 with given color, using the
+Bresenham line drawing algorithm. Note that all coordinates must
+lie inside the screen, or the program will crash. You can use
+clipLine() in combination with drawLine() if you need to draw an
+arbitrary line, because the line function itself can't draw lines
+outside the screen and will return 0 it any of the endpoints lies
+outside the screen.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">drawCircle</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool drawCircle(int xc, int yc, int radius, ColorRGB color);</span><br />
+Draw a circle with it's center at xc,yc, with radius radius, and
+RGB color red, green, blue. This is an unfilled circle.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">drawDisk</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool drawCisk(int xc, int yc, int radius, ColorRGB color);</span><br />
+Like circle, but this time it's filled.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">drawRect</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool drawRect(int x1, int y1, int x2, int y2, ColorRGB color);</span><br />
+Draw a rectangle with corners in x1,y1 and x2, y2, with given
+color.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">clipLine</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">bool clipLine(int x1, int y1, int x2, int y2, int &amp; x3, int &amp; y3, int &amp; x4, int &amp;
+y4);</span><br />
+Use this if you need to bring the endpoints of a line you're trying
+to draw into the screen. Give the function a line with coordinates
+x1,y1-x2,y2, and it'll return a line with coordinates x3,y3-x4,y4
+that are on the edges or inside the screen (that is, inside the
+rectangle 0,w-0,h). x3,y3,x4 and y4 have to be given to the
+function by reference, so for example use "<tt>clipLine(x1, y1, x2,
+y2, x3, y3, x4, y4)</tt>", where x3, y3, x4 and y4 are normal
+integers that can be changed by the function, to give the
+coordinates of the new line to those variables. The function
+returns 1 if the line is on the screen and 0 if the line isn't on
+the screen.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">RGBtoHSL</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">ColorHSL RGBtoHSL(ColorRGB colorRGB);</span><br />
+Converts a color from the RGB to the HSL color model.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">HSLtoRGB</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">ColorRGB HSLtoRGB(ColorHSL colorHSL);</span><br />
+Converts a color from the HSL to the RGB color model.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">RGBtoHSV</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">ColorHSV RGBtoHSV(ColorRGB colorRGB);</span><br />
+Converts a color from the RGB to the HSV color model.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">HSVtoRGB</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">ColorRGB HSVtoRGB(ColorHSV colorHSV);</span><br />
+Converts a color from the HSV to the RGB color model.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">RGBtoINT</td>
+      <td style="vertical-align: top;"><span class="codenopre">Uint32 RGBtoINT(ColorRGB colorRGB);</span><br />
+Converts a color from RGB to a single integer for the video hardware memory structure</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">INTtoRGB</td>
+      <td style="vertical-align: top;"><span class="codenopre">ColorRGB INTtoRGB(Uint32 colorINT);</span><br />
+Converts a color from a single integer to 3 bytes: r, g, and b from the ColorRGB struct.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">loadImage</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">int loadImage(std::vector<ColorRGB>&amp; out, unsigned long&amp; w, unsigned long&amp; h, const std::string&amp; filename)</span><br />
+loads a PNG image (no other image formats supported) with given filename into the std::vector. Also returns the width and height of the image. If there happens a problem during loading, the function returns "1" which means "error".<br />
+   </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">loadImage</td>
+      <td style="vertical-align: top;"><span class="codenopre">int loadImage(std::vector<Uint32>&amp; out, unsigned long&amp; w, unsigned long&amp; h, const std::string&amp; filename)<br /></span>The same as the other loadImage function, but stores the color in Uint32's instead, which is the format for SDL.
+    </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">print</td>
+      <td colspan="1" rowspan="1" style="vertical-align: top;">
+      <span class="codenopre">template&lt;typename T&gt; int print(const T&amp; val, int x = 0, int y = 0, const ColorRGB&amp; color = RGB_White, bool bg = 0, const ColorRGB&amp; color2 = RGB_Black);</span><br /> Draws a text on screen, using the standard IBM ASCII font, made out of 256 characters of 8*8 pixels each.<br /> "*text" is the text you want to output, "x" and "y" the location (in pixels) of the top left corner of the first letter, "color" the foreground color, "color2" the background, and bg whether or not the background should be visible: if bg is 0, the background is invisible, if gb is 1, it's fully opaque. The parameter forceLength is the minimum length that should be printed, if the string is shorter, it prints 0 characters behind it (useful if background is enabled and want to draw over a certain fixed length). The return value is h * x + y where x is x position of next letter, y is y position of next letter and h is height of the screen. This return value is useful to find the start location for a possible next print command that should be behind the previous text: x coordinate is then returnvalue / h, y coordinate is returnvalue % h.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>getInputString</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">void getInputString(std::string&amp; text, const std::string&amp; message = "", bool clear = false, int x = 0, int y = 0, const ColorRGB&amp; color = RGB_White, bool bg = 0, const ColorRGB&amp; color2 = RGB_Black);</span><br /> Prints the message, after the message you can enter a string, which is stored in text. The boolean "clear" determines if the text is still visible after the user pressed enter.<br />
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>getInput</tt></td>
+      <td style="vertical-align: top;"><span class="codenopre">template&lt;typename T&gt; T getInput(const std::string&amp; message = "", bool clear = false, int x = 0, int y = 0, const ColorRGB&amp; color = RGB_White, bool bg = 0, const ColorRGB&amp; color2 = RGB_Black);</span><br />Convert user input into arbitrary variables.<br />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+<h3><a name="C_Operators_" id="C_Operators_"></a>C++ Operators<br />
+</h3>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1" cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>Operator</b></td>
+      <td style="vertical-align: top;"><b>Information</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">+, -, *, /</td>
+      <td style="vertical-align: top;">Add, Subtract, Multiply and Divide. Some of these are also defined for QuickCG's matrices and vectors</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%</td>
+      <td style="vertical-align: top;">Modulo Division</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">&amp;</td>
+      <td style="vertical-align: top;">Bitwise AND</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">|</td>
+      <td style="vertical-align: top;">Bitwise OR</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">^</td>
+      <td style="vertical-align: top;">Bitwise XOR</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">=</td>
+      <td style="vertical-align: top;">Set equal to</td>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">
+      <b>Operators for conditions</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;"> &amp;&amp;, ||</td>
+      <td style="vertical-align: top;">Logical AND and OR (to use in conditions)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">==</td>
+      <td style="vertical-align: top;">Is it equal?</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">!=</td>
+      <td style="vertical-align: top;">Not equal to</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">&gt;,&lt;, &gt;=, &lt;=</td>
+      <td style="vertical-align: top;">Greater than, Smaller than, Greater than or equal to, Smaller than or equal to</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h3><a name="C_Functions" id="C_Functions"></a>C++ Functions</h3>
+Some of those come from the standard header file &lt;cmath&gt;, so
+they're in the namespace std. The line "using namespace std;" is
+put on top of the code though, so you don't need to to add "std::"
+in front of the functions. This tutorial focuses on the algorithms
+and the math and it's easier to recognise mathematical functions if
+there's no "std::" in front of them.<br />
+<br />
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>Function</b></td>
+      <td style="vertical-align: top;"><b>Information</b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">sqrt(x)</td>
+      <td style="vertical-align: top;">The square root of x</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">cos(x), sin(x), tan(x)</td>
+      <td style="vertical-align: top;">Cosine, Sine and Tangent (in radians)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">acos(x), asin(x), atan(x)</td>
+      <td style="vertical-align: top;">The inverse of Cosine, Sine and Tangent</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">pow(x, y)</td>
+      <td style="vertical-align: top;">The power of one real number to another</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">ln(x)</td>
+      <td style="vertical-align: top;">Natural Logarithm</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">exp(x)</td>
+      <td style="vertical-align: top;">The exponential of a real number</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">int(x), float(x), double(x)</td>
+      <td style="vertical-align: top;">Convert to integer or to floating point number. When dividing two integers through each other, the result will be an integer unless you convert one to a float.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">floor(x)</td>
+      <td style="vertical-align: top;">Returns the next lowest integer, e.g. 3.1 becomes 3.0. Only works on floating point numbers and doubles.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">
+ceil(x)</td>
+      <td style="vertical-align: top;">Returns the next highest integer, e.g. 3.1 becomes 4.0. Only works on floating point numbers and doubles.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">abs(x), fabs(x)</td>
+      <td style="vertical-align: top;">Returns the absolute value of x. The function abs is for integers, while fabs is for floating point numbers and doubles.</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h3><a name="C_Arrays_and_Pointers" id="C_Arrays_and_Pointers"></a>C++ Arrays and Pointers</h3>
+If you're not experienced with C++ these pointers might be useful:<br />
+<br />
+<table style="width: 100%; text-align: left;" border="1" cellpadding="1"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Address of a variable</td>
+      <td style="vertical-align: top;">
+      <ul>
+        <li>Create the variable with <tt>int variableName</tt></li>
+        <li>Get it's address with <tt>&amp;variableName</tt></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Creating a pointer to a variable</td>
+      <td style="vertical-align: top;">
+      <ul>
+        <li>Create the variable with <tt>int variableName</tt></li>
+        <li>Create the pointer with <tt>int* pointerName</tt></li>
+        <li>Set the pointer to the address of the variable with
+          <tt>pointerName = variableName</tt></li>
+        <li>You can now set variableName to 100 by using the pointerwith <tt>*pointerName = 100</tt></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Creating an 80 * 90 *100 3D array</td>
+      <td style="vertical-align: top;"><tt>float arrayName[80][90][100];</tt></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Accessing element 10, 20, 30 from a 80 * 90 * 100 3D array</td>
+      <td style="vertical-align: top;"><tt>arrayName[10][20][30]</tt> or  <tt>arrayName[90 * 100 * 10 + 100 * 20 + 30]</tt></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Passing a variable "by address", so the function can change it</td>
+      <td style="vertical-align: top;">
+      <ul>
+        <li>Create the function as <tt>void functionName(int* pointerName)</tt></li>
+        <li>Call the function with <tt>functionName(&amp;pointerName)</tt></li>
+        <li>Use the variable in the function with <tt>&amp;pointerName</tt></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Passing a variable "by reference", so the function can change it</td>
+      <td style="vertical-align: top;">
+      <ul>
+        <li>Create the function as <tt>void functionName(int&amp; variableName)</tt></li>
+        <li>Call the function with <tt>functionName(variableName)</tt></li>
+        <li>Use the variable in the function simply with
+          <tt>variableName</tt></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Passing a variable by "const reference", so the function can read it without making a copy (which can be inefficient if you're passing a large data structure)</td>
+      <td style="vertical-align: top;">
+      <ul>
+        <li>Create the function as <tt>void functionName(const int&amp; variableName)</tt></li>
+        <li>Call the function with <tt>functionName(variableName)</tt></li>
+        <li>Use the variable in the function simply with <tt>variableName</tt></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Passing a 1D array to a function, so the function can read and change it</td>
+      <td style="vertical-align: top;">
+      <ul>
+        <li>Create the function as <tt>void functionName(int* arrayName)</tt></li>
+        <li>Call the function with <tt>functionName(arrayName)</tt></li>
+        <li>Use the array in the function with
+          <tt>arrayName[index]</tt></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Passing a 3D array to a function</td>
+      <td style="vertical-align: top;">
+      <ul>
+        <li>Create the function as <tt>void functionName(int* arrayName)</tt></li>
+        <li>Call the function with
+          <tt>functionname(arrayName[0][0])</tt></li>
+        <li>Use the array in the function with
+          <tt>arrayName[index]</tt></li>
+        <li>So even though it's a 3D array, you use two [][]'s to give it to the function, and can use only 1 [] inside the function.</li>
+        <li>Inside the function, treat the array as a 1D array. Access its elements by using the way given in the second option of the third row of this table.</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">std::vectors</td>
+      <td style="vertical-align: top;">
+      For arrays with dynamic size, std::vectors&lt;Type&gt;, part of the C++ standard, are much more useful. Include the header &lt;vector&gt; to be able to use them. They have functions to resize, get the size, clear, push variables on top, and members can be accessed with [] just like with C-style arrays. Since they're a large datastructure, pass them by (const) reference to functions.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h3><a name="SDL_Key_List_copied_from_the_SDL"
+ id="SDL_Key_List_copied_from_the_SDL"></a>SDL Key List (copied from the SDL Reference)</h3>
+<table class="CALSTABLE" border="1" cellpadding="1" cellspacing="0">
+  <thead>
+  <tr>
+    <th style="width: 33%; vertical-align: top; text-align: left;">SDLKey</th>
+    <th align="left" valign="top" width="33%">ASCII value</th>
+    <th align="left" valign="top" width="33%">Common name</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_BACKSPACE</td>
+      <td align="left" valign="top" width="33%">'\b'</td>
+      <td align="left" valign="top" width="33%">backspace</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_TAB</td>
+      <td align="left" valign="top" width="33%">'\t'</td>
+      <td align="left" valign="top" width="33%">tab</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_CLEAR</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">clear</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RETURN</td>
+      <td align="left" valign="top" width="33%">'\r'</td>
+      <td align="left" valign="top" width="33%">return</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_PAUSE</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">pause</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_ESCAPE</td>
+      <td align="left" valign="top" width="33%">'^['</td>
+      <td align="left" valign="top" width="33%">escape</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_SPACE</td>
+      <td align="left" valign="top" width="33%">' '</td>
+      <td align="left" valign="top" width="33%">space</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_EXCLAIM</td>
+      <td align="left" valign="top" width="33%">'!'</td>
+      <td align="left" valign="top" width="33%">exclaim</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_QUOTEDBL</td>
+      <td align="left" valign="top" width="33%">'"'</td>
+      <td align="left" valign="top" width="33%">quotedbl</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_HASH</td>
+      <td align="left" valign="top" width="33%">'#'</td>
+      <td align="left" valign="top" width="33%">hash</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_DOLLAR</td>
+      <td align="left" valign="top" width="33%">'$'</td>
+      <td align="left" valign="top" width="33%">dollar</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_AMPERSAND</td>
+      <td align="left" valign="top" width="33%">'&amp;'</td>
+      <td align="left" valign="top" width="33%">ampersand</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_QUOTE</td>
+      <td align="left" valign="top" width="33%">'''</td>
+      <td align="left" valign="top" width="33%">quote</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LEFTPAREN</td>
+      <td align="left" valign="top" width="33%">'('</td>
+      <td align="left" valign="top" width="33%">left parenthesis</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RIGHTPAREN</td>
+      <td align="left" valign="top" width="33%">')'</td>
+      <td align="left" valign="top" width="33%">right parenthesis</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_ASTERISK</td>
+      <td align="left" valign="top" width="33%">'*'</td>
+      <td align="left" valign="top" width="33%">asterisk</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_PLUS</td>
+      <td align="left" valign="top" width="33%">'+'</td>
+      <td align="left" valign="top" width="33%">plus sign</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_COMMA</td>
+      <td align="left" valign="top" width="33%">','</td>
+      <td align="left" valign="top" width="33%">comma</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_MINUS</td>
+      <td align="left" valign="top" width="33%">'-'</td>
+      <td align="left" valign="top" width="33%">minus sign</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_PERIOD</td>
+      <td align="left" valign="top" width="33%">'.'</td>
+      <td align="left" valign="top" width="33%">period</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_SLASH</td>
+      <td align="left" valign="top" width="33%">'/'</td>
+      <td align="left" valign="top" width="33%">forward slash</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_0</td>
+      <td align="left" valign="top" width="33%">'0'</td>
+      <td align="left" valign="top" width="33%">0</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_1</td>
+      <td align="left" valign="top" width="33%">'1'</td>
+      <td align="left" valign="top" width="33%">1</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_2</td>
+      <td align="left" valign="top" width="33%">'2'</td>
+      <td align="left" valign="top" width="33%">2</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_3</td>
+      <td align="left" valign="top" width="33%">'3'</td>
+      <td align="left" valign="top" width="33%">3</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_4</td>
+      <td align="left" valign="top" width="33%">'4'</td>
+      <td align="left" valign="top" width="33%">4</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_5</td>
+      <td align="left" valign="top" width="33%">'5'</td>
+      <td align="left" valign="top" width="33%">5</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_6</td>
+      <td align="left" valign="top" width="33%">'6'</td>
+      <td align="left" valign="top" width="33%">6</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_7</td>
+      <td align="left" valign="top" width="33%">'7'</td>
+      <td align="left" valign="top" width="33%">7</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_8</td>
+      <td align="left" valign="top" width="33%">'8'</td>
+      <td align="left" valign="top" width="33%">8</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_9</td>
+      <td align="left" valign="top" width="33%">'9'</td>
+      <td align="left" valign="top" width="33%">9</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_COLON</td>
+      <td align="left" valign="top" width="33%">':'</td>
+      <td align="left" valign="top" width="33%">colon</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_SEMICOLON</td>
+      <td align="left" valign="top" width="33%">';'</td>
+      <td align="left" valign="top" width="33%">semicolon</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LESS</td>
+      <td align="left" valign="top" width="33%">'&lt;'</td>
+      <td align="left" valign="top" width="33%">less-than sign</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_EQUALS</td>
+      <td align="left" valign="top" width="33%">'='</td>
+      <td align="left" valign="top" width="33%">equals sign</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_GREATER</td>
+      <td align="left" valign="top" width="33%">'&gt;'</td>
+      <td align="left" valign="top" width="33%">greater-than sign</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_QUESTION</td>
+      <td align="left" valign="top" width="33%">'?'</td>
+      <td align="left" valign="top" width="33%">question mark</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_AT</td>
+      <td align="left" valign="top" width="33%">'@'</td>
+      <td align="left" valign="top" width="33%">at</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LEFTBRACKET</td>
+      <td align="left" valign="top" width="33%">'['</td>
+      <td align="left" valign="top" width="33%">left bracket</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_BACKSLASH</td>
+      <td align="left" valign="top" width="33%">'\'</td>
+      <td align="left" valign="top" width="33%">backslash</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RIGHTBRACKET</td>
+      <td align="left" valign="top" width="33%">']'</td>
+      <td align="left" valign="top" width="33%">right bracket</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_CARET</td>
+      <td align="left" valign="top" width="33%">'^'</td>
+      <td align="left" valign="top" width="33%">caret</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_UNDERSCORE</td>
+      <td align="left" valign="top" width="33%">'_'</td>
+      <td align="left" valign="top" width="33%">underscore</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_BACKQUOTE</td>
+      <td align="left" valign="top" width="33%">'`'</td>
+      <td align="left" valign="top" width="33%">grave</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_a</td>
+      <td align="left" valign="top" width="33%">'a'</td>
+      <td align="left" valign="top" width="33%">a</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_b</td>
+      <td align="left" valign="top" width="33%">'b'</td>
+      <td align="left" valign="top" width="33%">b</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_c</td>
+      <td align="left" valign="top" width="33%">'c'</td>
+      <td align="left" valign="top" width="33%">c</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_d</td>
+      <td align="left" valign="top" width="33%">'d'</td>
+      <td align="left" valign="top" width="33%">d</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_e</td>
+      <td align="left" valign="top" width="33%">'e'</td>
+      <td align="left" valign="top" width="33%">e</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_f</td>
+      <td align="left" valign="top" width="33%">'f'</td>
+      <td align="left" valign="top" width="33%">f</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_g</td>
+      <td align="left" valign="top" width="33%">'g'</td>
+      <td align="left" valign="top" width="33%">g</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_h</td>
+      <td align="left" valign="top" width="33%">'h'</td>
+      <td align="left" valign="top" width="33%">h</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_i</td>
+      <td align="left" valign="top" width="33%">'i'</td>
+      <td align="left" valign="top" width="33%">i</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_j</td>
+      <td align="left" valign="top" width="33%">'j'</td>
+      <td align="left" valign="top" width="33%">j</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_k</td>
+      <td align="left" valign="top" width="33%">'k'</td>
+      <td align="left" valign="top" width="33%">k</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_l</td>
+      <td align="left" valign="top" width="33%">'l'</td>
+      <td align="left" valign="top" width="33%">l</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_m</td>
+      <td align="left" valign="top" width="33%">'m'</td>
+      <td align="left" valign="top" width="33%">m</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_n</td>
+      <td align="left" valign="top" width="33%">'n'</td>
+      <td align="left" valign="top" width="33%">n</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_o</td>
+      <td align="left" valign="top" width="33%">'o'</td>
+      <td align="left" valign="top" width="33%">o</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_p</td>
+      <td align="left" valign="top" width="33%">'p'</td>
+      <td align="left" valign="top" width="33%">p</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_q</td>
+      <td align="left" valign="top" width="33%">'q'</td>
+      <td align="left" valign="top" width="33%">q</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_r</td>
+      <td align="left" valign="top" width="33%">'r'</td>
+      <td align="left" valign="top" width="33%">r</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_s</td>
+      <td align="left" valign="top" width="33%">'s'</td>
+      <td align="left" valign="top" width="33%">s</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_t</td>
+      <td align="left" valign="top" width="33%">'t'</td>
+      <td align="left" valign="top" width="33%">t</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_u</td>
+      <td align="left" valign="top" width="33%">'u'</td>
+      <td align="left" valign="top" width="33%">u</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_v</td>
+      <td align="left" valign="top" width="33%">'v'</td>
+      <td align="left" valign="top" width="33%">v</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_w</td>
+      <td align="left" valign="top" width="33%">'w'</td>
+      <td align="left" valign="top" width="33%">w</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_x</td>
+      <td align="left" valign="top" width="33%">'x'</td>
+      <td align="left" valign="top" width="33%">x</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_y</td>
+      <td align="left" valign="top" width="33%">'y'</td>
+      <td align="left" valign="top" width="33%">y</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_z</td>
+      <td align="left" valign="top" width="33%">'z'</td>
+      <td align="left" valign="top" width="33%">z</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_DELETE</td>
+      <td align="left" valign="top" width="33%">'^?'</td>
+      <td align="left" valign="top" width="33%">delete</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP0</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 0</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP1</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 1</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP2</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 2</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP3</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 3</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP4</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 4</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP5</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 5</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP6</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 6</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP7</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 7</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP8</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 8</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP9</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">keypad 9</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP_PERIOD</td>
+      <td align="left" valign="top" width="33%">'.'</td>
+      <td align="left" valign="top" width="33%">keypad period</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP_DIVIDE</td>
+      <td align="left" valign="top" width="33%">'/'</td>
+      <td align="left" valign="top" width="33%">keypad divide</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP_MULTIPLY</td>
+      <td align="left" valign="top" width="33%">'*'</td>
+      <td align="left" valign="top" width="33%">keypad multiply</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP_MINUS</td>
+      <td align="left" valign="top" width="33%">'-'</td>
+      <td align="left" valign="top" width="33%">keypad minus</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP_PLUS</td>
+      <td align="left" valign="top" width="33%">'+'</td>
+      <td align="left" valign="top" width="33%">keypad plus</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP_ENTER</td>
+      <td align="left" valign="top" width="33%">'\r'</td>
+      <td align="left" valign="top" width="33%">keypad enter</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_KP_EQUALS</td>
+      <td align="left" valign="top" width="33%">'='</td>
+      <td align="left" valign="top" width="33%">keypad equals</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_UP</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">up arrow</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_DOWN</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">down arrow</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RIGHT</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">right arrow</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LEFT</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">left arrow</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_INSERT</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">insert</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_HOME</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">home</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_END</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">end</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_PAGEUP</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">page up</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_PAGEDOWN</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">page down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F1</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F1</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F2</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F2</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F3</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F3</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F4</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F4</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F5</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F5</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F6</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F6</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F7</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F7</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F8</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F8</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F9</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F9</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F10</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F10</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F11</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F11</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F12</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F12</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F13</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F13</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F14</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F14</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_F15</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">F15</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_NUMLOCK</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">numlock</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_CAPSLOCK</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">capslock</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_SCROLLOCK</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">scrollock</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RSHIFT</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">right shift</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LSHIFT</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">left shift</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RCTRL</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">right ctrl</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LCTRL</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">left ctrl</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RALT</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">right alt</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LALT</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">left alt</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RMETA</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">right meta</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LMETA</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">left meta</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_LSUPER</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">left windows key</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_RSUPER</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">right windows key</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_MODE</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">mode shift</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_HELP</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">help</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_PRINT</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">print-screen</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_SYSREQ</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">SysRq</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_BREAK</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">break</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_MENU</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">menu</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_POWER</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">power</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">SDLK_EURO</td>
+      <td align="left" valign="top" width="33%"><br />
+      </td>
+      <td align="left" valign="top" width="33%">euro</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<table class="CALSTABLE" border="1" cellpadding="1" cellspacing="0">
+  <thead>
+  <tr>
+    <th align="left" valign="top" width="50%">SDL Modifier</th>
+    <th align="left" valign="top" width="50%">Meaning</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="width: 50%; vertical-align: top; text-align: left;"> KMOD_NONE</td>
+      <td align="left" valign="top" width="50%">No modifiers applicable</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_NUM</td>
+      <td align="left" valign="top" width="50%">Numlock is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_CAPS</td>
+      <td align="left" valign="top" width="50%">Capslock is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_LCTRL</td>
+      <td align="left" valign="top" width="50%">Left Control is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_RCTRL</td>
+      <td align="left" valign="top" width="50%">Right Control is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_RSHIFT</td>
+      <td align="left" valign="top" width="50%">Right Shift is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_LSHIFT</td>
+      <td align="left" valign="top" width="50%">Left Shift is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_RALT</td>
+      <td align="left" valign="top" width="50%">Right Alt is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_LALT</td>
+      <td align="left" valign="top" width="50%">Left Alt is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_CTRL</td>
+      <td align="left" valign="top" width="50%">A Control key is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_SHIFT</td>
+      <td align="left" valign="top" width="50%">A Shift key is down</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="50%">KMOD_ALT</td>
+      <td align="left" valign="top" width="50%">An Alt key is down</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<hr />
+Last edited: 21 August 2007
+<br /><br />
+Copyright (c) 2004-2007 by Lode Vandevenne. All rights reserved.<br />
+</body>
+</html>

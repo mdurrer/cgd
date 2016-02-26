@@ -1,0 +1,19 @@
+                     a
+____  ___ _____ _____ ___   _____ ____  ___
+\   \/  //  _  \\__  |   | /  _  \\   \/  /
+ \     //  /_\  \/   |   |/  /_\  \\     / 
+ /     v    |    \____   /    |    v     \ 
+/   /\__\___|____/_______\____|____/__/\  \
+\__/                                    \_/
+                 production
+
+                    BANG!
+                    
+       a demo for the Atari 2600 VCS
+created for Revision 2014 oldskool demo compo
+       
+Code:     SvOlli
+Music:    Skyrunner
+Graphics: Deft, Titus, Veto, SvOlli
+
+A 32/30k ROM using F8SC bankswitching

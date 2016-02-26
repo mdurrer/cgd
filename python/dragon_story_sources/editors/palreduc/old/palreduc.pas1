@@ -1,0 +1,386 @@
+uses crt, graph256, dfw, dialog, files, editor;
+
+const
+  JmenoTohotoProgramu= 'palreduc';
+  JmenoPouzitehoFontu= 'stand2.fon';
+  ProgVersion= 'V0.2 beta';
+  WorkPath: string= '';
+type
+  TPalArray= array[0..255]of byte;
+var
+  MenuX, MenuY, MenuMisc: integer;
+  PictPath: string;
+  DColor1, DColor2, DColor3, DColor4, DColor5: byte;
+
+  MirrorPal, Im, Pal: pointer;
+  i, f, g: word;
+
+  TagMirror, TagActual, CnvPal: TPalArray;
+  ColorUse: array[0..255]of word;
+
+procedure ChooseFile(var PrevPath: string;Mask: string);
+var
+  path: string;
+begin
+  path:=vybersouboru(MenuX, MenuY, MenuMisc,
+    DColor1, DColor2, DColor3, DColor4, DColor5, Font,
+    trid_jmena, WorkPath, Mask);
+  if (path<>#27)and(path<>#0) then PrevPath:= path;
+end;
+
+procedure InitPalReduc; { Inicializuje grafiku, font, mys, paletu ..., promene }
+begin
+  GetMem(MirrorPal, 768);
+  DColor1:= 15;
+  DColor2:= 7;
+  DColor3:= 12;
+  DColor4:= 2;
+  DColor5:= 8;
+
+  if RegisterFont(Font, {Program_Path+ }JmenoPouzitehoFontu) then begin
+    WriteLn('! Nemuzu najit '+JmenoPouzitehoFontu+' !');
+    Halt(1);
+  end;
+  if not FileExist(JmenoTohotoProgramu+ '.DAT')then begin
+    WriteLn('! Nemuzu najit '+JmenoTohotoProgramu+'.dat !');
+    Halt(1);
+  end;
+  CLoadItem({Program_Path+ }JmenoTohotoProgramu+ '.DAT', MouseImage, 1);
+  CLoadItem({Program_Path+ }JmenoTohotoProgramu+ '.DAT', pointer(Palette), 2);
+  InitGraph;
+
+  { Inicializace grafiky }
+  SetPalette(Palette);
+  LastLine := 200;
+  ActivePage := 0;
+  SetVisualPage(1);
+  SetActivePage(0);
+  OverFontColor:=255;
+  FonColor1:=7;
+  FonColor2:=2;
+  FonColor3:=3;
+  FonColor4:=4;
+  MouseOn(0, 0, MouseImage);
+  SetVisualPage(0);
+end;
+
+procedure BeforeExitPalReduc;
+begin
+  MouseOff;
+  FreeMem(Palette, 768);
+  DisposeImage(MouseImage);
+  FreeMem(Font, Font^[0]*Font^[1]*138+140);
+  FreeMem(MirrorPal, 768);
+end;
+
+procedure SaveBMP;
+const
+  Header: string[2]= 'BM';
+  Length: word= $fe36;
+  Start: word= $0436;
+  X: word= $0140;
+  Y: word= $00c8;
+  Bit: byte= 8;
+  Unknown: byte= $28;
+  One: byte= 1;
+var
+  BMPFile: file;
+  Image: pointer;
+  Buf: byte;
+  LineBuf: array[0..319]of byte;
+  i: word;
+  Free: pointer;
+begin
+  GetMem(Free, 65078);
+  for i:= 0 to 65078 do PByteArray(Free)^[i]:= 0;
+
+{  byte(PictPath[0]):= (byte(PictPath[0])-5);
+  PictPath:= PictPath+'-.bmp';}
+  Assign(BMPFile, PictPath);
+  Rewrite(BMPFile, 1);
+  BlockWrite(BMPFile, PByteArray(Free)^[0], 65078);
+  FreeMem(Free, 65078);
+  Seek(BMPFile, 0);
+  BlockWrite(BMPFile, Header[1], 2);
+  BlockWrite(BMPFile, Length, 2);
+  Seek(BMPFile, 10);
+  BlockWrite(BMPFile, Start, 2);
+  Seek(BMPFile, 14);
+  BlockWrite(BMPFile, Unknown, 1);
+  Seek(BMPFile, $12);
+  BlockWrite(BMPFile, X, 2);
+  Seek(BMPFile, $16);
+  BlockWrite(BMPFile, Y, 2);
+  Seek(BMPFile, $1a);
+  BlockWrite(BMPFile, One, 1);
+  Seek(BMPFile, $1c);
+  BlockWrite(BMPFile, Bit, 1);
+
+  Image:= Pal;
+  for I := 0 to 255 do begin
+    Buf:= PByteArray(Image)^[I*3];
+    PByteArray(Image)^[I*3] := PByteArray(Image)^[I*3+2];
+    PByteArray(Image)^[I*3+2] :=Buf;
+  end;
+  for i:=0 to 767 do PByteArray(Image)^[i]:= PByteArray(Image)^[i] shl 2;
+  Seek(BMPfile, 54);
+  for I := 0 to 255 do begin
+    BlockWrite(BMPFile, PByteArray(Image)^[I*3], 3);
+    Seek(BMPFile, FilePos(BMPFile)+1);
+  end;
+  {ulozeni palety}
+
+  Seek(BMPFile, 1078);
+{  BlockWrite(BMPFile, PByteArray(Im)^[4], 64000);}
+  for f:=199 downto 0 do begin
+    for g:=0 to 319 do LineBuf[g]:= PByteArray(Im)^[4+g*200+f];
+    BlockWrite(BMPFile, LineBuf[0], 320);
+  end;
+
+  Close(BMPFile);
+end;
+
+procedure TagAllUsed(var TagPal: TPalArray);
+var
+  f: word;
+begin
+  for f:= 4 to 64003 do Inc(ColorUse[PByteArray(Im)^[f]]);
+  for f:= 0 to 255 do if ColorUse[f]>0 then TagPal[f]:= 1;
+end;
+
+procedure ShowPalette(X, Y, Width, Heigth, DistX, DistY: word);
+var
+  i, j: byte;
+
+  procedure Window;
+  begin
+    Bar(X-DistX-1, Y-DistY-1, (Width+DistX)*16+DistX+2, (Heigth+DistY)*16+DistY+2, 0);
+    Bar(X-DistX, Y-DistY, (Width+DistX)*16+DistX, (Heigth+DistY)*16+DistY, 255);
+  end;
+
+begin
+  Window;
+  for j:= 0 to 15 do begin
+    for i:= 0 to 15 do begin
+      Bar(X+j*Width+j*DistX, Y+i*Heigth+i*DistY, Width, Heigth, j*16+i);
+    end;
+  end;
+end;
+
+procedure ShowTags(X, Y, Width, Heigth, DistX, DistY: word; TagPal: TPalArray);
+var
+  i, j: byte;
+begin
+  for j:= 0 to 15 do begin
+    for i:= 0 to 15 do begin
+      LineY(X+j*Width+j*DistX+Width, Y+i*Heigth+i*DistY, Heigth, (TagPal[j*16+i] XOR 1)*255);
+      LineY(X+j*Width+j*DistX+Width+1, Y+i*Heigth+i*DistY, Heigth, (TagPal[j*16+i] XOR 1)*255);
+    end;
+  end;
+end;
+
+procedure TagByMouse(X, Y, Width, Heigth, DistX, DistY: word;var TagPal: TPalArray);
+var
+  HotKey: char;
+begin
+  repeat
+    repeat
+      if KeyPressed then begin
+        HotKey:= ReadKey;
+        case HotKey of
+          't': begin
+                 MouseSwitchOff;
+                 TagAllUsed(TagPal);
+                 ShowTags(X, Y, Width, Heigth, DistX, DistY, TagPal);
+                 MouseSwitchOn;
+               end;
+          #27: Exit;
+        end;
+      end;
+    until MouseKey<>0;
+      if MouseKey=4 then exit;
+      if (MouseY>=Y)and(MouseY<Y+16*Heigth+15*DistY)and
+      (MouseX>=X)and(MouseX<X+16*Width+15*DistX)then begin
+        TagPal[(MouseX-X)div(Width+DistX)*16+(MouseY-Y)div(Heigth+DistY)]:=
+          TagPal[(MouseX-X)div(Width+DistX)*16+(MouseY-Y)div(Heigth+DistY)] XOR 1;
+        MouseSwitchOff;
+      end else begin
+        MouseSwitchOff;
+        TagPal[GetPixel(MouseX, MouseY)]:= TagPal[GetPixel(MouseX, MouseY)] XOR 1;
+      end;
+        ShowTags(X, Y, Width, Heigth, DistX, DistY, TagPal);
+        repeat until MouseKey=0;
+        MouseSwitchOn;
+{      end;}
+  until True=False;
+end;
+
+procedure ProcessCompression(TagPal: TPalArray);
+var
+  i: byte;
+  f: word;
+begin
+  i:= 0;
+  for f:= 0 to 255 do begin
+    if TagPal[f]<> 0 then begin
+      CnvPal[f]:= i;
+      PByteArray(Pal)^[i*3]:= PByteArray(Pal)^[f*3];
+      PByteArray(Pal)^[i*3+1]:= PByteArray(Pal)^[f*3+1];
+      PByteArray(Pal)^[i*3+2]:= PByteArray(Pal)^[f*3+2];
+      Inc(i);
+    end else CnvPal[f]:= 255;
+  end;
+  for f:= i to 255 do begin
+    PByteArray(Pal)^[f*3]:=  255;
+    PByteArray(Pal)^[f*3+1]:= 255;
+    PByteArray(Pal)^[f*3+2]:= 255;
+  end;
+
+  for f:= 4 to 64003 do
+    PByteArray(Im)^[f]:= CnvPal[PByteArray(Im)^[f]];
+end;
+
+procedure ProcessCombination;
+var
+  i: byte;
+  f: word;
+begin
+  for f:= 0 to 255 do begin
+    if TagMirror[f]>0 then begin
+      PByteArray(Pal)^[(f)*3]:=   PByteArray(MirrorPal)^[f*3];
+      PByteArray(Pal)^[(f)*3+1]:= PByteArray(MirrorPal)^[f*3+1];
+      PByteArray(Pal)^[(f)*3+2]:= PByteArray(MirrorPal)^[f*3+2];
+    end;
+  end;
+end;
+
+procedure Reduce;
+begin
+  MenuX:= 70;
+  MenuY:= 20;
+  MenuMisc:= 15;
+  ChooseFile(PictPath, '*.bmp');
+{  PictPath:= vybersouboru(MenuX, MenuY, MenuMisc,
+    DColor1, DColor2, DColor3, DColor4, DColor5, Font,
+    trid_jmena, WorkPath, '*.bmp');}
+  if LoadImage(Im, Pal, PictPath)= 255 then begin
+  {nacetl jsem do pameti pozadi}
+    SetPalette(Pal);
+    MouseSwitchOff;
+    PutImage(0, 0, Im);
+
+    for f:= 0 to 255 do ColorUse[f]:= 0;
+    for f:= 0 to 255 do TagActual[f]:= 0;
+    TagAllUsed(TagActual);
+    {spocitam pocet pouziti barev}
+    ShowPalette(10, 10, 10, 5, 6, 1);
+    ShowTags(10, 10, 10, 5, 6, 1, TagActual);
+    MouseSwitchOn;
+    TagByMouse(10, 10, 10, 5, 6, 1, TagActual);
+
+    ProcessCompression(TagActual);
+    ProcessCombination;
+
+    MouseSwitchOff;
+    SetPalette(Pal);
+    PutImage(0, 0, Im);
+    for f:= 0 to 255 do ColorUse[f]:= 0;
+    for f:= 4 to 64003 do Inc(ColorUse[PByteArray(Im)^[f]]);
+    for f:= 0 to 255 do TagActual[f]:= byte(ColorUse[f]>0);
+    {spocitam pocet pouziti barev}
+    ShowPalette(10, 10, 10, 5, 6, 1);
+    ShowTags(10, 10, 10, 5, 6, 1, TagActual);
+    MouseSwitchOn;
+{    TagByMouse(10, 10, 10, 5, 6, 1, TagActual);}
+
+    repeat until (MouseKey<>0)or(KeyPressed);
+    if KeyPressed then ReadKey;
+    SetPalette(Palette);
+    repeat until MouseKey=0;
+    if( standardnidialog('Bylo to v O.K.?|Mám přepsat starý obrázek?',
+      DColor1, DColor2, DColor3, DColor4, DColor5, font, Ano_Ne) )=1 then SaveBMP;
+
+    DisposeImage(Im);
+    FreeMem(pal, 768);
+  end;
+  MenuMisc:= 2;
+end;
+
+procedure Mirror;
+begin
+  MenuX:= 70;
+  MenuY:= 20;
+  MenuMisc:= 15;
+  ChooseFile(PictPath, '*.bmp');
+{  PictPath:= vybersouboru(MenuX, MenuY, MenuMisc,
+    DColor1, DColor2, DColor3, DColor4, DColor5, Font,
+    trid_jmena, WorkPath, '*.bmp');}
+  if LoadImage(Im, Pal, PictPath)= 255 then begin
+    SetPalette(Pal);
+    MouseSwitchOff;
+    PutImage(0, 0, Im);
+    for f:= 0 to 767 do PByteArray(MirrorPal)^[f]:= PByteArray(Pal)^[f];
+    FreeMem(Pal, 768);
+    DisposeImage(Im);
+    for f:= 0 to 255 do TagMirror[f]:= 0;
+    ShowPalette(10, 10, 10, 5, 6, 1);
+    ShowTags(10, 10, 10, 5, 6, 1, TagMirror);
+    MouseSwitchOn;
+    TagByMouse(10, 10, 10, 5, 6, 1, TagMirror);
+  end;
+  SetPalette(Palette);
+  MenuMisc:= 1;
+end;
+
+procedure MainMenu;
+  procedure About;
+  begin
+    vybermoznost(
+    'PALREDUCE '+ProgVersion+'|Redukce a kopírování palety|u obrázků BMP|Naprogramovali Pavel Pospíšil,|'+
+    'Lukáš Svoboda, Robert Špalek|a Petr Kroča, No Sense|MoveLeft (m) 1994AD|no lefts reversed',
+    '~Hmm...',
+    DColor1, DColor2, DColor3, DColor4, DColor5, font, 1,1);
+  end;
+begin
+  repeat
+    MenuX:= 50;
+    MenuY:= 50;
+    MenuMisc:= 1;
+    repeat until MouseKey=0;
+    MenuMisc:=VytvorMenu('#    Palette reduce & combine|'+
+      +'#--------------------------------|~Načti a označ zrcadlo|'+
+      +'~Redukuj a kombinuj se zrcadlem|Nastav si pracovní ~cestu|'+
+      +'#--------------------------------|~O programu|~Konec',
+      DColor1, DColor2, DColor3, DColor4,DColor5, font, MenuX, MenuY,
+      MenuMisc, -1);
+    case MenuMisc of
+      1 : Mirror;
+      2 : Reduce;
+      3 : begin
+            MenuX:= 70;
+            MenuY:= 20;
+            MenuMisc:= 15;
+            ChooseFile(WorkPath, '');
+{            WorkPath:= vybersouboru(MenuX, MenuY, MenuMisc,
+              DColor1, DColor2, DColor3, DColor4, DColor5, Font,
+              trid_jmena, WorkPath, '');}
+            MenuMisc:= 3;
+          end;
+      4 : About;
+    end;
+    if (MenuMisc=-1)then MenuMisc:= 5;
+  until MenuMisc= 5;
+end;
+
+
+begin
+  InitPalReduc;
+  repeat
+    MainMenu;
+  until ( standardnidialog('Chceš opravdu skončit?',
+    DColor1, DColor2, DColor3, DColor4, DColor5, font, Ano_Ne) )=1;
+  BeforeExitPalReduc;
+  CloseGraph;
+end.
+
+
