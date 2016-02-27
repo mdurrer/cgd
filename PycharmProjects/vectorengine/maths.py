@@ -15,14 +15,18 @@ class Vector2f(object):
 		dx = self.x * vector.x
 		dy = self.y * vector.y
 		return (dx + dy)
-	def normalize(self):
-		length = self.length()
-		return Vector2f(self.x/length,self.y/length)
-	def length(self):
-		return float(sqrt(self.x*self.x + self.y * self.y))
+
 	def normalize(self):
 		length = self.length()
 		return Vector2f(self.x / length, self.y / length)
+
+	def length(self):
+		return float(sqrt(self.x * self.x + self.y * self.y))
+
+	def normalize(self):
+		length = self.length()
+		return Vector2f(self.x / length, self.y / length)
+
 	def __add__(self, other):
 		return Vector2f(self.x + other.x, self.y + other.y)
 
@@ -52,23 +56,28 @@ class Vector3f(object):
 		dz = self.z * vector.z
 		return (dx + dy + dz)
 
-
 	def length(self):
 		return float(sqrt(self.x * self.x + self.y * self.y, self.z * self.z))
+
 	def normalize(self):
 		length = self.length()
-		return Vector3f(self.x / length, self.y / length,self.z / length)
-	def __add__(self, other):
-		return Vector3f(self.x + other.x, self.y + other.y, self.z + other.z)
+		return Vector3f(self.x / length, self.y / length, self.z / length)
 
-	def __sub__(self, other):
-		return Vector3f(self.x - other.x, self.y - other.y, self.z - other.z)
 
-	def __mul__(self, other):
-		return Vector3f(self.x * other.x, self.y * other.y, self.z * other.z)
+def __add__(self, other):
+	return Vector3f(self.x + other.x, self.y + other.y, self.z + other.z)
 
-	def __truediv__(self, other):
-		return Vector3f(self.x / other.x, self.y / other.y, self.z / other.z)
+
+def __sub__(self, other):
+	return Vector3f(self.x - other.x, self.y - other.y, self.z - other.z)
+
+
+def __mul__(self, other):
+	return Vector3f(self.x * other.x, self.y * other.y, self.z * other.z)
+
+
+def __truediv__(self, other):
+	return Vector3f(self.x / other.x, self.y / other.y, self.z / other.z)
 
 
 class Vector4f(object):
@@ -95,43 +104,57 @@ class Vector4f(object):
 			self.w = float(0)
 
 	def length(self):
-		return float(sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w*self.w))
+		return float(sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w))
+
 	def normalize(self):
 		length = self.length()
 		return Vector4f(self.x / length, self.y / length, self.z / length, self.w / length)
+
 	def __add__(self, other):
 		return Vector4f(self.x + other.x, self.y + other.y, self.z + other.z, self.w + other.w)
-
 
 	def __sub__(self, other):
 		return Vector4f(self.x - other.x, self.y - other.y, self.z - other.z, self.w - other.w)
 
-
 	def __mul__(self, other):
 		return Vector4f(self.x * other.x, self.y * other.y, self.z * other.z, self.w * other.w)
 
-
 	def __truediv__(self, other):
-		return Vector4f(self.x / other.x, self.y / other.y, self.z / other.z,self.w / other.w)
+		return Vector4f(self.x / other.x, self.y / other.y, self.z / other.z, self.w / other.w)
 
 	def __repr__(self):
-		return "X=%f,Y=%f,Z=%f,W=%f" %(self.x,self.y,self.z,self.w)
+		return "X=%f,Y=%f,Z=%f,W=%f" % (self.x, self.y, self.z, self.w)
 
-class Quaternion(self):
-	x,y,z,w = float(),float(),float(),float()
-	def __init__(self,*args):
+
+class Matrix4f(object):
+	matrix = np.matrix([],dtype=float)
+
+	def __init__(self, m00=0.0,m01=0.0,m02=0.0,m03=0.0,m10=0.0,m11=0.0,m12=0.0,m13=0.0,m20=0.0,m21=0.0,m22=0.0,m23=0.0,m30=0.0,m31=0.0,m32=0.0,m33=0.0):
+		self.matrix = np.matrix([m00,m01,m02,m03,m10,m11,m12,m13,m20,m21,m22,m23,m30,m31,m32,m33],dtype=float).reshape(4,4)
+	def initIdentity(self,m00=1.0,m01=0.0,m02=0.0,m03=0.0,m10=0.0,m11=1.0,m12=0.0,m13=0.0,m20=0.0,m21=0.0,m22=1.0,m23=0.0,m30=0.0,m31=0.0,m32=0.0,m33=1.0):
+		self.matrix = np.matrix([m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33], dtype=float).reshape(4, 4)
+
+
+
+class Quaternion(object):
+	x, y, z, w = float(), float(), float(), float()
+
+	def __init__(self, *args):
 		if len(args) == 2:
-			sinHalfAngle = float(sin(args[1])/2)
-			coshalfAngle = float(cos(args[1])/2)
+			sinHalfAngle = float(sin(args[1]) / 2)
+			coshalfAngle = float(cos(args[1]) / 2)
 		if len(args) == 4:
 			self.x = args[0]
 			self.y = args[1]
 			self.z = args[2]
 			self.w = args[3]
-        if len(args) <=1:
-                self.x = float()
-                self.y = float()
-                self.z = float()
-                self.w = float()
-    def __repr__(self):
-            return "X=%f,Y=%f,Z=%f,W=%f" %(self.x,self.y,self.z,self.w)
+
+		if len(args) <= 1:
+			self.x = float()
+			self.y = float()
+			self.z = float()
+			self.w = float()
+
+
+def __repr__(self):
+	return "X=%f,Y=%f,Z=%f,W=%f" % (self.x, self.y, self.z, self.w)

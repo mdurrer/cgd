@@ -41,6 +41,10 @@ if __name__ == "__main__":
     cd = Vector3f(5,2,3)
     ef = Vector4f(2,3,4,1)
     fn = ef.normalize()
+    mat = Matrix4f(2,3,4)
+    print(mat.matrix)
+    mat.initIdentity()
+    print(mat.matrix)
     print(ef)
     print("Normalized ef=fn %s" % fn)
 
