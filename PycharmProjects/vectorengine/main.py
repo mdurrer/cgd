@@ -2,6 +2,9 @@ import os,sys
 import pygame
 from pygame.locals import *
 from maths import *
+from vectors import *
+from matrix4f import *
+from quaternion import *
 
 width, height = 800,600
 def drawCircle(surface,xpos,ypos,radius,color):
