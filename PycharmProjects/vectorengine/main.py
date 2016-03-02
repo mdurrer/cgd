@@ -44,7 +44,9 @@ if __name__ == "__main__":
     mat = Matrix4f(2,3,4)
     print(mat.matrix)
     mat.initIdentity()
-    print(mat.matrix)
+    print("Matrix: ",mat.matrix)
+
+    print("Matrix selection",mat.matrix[0][0])
     print(ef)
     print("Normalized ef=fn %s" % fn)
 
