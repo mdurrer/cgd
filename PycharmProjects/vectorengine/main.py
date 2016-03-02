@@ -49,6 +49,10 @@ if __name__ == "__main__":
     print("Normalized ef=fn %s" % fn)
 
     print ("Dot product %f" % ab.dot(cd))
+    ini = mat.initScreenSpaceTransform(width/2,height/2)
+    print(ini)
+    q = Quaternion(1,1,1,1)
+    print (q)
     while True:
         for event in pygame.event.get():
             if event.type == KEYDOWN:
