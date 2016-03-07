@@ -5,7 +5,7 @@ from maths import *
 from vectors import *
 from matrix4f import *
 from quaternion import *
-
+from bitmap import *
 width, height = 800,600
 def drawCircle(surface,xpos,ypos,radius,color):
     x = int(radius)
@@ -58,6 +58,7 @@ if __name__ == "__main__":
     print(ini)
     q = Quaternion(1,1,1,1)
     print (q)
+    b = Bitmap("galaxy.jpg")
     while True:
         for event in pygame.event.get():
             if event.type == KEYDOWN:
