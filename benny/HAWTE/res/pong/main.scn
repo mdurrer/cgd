@@ -1,0 +1,12 @@
+go hawte.GameObject 0.0 0.0 0.0 0.0 0.0
+child
+go hawte.GameObject 400.0 300.0 8.0 8.0 0.0
+cmp game.pong.components.PongBall
+go hawte.GameObject 8.0 300.0 8.0 56.0 0.0
+cmp game.pong.components.PongPlayer
+go hawte.GameObject 792.0 300.0 8.0 56.0 0.0
+cmp game.pong.components.PongEnemy
+go hawte.GameObject 400.0 8.0 400.0 8.0 0.0
+cmp game.pong.components.PongWall
+go hawte.GameObject 400.0 592.0 400.0 8.0 0.0
+cmp game.pong.components.PongWall

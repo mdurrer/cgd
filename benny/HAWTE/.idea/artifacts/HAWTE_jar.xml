@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HAWTE:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HAWTE_jar</output-path>
+    <root id="archive" name="HAWTE.jar">
+      <element id="module-output" name="HAWTE" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,1 @@
+./Release/main.o ./Release/ppmImage.o ./Release/display.o ./Release/obj_loader.o ./Release/mesh.o

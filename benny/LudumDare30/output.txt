@@ -1,0 +1,5 @@
+Adding existing object
+java.lang.Exception
+	at Player.AddChild(Player.java:29)
+	at Game.Update(Game.java:83)
+	at Main.main(Main.java:49)

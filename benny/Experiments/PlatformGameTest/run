@@ -1,0 +1,7 @@
+mv res bin/res
+cd bin
+
+java game/Main
+
+mv res ../res
+cd ../

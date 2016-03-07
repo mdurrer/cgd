@@ -1,0 +1,46 @@
++ Background "window" tiles
++ Transparency
++ Variable height jumping
++ Hold to run button (Probably shift by default)
++ Separate Entity classes
++ Collectables
++ Points
++ Enemies
++ Damage enemies by jumping on them
++ Sprite Sheets
++ Hit invulnerability period
++ Health
++ GUI
++ Lives
++ State based Player
++ Game Over screen
++ Error screen
++ Text rendering utilities
++ Menu
++ Help menu
++ Lives from getting a certain number of points
++ Multiple Save Files
++ 2D Lighting
++ Layers in Level
++ Optional OpenGL renderer
++ Animation
++ Environmental hazards (spikes, lava, lasers, etc.)
++ Properties in config file
++ Locked areas
++ Items to unlock locked areas
++ Secret locked areas
++ Refactor PlatformScene
++ Controls in config file
++ Colored Lighting
++ Sound
++ Checkpoints
++ Health items
++ Different enemy types (projectile shooting enemies?)
++ Finish rock tileset
++ Sounds for fireballs
++ Multiple levels
++ New sound for 250 point gem
+- Flying powerup?
+- Weapons?
+
+IMPLI DAMA TORT CAU WEVE 

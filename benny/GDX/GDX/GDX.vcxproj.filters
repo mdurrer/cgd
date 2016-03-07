@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{d038ab1f-24cf-42cc-8dd2-b8527ac5acae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{05825c4d-2e4f-424f-af9b-a143af507e25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Libraries">
+      <UniqueIdentifier>{3f608f22-0351-4586-ad5a-76a6312f7fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Rendering">
+      <UniqueIdentifier>{598139bd-324a-44f8-a231-520f130419f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core">
+      <UniqueIdentifier>{8552c803-9234-4398-8470-e5cf755ded97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{a3409faa-3b89-4955-bc1c-0f6f80bdb97c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="myGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.c">
+      <Filter>Engine\Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="material.cpp">
+      <Filter>Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.cpp">
+      <Filter>Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="component.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="display.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="engine.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="gameObject.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="math3d.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="timing.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="transform.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingEngine.cpp">
+      <Filter>Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="mouseLook.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>Engine\Libraries</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="myGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Engine\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
+      <Filter>Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer.h">
+      <Filter>Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="display.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="engine.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="gameObject.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="math3d.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="timing.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="transform.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GDX.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingEngine.h">
+      <Filter>Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="mouseLook.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>Engine\Libraries</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
