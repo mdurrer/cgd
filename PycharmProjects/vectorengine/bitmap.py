@@ -14,7 +14,7 @@ class Bitmap(object):
 			img = Image.open(args[0])
 			img =  img.convert("RGBA")
 			self.width,self.height = img.size
-			#self.display = np.array([self.width * self.height * 4], dtype=int)
+				#self.display = np.array([self.width * self.height * 4], dtype=int)
 			self.display = np.array(img)
 			self.display  = Image.fromarray(self.display)
 
