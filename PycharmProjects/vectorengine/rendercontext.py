@@ -1,10 +1,7 @@
-from math import *
-import numpy as np
-from PIL import Image
-import pygame
-class Bitmap(object):
-	width, height = float(),float()
-	display = np.array([],dtype=int)
+from bitmap import *
+class RenderContext(Bitmap):
+	width, height = float(), float()
+	zbuffer = np.array([], dtype=int)
 	def __init__(self,*args):
 		if len(args) == 2:
 			self.width, self.height = args[0],args[1]
@@ -17,13 +14,8 @@ class Bitmap(object):
 				#self.display = np.array([self.width * self.height * 4], dtype=int)
 			self.display = np.array(img)
 			self.display = Image.fromarray(self.display)
+		self.zbuffer= np.zeros([self.width*self.height],dtype=int)
+	def ClearDepthBuffer(self):
+		for x in len(self.width*self.height):
+			self.zbuffer[x] = 0
 
-
-	def getWidth(self):
-		return self.width
-	def setWidth(self,value):
-		self.width = value
-	def getHeight(self):
-		return self.height
-	def setHeight(self,value):
-		self.height = value
