@@ -22,5 +22,20 @@ class Quaternion(object):
 			self.y = float()
 			self.z = float()
 			self.w = float()
+	def __mul__(self, other):
+		w = self.w * other.getW(self) - self.x * other.getX(self) - self.y * other.getY(self) - self.z  * other.getZ(self)
+		x = self.x * other.getW(self) + self.w * other.getX(self) + self.y * other.getZ(self) - self.z * other.getY(self)
+		y = self.y * other.getW(self) + self.w * other.getY(self) + self.z * self.getX(self) - self.x * other.getZ(self)
+		z = self.z * other.getW(self) + self.w * other.getZ(self) + self.x * other.getY(self) - self.y * other.getX(self)
 	def __repr__(self):
 		return "X=%f,Y=%f,Z=%f,W=%f" % (self.x, self.y, self.z, self.w)
+	def conjugate(self):
+		return Quaternion(-self.x,-self.y,-self.z,-self.w)
+	def getW(self):
+		return self.w
+	def getX(self):
+		return self.x
+	def getY(self):
+		return self.y
+	def getZ(self):
+		return self.z
