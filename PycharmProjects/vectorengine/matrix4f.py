@@ -60,7 +60,7 @@ class Matrix4f(object):
 		return self.matrix[x][y]
 	def setMatrixElement(self,x,y,value):
 		self.matrix[x][y] = value
-	def mul(self, matrix):
+	def mul(self, matrix):  # Maybe change to __muk__ ?
 		res = Matrix4f()
 		for x in range (0,4):
 			for y in range(0,4):
