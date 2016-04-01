@@ -1,12 +1,15 @@
 from math import *
 import numpy as np
 from vectors import *
-
+from objmodel import *
 class Mesh(object):
-	position = Vector4f()
-	texCoords = Vector4f()
-	normal = Vector4f()
-
+	vertices = []
+	indices = []
+	def __init__(self,file):
+		self.x = float()
+		self.y = float()
+		self.z = float()
+		self.w = float()
 	def getX(self):
 		return self.position.x
 	def getY(self):
