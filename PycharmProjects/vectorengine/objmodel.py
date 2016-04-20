@@ -16,7 +16,7 @@ class OBJModel(object):
 			return self.texCoordIndex
 		def getNormalindex(self):
 			return self.normalIndex
-		def setVertexIndex(self,val):
+		def setVertexIndex(self,val):s
 			self.vertexIndex = val
 		def setTexCoordIndex(self,val):
 			self.texCoordIndex = val
