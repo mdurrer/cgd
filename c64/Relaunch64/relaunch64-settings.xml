@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <recentDoc1 compiler="0" script="1">/home/michael/c64/screamers/main.asm</recentDoc1>
+  <recentDoc2 compiler="0" script="-1" />
+  <recentDoc3 compiler="0" script="-1" />
+  <recentDoc4 compiler="0" script="-1" />
+  <recentDoc5 compiler="0" script="-1" />
+  <recentDoc6 compiler="0" script="-1" />
+  <recentDoc7 compiler="0" script="-1" />
+  <recentDoc8 compiler="0" script="-1" />
+  <recentDoc9 compiler="0" script="-1" />
+  <recentDoc10 compiler="0" script="-1" />
+  <reopenfiles>
+    <rof compiler="0" script="1">/home/michael/c64/screamers/main.asm</rof>
+  </reopenfiles>
+  <editorfont size="12">Monospaced</editorfont>
+  <lastusedpath>/home/michael/c64/screamers/main.asm</lastusedpath>
+  <externaleditor />
+  <antialias>subpixel</antialias>
+  <dividerishidden>1</dividerishidden>
+  <usenotabs>0</usenotabs>
+  <findbytype>1</findbytype>
+  <waitforprocess>1</waitforprocess>
+  <codefolding>1</codefolding>
+  <codefolding_braces>1</codefolding_braces>
+  <codefolding_directive>1</codefolding_directive>
+  <codefolding_labels>1</codefolding_labels>
+  <codefolding_manual>1</codefolding_manual>
+  <codefolding_structural>1</codefolding_structural>
+  <codefolding_sections>1</codefolding_sections>
+  <scalefont>1</scalefont>
+  <checkupdates>1</checkupdates>
+  <findfieldfocus>0</findfieldfocus>
+  <alternativeAssemblyMode>0</alternativeAssemblyMode>
+  <showlinehighlight>0</showlinehighlight>
+  <showbuffersize>1</showbuffersize>
+  <showfileextintab>0</showfileextintab>
+  <showclosebutton>1</showclosebutton>
+  <showtoolbar>1</showtoolbar>
+  <showtoolbartext>1</showtoolbartext>
+  <suggestioncasesort>0</suggestioncasesort>
+  <rofstartup>1</rofstartup>
+  <saveoncompile>1</saveoncompile>
+  <nimbusonosx>0</nimbusonosx>
+  <usescrolltabs>0</usescrolltabs>
+  <preferredCompiler>0</preferredCompiler>
+  <sidebarsort>1</sidebarsort>
+  <syntaxscheme>0</syntaxscheme>
+  <lastUserScript>1</lastUserScript>
+  <logsplitlayout>1</logsplitlayout>
+  <tabwidth>4</tabwidth>
+  <listgotoindex>1</listgotoindex>
+  <dividerlocation>296</dividerlocation>
+  <linenumberalignment>4</linenumberalignment>
+</settings>

@@ -12,7 +12,7 @@ lda $dc0d
 lda $dd0d
 lda #$01
 sta $d01a
-lda #$71
+lda #$6b // #$73 is a badline
 sta $d012
 lda #$1b
 sta $d011
@@ -44,8 +44,9 @@ ldx #>mainirq
 sta $fffe
 stx $ffff
 
-lda #$71
+/*lda #$71
 sta $d012
+*/
 lda #$01
 sta $d019
 pla

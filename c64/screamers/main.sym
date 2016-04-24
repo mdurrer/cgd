@@ -1,0 +1,2 @@
+.label mainirq=$8033
+.label start=$8000

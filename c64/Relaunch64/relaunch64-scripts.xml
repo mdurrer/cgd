@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomScripts>
+  <Script script_name="vicky">java -jar /home/michael/c64/KickAss.jar RSOURCEFILE
+x64 ROUTPUTFILE</Script>
+  <Script script_name="Default Compilation">java -jar /home/michael/c64/KickAss.jar RSOURCEFILE
+x64 ROUTFILE</Script>
+</CustomScripts>
