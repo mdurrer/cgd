@@ -1,0 +1,199 @@
+<html>
+<head>
+  <style>
+    body { color:#333333; margin:10px; font-size:11px; font-family:sans-serif; line-height:1.1em; }
+    h1 { font-size:14px; font-weight: normal; color:#660000; margin-top:14px; margin-bottom:0px; padding:0;}
+    h2 { font-size:13px; font-weight: normal; color:#660000; ; margin-top:13px; margin-bottom:0px; padding:0;}
+    h3 { font-size:12px; font-weight: normal; color:#660000; ; margin-top:12px; margin-bottom:0px; padding:0;}
+    ul { margin-left:10px; padding:0px; }
+    li { margin-bottom:5px; }
+    a { color:#000099; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .pcode {font-family:monospace; background-color:#f2f2f2; padding:3px; font-size:1em; } 
+  </style> 
+  <title>help</title>
+</head>
+<body>
+
+<h1>What are user scripts?</h1>
+
+	<p>
+		User scripts will be executed similar to bash or console commands. You
+		can run any assembler and / or emulator in the same way you would do when
+		calling these tools from the console or a batch file.
+	</p>
+	<p>
+		You can define several actions that should be executed. Use <em>multiple lines</em>
+		in your script to define multiple actions.
+	</p>
+
+<h1>Adding new scripts</h1>
+
+	<p>
+		To add a new script, simply change the <em>script name</em> (in the related
+		text field). Once you changed the script name, the apply-button's text will
+		change to <em>Add script</em>. Edit the script in the text area below and
+		add the script by clicking on the button.
+	</p>
+        
+        <p>
+            If you press the <em>New Script</em> button, all fields will be cleared and you
+            can enter script name and script lines.
+        </p>
+	
+<h1>Updating existing scripts</h1>
+
+	<p>
+		To change or update an existing script, simply select the script from the dropdown list,
+		but <strong>do not</strong> change the <em>script name</em> (in the related
+		text field). Edit the script in the text area below and save the changes by
+		clicking on the button <em>Update script</em>.
+	</p>
+	
+<h1>Relaunch64 options</h1>
+
+	<p>
+		To set a specific behaviour of Relaunch64 when compiling scripts, use a command line starting
+                with <span class="pcode">R64</span>, followed by one of these switches:
+	</p>
+	
+	<ul>
+            <li>
+                <strong>-iw</strong> - ignore warnings; assembler warnings will be ignored, i.e. warning
+                messages will still be logged, however, compile process continue and not being stopped.
+            </li>
+            <li>
+                <strong>-wait</strong> - wait for script execution to be finished; Same as unchecking the option &quot;Don't
+                wait when running scripts&quot; in the preferences. Using this switch means that you will first have
+                to wait for compiling to be done and emulators have to be closed before you can continue editing
+                in Relaunch64. Overrides the setting in the preferences.
+            </li>
+            <li>
+                <strong>-nowait</strong> - don't wait for script execution to be finished; Same as the option &quot;Don't
+                wait when running scripts&quot; in the preferences. Using this switch means that you can continue editing
+                in Relaunch64, while any emulator with a compiled script is still running. Overrides the setting in the preferences.
+            </li>
+	</ul>
+
+        <p>
+		In case you have problems with the <strong>-nowait</strong>-option, so Relaunch64 is
+                locked while an emulator is running, although you want to continue editing in Relaunch64,
+                use <span class="pcode">R64BG</span> as a prefix <em>of the command line for the tool that
+                should not block execution</em> (mostly the command line for starting the emulator).
+	</p>
+
+<p>
+	<strong>Note:</strong> See user script examples below.
+</p>
+ 
+<h1>Placeholders</h1>
+
+	<p>
+		To specifiy directories or input and output files, there are following
+		constants that should be used:
+	</p>
+	
+	<ul>
+            <li><strong>SOURCEFILE</strong> - The input file, typically the <strong>asm-file</strong> (<code>/path/to/file.asm</code>).</li>
+            <li>
+                <strong>RSOURCEFILE</strong> - The input file, typically the <strong>asm-file</strong>. The <em>relative path</em> is used. Since the
+                working directory is set to the source file path, only the file name is used, without path information (<code>file.asm</code>).
+            </li>
+            <li><strong>SOURCEDIR</strong> - The parent directory of the input file, i.e. the directory where the source <strong>asm-file</strong> is located (<code>/path/to/</code>).</li>
+            <li><strong>SOURCENAME</strong> - The input file name, <em>without path and file-extension</em> (alternative to SOURCEFILE) (<code>file</code>).</li>
+            <li><strong>OUTFILE</strong> - The ouput file that will be compiled, typically the <strong>prg-file</strong> (<code>/path/to/file.prg</code>).</li>
+            <li>
+                <strong>ROUTFILE</strong> - The ouput file that will be compiled, typically the <strong>prg-file</strong>. The <em>relative path</em> is used. Since the
+                working directory is set to the source file path, only the file name is used, without path information (<code>file.prg</code>).
+            </li>
+            <li><strong>OUTNAME</strong> - The ouput file that will be compiled, <em>without path and file-extension</em> (alternative to OUTPUT) (<code>file</code>).</li>
+            <li><strong>START</strong> - The start address of the source code. This placeholder can be used for <strong>cruncher and packer</strong>.</li>
+            <li>
+                <strong>UNCOMPFILE</strong> - The uncompressed file, used as input file for cruncher or packer. Mostly identical to OUTFILE (<code>/path/to/file.prg</code>).
+                <strong>Note:</strong> if OUTFILE is relative (i.e. if you use ROUTFILE), the relative filename will automatically be used for UNCOMPFILE (<code>file.prg</code>).
+            </li> 
+            <li>
+                <strong>COMPFILE</strong> - The compressed output file, used for cruncher or packer (<code>/path/to/file-compressed.prg</code>).
+                <strong>Note:</strong> if OUTFILE is relative (i.e. if you use ROUTFILE), the relative filename will automatically be used for COMPFILE (<code>file-compressed.prg</code>).
+            </li>
+	</ul>
+
+<p>
+	<strong>Note 1:</strong> In some cases you may have to add the &quot;open&quot; command to the command line (e.g., on 
+	OS X, starting Vice will throw an access denied error without the open-parameter). See examples below.
+</p>
+<p>
+	<strong>Note 2:</strong> If you specify full pathes to your assembler or emulator and the path contains whitechars (spaces),
+	you need to set the path in quotes (see examples below). Placeholders like SOURCEFILE or OUTFILE, however, 
+	will be automatically quoted if necessary. You don't need to quote the placeholders.
+</p>
+
+<p>
+	<strong>Note 3:</strong> To make use of the START placeholder, you have to specify the start address in
+        a comment line with following syntax:<br>&lt;comment sign&gt; start=&lt;start address&gt;, for instance:
+        <br><span class="pcode">// start=$c000 (for Kick Assembler)<br>
+	; start=12288 (for other assemblers)</span>
+</p>
+
+<h1>Drag &amp; Drop</h1>
+
+<p>
+    You can drag &amp; drop executables from assemblers, crunchers and emulators from the explorer (or file browser) window
+    onto the script text field. Relaunch64 will then automatically generate a proper scriptline, including recommended
+    parameter settings (in case the assembler, cruncher or emulator is recognized and supported).
+</p>
+
+<h1>Examples</h1>
+
+<h3>Using KickAss and Vice on OS X</h3>
+<div class="pcode">java -jar /&lt;path to kickass&gt;/KickAss.jar SOURCEFILE<br>
+open /Applications/Vice/x64.app OUTFILE</div>
+
+<h3>ACME and Vice, when ACME- and VICE-Path are in PATH-Environment</h3>
+<div class="pcode">acme -v4 RSOURCEFILE<br>
+x64 ROUTFILE</div>
+
+<h3>Using ACME, ignore assembler warnings, don't wait for script</h3>
+<div class="pcode">R64 -iw -nowait<br>
+C:\Users\&lt;username&gt;\Documents\C64\acme.exe --outfile ROUTFILE --format cbm RSOURCEFILE<br>
+C:\Users\&lt;username&gt;\Documents\C64\WinVICE-2.4\x64.exe COMPFILE</div>
+
+<h3>ACME and Vice, when ACME-Path is in PATH-Environment (Vice is not)</h3>
+<div class="pcode">acme --outfile ROUTFILE --format cbm RSOURCEFILE<br>
+&quot;C:\Users\&lt;username&gt;\Documents\C64\WinVICE 2.4\x64.exe&quot; ROUTFILE</div>
+
+<h3>ACME and Vice, don't wait for Vice on Windows</h3>
+<div class="pcode">acme --outfile ROUTFILE --format cbm RSOURCEFILE<br>
+R64BG &quot;C:\Users\&lt;username&gt;\Documents\C64\WinVICE 2.4\x64.exe&quot; ROUTFILE</div>
+
+<h3>64tass on OS X</h3>
+<div class="pcode">/usr/local/bin/64tass -C -a -i SOURCEFILE -o OUTFILE<br>
+open /Applications/Vice64/x64.app OUTFILE</div>
+
+<h3>64tass on OS X, ignore assembler warnings</h3>
+<div class="pcode">R64 -iw<br>
+/usr/local/bin/64tass -C -a -i SOURCEFILE -o OUTFILE<br>
+open /Applications/Vice64/x64.app OUTFILE</div>
+
+<h3>Using KickAss and Vice on Windows</h3>
+<div class="pcode">java -jar C:\Users\&lt;username&gt;\Documents\C64\KickAss\KickAss.jar RSOURCEFILE<br>
+C:\Users\&lt;username&gt;\Documents\C64\WinVICE-2.4\x64.exe ROUTFILE</div>
+
+<h3>Using ACME, PuCrunch and Vice on OS X</h3>
+<div class="pcode">/usr/local/bin/acme --outfile OUTFILE --format cbm SOURCEFILE<br>
+/usr/local/bin/pucrunch UNCOMPFILE COMPFILE -xSTART<br>
+open /Applications/Vice64/x64.app COMPFILE</div>
+
+<h3>Using ACME, Exomizer and Vice, with white space in path</h3>
+<div class="pcode">&quot;C:\Users\&lt;username&gt;\Documents\C64\sontige tools\acme 0.9\acme.exe&quot; --outfile ROUTFILE --format cbm RSOURCEFILE<br>
+C:\Users\&lt;username&gt;\Documents\C64\Exomizer\exomizer.exe sfx basic UNCOMPFILE -o COMPFILE<br>
+C:\Users\&lt;username&gt;\Documents\C64\WinVICE-2.4\x64.exe COMPFILE</div>
+
+<h3>Using ACME and VICE on OS X</h3>
+<div class="pcode">/usr/local/bin/acme --outfile OUTFILE --format cbm SOURCEFILE<br>
+open /Applications/Vice64/x64.app OUTFILE</div>
+
+<p><br></p>
+
+</body>
+</html>

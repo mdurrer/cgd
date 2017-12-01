@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>/Users/danielludecke/Desktop/Relaunch64.jar</jar>
+  <outfile>/Users/danielludecke/Desktop/Relaunch64.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>/Users/danielludecke/Documents/Coding/NetBeans/Relaunch64/r64.ico</icon>
+  <singleInstance>
+    <mutexName>Relaunch64_V3</mutexName>
+    <windowTitle></windowTitle>
+  </singleInstance>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>1.7.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+  </jre>
+  <splash>
+    <file>/Users/danielludecke/Documents/Coding/NetBeans/Relaunch64/R64splash.bmp</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>60</timeout>
+    <timeoutErr>true</timeoutErr>
+  </splash>
+  <versionInfo>
+    <fileVersion>3.3.7.0</fileVersion>
+    <txtFileVersion>Relaunch64 V3</txtFileVersion>
+    <fileDescription>A C64/65xx cross development IDE</fileDescription>
+    <copyright>2003-2016 by Payday</copyright>
+    <productVersion>3.3.7.0</productVersion>
+    <txtProductVersion>Relaunch64 V3</txtProductVersion>
+    <productName>Relaunch64</productName>
+    <companyName>Payday</companyName>
+    <internalName>R64</internalName>
+    <originalFilename>Relaunch64.exe</originalFilename>
+    <trademarks></trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+</launch4jConfig>

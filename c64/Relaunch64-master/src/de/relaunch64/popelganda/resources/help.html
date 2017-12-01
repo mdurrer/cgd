@@ -1,0 +1,581 @@
+<html>
+<head>
+  <style>
+    body { color:#333333; margin:10px; font-size:11px; font-family:sans-serif; line-height:1.1em; }
+    h1 { font-size:14px; font-weight: normal; color:#660000; margin-top:14px; margin-bottom:0px; padding:0;}
+    h2 { font-size:13px; font-weight: normal; color:#660000; ; margin-top:13px; margin-bottom:0px; padding:0;}
+    h3 { font-size:12px; font-weight: normal; color:#660000; ; margin-top:12px; margin-bottom:0px; padding:0;}
+    ul { margin-left:10px; padding:0px; }
+    li { margin-bottom:5px; }
+    a { color:#000099; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .pcode {font-family:monospace; background-color:#f2f2f2; padding:3px; font-size:1em; } 
+    code { font-family:monospace; color:#444444; background-color:#eeeeee; font-size:1em; }
+    .highlight { background-color:#f2f2f2; padding:3px; }
+  </style> 
+  <title>Help</title>
+</head>
+<body>
+
+<h1>Relaunch64 help</h1>
+
+	<p>
+		This is a small help page with an overview of selected functions. Choose from the index
+                below to jump to a help topic.
+	</p>
+
+        <p>
+            You'll find a more detailed manual, including illustrative figures, at the
+            C64-Wiki in <a href="http://www.c64-wiki.de/index.php/Relaunch64">German</a> and
+            <a href="http://www.c64-wiki.com/index.php/Relaunch64">English</a>.
+        </p>
+        
+	<h2>General</h2>
+	<ul>
+		<li><a href="#syntax">Assembler settings</a></li>
+		<li><a href="#comments">Comment commands</a></li>
+		<li><a href="#userscripts">User scripts</a></li>
+		<li><a href="#editor">Editor</a></li>
+		<li><a href="#shortcuts">Undocumented editor shortcuts</a></li>
+	</ul>
+
+	<h2>Menu items</h2>
+	<ul>
+		<li><a href="#filemenu">File menu</a></li>
+		<li><a href="#editmenu">Edit menu</a></li>
+		<li><a href="#findmenu">Find menu</a></li>
+		<li><a href="#navigatemenu">Navigate menu and Goto-Sidebar</a></li>
+		<li><a href="#sourcemenu">Source menu</a></li>
+		<li><a href="#viewmenu">View menu</a></li>
+	</ul>
+
+<h1><a name="syntax">Assembler setting</a></h1>
+
+<p>
+	In the <em>bottom status bar</em> of the main window you can select the 
+	assembler of the current active source code. It is recommended to do so for two reasons:
+</p>
+
+<ol>
+	<li>Selecting the correct assembler will ensure that the syntax highlighting is applied correctly.</li>
+	<li>The <em>Goto</em> commands (see <a href="#navigatemenu">Navigate menu</a>) only work proper if the correct assembler is selected.</li>
+</ol>
+
+<h1><a name="comments">Comment commands</a></h1>
+
+<p>
+    There are following placeholders that can be used as commented line for additional settings when
+    compiling the source:
+</p>
+
+<ul>
+    <li>
+        The <strong>START</strong> placeholder lets you specify the start address that will be taken as parameter when
+        a cruncher or packer is called during the compile and run script call (see <a href="#userscripts_examples">user script examples</a>).
+        The comment line needs following syntax: &lt;comment sign&gt; start=&lt;start address&gt;, for instance:<br>
+        <ul>
+            <li>Kick Assembler:<br><code>// start=$c000</code></li>
+            <li>Acme:<br><code>; start=12288</code></li>
+        </ul>
+    </li>
+    <li>
+        The <strong>script</strong> placeholder lets you specify a script that will always be used on
+        compile and run script, independent from which script is chosen in the combo selection box
+        in the <em>Compile and Run</em> area.
+        The comment line needs following syntax: &lt;comment sign&gt; script=&lt;script name&gt;, for instance:<br>
+        <ul>
+            <li>Kick Assembler:<br><code>// script=Kickass, Vice</code><br>(will run the script named &quot;Kickass, Vice&quot;)</li>
+            <li>Acme: <br><code>; script=Acme with PuCrunch</code><br>(will run the script named &quot;Acme with PuCrunch&quot;)</li>
+        </ul>
+    </li>
+</ul>
+
+<h1><a name="userscripts">User scripts</a></h1>
+
+	<p>
+		User scripts will be executed similar to bash or console commands. You
+		can run any assembler and / or emulator in the same way you would do when
+		calling these tools from the console or a batch file.
+	</p>
+	<p>
+		You can define several actions that should be executed. Use <em>multiple lines</em>
+		in your script to define multiple actions.
+	</p>
+
+<h2>Adding new scripts</h2>
+
+	<p>
+		To add a new script, simply change the <em>script name</em> (in the related
+		text field). Once you changed the script name, the apply-button's text will
+		change to <em>Add script</em>. Edit the script in the text area below and
+		add the script by clicking on the button.
+	</p>
+        
+        <p>
+            If you press the <em>New Script</em> button, all fields will be cleared and you
+            can enter script name and script lines.
+        </p>
+	
+<h2>Updating existing scripts</h2>
+
+	<p>
+		To change or update an existing script, simply select the script from the dropdown list,
+		but <strong>do not</strong> change the <em>script name</em> (in the related
+		text field). Edit the script in the text area below and save the changes by
+		clicking on the button <em>Update script</em>.
+	</p>
+
+<h2>Relaunch64 options</h2>
+
+	<p>
+		To set a specific behaviour of Relaunch64 when compiling scripts, use a command line starting
+                with <span class="pcode">R64</span>, followed by one of these switches:
+	</p>
+	
+	<ul>
+            <li>
+                <strong>-iw</strong> - ignore warnings; assembler warnings will be ignored, i.e. warning
+                messages will still be logged, however, compile process continue and not being stopped.
+            </li>
+            <li>
+                <strong>-wait</strong> - wait for script execution to be finished; Same as unchecking the option &quot;Don't
+                wait when running scripts&quot; in the preferences. Using this switch means that you will first have
+                to wait for compiling to be done and emulators have to be closed before you can continue editing
+                in Relaunch64. Overrides the setting in the preferences.
+            </li>
+            <li>
+                <strong>-nowait</strong> - don't wait for script execution to be finished; Same as the option &quot;Don't
+                wait when running scripts&quot; in the preferences. Using this switch means that you can continue editing
+                in Relaunch64, while any emulator with a compiled script is still running. Overrides the setting in the preferences.
+            </li>
+	</ul>
+
+	<p>
+		In case you have problems with the <strong>-nowait</strong>-option, so Relaunch64 is
+                locked while an emulator is running, although you want to continue editing in Relaunch64,
+                use <span class="pcode">R64BG</span> as a prefix <em>of the command line for the tool that
+                should not block execution</em> (mostly the command line for starting the emulator).
+	</p>
+
+<p>
+	<strong>Note:</strong> See user script examples below.
+</p>
+        
+<h2>Placeholders</h2>
+
+	<p>
+		To specifiy directories or input and output files, there are following
+		constants that should be used:
+	</p>
+	
+	<ul>
+            <li><strong>SOURCEFILE</strong> - The input file, typically the <strong>asm-file</strong> (<code>/path/to/file.asm</code>).</li>
+            <li>
+                <strong>RSOURCEFILE</strong> - The input file, typically the <strong>asm-file</strong>. The <em>relative path</em> is used. Since the
+                working directory is set to the source file path, only the file name is used, without path information (<code>file.asm</code>).
+            </li>
+            <li><strong>SOURCEDIR</strong> - The parent directory of the input file, i.e. the directory where the source <strong>asm-file</strong> is located (<code>/path/to/</code>).</li>
+            <li><strong>SOURCENAME</strong> - The input file name, <em>without path and file-extension</em> (alternative to SOURCEFILE) (<code>file</code>).</li>
+            <li><strong>OUTFILE</strong> - The ouput file that will be compiled, typically the <strong>prg-file</strong> (<code>/path/to/file.prg</code>).</li>
+            <li>
+                <strong>ROUTFILE</strong> - The ouput file that will be compiled, typically the <strong>prg-file</strong>. The <em>relative path</em> is used. Since the
+                working directory is set to the source file path, only the file name is used, without path information (<code>file.prg</code>).
+            </li>
+            <li><strong>OUTNAME</strong> - The ouput file that will be compiled, <em>without path and file-extension</em> (alternative to OUTPUT) (<code>file</code>).</li>
+            <li><strong>START</strong> - The start address of the source code. This placeholder can be used for <strong>cruncher and packer</strong>.</li>
+            <li>
+                <strong>UNCOMPFILE</strong> - The uncompressed file, used as input file for cruncher or packer. Mostly identical to OUTFILE (<code>/path/to/file.prg</code>).
+                <strong>Note:</strong> if OUTFILE is relative (i.e. if you use ROUTFILE), the relative filename will automatically be used for UNCOMPFILE (<code>file.prg</code>).
+            </li> 
+            <li>
+                <strong>COMPFILE</strong> - The compressed output file, used for cruncher or packer (<code>/path/to/file-compressed.prg</code>).
+                <strong>Note:</strong> if OUTFILE is relative (i.e. if you use ROUTFILE), the relative filename will automatically be used for COMPFILE (<code>file-compressed.prg</code>).
+            </li>
+	</ul>
+
+<p>
+	<strong>Note 1:</strong> In some cases you may have to add the &quot;open&quot; command to the command line (e.g., on 
+	OS X, starting Vice will throw an access denied error without the open-parameter). See examples below.
+</p>
+<p>
+	<strong>Note 2:</strong> If you specify full pathes to your assembler or emulator and the path contains whitechars (spaces),
+	you need to set the path in quotes (see examples below). Placeholders like SOURCEFILE or OUTFILE, however, 
+	will be automatically quoted if necessary. You don't need to quote the placeholders.
+</p>
+
+<p>
+	<strong>Note 3:</strong> To make use of the START placeholder, you have to specify the start address in
+        a comment line with following syntax:<br>&lt;comment sign&gt; start=&lt;start address&gt;, for instance:
+        <br><span class="pcode">// start=$c000 (for Kick Assembler)<br>
+	; start=12288 (for other assemblers)</span>
+</p>
+
+<h2>Drag &amp; Drop</h2>
+
+<p>
+    You can drag &amp; drop executables from assemblers, crunchers and emulators from the explorer (or file browser) window
+    onto the script text field. Relaunch64 will then automatically generate a proper scriptline, including recommended
+    parameter settings (in case the assembler, cruncher or emulator is recognized and supported).
+</p>
+
+<h2><a name="userscripts_examples">User scripts examples</a></h2>
+
+<h3>Using KickAss and Vice on OS X</h3>
+<div class="pcode">java -jar /&lt;path to kickass&gt;/KickAss.jar SOURCEFILE<br>
+open /Applications/Vice/x64.app OUTFILE</div>
+
+<h3>ACME and Vice, when ACME- and VICE-Path are in PATH-Environment</h3>
+<div class="pcode">acme -v4 RSOURCEFILE<br>
+x64 ROUTFILE</div>
+
+<h3>Using ACME, ignore assembler warnings, don't wait for script</h3>
+<div class="pcode">R64 -iw -nowait<br>
+C:\Users\&lt;username&gt;\Documents\C64\acme.exe --outfile ROUTFILE --format cbm RSOURCEFILE<br>
+C:\Users\&lt;username&gt;\Documents\C64\WinVICE-2.4\x64.exe COMPFILE</div>
+
+<h3>ACME and Vice, when ACME-Path is in PATH-Environment (Vice is not)</h3>
+<div class="pcode">acme --outfile ROUTFILE --format cbm RSOURCEFILE<br>
+&quot;C:\Users\&lt;username&gt;\Documents\C64\WinVICE 2.4\x64.exe&quot; ROUTFILE</div>
+
+<h3>ACME and Vice, don't wait for Vice on Windows</h3>
+<div class="pcode">acme --outfile ROUTFILE --format cbm RSOURCEFILE<br>
+R64BG &quot;C:\Users\&lt;username&gt;\Documents\C64\WinVICE 2.4\x64.exe&quot; ROUTFILE</div>
+
+<h3>64tass on OS X</h3>
+<div class="pcode">/usr/local/bin/64tass -C -a -i SOURCEFILE -o OUTFILE<br>
+open /Applications/Vice64/x64.app OUTFILE</div>
+
+<h3>64tass on OS X, ignore assembler warnings</h3>
+<div class="pcode">R64 -iw<br>
+/usr/local/bin/64tass -C -a -i SOURCEFILE -o OUTFILE<br>
+open /Applications/Vice64/x64.app OUTFILE</div>
+
+<h3>Using KickAss and Vice on Windows</h3>
+<div class="pcode">java -jar C:\Users\&lt;username&gt;\Documents\C64\KickAss\KickAss.jar RSOURCEFILE<br>
+C:\Users\&lt;username&gt;\Documents\C64\WinVICE-2.4\x64.exe ROUTFILE</div>
+
+<h3>Using ACME, PuCrunch and Vice on OS X</h3>
+<div class="pcode">/usr/local/bin/acme --outfile OUTFILE --format cbm SOURCEFILE<br>
+/usr/local/bin/pucrunch UNCOMPFILE COMPFILE -xSTART<br>
+open /Applications/Vice64/x64.app COMPFILE</div>
+
+<h3>Using ACME, Exomizer and Vice, with white space in path</h3>
+<div class="pcode">&quot;C:\Users\&lt;username&gt;\Documents\C64\sontige tools\acme 0.9\acme.exe&quot; --outfile ROUTFILE --format cbm RSOURCEFILE<br>
+C:\Users\&lt;username&gt;\Documents\C64\Exomizer\exomizer.exe sfx basic UNCOMPFILE -o COMPFILE<br>
+C:\Users\&lt;username&gt;\Documents\C64\WinVICE-2.4\x64.exe COMPFILE</div>
+
+<h3>Using ACME and VICE on OS X</h3>
+<div class="pcode">/usr/local/bin/acme --outfile OUTFILE --format cbm SOURCEFILE<br>
+open /Applications/Vice64/x64.app OUTFILE</div>
+
+<br>
+
+<h1><a name="editor">Editor</a></h1>
+
+<p class="highlight">
+    <strong>Note!</strong> Since the syntax of labels, macros and functions differs among
+    the various assemblers, the <a href="#syntax">assembler settings</a> information is needed for 
+    the auto-completion-feature to work.
+</p>
+
+<h2>Auto-completion for labels</h2>
+<p>
+	While typing, press <code>ctrl+space</code> to open a popup with a list of all labels that match
+	the previous chars to complete and insert a label name. If you did not already started typing before
+	pressing <code>ctrl+space</code>, all available labels will be shown in the popup. Press <code>Enter</code>
+	or mouse click on a label to insert it or complete your input.
+</p>
+
+<p class="highlight">
+    Note that only those local labels within reachable scope will be shown in the popup. Furthermore, you can continue
+    typing while the popup is visible. The list of labels will then be filtered.
+</p>
+
+<p>
+    If no matching label was found, <code>ctrl+space</code> then automatically tries to extract 
+    functions, macros and script-commands. However, you can directly start auto-completion for
+    functions, macros and script-commands with <code>ctrl+shift+space</code>.
+</p>
+
+<h2>Auto-completion for functions, macros and script-commands</h2>
+<p>
+	While typing, press <code>ctrl+shift+space</code> to open a popup with a list 
+        of all functions, macros or scripting-language-commands that match
+	the previous chars to complete the related name. If you did not already started typing before
+	pressing <code>ctrl+shift+space</code>, all available function or macro names or
+        scripting-language-commands will be shown in the popup. Press <code>Enter</code>
+	or mouse click on an item to insert it or complete your input.
+</p>
+
+<h2>Drag &amp; drop</h2>
+<p>
+	You can drag &amp; drop files from the file explorer (or finder, nautilus, etc.) into
+        the editor area to either open them or include them into your source. The drop operation
+        depends on which modifier keys (<code>shift</code> and <code>control</code>) you hold
+        down while dropping the selected file(s).
+</p>
+<ul>
+    <li>
+        Without pressing and holding <code>shift</code> and <code>control</code> keys
+        <ul>
+            <li>Assembler files (with file extension <code>.a</code> or <code>.asm</code>) will be opened.</li>
+            <li>
+                Binary files or text files (with file extension <code>.bin</code>, <code>.c64</code> or <code>.txt</code>) will be included via 
+                <code>!bin</code>, <code>.import</code> or <code>.binary</code> directive (depending on the assembler).
+            </li>
+        </ul>
+    </li>
+    <li>
+        Pressing and holding the <code>control</code> key
+        <ul>
+            <li>
+                Assembler files (with file extension <code>.a</code> or <code>.asm</code>) will be included via
+                <code>!src</code>, <code>.import</code> or <code>.binclude</code> directive (depending on the assembler).
+            </li>
+            <li>
+                Binary or text files (with file extension <code>.bin</code>, <code>.c64</code> or <code>.txt</code>) will be included as
+                byte table (see function <em>Insert bytes from file</em> in Source menu).
+            </li>
+        </ul>
+    </li>
+    <li>
+        Pressing and holding both <code>shift</code> and <code>control</code> keys
+        <ul>
+            <li>
+                The file path in quotes will be inserted at the caret position.
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Number conversion</h2>
+<p>
+    Type any numbers in the text fields at the bottom status bar to automatically see the converted
+    numbers in decimal, hex and octal format. Furthermore, if you select a number in the source code,
+    the converted values will also be shown in the conversion text fields.
+</p>
+
+
+<br>
+<h1><a name="shortcuts">Undocumented editor shortcuts</a></h1>
+
+<p>
+    Here is a list of shortcuts for the editor:
+</p>
+<ul>
+    <li><code>Ctrl+Space</code> - shows suggestion / auto-completion popups for labels.</li>
+    <li><code>Ctrl+Shift+Space</code> - show suggestion / auto-completion popups for functions and macros (only works if supported by assembler).</li>
+    <li><code>Ctrl+PageUp</code> - shows previous tab (on OS X: <code>fn+Ctrl+ArrowUp</code>).</li>
+    <li><code>Ctrl+PageDown</code> - shows next tab (on OS X: <code>fn+Ctrl+ArrowDown</code>).</li>
+    <li><code>Ctrl+Mouse</code> - rectangular text selection mode.</li>
+    <li><code>Shift+Enter</code> - new line without indention.</li>
+</ul>
+
+<br>
+<h1><a name="filemenu">File menu</a></h1>
+
+<p>
+    This menu includes typical file operations like opening, saving and closing files.
+    Note that the latest ten recent files can be opened quickly via the <em>Recent files</em>
+    submenu, and that the associated assembler and user script settings will be restored
+    automatically when opening a recent document.
+</p>
+
+<p>
+    Source code files that are included via include-directive (e.g. <code>!src &quot;mysource.a&quot;</code>)
+    can be automatically opened using the <em>Open included source</em> or <em>Open all included sources</em>.
+    The first command opens a source file if the related include-directive is in the current caret/edit-line.
+    The latter commands scans the complete current source for any include-directive and opens all source files.
+</p>
+
+
+<br>
+<h1><a name="editmenu">Edit menu</a></h1>
+
+<p>
+    This menu contains the default edit operations like cut, copy, paste, but also undo
+    and redo.
+</p>
+
+<p>
+    There is also a <em>Edit in external editor</em> command, which opens the currently activated
+    source file in an external application. To select the application, go to the
+    <em>Other</em>-tab of the <em>Preferences</em>. Simply drag &amp; drop the executable
+    to the text line <em>External editor</em>, or enter the command line manually. 
+</p>
+<p>
+    <strong>Note</strong> that the placeholder for the source file is <strong>SOURCEFILE</strong>
+    (see section <em>Placeholders</em> above).
+</p>
+<p>
+    <strong>Note</strong> that modified files will automatically be saved before they are opened
+    in an external editor.
+</p>
+
+<p>
+    <em>Example 1:</em>
+</p>
+
+    <div class="pcode">open /Applications/Atom.app SOURCEFILE</div>
+<p>
+    <em>Example 2:</em>
+</p>
+    
+    <div class="pcode">atom SOURCEFILE</div>
+
+<br>
+<h1><a name="findmenu">Find menu</a></h1>
+
+<p>
+    Contains all find and replace operation for current active documents. Both the
+    <em>Find searchterm</em> and the <em>Replace</em> command will open an edit
+    field below the source code window where find and replace terms can be edited.
+</p>
+
+<p>
+    The <em>Find searchterm</em> function also accepts <em>regular expressions</em>.
+</p>
+
+<p>
+    Use buttons beside the text fields or menu shortcuts / hotkeys to jump to
+    the next or previous occurence of a searchterm.
+</p>
+
+<br>
+<h1><a name="navigatemenu">Navigate menu</a></h1>
+
+<p class="highlight">
+    <strong>Note!</strong> The goto- and jump-functions only work properly if the <a href="#syntax">assembler settings</a>
+    for each source code is correctly set. Since the syntax of labels, macros and functions differs among
+    the various assemblers, the assembler setting information is needed for the navigate-functions to work.
+</p>
+
+
+<h2>The Goto-commands / Sidebar</h2>
+
+<p>
+    Except for the <em>Goto line</em> command, each of the <em>goto</em> commands opens a
+    sidebar to the right of the editor window. The content of this list depends on the context,
+    i.e. the command that opened this list. The <em>Goto label</em> command, for instance,
+    extracts <strong>all labels</strong> from <strong>all currently opened</strong> files
+    and lists them in the drop down list. A gray, uppercased heading with the related file name indicates
+    to which file the labels from this list belong. Selecting an item will choose the related
+    file and scrolls the caret to the line containing the label.
+</p>
+
+<p>
+    The <em>Goto function</em> or <em>Goto macro</em> command work in a similar way, just that
+    the sidebar list contains all functions or macros found in all opened files.
+</p>
+
+<p>
+    The <em>Goto section</em> command lets you choose any section to jump. Section are
+    specific comments on the source code, which can be used to structure your source. See 
+    <a href="#sourcemenu">Source menu</a> for more details.
+</p>
+
+<p>
+    The <em>Goto line</em> command sets the input focus into the text field at the bottom left part,
+    where you can enter any line number. Then the content will scroll to this line.
+</p>
+
+<br>
+
+<h3>The sidebar textfield</h3>
+
+<p>
+    Under the sidebar is a textfield where you can find entries by typing. Entries from the sidebar that
+    start with your input are automatically selected. To filter the sidebar-list, press <code>Enter</code>.
+    All list-items that contain the text input remain in the list, all other entries will be removed.
+</p>
+
+<br>
+
+<h2>The Jump-commands</h2>
+<p>
+    Unlike the <em>Goto</em> commands, which scroll to <em>a specific label, function, macro...</em> etc., 
+    the <em>Jump</em> commands scroll to the next, respectively to the previous occurence of a label, 
+    section or error. <em>Next</em> and <em>previous</em> relate to the current caret position.
+</p>
+
+<p>
+    While the <em>Jump to next/prev label</em> and <em>Jump to next/prev section</em> commands only work when you have
+    labels or sections defined in your source, the <em>Jump to next/prev error</em> command only works after
+    you have compiled a source file that contains errors. In case the assembler stops parsing your
+    source code due to errors, the <em>Assembler log</em> is shown and you can cycle through all
+    errors with the <em>Jump to next/prev error</em> command.
+</p>
+
+<p>
+    The <em>Jump to label</em> command only works when the caret (cursor) is positioned over a label inside
+    your source code. The command will then scroll to the line where this label is defined.
+</p>
+
+<br>
+<h1><a name="sourcemenu">Source menu</a></h1>
+
+<h2>Running and selecting scripts</h2>
+
+<p>
+    The <em>Run script</em> command runs the currently selected user script. The script selection list
+    typically is under the log-textfields. User script are commands that
+    you would typically type into the console or terminal in order to run assemblers, crunchers or emulators.
+    With these scripts you can execute your assembler, cruncher and emulator in order to compile your source
+    code and watch the compiled file in an emulator.
+</p>
+<p>
+    You can set up as much different scripts as you want in order to get various compile and run options.
+    Please refere to the preferences, select the <em>Compile &amp; Run</em> tab and click on the help 
+    button for details on user scripts.
+</p>
+
+<p>
+    With the <em>Select script</em> command the input focus is set to the drop down list with all
+    user scripts. This is a convenience command for quickly switching between scripts using the
+    keyboard.
+</p>
+
+<p>
+    <em>Select assembler</em> lets you switch between different assembler syntax schemes (e.g.
+    the KickAss syntax differs from ACME and 64tass) in order to correctly highlight keywords,
+    comments, assembler directives etc. and in order to make the <a href="#navigatemenu">navigate functions</a>
+    work correctly.
+</p>
+
+<br>
+<h2>Toggle and insert commands</h2>
+
+<p>
+    The <em>Toggle comment</em> command comments or uncomments the current selection. Note that this
+    command only works when text is selected.
+</p>
+
+<p>
+    <em>Insert section</em> inserts a specific command line with a named label, which can be used
+    to structure your source and easily navigate through it (see <a href="#navigatemenu">Navigate menu</a>).
+    <em>Insert separator</em> inserts a simple commented dashed line as separator.
+</p>
+
+<p>
+    The <em>Insert Basic start</em> command adds a short asm code snippet that adds a Basic line to
+    the compiled source code with a Sys-command to start your code.
+</p>
+
+<p>
+    <em>Inserts bytes from file</em> reads a file byte-wise and insert all bytes of that file as
+    byte-table. The <em>Insert sinus table</em> command opens an input window where you can specifiy
+    parameters for computing a sinus curve, which will be inserted as byte-table into your source.
+</p>
+
+<br>
+<h1><a name="viewmenu">View menu</a></h1>
+
+<p>
+    With the commands of the View menu, it is possible to switch the position and layout of the log windows
+    and the Compile and Run area. Furthermore, you can quickly show one of the log windows.
+</p>
+
+<p><br></p>
+
+</body>
+</html>
