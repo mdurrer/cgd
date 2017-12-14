@@ -10,8 +10,5 @@ import os,sys,pygame
 class VirtualMachine(object):
     def __init__(self,name,engine):
         self.name = name
-        self.dataFile = data
-        if not(pygame.init()):
-            print ("Couldn't initialize PyGame Engine")
-        else:
-            print ("PyGame Engine successfully initialized.")
+        self.engine = engine
+       print ("Virtual Machine created")
