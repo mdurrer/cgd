@@ -11,18 +11,16 @@ from cpu import *
 from pygame import *
 from pygame.locals import *
 from video import *
-import numpy
 from numpy import *
+import numpy
 from sdl2.video import SDL_GL_DOUBLEBUFFER
-class Engine(object):
-    def __init__(self,name,data,vm):
-        self.name = name
-        self.dataFile = data
-        self.cpu = CPU("aw2", 0xFFFF)
-        self.memory = Memory(0,64738,1)
-
+class Memory(object):
+    def __init__(self,size):
+        self.block = 0
+        self.memory = numpy.arange(0,64738,1)
         print(self.memory)
         if not(pygame.init()):
             print ("Couldn't initialize PyGame Engine")
         else:
             print ("PyGame Engine successfully initialized.")
+        return(self.memory)
