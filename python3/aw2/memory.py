@@ -17,10 +17,5 @@ from sdl2.video import SDL_GL_DOUBLEBUFFER
 class Memory(object):
     def __init__(self,size):
         self.block = 0
-        self.memory = numpy.arange(0,64738,1)
-        print(self.memory)
-        if not(pygame.init()):
-            print ("Couldn't initialize PyGame Engine")
-        else:
-            print ("PyGame Engine successfully initialized.")
-        return(self.memory)
+        self.memory = numpy.arange(0,64738)
+        return None

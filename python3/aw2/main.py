@@ -12,7 +12,6 @@ from pygame.locals import *
 from engine import *
 from cpu import *
 if __name__ =='__main__':
-    processor = CPU("VM",0x0000)
     game = Engine("AW2 Working Title","data.obj",cpu)
     print ("Another World 2 Working Title")
     # Main Loop
