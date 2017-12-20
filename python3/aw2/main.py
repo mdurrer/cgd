@@ -15,6 +15,14 @@ if __name__ =='__main__':
     print ("Another World 2 Working Title")
     # Main Loop
     scenes = []
+    while True:
+        for event in pygame.event.get():
+            if event.type==QUIT:
+                pygame.quit()
+                sys.exit(1)
+            else:
+                pass
+        pygame.display.update()
     #raise SystemExit
     pygame.quit()
 
