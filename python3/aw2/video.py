@@ -20,6 +20,6 @@ class Video(object):
     def initDisplay(self,resolution,bpp,flags):
         display.set_mode((self.resX,self.resY),flags)
     def setTitle(self,title):
-        self.title = display.set_caption(title)
+        self.title = display.set_caption(title2)
     def flipDisplay(self):
         display.flip()  
