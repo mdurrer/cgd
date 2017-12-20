@@ -12,13 +12,13 @@ from pygame import *
 from pygame.locals import *
 from video import  *
 class CPU:
-    def __init__(self,name="",adr=0x000):
+    def __init__(self,name="",adr=0x0000):
         self.name = name
         self.engine = name
         self.pc =  adr
         self.lastOpcode = 0x00
-        self.video = Video(1600,900,bpp=24, flags=SDL_GL_DOUBLEBUFFER)
-        print ("Virtual CPU created")
+        self.video = Video(1600,900,bpp=24, flags=SDL_GL_DOUBLEBUFFER,engine="Hey")
+        print ("Virtual CPU created by Engine",self.engine)
         return None
     def nextOpcode(list):
         if self.pc == 0:
