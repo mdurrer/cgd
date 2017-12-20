@@ -12,7 +12,7 @@ from pygame import *
 from engine import *
 from sdl2.video import SDL_GL_DOUBLEBUFFER
 class Video(object):
-    def __init__(self,x,y,bpp,flags):
+    def __init__(self,x,y,bpp,flags,engine):
         self.resX = x
         self.resY = y
         self.bpp = bpp
@@ -20,6 +20,6 @@ class Video(object):
     def initDisplay(self,resolution,bpp,flags):
         display.set_mode((self.resX,self.resY),flags)
     def setTitle(self,title):
-        self.title = display.set_caption(title2)
+        self.title = display.set_caption(title)
     def flipDisplay(self):
         display.flip()  

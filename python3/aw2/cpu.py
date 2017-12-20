@@ -10,7 +10,7 @@ from memory import *
 import os,sys,pygame
 from pygame import *
 from pygame.locals import *
-from video import *
+from video import  *
 class CPU:
     def __init__(self,name="",adr=0x000):
         self.name = name

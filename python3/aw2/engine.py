@@ -29,6 +29,6 @@ class Engine(object):
         
         self.cpu = CPU("aw2", 0x0000)
         self.memory = Memory(64738)
-        self.video = Video(self.xRes,self.yRes,24, DOUBLEBUF  )
-        self.video.initDisplay((self.xRes,self.yRes),24,DOUBLEBUF)
+        self.video = Video(self.xRes,self.yRes,24, DOUBLEBUF, engine=self )
+        self.video.surface = self.video.initDisplay((self.xRes,self.yRes),24,DOUBLEBUF)
         self.video.setTitle(self.name)
