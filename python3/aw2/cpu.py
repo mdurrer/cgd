@@ -8,9 +8,11 @@ Created on Thu Dec 14 19:23:48 2017
 
 from memory import *
 import os,sys,pygame
-from video import  *
-class CPU(object):
-    def __init__(self,name,adr):
+from pygame import *
+from pygame.locals import *
+from video import *
+class CPU:
+    def __init__(self,name="",adr=0x000):
         self.name = name
         self.engine = name
         self.pc =  adr

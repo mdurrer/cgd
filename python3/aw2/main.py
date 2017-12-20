@@ -7,12 +7,11 @@ Created on Thu Dec 14 03:58:50 2017
 """
 import os,sys
 import pygame
-import cpu
 from pygame.locals import *
 from engine import *
 from cpu import *
 if __name__ =='__main__':
-    game = Engine("AW2 Working Title","data.obj",cpu)
+    game = Engine("AW2 Working Title","data.obj")
     print ("Another World 2 Working Title")
     # Main Loop
     scenes = []

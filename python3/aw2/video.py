@@ -7,8 +7,9 @@ Created on Fri Dec 15 02:50:54 2017
 """
 
 import os,sys
-from pygame.locals ikenmport *
+from pygame.locals import *
 from pygame import *
+from engine import *
 from sdl2.video import SDL_GL_DOUBLEBUFFER
 class Video(object):
     def __init__(self,x,y,bpp,flags):
@@ -18,5 +19,7 @@ class Video(object):
         self.flags = SDL_GL_DOUBLEBUFFER
     def initDisplay(self,resolution,bpp,flags):
         display.set_mode((self.resX,self.resY),flags)
+    def setTitle(self,title):
+        self.title = display.set_caption(title)
     def flipDisplay(self):
-        display.flip()
+        display.flip()  

@@ -14,13 +14,21 @@ from video import *
 import numpy
 from numpy import *
 class Engine(object):
-    def __init__(self,name,data,vm):
+    def __init__(self,name,data):
+        # Define some colors
+        self.BLACK    = (   0,   0,   0)
+        self.WHITE    = ( 255, 255, 255)
+        self.GREEN    = (   0, 255,   0)
+        self.RED      = ( 255,   0,   0)
+        self.BLUE     = (   0,   0, 255)
         self.xRes = 1600
         self.yRes = 900
         self.name = name
         self.dataFile = data
 # Virtual Components for engine
+        
         self.cpu = CPU("aw2", 0x0000)
         self.memory = Memory(64738)
         self.video = Video(self.xRes,self.yRes,24, DOUBLEBUF  )
         self.video.initDisplay((self.xRes,self.yRes),24,DOUBLEBUF)
+        self.video.setTitle(self.name)
