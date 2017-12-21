@@ -26,7 +26,7 @@ class Engine(object):
         self.name = name
         self.dataFile = data
 # Virtual Components for engine
-        
+
         self.cpu = CPU("aw2", 0x0000)
         self.memory = Memory(64738)
         self.video = Video(self.xRes,self.yRes,24, DOUBLEBUF, engine=self )

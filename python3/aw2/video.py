@@ -30,3 +30,5 @@ class Video(object):
     """docstring for  __init__(self, arg):
         super _init__()
         self.arg = arg
+        """
+        
