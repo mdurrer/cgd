@@ -23,8 +23,10 @@ class Video(object):
         self.title = display.set_caption(title)
     def flipDisplay(self):
         display.flip()
+    def test(self):
+        pass
 
 #TODO: Write polygon / vector / pixel class into Video class
-    """docstring for __init__(self, arg):
-        super_init__()
+    """docstring for  __init__(self, arg):
+        super _init__()
         self.arg = arg
