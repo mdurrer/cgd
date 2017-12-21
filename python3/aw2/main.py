@@ -19,9 +19,11 @@ if __name__ =='__main__':
         for event in pygame.event.get():
             if event.type==QUIT:
                 pygame.quit()
-                sys.exit(1)
-            else:
-                pass
+                sys.exit()
+            if event.type==pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
         pygame.display.update()
     #raise SystemExit
     pygame.quit()

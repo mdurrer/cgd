@@ -18,5 +18,9 @@ class Event(object):
         self.event = event
     def __init__(self):
         self.event = pygame.event()
+    def onKeyboard(self,event):
+        self.event = event
+    def onMouse(self,event):
+        self.event = event
 # Virtual Components for engine
         
