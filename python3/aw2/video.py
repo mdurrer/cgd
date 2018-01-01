@@ -11,12 +11,16 @@ from pygame.locals import *
 from pygame import *
 from engine import *
 from sdl2.video import SDL_GL_DOUBLEBUFFER
+from cairo import *
+from vector import *
 class Video(object):
     def __init__(self,x,y,bpp,flags,engine):
         self.resX = x
         self.resY = y
         self.bpp = bpp
         self.flags = SDL_GL_DOUBLEBUFFER
+        self.cairo 
+       # self.gfx = Vector()
     def initDisplay(self,resolution,bpp,flags):
         display.set_mode((self.resX,self.resY),flags)
     def setTitle(self,title):
