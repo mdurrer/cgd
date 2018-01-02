@@ -25,7 +25,7 @@ class Engine(object):
         self.yRes = 900
         self.name = name
         self.dataFile = data
-        self.data = array(65536)
+        self.data = ()
         self.contents = []
 # Virtual Components for engine
 
@@ -41,12 +41,5 @@ class Engine(object):
         f.close()
         print (self.contents)
   
-    def convertScript(self,script):
-        for word in self.data:
-            self.data[word].rstrip()
     def loadMemory(self,data):
-        for count in self.data
-            for opcode in data:
-                self.memory.memory[count] = opcode
-            self.memory.memory = np.array([self.data])
-            print (self.memory.memory)
+        pass

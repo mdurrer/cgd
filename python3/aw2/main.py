@@ -14,8 +14,6 @@ if __name__ =='__main__':
     game = Engine("AW2 Working Title",sys.argv[1])
     game.loadScript(sys.argv[1])
     game.loadMemory(game.data)
-    print("Init")
-    print (game.data)
     print ("Another World 2 Working Title")
     # Main Loop
     scenes = []
