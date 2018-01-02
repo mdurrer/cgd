@@ -19,7 +19,6 @@ class Video(object):
         self.resY = y
         self.bpp = bpp
         self.flags = SDL_GL_DOUBLEBUFFER
-        self.cairo 
        # self.gfx = Vector()
     def initDisplay(self,resolution,bpp,flags):
         display.set_mode((self.resX,self.resY),flags)

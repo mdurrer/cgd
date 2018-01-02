@@ -20,10 +20,13 @@ class CPU:
         self.video = Video(1600,900,bpp=24, flags=SDL_GL_DOUBLEBUFFER,engine="Hey")
         print ("Virtual CPU created by Engine",self.engine)
         return None
-    def nextOpcode(list):
-        if self.pc == 0:
-            
-            print ("RTS")
-            pygame.quit()
-        
+        self.video.setTitle(self.name)
+
+        print (self.data)
+    def nextOpcode(self):
+        self.pc += 1
+    def opRTS(self):
+        pygame.quit()
+        sys.exit()
+    
     

@@ -11,7 +11,9 @@ from pygame.locals import *
 from engine import *
 from cpu import *
 if __name__ =='__main__':
-    game = Engine("AW2 Working Title","data.obj")
+    game = Engine("AW2 Working Title",sys.argv[1])
+    game.loadScript(sys.argv[1])
+    print (game.data)
     print ("Another World 2 Working Title")
     # Main Loop
     scenes = []
@@ -24,7 +26,8 @@ if __name__ =='__main__':
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
-        pygame.display.update()
+        game.cpu.nextOpcode()
+        pygame.display.flip()
     #raise SystemExit
     pygame.quit()
 
