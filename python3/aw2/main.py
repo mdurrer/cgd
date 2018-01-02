@@ -13,11 +13,14 @@ from cpu import *
 if __name__ =='__main__':
     game = Engine("AW2 Working Title",sys.argv[1])
     game.loadScript(sys.argv[1])
+    game.loadMemory(game.data)
+    print("Init")
     print (game.data)
     print ("Another World 2 Working Title")
     # Main Loop
     scenes = []
     while True:
+        game.cpu.nextOpcode()
         for event in pygame.event.get():
             if event.type==QUIT:
                 pygame.quit()
@@ -27,7 +30,7 @@ if __name__ =='__main__':
                     pygame.quit()
                     sys.exit()
         game.cpu.nextOpcode()
-        pygame.display.flip()
-    #raise SystemExit
+        game.video.flipDisplay()
+        #raise SystemExit
     pygame.quit()
 

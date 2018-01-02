@@ -37,7 +37,7 @@ class Engine(object):
     def loadScript(self,*args):
         f = open(sys.argv[1],"r")
         for num in f:
-            self.contents.append(num.rstrip())
+            self.contents.append(num.rstrip())                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
         f.close()
         print (self.contents)
   
@@ -45,5 +45,8 @@ class Engine(object):
         for word in self.data:
             self.data[word].rstrip()
     def loadMemory(self,data):
-        for opcode in data:
-            self.memory.memory.append()
+        for count in self.data
+            for opcode in data:
+                self.memory.memory[count] = opcode
+            self.memory.memory = np.array([self.data])
+            print (self.memory.memory)
