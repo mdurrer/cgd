@@ -25,8 +25,8 @@ class Engine(object):
         self.yRes = 900
         self.name = name
         self.dataFile = data
-        self.data = np.arange(0,65535) 
-        self.contents = array(65536)
+        self.data = array(65536)
+        self.contents = []
 # Virtual Components for engine
 
         self.cpu = CPU("aw2", 0x0000)
@@ -37,8 +37,9 @@ class Engine(object):
     def loadScript(self,*args):
         f = open(sys.argv[1],"r")
         for num in f:
-            self.data.concatenate(num.rstrip())
+            self.contents.append(num.rstrip())
         f.close()
+        print (self.contents)
   
     def convertScript(self,script):
         for word in self.data:
