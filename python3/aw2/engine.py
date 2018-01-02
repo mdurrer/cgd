@@ -42,4 +42,7 @@ class Engine(object):
         print (self.contents)
   
     def loadMemory(self,data):
-        pass
+        self.data = np.asarray([self.contents])
+        for opcode in self.data:
+            self.memory.memory = opcode
+            print (self.memory.memory[0])

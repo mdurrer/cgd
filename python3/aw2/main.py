@@ -27,7 +27,6 @@ if __name__ =='__main__':
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
-        game.cpu.nextOpcode()
         game.video.flipDisplay()
         #raise SystemExit
     pygame.quit()
