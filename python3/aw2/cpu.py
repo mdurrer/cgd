@@ -24,7 +24,11 @@ class CPU:
 
         print (self.data)
     def nextOpcode(self,memory):
-        print(memory.memory[1])
+        print("NextOpcode",memory.memory[self.pc])
+        if (memory.memory[self.pc]) == "RTS".lower():
+            print("RTS")
+            pygame.quit()
+            sys.exit(1)
         self.pc += 1
     def opRTS(self):
         pygame.quit()

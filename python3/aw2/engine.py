@@ -27,6 +27,7 @@ class Engine(object):
         self.dataFile = data
         self.data = ()
         self.contents = []
+        self.polygons = []
 # Virtual Components for engine
 
         self.cpu = CPU("aw2", 0x0000)
@@ -40,7 +41,13 @@ class Engine(object):
             self.contents.append(num.rstrip())                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
         f.close()
         print ("Load script",self.contents)
-  
+    def loadRessources(self,*args):
+        fn = open(sys.argv[2],"r")
+        for levels in fn:
+            firstLine = fn.readline()
+            self.polygons.append(levels.rstrip())
+            print (self.polygons)
+        fn.close()
     def loadMemory(self,data):
         self.data = np.asarray([self.contents])
         for opcode in self.data:
