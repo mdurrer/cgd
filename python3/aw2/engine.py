@@ -39,10 +39,10 @@ class Engine(object):
         for num in f:
             self.contents.append(num.rstrip())                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
         f.close()
-        print (self.contents)
+        print ("Load script",self.contents)
   
     def loadMemory(self,data):
         self.data = np.asarray([self.contents])
         for opcode in self.data:
             self.memory.memory = opcode
-            print (self.memory.memory[0])
+            print (self.memory.memory)

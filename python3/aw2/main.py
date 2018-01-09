@@ -18,7 +18,7 @@ if __name__ =='__main__':
     # Main Loop
     scenes = []
     while True:
-        game.cpu.nextOpcode()
+        game.cpu.nextOpcode(game.memory)
         for event in pygame.event.get():
             if event.type==QUIT:
                 pygame.quit()

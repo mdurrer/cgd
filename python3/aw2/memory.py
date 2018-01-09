@@ -12,10 +12,10 @@ from pygame import *
 from pygame.locals import *
 from video import *
 from numpy import *
-import numpy
+import numpy as np
 from sdl2.video import SDL_GL_DOUBLEBUFFER
 class Memory(object):
     def __init__(self,size):
         self.block = 0
-        self.memory = numpy.arange(0,64738)
+        self.memory = np.array([0]*655536)
         return None

@@ -23,7 +23,8 @@ class CPU:
         self.video.setTitle(self.name)
 
         print (self.data)
-    def nextOpcode(self):
+    def nextOpcode(self,memory):
+        print(memory.memory[1])
         self.pc += 1
     def opRTS(self):
         pygame.quit()
