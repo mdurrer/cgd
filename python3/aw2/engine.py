@@ -31,7 +31,7 @@ class Engine(object):
 # Virtual Components for engine
 
         self.cpu = CPU("aw2", 0x0000)
-        self.memory = Memory(64738)
+        self.memory = Memory(65536)
         self.video = Video(self.xRes,self.yRes,24, DOUBLEBUF, engine=self )
         self.video.surface = self.video.initDisplay((self.xRes,self.yRes),24,DOUBLEBUF)
 
@@ -42,12 +42,11 @@ class Engine(object):
         f.close()
         print ("Load script",self.contents)
     def loadRessources(self,*args):
-        fn = open(sys.argv[2],"r")
-        for levels in fn:
-            firstLine = fn.readline()
-            self.polygons.append(levels.rstrip())
-            print (self.polygons)
-        fn.close()
+        print("Load ressources")
+        with open(sys.argv[2]) as f:
+            f = f.readlines()
+        self.polygons = [x.strip('\n') for x in f] 
+        print (self.polygons)
     def loadMemory(self,data):
         self.data = np.asarray([self.contents])
         for opcode in self.data:

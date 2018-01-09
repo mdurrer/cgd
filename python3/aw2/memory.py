@@ -17,5 +17,7 @@ from sdl2.video import SDL_GL_DOUBLEBUFFER
 class Memory(object):
     def __init__(self,size):
         self.block = 0
-        self.memory = np.array([0]*655536)
+        self.memory = [[0] * 65536]
+
+        print (self.memory)
         return None

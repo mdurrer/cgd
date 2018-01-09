@@ -12,7 +12,7 @@ from pygame import *
 from pygame.locals import *
 from video import  *
 class CPU:
-    def __init__(self,name="",adr=0x0000):
+    def __init__(self,name="",adr=0):
         self.name = name
         self.engine = name
         self.pc =  adr
@@ -21,8 +21,15 @@ class CPU:
         print ("Virtual CPU created by Engine",self.engine)
         return None
         self.video.setTitle(self.name)
-
-        print (self.data)
+    def fetchByte(self,memory):
+        memory.memory[self.pc+1]
+        byte = memory.memory[self.pc]
+        return byte
+    def fetchWord(self,memory):
+        a= memory.memory[self.pc+1]
+        
+        b= memory.memory[self.pc+2]
+        return (str(a)+str(b))
     def nextOpcode(self,memory):
         print("NextOpcode",memory.memory[self.pc])
         if (memory.memory[self.pc]) == "RTS".lower():
